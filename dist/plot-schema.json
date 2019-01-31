@@ -34469,9 +34469,14 @@
                         "reversescale": {
                             "valType": "boolean",
                             "role": "style",
+<<<<<<< HEAD
                             "dflt": false,
                             "editType": "plot",
                             "description": "Reverses the color mapping if true. Has an effect only if in `marker.line.color`is set to a numerical array. If true, `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will correspond to the first color."
+=======
+                            "description": "Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.",
+                            "editType": "calc"
+>>>>>>> Add showhovertext flag
                         },
                         "coloraxis": {
                             "valType": "subplotid",
@@ -34601,8 +34606,14 @@
                             "valType": "number",
                             "min": 0,
                             "role": "style",
+<<<<<<< HEAD
                             "editType": "calc",
                             "description": "Sets the marker size of selected points."
+=======
+                            "dflt": "white",
+                            "description": "Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.",
+                            "editType": "calc"
+>>>>>>> Add showhovertext flag
                         },
                         "editType": "calc",
                         "role": "object"
@@ -52158,6 +52169,17 @@
                 "role": "info",
                 "editType": "none",
                 "description": "Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff, 0 means no looking for data). This is only a real distance for hovering on point-like objects, like scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but these objects will not supersede hover on point-like objects in case of conflict."
+            },
+            "showhovertext": {
+                "valType": "enumerated",
+                "role": "info",
+                "dflt": true,
+                "values": [
+                    true,
+                    false
+                ],
+                "editType": "none",
+                "description": "Determines whether to calculate hover labels. If *true*, draw the labels according to `hovermode`. If *false*, skip the calculation for hover label layout."
             },
             "spikedistance": {
                 "valType": "integer",

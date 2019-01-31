@@ -85,6 +85,18 @@ module.exports = {
             'will not supersede hover on point-like objects in case of conflict.'
         ].join(' ')
     },
+    showhovertext: {
+        valType: 'enumerated',
+        role: 'info',
+        dflt: true,
+        values: [true, false],
+        editType: 'none',
+        description: [
+            'Determines whether to calculate hover labels.',
+            'If *true*, draw the labels according to `hovermode`.',
+            'If *false*, skip the calculation for hover label layout.',
+        ].join(' ')
+    },
     spikedistance: {
         valType: 'integer',
         min: -1,

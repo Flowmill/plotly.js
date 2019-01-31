@@ -332,6 +332,7 @@ module.exports = _dereq_('../src/traces/ohlc');
 
 module.exports = _dereq_('../src/traces/pie');
 
+<<<<<<< HEAD
 },{"../src/traces/pie":331}],12:[function(_dereq_,module,exports){
 /**
 * Copyright 2012-2019, Plotly, Inc.
@@ -871,6 +872,9 @@ function functionBindPolyfill(context) {
 }
 
 },{}],14:[function(_dereq_,module,exports){
+=======
+},{"../src/traces/pie":309}],10:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 !function() {
   var d3 = {
     version: "3.5.17"
@@ -10425,7 +10429,11 @@ function functionBindPolyfill(context) {
   });
   if (typeof define === "function" && define.amd) this.d3 = d3, define(d3); else if (typeof module === "object" && module.exports) module.exports = d3; else this.d3 = d3;
 }();
+<<<<<<< HEAD
 },{}],15:[function(_dereq_,module,exports){
+=======
+},{}],11:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 (function (process,global){
 /*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
@@ -11582,7 +11590,537 @@ return Promise;
 })));
 
 }).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"_process":28}],12:[function(_dereq_,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+var objectCreate = Object.create || objectCreatePolyfill
+var objectKeys = Object.keys || objectKeysPolyfill
+var bind = Function.prototype.bind || functionBindPolyfill
+
+function EventEmitter() {
+  if (!this._events || !Object.prototype.hasOwnProperty.call(this, '_events')) {
+    this._events = objectCreate(null);
+    this._eventsCount = 0;
+  }
+
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+var defaultMaxListeners = 10;
+
+var hasDefineProperty;
+try {
+  var o = {};
+  if (Object.defineProperty) Object.defineProperty(o, 'x', { value: 0 });
+  hasDefineProperty = o.x === 0;
+} catch (err) { hasDefineProperty = false }
+if (hasDefineProperty) {
+  Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
+    enumerable: true,
+    get: function() {
+      return defaultMaxListeners;
+    },
+    set: function(arg) {
+      // check whether the input is a positive number (whose value is zero or
+      // greater and not a NaN).
+      if (typeof arg !== 'number' || arg < 0 || arg !== arg)
+        throw new TypeError('"defaultMaxListeners" must be a positive number');
+      defaultMaxListeners = arg;
+    }
+  });
+} else {
+  EventEmitter.defaultMaxListeners = defaultMaxListeners;
+}
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
+  if (typeof n !== 'number' || n < 0 || isNaN(n))
+    throw new TypeError('"n" argument must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+function $getMaxListeners(that) {
+  if (that._maxListeners === undefined)
+    return EventEmitter.defaultMaxListeners;
+  return that._maxListeners;
+}
+
+EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
+  return $getMaxListeners(this);
+};
+
+// These standalone emit* functions are used to optimize calling of event
+// handlers for fast cases because emit() itself often has a variable number of
+// arguments and can be deoptimized because of that. These functions always have
+// the same number of arguments and thus do not get deoptimized, so the code
+// inside them can execute faster.
+function emitNone(handler, isFn, self) {
+  if (isFn)
+    handler.call(self);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self);
+  }
+}
+function emitOne(handler, isFn, self, arg1) {
+  if (isFn)
+    handler.call(self, arg1);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self, arg1);
+  }
+}
+function emitTwo(handler, isFn, self, arg1, arg2) {
+  if (isFn)
+    handler.call(self, arg1, arg2);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self, arg1, arg2);
+  }
+}
+function emitThree(handler, isFn, self, arg1, arg2, arg3) {
+  if (isFn)
+    handler.call(self, arg1, arg2, arg3);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self, arg1, arg2, arg3);
+  }
+}
+
+function emitMany(handler, isFn, self, args) {
+  if (isFn)
+    handler.apply(self, args);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].apply(self, args);
+  }
+}
+
+EventEmitter.prototype.emit = function emit(type) {
+  var er, handler, len, args, i, events;
+  var doError = (type === 'error');
+
+  events = this._events;
+  if (events)
+    doError = (doError && events.error == null);
+  else if (!doError)
+    return false;
+
+  // If there is no 'error' event listener then throw.
+  if (doError) {
+    if (arguments.length > 1)
+      er = arguments[1];
+    if (er instanceof Error) {
+      throw er; // Unhandled 'error' event
+    } else {
+      // At least give some kind of context to the user
+      var err = new Error('Unhandled "error" event. (' + er + ')');
+      err.context = er;
+      throw err;
+    }
+    return false;
+  }
+
+  handler = events[type];
+
+  if (!handler)
+    return false;
+
+  var isFn = typeof handler === 'function';
+  len = arguments.length;
+  switch (len) {
+      // fast cases
+    case 1:
+      emitNone(handler, isFn, this);
+      break;
+    case 2:
+      emitOne(handler, isFn, this, arguments[1]);
+      break;
+    case 3:
+      emitTwo(handler, isFn, this, arguments[1], arguments[2]);
+      break;
+    case 4:
+      emitThree(handler, isFn, this, arguments[1], arguments[2], arguments[3]);
+      break;
+      // slower
+    default:
+      args = new Array(len - 1);
+      for (i = 1; i < len; i++)
+        args[i - 1] = arguments[i];
+      emitMany(handler, isFn, this, args);
+  }
+
+  return true;
+};
+
+function _addListener(target, type, listener, prepend) {
+  var m;
+  var events;
+  var existing;
+
+  if (typeof listener !== 'function')
+    throw new TypeError('"listener" argument must be a function');
+
+  events = target._events;
+  if (!events) {
+    events = target._events = objectCreate(null);
+    target._eventsCount = 0;
+  } else {
+    // To avoid recursion in the case that type === "newListener"! Before
+    // adding it to the listeners, first emit "newListener".
+    if (events.newListener) {
+      target.emit('newListener', type,
+          listener.listener ? listener.listener : listener);
+
+      // Re-assign `events` because a newListener handler could have caused the
+      // this._events to be assigned to a new object
+      events = target._events;
+    }
+    existing = events[type];
+  }
+
+  if (!existing) {
+    // Optimize the case of one listener. Don't need the extra array object.
+    existing = events[type] = listener;
+    ++target._eventsCount;
+  } else {
+    if (typeof existing === 'function') {
+      // Adding the second element, need to change to array.
+      existing = events[type] =
+          prepend ? [listener, existing] : [existing, listener];
+    } else {
+      // If we've already got an array, just append.
+      if (prepend) {
+        existing.unshift(listener);
+      } else {
+        existing.push(listener);
+      }
+    }
+
+    // Check for listener leak
+    if (!existing.warned) {
+      m = $getMaxListeners(target);
+      if (m && m > 0 && existing.length > m) {
+        existing.warned = true;
+        var w = new Error('Possible EventEmitter memory leak detected. ' +
+            existing.length + ' "' + String(type) + '" listeners ' +
+            'added. Use emitter.setMaxListeners() to ' +
+            'increase limit.');
+        w.name = 'MaxListenersExceededWarning';
+        w.emitter = target;
+        w.type = type;
+        w.count = existing.length;
+        if (typeof console === 'object' && console.warn) {
+          console.warn('%s: %s', w.name, w.message);
+        }
+      }
+    }
+  }
+
+  return target;
+}
+
+EventEmitter.prototype.addListener = function addListener(type, listener) {
+  return _addListener(this, type, listener, false);
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.prependListener =
+    function prependListener(type, listener) {
+      return _addListener(this, type, listener, true);
+    };
+
+function onceWrapper() {
+  if (!this.fired) {
+    this.target.removeListener(this.type, this.wrapFn);
+    this.fired = true;
+    switch (arguments.length) {
+      case 0:
+        return this.listener.call(this.target);
+      case 1:
+        return this.listener.call(this.target, arguments[0]);
+      case 2:
+        return this.listener.call(this.target, arguments[0], arguments[1]);
+      case 3:
+        return this.listener.call(this.target, arguments[0], arguments[1],
+            arguments[2]);
+      default:
+        var args = new Array(arguments.length);
+        for (var i = 0; i < args.length; ++i)
+          args[i] = arguments[i];
+        this.listener.apply(this.target, args);
+    }
+  }
+}
+
+function _onceWrap(target, type, listener) {
+  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
+  var wrapped = bind.call(onceWrapper, state);
+  wrapped.listener = listener;
+  state.wrapFn = wrapped;
+  return wrapped;
+}
+
+EventEmitter.prototype.once = function once(type, listener) {
+  if (typeof listener !== 'function')
+    throw new TypeError('"listener" argument must be a function');
+  this.on(type, _onceWrap(this, type, listener));
+  return this;
+};
+
+EventEmitter.prototype.prependOnceListener =
+    function prependOnceListener(type, listener) {
+      if (typeof listener !== 'function')
+        throw new TypeError('"listener" argument must be a function');
+      this.prependListener(type, _onceWrap(this, type, listener));
+      return this;
+    };
+
+// Emits a 'removeListener' event if and only if the listener was removed.
+EventEmitter.prototype.removeListener =
+    function removeListener(type, listener) {
+      var list, events, position, i, originalListener;
+
+      if (typeof listener !== 'function')
+        throw new TypeError('"listener" argument must be a function');
+
+      events = this._events;
+      if (!events)
+        return this;
+
+      list = events[type];
+      if (!list)
+        return this;
+
+      if (list === listener || list.listener === listener) {
+        if (--this._eventsCount === 0)
+          this._events = objectCreate(null);
+        else {
+          delete events[type];
+          if (events.removeListener)
+            this.emit('removeListener', type, list.listener || listener);
+        }
+      } else if (typeof list !== 'function') {
+        position = -1;
+
+        for (i = list.length - 1; i >= 0; i--) {
+          if (list[i] === listener || list[i].listener === listener) {
+            originalListener = list[i].listener;
+            position = i;
+            break;
+          }
+        }
+
+        if (position < 0)
+          return this;
+
+        if (position === 0)
+          list.shift();
+        else
+          spliceOne(list, position);
+
+        if (list.length === 1)
+          events[type] = list[0];
+
+        if (events.removeListener)
+          this.emit('removeListener', type, originalListener || listener);
+      }
+
+      return this;
+    };
+
+EventEmitter.prototype.removeAllListeners =
+    function removeAllListeners(type) {
+      var listeners, events, i;
+
+      events = this._events;
+      if (!events)
+        return this;
+
+      // not listening for removeListener, no need to emit
+      if (!events.removeListener) {
+        if (arguments.length === 0) {
+          this._events = objectCreate(null);
+          this._eventsCount = 0;
+        } else if (events[type]) {
+          if (--this._eventsCount === 0)
+            this._events = objectCreate(null);
+          else
+            delete events[type];
+        }
+        return this;
+      }
+
+      // emit removeListener for all listeners on all events
+      if (arguments.length === 0) {
+        var keys = objectKeys(events);
+        var key;
+        for (i = 0; i < keys.length; ++i) {
+          key = keys[i];
+          if (key === 'removeListener') continue;
+          this.removeAllListeners(key);
+        }
+        this.removeAllListeners('removeListener');
+        this._events = objectCreate(null);
+        this._eventsCount = 0;
+        return this;
+      }
+
+      listeners = events[type];
+
+      if (typeof listeners === 'function') {
+        this.removeListener(type, listeners);
+      } else if (listeners) {
+        // LIFO order
+        for (i = listeners.length - 1; i >= 0; i--) {
+          this.removeListener(type, listeners[i]);
+        }
+      }
+
+      return this;
+    };
+
+function _listeners(target, type, unwrap) {
+  var events = target._events;
+
+  if (!events)
+    return [];
+
+  var evlistener = events[type];
+  if (!evlistener)
+    return [];
+
+  if (typeof evlistener === 'function')
+    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+
+  return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+}
+
+EventEmitter.prototype.listeners = function listeners(type) {
+  return _listeners(this, type, true);
+};
+
+EventEmitter.prototype.rawListeners = function rawListeners(type) {
+  return _listeners(this, type, false);
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  if (typeof emitter.listenerCount === 'function') {
+    return emitter.listenerCount(type);
+  } else {
+    return listenerCount.call(emitter, type);
+  }
+};
+
+EventEmitter.prototype.listenerCount = listenerCount;
+function listenerCount(type) {
+  var events = this._events;
+
+  if (events) {
+    var evlistener = events[type];
+
+    if (typeof evlistener === 'function') {
+      return 1;
+    } else if (evlistener) {
+      return evlistener.length;
+    }
+  }
+
+  return 0;
+}
+
+EventEmitter.prototype.eventNames = function eventNames() {
+  return this._eventsCount > 0 ? Reflect.ownKeys(this._events) : [];
+};
+
+// About 1.5x faster than the two-arg version of Array#splice().
+function spliceOne(list, index) {
+  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1)
+    list[i] = list[k];
+  list.pop();
+}
+
+function arrayClone(arr, n) {
+  var copy = new Array(n);
+  for (var i = 0; i < n; ++i)
+    copy[i] = arr[i];
+  return copy;
+}
+
+function unwrapListeners(arr) {
+  var ret = new Array(arr.length);
+  for (var i = 0; i < ret.length; ++i) {
+    ret[i] = arr[i].listener || arr[i];
+  }
+  return ret;
+}
+
+function objectCreatePolyfill(proto) {
+  var F = function() {};
+  F.prototype = proto;
+  return new F;
+}
+function objectKeysPolyfill(obj) {
+  var keys = [];
+  for (var k in obj) if (Object.prototype.hasOwnProperty.call(obj, k)) {
+    keys.push(k);
+  }
+  return k;
+}
+function functionBindPolyfill(context) {
+  var fn = this;
+  return function () {
+    return fn.apply(context, arguments);
+  };
+}
+
+<<<<<<< HEAD
+}).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":31}],16:[function(_dereq_,module,exports){
+=======
+},{}],13:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
  * inspired by is-number <https://github.com/jonschlinkert/is-number>
  * but significantly simplified and sped up by ignoring number and string constructors
@@ -16363,7 +16901,11 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
     } else annText.call(textLayout);
 }
 
+<<<<<<< HEAD
 },{"../../lib":165,"../../lib/setcursor":184,"../../lib/svg_text_utils":186,"../../plot_api/plot_template":199,"../../plots/cartesian/axes":209,"../../plots/plots":241,"../../registry":248,"../color":49,"../dragelement":67,"../drawing":70,"../fx":88,"./draw_arrow_head":41,"d3":14}],41:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../../lib/setcursor":181,"../../lib/svg_text_utils":183,"../../plot_api/plot_template":196,"../../plots/cartesian/axes":206,"../../plots/plots":239,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"../fx":85,"./draw_arrow_head":38,"d3":10}],38:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -16514,7 +17056,11 @@ module.exports = function drawArrowHead(el3, ends, options) {
     if(doEnd) drawhead(headStyle, end, endRot, scale);
 };
 
+<<<<<<< HEAD
 },{"../color":49,"./arrow_paths":33,"d3":14}],42:[function(_dereq_,module,exports){
+=======
+},{"../color":46,"./arrow_paths":30,"d3":10}],39:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18089,7 +18635,11 @@ module.exports = {
     draw: draw
 };
 
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../lib":165,"../../lib/extend":159,"../../lib/setcursor":184,"../../lib/svg_text_utils":186,"../../plots/cartesian/axes":209,"../../plots/cartesian/axis_defaults":211,"../../plots/cartesian/layout_attributes":221,"../../plots/cartesian/position_defaults":224,"../../plots/plots":241,"../../registry":248,"../color":49,"../colorscale/helpers":60,"../dragelement":67,"../drawing":70,"../titles":137,"./constants":51,"d3":14,"tinycolor2":32}],54:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":141,"../../lib":162,"../../lib/extend":156,"../../lib/setcursor":181,"../../lib/svg_text_utils":183,"../../plots/cartesian/axes":206,"../../plots/cartesian/axis_defaults":208,"../../plots/cartesian/layout_attributes":219,"../../plots/cartesian/position_defaults":222,"../../plots/plots":239,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"../titles":134,"./attributes":47,"./constants":49,"d3":10,"tinycolor2":29}],52:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18856,7 +19406,11 @@ module.exports = {
     makeColorScaleFuncFromTrace: makeColorScaleFuncFromTrace
 };
 
+<<<<<<< HEAD
 },{"../../lib":165,"../color":49,"./scales":64,"d3":14,"fast-isnumeric":16,"tinycolor2":32}],61:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../color":46,"./scales":61,"d3":10,"fast-isnumeric":13,"tinycolor2":29}],58:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -20810,7 +21364,11 @@ drawing.setTextPointsScale = function(selection, xScale, yScale) {
     });
 };
 
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../constants/interactions":145,"../../constants/xmlns_namespaces":147,"../../lib":165,"../../lib/svg_text_utils":186,"../../registry":248,"../../traces/scatter/make_bubble_size_func":354,"../../traces/scatter/subtypes":361,"../color":49,"../colorscale":61,"./symbol_defs":71,"d3":14,"fast-isnumeric":16,"tinycolor2":32}],71:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":141,"../../constants/interactions":142,"../../constants/xmlns_namespaces":144,"../../lib":162,"../../lib/svg_text_utils":183,"../../registry":246,"../../traces/scatter/make_bubble_size_func":333,"../../traces/scatter/subtypes":340,"../color":46,"../colorscale":58,"./symbol_defs":68,"d3":10,"fast-isnumeric":13,"tinycolor2":29}],68:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21298,7 +21856,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"d3":14}],72:[function(_dereq_,module,exports){
+=======
+},{"d3":10}],69:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21916,7 +22478,11 @@ function errorCoords(d, xa, ya) {
     return out;
 }
 
+<<<<<<< HEAD
 },{"../../traces/scatter/subtypes":361,"../drawing":70,"d3":14,"fast-isnumeric":16}],78:[function(_dereq_,module,exports){
+=======
+},{"../../traces/scatter/subtypes":340,"../drawing":67,"d3":10,"fast-isnumeric":13}],75:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21953,7 +22519,11 @@ module.exports = function style(traces) {
     });
 };
 
+<<<<<<< HEAD
 },{"../color":49,"d3":14}],79:[function(_dereq_,module,exports){
+=======
+},{"../color":46,"d3":10}],76:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -23051,11 +23621,17 @@ function _hover(gd, evt, subplot, noHoverEvent) {
         hoverdistance: fullLayout.hoverdistance
     };
 
-    var hoverLabels = createHoverText(hoverData, labelOpts, gd);
+    if (fullLayout.showhovertext !== false) {
+        var hoverLabels = createHoverText(hoverData, labelOpts, gd);
 
+<<<<<<< HEAD
     hoverAvoidOverlaps(hoverLabels, rotateLabels ? 'xa' : 'ya', fullLayout);
+=======
+        hoverAvoidOverlaps(hoverData, rotateLabels ? 'xa' : 'ya', fullLayout);
+>>>>>>> Add showhovertext flag
 
-    alignHoverText(hoverLabels, rotateLabels);
+        alignHoverText(hoverLabels, rotateLabels);
+    }
 
     // TODO: tagName hack is needed to appease geo.js's hack of using evt.target=true
     // we should improve the "fx" API so other plots can use it without these hack.
@@ -23970,6 +24546,7 @@ function spikesChanged(gd, oldspikepoints) {
     return false;
 }
 
+<<<<<<< HEAD
 function plainText(s, len) {
     return svgTextUtils.plainText(s || '', {
         len: len,
@@ -23978,6 +24555,9 @@ function plainText(s, len) {
 }
 
 },{"../../lib":165,"../../lib/events":158,"../../lib/override_cursor":176,"../../lib/svg_text_utils":186,"../../plots/cartesian/axes":209,"../../registry":248,"../color":49,"../dragelement":67,"../drawing":70,"./constants":82,"./helpers":84,"d3":14,"fast-isnumeric":16,"tinycolor2":32}],86:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../../lib/events":155,"../../lib/override_cursor":173,"../../lib/svg_text_utils":183,"../../plots/cartesian/axes":206,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"./constants":79,"./helpers":81,"d3":10,"fast-isnumeric":13,"tinycolor2":29}],83:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -24124,7 +24704,11 @@ function castHoverinfo(trace, fullLayout, ptNumber) {
     return Lib.castOption(trace, ptNumber, 'hoverinfo', _coerce);
 }
 
+<<<<<<< HEAD
 },{"../../lib":165,"../dragelement":67,"./attributes":79,"./calc":80,"./click":81,"./constants":82,"./defaults":83,"./helpers":84,"./hover":85,"./layout_attributes":89,"./layout_defaults":90,"./layout_global_defaults":91,"d3":14}],89:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../dragelement":64,"./attributes":76,"./calc":77,"./click":78,"./constants":79,"./defaults":80,"./helpers":81,"./hover":82,"./layout_attributes":86,"./layout_defaults":87,"./layout_global_defaults":88,"d3":10}],86:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -24174,6 +24758,14 @@ module.exports = {
         min: -1,
         dflt: 20,
         
+        editType: 'none',
+        
+    },
+    showhovertext: {
+        valType: 'enumerated',
+        
+        dflt: true,
+        values: [true, false],
         editType: 'none',
         
     },
@@ -25199,7 +25791,11 @@ module.exports = function draw(gd) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../constants/xmlns_namespaces":147,"../../plots/cartesian/axes":209,"../drawing":70,"d3":14}],97:[function(_dereq_,module,exports){
+=======
+},{"../../constants/xmlns_namespaces":144,"../../plots/cartesian/axes":206,"../drawing":67,"d3":10}],94:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -26281,7 +26877,11 @@ function expandHorizontalMargin(gd) {
     });
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../constants/interactions":145,"../../lib":165,"../../lib/events":158,"../../lib/svg_text_utils":186,"../../plots/plots":241,"../../registry":248,"../color":49,"../dragelement":67,"../drawing":70,"./constants":99,"./get_legend_data":102,"./handle_click":103,"./helpers":104,"./style":106,"d3":14}],102:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":141,"../../constants/interactions":142,"../../lib":162,"../../lib/events":155,"../../lib/svg_text_utils":183,"../../plots/plots":239,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"./constants":96,"./get_legend_data":99,"./handle_click":100,"./helpers":101,"./style":103,"d3":10}],99:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -27139,7 +27739,11 @@ module.exports = function style(s, gd) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":165,"../../registry":248,"../../traces/pie/helpers":330,"../../traces/pie/style_one":336,"../../traces/scatter/subtypes":361,"../color":49,"../drawing":70,"d3":14}],107:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../../registry":246,"../../traces/pie/style_one":314,"../../traces/scatter/subtypes":340,"../color":46,"../drawing":67,"d3":10}],104:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28384,7 +28988,11 @@ function createModeBar(gd, buttons) {
 
 module.exports = createModeBar;
 
+<<<<<<< HEAD
 },{"../../../build/ploticon":2,"../../lib":165,"d3":14,"fast-isnumeric":16}],111:[function(_dereq_,module,exports){
+=======
+},{"../../../build/ploticon":2,"../../lib":162,"d3":10,"fast-isnumeric":13}],108:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28898,7 +29506,11 @@ function reposition(gd, buttons, opts, axName, selector) {
     selector.attr('transform', 'translate(' + lx + ',' + ly + ')');
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/cartesian/axis_ids":212,"../../plots/plots":241,"../../registry":248,"../color":49,"../drawing":70,"./constants":112,"./get_update_object":115,"d3":14}],115:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/cartesian/axis_ids":209,"../../plots/plots":239,"../../registry":246,"../color":46,"../drawing":67,"./constants":109,"./get_update_object":112,"d3":10}],112:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28952,7 +29564,11 @@ function getXRange(axisLayout, buttonLayout) {
     return [range0, range1];
 }
 
+<<<<<<< HEAD
 },{"d3":14}],116:[function(_dereq_,module,exports){
+=======
+},{"d3":10}],113:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -29809,7 +30425,11 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
     grabAreaMax.attr('height', opts._height);
 }
 
+<<<<<<< HEAD
 },{"../../lib":165,"../../lib/setcursor":184,"../../plots/cartesian":220,"../../plots/cartesian/axis_ids":212,"../../plots/plots":241,"../../registry":248,"../color":49,"../dragelement":67,"../drawing":70,"../titles":137,"./constants":119,"d3":14}],122:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../../lib/setcursor":181,"../../plots/cartesian":218,"../../plots/cartesian/axis_ids":209,"../../plots/plots":239,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"../titles":134,"./constants":116,"d3":10}],119:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -32245,7 +32865,11 @@ function drawRail(sliderGroup, sliderOpts) {
     );
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../lib":165,"../../lib/svg_text_utils":186,"../../plot_api/plot_template":199,"../../plots/plots":241,"../color":49,"../drawing":70,"./constants":133,"d3":14}],136:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plot_api/plot_template":196,"../../plots/plots":239,"../color":46,"../drawing":67,"./constants":130,"d3":10}],133:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -32537,7 +33161,11 @@ function draw(gd, titleClass, options) {
     return group;
 }
 
+<<<<<<< HEAD
 },{"../../constants/interactions":145,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/plots":241,"../../registry":248,"../color":49,"../drawing":70,"d3":14,"fast-isnumeric":16}],138:[function(_dereq_,module,exports){
+=======
+},{"../../constants/interactions":142,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/plots":239,"../../registry":246,"../color":46,"../drawing":67,"d3":10,"fast-isnumeric":13}],135:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33506,9 +34134,15 @@ function removeAllButtons(gButton, newMenuIndexAttr) {
         .selectAll('g.' + constants.dropdownButtonClassName).remove();
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../lib":165,"../../lib/svg_text_utils":186,"../../plot_api/plot_template":199,"../../plots/plots":241,"../color":49,"../drawing":70,"./constants":139,"./scrollbox":143,"d3":14}],142:[function(_dereq_,module,exports){
 arguments[4][136][0].apply(exports,arguments)
 },{"./attributes":138,"./constants":139,"./defaults":140,"./draw":141,"dup":136}],143:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plot_api/plot_template":196,"../../plots/plots":239,"../color":46,"../drawing":67,"./constants":136,"./scrollbox":140,"d3":10}],139:[function(_dereq_,module,exports){
+arguments[4][133][0].apply(exports,arguments)
+},{"./attributes":135,"./constants":136,"./defaults":137,"./draw":138,"dup":133}],140:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33973,7 +34607,11 @@ ScrollBox.prototype.setTranslate = function setTranslate(translateX, translateY)
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":165,"../color":49,"../drawing":70,"d3":14}],144:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"../color":46,"../drawing":67,"d3":10}],141:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -34235,7 +34873,11 @@ exports.Queue = _dereq_('./lib/queue');
 // export d3 used in the bundle
 exports.d3 = _dereq_('d3');
 
+<<<<<<< HEAD
 },{"../build/plotcss":1,"../build/ploticon":2,"./components/annotations":42,"./components/annotations3d":47,"./components/colorbar":55,"./components/colorscale":61,"./components/errorbars":76,"./components/fx":88,"./components/grid":92,"./components/images":97,"./components/legend":105,"./components/rangeselector":116,"./components/rangeslider":123,"./components/shapes":131,"./components/sliders":136,"./components/updatemenus":142,"./fonts/mathjax_config":149,"./lib/queue":179,"./locale-en":190,"./locale-en-us":189,"./plot_api":194,"./plot_api/plot_schema":198,"./plots/plots":241,"./registry":248,"./snapshot":253,"./traces/scatter":349,"d3":14,"es6-promise":15}],149:[function(_dereq_,module,exports){
+=======
+},{"../build/plotcss":1,"../build/ploticon":2,"./components/annotations":39,"./components/annotations3d":44,"./components/colorscale":58,"./components/errorbars":73,"./components/fx":85,"./components/grid":89,"./components/images":94,"./components/legend":102,"./components/rangeselector":113,"./components/rangeslider":120,"./components/shapes":128,"./components/sliders":133,"./components/updatemenus":139,"./fonts/mathjax_config":146,"./lib/queue":176,"./locale-en":187,"./locale-en-us":186,"./plot_api":191,"./plot_api/plot_schema":195,"./plots/plots":239,"./registry":246,"./snapshot":251,"./traces/scatter":328,"d3":10,"es6-promise":11}],146:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -35862,7 +36504,11 @@ exports.findExactDates = function(data, calendar) {
     };
 };
 
+<<<<<<< HEAD
 },{"../constants/numerical":146,"../registry":248,"./loggers":169,"./mod":172,"d3":14,"fast-isnumeric":16}],158:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":143,"../registry":246,"./loggers":166,"./mod":169,"d3":10,"fast-isnumeric":13}],155:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -36035,7 +36681,11 @@ var Events = {
 
 module.exports = Events;
 
+<<<<<<< HEAD
 },{"events":13}],159:[function(_dereq_,module,exports){
+=======
+},{"events":12}],156:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -37677,6 +38327,7 @@ lib.pseudoRandom = function() {
     return randSeed / 4294967296;
 };
 
+<<<<<<< HEAD
 
 /** Fill hover 'pointData' container with 'correct' hover text value
  *
@@ -37721,6 +38372,9 @@ lib.formatPercent = function(ratio, n) {
 };
 
 },{"../constants/numerical":146,"./anchor_utils":150,"./angles":151,"./array":152,"./clean_number":153,"./clear_responsive":155,"./coerce":156,"./dates":157,"./extend":159,"./filter_unique":160,"./filter_visible":161,"./geometry2d":162,"./get_graph_div":163,"./identity":164,"./is_plain_object":166,"./keyed_container":167,"./localize":168,"./loggers":169,"./make_trace_groups":170,"./matrix":171,"./mod":172,"./nested_property":173,"./noop":174,"./notifier":175,"./push_unique":178,"./regex":180,"./relative_attr":181,"./relink_private":182,"./search":183,"./stats":185,"./throttle":187,"./to_log_range":188,"d3":14,"fast-isnumeric":16}],166:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":143,"./anchor_utils":147,"./angles":148,"./array":149,"./clean_number":150,"./clear_responsive":152,"./coerce":153,"./dates":154,"./extend":156,"./filter_unique":157,"./filter_visible":158,"./geometry2d":159,"./get_graph_div":160,"./identity":161,"./is_plain_object":163,"./keyed_container":164,"./localize":165,"./loggers":166,"./make_trace_groups":167,"./matrix":168,"./mod":169,"./nested_property":170,"./noop":171,"./notifier":172,"./push_unique":175,"./regex":177,"./relative_attr":178,"./relink_private":179,"./search":180,"./stats":182,"./throttle":184,"./to_log_range":185,"d3":10,"fast-isnumeric":13}],163:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38604,7 +39258,11 @@ module.exports = function(text, displayLength) {
         });
 };
 
+<<<<<<< HEAD
 },{"d3":14,"fast-isnumeric":16}],176:[function(_dereq_,module,exports){
+=======
+},{"d3":10,"fast-isnumeric":13}],173:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -40426,7 +41084,11 @@ exports.makeEditable = function(context, options) {
     return d3.rebind(context, dispatch, 'on');
 };
 
+<<<<<<< HEAD
 },{"../constants/alignment":144,"../constants/xmlns_namespaces":147,"../lib":165,"d3":14}],187:[function(_dereq_,module,exports){
+=======
+},{"../constants/alignment":141,"../constants/xmlns_namespaces":144,"../lib":162,"d3":10}],184:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -45564,6 +46226,7 @@ function makePlotFramework(gd) {
     gd.emit('plotly_framework');
 }
 
+<<<<<<< HEAD
 exports.animate = animate;
 exports.addFrames = addFrames;
 exports.deleteFrames = deleteFrames;
@@ -45594,6 +46257,9 @@ exports._guiUpdate = guiEdit(update);
 exports._storeDirectGUIEdit = _storeDirectGUIEdit;
 
 },{"../components/color":49,"../components/drawing":70,"../constants/xmlns_namespaces":147,"../lib":165,"../lib/events":158,"../lib/queue":179,"../lib/svg_text_utils":186,"../plots/cartesian/axes":209,"../plots/cartesian/constants":215,"../plots/cartesian/graph_interact":218,"../plots/cartesian/select":226,"../plots/plots":241,"../plots/polar/legacy":244,"../registry":248,"./edit_types":192,"./helpers":193,"./manage_arrays":195,"./plot_config":197,"./plot_schema":198,"./subroutines":200,"d3":14,"fast-isnumeric":16,"has-hover":18}],197:[function(_dereq_,module,exports){
+=======
+},{"../components/color":46,"../components/colorbar/connect":48,"../components/drawing":67,"../constants/xmlns_namespaces":144,"../lib":162,"../lib/events":155,"../lib/queue":176,"../lib/svg_text_utils":183,"../plots/cartesian/axes":206,"../plots/cartesian/constants":212,"../plots/cartesian/graph_interact":216,"../plots/plots":239,"../plots/polar/legacy":242,"../registry":246,"./edit_types":189,"./helpers":190,"./manage_arrays":192,"./plot_config":194,"./plot_schema":195,"./subroutines":197,"d3":10,"fast-isnumeric":13,"has-hover":15}],194:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -47643,7 +48309,11 @@ exports.drawMarginPushers = function(gd) {
     Registry.getComponentMethod('colorbar', 'draw')(gd);
 };
 
+<<<<<<< HEAD
 },{"../components/color":49,"../components/drawing":70,"../components/modebar":108,"../components/titles":137,"../constants/alignment":144,"../lib":165,"../lib/clear_gl_canvases":154,"../plots/cartesian/autorange":208,"../plots/cartesian/axes":209,"../plots/cartesian/constraints":216,"../plots/plots":241,"../registry":248,"d3":14}],201:[function(_dereq_,module,exports){
+=======
+},{"../components/color":46,"../components/drawing":67,"../components/modebar":105,"../components/titles":134,"../constants/alignment":141,"../lib":162,"../lib/clear_gl_canvases":151,"../plots/cartesian/autorange":205,"../plots/cartesian/axes":206,"../plots/cartesian/constraints":214,"../plots/plots":239,"../registry":246,"d3":10}],198:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -52609,7 +53279,11 @@ function isAngular(ax) {
     return ax._id === 'angularaxis';
 }
 
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"../../components/titles":137,"../../constants/alignment":144,"../../constants/numerical":146,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/plots":241,"../../registry":248,"./autorange":208,"./axis_autotype":210,"./axis_ids":212,"./clean_ticks":214,"./layout_attributes":221,"./set_convert":227,"d3":14,"fast-isnumeric":16}],210:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/drawing":67,"../../components/titles":134,"../../constants/alignment":141,"../../constants/numerical":143,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/plots":239,"../../registry":246,"./autorange":205,"./axis_autotype":207,"./axis_ids":209,"./clean_ticks":211,"./layout_attributes":219,"./set_convert":225,"d3":10,"fast-isnumeric":13}],207:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -54856,7 +55530,11 @@ module.exports = {
     attachWheelEventHandler: attachWheelEventHandler
 };
 
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/dragelement":67,"../../components/drawing":70,"../../components/fx":88,"../../constants/alignment":144,"../../lib":165,"../../lib/clear_gl_canvases":154,"../../lib/setcursor":184,"../../lib/svg_text_utils":186,"../../plot_api/subroutines":200,"../../registry":248,"../plots":241,"./axes":209,"./axis_ids":212,"./constants":215,"./scale_zoom":225,"./select":226,"d3":14,"has-passive-events":19,"tinycolor2":32}],218:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/dragelement":64,"../../components/drawing":67,"../../components/fx":85,"../../constants/alignment":141,"../../lib":162,"../../lib/clear_gl_canvases":151,"../../lib/setcursor":181,"../../lib/svg_text_utils":183,"../../plot_api/subroutines":197,"../../registry":246,"../plots":239,"./axes":206,"./axis_ids":209,"./constants":212,"./scale_zoom":223,"./select":224,"d3":10,"has-passive-events":16,"tinycolor2":29}],216:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -55024,7 +55702,11 @@ exports.updateFx = function(gd) {
     setCursor(fullLayout._draggers, cursor);
 };
 
+<<<<<<< HEAD
 },{"../../components/dragelement":67,"../../components/fx":88,"../../lib/setcursor":184,"./constants":215,"./dragbox":217,"d3":14}],219:[function(_dereq_,module,exports){
+=======
+},{"../../components/dragelement":64,"../../components/fx":85,"../../lib/setcursor":181,"./constants":212,"./dragbox":215,"d3":10}],217:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -55715,7 +56397,11 @@ exports.toSVG = function(gd) {
 
 exports.updateFx = _dereq_('./graph_interact').updateFx;
 
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../constants/xmlns_namespaces":147,"../../lib":165,"../../registry":248,"../get_data":237,"../plots":241,"./attributes":207,"./axis_ids":212,"./constants":215,"./graph_interact":218,"./layout_attributes":221,"./layout_defaults":222,"./transition_axes":231,"d3":14}],221:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":67,"../../constants/xmlns_namespaces":144,"../../lib":162,"../../registry":246,"../get_data":235,"../plots":239,"./attributes":204,"./axis_ids":209,"./constants":212,"./graph_interact":216,"./layout_attributes":219,"./layout_defaults":220,"./transition_axes":229,"d3":10}],219:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -58311,7 +58997,11 @@ module.exports = function setConvert(ax, fullLayout) {
     delete ax._forceTick0;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":146,"../../lib":165,"./axis_ids":212,"./constants":215,"d3":14,"fast-isnumeric":16}],228:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":143,"../../lib":162,"./axis_ids":209,"./constants":212,"d3":10,"fast-isnumeric":13}],226:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -58715,7 +59405,11 @@ module.exports = function transitionAxes(gd, edits, transitionOpts, makeOnComple
     return Promise.resolve();
 };
 
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../registry":248,"./axes":209,"d3":14}],232:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":67,"../../registry":246,"./axes":206,"d3":10}],230:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -63195,7 +63889,11 @@ plots.generalUpdatePerTraceModule = function(gd, subplot, subplotCalcData, subpl
     subplot.traceHash = traceHash;
 };
 
+<<<<<<< HEAD
 },{"../components/color":49,"../constants/numerical":146,"../lib":165,"../plot_api/plot_schema":198,"../plot_api/plot_template":199,"../registry":248,"./animation_attributes":204,"./attributes":206,"./cartesian/axis_ids":212,"./command":233,"./font_attributes":235,"./frame_attributes":236,"./layout_attributes":239,"d3":14,"fast-isnumeric":16}],242:[function(_dereq_,module,exports){
+=======
+},{"../components/color":46,"../constants/numerical":143,"../lib":162,"../plot_api/plot_schema":195,"../plot_api/plot_template":196,"../plots/cartesian/axis_ids":209,"../registry":246,"./animation_attributes":201,"./attributes":203,"./command":231,"./font_attributes":233,"./frame_attributes":234,"./layout_attributes":237,"d3":10,"fast-isnumeric":13}],240:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -64796,7 +65494,11 @@ var µ = module.exports = { version: '0.2.2' };
     return exports;
 };
 
+<<<<<<< HEAD
 },{"../../../constants/alignment":144,"../../../lib":165,"d3":14}],246:[function(_dereq_,module,exports){
+=======
+},{"../../../constants/alignment":141,"../../../lib":162,"d3":10}],244:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -64882,7 +65584,11 @@ manager.fillLayout = function(_gd) {
     _gd._fullLayout = extendDeepAll(dflts, _gd.layout);
 };
 
+<<<<<<< HEAD
 },{"../../../components/color":49,"../../../lib":165,"./micropolar":245,"./undo_manager":247,"d3":14}],247:[function(_dereq_,module,exports){
+=======
+},{"../../../components/color":46,"../../../lib":162,"./micropolar":243,"./undo_manager":245,"d3":10}],245:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -65882,7 +66588,11 @@ function svgToImg(opts) {
 
 module.exports = svgToImg;
 
+<<<<<<< HEAD
 },{"../lib":165,"events":13}],255:[function(_dereq_,module,exports){
+=======
+},{"../lib":162,"events":12}],253:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -65959,7 +66669,11 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
+<<<<<<< HEAD
 },{"../lib":165,"../registry":248,"./cloneplot":249,"./helpers":252,"./svgtoimg":254,"./tosvg":256,"events":13}],256:[function(_dereq_,module,exports){
+=======
+},{"../lib":162,"../registry":246,"./cloneplot":247,"./helpers":250,"./svgtoimg":252,"./tosvg":254,"events":12}],254:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -66140,7 +66854,11 @@ module.exports = function toSVG(gd, format, scale) {
     return s;
 };
 
+<<<<<<< HEAD
 },{"../components/color":49,"../components/drawing":70,"../constants/xmlns_namespaces":147,"../lib":165,"d3":14}],257:[function(_dereq_,module,exports){
+=======
+},{"../components/color":46,"../components/drawing":67,"../constants/xmlns_namespaces":144,"../lib":162,"d3":10}],255:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -68324,6 +69042,7 @@ function getTextPosition(trace, index) {
     return helpers.coerceEnumerated(attributeTextPosition, value);
 }
 
+<<<<<<< HEAD
 function calcTextinfo(calcTrace, index, xa, ya) {
     var trace = calcTrace[0].trace;
     var isHorizontal = (trace.orientation === 'h');
@@ -68405,6 +69124,9 @@ module.exports = {
 };
 
 },{"../../components/color":49,"../../components/drawing":70,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/cartesian/axes":209,"../../registry":248,"./attributes":258,"./helpers":263,"./style":271,"d3":14,"fast-isnumeric":16}],269:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/drawing":67,"../../lib":162,"../../lib/svg_text_utils":183,"../../registry":246,"./attributes":256,"./helpers":261,"./style":269,"d3":10,"fast-isnumeric":13}],267:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -68758,7 +69480,11 @@ module.exports = {
     getBarColor: getBarColor
 };
 
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"../../lib":165,"../../registry":248,"./attributes":258,"./helpers":263,"d3":14}],272:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/drawing":67,"../../lib":162,"../../registry":246,"./attributes":256,"./helpers":261,"d3":10}],270:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -69647,7 +70373,11 @@ module.exports = {
     plotBoxMean: plotBoxMean
 };
 
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../lib":165,"d3":14}],278:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":67,"../../lib":162,"d3":10}],276:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -69722,7 +70452,11 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"d3":14}],279:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/drawing":67,"d3":10}],277:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -73474,7 +74208,11 @@ module.exports = function plot(gd, plotinfo, cdOHLC, ohlcLayer) {
     });
 };
 
+<<<<<<< HEAD
 },{"../../lib":165,"d3":14}],323:[function(_dereq_,module,exports){
+=======
+},{"../../lib":162,"d3":10}],301:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -73558,7 +74296,11 @@ module.exports = function style(gd, cd) {
     });
 };
 
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"d3":14}],325:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/drawing":67,"d3":10}],303:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -75261,6 +76003,7 @@ function setCoords(cd) {
     }
 }
 
+<<<<<<< HEAD
 module.exports = {
     plot: plot,
     transformInsideText: transformInsideText,
@@ -75272,6 +76015,9 @@ module.exports = {
 };
 
 },{"../../components/color":49,"../../components/drawing":70,"../../components/fx":88,"../../lib":165,"../../lib/svg_text_utils":186,"./event_data":329,"./helpers":330,"d3":14}],335:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":46,"../../components/drawing":67,"../../components/fx":85,"../../lib":162,"../../lib/svg_text_utils":183,"./event_data":307,"./helpers":308,"d3":10}],313:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -75300,7 +76046,11 @@ module.exports = function style(gd) {
     });
 };
 
+<<<<<<< HEAD
 },{"./style_one":336,"d3":14}],336:[function(_dereq_,module,exports){
+=======
+},{"./style_one":314,"d3":10}],314:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -78098,7 +78848,11 @@ function selectMarkers(gd, idx, plotinfo, cdscatter, cdscatterAll) {
     });
 }
 
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../lib":165,"../../lib/polygon":177,"../../registry":248,"./line_points":351,"./link_traces":353,"./subtypes":361,"d3":14}],358:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":67,"../../lib":162,"../../lib/polygon":174,"../../registry":246,"./line_points":330,"./link_traces":332,"./subtypes":340,"d3":10}],337:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -78329,7 +79083,11 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../registry":248,"d3":14}],361:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":67,"../../registry":246,"d3":10}],340:[function(_dereq_,module,exports){
+>>>>>>> Add showhovertext flag
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
