@@ -89,10 +89,14 @@ The main plotly.js bundle weights in at:
 | plotly.js | plotly.min.js | plotly.min.js + gzip | plotly-with-meta.js |
 |-----------|---------------|----------------------|---------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 6.4 MB | 2.9 MB | 892.6 kB | 6.7 MB |
 =======
 | 6.1 MB | 2.8 MB | 849.4 kB | 6.3 MB |
 >>>>>>> Add showhovertext flag
+=======
+| 6.1 MB | 2.8 MB | 848.8 kB | 6.3 MB |
+>>>>>>> Disable createHoverText
 
 ## Partial bundles
 
@@ -116,10 +120,14 @@ The `basic` partial bundle contains trace modules `scatter`, `bar` and `pie`.
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 2.3 MB | 831.8 kB | 272.8 kB |
 =======
 | 2.3 MB | 810.8 kB | 264.8 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 2.3 MB | 809.2 kB | 264.1 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 
@@ -166,10 +174,14 @@ The `cartesian` partial bundle contains trace modules `scatter`, `bar`, `box`, `
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 2.6 MB | 948.2 kB | 309.8 kB |
 =======
 | 2.6 MB | 924.4 kB | 300.8 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 2.6 MB | 922.8 kB | 300.1 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 
@@ -216,10 +228,14 @@ The `geo` partial bundle contains trace modules `scatter`, `scattergeo` and `cho
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 2.3 MB | 845.3 kB | 278.9 kB |
 =======
 | 2.3 MB | 829.1 kB | 272.8 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 2.3 MB | 827.5 kB | 272.2 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 
@@ -266,10 +282,14 @@ The `gl3d` partial bundle contains trace modules `scatter`, `scatter3d`, `surfac
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 3.4 MB | 1.4 MB | 435.5 kB |
 =======
 | 3.4 MB | 1.3 MB | 425.2 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 3.4 MB | 1.3 MB | 424.7 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 
@@ -316,10 +336,14 @@ The `gl2d` partial bundle contains trace modules `scatter`, `scattergl`, `splom`
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 3.4 MB | 1.4 MB | 450.7 kB |
 =======
 | 3.4 MB | 1.4 MB | 442.7 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 3.4 MB | 1.4 MB | 442.1 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 
@@ -366,10 +390,14 @@ The `mapbox` partial bundle contains trace modules `scatter` and `scattermapbox`
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 2.8 MB | 1.4 MB | 416.6 kB |
 =======
 | 2.8 MB | 1.4 MB | 410.7 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 2.8 MB | 1.4 MB | 410.1 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 
@@ -416,10 +444,14 @@ The `finance` partial bundle contains trace modules `scatter`, `bar`, `histogram
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
 <<<<<<< HEAD
+<<<<<<< HEAD
 | 2.5 MB | 893.1 kB | 290.1 kB |
 =======
 | 2.4 MB | 843.3 kB | 274.8 kB |
 >>>>>>> Add showhovertext flag
+=======
+| 2.4 MB | 841.8 kB | 274.1 kB |
+>>>>>>> Disable createHoverText
 
 #### CDN links
 

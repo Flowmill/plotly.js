@@ -23541,6 +23541,7 @@ function _hover(gd, evt, subplot, noHoverEvent) {
         hoverdistance: fullLayout.hoverdistance
     };
 
+  /*
     if (fullLayout.showhovertext !== false) {
         var hoverLabels = createHoverText(hoverData, labelOpts, gd);
 
@@ -23552,6 +23553,7 @@ function _hover(gd, evt, subplot, noHoverEvent) {
 
         alignHoverText(hoverLabels, rotateLabels);
     }
+    */
 
     // TODO: tagName hack is needed to appease geo.js's hack of using evt.target=true
     // we should improve the "fx" API so other plots can use it without these hack.
