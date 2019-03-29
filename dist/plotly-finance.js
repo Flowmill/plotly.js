@@ -77,10 +77,14 @@ for(var selector in rules) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../src/lib":165}],2:[function(_dereq_,module,exports){
 =======
 },{"../src/lib":162}],2:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/lib":163}],2:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 'use strict';
 
 module.exports = {
@@ -224,10 +228,14 @@ module.exports = {
 module.exports = _dereq_('../src/traces/bar');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../src/traces/bar":265}],4:[function(_dereq_,module,exports){
 =======
 },{"../src/traces/bar":262}],4:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/traces/bar":263}],4:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -241,10 +249,14 @@ module.exports = _dereq_('../src/traces/bar');
 module.exports = _dereq_('../src/traces/candlestick');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../src/traces/candlestick":282}],5:[function(_dereq_,module,exports){
 =======
 },{"../src/traces/candlestick":279}],5:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/traces/candlestick":280}],5:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -257,6 +269,7 @@ module.exports = _dereq_('../src/traces/candlestick');
 
 module.exports = _dereq_('../src/core');
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 },{"../src/core":148}],6:[function(_dereq_,module,exports){
 /**
@@ -288,6 +301,9 @@ module.exports = _dereq_('../src/traces/funnelarea');
 =======
 },{"../src/core":145}],6:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/core":146}],6:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -301,10 +317,14 @@ module.exports = _dereq_('../src/traces/funnelarea');
 module.exports = _dereq_('../src/traces/histogram');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../src/traces/histogram":314}],9:[function(_dereq_,module,exports){
 =======
 },{"../src/traces/histogram":291}],7:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/traces/histogram":292}],7:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -353,10 +373,14 @@ module.exports = Plotly;
 module.exports = _dereq_('../src/traces/ohlc');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../src/traces/ohlc":320}],11:[function(_dereq_,module,exports){
 =======
 },{"../src/traces/ohlc":297}],9:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/traces/ohlc":298}],9:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -369,6 +393,7 @@ module.exports = _dereq_('../src/traces/ohlc');
 
 module.exports = _dereq_('../src/traces/pie');
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 },{"../src/traces/pie":331}],12:[function(_dereq_,module,exports){
@@ -388,6 +413,9 @@ module.exports = _dereq_('../src/traces/waterfall');
 =======
 },{"../src/traces/pie":308}],10:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../src/traces/pie":309}],10:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11640,6 +11668,7 @@ return Promise;
 
 }).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"_process":28}],12:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11661,6 +11690,33 @@ return Promise;
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
+=======
+},{"_process":29}],13:[function(_dereq_,module,exports){
+/**
+ * inspired by is-number <https://github.com/jonschlinkert/is-number>
+ * but significantly simplified and sped up by ignoring number and string constructors
+ * ie these return false:
+ *   new Number(1)
+ *   new String('1')
+ */
+
+'use strict';
+
+var allBlankCharCodes = _dereq_('is-string-blank');
+
+module.exports = function(n) {
+    var type = typeof n;
+    if(type === 'string') {
+        var original = n;
+        n = +n;
+        // whitespace strings cast to zero - filter them out
+        if(n===0 && allBlankCharCodes(original)) return false;
+    }
+    else if(type !== 'number') return false;
+
+    return n - n < 1;
+};
+>>>>>>> Add support for numeral
 
 var objectCreate = Object.create || objectCreatePolyfill
 var objectKeys = Object.keys || objectKeysPolyfill
@@ -11786,9 +11842,1033 @@ function emitMany(handler, isFn, self, args) {
   }
 }
 
+<<<<<<< HEAD
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events;
   var doError = (type === 'error');
+=======
+},{}],20:[function(_dereq_,module,exports){
+/*! @preserve
+ * numeral.js
+ * version : 2.0.6
+ * author : Adam Draper
+ * license : MIT
+ * http://adamwdraper.github.com/Numeral-js/
+ */
+
+(function (global, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        global.numeral = factory();
+    }
+}(this, function () {
+    /************************************
+        Variables
+    ************************************/
+
+    var numeral,
+        _,
+        VERSION = '2.0.6',
+        formats = {},
+        locales = {},
+        defaults = {
+            currentLocale: 'en',
+            zeroFormat: null,
+            nullFormat: null,
+            defaultFormat: '0,0',
+            scalePercentBy100: true
+        },
+        options = {
+            currentLocale: defaults.currentLocale,
+            zeroFormat: defaults.zeroFormat,
+            nullFormat: defaults.nullFormat,
+            defaultFormat: defaults.defaultFormat,
+            scalePercentBy100: defaults.scalePercentBy100
+        };
+
+
+    /************************************
+        Constructors
+    ************************************/
+
+    // Numeral prototype object
+    function Numeral(input, number) {
+        this._input = input;
+
+        this._value = number;
+    }
+
+    numeral = function(input) {
+        var value,
+            kind,
+            unformatFunction,
+            regexp;
+
+        if (numeral.isNumeral(input)) {
+            value = input.value();
+        } else if (input === 0 || typeof input === 'undefined') {
+            value = 0;
+        } else if (input === null || _.isNaN(input)) {
+            value = null;
+        } else if (typeof input === 'string') {
+            if (options.zeroFormat && input === options.zeroFormat) {
+                value = 0;
+            } else if (options.nullFormat && input === options.nullFormat || !input.replace(/[^0-9]+/g, '').length) {
+                value = null;
+            } else {
+                for (kind in formats) {
+                    regexp = typeof formats[kind].regexps.unformat === 'function' ? formats[kind].regexps.unformat() : formats[kind].regexps.unformat;
+
+                    if (regexp && input.match(regexp)) {
+                        unformatFunction = formats[kind].unformat;
+
+                        break;
+                    }
+                }
+
+                unformatFunction = unformatFunction || numeral._.stringToNumber;
+
+                value = unformatFunction(input);
+            }
+        } else {
+            value = Number(input)|| null;
+        }
+
+        return new Numeral(input, value);
+    };
+
+    // version number
+    numeral.version = VERSION;
+
+    // compare numeral object
+    numeral.isNumeral = function(obj) {
+        return obj instanceof Numeral;
+    };
+
+    // helper functions
+    numeral._ = _ = {
+        // formats numbers separators, decimals places, signs, abbreviations
+        numberToFormat: function(value, format, roundingFunction) {
+            var locale = locales[numeral.options.currentLocale],
+                negP = false,
+                optDec = false,
+                leadingCount = 0,
+                abbr = '',
+                trillion = 1000000000000,
+                billion = 1000000000,
+                million = 1000000,
+                thousand = 1000,
+                decimal = '',
+                neg = false,
+                abbrForce, // force abbreviation
+                abs,
+                min,
+                max,
+                power,
+                int,
+                precision,
+                signed,
+                thousands,
+                output;
+
+            // make sure we never format a null value
+            value = value || 0;
+
+            abs = Math.abs(value);
+
+            // see if we should use parentheses for negative number or if we should prefix with a sign
+            // if both are present we default to parentheses
+            if (numeral._.includes(format, '(')) {
+                negP = true;
+                format = format.replace(/[\(|\)]/g, '');
+            } else if (numeral._.includes(format, '+') || numeral._.includes(format, '-')) {
+                signed = numeral._.includes(format, '+') ? format.indexOf('+') : value < 0 ? format.indexOf('-') : -1;
+                format = format.replace(/[\+|\-]/g, '');
+            }
+
+            // see if abbreviation is wanted
+            if (numeral._.includes(format, 'a')) {
+                abbrForce = format.match(/a(k|m|b|t)?/);
+
+                abbrForce = abbrForce ? abbrForce[1] : false;
+
+                // check for space before abbreviation
+                if (numeral._.includes(format, ' a')) {
+                    abbr = ' ';
+                }
+
+                format = format.replace(new RegExp(abbr + 'a[kmbt]?'), '');
+
+                if (abs >= trillion && !abbrForce || abbrForce === 't') {
+                    // trillion
+                    abbr += locale.abbreviations.trillion;
+                    value = value / trillion;
+                } else if (abs < trillion && abs >= billion && !abbrForce || abbrForce === 'b') {
+                    // billion
+                    abbr += locale.abbreviations.billion;
+                    value = value / billion;
+                } else if (abs < billion && abs >= million && !abbrForce || abbrForce === 'm') {
+                    // million
+                    abbr += locale.abbreviations.million;
+                    value = value / million;
+                } else if (abs < million && abs >= thousand && !abbrForce || abbrForce === 'k') {
+                    // thousand
+                    abbr += locale.abbreviations.thousand;
+                    value = value / thousand;
+                }
+            }
+
+            // check for optional decimals
+            if (numeral._.includes(format, '[.]')) {
+                optDec = true;
+                format = format.replace('[.]', '.');
+            }
+
+            // break number and format
+            int = value.toString().split('.')[0];
+            precision = format.split('.')[1];
+            thousands = format.indexOf(',');
+            leadingCount = (format.split('.')[0].split(',')[0].match(/0/g) || []).length;
+
+            if (precision) {
+                if (numeral._.includes(precision, '[')) {
+                    precision = precision.replace(']', '');
+                    precision = precision.split('[');
+                    decimal = numeral._.toFixed(value, (precision[0].length + precision[1].length), roundingFunction, precision[1].length);
+                } else {
+                    decimal = numeral._.toFixed(value, precision.length, roundingFunction);
+                }
+
+                int = decimal.split('.')[0];
+
+                if (numeral._.includes(decimal, '.')) {
+                    decimal = locale.delimiters.decimal + decimal.split('.')[1];
+                } else {
+                    decimal = '';
+                }
+
+                if (optDec && Number(decimal.slice(1)) === 0) {
+                    decimal = '';
+                }
+            } else {
+                int = numeral._.toFixed(value, 0, roundingFunction);
+            }
+
+            // check abbreviation again after rounding
+            if (abbr && !abbrForce && Number(int) >= 1000 && abbr !== locale.abbreviations.trillion) {
+                int = String(Number(int) / 1000);
+
+                switch (abbr) {
+                    case locale.abbreviations.thousand:
+                        abbr = locale.abbreviations.million;
+                        break;
+                    case locale.abbreviations.million:
+                        abbr = locale.abbreviations.billion;
+                        break;
+                    case locale.abbreviations.billion:
+                        abbr = locale.abbreviations.trillion;
+                        break;
+                }
+            }
+
+
+            // format number
+            if (numeral._.includes(int, '-')) {
+                int = int.slice(1);
+                neg = true;
+            }
+
+            if (int.length < leadingCount) {
+                for (var i = leadingCount - int.length; i > 0; i--) {
+                    int = '0' + int;
+                }
+            }
+
+            if (thousands > -1) {
+                int = int.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + locale.delimiters.thousands);
+            }
+
+            if (format.indexOf('.') === 0) {
+                int = '';
+            }
+
+            output = int + decimal + (abbr ? abbr : '');
+
+            if (negP) {
+                output = (negP && neg ? '(' : '') + output + (negP && neg ? ')' : '');
+            } else {
+                if (signed >= 0) {
+                    output = signed === 0 ? (neg ? '-' : '+') + output : output + (neg ? '-' : '+');
+                } else if (neg) {
+                    output = '-' + output;
+                }
+            }
+
+            return output;
+        },
+        // unformats numbers separators, decimals places, signs, abbreviations
+        stringToNumber: function(string) {
+            var locale = locales[options.currentLocale],
+                stringOriginal = string,
+                abbreviations = {
+                    thousand: 3,
+                    million: 6,
+                    billion: 9,
+                    trillion: 12
+                },
+                abbreviation,
+                value,
+                i,
+                regexp;
+
+            if (options.zeroFormat && string === options.zeroFormat) {
+                value = 0;
+            } else if (options.nullFormat && string === options.nullFormat || !string.replace(/[^0-9]+/g, '').length) {
+                value = null;
+            } else {
+                value = 1;
+
+                if (locale.delimiters.decimal !== '.') {
+                    string = string.replace(/\./g, '').replace(locale.delimiters.decimal, '.');
+                }
+
+                for (abbreviation in abbreviations) {
+                    regexp = new RegExp('[^a-zA-Z]' + locale.abbreviations[abbreviation] + '(?:\\)|(\\' + locale.currency.symbol + ')?(?:\\))?)?$');
+
+                    if (stringOriginal.match(regexp)) {
+                        value *= Math.pow(10, abbreviations[abbreviation]);
+                        break;
+                    }
+                }
+
+                // check for negative number
+                value *= (string.split('-').length + Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2 ? 1 : -1;
+
+                // remove non numbers
+                string = string.replace(/[^0-9\.]+/g, '');
+
+                value *= Number(string);
+            }
+
+            return value;
+        },
+        isNaN: function(value) {
+            return typeof value === 'number' && isNaN(value);
+        },
+        includes: function(string, search) {
+            return string.indexOf(search) !== -1;
+        },
+        insert: function(string, subString, start) {
+            return string.slice(0, start) + subString + string.slice(start);
+        },
+        reduce: function(array, callback /*, initialValue*/) {
+            if (this === null) {
+                throw new TypeError('Array.prototype.reduce called on null or undefined');
+            }
+
+            if (typeof callback !== 'function') {
+                throw new TypeError(callback + ' is not a function');
+            }
+
+            var t = Object(array),
+                len = t.length >>> 0,
+                k = 0,
+                value;
+
+            if (arguments.length === 3) {
+                value = arguments[2];
+            } else {
+                while (k < len && !(k in t)) {
+                    k++;
+                }
+
+                if (k >= len) {
+                    throw new TypeError('Reduce of empty array with no initial value');
+                }
+
+                value = t[k++];
+            }
+            for (; k < len; k++) {
+                if (k in t) {
+                    value = callback(value, t[k], k, t);
+                }
+            }
+            return value;
+        },
+        /**
+         * Computes the multiplier necessary to make x >= 1,
+         * effectively eliminating miscalculations caused by
+         * finite precision.
+         */
+        multiplier: function (x) {
+            var parts = x.toString().split('.');
+
+            return parts.length < 2 ? 1 : Math.pow(10, parts[1].length);
+        },
+        /**
+         * Given a variable number of arguments, returns the maximum
+         * multiplier that must be used to normalize an operation involving
+         * all of them.
+         */
+        correctionFactor: function () {
+            var args = Array.prototype.slice.call(arguments);
+
+            return args.reduce(function(accum, next) {
+                var mn = _.multiplier(next);
+                return accum > mn ? accum : mn;
+            }, 1);
+        },
+        /**
+         * Implementation of toFixed() that treats floats more like decimals
+         *
+         * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present
+         * problems for accounting- and finance-related software.
+         */
+        toFixed: function(value, maxDecimals, roundingFunction, optionals) {
+            var splitValue = value.toString().split('.'),
+                minDecimals = maxDecimals - (optionals || 0),
+                boundedPrecision,
+                optionalsRegExp,
+                power,
+                output;
+
+            // Use the smallest precision value possible to avoid errors from floating point representation
+            if (splitValue.length === 2) {
+              boundedPrecision = Math.min(Math.max(splitValue[1].length, minDecimals), maxDecimals);
+            } else {
+              boundedPrecision = minDecimals;
+            }
+
+            power = Math.pow(10, boundedPrecision);
+
+            // Multiply up by precision, round accurately, then divide and use native toFixed():
+            output = (roundingFunction(value + 'e+' + boundedPrecision) / power).toFixed(boundedPrecision);
+
+            if (optionals > maxDecimals - boundedPrecision) {
+                optionalsRegExp = new RegExp('\\.?0{1,' + (optionals - (maxDecimals - boundedPrecision)) + '}$');
+                output = output.replace(optionalsRegExp, '');
+            }
+
+            return output;
+        }
+    };
+
+    // avaliable options
+    numeral.options = options;
+
+    // avaliable formats
+    numeral.formats = formats;
+
+    // avaliable formats
+    numeral.locales = locales;
+
+    // This function sets the current locale.  If
+    // no arguments are passed in, it will simply return the current global
+    // locale key.
+    numeral.locale = function(key) {
+        if (key) {
+            options.currentLocale = key.toLowerCase();
+        }
+
+        return options.currentLocale;
+    };
+
+    // This function provides access to the loaded locale data.  If
+    // no arguments are passed in, it will simply return the current
+    // global locale object.
+    numeral.localeData = function(key) {
+        if (!key) {
+            return locales[options.currentLocale];
+        }
+
+        key = key.toLowerCase();
+
+        if (!locales[key]) {
+            throw new Error('Unknown locale : ' + key);
+        }
+
+        return locales[key];
+    };
+
+    numeral.reset = function() {
+        for (var property in defaults) {
+            options[property] = defaults[property];
+        }
+    };
+
+    numeral.zeroFormat = function(format) {
+        options.zeroFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numeral.nullFormat = function (format) {
+        options.nullFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numeral.defaultFormat = function(format) {
+        options.defaultFormat = typeof(format) === 'string' ? format : '0.0';
+    };
+
+    numeral.register = function(type, name, format) {
+        name = name.toLowerCase();
+
+        if (this[type + 's'][name]) {
+            throw new TypeError(name + ' ' + type + ' already registered.');
+        }
+
+        this[type + 's'][name] = format;
+
+        return format;
+    };
+
+
+    numeral.validate = function(val, culture) {
+        var _decimalSep,
+            _thousandSep,
+            _currSymbol,
+            _valArray,
+            _abbrObj,
+            _thousandRegEx,
+            localeData,
+            temp;
+
+        //coerce val to string
+        if (typeof val !== 'string') {
+            val += '';
+
+            if (console.warn) {
+                console.warn('Numeral.js: Value is not string. It has been co-erced to: ', val);
+            }
+        }
+
+        //trim whitespaces from either sides
+        val = val.trim();
+
+        //if val is just digits return true
+        if (!!val.match(/^\d+$/)) {
+            return true;
+        }
+
+        //if val is empty return false
+        if (val === '') {
+            return false;
+        }
+
+        //get the decimal and thousands separator from numeral.localeData
+        try {
+            //check if the culture is understood by numeral. if not, default it to current locale
+            localeData = numeral.localeData(culture);
+        } catch (e) {
+            localeData = numeral.localeData(numeral.locale());
+        }
+
+        //setup the delimiters and currency symbol based on culture/locale
+        _currSymbol = localeData.currency.symbol;
+        _abbrObj = localeData.abbreviations;
+        _decimalSep = localeData.delimiters.decimal;
+        if (localeData.delimiters.thousands === '.') {
+            _thousandSep = '\\.';
+        } else {
+            _thousandSep = localeData.delimiters.thousands;
+        }
+
+        // validating currency symbol
+        temp = val.match(/^[^\d]+/);
+        if (temp !== null) {
+            val = val.substr(1);
+            if (temp[0] !== _currSymbol) {
+                return false;
+            }
+        }
+
+        //validating abbreviation symbol
+        temp = val.match(/[^\d]+$/);
+        if (temp !== null) {
+            val = val.slice(0, -1);
+            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million && temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+                return false;
+            }
+        }
+
+        _thousandRegEx = new RegExp(_thousandSep + '{2}');
+
+        if (!val.match(/[^\d.,]/g)) {
+            _valArray = val.split(_decimalSep);
+            if (_valArray.length > 2) {
+                return false;
+            } else {
+                if (_valArray.length < 2) {
+                    return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
+                } else {
+                    if (_valArray[0].length === 1) {
+                        return ( !! _valArray[0].match(/^\d+$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                    } else {
+                        return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                    }
+                }
+            }
+        }
+
+        return false;
+    };
+
+
+    /************************************
+        Numeral Prototype
+    ************************************/
+
+    numeral.fn = Numeral.prototype = {
+        clone: function() {
+            return numeral(this);
+        },
+        format: function(inputString, roundingFunction) {
+            var value = this._value,
+                format = inputString || options.defaultFormat,
+                kind,
+                output,
+                formatFunction;
+
+            // make sure we have a roundingFunction
+            roundingFunction = roundingFunction || Math.round;
+
+            // format based on value
+            if (value === 0 && options.zeroFormat !== null) {
+                output = options.zeroFormat;
+            } else if (value === null && options.nullFormat !== null) {
+                output = options.nullFormat;
+            } else {
+                for (kind in formats) {
+                    if (format.match(formats[kind].regexps.format)) {
+                        formatFunction = formats[kind].format;
+
+                        break;
+                    }
+                }
+
+                formatFunction = formatFunction || numeral._.numberToFormat;
+
+                output = formatFunction(value, format, roundingFunction);
+            }
+
+            return output;
+        },
+        value: function() {
+            return this._value;
+        },
+        input: function() {
+            return this._input;
+        },
+        set: function(value) {
+            this._value = Number(value);
+
+            return this;
+        },
+        add: function(value) {
+            var corrFactor = _.correctionFactor.call(null, this._value, value);
+
+            function cback(accum, curr, currI, O) {
+                return accum + Math.round(corrFactor * curr);
+            }
+
+            this._value = _.reduce([this._value, value], cback, 0) / corrFactor;
+
+            return this;
+        },
+        subtract: function(value) {
+            var corrFactor = _.correctionFactor.call(null, this._value, value);
+
+            function cback(accum, curr, currI, O) {
+                return accum - Math.round(corrFactor * curr);
+            }
+
+            this._value = _.reduce([value], cback, Math.round(this._value * corrFactor)) / corrFactor;
+
+            return this;
+        },
+        multiply: function(value) {
+            function cback(accum, curr, currI, O) {
+                var corrFactor = _.correctionFactor(accum, curr);
+                return Math.round(accum * corrFactor) * Math.round(curr * corrFactor) / Math.round(corrFactor * corrFactor);
+            }
+
+            this._value = _.reduce([this._value, value], cback, 1);
+
+            return this;
+        },
+        divide: function(value) {
+            function cback(accum, curr, currI, O) {
+                var corrFactor = _.correctionFactor(accum, curr);
+                return Math.round(accum * corrFactor) / Math.round(curr * corrFactor);
+            }
+
+            this._value = _.reduce([this._value, value], cback);
+
+            return this;
+        },
+        difference: function(value) {
+            return Math.abs(numeral(this._value).subtract(value).value());
+        }
+    };
+
+    /************************************
+        Default Locale && Format
+    ************************************/
+
+    numeral.register('locale', 'en', {
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function(number) {
+            var b = number % 10;
+            return (~~(number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+        },
+        currency: {
+            symbol: '$'
+        }
+    });
+
+    
+
+(function() {
+        numeral.register('format', 'bps', {
+            regexps: {
+                format: /(BPS)/,
+                unformat: /(BPS)/
+            },
+            format: function(value, format, roundingFunction) {
+                var space = numeral._.includes(format, ' BPS') ? ' ' : '',
+                    output;
+
+                value = value * 10000;
+
+                // check for space before BPS
+                format = format.replace(/\s?BPS/, '');
+
+                output = numeral._.numberToFormat(value, format, roundingFunction);
+
+                if (numeral._.includes(output, ')')) {
+                    output = output.split('');
+
+                    output.splice(-1, 0, space + 'BPS');
+
+                    output = output.join('');
+                } else {
+                    output = output + space + 'BPS';
+                }
+
+                return output;
+            },
+            unformat: function(string) {
+                return +(numeral._.stringToNumber(string) * 0.0001).toFixed(15);
+            }
+        });
+})();
+
+
+(function() {
+        var decimal = {
+            base: 1000,
+            suffixes: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+        },
+        binary = {
+            base: 1024,
+            suffixes: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
+        };
+
+    var allSuffixes =  decimal.suffixes.concat(binary.suffixes.filter(function (item) {
+            return decimal.suffixes.indexOf(item) < 0;
+        }));
+        var unformatRegex = allSuffixes.join('|');
+        // Allow support for BPS (http://www.investopedia.com/terms/b/basispoint.asp)
+        unformatRegex = '(' + unformatRegex.replace('B', 'B(?!PS)') + ')';
+
+    numeral.register('format', 'bytes', {
+        regexps: {
+            format: /([0\s]i?b)/,
+            unformat: new RegExp(unformatRegex)
+        },
+        format: function(value, format, roundingFunction) {
+            var output,
+                bytes = numeral._.includes(format, 'ib') ? binary : decimal,
+                suffix = numeral._.includes(format, ' b') || numeral._.includes(format, ' ib') ? ' ' : '',
+                power,
+                min,
+                max;
+
+            // check for space before
+            format = format.replace(/\s?i?b/, '');
+
+            for (power = 0; power <= bytes.suffixes.length; power++) {
+                min = Math.pow(bytes.base, power);
+                max = Math.pow(bytes.base, power + 1);
+
+                if (value === null || value === 0 || value >= min && value < max) {
+                    suffix += bytes.suffixes[power];
+
+                    if (min > 0) {
+                        value = value / min;
+                    }
+
+                    break;
+                }
+            }
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            return output + suffix;
+        },
+        unformat: function(string) {
+            var value = numeral._.stringToNumber(string),
+                power,
+                bytesMultiplier;
+
+            if (value) {
+                for (power = decimal.suffixes.length - 1; power >= 0; power--) {
+                    if (numeral._.includes(string, decimal.suffixes[power])) {
+                        bytesMultiplier = Math.pow(decimal.base, power);
+
+                        break;
+                    }
+
+                    if (numeral._.includes(string, binary.suffixes[power])) {
+                        bytesMultiplier = Math.pow(binary.base, power);
+
+                        break;
+                    }
+                }
+
+                value *= (bytesMultiplier || 1);
+            }
+
+            return value;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'currency', {
+        regexps: {
+            format: /(\$)/
+        },
+        format: function(value, format, roundingFunction) {
+            var locale = numeral.locales[numeral.options.currentLocale],
+                symbols = {
+                    before: format.match(/^([\+|\-|\(|\s|\$]*)/)[0],
+                    after: format.match(/([\+|\-|\)|\s|\$]*)$/)[0]
+                },
+                output,
+                symbol,
+                i;
+
+            // strip format of spaces and $
+            format = format.replace(/\s?\$\s?/, '');
+
+            // format the number
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            // update the before and after based on value
+            if (value >= 0) {
+                symbols.before = symbols.before.replace(/[\-\(]/, '');
+                symbols.after = symbols.after.replace(/[\-\)]/, '');
+            } else if (value < 0 && (!numeral._.includes(symbols.before, '-') && !numeral._.includes(symbols.before, '('))) {
+                symbols.before = '-' + symbols.before;
+            }
+
+            // loop through each before symbol
+            for (i = 0; i < symbols.before.length; i++) {
+                symbol = symbols.before[i];
+
+                switch (symbol) {
+                    case '$':
+                        output = numeral._.insert(output, locale.currency.symbol, i);
+                        break;
+                    case ' ':
+                        output = numeral._.insert(output, ' ', i + locale.currency.symbol.length - 1);
+                        break;
+                }
+            }
+
+            // loop through each after symbol
+            for (i = symbols.after.length - 1; i >= 0; i--) {
+                symbol = symbols.after[i];
+
+                switch (symbol) {
+                    case '$':
+                        output = i === symbols.after.length - 1 ? output + locale.currency.symbol : numeral._.insert(output, locale.currency.symbol, -(symbols.after.length - (1 + i)));
+                        break;
+                    case ' ':
+                        output = i === symbols.after.length - 1 ? output + ' ' : numeral._.insert(output, ' ', -(symbols.after.length - (1 + i) + locale.currency.symbol.length - 1));
+                        break;
+                }
+            }
+
+
+            return output;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'exponential', {
+        regexps: {
+            format: /(e\+|e-)/,
+            unformat: /(e\+|e-)/
+        },
+        format: function(value, format, roundingFunction) {
+            var output,
+                exponential = typeof value === 'number' && !numeral._.isNaN(value) ? value.toExponential() : '0e+0',
+                parts = exponential.split('e');
+
+            format = format.replace(/e[\+|\-]{1}0/, '');
+
+            output = numeral._.numberToFormat(Number(parts[0]), format, roundingFunction);
+
+            return output + 'e' + parts[1];
+        },
+        unformat: function(string) {
+            var parts = numeral._.includes(string, 'e+') ? string.split('e+') : string.split('e-'),
+                value = Number(parts[0]),
+                power = Number(parts[1]);
+
+            power = numeral._.includes(string, 'e-') ? power *= -1 : power;
+
+            function cback(accum, curr, currI, O) {
+                var corrFactor = numeral._.correctionFactor(accum, curr),
+                    num = (accum * corrFactor) * (curr * corrFactor) / (corrFactor * corrFactor);
+                return num;
+            }
+
+            return numeral._.reduce([value, Math.pow(10, power)], cback, 1);
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'ordinal', {
+        regexps: {
+            format: /(o)/
+        },
+        format: function(value, format, roundingFunction) {
+            var locale = numeral.locales[numeral.options.currentLocale],
+                output,
+                ordinal = numeral._.includes(format, ' o') ? ' ' : '';
+
+            // check for space before
+            format = format.replace(/\s?o/, '');
+
+            ordinal += locale.ordinal(value);
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            return output + ordinal;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'percentage', {
+        regexps: {
+            format: /(%)/,
+            unformat: /(%)/
+        },
+        format: function(value, format, roundingFunction) {
+            var space = numeral._.includes(format, ' %') ? ' ' : '',
+                output;
+
+            if (numeral.options.scalePercentBy100) {
+                value = value * 100;
+            }
+
+            // check for space before %
+            format = format.replace(/\s?\%/, '');
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            if (numeral._.includes(output, ')')) {
+                output = output.split('');
+
+                output.splice(-1, 0, space + '%');
+
+                output = output.join('');
+            } else {
+                output = output + space + '%';
+            }
+
+            return output;
+        },
+        unformat: function(string) {
+            var number = numeral._.stringToNumber(string);
+            if (numeral.options.scalePercentBy100) {
+                return number * 0.01;
+            }
+            return number;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'time', {
+        regexps: {
+            format: /(:)/,
+            unformat: /(:)/
+        },
+        format: function(value, format, roundingFunction) {
+            var hours = Math.floor(value / 60 / 60),
+                minutes = Math.floor((value - (hours * 60 * 60)) / 60),
+                seconds = Math.round(value - (hours * 60 * 60) - (minutes * 60));
+
+            return hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+        },
+        unformat: function(string) {
+            var timeArray = string.split(':'),
+                seconds = 0;
+
+            // turn hours and minutes into seconds and add them all up
+            if (timeArray.length === 3) {
+                // hours
+                seconds = seconds + (Number(timeArray[0]) * 60 * 60);
+                // minutes
+                seconds = seconds + (Number(timeArray[1]) * 60);
+                // seconds
+                seconds = seconds + Number(timeArray[2]);
+            } else if (timeArray.length === 2) {
+                // minutes
+                seconds = seconds + (Number(timeArray[0]) * 60);
+                // seconds
+                seconds = seconds + Number(timeArray[1]);
+            }
+            return Number(seconds);
+        }
+    });
+})();
+
+return numeral;
+}));
+
+},{}],21:[function(_dereq_,module,exports){
+/*
+ * @copyright 2016 Sean Connelly (@voidqk), http://syntheti.cc
+ * @license MIT
+ * @preserve Project Home: https://github.com/voidqk/polybooljs
+ */
+>>>>>>> Add support for numeral
 
   events = this._events;
   if (events)
@@ -11862,12 +12942,24 @@ function _addListener(target, type, listener, prepend) {
       target.emit('newListener', type,
           listener.listener ? listener.listener : listener);
 
+<<<<<<< HEAD
       // Re-assign `events` because a newListener handler could have caused the
       // this._events to be assigned to a new object
       events = target._events;
     }
     existing = events[type];
   }
+=======
+},{"./lib/build-log":22,"./lib/epsilon":23,"./lib/geojson":24,"./lib/intersecter":25,"./lib/segment-chainer":27,"./lib/segment-selector":28}],22:[function(_dereq_,module,exports){
+// (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
+// MIT License
+// Project Home: https://github.com/voidqk/polybooljs
+
+//
+// used strictly for logging the processing of the algorithm... only useful if you intend on
+// looking under the covers (for pretty UI's or debugging)
+//
+>>>>>>> Add support for numeral
 
   if (!existing) {
     // Optimize the case of one listener. Don't need the extra array object.
@@ -11914,7 +13006,14 @@ EventEmitter.prototype.addListener = function addListener(type, listener) {
   return _addListener(this, type, listener, false);
 };
 
+<<<<<<< HEAD
 EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+=======
+},{}],23:[function(_dereq_,module,exports){
+// (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
+// MIT License
+// Project Home: https://github.com/voidqk/polybooljs
+>>>>>>> Add support for numeral
 
 EventEmitter.prototype.prependListener =
     function prependListener(type, listener) {
@@ -12020,9 +13119,16 @@ EventEmitter.prototype.removeListener =
       return this;
     };
 
+<<<<<<< HEAD
 EventEmitter.prototype.removeAllListeners =
     function removeAllListeners(type) {
       var listeners, events, i;
+=======
+},{}],24:[function(_dereq_,module,exports){
+// (c) Copyright 2017, Sean Connelly (@voidqk), http://syntheti.cc
+// MIT License
+// Project Home: https://github.com/voidqk/polybooljs
+>>>>>>> Add support for numeral
 
       events = this._events;
       if (!events)
@@ -12287,6 +13393,7 @@ function detect() {
 
 module.exports = isBrowser && detect()
 
+<<<<<<< HEAD
 },{"is-browser":20}],20:[function(_dereq_,module,exports){
 module.exports = true;
 },{}],21:[function(_dereq_,module,exports){
@@ -12325,6 +13432,12 @@ module.exports = function(str){
     }
     return true;
 }
+=======
+},{}],25:[function(_dereq_,module,exports){
+// (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
+// MIT License
+// Project Home: https://github.com/voidqk/polybooljs
+>>>>>>> Add support for numeral
 
 },{}],22:[function(_dereq_,module,exports){
 var rootPosition = { left: 0, top: 0 }
@@ -12939,9 +14052,16 @@ var GeoJSON = {
 			return forceWinding(node.region, true);
 		}
 
+<<<<<<< HEAD
 		// root nodes are exterior
 		for (var i = 0; i < roots.children.length; i++)
 			addExterior(roots.children[i]);
+=======
+},{"./linked-list":26}],26:[function(_dereq_,module,exports){
+// (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
+// MIT License
+// Project Home: https://github.com/voidqk/polybooljs
+>>>>>>> Add support for numeral
 
 		// lastly, construct the approrpriate GeoJSON object
 
@@ -13233,7 +14353,14 @@ function Intersecter(selfIntersection, eps, buildLog){
 			if (buildLog)
 				buildLog.vert(ev.pt[0]);
 
+<<<<<<< HEAD
 			if (ev.isStart){
+=======
+},{}],28:[function(_dereq_,module,exports){
+// (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
+// MIT License
+// Project Home: https://github.com/voidqk/polybooljs
+>>>>>>> Add support for numeral
 
 				if (buildLog)
 					buildLog.segmentNew(ev.seg, ev.primary);
@@ -13301,10 +14428,16 @@ function fromQuat(out, q) {
         wy = w * y2,
         wz = w * z2;
 
+<<<<<<< HEAD
     out[0] = 1 - yy - zz;
     out[1] = yx + wz;
     out[2] = zx - wy;
     out[3] = 0;
+=======
+},{}],29:[function(_dereq_,module,exports){
+// shim for using process in browser
+var process = module.exports = {};
+>>>>>>> Add support for numeral
 
     out[4] = yx - wz;
     out[5] = 1 - xx - zz;
@@ -13546,6 +14679,25 @@ PolyBool = {
 		return operate(poly1, poly2, PolyBool.selectXor);
 	}
 };
+<<<<<<< HEAD
+=======
+process.umask = function() { return 0; };
+
+},{}],30:[function(_dereq_,module,exports){
+// TinyColor v1.4.1
+// https://github.com/bgrins/TinyColor
+// Brian Grinstead, MIT License
+
+(function(Math) {
+
+var trimLeft = /^\s+/,
+    trimRight = /\s+$/,
+    tinyCounter = 0,
+    mathRound = Math.round,
+    mathMin = Math.min,
+    mathMax = Math.max,
+    mathRandom = Math.random;
+>>>>>>> Add support for numeral
 
 function operate(poly1, poly2, selector){
 	var seg1 = PolyBool.segments(poly1);
@@ -14558,6 +15710,7 @@ module.exports = Intersecter;
 // simple linked list implementation that allows you to traverse down nodes and save positions
 //
 
+<<<<<<< HEAD
 var LinkedList = {
 	create: function(){
 		var my = {
@@ -14629,6 +15782,16 @@ var LinkedList = {
 		return data;
 	}
 };
+=======
+},{}],31:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 module.exports = LinkedList;
 
@@ -14645,9 +15808,20 @@ module.exports = LinkedList;
 // converts a list of segments into a list of regions, while also removing unnecessary verticies
 //
 
+<<<<<<< HEAD
 function SegmentChainer(segments, eps, buildLog){
 	var chains = [];
 	var regions = [];
+=======
+},{}],32:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 	segments.forEach(function(seg){
 		var pt1 = seg.start;
@@ -14720,8 +15894,19 @@ function SegmentChainer(segments, eps, buildLog){
 		if (next_match === second_match){
 			// we matched a single chain
 
+<<<<<<< HEAD
 			if (buildLog)
 				buildLog.chainMatch(first_match.index);
+=======
+},{"../../plot_api/plot_template":197,"../../plots/cartesian/constants":213,"../../plots/font_attributes":233,"./arrow_paths":31}],33:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 			// add the other point to the apporpriate end, and check to see if we've closed the
 			// chain into a loop
@@ -14819,6 +16004,7 @@ function SegmentChainer(segments, eps, buildLog){
 				tail = tail2; // old tail is gone... new tail is what tail2 was
 			}
 
+<<<<<<< HEAD
 			if (eps.pointsCollinear(tail, head, head2)){
 				// head isn't needed because it's directly between tail and head2
 				// tail ---head---> head2
@@ -14826,6 +16012,16 @@ function SegmentChainer(segments, eps, buildLog){
 					buildLog.chainRemoveHead(index2, head);
 				chain2.shift();
 			}
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207,"./draw":38}],34:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 			if (buildLog)
 				buildLog.chainJoin(index1, index2);
@@ -15153,6 +16349,35 @@ function runClearTimeout(marker) {
         }
     }
 
+<<<<<<< HEAD
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"../../registry":246}],35:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var Lib = _dereq_('../../lib');
+var Color = _dereq_('../color');
+
+// defaults common to 'annotations' and 'annotations3d'
+module.exports = function handleAnnotationCommonDefaults(annIn, annOut, fullLayout, coerce) {
+    coerce('opacity');
+    var bgColor = coerce('bgcolor');
+
+    var borderColor = coerce('bordercolor');
+    var borderOpacity = Color.opacity(borderColor);
+
+    coerce('borderpad');
+
+    var borderWidth = coerce('borderwidth');
+    var showArrow = coerce('showarrow');
+>>>>>>> Add support for numeral
 
 
 }
@@ -15213,6 +16438,7 @@ process.nextTick = function (fun) {
     }
 };
 
+<<<<<<< HEAD
 // v8 likes predictible objects
 function Item(fun, array) {
     this.fun = fun;
@@ -15227,6 +16453,19 @@ process.env = {};
 process.argv = [];
 process.version = ''; // empty string to avoid regexp issues
 process.versions = {};
+=======
+},{"../../lib":163,"../color":47}],36:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+>>>>>>> Add support for numeral
 
 function noop() {}
 
@@ -15284,6 +16523,29 @@ function tinycolor (color, opts) {
     if (!(this instanceof tinycolor)) {
         return new tinycolor(color, opts);
     }
+<<<<<<< HEAD
+=======
+};
+
+},{"../../lib/to_log_range":186,"fast-isnumeric":13}],37:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+var Lib = _dereq_('../../lib');
+var Axes = _dereq_('../../plots/cartesian/axes');
+var handleArrayContainerDefaults = _dereq_('../../plots/array_container_defaults');
+
+var handleAnnotationCommonDefaults = _dereq_('./common_defaults');
+var attributes = _dereq_('./attributes');
+>>>>>>> Add support for numeral
 
     var rgb = inputToRGB(color);
     this._originalInput = color,
@@ -15601,7 +16863,18 @@ function inputToRGB(color) {
         }
     }
 
+<<<<<<< HEAD
     a = boundAlpha(a);
+=======
+},{"../../lib":163,"../../plots/array_container_defaults":203,"../../plots/cartesian/axes":207,"./attributes":32,"./common_defaults":35}],38:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     return {
         ok: ok,
@@ -16273,11 +17546,22 @@ function parseIntFromHex(val) {
     return parseInt(val, 16);
 }
 
+<<<<<<< HEAD
 // Need to handle 1.0 as 100%, since once it is a number, there is no difference between it and 1
 // <http://stackoverflow.com/questions/7422072/javascript-how-to-detect-number-as-a-decimal-including-1-0>
 function isOnePointZero(n) {
     return typeof n == "string" && n.indexOf('.') != -1 && parseFloat(n) === 1;
 }
+=======
+},{"../../lib":163,"../../lib/setcursor":182,"../../lib/svg_text_utils":184,"../../plot_api/plot_template":197,"../../plots/cartesian/axes":207,"../../plots/plots":239,"../../registry":246,"../color":47,"../dragelement":65,"../drawing":68,"../fx":86,"./draw_arrow_head":39,"d3":11}],39:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 // Check to see if string passed in is a percentage
 function isPercentage(n) {
@@ -16451,6 +17735,7 @@ else {
     window.tinycolor = tinycolor;
 }
 
+<<<<<<< HEAD
 })(Math);
 
 <<<<<<< HEAD
@@ -16458,6 +17743,9 @@ else {
 =======
 },{}],30:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../color":47,"./arrow_paths":31,"d3":11}],40:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -16529,10 +17817,14 @@ module.exports = [
 ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],34:[function(_dereq_,module,exports){
 =======
 },{}],31:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian/include_components":217,"./attributes":32,"./calc_autorange":33,"./click":34,"./convert_coords":36,"./defaults":37,"./draw":38}],41:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -16888,10 +18180,14 @@ module.exports = templatedArray('annotation', {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plot_api/plot_template":199,"../../plots/cartesian/constants":215,"../../plots/font_attributes":235,"./arrow_paths":33}],35:[function(_dereq_,module,exports){
 =======
 },{"../../plot_api/plot_template":196,"../../plots/cartesian/constants":212,"../../plots/font_attributes":232,"./arrow_paths":30}],32:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plot_api/edit_types":190,"../../plot_api/plot_template":197,"../annotations/attributes":32}],42:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -16981,10 +18277,14 @@ function calcAxisExpansion(ann, ax) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/cartesian/axes":209,"./draw":40}],36:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/cartesian/axes":206,"./draw":37}],33:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207}],43:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -17051,8 +18351,19 @@ function onClick(gd, hoverData) {
         Lib.extendFlat(update, editHelpers.getUpdateObj());
     }
 
+<<<<<<< HEAD
     return Registry.call('update', gd, {}, update);
 }
+=======
+},{"../../lib":163,"../../plots/array_container_defaults":203,"../../plots/cartesian/axes":207,"../annotations/common_defaults":35,"./attributes":41}],44:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 /*
  * getToggleSets: find the annotations which will turn on or off at this
@@ -17128,10 +18439,14 @@ function clickData2r(d, ax) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plot_api/plot_template":199,"../../registry":248}],37:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plot_api/plot_template":196,"../../registry":245}],34:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/gl3d/project":236,"../annotations/draw":38}],45:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -17188,6 +18503,7 @@ module.exports = function handleAnnotationCommonDefaults(annIn, annOut, fullLayo
         coerce('startstandoff');
     }
 
+<<<<<<< HEAD
     var hoverText = coerce('hovertext');
     var globalHoverLabel = fullLayout.hoverlabel || {};
 
@@ -17215,6 +18531,9 @@ module.exports = function handleAnnotationCommonDefaults(annIn, annOut, fullLayo
 =======
 },{"../../lib":162,"../color":46}],35:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../registry":246,"./attributes":41,"./convert":42,"./defaults":43,"./draw":44}],46:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -17262,6 +18581,7 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
         if(toLog) newVal = toLogRange(currentVal, ax.range);
         else newVal = Math.pow(10, currentVal);
 
+<<<<<<< HEAD
         // if conversion failed, delete the value so it gets a default value
         if(!isNumeric(newVal)) newVal = null;
 
@@ -17282,6 +18602,9 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
 =======
 },{"../../lib/to_log_range":185,"fast-isnumeric":13}],36:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],47:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -17389,10 +18712,14 @@ function handleAnnotationDefaults(annIn, annOut, fullLayout) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/array_container_defaults":205,"../../plots/cartesian/axes":209,"./attributes":34,"./common_defaults":37}],40:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/array_container_defaults":202,"../../plots/cartesian/axes":206,"./attributes":31,"./common_defaults":34}],37:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./attributes":46,"fast-isnumeric":13,"tinycolor2":30}],48:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -17448,8 +18775,19 @@ function draw(gd) {
         }
     }
 
+<<<<<<< HEAD
     return Plots.previousPromises(gd);
 }
+=======
+},{"../../lib/extend":157,"../../plot_api/edit_types":190,"../../plots/cartesian/layout_attributes":219,"../../plots/font_attributes":233}],49:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 /*
  * drawOne: draw a single cartesian or paper-ref annotation, potentially with modifications
@@ -17512,6 +18850,19 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
         d3.selectAll('#' + annClipID).remove();
         return;
     }
+<<<<<<< HEAD
+=======
+};
+
+},{"../colorscale/helpers":58,"./draw":52}],50:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // calculated pixel positions
     // x & y each will get text, head, and tail as appropriate
@@ -17527,9 +18878,20 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
         .attr('data-index', String(index))
         .style('opacity', options.opacity);
 
+<<<<<<< HEAD
     // another group for text+background so that they can rotate together
     var annTextGroup = annGroup.append('g')
         .classed('annotation-text-g', true);
+=======
+},{}],51:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var editTextPosition = edits[options.showarrow ? 'annotationTail' : 'annotationPosition'];
     var textEvents = options.captureevents || edits.annotationText || editTextPosition;
@@ -17608,6 +18970,7 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
     var font = options.font;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     var text = fullLayout._meta ?
         Lib.templateString(options.text, fullLayout._meta) :
 =======
@@ -17615,6 +18978,16 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
         Lib.templateString(options.text, {meta: fullLayout.meta}) :
 >>>>>>> Recreate dist
         options.text;
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"../../plots/cartesian/tick_label_defaults":226,"../../plots/cartesian/tick_mark_defaults":227,"../../plots/cartesian/tick_value_defaults":228,"./attributes":48}],52:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var annText = annTextGroupInner.append('text')
         .classed('annotation-text', true)
@@ -18144,8 +19517,12 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
     else annText.call(textLayout);
 }
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../lib/setcursor":181,"../../lib/svg_text_utils":183,"../../plot_api/plot_template":196,"../../plots/cartesian/axes":206,"../../plots/plots":238,"../../registry":245,"../color":46,"../dragelement":64,"../drawing":67,"../fx":85,"./draw_arrow_head":38,"d3":11}],38:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/alignment":142,"../../lib":163,"../../lib/extend":157,"../../lib/setcursor":182,"../../lib/svg_text_utils":184,"../../plots/cartesian/axes":207,"../../plots/cartesian/axis_defaults":209,"../../plots/cartesian/layout_attributes":219,"../../plots/cartesian/position_defaults":222,"../../plots/plots":239,"../../registry":246,"../color":47,"../dragelement":65,"../drawing":68,"../titles":135,"./attributes":48,"./constants":50,"d3":11,"tinycolor2":30}],53:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18157,7 +19534,27 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
 
 'use strict';
 
+<<<<<<< HEAD
 var d3 = _dereq_('d3');
+=======
+var Lib = _dereq_('../../lib');
+
+
+module.exports = function hasColorbar(container) {
+    return Lib.isPlainObject(container.colorbar);
+};
+
+},{"../../lib":163}],54:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+>>>>>>> Add support for numeral
 
 var Color = _dereq_('../color');
 
@@ -18303,6 +19700,7 @@ module.exports = function drawArrowHead(el3, ends, options) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../color":49,"./arrow_paths":33,"d3":14}],42:[function(_dereq_,module,exports){
 =======
 },{"../color":46,"./arrow_paths":30,"d3":10}],39:[function(_dereq_,module,exports){
@@ -18310,6 +19708,9 @@ module.exports = function drawArrowHead(el3, ends, options) {
 =======
 },{"../color":46,"./arrow_paths":30,"d3":11}],39:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./scales.js":62}],55:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18391,6 +19792,7 @@ module.exports = overrideAll(templatedArray('annotation', {
         
     },
 
+<<<<<<< HEAD
     xanchor: annAtts.xanchor,
     xshift: annAtts.xshift,
     yanchor: annAtts.yanchor,
@@ -18440,6 +19842,9 @@ module.exports = overrideAll(templatedArray('annotation', {
 =======
 },{"../../plot_api/edit_types":189,"../../plot_api/plot_template":196,"../annotations/attributes":31}],41:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],56:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18505,10 +19910,14 @@ function mockAnnAxes(ann, scene) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/cartesian/axes":209}],45:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/cartesian/axes":206}],42:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"./helpers":58}],57:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18585,10 +19994,14 @@ function handleAnnotationDefaults(annIn, annOut, sceneLayout, opts) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/array_container_defaults":205,"../../plots/cartesian/axes":209,"../annotations/common_defaults":37,"./attributes":43}],46:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/array_container_defaults":202,"../../plots/cartesian/axes":206,"../annotations/common_defaults":34,"./attributes":40}],43:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../colorbar/defaults":51,"../colorbar/has_colorbar":53,"./scales":62,"fast-isnumeric":13}],58:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18641,10 +20054,14 @@ module.exports = function draw(scene) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/gl3d/project":238,"../annotations/draw":40}],47:[function(_dereq_,module,exports){
 =======
 },{"../../plots/gl3d/project":235,"../annotations/draw":37}],44:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../color":47,"./scales":62,"d3":11,"fast-isnumeric":13,"tinycolor2":30}],59:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18682,6 +20099,7 @@ function includeGL3D(layoutIn, layoutOut) {
 
     var attrRegex = GL3D.attrRegex;
 
+<<<<<<< HEAD
     var keys = Object.keys(layoutIn);
     for(var i = 0; i < keys.length; i++) {
         var k = keys[i];
@@ -18697,6 +20115,9 @@ function includeGL3D(layoutIn, layoutOut) {
 =======
 },{"../../lib":162,"../../registry":245,"./attributes":40,"./convert":41,"./defaults":42,"./draw":43}],45:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./attributes":54,"./calc":55,"./cross_trace_defaults":56,"./defaults":57,"./helpers":58,"./layout_attributes":60,"./layout_defaults":61,"./scales":62}],60:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18722,7 +20143,18 @@ exports.defaults = [
     '#17becf'   // blue-teal
 ];
 
+<<<<<<< HEAD
 exports.defaultLine = '#444';
+=======
+},{"./scales":62}],61:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 exports.lightLine = '#eee';
 
@@ -18737,10 +20169,14 @@ exports.borderLine = '#BEC8D9';
 exports.lightFraction = 100 * (0xe - 0x4) / (0xf - 0x4);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],49:[function(_dereq_,module,exports){
 =======
 },{}],46:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"./layout_attributes":60}],62:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -18949,10 +20385,22 @@ function cleanOne(val) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./attributes":48,"fast-isnumeric":16,"tinycolor2":32}],50:[function(_dereq_,module,exports){
 =======
 },{"./attributes":45,"fast-isnumeric":13,"tinycolor2":29}],47:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+module.exports = {
+    scales: scales,
+    defaultScale: defaultScale,
+
+    get: getScale,
+    isValid: isValidScale
+};
+
+},{"tinycolor2":30}],63:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -19132,9 +20580,13 @@ module.exports = overrideAll({
 }, 'colorbars', 'from-root');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib/extend":159,"../../plot_api/edit_types":192,"../../plots/cartesian/layout_attributes":221,"../../plots/font_attributes":235}],51:[function(_dereq_,module,exports){
 =======
 },{"../../lib/extend":156,"../../plot_api/edit_types":189,"../../plots/cartesian/layout_attributes":218,"../../plots/font_attributes":232}],48:[function(_dereq_,module,exports){
+=======
+},{}],64:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -19202,8 +20654,12 @@ module.exports = function connectColorbar(gd, cd, moduleOpts) {
     }
 };
 
+<<<<<<< HEAD
 },{"../colorscale/helpers":57,"./draw":51}],49:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],65:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -19616,12 +21072,23 @@ function drawColorBar(g, opts, gd) {
         Titles.draw(gd, titleClass, extendFlat(dfltTitleOpts, titleOpts || {}));
     }
 
+<<<<<<< HEAD
     function drawDummyTitle() {
         if(['top', 'bottom'].indexOf(titleSide) !== -1) {
 =======
 var handleAxisDefaults = _dereq_('../../plots/cartesian/axis_defaults');
 var handleAxisPositionDefaults = _dereq_('../../plots/cartesian/position_defaults');
 var axisLayoutAttrs = _dereq_('../../plots/cartesian/layout_attributes');
+=======
+},{"../../constants/interactions":143,"../../lib":163,"../../plots/cartesian/constants":213,"../../registry":246,"./align":63,"./cursor":64,"./unhover":66,"has-hover":15,"has-passive-events":16,"mouse-event-offset":19}],66:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 var attributes = _dereq_('./attributes');
 var cn = _dereq_('./constants').cn;
@@ -19804,8 +21271,19 @@ module.exports = function draw(gd, id) {
         // because that restricts it to [0,1]
         cbAxisOut.position = opts.x + xpadFrac + thickFrac;
 
+<<<<<<< HEAD
         // save for other callers to access this axis
         component.axis = cbAxisOut;
+=======
+},{"../../lib/events":156,"../../lib/get_graph_div":161,"../../lib/throttle":185,"../fx/constants":80}],67:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         if(['top', 'bottom'].indexOf(opts.title.side) !== -1) {
             cbAxisOut.title.side = opts.title.side;
@@ -19814,6 +21292,7 @@ module.exports = function draw(gd, id) {
                 (opts.title.side === 'top' ? lenFrac - ypadFrac : ypadFrac);
         }
 
+<<<<<<< HEAD
         if(opts.line.color && opts.tickmode === 'auto') {
             cbAxisOut.tickmode = 'linear';
             cbAxisOut.tick0 = opts.levels.start;
@@ -19835,6 +21314,34 @@ module.exports = function draw(gd, id) {
             }
             cbAxisOut.dtick = dtick;
         }
+=======
+'use strict';
+
+exports.dash = {
+    valType: 'string',
+    // string type usually doesn't take values... this one should really be
+    // a special type or at least a special coercion function, from the GUI
+    // you only get these values but elsewhere the user can supply a list of
+    // dash lengths in px, and it will be honored
+    values: ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot'],
+    dflt: 'solid',
+    
+    editType: 'style',
+    
+};
+
+},{}],68:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+>>>>>>> Add support for numeral
 
         // set domain after init, because we may want to
         // allow it outside [0,1]
@@ -21604,6 +23111,7 @@ function makeColorScaleFunc(specs, opts) {
     var returnArray = opts.returnArray;
     var sclFunc;
 
+<<<<<<< HEAD
     if(noNumericCheck && returnArray) {
         sclFunc = _sclFunc;
 <<<<<<< HEAD
@@ -21638,6 +23146,16 @@ function makeColorScaleFunc(specs, opts) {
             else return Color.defaultLine;
         };
     }
+=======
+},{"../../constants/alignment":142,"../../constants/interactions":143,"../../constants/xmlns_namespaces":145,"../../lib":163,"../../lib/svg_text_utils":184,"../../registry":246,"../../traces/scatter/make_bubble_size_func":333,"../../traces/scatter/subtypes":340,"../color":47,"../colorscale":59,"./symbol_defs":69,"d3":11,"fast-isnumeric":13,"tinycolor2":30}],69:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // colorbar draw looks into the d3 scale closure for domain and range
 <<<<<<< HEAD
@@ -21681,6 +23199,7 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../color":49,"./scales":64,"d3":14,"fast-isnumeric":16,"tinycolor2":32}],61:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../color":46,"./scales":61,"d3":10,"fast-isnumeric":13,"tinycolor2":29}],58:[function(_dereq_,module,exports){
@@ -21693,6 +23212,9 @@ module.exports = {
 
 },{"../../lib":162,"../color":46,"./scales":61,"d3":11,"fast-isnumeric":13,"tinycolor2":29}],58:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"d3":11}],70:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21707,8 +23229,125 @@ var scales = _dereq_('./scales');
 var helpers = _dereq_('./helpers');
 
 module.exports = {
+<<<<<<< HEAD
     moduleType: 'component',
     name: 'colorscale',
+=======
+    visible: {
+        valType: 'boolean',
+        
+        editType: 'calc',
+        
+    },
+    type: {
+        valType: 'enumerated',
+        values: ['percent', 'constant', 'sqrt', 'data'],
+        
+        editType: 'calc',
+        
+    },
+    symmetric: {
+        valType: 'boolean',
+        
+        editType: 'calc',
+        
+    },
+    array: {
+        valType: 'data_array',
+        editType: 'calc',
+        
+    },
+    arrayminus: {
+        valType: 'data_array',
+        editType: 'calc',
+        
+    },
+    value: {
+        valType: 'number',
+        min: 0,
+        dflt: 10,
+        
+        editType: 'calc',
+        
+    },
+    valueminus: {
+        valType: 'number',
+        min: 0,
+        dflt: 10,
+        
+        editType: 'calc',
+        
+    },
+    traceref: {
+        valType: 'integer',
+        min: 0,
+        dflt: 0,
+        
+        editType: 'style'
+    },
+    tracerefminus: {
+        valType: 'integer',
+        min: 0,
+        dflt: 0,
+        
+        editType: 'style'
+    },
+    copy_ystyle: {
+        valType: 'boolean',
+        
+        editType: 'plot'
+    },
+    copy_zstyle: {
+        valType: 'boolean',
+        
+        editType: 'style'
+    },
+    color: {
+        valType: 'color',
+        
+        editType: 'style',
+        
+    },
+    thickness: {
+        valType: 'number',
+        min: 0,
+        dflt: 2,
+        
+        editType: 'style',
+        
+    },
+    width: {
+        valType: 'number',
+        min: 0,
+        
+        editType: 'plot',
+        
+    },
+    editType: 'calc',
+
+    _deprecated: {
+        opacity: {
+            valType: 'number',
+            
+            editType: 'style',
+            
+        }
+    }
+};
+
+},{}],71:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var isNumeric = _dereq_('fast-isnumeric');
+>>>>>>> Add support for numeral
 
     attributes: _dereq_('./attributes'),
     layoutAttributes: _dereq_('./layout_attributes'),
@@ -21742,8 +23381,12 @@ module.exports = {
     makeColorScaleFunc: helpers.makeColorScaleFunc
 };
 
+<<<<<<< HEAD
 },{"./attributes":53,"./calc":54,"./cross_trace_defaults":55,"./defaults":56,"./helpers":57,"./layout_attributes":59,"./layout_defaults":60,"./scales":61}],59:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207,"../../registry":246,"./compute_error":72,"fast-isnumeric":13}],72:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21833,8 +23476,12 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"./scales":61}],60:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],73:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21903,8 +23550,12 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     coerce('diverging');
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../plot_api/plot_template":196,"./layout_attributes":59}],61:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"../../registry":246,"./attributes":70,"fast-isnumeric":13}],74:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -21968,12 +23619,23 @@ var scales = {
         [0.4, 'rgb(245,160,105)'], [1, 'rgb(178,10,28)']
     ],
 
+<<<<<<< HEAD
     // Scale for non-positive numeric values
     'Blues': [
         [0, 'rgb(5,10,172)'], [0.35, 'rgb(40,60,190)'],
         [0.5, 'rgb(70,100,245)'], [0.6, 'rgb(90,120,245)'],
         [0.7, 'rgb(106,137,247)'], [1, 'rgb(220,220,220)']
     ],
+=======
+},{"../../lib":163,"../../plot_api/edit_types":190,"./attributes":70,"./calc":71,"./compute_error":72,"./defaults":73,"./plot":75,"./style":76}],75:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     'Picnic': [
         [0, 'rgb(0,0,255)'], [0.1, 'rgb(51,153,255)'],
@@ -22113,10 +23775,47 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"tinycolor2":32}],65:[function(_dereq_,module,exports){
 =======
 },{"tinycolor2":29}],62:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+// compute the coordinates of the error-bar objects
+function errorCoords(d, xa, ya) {
+    var out = {
+        x: xa.c2p(d.x),
+        y: ya.c2p(d.y)
+    };
+
+    // calculate the error bar size and hat and shoe locations
+    if(d.yh !== undefined) {
+        out.yh = ya.c2p(d.yh);
+        out.ys = ya.c2p(d.ys);
+
+        // if the shoes go off-scale (ie log scale, error bars past zero)
+        // clip the bar and hide the shoes
+        if(!isNumeric(out.ys)) {
+            out.noYS = true;
+            out.ys = ya.c2p(d.ys, true);
+        }
+    }
+
+    if(d.xh !== undefined) {
+        out.xh = xa.c2p(d.xh);
+        out.xs = xa.c2p(d.xs);
+
+        if(!isNumeric(out.xs)) {
+            out.noXS = true;
+            out.xs = xa.c2p(d.xs, true);
+        }
+    }
+
+    return out;
+}
+
+},{"../../traces/scatter/subtypes":340,"../drawing":68,"d3":11,"fast-isnumeric":13}],76:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -22150,10 +23849,14 @@ module.exports = function align(v, dv, v0, v1, anchor) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],66:[function(_dereq_,module,exports){
 =======
 },{}],63:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../color":47,"d3":11}],77:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -22192,10 +23895,14 @@ module.exports = function getCursor(x, y, xanchor, yanchor) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165}],67:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162}],64:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/font_attributes":233}],78:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -22327,11 +24034,22 @@ dragElement.init = function init(options) {
         element.addEventListener('touchstart', onStart, {passive: false});
     }
 
+<<<<<<< HEAD
     function _clampFn(dx, dy, minDrag) {
         if(Math.abs(dx) < minDrag) dx = 0;
         if(Math.abs(dy) < minDrag) dy = 0;
         return [dx, dy];
     }
+=======
+},{"../../lib":163,"../../registry":246}],79:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var clampFn = options.clampFn || _clampFn;
 
@@ -22388,11 +24106,24 @@ dragElement.init = function init(options) {
         document.addEventListener('mouseup', onDone);
         document.addEventListener('touchend', onDone);
 
+<<<<<<< HEAD
         if(options.dragmode !== false) {
             e.preventDefault();
             document.addEventListener('mousemove', onMove);
             document.addEventListener('touchmove', onMove);
         }
+=======
+},{"../../registry":246,"./hover":83}],80:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+>>>>>>> Add support for numeral
 
         return;
     }
@@ -22424,8 +24155,19 @@ dragElement.init = function init(options) {
         if(gd._dragged && options.moveFn && !rightClick) options.moveFn(dx, dy);
 >>>>>>> Recreate dist
 
+<<<<<<< HEAD
         return;
     }
+=======
+},{}],81:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     function onDone(e) {
 <<<<<<< HEAD
@@ -22455,11 +24197,22 @@ dragElement.init = function init(options) {
             cursor = null;
         }
 
+<<<<<<< HEAD
         if(!gd._dragging) {
             gd._dragged = false;
             return;
         }
         gd._dragging = false;
+=======
+},{"../../lib":163,"./attributes":77,"./hoverlabel_defaults":84}],82:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         // don't count as a dblClick unless the mouseUp is also within
         // the dblclick delay
@@ -22637,6 +24390,7 @@ unhover.raw = function unhoverRaw(gd, evt) {
 
 'use strict';
 
+<<<<<<< HEAD
 exports.dash = {
     valType: 'string',
     // string type usually doesn't take values... this one should really be
@@ -22655,6 +24409,9 @@ exports.dash = {
 =======
 },{}],67:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],83:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -23951,6 +25708,7 @@ module.exports = {
             var rs = d3.round(r, 2);
             return 'M-' + rt + ',' + r2 + 'H' + rt + 'L0,-' + rs + 'Z';
         }
+<<<<<<< HEAD
     },
     'triangle-down': {
         n: 6,
@@ -23959,6 +25717,64 @@ module.exports = {
             var r2 = d3.round(r / 2, 2);
             var rs = d3.round(r, 2);
             return 'M-' + rt + ',-' + r2 + 'H' + rt + 'L0,' + rs + 'Z';
+=======
+    }
+    return false;
+}
+
+function spikesChanged(gd, oldspikepoints) {
+    // don't relayout the plot because of new spikelines if spikelines points didn't change
+    if(!oldspikepoints) return true;
+    if(oldspikepoints.vLinePoint !== gd._spikepoints.vLinePoint ||
+        oldspikepoints.hLinePoint !== gd._spikepoints.hLinePoint
+    ) return true;
+    return false;
+}
+
+},{"../../lib":163,"../../lib/events":156,"../../lib/override_cursor":174,"../../lib/svg_text_utils":184,"../../plots/cartesian/axes":207,"../../registry":246,"../color":47,"../dragelement":65,"../drawing":68,"./constants":80,"./helpers":82,"d3":11,"fast-isnumeric":13,"tinycolor2":30}],84:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var Lib = _dereq_('../../lib');
+
+module.exports = function handleHoverLabelDefaults(contIn, contOut, coerce, opts) {
+    opts = opts || {};
+
+    coerce('hoverlabel.bgcolor', opts.bgcolor);
+    coerce('hoverlabel.bordercolor', opts.bordercolor);
+    coerce('hoverlabel.namelength', opts.namelength);
+    Lib.coerceFont(coerce, 'hoverlabel.font', opts.font);
+};
+
+},{"../../lib":163}],85:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+module.exports = function(opts, extra) {
+    opts = opts || {};
+    extra = extra || {};
+
+    var descPart = extra.description ? ' ' + extra.description : '';
+    var keys = extra.keys || [];
+    if(keys.length > 0) {
+        var quotedKeys = [];
+        for(var i = 0; i < keys.length; i++) {
+            quotedKeys[i] = '`' + keys[i] + '`';
+>>>>>>> Add support for numeral
         }
     },
     'triangle-left': {
@@ -23969,6 +25785,7 @@ module.exports = {
             var rs = d3.round(r, 2);
             return 'M' + r2 + ',-' + rt + 'V' + rt + 'L-' + rs + ',0Z';
         }
+<<<<<<< HEAD
     },
     'triangle-right': {
         n: 8,
@@ -23978,6 +25795,134 @@ module.exports = {
             var rs = d3.round(r, 2);
             return 'M-' + r2 + ',-' + rt + 'V' + rt + 'L' + rs + ',0Z';
         }
+=======
+    }
+
+    var hovertemplate = {
+        valType: 'string',
+        
+        dflt: '',
+        editType: opts.editType || 'none',
+        
+    };
+
+    if(opts.arrayOk !== false) {
+        hovertemplate.arrayOk = true;
+    }
+
+    return hovertemplate;
+};
+
+},{}],86:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var d3 = _dereq_('d3');
+var Lib = _dereq_('../../lib');
+var dragElement = _dereq_('../dragelement');
+var helpers = _dereq_('./helpers');
+var layoutAttributes = _dereq_('./layout_attributes');
+var hoverModule = _dereq_('./hover');
+
+module.exports = {
+    moduleType: 'component',
+    name: 'fx',
+
+    constants: _dereq_('./constants'),
+    schema: {
+        layout: layoutAttributes
+    },
+
+    attributes: _dereq_('./attributes'),
+    layoutAttributes: layoutAttributes,
+
+    supplyLayoutGlobalDefaults: _dereq_('./layout_global_defaults'),
+    supplyDefaults: _dereq_('./defaults'),
+    supplyLayoutDefaults: _dereq_('./layout_defaults'),
+
+    calc: _dereq_('./calc'),
+
+    getDistanceFunction: helpers.getDistanceFunction,
+    getClosest: helpers.getClosest,
+    inbox: helpers.inbox,
+    quadrature: helpers.quadrature,
+    appendArrayPointValue: helpers.appendArrayPointValue,
+
+    castHoverOption: castHoverOption,
+    castHoverinfo: castHoverinfo,
+
+    hover: hoverModule.hover,
+    unhover: dragElement.unhover,
+
+    loneHover: hoverModule.loneHover,
+    multiHovers: hoverModule.multiHovers,
+    loneUnhover: loneUnhover,
+
+    click: _dereq_('./click')
+};
+
+function loneUnhover(containerOrSelection) {
+    // duck type whether the arg is a d3 selection because ie9 doesn't
+    // handle instanceof like modern browsers do.
+    var selection = Lib.isD3Selection(containerOrSelection) ?
+            containerOrSelection :
+            d3.select(containerOrSelection);
+
+    selection.selectAll('g.hovertext').remove();
+    selection.selectAll('.spikeline').remove();
+}
+
+// helpers for traces that use Fx.loneHover
+
+function castHoverOption(trace, ptNumber, attr) {
+    return Lib.castOption(trace, ptNumber, 'hoverlabel.' + attr);
+}
+
+function castHoverinfo(trace, fullLayout, ptNumber) {
+    function _coerce(val) {
+        return Lib.coerceHoverinfo({hoverinfo: val}, {_module: trace._module}, fullLayout);
+    }
+
+    return Lib.castOption(trace, ptNumber, 'hoverinfo', _coerce);
+}
+
+},{"../../lib":163,"../dragelement":65,"./attributes":77,"./calc":78,"./click":79,"./constants":80,"./defaults":81,"./helpers":82,"./hover":83,"./layout_attributes":87,"./layout_defaults":88,"./layout_global_defaults":89,"d3":11}],87:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var constants = _dereq_('./constants');
+
+var fontAttrs = _dereq_('../../plots/font_attributes')({
+    editType: 'none',
+    
+});
+fontAttrs.family.dflt = constants.HOVERFONT;
+fontAttrs.size.dflt = constants.HOVERFONTSIZE;
+
+module.exports = {
+    clickmode: {
+        valType: 'flaglist',
+        
+        flags: ['event', 'select'],
+        dflt: 'event',
+        editType: 'plot',
+        extras: ['none'],
+        
+>>>>>>> Add support for numeral
     },
     'triangle-ne': {
         n: 9,
@@ -24172,6 +26117,7 @@ module.exports = {
         needLine: true,
         noDot: true
     },
+<<<<<<< HEAD
     'circle-x': {
         n: 28,
         f: function(r) {
@@ -24362,9 +26308,115 @@ module.exports = {
         needLine: true,
         noDot: true,
         noFill: true
+=======
+    selectdirection: {
+        valType: 'enumerated',
+        
+        values: ['h', 'v', 'd', 'any'],
+        dflt: 'any',
+        
+        editType: 'none'
     }
 };
 
+},{"../../plots/font_attributes":233,"./constants":80}],88:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var Lib = _dereq_('../../lib');
+var layoutAttributes = _dereq_('./layout_attributes');
+
+module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
+    function coerce(attr, dflt) {
+        return Lib.coerce(layoutIn, layoutOut, layoutAttributes, attr, dflt);
+    }
+
+    var clickmode = coerce('clickmode');
+
+    var dragMode = coerce('dragmode');
+    if(dragMode === 'select') coerce('selectdirection');
+
+    var hovermodeDflt;
+    if(layoutOut._has('cartesian')) {
+        if(clickmode.indexOf('select') > -1) {
+            hovermodeDflt = 'closest';
+        } else {
+            // flag for 'horizontal' plots:
+            // determines the state of the mode bar 'compare' hovermode button
+            layoutOut._isHoriz = isHoriz(fullData, layoutOut);
+            hovermodeDflt = layoutOut._isHoriz ? 'y' : 'x';
+        }
+    }
+    else hovermodeDflt = 'closest';
+
+    var hoverMode = coerce('hovermode', hovermodeDflt);
+    if(hoverMode) {
+        coerce('hoverdistance');
+        coerce('spikedistance');
+    }
+
+    // if only mapbox or geo subplots is present on graph,
+    // reset 'zoom' dragmode to 'pan' until 'zoom' is implemented,
+    // so that the correct modebar button is active
+    var hasMapbox = layoutOut._has('mapbox');
+    var hasGeo = layoutOut._has('geo');
+    var len = layoutOut._basePlotModules.length;
+
+    if(layoutOut.dragmode === 'zoom' && (
+        ((hasMapbox || hasGeo) && len === 1) ||
+        (hasMapbox && hasGeo && len === 2)
+    )) {
+        layoutOut.dragmode = 'pan';
+    }
+};
+
+function isHoriz(fullData, fullLayout) {
+    var stackOpts = fullLayout._scatterStackOpts || {};
+
+    for(var i = 0; i < fullData.length; i++) {
+        var trace = fullData[i];
+        var subplot = trace.xaxis + trace.yaxis;
+        var subplotStackOpts = stackOpts[subplot] || {};
+        var groupOpts = subplotStackOpts[trace.stackgroup] || {};
+
+        if(trace.orientation !== 'h' && groupOpts.orientation !== 'h') {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+},{"../../lib":163,"./layout_attributes":87}],89:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var Lib = _dereq_('../../lib');
+var handleHoverLabelDefaults = _dereq_('./hoverlabel_defaults');
+var layoutAttributes = _dereq_('./layout_attributes');
+
+module.exports = function supplyLayoutGlobalDefaults(layoutIn, layoutOut) {
+    function coerce(attr, dflt) {
+        return Lib.coerce(layoutIn, layoutOut, layoutAttributes, attr, dflt);
+>>>>>>> Add support for numeral
+    }
+};
+
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 },{"d3":14}],72:[function(_dereq_,module,exports){
@@ -24374,6 +26426,9 @@ module.exports = {
 =======
 },{"d3":11}],69:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"./hoverlabel_defaults":84,"./layout_attributes":87}],90:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -24699,10 +26754,27 @@ function makeComputeErrorValue(type, value) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],75:[function(_dereq_,module,exports){
 =======
 },{}],72:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+module.exports = {
+    moduleType: 'component',
+    name: 'grid',
+
+    schema: {
+        layout: {grid: gridAttrs}
+    },
+
+    layoutAttributes: gridAttrs,
+    sizeDefaults: sizeDefaults,
+    contentDefaults: contentDefaults
+};
+
+},{"../../lib":163,"../../lib/regex":178,"../../plot_api/plot_template":197,"../../plots/cartesian/constants":213,"../../plots/domain":232}],91:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -24731,11 +26803,146 @@ module.exports = function(traceIn, traceOut, defaultColor, opts) {
         return Lib.coerce(containerIn, containerOut, attributes, attr, dflt);
     }
 
+<<<<<<< HEAD
     var hasErrorBars = (
         containerIn.array !== undefined ||
         containerIn.value !== undefined ||
         containerIn.type === 'sqrt'
     );
+=======
+    sizey: {
+        valType: 'number',
+        
+        dflt: 0,
+        editType: 'arraydraw',
+        
+    },
+
+    sizing: {
+        valType: 'enumerated',
+        values: ['fill', 'contain', 'stretch'],
+        dflt: 'contain',
+        
+        editType: 'arraydraw',
+        
+    },
+
+    opacity: {
+        valType: 'number',
+        
+        min: 0,
+        max: 1,
+        dflt: 1,
+        editType: 'arraydraw',
+        
+    },
+
+    x: {
+        valType: 'any',
+        
+        dflt: 0,
+        editType: 'arraydraw',
+        
+    },
+
+    y: {
+        valType: 'any',
+        
+        dflt: 0,
+        editType: 'arraydraw',
+        
+    },
+
+    xanchor: {
+        valType: 'enumerated',
+        values: ['left', 'center', 'right'],
+        dflt: 'left',
+        
+        editType: 'arraydraw',
+        
+    },
+
+    yanchor: {
+        valType: 'enumerated',
+        values: ['top', 'middle', 'bottom'],
+        dflt: 'top',
+        
+        editType: 'arraydraw',
+        
+    },
+
+    xref: {
+        valType: 'enumerated',
+        values: [
+            'paper',
+            cartesianConstants.idRegex.x.toString()
+        ],
+        dflt: 'paper',
+        
+        editType: 'arraydraw',
+        
+    },
+
+    yref: {
+        valType: 'enumerated',
+        values: [
+            'paper',
+            cartesianConstants.idRegex.y.toString()
+        ],
+        dflt: 'paper',
+        
+        editType: 'arraydraw',
+        
+    },
+    editType: 'arraydraw'
+});
+
+},{"../../plot_api/plot_template":197,"../../plots/cartesian/constants":213}],92:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+var isNumeric = _dereq_('fast-isnumeric');
+var toLogRange = _dereq_('../../lib/to_log_range');
+
+/*
+ * convertCoords: when converting an axis between log and linear
+ * you need to alter any images on that axis to keep them
+ * pointing at the same data point.
+ * In v2.0 this will become obsolete (or perhaps size will still need conversion?)
+ * we convert size by declaring that the maximum extent *in data units* should be
+ * the same, assuming the image is anchored by its center (could remove that restriction
+ * if we think it's important) even though the actual left and right values will not be
+ * quite the same since the scale becomes nonlinear (and central anchor means the pixel
+ * center of the image, not the data units center)
+ *
+ * gd: the plot div
+ * ax: the axis being changed
+ * newType: the type it's getting
+ * doExtra: function(attr, val) from inside relayout that sets the attribute.
+ *     Use this to make the changes as it's aware if any other changes in the
+ *     same relayout call should override this conversion.
+ */
+module.exports = function convertCoords(gd, ax, newType, doExtra) {
+    ax = ax || {};
+
+    var toLog = (newType === 'log') && (ax.type === 'linear');
+    var fromLog = (newType === 'linear') && (ax.type === 'log');
+
+    if(!(toLog || fromLog)) return;
+
+    var images = gd._fullLayout.images;
+    var axLetter = ax._id.charAt(0);
+    var image;
+    var attrPrefix;
+>>>>>>> Add support for numeral
 
     var visible = coerce('visible', hasErrorBars);
 
@@ -24783,10 +26990,14 @@ module.exports = function(traceIn, traceOut, defaultColor, opts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plot_api/plot_template":199,"../../registry":248,"./attributes":72,"fast-isnumeric":16}],76:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plot_api/plot_template":196,"../../registry":245,"./attributes":69,"fast-isnumeric":13}],73:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib/to_log_range":186,"fast-isnumeric":13}],93:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -24856,10 +27067,14 @@ function hoverInfo(calcPoint, trace, hoverPoint) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plot_api/edit_types":192,"./attributes":72,"./calc":73,"./compute_error":74,"./defaults":75,"./plot":77,"./style":78}],77:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plot_api/edit_types":189,"./attributes":69,"./calc":70,"./compute_error":71,"./defaults":72,"./plot":74,"./style":75}],74:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/array_container_defaults":203,"../../plots/cartesian/axes":207,"./attributes":91}],94:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -25038,6 +27253,7 @@ function errorCoords(d, xa, ya) {
         }
     }
 
+<<<<<<< HEAD
     return out;
 }
 
@@ -25050,6 +27266,9 @@ function errorCoords(d, xa, ya) {
 =======
 },{"../../traces/scatter/subtypes":339,"../drawing":67,"d3":11,"fast-isnumeric":13}],75:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/xmlns_namespaces":145,"../../plots/cartesian/axes":207,"../drawing":68,"d3":11}],95:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -25088,6 +27307,7 @@ module.exports = function style(traces) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../color":49,"d3":14}],79:[function(_dereq_,module,exports){
 =======
 },{"../color":46,"d3":10}],76:[function(_dereq_,module,exports){
@@ -25095,6 +27315,9 @@ module.exports = function style(traces) {
 =======
 },{"../color":46,"d3":11}],76:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian/include_components":217,"./attributes":91,"./convert_coords":92,"./defaults":93,"./draw":94}],96:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -25151,6 +27374,7 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib/extend":159,"../../plots/font_attributes":235,"./layout_attributes":89}],80:[function(_dereq_,module,exports){
 =======
         namelength: {
@@ -25167,6 +27391,9 @@ module.exports = {
 
 },{"../../plots/font_attributes":232}],77:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/font_attributes":233,"../color/attributes":46}],97:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -25224,6 +27451,7 @@ module.exports = function calc(gd) {
     }
 };
 
+<<<<<<< HEAD
 function paste(traceAttr, cd, cdAttr, fn) {
     fn = fn || Lib.identity;
 
@@ -25237,6 +27465,9 @@ function paste(traceAttr, cd, cdAttr, fn) {
 =======
 },{"../../lib":162,"../../registry":245}],78:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],98:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -25315,10 +27546,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],83:[function(_dereq_,module,exports){
 =======
 },{}],80:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"../../plots/layout_attributes":237,"../../registry":246,"./attributes":96,"./helpers":102}],99:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -26101,8 +28336,99 @@ function _hover(gd, evt, subplot, noHoverEvent) {
             subploti = subplots.indexOf(subplotId);
         }
 
+<<<<<<< HEAD
         // within one trace mode can sometimes be overridden
         mode = hovermode;
+=======
+        opts._width += borderwidth * 2;
+        opts._height += 10 + borderwidth * 2;
+    }
+
+    // make sure we're only getting full pixels
+    opts._width = Math.ceil(opts._width);
+    opts._height = Math.ceil(opts._height);
+
+    var isEditable = (
+        gd._context.edits.legendText ||
+        gd._context.edits.legendPosition
+    );
+
+    traces.each(function(d) {
+        var legendItem = d[0];
+        var bg = d3.select(this).select('.legendtoggle');
+
+        Drawing.setRect(bg,
+            0,
+            -legendItem.height / 2,
+            (isEditable ? 0 : opts._width) + extraWidth,
+            legendItem.height
+        );
+    });
+}
+
+function expandMargin(gd) {
+    var fullLayout = gd._fullLayout;
+    var opts = fullLayout.legend;
+
+    var xanchor = 'left';
+    if(Lib.isRightAnchor(opts)) {
+        xanchor = 'right';
+    }
+    else if(Lib.isCenterAnchor(opts)) {
+        xanchor = 'center';
+    }
+
+    var yanchor = 'top';
+    if(Lib.isBottomAnchor(opts)) {
+        yanchor = 'bottom';
+    }
+    else if(Lib.isMiddleAnchor(opts)) {
+        yanchor = 'middle';
+    }
+
+    // lastly check if the margin auto-expand has changed
+    Plots.autoMargin(gd, 'legend', {
+        x: opts.x,
+        y: opts.y,
+        l: opts._width * (FROM_TL[xanchor]),
+        r: opts._width * (FROM_BR[xanchor]),
+        b: opts._height * (FROM_BR[yanchor]),
+        t: opts._height * (FROM_TL[yanchor])
+    });
+}
+
+function expandHorizontalMargin(gd) {
+    var fullLayout = gd._fullLayout;
+    var opts = fullLayout.legend;
+
+    var xanchor = 'left';
+    if(Lib.isRightAnchor(opts)) {
+        xanchor = 'right';
+    }
+    else if(Lib.isCenterAnchor(opts)) {
+        xanchor = 'center';
+    }
+
+    // lastly check if the margin auto-expand has changed
+    Plots.autoMargin(gd, 'legend', {
+        x: opts.x,
+        y: 0.5,
+        l: opts._width * (FROM_TL[xanchor]),
+        r: opts._width * (FROM_BR[xanchor]),
+        b: 0,
+        t: 0
+    });
+}
+
+},{"../../constants/alignment":142,"../../constants/interactions":143,"../../lib":163,"../../lib/events":156,"../../lib/svg_text_utils":184,"../../plots/plots":239,"../../registry":246,"../color":47,"../dragelement":65,"../drawing":68,"./constants":97,"./get_legend_data":100,"./handle_click":101,"./helpers":102,"./style":104,"d3":11}],100:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         // container for new point, also used to pass info into module.hoverPoints
         pointData = {
@@ -26343,7 +28669,18 @@ function _hover(gd, evt, subplot, noHoverEvent) {
         }
     }
 
+<<<<<<< HEAD
     hoverData.sort(function(d1, d2) { return d1.distance - d2.distance; });
+=======
+},{"../../registry":246,"./helpers":102}],101:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // lastly, emit custom hover/unhover events
     var oldhoverdata = gd._hoverdata;
@@ -26582,6 +28919,17 @@ function createHoverText(hoverData, opts, gd) {
 
     // show all the individual labels
 
+<<<<<<< HEAD
+=======
+},{"../../lib":163,"../../registry":246}],102:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // first create the objects
     var hoverLabels = container.selectAll('g.hovertext')
@@ -26640,12 +28988,23 @@ function createHoverText(hoverData, opts, gd) {
                 d.name = Lib.templateString(d.name, {meta: fullLayout.meta});
             }
 
+<<<<<<< HEAD
             name = svgTextUtils.plainText(d.name || '', {
                 len: d.nameLength,
                 allowedTags: ['br', 'sub', 'sup', 'b', 'i', 'em']
             });
 >>>>>>> Recreate dist
         }
+=======
+},{}],103:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         if(d.zLabel !== undefined) {
             if(d.xLabel !== undefined) text += 'x: ' + d.xLabel + '<br>';
@@ -26717,12 +29076,23 @@ function createHoverText(hoverData, opts, gd) {
                 {meta: fullLayout.meta}
             );
 
+<<<<<<< HEAD
             text = text.replace(EXTRA_STRING_REGEX, function(match, extra) {
                 name = extra; // Assign name for secondary text label
                 return ''; // Remove from main text label
 >>>>>>> Recreate dist
             });
         }
+=======
+},{"./attributes":96,"./defaults":98,"./draw":99,"./style":104}],104:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         // main label
         var tx = g.select('text.nums')
@@ -27413,6 +29783,7 @@ function hoverChanged(gd, evt, oldhoverdata) {
     return false;
 }
 
+<<<<<<< HEAD
 function spikesChanged(gd, oldspikepoints) {
     // don't relayout the plot because of new spikelines if spikelines points didn't change
     if(!oldspikepoints) return true;
@@ -27438,6 +29809,9 @@ function plainText(s, len) {
 =======
 },{"../../lib":162,"../../lib/events":155,"../../lib/override_cursor":173,"../../lib/svg_text_utils":183,"../../plots/cartesian/axes":206,"../../registry":245,"../color":46,"../dragelement":64,"../drawing":67,"./constants":79,"./helpers":81,"d3":11,"fast-isnumeric":13,"tinycolor2":29}],83:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../registry":246,"../../traces/pie/style_one":314,"../../traces/scatter/subtypes":340,"../color":47,"../drawing":68,"d3":11}],105:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -27831,10 +30205,14 @@ module.exports = function supplyLayoutGlobalDefaults(layoutIn, layoutOut) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"./hoverlabel_defaults":86,"./layout_attributes":89}],92:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"./hoverlabel_defaults":83,"./layout_attributes":86}],89:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../../build/ploticon":2,"../../lib":163,"../../plots/cartesian/axis_ids":210,"../../plots/plots":239,"../../registry":246}],106:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -27845,11 +30223,27 @@ module.exports = function supplyLayoutGlobalDefaults(layoutIn, layoutOut) {
 
 'use strict';
 
+<<<<<<< HEAD
 var Lib = _dereq_('../../lib');
 var counterRegex = _dereq_('../../lib/regex').counter;
 var domainAttrs = _dereq_('../../plots/domain').attributes;
 var cartesianIdRegex = _dereq_('../../plots/cartesian/constants').idRegex;
 var Template = _dereq_('../../plot_api/plot_template');
+=======
+exports.manage = _dereq_('./manage');
+
+},{"./manage":107}],107:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+>>>>>>> Add support for numeral
 
 var gridAttrs = {
     rows: {
@@ -28214,9 +30608,107 @@ function contentDefaults(layoutIn, layoutOut) {
     }
 }
 
+<<<<<<< HEAD
 function fillGridAxes(axesIn, axesAllowed, len, axisMap, axLetter) {
     var out = new Array(len);
     var i;
+=======
+},{"../../plots/cartesian/axis_ids":210,"../../registry":246,"../../traces/scatter/subtypes":340,"./buttons":105,"./modebar":108}],108:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+var d3 = _dereq_('d3');
+var isNumeric = _dereq_('fast-isnumeric');
+
+var Lib = _dereq_('../../lib');
+var Icons = _dereq_('../../../build/ploticon');
+var Parser = new DOMParser();
+
+/**
+ * UI controller for interactive plots
+ * @Class
+ * @Param {object} opts
+ * @Param {object} opts.buttons    nested arrays of grouped buttons config objects
+ * @Param {object} opts.container  container div to append modeBar
+ * @Param {object} opts.graphInfo  primary plot object containing data and layout
+ */
+function ModeBar(opts) {
+    this.container = opts.container;
+    this.element = document.createElement('div');
+
+    this.update(opts.graphInfo, opts.buttons);
+
+    this.container.appendChild(this.element);
+}
+
+var proto = ModeBar.prototype;
+
+/**
+ * Update modeBar (buttons and logo)
+ *
+ * @param {object} graphInfo  primary plot object containing data and layout
+ * @param {array of arrays} buttons nested arrays of grouped buttons to initialize
+ *
+ */
+proto.update = function(graphInfo, buttons) {
+    this.graphInfo = graphInfo;
+
+    var context = this.graphInfo._context;
+    var fullLayout = this.graphInfo._fullLayout;
+    var modeBarId = 'modebar-' + fullLayout._uid;
+
+    this.element.setAttribute('id', modeBarId);
+    this._uid = modeBarId;
+
+    this.element.className = 'modebar';
+    if(context.displayModeBar === 'hover') this.element.className += ' modebar--hover ease-bg';
+
+    if(fullLayout.modebar.orientation === 'v') {
+        this.element.className += ' vertical';
+        buttons = buttons.reverse();
+    }
+
+    var style = fullLayout.modebar;
+    var bgSelector = context.displayModeBar === 'hover' ? '.js-plotly-plot .plotly:hover ' : '';
+
+    Lib.deleteRelatedStyleRule(modeBarId);
+    Lib.addRelatedStyleRule(modeBarId, bgSelector + '#' + modeBarId + ' .modebar-group', 'background-color: ' + style.bgcolor);
+    Lib.addRelatedStyleRule(modeBarId, '#' + modeBarId + ' .modebar-btn .icon path', 'fill: ' + style.color);
+    Lib.addRelatedStyleRule(modeBarId, '#' + modeBarId + ' .modebar-btn:hover .icon path', 'fill: ' + style.activecolor);
+    Lib.addRelatedStyleRule(modeBarId, '#' + modeBarId + ' .modebar-btn.active .icon path', 'fill: ' + style.activecolor);
+
+    // if buttons or logo have changed, redraw modebar interior
+    var needsNewButtons = !this.hasButtons(buttons);
+    var needsNewLogo = (this.hasLogo !== context.displaylogo);
+    var needsNewLocale = (this.locale !== context.locale);
+
+    this.locale = context.locale;
+
+    if(needsNewButtons || needsNewLogo || needsNewLocale) {
+        this.removeAllButtons();
+
+        this.updateButtons(buttons);
+
+        if(context.watermark || context.displaylogo) {
+            var logoGroup = this.getLogo();
+            if(context.watermark) {
+                logoGroup.className = logoGroup.className + ' watermark';
+            }
+
+            if(fullLayout.modebar.orientation === 'v') {
+                this.element.insertBefore(logoGroup, this.element.childNodes[0]);
+            } else {
+                this.element.appendChild(logoGroup);
+            }
+>>>>>>> Add support for numeral
 
     function fillOneAxis(i, axisId) {
         if(axesAllowed.indexOf(axisId) !== -1 && axisMap[axisId] === undefined) {
@@ -28264,10 +30756,34 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../lib/regex":180,"../../plot_api/plot_template":199,"../../plots/cartesian/constants":215,"../../plots/domain":234}],93:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../lib/regex":177,"../../plot_api/plot_template":196,"../../plots/cartesian/constants":212,"../../plots/domain":231}],90:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+function createModeBar(gd, buttons) {
+    var fullLayout = gd._fullLayout;
+
+    var modeBar = new ModeBar({
+        graphInfo: gd,
+        container: fullLayout._modebardiv.node(),
+        buttons: buttons
+    });
+
+    if(fullLayout._privateplot) {
+        d3.select(modeBar.element).append('span')
+            .classed('badge-private float--left', true)
+            .text('PRIVATE');
+    }
+
+    return modeBar;
+}
+
+module.exports = createModeBar;
+
+},{"../../../build/ploticon":2,"../../lib":163,"d3":11,"fast-isnumeric":13}],109:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28403,10 +30919,14 @@ module.exports = templatedArray('image', {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plot_api/plot_template":199,"../../plots/cartesian/constants":215}],94:[function(_dereq_,module,exports){
 =======
 },{"../../plot_api/plot_template":196,"../../plots/cartesian/constants":212}],91:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plot_api/plot_template":197,"../../plots/font_attributes":233,"../color/attributes":46}],110:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28498,10 +31018,14 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib/to_log_range":188,"fast-isnumeric":16}],95:[function(_dereq_,module,exports){
 =======
 },{"../../lib/to_log_range":185,"fast-isnumeric":13}],92:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],111:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28567,10 +31091,14 @@ function imageDefaults(imageIn, imageOut, fullLayout) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/array_container_defaults":205,"../../plots/cartesian/axes":209,"./attributes":93}],96:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/array_container_defaults":202,"../../plots/cartesian/axes":206,"./attributes":90}],93:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"../../plots/array_container_defaults":203,"../color":47,"./attributes":109,"./constants":110}],112:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28823,10 +31351,96 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/cartesian/include_components":219,"./attributes":93,"./convert_coords":94,"./defaults":95,"./draw":96}],98:[function(_dereq_,module,exports){
 =======
 },{"../../plots/cartesian/include_components":216,"./attributes":90,"./convert_coords":91,"./defaults":92,"./draw":93}],95:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+    var yanchor = 'top';
+    if(Lib.isBottomAnchor(opts)) {
+        ly -= height;
+        yanchor = 'bottom';
+    }
+    if(Lib.isMiddleAnchor(opts)) {
+        ly -= height / 2;
+        yanchor = 'middle';
+    }
+
+    width = Math.ceil(width);
+    height = Math.ceil(height);
+    lx = Math.round(lx);
+    ly = Math.round(ly);
+
+    Plots.autoMargin(gd, axName + '-range-selector', {
+        x: opts.x,
+        y: opts.y,
+        l: width * FROM_TL[xanchor],
+        r: width * FROM_BR[xanchor],
+        b: height * FROM_BR[yanchor],
+        t: height * FROM_TL[yanchor]
+    });
+
+    selector.attr('transform', 'translate(' + lx + ',' + ly + ')');
+}
+
+},{"../../constants/alignment":142,"../../lib":163,"../../lib/svg_text_utils":184,"../../plots/cartesian/axis_ids":210,"../../plots/plots":239,"../../registry":246,"../color":47,"../drawing":68,"./constants":110,"./get_update_object":113,"d3":11}],113:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+var d3 = _dereq_('d3');
+
+module.exports = function getUpdateObject(axisLayout, buttonLayout) {
+    var axName = axisLayout._name;
+    var update = {};
+
+    if(buttonLayout.step === 'all') {
+        update[axName + '.autorange'] = true;
+    }
+    else {
+        var xrange = getXRange(axisLayout, buttonLayout);
+
+        update[axName + '.range[0]'] = xrange[0];
+        update[axName + '.range[1]'] = xrange[1];
+    }
+
+    return update;
+};
+
+function getXRange(axisLayout, buttonLayout) {
+    var currentRange = axisLayout.range;
+    var base = new Date(axisLayout.r2l(currentRange[1]));
+    var step = buttonLayout.step;
+    var count = buttonLayout.count;
+    var range0;
+
+    switch(buttonLayout.stepmode) {
+        case 'backward':
+            range0 = axisLayout.l2r(+d3.time[step].utc.offset(base, -count));
+            break;
+
+        case 'todate':
+            var base2 = d3.time[step].utc.offset(base, -count);
+
+            range0 = axisLayout.l2r(+d3.time[step].utc.ceil(base2));
+            break;
+    }
+
+    var range1 = currentRange[1];
+
+    return [range0, range1];
+}
+
+},{"d3":11}],114:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28837,8 +31451,37 @@ module.exports = {
 
 'use strict';
 
+<<<<<<< HEAD
 var fontAttrs = _dereq_('../../plots/font_attributes');
 var colorAttrs = _dereq_('../color/attributes');
+=======
+module.exports = {
+    moduleType: 'component',
+    name: 'rangeselector',
+
+    schema: {
+        subplots: {
+            xaxis: {rangeselector: _dereq_('./attributes')}
+        }
+    },
+
+    layoutAttributes: _dereq_('./attributes'),
+    handleDefaults: _dereq_('./defaults'),
+
+    draw: _dereq_('./draw')
+};
+
+},{"./attributes":109,"./defaults":111,"./draw":112}],115:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+>>>>>>> Add support for numeral
 
 
 module.exports = {
@@ -28972,10 +31615,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/font_attributes":235,"../color/attributes":48}],99:[function(_dereq_,module,exports){
 =======
 },{"../../plots/font_attributes":232,"../color/attributes":45}],96:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../color/attributes":46}],116:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -28995,10 +31642,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],100:[function(_dereq_,module,exports){
 =======
 },{}],97:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian/autorange":206,"../../plots/cartesian/axis_ids":210,"./constants":117}],117:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -29031,8 +31682,19 @@ module.exports = function legendDefaults(layoutIn, layoutOut, fullData) {
 
     var defaultX, defaultY, defaultXAnchor, defaultYAnchor;
 
+<<<<<<< HEAD
     for(var i = 0; i < fullData.length; i++) {
         var trace = fullData[i];
+=======
+},{}],118:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         if(!trace.visible) continue;
 
@@ -29132,10 +31794,14 @@ module.exports = function legendDefaults(layoutIn, layoutOut, fullData) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plot_api/plot_template":199,"../../plots/layout_attributes":239,"../../registry":248,"./attributes":98,"./helpers":104}],101:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plot_api/plot_template":196,"../../plots/layout_attributes":236,"../../registry":245,"./attributes":95,"./helpers":101}],98:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plot_api/plot_template":197,"../../plots/cartesian/axis_ids":210,"./attributes":115,"./oppaxis_attributes":122}],119:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -30000,6 +32666,7 @@ function expandHorizontalMargin(gd) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../constants/interactions":145,"../../lib":165,"../../lib/events":158,"../../lib/svg_text_utils":186,"../../plots/plots":241,"../../registry":248,"../color":49,"../dragelement":67,"../drawing":70,"./constants":99,"./get_legend_data":102,"./handle_click":103,"./helpers":104,"./style":106,"d3":14}],102:[function(_dereq_,module,exports){
 =======
 },{"../../constants/alignment":141,"../../constants/interactions":142,"../../lib":162,"../../lib/events":155,"../../lib/svg_text_utils":183,"../../plots/plots":239,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"./constants":96,"./get_legend_data":99,"./handle_click":100,"./helpers":101,"./style":103,"d3":10}],99:[function(_dereq_,module,exports){
@@ -30007,6 +32674,9 @@ function expandHorizontalMargin(gd) {
 =======
 },{"../../constants/alignment":141,"../../constants/interactions":142,"../../lib":162,"../../lib/events":155,"../../lib/svg_text_utils":183,"../../plots/plots":238,"../../registry":245,"../color":46,"../dragelement":64,"../drawing":67,"./constants":96,"./get_legend_data":99,"./handle_click":100,"./helpers":101,"./style":103,"d3":11}],99:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../lib/setcursor":182,"../../plots/cartesian":218,"../../plots/cartesian/axis_ids":210,"../../plots/plots":239,"../../registry":246,"../color":47,"../dragelement":65,"../drawing":68,"../titles":135,"./constants":117,"d3":11}],120:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -30068,7 +32738,18 @@ module.exports = function getLegendData(calcdata, opts) {
         var trace = cd0.trace;
         var lgroup = trace.legendgroup;
 
+<<<<<<< HEAD
         if(!trace.visible || !trace.showlegend) continue;
+=======
+},{"../../plots/cartesian/axis_ids":210,"./constants":117}],121:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 <<<<<<< HEAD
         if(Registry.traceIs(trace, 'pie-like')) {
@@ -30101,8 +32782,19 @@ module.exports = function getLegendData(calcdata, opts) {
 >>>>>>> Recreate dist
     }
 
+<<<<<<< HEAD
     // won't draw a legend in this case
     if(!lgroups.length) return [];
+=======
+},{"../../lib":163,"./attributes":115,"./calc_autorange":116,"./defaults":118,"./draw":119,"./helpers":120,"./oppaxis_attributes":122}],122:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // rearrange lgroupToTraces into a d3-friendly array of arrays
     var lgroupsLength = lgroups.length;
@@ -30138,10 +32830,14 @@ module.exports = function getLegendData(calcdata, opts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../registry":248,"./helpers":104}],103:[function(_dereq_,module,exports){
 =======
 },{"../../registry":245,"./helpers":101}],100:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],123:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -30180,10 +32876,21 @@ module.exports = function handleClick(g, gd, numClicks) {
     else if(numClicks === 2) mode = itemDoubleClick;
     if(!mode) return;
 
+<<<<<<< HEAD
     var hiddenSlices = fullLayout.hiddenlabels ?
         fullLayout.hiddenlabels.slice() :
 =======
     if(gd._dragged || gd._editing) return;
+=======
+},{"../../lib/extend":157,"../../plot_api/plot_template":197,"../../traces/scatter/attributes":316,"../annotations/attributes":32,"../drawing/attributes":67}],124:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var hiddenSlices = gd._fullLayout.hiddenlabels ?
         gd._fullLayout.hiddenlabels.slice() :
@@ -30350,11 +33057,22 @@ module.exports = function handleClick(g, gd, numClicks) {
 
                 isInGroup = (hasLegendgroup && fullData[i].legendgroup === legendgroup);
 
+<<<<<<< HEAD
                 if(!isInGroup && fullData[i].visible === true && !Registry.traceIs(fullData[i], 'notLegendIsolatable')) {
                     isIsolated = false;
                     break;
                 }
             }
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207,"./constants":125,"./helpers":128}],125:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             for(i = 0; i < fullData.length; i++) {
                 // False is sticky; we don't change it.
@@ -30411,10 +33129,14 @@ module.exports = function handleClick(g, gd, numClicks) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../registry":248}],104:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../registry":245}],101:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],126:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -30467,10 +33189,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./attributes":98,"./defaults":100,"./draw":101,"./style":106}],106:[function(_dereq_,module,exports){
 =======
 },{"./attributes":95,"./defaults":97,"./draw":98,"./style":103}],103:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/array_container_defaults":203,"../../plots/cartesian/axes":207,"./attributes":123,"./helpers":128}],127:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -31090,8 +33816,12 @@ module.exports = function style(s, gd) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../registry":245,"../../traces/pie/style_one":313,"../../traces/scatter/subtypes":339,"../color":46,"../drawing":67,"d3":11}],104:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../lib/setcursor":182,"../../plot_api/plot_template":197,"../../plots/cartesian/axes":207,"../../registry":246,"../color":47,"../dragelement":65,"../drawing":68,"./constants":125,"./helpers":128}],128:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -31406,6 +34136,7 @@ modeBarButtons.orbitRotation = {
     click: handleDrag3d
 };
 
+<<<<<<< HEAD
 modeBarButtons.tableRotation = {
     name: 'tableRotation',
     title: function(gd) { return _(gd, 'Turntable rotation'); },
@@ -31414,6 +34145,16 @@ modeBarButtons.tableRotation = {
     icon: Icons['z-axis'],
     click: handleDrag3d
 };
+=======
+},{"../../lib":163,"./constants":125}],129:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function handleDrag3d(gd, ev) {
     var button = ev.currentTarget;
@@ -31443,6 +34184,7 @@ modeBarButtons.resetCameraDefault3d = {
     click: handleCamera3d
 };
 
+<<<<<<< HEAD
 modeBarButtons.resetCameraLastSave3d = {
     name: 'resetCameraLastSave3d',
     title: function(gd) { return _(gd, 'Reset camera to last save'); },
@@ -31450,6 +34192,16 @@ modeBarButtons.resetCameraLastSave3d = {
     icon: Icons.movie,
     click: handleCamera3d
 };
+=======
+},{"../../plots/cartesian/include_components":217,"./attributes":123,"./calc_autorange":124,"./defaults":126,"./draw":127}],130:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function handleCamera3d(gd, ev) {
     var button = ev.currentTarget;
@@ -31528,8 +34280,22 @@ function getNextHover3d(gd, ev) {
 
         button._previousVal = currentSpikes;
     }
+<<<<<<< HEAD
     return layoutUpdate;
 }
+=======
+}), 'arraydraw', 'from-root');
+
+},{"../../lib/extend":157,"../../plot_api/edit_types":190,"../../plot_api/plot_template":197,"../../plots/animation_attributes":202,"../../plots/font_attributes":233,"../../plots/pad_attributes":238,"./constants":131}],131:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+>>>>>>> Add support for numeral
 
 function handleHover3d(gd, ev) {
     var layoutUpdate = getNextHover3d(gd, ev);
@@ -31674,12 +34440,23 @@ modeBarButtons.toggleHover = {
     }
 };
 
+<<<<<<< HEAD
 modeBarButtons.resetViews = {
     name: 'resetViews',
     title: function(gd) { return _(gd, 'Reset views'); },
     icon: Icons.home,
     click: function(gd, ev) {
         var button = ev.currentTarget;
+=======
+},{}],132:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         button.setAttribute('data-attr', 'zoom');
         button.setAttribute('data-val', 'reset');
@@ -31772,6 +34549,7 @@ function resetView(gd, subplotType) {
 
 'use strict';
 
+<<<<<<< HEAD
 exports.manage = _dereq_('./manage');
 
 <<<<<<< HEAD
@@ -31779,6 +34557,9 @@ exports.manage = _dereq_('./manage');
 =======
 },{"./manage":106}],106:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/array_container_defaults":203,"./attributes":130,"./constants":131}],133:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -32652,10 +35433,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],113:[function(_dereq_,module,exports){
 =======
 },{}],110:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/alignment":142,"../../lib":163,"../../lib/svg_text_utils":184,"../../plot_api/plot_template":197,"../../plots/plots":239,"../color":47,"../drawing":68,"./constants":131,"d3":11}],134:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -32708,6 +35493,7 @@ module.exports = function handleDefaults(containerIn, containerOut, layout, coun
     }
 };
 
+<<<<<<< HEAD
 function buttonDefaults(buttonIn, buttonOut, selectorOut, opts) {
     var calendar = opts.calendar;
 
@@ -32757,6 +35543,9 @@ function getPosDflt(containerOut, layout, counterAxes) {
 =======
 },{"../../lib":162,"../../plot_api/plot_template":196,"../../plots/array_container_defaults":202,"../color":46,"./attributes":108,"./constants":109}],111:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./attributes":130,"./constants":131,"./defaults":132,"./draw":133}],135:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33031,6 +35820,7 @@ function reposition(gd, buttons, opts, axName, selector) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/cartesian/axis_ids":212,"../../plots/plots":241,"../../registry":248,"../color":49,"../drawing":70,"./constants":112,"./get_update_object":115,"d3":14}],115:[function(_dereq_,module,exports){
 =======
 },{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/cartesian/axis_ids":209,"../../plots/plots":239,"../../registry":246,"../color":46,"../drawing":67,"./constants":109,"./get_update_object":112,"d3":10}],112:[function(_dereq_,module,exports){
@@ -33038,6 +35828,9 @@ function reposition(gd, buttons, opts, axName, selector) {
 =======
 },{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/cartesian/axis_ids":209,"../../plots/plots":238,"../../registry":245,"../color":46,"../drawing":67,"./constants":109,"./get_update_object":112,"d3":11}],112:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/interactions":143,"../../lib":163,"../../lib/svg_text_utils":184,"../../plots/plots":239,"../../registry":246,"../color":47,"../drawing":68,"d3":11,"fast-isnumeric":13}],136:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33248,10 +36041,14 @@ module.exports = function calcAutorange(gd) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/cartesian/autorange":208,"../../plots/cartesian/axis_ids":212,"./constants":119}],119:[function(_dereq_,module,exports){
 =======
 },{"../../plots/cartesian/autorange":205,"../../plots/cartesian/axis_ids":209,"./constants":116}],116:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib/extend":157,"../../plot_api/edit_types":190,"../../plot_api/plot_template":197,"../../plots/font_attributes":233,"../../plots/pad_attributes":238,"../color/attributes":46}],137:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33308,10 +36105,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],120:[function(_dereq_,module,exports){
 =======
 },{}],117:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],138:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33398,10 +36199,14 @@ module.exports = function handleDefaults(layoutIn, layoutOut, axName) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plot_api/plot_template":199,"../../plots/cartesian/axis_ids":212,"./attributes":117,"./oppaxis_attributes":124}],121:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plot_api/plot_template":196,"../../plots/cartesian/axis_ids":209,"./attributes":114,"./oppaxis_attributes":121}],118:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/array_container_defaults":203,"./attributes":136,"./constants":137}],139:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -33983,6 +36788,7 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../lib/setcursor":184,"../../plots/cartesian":220,"../../plots/cartesian/axis_ids":212,"../../plots/plots":241,"../../registry":248,"../color":49,"../dragelement":67,"../drawing":70,"../titles":137,"./constants":119,"d3":14}],122:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../lib/setcursor":181,"../../plots/cartesian":218,"../../plots/cartesian/axis_ids":209,"../../plots/plots":239,"../../registry":246,"../color":46,"../dragelement":64,"../drawing":67,"../titles":134,"./constants":116,"d3":10}],119:[function(_dereq_,module,exports){
@@ -33990,6 +36796,11 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
 =======
 },{"../../lib":162,"../../lib/setcursor":181,"../../plots/cartesian":217,"../../plots/cartesian/axis_ids":209,"../../plots/plots":238,"../../registry":245,"../color":46,"../dragelement":64,"../drawing":67,"../titles":134,"./constants":116,"d3":11}],119:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/alignment":142,"../../lib":163,"../../lib/svg_text_utils":184,"../../plot_api/plot_template":197,"../../plots/plots":239,"../color":47,"../drawing":68,"./constants":137,"./scrollbox":141,"d3":11}],140:[function(_dereq_,module,exports){
+arguments[4][134][0].apply(exports,arguments)
+},{"./attributes":136,"./constants":137,"./defaults":138,"./draw":139,"dup":134}],141:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -34406,10 +37217,14 @@ function shapeBounds(ax, v0, v1, path, paramsToUse) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/cartesian/axes":209,"./constants":127,"./helpers":130}],127:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/cartesian/axes":206,"./constants":124,"./helpers":127}],124:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../color":47,"../drawing":68,"d3":11}],142:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -34474,10 +37289,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],128:[function(_dereq_,module,exports){
 =======
 },{}],125:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],143:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -34504,6 +37323,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     });
 };
 
+<<<<<<< HEAD
 function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
     function coerce(attr, dflt) {
         return Lib.coerce(shapeIn, shapeOut, attributes, attr, dflt);
@@ -34615,6 +37435,9 @@ function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
 =======
 },{"../../lib":162,"../../plots/array_container_defaults":202,"../../plots/cartesian/axes":206,"./attributes":122,"./helpers":127}],126:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],144:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -34654,8 +37477,20 @@ module.exports = {
     drawOne: drawOne
 };
 
+<<<<<<< HEAD
 function draw(gd) {
     var fullLayout = gd._fullLayout;
+=======
+},{}],145:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+>>>>>>> Add support for numeral
 
     // Remove previous shapes before drawing new in shapes in fullLayout.shapes
     fullLayout._shapeUpperLayer.selectAll('path').remove();
@@ -34676,12 +37511,23 @@ function draw(gd) {
     // return Plots.previousPromises(gd);
 }
 
+<<<<<<< HEAD
 function drawOne(gd, index) {
     // remove the existing shape if there is one.
     // because indices can change, we need to look in all shape layers
     gd._fullLayout._paperdiv
         .selectAll('.shapelayer [data-index="' + index + '"]')
         .remove();
+=======
+},{}],146:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var options = gd._fullLayout.shapes[index] || {};
 
@@ -34769,6 +37615,7 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer) {
     var n0, s0, w0, e0, optN, optS, optW, optE;
     var pathIn;
 
+<<<<<<< HEAD
     // setup conversion functions
     var xa = Axes.getFromId(gd, shapeOptions.xref);
     var ya = Axes.getFromId(gd, shapeOptions.yref);
@@ -34776,6 +37623,16 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer) {
     var y2p = helpers.getDataToPixel(gd, ya, true);
     var p2x = helpers.getPixelToData(gd, xa);
     var p2y = helpers.getPixelToData(gd, ya, true);
+=======
+},{"../build/plotcss":1,"../build/ploticon":2,"./components/annotations":40,"./components/annotations3d":45,"./components/colorscale":59,"./components/errorbars":74,"./components/fx":86,"./components/grid":90,"./components/images":95,"./components/legend":103,"./components/rangeselector":114,"./components/rangeslider":121,"./components/shapes":129,"./components/sliders":134,"./components/updatemenus":140,"./fonts/mathjax_config":147,"./lib/queue":177,"./locale-en":188,"./locale-en-us":187,"./plot_api":192,"./plot_api/plot_schema":196,"./plots/plots":239,"./registry":246,"./snapshot":251,"./traces/scatter":328,"d3":11,"es6-promise":12}],147:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var sensoryElement = obtainSensoryElement();
     var dragOptions = {
@@ -34795,9 +37652,20 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer) {
         return isLine ? createLineDragHandles() : shapePath;
     }
 
+<<<<<<< HEAD
     function createLineDragHandles() {
         var minSensoryWidth = 10;
         var sensoryWidth = Math.max(shapeOptions.line.width, minSensoryWidth);
+=======
+},{}],148:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         // Helper shapes group
         // Note that by setting the `data-index` attr, it is ensured that
@@ -34882,6 +37750,7 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer) {
             yAnchor = y2p(shapeOptions.yanchor);
         }
 
+<<<<<<< HEAD
         if(shapeOptions.type === 'path') {
             pathIn = shapeOptions.path;
 <<<<<<< HEAD
@@ -34895,6 +37764,16 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer) {
             x1 = xPixelSized ? shapeOptions.x1 : x2p(shapeOptions.x1);
             y1 = yPixelSized ? shapeOptions.y1 : y2p(shapeOptions.y1);
         }
+=======
+},{}],149:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         if(x0 < x1) {
             w0 = x0;
@@ -35284,6 +38163,7 @@ function movePath(pathIn, moveX, moveY) {
         var yParams = constants.paramIsY[segmentType];
         var nParams = constants.numParams[segmentType];
 
+<<<<<<< HEAD
         var paramString = segment.substr(1).replace(constants.paramRE, function(param) {
             if(paramNumber >= nParams) return param;
 
@@ -35304,6 +38184,9 @@ function movePath(pathIn, moveX, moveY) {
 =======
 },{"../../lib":162,"../../lib/setcursor":181,"../../plot_api/plot_template":196,"../../plots/cartesian/axes":206,"../../registry":245,"../color":46,"../dragelement":64,"../drawing":67,"./constants":124,"./helpers":127}],127:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./mod":170}],150:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -35406,17 +38289,63 @@ exports.getPixelToData = function(gd, axis, isVertical) {
     } else {
 =======
     }
+<<<<<<< HEAD
     else if(isVertical) {
         pixelToData = function(p) { return 1 - (p - gs.t) / gs.h; };
     }
     else {
 >>>>>>> Recreate dist
         pixelToData = function(p) { return (p - gs.l) / gs.w; };
+=======
+    return 0;
+}
+
+},{}],151:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+var isNumeric = _dereq_('fast-isnumeric');
+
+var BADNUM = _dereq_('../constants/numerical').BADNUM;
+
+// precompile for speed
+var JUNK = /^['"%,$#\s']+|[, ]|['"%,$#\s']+$/g;
+
+/**
+ * cleanNumber: remove common leading and trailing cruft
+ * Always returns either a number or BADNUM.
+ */
+module.exports = function cleanNumber(v) {
+    if(typeof v === 'string') {
+        v = v.replace(JUNK, '');
+>>>>>>> Add support for numeral
     }
 
     return pixelToData;
 };
 
+<<<<<<< HEAD
+=======
+},{"../constants/numerical":144,"fast-isnumeric":13}],152:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+>>>>>>> Add support for numeral
 /**
  * Based on the given stroke width, rounds the passed
  * position value to represent either a full or half pixel.
@@ -35441,10 +38370,14 @@ exports.roundPositionForSharpStrokeRendering = function(pos, strokeWidth) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"./constants":127}],131:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"./constants":124}],128:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],153:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -35472,10 +38405,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/cartesian/include_components":219,"./attributes":125,"./calc_autorange":126,"./defaults":128,"./draw":129}],132:[function(_dereq_,module,exports){
 =======
 },{"../../plots/cartesian/include_components":216,"./attributes":122,"./calc_autorange":123,"./defaults":125,"./draw":126}],129:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],154:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -35941,10 +38878,14 @@ function stepDefaults(valueIn, valueOut) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/array_container_defaults":205,"./attributes":132,"./constants":133}],135:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/array_container_defaults":202,"./attributes":129,"./constants":130}],132:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../components/colorscale/scales":62,"../constants/interactions":143,"../plots/attributes":204,"./array":150,"./mod":170,"./nested_property":171,"./regex":178,"fast-isnumeric":13,"tinycolor2":30}],155:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -36314,6 +39255,7 @@ function drawGrip(sliderGroup, gd, sliderOpts) {
     .style('stroke-width', sliderOpts.borderwidth + 'px');
 }
 
+<<<<<<< HEAD
 function drawLabel(item, data, sliderOpts) {
     var text = Lib.ensureSingle(item, 'text', constants.labelClass, function(s) {
         s.classed('user-select-none', true)
@@ -36322,6 +39264,16 @@ function drawLabel(item, data, sliderOpts) {
                 'data-notex': 1
             });
     });
+=======
+},{"../constants/numerical":144,"../registry":246,"./loggers":167,"./mod":170,"d3":11,"fast-isnumeric":13}],156:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var tx = data.step.label;
 <<<<<<< HEAD
@@ -36442,9 +39394,20 @@ function attachGripEvents(item, gd, sliderGroup) {
 
         var grip = sliderGroup.select('.' + constants.gripRectClass);
 
+<<<<<<< HEAD
         d3.event.stopPropagation();
         d3.event.preventDefault();
         grip.call(Color.fill, sliderOpts.activebgcolor);
+=======
+},{"events":10}],157:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         var normalizedPosition = positionToNormalizedValue(sliderOpts, d3.mouse(node)[0]);
         handleInput(gd, sliderGroup, sliderOpts, normalizedPosition, true);
@@ -36543,12 +39506,23 @@ function setGripPosition(sliderGroup, sliderOpts, doTransition) {
     el.attr('transform', 'translate(' + (x - constants.gripWidth * 0.5) + ',' + (sliderOpts._dims.currentValueTotalHeight) + ')');
 }
 
+<<<<<<< HEAD
 // Convert a number from [0-1] to a pixel position relative to the slider group container:
 function normalizedValueToPosition(sliderOpts, normalizedPosition) {
     var dims = sliderOpts._dims;
     return dims.inputAreaStart + constants.stepInset +
         (dims.inputAreaLength - 2 * constants.stepInset) * Math.min(1, Math.max(0, normalizedPosition));
 }
+=======
+},{"./is_plain_object.js":164}],158:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 // Convert a position relative to the slider group to a nubmer in [0, 1]
 function positionToNormalizedValue(sliderOpts, position) {
@@ -36597,6 +39571,7 @@ function drawRail(sliderGroup, sliderOpts) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../lib":165,"../../lib/svg_text_utils":186,"../../plot_api/plot_template":199,"../../plots/plots":241,"../color":49,"../drawing":70,"./constants":133,"d3":14}],136:[function(_dereq_,module,exports){
 =======
 },{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plot_api/plot_template":196,"../../plots/plots":239,"../color":46,"../drawing":67,"./constants":130,"d3":10}],133:[function(_dereq_,module,exports){
@@ -36604,6 +39579,9 @@ function drawRail(sliderGroup, sliderOpts) {
 =======
 },{"../../constants/alignment":141,"../../lib":162,"../../lib/svg_text_utils":183,"../../plot_api/plot_template":196,"../../plots/plots":238,"../color":46,"../drawing":67,"./constants":130,"d3":11}],133:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],159:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -36627,10 +39605,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./attributes":132,"./constants":133,"./defaults":134,"./draw":135}],137:[function(_dereq_,module,exports){
 =======
 },{"./attributes":129,"./constants":130,"./defaults":131,"./draw":132}],134:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],160:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -36785,7 +39767,18 @@ function draw(gd, titleClass, options) {
             transformVal = null;
         }
 
+<<<<<<< HEAD
         titleEl.attr('transform', transformVal);
+=======
+},{"./mod":170}],161:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         titleEl.style({
             'font-family': fontFamily,
@@ -36909,6 +39902,7 @@ function draw(gd, titleClass, options) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/interactions":145,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/plots":241,"../../registry":248,"../color":49,"../drawing":70,"d3":14,"fast-isnumeric":16}],138:[function(_dereq_,module,exports){
 =======
 },{"../../constants/interactions":142,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/plots":239,"../../registry":246,"../color":46,"../drawing":67,"d3":10,"fast-isnumeric":13}],135:[function(_dereq_,module,exports){
@@ -36916,6 +39910,9 @@ function draw(gd, titleClass, options) {
 =======
 },{"../../constants/interactions":142,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/plots":238,"../../registry":245,"../color":46,"../drawing":67,"d3":11,"fast-isnumeric":13}],135:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],162:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -36971,6 +39968,7 @@ var buttonsAttrs = templatedArray('button', {
     }
 });
 
+<<<<<<< HEAD
 module.exports = overrideAll(templatedArray('updatemenu', {
     _arrayAttrRegexps: [/^updatemenus\[(0|[1-9][0-9]+)\]\.buttons/],
 
@@ -37078,6 +40076,9 @@ module.exports = overrideAll(templatedArray('updatemenu', {
 =======
 },{"../../lib/extend":156,"../../plot_api/edit_types":189,"../../plot_api/plot_template":196,"../../plots/font_attributes":232,"../../plots/pad_attributes":237,"../color/attributes":45}],136:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],163:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -37841,6 +40842,7 @@ function findDimensions(gd, menuOpts) {
     dims.lx = graphSize.l + graphSize.w * menuOpts.x;
     dims.ly = graphSize.t + graphSize.h * (1 - menuOpts.y);
 
+<<<<<<< HEAD
     var xanchor = 'left';
     if(Lib.isRightAnchor(menuOpts)) {
         dims.lx -= paddedWidth;
@@ -37860,6 +40862,16 @@ function findDimensions(gd, menuOpts) {
         dims.ly -= paddedHeight / 2;
         yanchor = 'middle';
     }
+=======
+},{"../constants/numerical":144,"./anchor_utils":148,"./angles":149,"./array":150,"./clean_number":151,"./clear_responsive":153,"./coerce":154,"./dates":155,"./extend":157,"./filter_unique":158,"./filter_visible":159,"./geometry2d":160,"./get_graph_div":161,"./identity":162,"./is_plain_object":164,"./keyed_container":165,"./localize":166,"./loggers":167,"./make_trace_groups":168,"./matrix":169,"./mod":170,"./nested_property":171,"./noop":172,"./notifier":173,"./push_unique":176,"./regex":178,"./relative_attr":179,"./relink_private":180,"./search":181,"./stats":183,"./throttle":185,"./to_log_range":186,"d3":11,"fast-isnumeric":13}],164:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     dims.totalWidth = Math.ceil(dims.totalWidth);
     dims.totalHeight = Math.ceil(dims.totalHeight);
@@ -37917,6 +40929,7 @@ function setItemPosition(item, menuOpts, posOpts, overrideOpts) {
     posOpts.index++;
 }
 
+<<<<<<< HEAD
 function removeAllButtons(gButton, newMenuIndexAttr) {
     gButton
         .attr(constants.menuIndexAttrName, newMenuIndexAttr || '-1')
@@ -37938,6 +40951,9 @@ arguments[4][133][0].apply(exports,arguments)
 arguments[4][133][0].apply(exports,arguments)
 },{"./attributes":135,"./constants":136,"./defaults":137,"./draw":138,"dup":133}],140:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],165:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38277,6 +41293,10 @@ ScrollBox.prototype.enable = function enable(position, translateX, translateY) {
     this.setTranslate(translateX, translateY);
 };
 
+<<<<<<< HEAD
+=======
+},{"./nested_property":171}],166:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * If present, remove clip-path and scrollbars
  *
@@ -38336,6 +41356,10 @@ ScrollBox.prototype._onBoxDrag = function onBarDrag() {
     this.setTranslate(translateX, translateY);
 };
 
+<<<<<<< HEAD
+=======
+},{"../registry":246}],167:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Handles scroll box wheel events
  *
@@ -38446,6 +41470,7 @@ ScrollBox.prototype.setTranslate = function setTranslate(translateX, translateY)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../color":49,"../drawing":70,"d3":14}],144:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../color":46,"../drawing":67,"d3":10}],141:[function(_dereq_,module,exports){
@@ -38453,6 +41478,9 @@ ScrollBox.prototype.setTranslate = function setTranslate(translateX, translateY)
 =======
 },{"../../lib":162,"../color":46,"../drawing":67,"d3":11}],141:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../plot_api/plot_config":195}],168:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38518,10 +41546,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],145:[function(_dereq_,module,exports){
 =======
 },{}],142:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],169:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38618,10 +41650,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],147:[function(_dereq_,module,exports){
 =======
 },{}],144:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],170:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38646,10 +41682,14 @@ exports.svgAttrs = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],148:[function(_dereq_,module,exports){
 =======
 },{}],145:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],171:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38846,10 +41886,14 @@ exports.isBottomAnchor = function isBottomAnchor(opts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],151:[function(_dereq_,module,exports){
 =======
 },{}],148:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./array":150,"fast-isnumeric":13}],172:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -38867,7 +41911,18 @@ var modHalf = modModule.modHalf;
 var PI = Math.PI;
 var twoPI = 2 * PI;
 
+<<<<<<< HEAD
 function deg2rad(deg) { return deg / 180 * PI; }
+=======
+},{}],173:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function rad2deg(rad) { return rad / PI * 180; }
 
@@ -38962,10 +42017,21 @@ function isPtInsideSector(r, a, rBnds, aBnds) {
     return r >= r0 && r <= r1;
 }
 
+<<<<<<< HEAD
 // common to pathArc, pathSector and pathAnnulus
 function _path(r0, r1, a0, a1, cx, cy, isClosed) {
     cx = cx || 0;
     cy = cy || 0;
+=======
+},{"d3":11,"fast-isnumeric":13}],174:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var isCircle = isFullCircle([a0, a1]);
     var aStart, aMid, aEnd;
@@ -39091,10 +42157,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./mod":172}],152:[function(_dereq_,module,exports){
 =======
 },{"./mod":169}],149:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./setcursor":182}],175:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -39262,10 +42332,26 @@ function _rowLength(z, fn, len0) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],153:[function(_dereq_,module,exports){
 =======
 },{}],150:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+    if(pts.length > 1) {
+        var lastPt = pts.pop();
+        addPt(lastPt);
+    }
+
+    return {
+        addPt: addPt,
+        raw: pts,
+        filtered: ptsFiltered
+    };
+};
+
+},{"../constants/numerical":144,"./matrix":169}],176:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -39299,10 +42385,14 @@ module.exports = function cleanNumber(v) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../constants/numerical":146,"fast-isnumeric":16}],154:[function(_dereq_,module,exports){
 =======
 },{"../constants/numerical":143,"fast-isnumeric":13}],151:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],177:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -39331,10 +42421,16 @@ module.exports = function clearGlCanvases(gd) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],155:[function(_dereq_,module,exports){
 =======
 },{}],152:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+module.exports = queue;
+
+},{"../lib":163,"../plot_api/plot_config":195}],178:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -39358,10 +42454,14 @@ module.exports = function clearResponsive(gd) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],156:[function(_dereq_,module,exports){
 =======
 },{}],153:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],179:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -39476,6 +42576,7 @@ exports.valObjectMeta = {
             if(typeof v !== 'string') {
                 var okToCoerce = (typeof v === 'number');
 
+<<<<<<< HEAD
                 if(opts.strict === true || !okToCoerce) propOut.set(dflt);
                 else propOut.set(String(v));
 <<<<<<< HEAD
@@ -39545,6 +42646,16 @@ exports.valObjectMeta = {
         },
         validateFunction: function(v, opts) {
             var dflt = opts.dflt;
+=======
+},{}],180:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             if(v === dflt) return true;
             if(typeof v !== 'string') return false;
@@ -39697,6 +42808,10 @@ exports.valObjectMeta = {
     }
 };
 
+<<<<<<< HEAD
+=======
+},{"./array":150,"./is_plain_object":164}],181:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Ensures that container[attribute] has a valid value.
  *
@@ -39852,6 +42967,7 @@ function validate(value, opts) {
         return valObjectDef.validateFunction(value, opts);
     }
 
+<<<<<<< HEAD
     var failed = {};
     var out = failed;
     var propMock = { set: function(v) { out = v; } };
@@ -39868,6 +42984,9 @@ exports.validate = validate;
 =======
 },{"../components/colorscale/scales":61,"../constants/interactions":142,"../plots/attributes":203,"./array":149,"./mod":169,"./nested_property":170,"./regex":177,"fast-isnumeric":13,"tinycolor2":29}],154:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./identity":162,"./loggers":167,"fast-isnumeric":13}],182:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -39885,6 +43004,7 @@ var isNumeric = _dereq_('fast-isnumeric');
 var Loggers = _dereq_('./loggers');
 var mod = _dereq_('./mod').mod;
 
+<<<<<<< HEAD
 var constants = _dereq_('../constants/numerical');
 var BADNUM = constants.BADNUM;
 var ONEDAY = constants.ONEDAY;
@@ -39892,6 +43012,16 @@ var ONEHOUR = constants.ONEHOUR;
 var ONEMIN = constants.ONEMIN;
 var ONESEC = constants.ONESEC;
 var EPOCHJD = constants.EPOCHJD;
+=======
+},{}],183:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 var Registry = _dereq_('../registry');
 
@@ -40011,6 +43141,7 @@ var MIN_MS, MAX_MS;
  * currently (2016) this range is:
  *   1946-2045
  */
+<<<<<<< HEAD
 exports.dateTime2ms = function(s, calendar) {
     // first check if s is a date object
     if(exports.isJSDate(s)) {
@@ -40020,6 +43151,25 @@ exports.dateTime2ms = function(s, calendar) {
         var offsetTweak = (s.getUTCMinutes() - s.getMinutes()) * ONEMIN +
             (s.getUTCSeconds() - s.getSeconds()) * ONESEC +
             (s.getUTCMilliseconds() - s.getMilliseconds());
+=======
+exports.interp = function(arr, n) {
+    if(!isNumeric(n)) throw 'n should be a finite number';
+    n = n * arr.length - 0.5;
+    if(n < 0) return arr[0];
+    if(n > arr.length - 1) return arr[arr.length - 1];
+    var frac = n % 1;
+    return frac * arr[Math.ceil(n)] + (1 - frac) * arr[Math.floor(n)];
+};
+
+},{"./array":150,"fast-isnumeric":13}],184:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         if(offsetTweak) {
             var comb = 3 * ONEMIN;
@@ -40793,9 +43943,20 @@ function _extend(inputs, isDeep, keepAllKeys, noArrayCopies) {
             if(noArrayCopies && isArray(copy)) {
                 // Stop early and just transfer the array if array copies are disallowed:
 
+<<<<<<< HEAD
                 target[key] = copy;
             } else if(isDeep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
                 // recurse if we're merging plain objects or arrays
+=======
+},{"../constants/alignment":142,"../constants/xmlns_namespaces":145,"../lib":163,"d3":11}],185:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 =======
             // Stop early and just transfer the array if array copies are disallowed:
@@ -40834,10 +43995,14 @@ function _extend(inputs, isDeep, keepAllKeys, noArrayCopies) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./is_plain_object.js":166}],160:[function(_dereq_,module,exports){
 =======
 },{"./is_plain_object.js":163}],157:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],186:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -40871,10 +44036,32 @@ function _extend(inputs, isDeep, keepAllKeys, noArrayCopies) {
  * @param {array} array base array
  * @return {array} new filtered array
  */
+<<<<<<< HEAD
 module.exports = function filterUnique(array) {
     var seen = {};
     var out = [];
     var j = 0;
+=======
+module.exports = function toLogRange(val, range) {
+    if(val > 0) return Math.log(val) / Math.LN10;
+
+    // move a negative value reference to a log axis - just put the
+    // result at the lowest range value on the plot (or if the range also went negative,
+    // one millionth of the top of the range)
+    var newVal = Math.log(Math.min(range[0], range[1])) / Math.LN10;
+    if(!isNumeric(newVal)) newVal = Math.log(Math.max(range[0], range[1])) / Math.LN10 - 6;
+    return newVal;
+};
+
+},{"fast-isnumeric":13}],187:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     for(var i = 0; i < array.length; i++) {
         var item = array[i];
@@ -40884,15 +44071,34 @@ module.exports = function filterUnique(array) {
             out[j++] = item;
         }
     }
+<<<<<<< HEAD
+=======
+};
+
+},{}],188:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+>>>>>>> Add support for numeral
 
     return out;
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],161:[function(_dereq_,module,exports){
 =======
 },{}],158:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],189:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -40945,10 +44151,14 @@ function isCalcData(cont) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],162:[function(_dereq_,module,exports){
 =======
 },{}],159:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../registry":246}],190:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -41203,10 +44413,14 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./mod":172}],163:[function(_dereq_,module,exports){
 =======
 },{"./mod":169}],160:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../lib":163}],191:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -42041,6 +45255,10 @@ lib.isD3Selection = function(obj) {
     return obj && (typeof obj.classed === 'function');
 };
 
+<<<<<<< HEAD
+=======
+},{"../components/color":47,"../lib":163,"../plots/cartesian/axis_ids":210,"../plots/plots":239,"../registry":246,"fast-isnumeric":13,"gl-mat4/fromQuat":14}],192:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Append element to DOM only if not present.
  *
@@ -42100,6 +45318,10 @@ lib.ensureSingleById = function(parent, nodeType, id, enterFn) {
     return layer;
 };
 
+<<<<<<< HEAD
+=======
+},{"../snapshot/download":248,"./plot_api":194,"./template_api":199,"./to_image":200,"./validate":201}],193:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Converts a string path to an object.
  *
@@ -42290,9 +45512,13 @@ lib.numSeparate = function(value, separators, separatethousands) {
     return x1 + x2;
 };
 
+<<<<<<< HEAD
 lib.TEMPLATE_STRING_REGEX = /%{([^\s%{}:]*)(:[^}]*)?}/g;
 var SIMPLE_PROPERTY_REGEX = /^\w*$/;
 
+=======
+},{"../lib/is_plain_object":164,"../lib/loggers":167,"../lib/noop":172,"../lib/search":181,"../registry":246,"./container_array_match":189}],194:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Substitute values from an object into a string
  *
@@ -46424,11 +49650,22 @@ function commonPrefix(name1, name2, show1, show2) {
     return out.trim();
 }
 
+<<<<<<< HEAD
 // textposition - support partial attributes (ie just 'top')
 // and incorrect use of middle / center etc.
 function cleanTextPosition(textposition) {
     var posY = 'middle';
     var posX = 'center';
+=======
+},{"../components/color":47,"../components/colorbar/connect":49,"../components/drawing":68,"../constants/xmlns_namespaces":145,"../lib":163,"../lib/events":156,"../lib/queue":177,"../lib/svg_text_utils":184,"../plots/cartesian/axes":207,"../plots/cartesian/constants":213,"../plots/cartesian/graph_interact":216,"../plots/cartesian/select":224,"../plots/plots":239,"../plots/polar/legacy":242,"../registry":246,"./edit_types":190,"./helpers":191,"./manage_arrays":193,"./plot_config":195,"./plot_schema":196,"./subroutines":198,"d3":11,"fast-isnumeric":13,"has-hover":15}],195:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     if(typeof textposition === 'string') {
         if(textposition.indexOf('top') !== -1) posY = 'top';
@@ -46635,10 +49872,14 @@ exports.clearAxisTypes = function(gd, traces, layoutUpdate) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../components/color":49,"../lib":165,"../plots/cartesian/axis_ids":212,"../plots/plots":241,"../registry":248,"fast-isnumeric":16,"gl-mat4/fromQuat":17}],194:[function(_dereq_,module,exports){
 =======
 },{"../components/color":46,"../lib":162,"../plots/cartesian/axis_ids":209,"../plots/plots":238,"../registry":245,"fast-isnumeric":13,"gl-mat4/fromQuat":14}],191:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],196:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -47427,7 +50668,18 @@ function setPlotContext(gd, config) {
             '';
     }
 
+<<<<<<< HEAD
     var context = gd._context;
+=======
+},{"../lib":163,"../plots/animation_attributes":202,"../plots/attributes":204,"../plots/frame_attributes":234,"../plots/layout_attributes":237,"../plots/polar/legacy/area_attributes":240,"../plots/polar/legacy/axis_attributes":241,"../registry":246,"./edit_types":190,"./plot_config":195}],197:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var i, keys, key;
 
@@ -47805,6 +51057,10 @@ function checkAddTracesArgs(gd, traces, newIndices) {
     }
 }
 
+<<<<<<< HEAD
+=======
+},{"../lib":163,"../plots/attributes":204}],198:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * A private function to reduce the type checking clutter in spliceTraces.
  * Get all update Properties from gd.data. Validate inputs and outputs.
@@ -48894,11 +52150,22 @@ function _restyle(gd, aobj, traces) {
             for(i = 0; i < traces.length; i++) {
                 var trace = data[traces[i]];
 
+<<<<<<< HEAD
                 if(Registry.traceIs(trace, 'cartesian')) {
                     addToAxlist(trace.xaxis || 'x');
                     addToAxlist(trace.yaxis || 'y');
                 }
             }
+=======
+},{"../components/color":47,"../components/drawing":68,"../components/modebar":106,"../components/titles":135,"../constants/alignment":142,"../lib":163,"../lib/clear_gl_canvases":152,"../plots/cartesian/autorange":206,"../plots/cartesian/axes":207,"../plots/cartesian/constraints":214,"../plots/plots":239,"../registry":246,"d3":11}],199:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             doextra(axlist.map(autorangeAttr), true, 0);
             doextra(axlist.map(rangeAttr), [0, 1], 0);
@@ -49331,6 +52598,7 @@ function _relayout(gd, aobj) {
             var toLog = parentFull.type === 'linear' && vi === 'log';
             var fromLog = parentFull.type === 'log' && vi === 'linear';
 
+<<<<<<< HEAD
             if(toLog || fromLog) {
                 if(!ax || !ax.range) {
                     // 2D never gets here, but 3D does
@@ -49377,6 +52645,16 @@ function _relayout(gd, aobj) {
                     // order, it'll get recalculated later
                     ax.range = (ax.range[1] > ax.range[0]) ? [1, 2] : [2, 1];
                 }
+=======
+},{"../lib":163,"../plots/attributes":204,"../plots/plots":239,"./plot_config":195,"./plot_schema":196,"./plot_template":197}],200:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
                 // clear polar view initial stash for radial range so that
                 // value get recomputed in correct units
@@ -49601,8 +52879,59 @@ function update(gd, traceUpdate, layoutUpdate, _traces) {
     var restyleSpecs = _restyle(gd, Lib.extendFlat({}, traceUpdate), traces);
     var restyleFlags = restyleSpecs.flags;
 
+<<<<<<< HEAD
     var relayoutSpecs = _relayout(gd, Lib.extendFlat({}, layoutUpdate));
     var relayoutFlags = relayoutSpecs.flags;
+=======
+            svgToImg({
+                format: format,
+                width: width,
+                height: height,
+                scale: scale,
+                canvas: canvas,
+                svg: svg,
+                // ask svgToImg to return a Promise
+                //  rather than EventEmitter
+                //  leave EventEmitter for backward
+                //  compatibility
+                promise: true
+            })
+            .then(resolve)
+            .catch(reject);
+        });
+    }
+
+    function urlToImageData(url) {
+        if(imageDataOnly) {
+            return url.replace(IMAGE_URL_PREFIX, '');
+        } else {
+            return url;
+        }
+    }
+
+    return new Promise(function(resolve, reject) {
+        plotApi.plot(clonedGd, data, layoutImage, configImage)
+            .then(redrawFunc)
+            .then(wait)
+            .then(convert)
+            .then(function(url) { resolve(urlToImageData(url)); })
+            .catch(function(err) { reject(err); });
+    });
+}
+
+module.exports = toImage;
+
+},{"../lib":163,"../snapshot/helpers":250,"../snapshot/svgtoimg":252,"../snapshot/tosvg":254,"./plot_api":194}],201:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+>>>>>>> Add support for numeral
 
     // clear calcdata and/or axis types if required
     if(restyleFlags.calc || relayoutFlags.calc) gd.calcdata = undefined;
@@ -50185,8 +53514,19 @@ function diffData(gd, oldFullData, newFullData, immutable, transition, newDataRe
         flags.anim = (flags.nChanges === flags.nChangesAnim) && sameTraceLength ? 'all' : 'some';
     }
 
+<<<<<<< HEAD
     return flags;
 }
+=======
+},{"../lib":163,"../plots/plots":239,"./plot_config":195,"./plot_schema":196}],202:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function diffLayout(gd, oldFullLayout, newFullLayout, immutable, transition) {
     var flags = editTypes.layoutFlags();
@@ -50199,6 +53539,7 @@ function diffLayout(gd, oldFullLayout, newFullLayout, immutable, transition) {
         return PlotSchema.getLayoutValObject(newFullLayout, parts);
     }
 
+<<<<<<< HEAD
     var diffOpts = {
         getValObject: getLayoutValObject,
         flags: flags,
@@ -50206,6 +53547,16 @@ function diffLayout(gd, oldFullLayout, newFullLayout, immutable, transition) {
         transition: transition,
         gd: gd
     };
+=======
+},{}],203:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     getDiffFlags(oldFullLayout, newFullLayout, [], diffOpts);
 
@@ -50291,8 +53642,19 @@ function getDiffFlags(oldContainer, newContainer, outerparts, opts) {
 
         valObject = getValObject(parts);
 
+<<<<<<< HEAD
         // in case type changed, we may not even *have* a valObject.
         if(!valObject) continue;
+=======
+},{"../lib":163,"../plot_api/plot_template":197}],204:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         if(valObject._compareAsJSON && JSON.stringify(oldVal) === JSON.stringify(newVal)) continue;
 
@@ -50325,6 +53687,7 @@ function getDiffFlags(oldContainer, newContainer, outerparts, opts) {
             var extraIndices = false;
             if(!inArray) flags.arrays[key] = arrayEditIndices;
 
+<<<<<<< HEAD
             var minLen = Math.min(oldVal.length, newVal.length);
             var maxLen = Math.max(oldVal.length, newVal.length);
             if(minLen !== maxLen) {
@@ -50340,6 +53703,16 @@ function getDiffFlags(oldContainer, newContainer, outerparts, opts) {
                     continue;
                 }
             }
+=======
+},{"../components/fx/attributes":77}],205:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             for(i = 0; i < minLen; i++) {
                 getDiffFlags(oldVal[i], newVal[i], parts.concat(i),
@@ -50407,6 +53780,19 @@ function getDiffFlags(oldContainer, newContainer, outerparts, opts) {
             changed();
         }
     }
+<<<<<<< HEAD
+=======
+};
+
+},{}],206:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     for(key in newContainer) {
         if(!(key in oldContainer || key.charAt(0) === '_' || typeof newContainer[key] === 'function')) {
@@ -50899,9 +54285,20 @@ exports.addFrames = function(gd, frameList, indices) {
     var _frameHash = gd._transitionData._frameHash;
 
 
+<<<<<<< HEAD
     if(!Array.isArray(frameList)) {
         throw new Error('addFrames failure: frameList must be an Array of frame definitions' + frameList);
     }
+=======
+},{"../../constants/numerical":144,"../../lib":163,"../../registry":246,"fast-isnumeric":13}],207:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // Create a sorted list of insertions since we run into lots of problems if these
     // aren't in ascending order of index:
@@ -50915,12 +54312,19 @@ exports.addFrames = function(gd, frameList, indices) {
     for(i = frameList.length - 1; i >= 0; i--) {
         if(!Lib.isPlainObject(frameList[i])) continue;
 
+<<<<<<< HEAD
         // The entire logic for checking for this type of name collision can be removed once we migrate to ES6 and
         // use a Map instead of an Object instance, as Map keys aren't converted to strings.
         var lookupName = frameList[i].name;
         var name = (_frameHash[lookupName] || _frameHashLocal[lookupName] || {}).name;
         var newName = frameList[i].name;
         var collisionPresent = _frameHash[name] || _frameHashLocal[name];
+=======
+var d3 = _dereq_('d3');
+var numeral = _dereq_('numeral');
+var isNumeric = _dereq_('fast-isnumeric');
+var Plots = _dereq_('../../plots/plots');
+>>>>>>> Add support for numeral
 
         if(name && newName && typeof newName === 'number' && collisionPresent && numericNameWarningCount < numericNameWarningCountLimit) {
             numericNameWarningCount++;
@@ -52149,8 +55553,19 @@ function getTraceAttributes(type) {
         out.layoutAttributes = formatAttributes(layoutAttributes);
     }
 
+<<<<<<< HEAD
     return out;
 }
+=======
+    if(tickformat) {
+      var match = tickformat.match(/^numeral:(.+)$/);
+      if (match) {
+        return numeral(v).format(match[1]);
+      } else {
+        return ax._numFormat(tickformat)(v).replace(/-/g, MINUS_SIGN);
+      }
+    }
+>>>>>>> Add support for numeral
 
 function getLayoutAttributes() {
     var layoutAttributes = {};
@@ -54068,10 +57483,14 @@ function format(opts) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../lib":165,"../plots/attributes":206,"../plots/plots":241,"./plot_config":197,"./plot_schema":198,"./plot_template":199}],202:[function(_dereq_,module,exports){
 =======
 },{"../lib":162,"../plots/attributes":203,"../plots/plots":238,"./plot_config":194,"./plot_schema":195,"./plot_template":196}],199:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/drawing":68,"../../components/titles":135,"../../constants/alignment":142,"../../constants/numerical":144,"../../lib":163,"../../lib/svg_text_utils":184,"../../plots/plots":239,"../../registry":246,"./autorange":206,"./axis_autotype":208,"./axis_ids":210,"./clean_ticks":212,"./layout_attributes":219,"./set_convert":225,"d3":11,"fast-isnumeric":13,"numeral":20}],208:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -54193,12 +57612,43 @@ function toImage(gd, opts) {
         return Lib.coerce(opts, fullOpts, attrs, attr, dflt);
     }
 
+<<<<<<< HEAD
     var format = coerce('format');
     var width = coerce('width');
     var height = coerce('height');
     var scale = coerce('scale');
     var setBackground = coerce('setBackground');
     var imageDataOnly = coerce('imageDataOnly');
+=======
+        if(typeof ai === 'boolean') curvecats++;
+        else if(Lib.cleanNumber(ai) !== BADNUM) curvenums++;
+        else if(typeof ai === 'string') curvecats++;
+    }
+
+    return curvecats > curvenums * 2;
+}
+
+// very-loose requirements for multicategory,
+// trace modules that should never auto-type to multicategory
+// should be declared with 'noMultiCategory'
+function multiCategory(a) {
+    return Lib.isArrayOrTypedArray(a[0]) && Lib.isArrayOrTypedArray(a[1]);
+}
+
+},{"../../constants/numerical":144,"../../lib":163,"fast-isnumeric":13}],209:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var Registry = _dereq_('../../registry');
+var Lib = _dereq_('../../lib');
+>>>>>>> Add support for numeral
 
     // put the cloned div somewhere off screen before attaching to DOM
     var clonedGd = document.createElement('div');
@@ -54295,6 +57745,7 @@ function toImage(gd, opts) {
     });
 }
 
+<<<<<<< HEAD
 module.exports = toImage;
 
 <<<<<<< HEAD
@@ -54302,6 +57753,9 @@ module.exports = toImage;
 =======
 },{"../lib":162,"../snapshot/helpers":249,"../snapshot/svgtoimg":251,"../snapshot/tosvg":253,"./plot_api":193}],200:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../registry":246,"./category_order_defaults":211,"./layout_attributes":219,"./line_grid_defaults":221,"./set_convert":225,"./tick_label_defaults":226,"./tick_mark_defaults":227,"./tick_value_defaults":228}],210:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -54424,9 +57878,20 @@ module.exports = function validate(data, layout) {
 
             base.push('transforms');
 
+<<<<<<< HEAD
             for(var j = 0; j < transformsIn.length; j++) {
                 var path = ['transforms', j];
                 var transformType = transformsIn[j].type;
+=======
+},{"../../registry":246,"./constants":213}],211:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
                 if(!isPlainObject(transformsIn[j])) {
                     errorList.push(format('object', base, path));
@@ -54457,8 +57922,19 @@ module.exports = function validate(data, layout) {
     return (errorList.length === 0) ? void(0) : errorList;
 };
 
+<<<<<<< HEAD
 function crawl(objIn, objOut, schema, list, base, path) {
     path = path || [];
+=======
+},{}],212:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var keys = Object.keys(objIn);
 
@@ -54571,6 +58047,7 @@ function crawl(objIn, objOut, schema, list, base, path) {
                 _p = p.slice();
                 _p.push(_index);
 
+<<<<<<< HEAD
                 if(isPlainObject(valIn[_index]) && isPlainObject(valOut[j])) {
                     indexList.push(_index);
                     var valInj = valIn[_index];
@@ -54585,6 +58062,16 @@ function crawl(objIn, objOut, schema, list, base, path) {
 >>>>>>> Recreate dist
                 }
             }
+=======
+},{"../../constants/numerical":144,"../../lib":163,"fast-isnumeric":13}],213:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             // loop over valIn to determine where it went wrong for some items
             for(j = 0; j < valIn.length; j++) {
@@ -54740,6 +58227,27 @@ function format(code, base, path, valIn, valOut) {
         container = base;
         trace = null;
     }
+<<<<<<< HEAD
+=======
+};
+
+},{"../../lib/regex":178}],214:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var Lib = _dereq_('../../lib');
+var id2name = _dereq_('./axis_ids').id2name;
+var scaleZoom = _dereq_('./scale_zoom');
+var makePadFn = _dereq_('./autorange').makePadFn;
+var concatExtremes = _dereq_('./autorange').concatExtremes;
+>>>>>>> Add support for numeral
 
     var astr = convertPathToAttributeString(path);
     var msg = code2msgFunc[code](base, astr, valIn, valOut);
@@ -55182,10 +58690,26 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../components/fx/attributes":79}],207:[function(_dereq_,module,exports){
 =======
 },{"../components/fx/attributes":76}],204:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+function updateDomain(ax, factor) {
+    var inputDomain = ax._inputDomain;
+    var centerFraction = FROM_BL[ax.constraintoward];
+    var center = inputDomain[0] + (inputDomain[1] - inputDomain[0]) * centerFraction;
+
+    ax.domain = ax._input.domain = [
+        center + (inputDomain[0] - center) / factor,
+        center + (inputDomain[1] - center) / factor
+    ];
+    ax.setScale();
+}
+
+},{"../../constants/alignment":142,"../../constants/numerical":144,"../../lib":163,"./autorange":206,"./axis_ids":210,"./scale_zoom":223}],215:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -56401,6 +59925,7 @@ axes.calcTicks = function calcTicks(ax) {
         vals.pop();
     }
 
+<<<<<<< HEAD
     // save the last tick as well as first, so we can
     // show the exponent only on the last one
     ax._tmax = vals[vals.length - 1];
@@ -56411,6 +59936,16 @@ axes.calcTicks = function calcTicks(ax) {
     // whole string of these so we should care what the previous date head was!)
     ax._prevDateHead = '';
     ax._inCalcTicks = true;
+=======
+},{"../../components/color":47,"../../components/dragelement":65,"../../components/drawing":68,"../../components/fx":86,"../../constants/alignment":142,"../../lib":163,"../../lib/clear_gl_canvases":152,"../../lib/setcursor":182,"../../lib/svg_text_utils":184,"../../plot_api/subroutines":198,"../../registry":246,"../plots":239,"./axes":207,"./axis_ids":210,"./constants":213,"./scale_zoom":223,"./select":224,"d3":11,"has-passive-events":16,"tinycolor2":30}],216:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var ticksOut = new Array(vals.length);
     for(var i = 0; i < vals.length; i++) ticksOut[i] = axes.tickText(ax, vals[i]);
@@ -56635,10 +60170,21 @@ axes.autoTicks = function(ax, roughDTick) {
 function autoTickRound(ax) {
     var dtick = ax.dtick;
 
+<<<<<<< HEAD
     ax._tickexponent = 0;
     if(!isNumeric(dtick) && typeof dtick !== 'string') {
         dtick = 1;
     }
+=======
+},{"../../components/dragelement":65,"../../components/fx":86,"../../lib/setcursor":182,"./constants":213,"./dragbox":215,"d3":11}],217:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     if(ax.type === 'category' || ax.type === 'multicategory') {
         ax._tickround = null;
@@ -56734,12 +60280,23 @@ axes.tickIncrement = function(x, dtick, axrev, calendar) {
     // Log scales: Linear, Digits
     else if(tType === 'L') return Math.log(Math.pow(10, x) + dtSigned) / Math.LN10;
 
+<<<<<<< HEAD
     // log10 of 2,5,10, or all digits (logs just have to be
     // close enough to round)
     else if(tType === 'D') {
         var tickset = (dtick === 'D2') ? roundLog2 : roundLog1;
         var x2 = x + axSign * 0.01;
         var frac = Lib.roundUp(Lib.mod(x2, 1), tickset, axrev);
+=======
+},{"../../lib":163,"../../registry":246}],218:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         return Math.floor(x2) +
             Math.log(d3.round(Math.pow(10, frac), 1)) / Math.LN10;
@@ -57566,6 +61123,12 @@ axes.draw = function(gd, arg, opts) {
     }));
 };
 
+<<<<<<< HEAD
+=======
+exports.updateFx = _dereq_('./graph_interact').updateFx;
+
+},{"../../components/drawing":68,"../../constants/xmlns_namespaces":145,"../../lib":163,"../../registry":246,"../get_data":235,"../plots":239,"./attributes":205,"./axis_ids":210,"./constants":213,"./graph_interact":216,"./layout_attributes":219,"./layout_defaults":220,"./transition_axes":229,"d3":11}],219:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Draw one cartesian axis
  *
@@ -57600,6 +61163,19 @@ axes.drawOne = function(gd, ax, opts) {
     for(i = 0; i < vals.length; i++) {
         vals[i].axInfo = axInfo;
     }
+<<<<<<< HEAD
+=======
+};
+
+},{"../../components/color/attributes":46,"../../components/drawing/attributes":67,"../../lib/extend":157,"../../plot_api/plot_template":197,"../font_attributes":233,"./constants":213}],220:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     if(!ax.visible) return;
 
@@ -57928,6 +61504,41 @@ axes.drawOne = function(gd, ax, opts) {
                 }
             }
         }
+<<<<<<< HEAD
+=======
+    }
+};
+
+},{"../../components/color":47,"../../lib":163,"../../plot_api/plot_template":197,"../../registry":246,"../layout_attributes":237,"./axis_defaults":209,"./axis_ids":210,"./constraints":214,"./layout_attributes":219,"./position_defaults":222,"./type_defaults":230}],221:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var colorMix = _dereq_('tinycolor2').mix;
+var lightFraction = _dereq_('../../components/color/attributes').lightFraction;
+var Lib = _dereq_('../../lib');
+
+/**
+ * @param {object} opts :
+ *   - dfltColor {string} : default axis color
+ *   - bgColor {string} : combined subplot bg color
+ *   - blend {number, optional} : blend percentage (to compute dflt grid color)
+ *   - showLine {boolean} : show line by default
+ *   - showGrid {boolean} : show grid by default
+ *   - noZeroLine {boolean} : don't coerce zeroline* attributes
+ *   - attributes {object} : attribute object associated with input containers
+ */
+module.exports = function handleLineGridDefaults(containerIn, containerOut, coerce, opts) {
+    opts = opts || {};
+
+    var dfltColor = opts.dfltColor;
+>>>>>>> Add support for numeral
 
         Plots.autoMargin(gd, axAutoMarginID(ax), push);
     }
@@ -57962,6 +61573,19 @@ function getBoundaryVals(ax, vals) {
         }
         _push(vals[i - 1], 1);
     }
+<<<<<<< HEAD
+=======
+};
+
+},{"../../components/color/attributes":46,"../../lib":163,"tinycolor2":30}],222:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     return out;
 }
@@ -58101,6 +61725,10 @@ axes.makeTickPath = function(ax, shift, sgn, len) {
         'M' + (shift + pad * sgn) + ',0h' + (len * sgn);
 };
 
+<<<<<<< HEAD
+=======
+},{"../../lib":163,"fast-isnumeric":13}],223:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
  * Make axis tick label x, y and anchor functions
  *
@@ -58193,9 +61821,20 @@ axes.makeLabelFns = function(ax, shift, angle) {
     return out;
 };
 
+<<<<<<< HEAD
 function tickDataFn(d) {
     return [d.text, d.x, d.axInfo, d.font, d.fontSize, d.fontColor].join('_');
 }
+=======
+},{"../../constants/alignment":142}],224:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 /**
  * Draw axis ticks
@@ -58978,6 +62617,7 @@ function isAngular(ax) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"../../components/titles":137,"../../constants/alignment":144,"../../constants/numerical":146,"../../lib":165,"../../lib/svg_text_utils":186,"../../plots/plots":241,"../../registry":248,"./autorange":208,"./axis_autotype":210,"./axis_ids":212,"./clean_ticks":214,"./layout_attributes":221,"./set_convert":227,"d3":14,"fast-isnumeric":16}],210:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../components/drawing":67,"../../components/titles":134,"../../constants/alignment":141,"../../constants/numerical":143,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/plots":239,"../../registry":246,"./autorange":205,"./axis_autotype":207,"./axis_ids":209,"./clean_ticks":211,"./layout_attributes":219,"./set_convert":225,"d3":10,"fast-isnumeric":13}],207:[function(_dereq_,module,exports){
@@ -58985,6 +62625,15 @@ function isAngular(ax) {
 =======
 },{"../../components/color":46,"../../components/drawing":67,"../../components/titles":134,"../../constants/alignment":141,"../../constants/numerical":143,"../../lib":162,"../../lib/svg_text_utils":183,"../../plots/plots":238,"../../registry":245,"./autorange":205,"./axis_autotype":207,"./axis_ids":209,"./clean_ticks":211,"./layout_attributes":218,"./set_convert":224,"d3":11,"fast-isnumeric":13}],207:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+module.exports = {
+    prepSelect: prepSelect,
+    clearSelect: clearSelect,
+    selectOnClick: selectOnClick
+};
+
+},{"../../components/color":47,"../../components/fx":86,"../../components/fx/helpers":82,"../../lib/clear_gl_canvases":152,"../../lib/polygon":175,"../../lib/throttle":185,"../../plot_api/subroutines":198,"../../registry":246,"./axis_ids":210,"./constants":213,"polybooljs":21}],225:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -59560,10 +63209,14 @@ exports.tick0 = function(tick0, axType, calendar, dtick) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/numerical":146,"../../lib":165,"fast-isnumeric":16}],215:[function(_dereq_,module,exports){
 =======
 },{"../../constants/numerical":143,"../../lib":162,"fast-isnumeric":13}],212:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/numerical":144,"../../lib":163,"./axis_ids":210,"./constants":213,"d3":11,"fast-isnumeric":13}],226:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -59607,8 +63260,19 @@ module.exports = {
     // smallest dimension allowed for a zoombox
     MINZOOM: 20,
 
+<<<<<<< HEAD
     // width of axis drag regions
     DRAGGERSIZE: 20,
+=======
+},{"../../lib":163,"../array_container_defaults":203,"./layout_attributes":219}],227:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // max pixels off straight before a lasso select line counts as bent
     BENDPX: 1.5,
@@ -59660,10 +63324,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib/regex":180}],216:[function(_dereq_,module,exports){
 =======
 },{"../../lib/regex":177}],213:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"./layout_attributes":219}],228:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -59683,6 +63351,7 @@ var concatExtremes = _dereq_('./autorange').concatExtremes;
 var ALMOST_EQUAL = _dereq_('../../constants/numerical').ALMOST_EQUAL;
 var FROM_BL = _dereq_('../../constants/alignment').FROM_BL;
 
+<<<<<<< HEAD
 exports.handleConstraintDefaults = function(containerIn, containerOut, coerce, allAxisIds, layoutOut) {
     var constraintGroups = layoutOut._axisConstraintGroups;
     var matchGroups = layoutOut._axisMatchGroups;
@@ -59691,6 +63360,16 @@ exports.handleConstraintDefaults = function(containerIn, containerOut, coerce, a
     var splomStash = ((layoutOut._splomAxes || {})[axLetter] || {})[axId] || {};
     var thisID = containerOut._id;
     var letter = thisID.charAt(0);
+=======
+},{"./clean_ticks":212}],229:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // coerce the constraint mechanics even if this axis has no scaleanchor
     // because it may be the anchor of another axis.
@@ -59899,12 +63578,23 @@ exports.enforce = function enforceAxisConstraints(gd) {
             // having to calculate it from length and range
             ax.setScale();
 
+<<<<<<< HEAD
             // abs: inverted scales still satisfy the constraint
             normScales[axisID] = normScale = Math.abs(ax._m) / group[axisID];
             minScale = Math.min(minScale, normScale);
             if(ax.constrain === 'domain' || !ax._constraintShrinkable) {
                 matchScale = Math.min(matchScale, normScale);
             }
+=======
+},{"../../components/drawing":68,"../../registry":246,"./axes":207,"d3":11}],230:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             // this has served its purpose, so remove it
             delete ax._constraintShrinkable;
@@ -60061,10 +63751,14 @@ function updateDomain(ax, factor) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/alignment":144,"../../constants/numerical":146,"../../lib":165,"./autorange":208,"./axis_ids":212,"./scale_zoom":225}],217:[function(_dereq_,module,exports){
 =======
 },{"../../constants/alignment":141,"../../constants/numerical":143,"../../lib":162,"./autorange":205,"./axis_ids":209,"./scale_zoom":222}],214:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../registry":246,"./axis_autotype":208}],231:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -60525,6 +64219,7 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
         } else {
 =======
         }
+<<<<<<< HEAD
         else {
 >>>>>>> Recreate dist
             zoomMode = 'xy';
@@ -60532,6 +64227,59 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
         }
         box.w = box.r - box.l;
         box.h = box.b - box.t;
+=======
+    });
+}
+
+},{"../lib":163,"../registry":246}],232:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var extendFlat = _dereq_('../lib/extend').extendFlat;
+
+/**
+ * Make a xy domain attribute group
+ *
+ * @param {object} opts
+ *   @param {string}
+ *     opts.name: name to be inserted in the default description
+ *   @param {boolean}
+ *     opts.trace: set to true for trace containers
+ *   @param {string}
+ *     opts.editType: editType for all pieces
+ *   @param {boolean}
+ *     opts.noGridCell: set to true to omit `row` and `column`
+ *
+ * @param {object} extra
+ *   @param {string}
+ *     extra.description: extra description. N.B we use
+ *     a separate extra container to make it compatible with
+ *     the compress_attributes transform.
+ *
+ * @return {object} attributes object containing {x,y} as specified
+ */
+exports.attributes = function(opts, extra) {
+    opts = opts || {};
+    extra = extra || {};
+
+    var base = {
+        valType: 'info_array',
+        
+        editType: opts.editType,
+        items: [
+            {valType: 'number', min: 0, max: 1, editType: opts.editType},
+            {valType: 'number', min: 0, max: 1, editType: opts.editType}
+        ],
+        dflt: [0, 1]
+    };
+>>>>>>> Add support for numeral
 
         if(zoomMode) zoomDragged = true;
         gd._dragged = zoomDragged;
@@ -60595,6 +64343,7 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
     var REDRAWDELAY = constants.REDRAWDELAY;
     var mainplot = plotinfo.mainplot ? gd._fullLayout._plots[plotinfo.mainplot] : plotinfo;
 
+<<<<<<< HEAD
     function zoomWheel(e) {
         // deactivate mousewheel scrolling on embedded graphs
         // devs can override this with layout._enablescrollzoom,
@@ -60602,6 +64351,16 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
         if(!gd._context._scrollZoom.cartesian && !gd._fullLayout._enablescrollzoom) {
             return;
         }
+=======
+},{"../lib/extend":157}],233:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         clearAndResetSelect();
 
@@ -60616,12 +64375,23 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
 
         clearTimeout(redrawTimer);
 
+<<<<<<< HEAD
         var wheelDelta = -e.deltaY;
         if(!isFinite(wheelDelta)) wheelDelta = e.wheelDelta / 10;
         if(!isFinite(wheelDelta)) {
             Lib.log('Did not find wheel motion attributes: ', e);
             return;
         }
+=======
+},{}],234:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
         var zoom = Math.exp(-Math.min(Math.max(wheelDelta, -20), 20) / 200);
         var gbb = mainplot.draglayer.select('.nsewdrag').node().getBoundingClientRect();
@@ -60638,10 +64408,21 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
             ax.range = axRange.map(doZoom);
         }
 
+<<<<<<< HEAD
         if(editX) {
             // if we're only zooming this axis because of constraints,
             // zoom it about the center
             if(!ew) xfrac = 0.5;
+=======
+},{}],235:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             for(i = 0; i < xaxes.length; i++) {
                 zoomWheelOneAxis(xaxes[i], xfrac, zoom);
@@ -60754,9 +64535,20 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
         else if(xActive === 'e') dx = dz(xaxes, 1, -dx);
         else if(!xActive) dx = 0;
 
+<<<<<<< HEAD
         if(yActive === 'n') dy = dz(yaxes, 1, dy);
         else if(yActive === 's') dy = dz(yaxes, 0, -dy);
         else if(!yActive) dy = 0;
+=======
+},{"../registry":246,"./cartesian/constants":213}],236:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 <<<<<<< HEAD
         var xStart = (xActive === 'w') ? dx : 0;
@@ -61137,12 +64929,23 @@ function makeRectDragger(plotinfo, dragClass, cursor, x, y, w, h) {
     return dragger;
 }
 
+<<<<<<< HEAD
 function isDirectionActive(axList, activeVal) {
     for(var i = 0; i < axList.length; i++) {
         if(!axList[i].fixedrange) return activeVal;
     }
     return '';
 }
+=======
+},{}],237:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function getEndText(ax, end) {
     var initialVal = ax.range[end];
@@ -71245,7 +75048,18 @@ var µ = module.exports = { version: '0.2.2' };
 
 µ.DATAEXTENT = 'dataExtent';
 
+<<<<<<< HEAD
 µ.AREA = 'AreaChart';
+=======
+},{"../components/color/attributes":46,"../components/colorscale/layout_attributes":60,"../lib/extend":157,"./animation_attributes":202,"./font_attributes":233,"./pad_attributes":238}],238:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 µ.LINE = 'LinePlot';
 
@@ -71257,9 +75071,20 @@ var µ = module.exports = { version: '0.2.2' };
     for (var x in _objA) if (x in _objB) _objB[x] = _objA[x];
 };
 
+<<<<<<< HEAD
 µ.util._extend = function(_objA, _objB) {
     for (var x in _objA) _objB[x] = _objA[x];
 };
+=======
+},{}],239:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 µ.util._rndSnd = function() {
     return Math.random() * 2 - 1 + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
@@ -75138,10 +78963,21 @@ function registerComponentModule(_module) {
     }
 }
 
+<<<<<<< HEAD
 function registerTransformModule(_module) {
     if(typeof _module.name !== 'string') {
         throw new Error('Transform module *name* must be a string.');
     }
+=======
+},{"../components/color":47,"../constants/numerical":144,"../lib":163,"../plot_api/plot_schema":196,"../plot_api/plot_template":197,"../plots/cartesian/axis_ids":210,"../registry":246,"./animation_attributes":202,"./attributes":204,"./command":231,"./font_attributes":233,"./frame_attributes":234,"./layout_attributes":237,"d3":11,"fast-isnumeric":13}],240:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var prefix = 'Transform module ' + _module.name;
     var hasTransform = typeof _module.transform === 'function';
@@ -75169,7 +79005,20 @@ function registerTransformModule(_module) {
     for(var componentName in exports.componentsRegistry) {
         mergeComponentAttrsToTransform(componentName, _module.name);
     }
+<<<<<<< HEAD
 }
+=======
+};
+
+},{"../../../lib/extend":157,"../../../traces/scatter/attributes":316}],241:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function registerLocale(_module) {
     var locale = _module.name;
@@ -75228,9 +79077,20 @@ function mergeComponentAttrsToTrace(componentName, traceType) {
     }
 }
 
+<<<<<<< HEAD
 function mergeComponentAttrsToTransform(componentName, transformType) {
     var componentSchema = exports.componentsRegistry[componentName].schema;
     if(!componentSchema || !componentSchema.transforms) return;
+=======
+},{"../../../lib/extend":157,"../../../plot_api/edit_types":190,"../../cartesian/layout_attributes":219}],242:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var transformAttrs = componentSchema.transforms[transformType];
     if(transformAttrs) {
@@ -75247,6 +79107,7 @@ function mergeComponentAttrsToSubplot(componentName, subplotName) {
     var subplotAttr = subplotModule.attr === 'subplot' ? subplotModule.name : subplotModule.attr;
     if(Array.isArray(subplotAttr)) subplotAttr = subplotAttr[0];
 
+<<<<<<< HEAD
     var componentLayoutAttrs = componentSchema.subplots[subplotAttr];
     if(subplotAttrs && componentLayoutAttrs) {
         extendDeepAll(subplotAttrs, componentLayoutAttrs);
@@ -75259,6 +79120,9 @@ function getTraceType(traceType) {
 }
 
 },{"./lib/extend":156,"./lib/is_plain_object":163,"./lib/loggers":166,"./lib/noop":171,"./lib/push_unique":175,"./plots/attributes":203,"./plots/layout_attributes":236}],246:[function(_dereq_,module,exports){
+=======
+},{"./micropolar":243,"./micropolar_manager":244}],243:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -75775,7 +79639,11 @@ exports.getRedrawFunc = function(gd) {
     };
 };
 
+<<<<<<< HEAD
 },{}],250:[function(_dereq_,module,exports){
+=======
+},{"../../../constants/alignment":142,"../../../lib":163,"d3":11}],244:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -75917,8 +79785,12 @@ function svgToImg(opts) {
 
 module.exports = svgToImg;
 
+<<<<<<< HEAD
 },{"../lib":162,"events":10}],252:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../../components/color":47,"../../../lib":163,"./micropolar":243,"./undo_manager":245,"d3":11}],245:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -75962,6 +79834,7 @@ exports.coerceNumber = function(attributeDefinition, value, defaultValue) {
       attributeDefinition.dflt;
 };
 
+<<<<<<< HEAD
 exports.coerceColor = function(attributeDefinition, value, defaultValue) {
     if(tinycolor(value).isValid()) return value;
 
@@ -76057,6 +79930,9 @@ module.exports = toImage;
 
 },{"../lib":162,"../registry":245,"./cloneplot":246,"./helpers":249,"./svgtoimg":251,"./tosvg":253,"events":10}],253:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],246:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -76409,8 +80285,12 @@ module.exports = function toSVG(gd, format, scale) {
     return s;
 };
 
+<<<<<<< HEAD
 },{"../components/color":46,"../components/drawing":67,"../constants/xmlns_namespaces":144,"../lib":162,"d3":11}],254:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./lib/extend":157,"./lib/is_plain_object":164,"./lib/loggers":167,"./lib/noop":172,"./lib/push_unique":176,"./plots/attributes":204,"./plots/layout_attributes":237}],247:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -76565,6 +80445,7 @@ module.exports = {
         keys: constants.eventDataKeys
     }),
 
+<<<<<<< HEAD
     textposition: {
         valType: 'enumerated',
         
@@ -76574,6 +80455,16 @@ module.exports = {
         editType: 'calc',
         
     },
+=======
+},{"../lib":163}],248:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     textfont: extendFlat({}, textFontAttrs, {
         
@@ -76653,6 +80544,7 @@ module.exports = {
 
     marker: marker,
 
+<<<<<<< HEAD
     offsetgroup: {
         valType: 'string',
         
@@ -76703,6 +80595,9 @@ module.exports = {
 
 },{"../../components/colorbar/attributes":47,"../../components/colorscale/attributes":53,"../../components/fx/hovertemplate_attributes":84,"../../lib/extend":156,"../../plots/font_attributes":232,"../scatter/attributes":315,"./constants.js":257}],256:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../lib":163,"../plot_api/to_image":200,"./filesaver":249}],249:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -76771,10 +80666,21 @@ var colorscaleCalc = _dereq_('../../components/colorscale/calc');
 var arraysToCalcdata = _dereq_('./arrays_to_calcdata');
 var calcSelection = _dereq_('../scatter/calc_selection');
 
+<<<<<<< HEAD
 module.exports = function calc(gd, trace) {
     var xa = Axes.getFromId(gd, trace.xaxis || 'x');
     var ya = Axes.getFromId(gd, trace.yaxis || 'y');
     var size, pos;
+=======
+},{}],250:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     if(trace.orientation === 'h') {
         size = xa.makeCalcdata(trace, 'x');
@@ -76819,8 +80725,12 @@ module.exports = function calc(gd, trace) {
     return cd;
 };
 
+<<<<<<< HEAD
 },{"../../components/colorscale/calc":54,"../../components/colorscale/helpers":57,"../../plots/cartesian/axes":206,"../scatter/calc_selection":317,"./arrays_to_calcdata":254}],257:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],251:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -76853,9 +80763,20 @@ var attributeTextPosition = attributes.textposition;
 // padding in pixels around text
 var TEXTPAD = 3;
 
+<<<<<<< HEAD
 function dirSign(a, b) {
     return (a < b) ? 1 : -1;
 }
+=======
+},{"./cloneplot":247,"./download":248,"./helpers":250,"./svgtoimg":252,"./toimage":253,"./tosvg":254}],252:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function getXY(di, xa, ya, isHorizontal) {
     var s = [];
@@ -77001,7 +80922,18 @@ function plot(gd, plotinfo, cdModule, traceLayer, opts) {
                 .attr('d', isBlank ? 'M0,0Z' : 'M' + x0 + ',' + y0 + 'V' + y1 + 'H' + x1 + 'V' + y0 + 'Z')
                 .call(Drawing.setClipUrl, plotinfo.layerClipId, gd);
 
+<<<<<<< HEAD
             appendBarText(gd, plotinfo, bar, cd, i, x0, x1, y0, y1, opts);
+=======
+},{"../lib":163,"events":10}],253:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
             if(plotinfo.layerClipId) {
                 Drawing.hideOutsideRangePoint(di, bar.select('text'), xa, ya, trace.xcalendar, trace.ycalendar);
@@ -77096,7 +81028,11 @@ module.exports = {
     eventDataKeys: []
 };
 
+<<<<<<< HEAD
 },{}],258:[function(_dereq_,module,exports){
+=======
+},{"../lib":163,"../registry":246,"./cloneplot":247,"./helpers":250,"./svgtoimg":252,"./tosvg":254,"events":10}],254:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -77310,10 +81246,24 @@ function setGroupPositionsInGroupMode(gd, pa, sa, calcTraces) {
     }
 }
 
+<<<<<<< HEAD
 function setGroupPositionsInStackOrRelativeMode(gd, pa, sa, calcTraces) {
     var fullLayout = gd._fullLayout;
     var barmode = fullLayout.barmode;
     var barnorm = fullLayout.barnorm;
+=======
+    return s;
+};
+
+},{"../components/color":47,"../components/drawing":68,"../constants/xmlns_namespaces":145,"../lib":163,"d3":11}],255:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     var sieve = new Sieve(calcTraces, {
         sepNegVal: barmode === 'relative',
@@ -77340,6 +81290,21 @@ function setGroupPositionsInStackOrRelativeMode(gd, pa, sa, calcTraces) {
             }
         }
     }
+<<<<<<< HEAD
+=======
+};
+
+},{"../../lib":163}],256:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+>>>>>>> Add support for numeral
 
 <<<<<<< HEAD
     // padding excluded
@@ -77504,8 +81469,19 @@ function getTransformToMoveInsideBar(x0, x1, y0, y1, textBB, opts) {
         }
     }
 
+<<<<<<< HEAD
     var textX = (textBB.left + textBB.right) / 2;
     var textY = (textBB.top + textBB.bottom) / 2;
+=======
+},{"../../components/colorbar/attributes":48,"../../components/colorscale/attributes":54,"../../components/fx/hovertemplate_attributes":85,"../../lib/extend":157,"../../plots/font_attributes":233,"../scatter/attributes":316,"./constants.js":258}],257:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     // lastly apply auto rotation
     if(isAutoRotated) rotation += 90;
@@ -77561,8 +81537,19 @@ function getTransformToMoveOutsideBar(x0, x1, y0, y1, textBB, opts) {
     var textX = (textBB.left + textBB.right) / 2;
     var textY = (textBB.top + textBB.bottom) / 2;
 
+<<<<<<< HEAD
     return getTransform(textX, textY, targetX, targetY, scale, rotation);
 }
+=======
+},{"../../components/colorscale/calc":55,"../../components/colorscale/helpers":58,"../../plots/cartesian/axes":207,"../scatter/calc_selection":318,"./arrays_to_calcdata":255}],258:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
 function getTransform(textX, textY, targetX, targetY, scale, rotation) {
     var transformScale;
@@ -77578,10 +81565,21 @@ function getTransform(textX, textY, targetX, targetY, scale, rotation) {
     transformRotate = (rotation) ?
         'rotate(' + rotation + ' ' + textX + ' ' + textY + ') ' : '';
 
+<<<<<<< HEAD
     // Note that scaling also affects the center of the text box
     var translateX = (targetX - scale * textX);
     var translateY = (targetY - scale * textY);
     transformTranslate = 'translate(' + translateX + ' ' + translateY + ')';
+=======
+},{}],259:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+>>>>>>> Add support for numeral
 
     return transformTranslate + transformScale + transformRotate;
 }
@@ -78549,11 +82547,25 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"../../lib":165,"../../registry":248,"./attributes":258,"./helpers":263,"d3":14}],272:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../components/drawing":67,"../../lib":162,"../../registry":246,"./attributes":256,"./helpers":261,"d3":10}],270:[function(_dereq_,module,exports){
 >>>>>>> Add showhovertext flag
 =======
+=======
+},{"../../constants/numerical":144,"../../lib":163,"../../plots/cartesian/axes":207,"../../plots/cartesian/axis_ids":210,"../../registry":246,"./sieve.js":268,"fast-isnumeric":13}],260:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+>>>>>>> Add support for numeral
 var Lib = _dereq_('../../lib');
 var Color = _dereq_('../../components/color');
 var Registry = _dereq_('../../registry');
@@ -78698,6 +82710,7 @@ module.exports = {
     handleText: handleText
 };
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../lib":162,"../../plots/cartesian/axis_ids":209,"../../registry":245,"../scatter/xy_defaults":341,"./attributes":255,"./style_defaults":269}],260:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
 /**
@@ -78739,6 +82752,9 @@ module.exports = function handleStyleDefaults(traceIn, traceOut, coerce, default
 };
 
 },{"../../components/color":49,"../../components/colorscale/defaults":59,"../../components/colorscale/helpers":60}],273:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":47,"../../lib":163,"../../plots/cartesian/axis_ids":210,"../../registry":246,"../scatter/xy_defaults":342,"./attributes":256,"./style_defaults":270}],261:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -79239,8 +83255,20 @@ module.exports = {
     setPositionOffset: setPositionOffset
 };
 
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/cartesian/axes":209,"../../plots/cartesian/axis_ids":212}],275:[function(_dereq_,module,exports){
 =======
+=======
+},{"fast-isnumeric":13,"tinycolor2":30}],262:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2019, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+>>>>>>> Add support for numeral
 
 'use strict';
 
@@ -79404,7 +83432,7 @@ module.exports = {
     getTraceColor: getTraceColor
 };
 
-},{"../../components/color":46,"../../components/fx":85,"../../registry":245,"../scatter/fill_hover_text":323}],262:[function(_dereq_,module,exports){
+},{"../../components/color":47,"../../components/fx":86,"../../registry":246,"../scatter/fill_hover_text":324}],263:[function(_dereq_,module,exports){
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -79442,8 +83470,12 @@ Bar.meta = {
 
 module.exports = Bar;
 
+<<<<<<< HEAD
 },{"../../plots/cartesian":217,"../scatter/marker_colorbar":333,"./arrays_to_calcdata":254,"./attributes":255,"./calc":256,"./cross_trace_calc":258,"./defaults":259,"./hover":261,"./layout_attributes":263,"./layout_defaults":264,"./plot":265,"./select":266,"./style":268}],263:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian":218,"../scatter/marker_colorbar":334,"./arrays_to_calcdata":255,"./attributes":256,"./calc":257,"./cross_trace_calc":259,"./defaults":260,"./hover":262,"./layout_attributes":264,"./layout_defaults":265,"./plot":266,"./select":267,"./style":269}],264:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -79515,10 +83547,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],276:[function(_dereq_,module,exports){
 =======
 },{}],264:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],265:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -79615,8 +83651,12 @@ module.exports = function(layoutIn, layoutOut, fullData) {
     coerce('bargroupgap');
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../plots/cartesian/axes":206,"../../registry":245,"./layout_attributes":263}],265:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207,"../../registry":246,"./layout_attributes":264}],266:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -79625,6 +83665,7 @@ module.exports = function(layoutIn, layoutOut, fullData) {
 * LICENSE file in the root directory of this source tree.
 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 'use strict';
 
@@ -79947,6 +83988,8 @@ module.exports = {
 },{"../../components/drawing":67,"../../lib":162,"d3":10}],276:[function(_dereq_,module,exports){
 >>>>>>> Add showhovertext flag
 =======
+=======
+>>>>>>> Add support for numeral
 
 'use strict';
 
@@ -80400,8 +84443,12 @@ function getTextPosition(trace, index) {
     return helpers.coerceEnumerated(attributeTextPosition, value);
 }
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../components/drawing":67,"../../lib":162,"../../lib/svg_text_utils":183,"../../registry":245,"./attributes":255,"./helpers":260,"./style":268,"d3":11,"fast-isnumeric":13}],266:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/drawing":68,"../../lib":163,"../../lib/svg_text_utils":184,"../../registry":246,"./attributes":256,"./helpers":261,"./style":269,"d3":11,"fast-isnumeric":13}],267:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -80515,8 +84562,12 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
+<<<<<<< HEAD
 },{}],267:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],268:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -80675,8 +84726,12 @@ Sieve.prototype.getLabel = function getLabel(position, value) {
     return prefix + label;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":143,"../../lib":162}],268:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/numerical":144,"../../lib":163}],269:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -80895,6 +84950,7 @@ module.exports = {
     getBarColor: getBarColor
 };
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../components/drawing":67,"../../lib":162,"../../registry":245,"./attributes":255,"./helpers":260,"d3":11}],269:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
 /**
@@ -80944,6 +85000,9 @@ function handleDirection(traceIn, traceOut, coerce, direction) {
 }
 
 },{"../../components/color":49,"../../lib":165,"../ohlc/ohlc_defaults":321,"./attributes":279}],282:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":47,"../../components/drawing":68,"../../lib":163,"../../registry":246,"./attributes":256,"./helpers":261,"d3":11}],270:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -81009,8 +85068,12 @@ module.exports = function handleStyleDefaults(traceIn, traceOut, coerce, default
     coerce('unselected.marker.color');
 };
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../components/colorscale/defaults":56,"../../components/colorscale/helpers":57}],270:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/colorscale/defaults":57,"../../components/colorscale/helpers":58}],271:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -81562,6 +85625,7 @@ module.exports = {
     crossTraceDefaults: crossTraceDefaults
 };
 
+<<<<<<< HEAD
 },{"../../components/color":49,"../../lib":165,"../bar/defaults":262,"../scatter/xy_defaults":363,"./attributes":284}],288:[function(_dereq_,module,exports){
 /**
 * Copyright 2012-2019, Plotly, Inc.
@@ -81616,6 +85680,9 @@ function getTraceColor(trace, di) {
 }
 
 },{"../../components/color":49,"../../lib":165,"../bar/hover":264}],289:[function(_dereq_,module,exports){
+=======
+},{"../../components/color/attributes":46,"../../components/fx/hovertemplate_attributes":85,"../../lib/extend":157,"../bar/attributes":256,"../scatter/attributes":316}],272:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -81868,8 +85935,12 @@ module.exports = {
     setPositionOffset: setPositionOffset
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../plots/cartesian/axes":206,"../../plots/cartesian/axis_ids":209}],272:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207,"../../plots/cartesian/axis_ids":210}],273:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -81934,10 +86005,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],291:[function(_dereq_,module,exports){
 =======
 },{}],273:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],274:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -82011,6 +86086,7 @@ module.exports = {
     _supply: _supply
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../registry":245,"./layout_attributes":272}],274:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
 /**
@@ -82172,6 +86248,9 @@ function getXY(di, xa, ya, isHorizontal) {
 }
 
 },{"../../components/drawing":70,"../../lib":165,"../bar/plot":268,"d3":14}],293:[function(_dereq_,module,exports){
+=======
+},{"../../lib":163,"../../registry":246,"./layout_attributes":273}],275:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -82701,8 +86780,12 @@ module.exports = {
     plotBoxMean: plotBoxMean
 };
 
+<<<<<<< HEAD
 },{"../../components/drawing":67,"../../lib":162,"d3":11}],275:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/drawing":68,"../../lib":163,"d3":11}],276:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -82846,6 +86929,7 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../components/drawing":67,"d3":11}],276:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
 /**
@@ -82914,6 +86998,9 @@ module.exports = {
 };
 
 },{"../pie/layout_attributes":332}],300:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":47,"../../components/drawing":68,"d3":11}],277:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -82985,8 +87072,12 @@ module.exports = {
     hoverlabel: OHLCattrs.hoverlabel,
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../box/attributes":270,"../ohlc/attributes":293}],277:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../box/attributes":271,"../ohlc/attributes":294}],278:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83314,7 +87405,7 @@ function ptFunc(o, h, l, c) {
     };
 }
 
-},{"../../lib":162,"../../plots/cartesian/axes":206,"../ohlc/calc":294}],278:[function(_dereq_,module,exports){
+},{"../../lib":163,"../../plots/cartesian/axes":207,"../ohlc/calc":295}],279:[function(_dereq_,module,exports){
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83360,8 +87451,12 @@ function handleDirection(traceIn, traceOut, coerce, direction) {
     coerce(direction + '.fillcolor', Color.addOpacity(lineColor, 0.5));
 }
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../lib":162,"../ohlc/ohlc_defaults":298,"./attributes":276}],279:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../lib":163,"../ohlc/ohlc_defaults":299,"./attributes":277}],280:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83415,8 +87510,12 @@ module.exports = {
     selectPoints: _dereq_('../ohlc/select')
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian":217,"../box/cross_trace_calc":271,"../box/layout_attributes":272,"../box/layout_defaults":273,"../box/plot":274,"../box/style":275,"../ohlc/hover":296,"../ohlc/select":300,"./attributes":276,"./calc":277,"./defaults":278}],280:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian":218,"../box/cross_trace_calc":272,"../box/layout_attributes":273,"../box/layout_defaults":274,"../box/plot":275,"../box/style":276,"../ohlc/hover":297,"../ohlc/select":301,"./attributes":277,"./calc":278,"./defaults":279}],281:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83561,10 +87660,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/fx/hovertemplate_attributes":87,"../../lib/extend":159,"../bar/attributes":258,"./bin_attributes":305,"./constants":309}],304:[function(_dereq_,module,exports){
 =======
 },{"../../components/fx/hovertemplate_attributes":84,"../../lib/extend":156,"../bar/attributes":255,"./bin_attributes":282,"./constants":286}],281:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/fx/hovertemplate_attributes":85,"../../lib/extend":157,"../bar/attributes":256,"./bin_attributes":283,"./constants":287}],282:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83595,10 +87698,14 @@ module.exports = function doAvg(size, counts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],305:[function(_dereq_,module,exports){
 =======
 },{}],282:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],283:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83634,10 +87741,14 @@ module.exports = function makeBinAttrs(axLetter, match) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],306:[function(_dereq_,module,exports){
 =======
 },{}],283:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],284:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83722,10 +87833,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"fast-isnumeric":16}],307:[function(_dereq_,module,exports){
 =======
 },{"fast-isnumeric":13}],284:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"fast-isnumeric":13}],285:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -83907,10 +88022,14 @@ function dateParts(v, pa, calendar) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/numerical":146,"../../plots/cartesian/axes":209}],308:[function(_dereq_,module,exports){
 =======
 },{"../../constants/numerical":143,"../../plots/cartesian/axes":206}],285:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/numerical":144,"../../plots/cartesian/axes":207}],286:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -84612,6 +88731,7 @@ function cdf(size, direction, currentBin) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module.exports = {
     calc: calc,
     calcAllAutoBins: calcAllAutoBins
@@ -84621,6 +88741,9 @@ module.exports = {
 =======
 },{"../../lib":162,"../../plots/cartesian/axes":206,"../bar/arrays_to_calcdata":254,"./average":281,"./bin_functions":283,"./bin_label_vals":284,"./norm_functions":292,"fast-isnumeric":13}],286:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/cartesian/axes":207,"../bar/arrays_to_calcdata":255,"./average":282,"./bin_functions":284,"./bin_label_vals":285,"./norm_functions":293,"fast-isnumeric":13}],287:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -84637,10 +88760,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],310:[function(_dereq_,module,exports){
 =======
 },{}],287:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],288:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85013,10 +89140,14 @@ module.exports = function crossTraceDefaults(fullData, fullLayout) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../plots/cartesian/axis_ids":212,"../../registry":248,"../bar/defaults":262}],311:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../plots/cartesian/axis_ids":209,"../bar/defaults":259,"./attributes":280}],288:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/cartesian/axis_ids":210,"../bar/defaults":260,"./attributes":281}],289:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85091,10 +89222,14 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../lib":165,"../../registry":248,"../bar/style_defaults":272,"./attributes":303}],312:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../lib":162,"../../registry":245,"../bar/style_defaults":269,"./attributes":280}],289:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../lib":163,"../../registry":246,"../bar/style_defaults":270,"./attributes":281}],290:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85144,10 +89279,14 @@ module.exports = function eventData(out, pt, trace, cd, pointNumber) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],313:[function(_dereq_,module,exports){
 =======
 },{}],290:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],291:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85183,10 +89322,14 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/cartesian/axes":209,"../bar/hover":264}],314:[function(_dereq_,module,exports){
 =======
 },{"../../plots/cartesian/axes":206,"../bar/hover":261}],291:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian/axes":207,"../bar/hover":262}],292:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85272,8 +89415,12 @@ Histogram.meta = {
 
 module.exports = Histogram;
 
+<<<<<<< HEAD
 },{"../../plots/cartesian":217,"../bar/cross_trace_calc":258,"../bar/layout_attributes":263,"../bar/layout_defaults":264,"../bar/plot":265,"../bar/select":266,"../bar/style":268,"../scatter/marker_colorbar":333,"./attributes":280,"./calc":285,"./cross_trace_defaults":287,"./defaults":288,"./event_data":289,"./hover":290}],292:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian":218,"../bar/cross_trace_calc":259,"../bar/layout_attributes":264,"../bar/layout_defaults":265,"../bar/plot":266,"../bar/select":267,"../bar/style":269,"../scatter/marker_colorbar":334,"./attributes":281,"./calc":286,"./cross_trace_defaults":288,"./defaults":289,"./event_data":290,"./hover":291}],293:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85309,10 +89456,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],316:[function(_dereq_,module,exports){
 =======
 },{}],293:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],294:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85431,10 +89582,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/drawing/attributes":69,"../../components/fx/attributes":79,"../../lib":165,"../scatter/attributes":338}],317:[function(_dereq_,module,exports){
 =======
 },{"../../components/drawing/attributes":66,"../../components/fx/attributes":76,"../../lib":162,"../scatter/attributes":315}],294:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/drawing/attributes":67,"../../components/fx/attributes":77,"../../lib":163,"../scatter/attributes":316}],295:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85615,10 +89770,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/numerical":146,"../../lib":165,"../../plots/cartesian/axes":209}],318:[function(_dereq_,module,exports){
 =======
 },{"../../constants/numerical":143,"../../lib":162,"../../plots/cartesian/axes":206}],295:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/numerical":144,"../../lib":163,"../../plots/cartesian/axes":207}],296:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85665,10 +89824,14 @@ function handleDirection(traceIn, traceOut, coerce, direction) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"./attributes":316,"./ohlc_defaults":321}],319:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"./attributes":293,"./ohlc_defaults":298}],296:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"./attributes":294,"./ohlc_defaults":299}],297:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85888,10 +90051,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/fx":88,"../../lib":165,"../../plots/cartesian/axes":209}],320:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../components/fx":85,"../../lib":162,"../../plots/cartesian/axes":206,"../scatter/fill_hover_text":323}],297:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/fx":86,"../../lib":163,"../../plots/cartesian/axes":207,"../scatter/fill_hover_text":324}],298:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85921,10 +90088,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/cartesian":220,"./attributes":316,"./calc":317,"./defaults":318,"./hover":319,"./plot":322,"./select":323,"./style":324}],321:[function(_dereq_,module,exports){
 =======
 },{"../../plots/cartesian":217,"./attributes":293,"./calc":294,"./defaults":295,"./hover":296,"./plot":299,"./select":300,"./style":301}],298:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian":218,"./attributes":294,"./calc":295,"./defaults":296,"./hover":297,"./plot":300,"./select":301,"./style":302}],299:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -85960,10 +90131,14 @@ module.exports = function handleOHLC(traceIn, traceOut, coerce, layout) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../registry":248}],322:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../registry":245}],299:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../registry":246}],300:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86023,6 +90198,7 @@ module.exports = function plot(gd, plotinfo, cdOHLC, ohlcLayer) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"d3":14}],323:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"d3":10}],301:[function(_dereq_,module,exports){
@@ -86030,6 +90206,9 @@ module.exports = function plot(gd, plotinfo, cdOHLC, ohlcLayer) {
 =======
 },{"../../lib":162,"d3":11}],300:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"d3":11}],301:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86075,10 +90254,14 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],324:[function(_dereq_,module,exports){
 =======
 },{}],301:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],302:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86119,6 +90302,7 @@ module.exports = function style(gd, cd) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/drawing":70,"d3":14}],325:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../components/drawing":67,"d3":10}],303:[function(_dereq_,module,exports){
@@ -86126,6 +90310,9 @@ module.exports = function style(gd, cd) {
 =======
 },{"../../components/color":46,"../../components/drawing":67,"d3":11}],302:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/drawing":68,"d3":11}],303:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86406,10 +90593,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color/attributes":48,"../../components/fx/hovertemplate_attributes":87,"../../lib/extend":159,"../../plots/attributes":206,"../../plots/domain":234,"../../plots/font_attributes":235}],326:[function(_dereq_,module,exports){
 =======
 },{"../../components/color/attributes":45,"../../components/fx/hovertemplate_attributes":84,"../../lib/extend":156,"../../plots/attributes":203,"../../plots/domain":231,"../../plots/font_attributes":232}],303:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color/attributes":46,"../../components/fx/hovertemplate_attributes":85,"../../lib/extend":157,"../../plots/attributes":204,"../../plots/domain":232,"../../plots/font_attributes":233}],304:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86441,10 +90632,14 @@ exports.clean = function(newFullData, newFullLayout, oldFullData, oldFullLayout)
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../plots/get_data":237,"../../registry":248}],327:[function(_dereq_,module,exports){
 =======
 },{"../../plots/get_data":234,"../../registry":245}],304:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/get_data":235,"../../registry":246}],305:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86755,10 +90950,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../lib":165,"./helpers":330,"fast-isnumeric":16,"tinycolor2":32}],328:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../lib":162,"./helpers":307,"fast-isnumeric":13,"tinycolor2":29}],305:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../lib":163,"./helpers":308,"fast-isnumeric":13,"tinycolor2":30}],306:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86886,8 +91085,12 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     coerce('pull');
 };
 
+<<<<<<< HEAD
 },{"../../lib":162,"../../plots/domain":231,"./attributes":302}],306:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../plots/domain":232,"./attributes":303}],307:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86950,8 +91153,12 @@ module.exports = function eventData(pt, trace) {
     return out;
 };
 
+<<<<<<< HEAD
 },{"../../components/fx/helpers":81}],307:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/fx/helpers":82}],308:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -86994,10 +91201,14 @@ exports.castOption = function castOption(item, indices) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165}],331:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162}],308:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],309:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -87058,8 +91269,12 @@ Pie.meta = {
 
 module.exports = Pie;
 
+<<<<<<< HEAD
 },{"./attributes":302,"./base_plot":303,"./calc":304,"./defaults":305,"./layout_attributes":309,"./layout_defaults":310,"./plot":311,"./style":312,"./style_one":313}],309:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./attributes":303,"./base_plot":304,"./calc":305,"./defaults":306,"./layout_attributes":310,"./layout_defaults":311,"./plot":312,"./style":313,"./style_one":314}],310:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -87104,10 +91319,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],333:[function(_dereq_,module,exports){
 =======
 },{}],310:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],311:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -87136,10 +91355,14 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"./layout_attributes":332}],334:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"./layout_attributes":309}],311:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"./layout_attributes":310}],312:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -88293,8 +92516,12 @@ module.exports = {
     transformInsideText: transformInsideText
 };
 
+<<<<<<< HEAD
 },{"../../components/color":46,"../../components/drawing":67,"../../components/fx":85,"../../lib":162,"../../lib/svg_text_utils":183,"./event_data":306,"./helpers":307,"d3":11}],312:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/drawing":68,"../../components/fx":86,"../../lib":163,"../../lib/svg_text_utils":184,"./event_data":307,"./helpers":308,"d3":11}],313:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -88325,6 +92552,7 @@ module.exports = function style(gd) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./style_one":336,"d3":14}],336:[function(_dereq_,module,exports){
 =======
 },{"./style_one":314,"d3":10}],314:[function(_dereq_,module,exports){
@@ -88332,6 +92560,9 @@ module.exports = function style(gd) {
 =======
 },{"./style_one":313,"d3":11}],313:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./style_one":314,"d3":11}],314:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -88360,10 +92591,14 @@ module.exports = function styleOne(s, pt, trace) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"./helpers":330}],337:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"./helpers":307}],314:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"./helpers":308}],315:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -88415,10 +92650,14 @@ module.exports = function arraysToCalcdata(cd, trace) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165}],338:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162}],315:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],316:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -88846,10 +93085,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/colorscale/attributes":56,"../../components/drawing":70,"../../components/drawing/attributes":69,"../../components/fx/hovertemplate_attributes":87,"../../lib/extend":159,"../../plots/font_attributes":235,"./constants":342}],339:[function(_dereq_,module,exports){
 =======
 },{"../../components/colorbar/attributes":47,"../../components/colorscale/attributes":53,"../../components/drawing":67,"../../components/drawing/attributes":66,"../../components/fx/hovertemplate_attributes":84,"../../lib/extend":156,"../../plots/font_attributes":232,"./constants":319}],316:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/colorbar/attributes":48,"../../components/colorscale/attributes":54,"../../components/drawing":68,"../../components/drawing/attributes":67,"../../components/fx/hovertemplate_attributes":85,"../../lib/extend":157,"../../plots/font_attributes":233,"./constants":320}],317:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89193,10 +93436,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/numerical":146,"../../lib":165,"../../plots/cartesian/axes":209,"./arrays_to_calcdata":337,"./calc_selection":340,"./colorscale_calc":341,"./subtypes":361,"fast-isnumeric":16}],340:[function(_dereq_,module,exports){
 =======
 },{"../../constants/numerical":143,"../../lib":162,"../../plots/cartesian/axes":206,"./arrays_to_calcdata":314,"./calc_selection":317,"./colorscale_calc":318,"./subtypes":339,"fast-isnumeric":13}],317:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/numerical":144,"../../lib":163,"../../plots/cartesian/axes":207,"./arrays_to_calcdata":315,"./calc_selection":318,"./colorscale_calc":319,"./subtypes":340,"fast-isnumeric":13}],318:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89216,10 +93463,14 @@ module.exports = function calcSelection(cd, trace) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165}],341:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162}],318:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],319:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89263,10 +93514,14 @@ module.exports = function calcMarkerColorscale(gd, trace) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/colorscale/calc":57,"../../components/colorscale/helpers":60,"./subtypes":361}],342:[function(_dereq_,module,exports){
 =======
 },{"../../components/colorscale/calc":54,"../../components/colorscale/helpers":57,"./subtypes":339}],319:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/colorscale/calc":55,"../../components/colorscale/helpers":58,"./subtypes":340}],320:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89296,10 +93551,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],343:[function(_dereq_,module,exports){
 =======
 },{}],320:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],321:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89491,10 +93750,14 @@ function getInterp(calcTrace, index, position, posAttr) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./calc":339}],344:[function(_dereq_,module,exports){
 =======
 },{"./calc":316}],321:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./calc":317}],322:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89534,10 +93797,14 @@ module.exports = function crossTraceDefaults(fullData) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],345:[function(_dereq_,module,exports){
 =======
 },{}],322:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],323:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89627,9 +93894,13 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165,"../../registry":248,"./attributes":338,"./constants":342,"./fillcolor_defaults":346,"./line_defaults":350,"./line_shape_defaults":352,"./marker_defaults":356,"./stack_defaults":359,"./subtypes":361,"./text_defaults":362,"./xy_defaults":363}],346:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162,"../../registry":245,"./attributes":315,"./constants":319,"./fillcolor_defaults":324,"./line_defaults":328,"./line_shape_defaults":330,"./marker_defaults":334,"./stack_defaults":337,"./subtypes":339,"./text_defaults":340,"./xy_defaults":341}],323:[function(_dereq_,module,exports){
+=======
+},{"../../lib":163,"../../registry":246,"./attributes":316,"./constants":320,"./fillcolor_defaults":325,"./line_defaults":329,"./line_shape_defaults":331,"./marker_defaults":335,"./stack_defaults":338,"./subtypes":340,"./text_defaults":341,"./xy_defaults":342}],324:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89672,8 +93943,12 @@ function isValid(v) {
     return v || v === 0;
 }
 
+<<<<<<< HEAD
 },{"../../lib":162}],324:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],325:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89716,10 +93991,14 @@ module.exports = function fillColorDefaults(traceIn, traceOut, defaultColor, coe
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../lib":165}],347:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../lib":162}],325:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../lib":163}],326:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89784,10 +94063,14 @@ module.exports = function getTraceColor(trace, di) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"./subtypes":361}],348:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"./subtypes":339}],326:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"./subtypes":340}],327:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -89996,10 +94279,14 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/fx":88,"../../lib":165,"../../registry":248,"./get_trace_color":347}],349:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../components/fx":85,"../../lib":162,"../../registry":245,"./fill_hover_text":323,"./get_trace_color":325}],327:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/fx":86,"../../lib":163,"../../registry":246,"./fill_hover_text":324,"./get_trace_color":326}],328:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90085,8 +94372,12 @@ Scatter.meta = {
 
 module.exports = Scatter;
 
+<<<<<<< HEAD
 },{"../../plots/cartesian":217,"./arrays_to_calcdata":314,"./attributes":315,"./calc":316,"./cross_trace_calc":320,"./cross_trace_defaults":321,"./defaults":322,"./hover":326,"./marker_colorbar":333,"./plot":335,"./select":336,"./style":338,"./subtypes":339}],328:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../plots/cartesian":218,"./arrays_to_calcdata":315,"./attributes":316,"./calc":317,"./cross_trace_calc":321,"./cross_trace_defaults":322,"./defaults":323,"./hover":327,"./marker_colorbar":334,"./plot":336,"./select":337,"./style":339,"./subtypes":340}],329:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90118,10 +94409,14 @@ module.exports = function lineDefaults(traceIn, traceOut, defaultColor, layout, 
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/colorscale/defaults":59,"../../components/colorscale/helpers":60,"../../lib":165}],351:[function(_dereq_,module,exports){
 =======
 },{"../../components/colorscale/defaults":56,"../../components/colorscale/helpers":57,"../../lib":162}],329:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/colorscale/defaults":57,"../../components/colorscale/helpers":58,"../../lib":163}],330:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90665,10 +94960,14 @@ module.exports = function linePoints(d, opts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../constants/numerical":146,"../../lib":165,"./constants":342}],352:[function(_dereq_,module,exports){
 =======
 },{"../../constants/numerical":143,"../../lib":162,"./constants":319}],330:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../constants/numerical":144,"../../lib":163,"./constants":320}],331:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90688,10 +94987,14 @@ module.exports = function handleLineShapeDefaults(traceIn, traceOut, coerce) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],353:[function(_dereq_,module,exports){
 =======
 },{}],331:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],332:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90795,10 +95098,14 @@ module.exports = function linkTraces(gd, plotinfo, cdscatter) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],354:[function(_dereq_,module,exports){
 =======
 },{}],332:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],333:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90841,10 +95148,14 @@ module.exports = function makeBubbleSizeFn(trace) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"fast-isnumeric":16}],355:[function(_dereq_,module,exports){
 =======
 },{"fast-isnumeric":13}],333:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"fast-isnumeric":13}],334:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90863,10 +95174,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],356:[function(_dereq_,module,exports){
 =======
 },{}],334:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],335:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -90953,10 +95268,14 @@ module.exports = function markerDefaults(traceIn, traceOut, defaultColor, layout
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/color":49,"../../components/colorscale/defaults":59,"../../components/colorscale/helpers":60,"./subtypes":361}],357:[function(_dereq_,module,exports){
 =======
 },{"../../components/color":46,"../../components/colorscale/defaults":56,"../../components/colorscale/helpers":57,"./subtypes":339}],335:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/color":47,"../../components/colorscale/defaults":57,"../../components/colorscale/helpers":58,"./subtypes":340}],336:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91577,6 +95896,7 @@ function selectMarkers(gd, idx, plotinfo, cdscatter, cdscatterAll) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../lib":165,"../../lib/polygon":177,"../../registry":248,"./line_points":351,"./link_traces":353,"./subtypes":361,"d3":14}],358:[function(_dereq_,module,exports){
 =======
 },{"../../components/drawing":67,"../../lib":162,"../../lib/polygon":174,"../../registry":246,"./line_points":330,"./link_traces":332,"./subtypes":340,"d3":10}],337:[function(_dereq_,module,exports){
@@ -91584,6 +95904,9 @@ function selectMarkers(gd, idx, plotinfo, cdscatter, cdscatterAll) {
 =======
 },{"../../components/drawing":67,"../../lib":162,"../../lib/polygon":174,"../../registry":245,"./line_points":329,"./link_traces":331,"./subtypes":339,"d3":11}],336:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/drawing":68,"../../lib":163,"../../lib/polygon":175,"../../registry":246,"./line_points":330,"./link_traces":332,"./subtypes":340,"d3":11}],337:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91643,10 +95966,14 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"./subtypes":361}],359:[function(_dereq_,module,exports){
 =======
 },{"./subtypes":339}],337:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"./subtypes":340}],338:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91757,10 +96084,14 @@ module.exports = function handleStackDefaults(traceIn, traceOut, layout, coerce)
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{}],360:[function(_dereq_,module,exports){
 =======
 },{}],338:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{}],339:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91834,6 +96165,7 @@ module.exports = {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../components/drawing":70,"../../registry":248,"d3":14}],361:[function(_dereq_,module,exports){
 =======
 },{"../../components/drawing":67,"../../registry":246,"d3":10}],340:[function(_dereq_,module,exports){
@@ -91841,6 +96173,9 @@ module.exports = {
 =======
 },{"../../components/drawing":67,"../../registry":245,"d3":11}],339:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../components/drawing":68,"../../registry":246,"d3":11}],340:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91880,10 +96215,14 @@ module.exports = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165}],362:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162}],340:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],341:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91914,10 +96253,14 @@ module.exports = function(traceIn, traceOut, layout, coerce, opts) {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{"../../lib":165}],363:[function(_dereq_,module,exports){
 =======
 },{"../../lib":162}],341:[function(_dereq_,module,exports){
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163}],342:[function(_dereq_,module,exports){
+>>>>>>> Add support for numeral
 /**
 * Copyright 2012-2019, Plotly, Inc.
 * All rights reserved.
@@ -91961,6 +96304,7 @@ module.exports = function handleXYDefaults(traceIn, traceOut, layout, coerce) {
     return len;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 },{"../../lib":165,"../../registry":248}],364:[function(_dereq_,module,exports){
 /**
@@ -92734,4 +97078,7 @@ module.exports = {
 =======
 },{"../../lib":162,"../../registry":245}]},{},[7])(7)
 >>>>>>> Recreate dist
+=======
+},{"../../lib":163,"../../registry":246}]},{},[7])(7)
+>>>>>>> Add support for numeral
 });

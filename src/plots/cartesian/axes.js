@@ -10,6 +10,7 @@
 'use strict';
 
 var d3 = require('d3');
+var numeral = require('numeral');
 var isNumeric = require('fast-isnumeric');
 var Plots = require('../../plots/plots');
 
@@ -1316,7 +1317,14 @@ function numFormat(v, ax, fmtoverride, hover) {
         if(ax.hoverformat) tickformat = ax.hoverformat;
     }
 
-    if(tickformat) return ax._numFormat(tickformat)(v).replace(/-/g, MINUS_SIGN);
+    if(tickformat) {
+      var match = tickformat.match(/^numeral:(.+)$/);
+      if (match) {
+        return numeral(v).format(match[1]);
+      } else {
+        return ax._numFormat(tickformat)(v).replace(/-/g, MINUS_SIGN);
+      }
+    }
 
     // 'epsilon' - rounding increment
     var e = Math.pow(10, -tickRound) / 2;
