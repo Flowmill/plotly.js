@@ -51,11 +51,7 @@ object.  This property must be set before the plotly.js script tag, for example:
 Plotly.js defaults to US English (en-US) and includes British English (en) in the standard bundle.
 Many other localizations are available - here is an example using Swiss-German (de-CH),
 see the contents of this directory for the full list.
-<<<<<<< HEAD
 They are also available on our CDN as https://cdn.plot.ly/plotly-locale-de-ch-latest.js OR https://cdn.plot.ly/plotly-locale-de-ch-1.48.0.js
-=======
-They are also available on our CDN as https://cdn.plot.ly/plotly-locale-de-ch-latest.js OR https://cdn.plot.ly/plotly-locale-de-ch-1.45.3.js
->>>>>>> Recreate dist
 Note that the file names are all lowercase, even though the region is uppercase when you apply a locale.
 
 *After* the plotly.js script tag, add:
@@ -78,20 +74,12 @@ The main plotly.js bundle includes all the official (non-beta) trace modules.
 
 It be can imported as minified javascript
 - using dist file `dist/plotly.min.js`
-<<<<<<< HEAD
 - using CDN URL https://cdn.plot.ly/plotly-latest.min.js OR https://cdn.plot.ly/plotly-1.48.0.min.js
-=======
-- using CDN URL https://cdn.plot.ly/plotly-latest.min.js OR https://cdn.plot.ly/plotly-1.45.3.min.js
->>>>>>> Recreate dist
 
 or as raw javascript:
 - using the `plotly.js-dist` npm package (starting in `v1.39.0`)
 - using dist file `dist/plotly.js`
-<<<<<<< HEAD
 - using CDN URL https://cdn.plot.ly/plotly-latest.js OR https://cdn.plot.ly/plotly-1.48.0.js
-=======
-- using CDN URL https://cdn.plot.ly/plotly-latest.js OR https://cdn.plot.ly/plotly-1.45.3.js
->>>>>>> Recreate dist
 - using CommonJS with `require('plotly.js')`
 
 If you would like to have access to the attribute meta information (including attribute descriptions as on the [schema reference page](https://plot.ly/javascript/reference/)), use dist file `dist/plotly-with-meta.js`
@@ -100,23 +88,7 @@ The main plotly.js bundle weights in at:
 
 | plotly.js | plotly.min.js | plotly.min.js + gzip | plotly-with-meta.js |
 |-----------|---------------|----------------------|---------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 6.4 MB | 2.9 MB | 892.6 kB | 6.7 MB |
-=======
-| 6.1 MB | 2.8 MB | 849.4 kB | 6.3 MB |
->>>>>>> Add showhovertext flag
-=======
-| 6.1 MB | 2.8 MB | 848.8 kB | 6.3 MB |
->>>>>>> Disable createHoverText
-=======
-| 6.3 MB | 2.9 MB | 878.9 kB | 6.6 MB |
->>>>>>> Recreate dist
-=======
-| 6.4 MB | 2.9 MB | 882.4 kB | 6.6 MB |
->>>>>>> Add support for numeral
+| 6.4 MB | 2.9 MB | 895.5 kB | 6.7 MB |
 
 ## Partial bundles
 
@@ -139,23 +111,7 @@ The `basic` partial bundle contains trace modules `scatter`, `bar` and `pie`.
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 2.3 MB | 831.8 kB | 272.8 kB |
-=======
-| 2.3 MB | 810.8 kB | 264.8 kB |
->>>>>>> Add showhovertext flag
-=======
-| 2.3 MB | 809.2 kB | 264.1 kB |
->>>>>>> Disable createHoverText
-=======
-| 2.3 MB | 818.4 kB | 267.4 kB |
->>>>>>> Recreate dist
-=======
-| 2.3 MB | 829.4 kB | 270.9 kB |
->>>>>>> Add support for numeral
+| 2.3 MB | 841.3 kB | 275.6 kB |
 
 #### CDN links
 
@@ -163,13 +119,8 @@ The `basic` partial bundle contains trace modules `scatter`, `bar` and `pie`.
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-basic-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-basic-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-basic-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-basic-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-basic-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-basic-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
@@ -206,23 +157,7 @@ The `cartesian` partial bundle contains trace modules `scatter`, `bar`, `box`, `
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 2.6 MB | 948.2 kB | 309.8 kB |
-=======
-| 2.6 MB | 924.4 kB | 300.8 kB |
->>>>>>> Add showhovertext flag
-=======
-| 2.6 MB | 922.8 kB | 300.1 kB |
->>>>>>> Disable createHoverText
-=======
-| 2.6 MB | 934.4 kB | 303.9 kB |
->>>>>>> Recreate dist
-=======
-| 2.6 MB | 945.3 kB | 307.4 kB |
->>>>>>> Add support for numeral
+| 2.7 MB | 957.6 kB | 312.6 kB |
 
 #### CDN links
 
@@ -230,13 +165,8 @@ The `cartesian` partial bundle contains trace modules `scatter`, `bar`, `box`, `
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-cartesian-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-cartesian-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-cartesian-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-cartesian-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-cartesian-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-cartesian-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
@@ -273,23 +203,7 @@ The `geo` partial bundle contains trace modules `scatter`, `scattergeo` and `cho
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 2.3 MB | 845.3 kB | 278.9 kB |
-=======
-| 2.3 MB | 829.1 kB | 272.8 kB |
->>>>>>> Add showhovertext flag
-=======
-| 2.3 MB | 827.5 kB | 272.2 kB |
->>>>>>> Disable createHoverText
-=======
-| 2.3 MB | 834.4 kB | 274.7 kB |
->>>>>>> Recreate dist
-=======
-| 2.3 MB | 845.3 kB | 278.1 kB |
->>>>>>> Add support for numeral
+| 2.3 MB | 854.8 kB | 281.7 kB |
 
 #### CDN links
 
@@ -297,13 +211,8 @@ The `geo` partial bundle contains trace modules `scatter`, `scattergeo` and `cho
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-geo-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-geo-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-geo-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-geo-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-geo-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-geo-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
@@ -334,33 +243,13 @@ var Plotly = require('plotly.js-geo-dist');
 
 ### plotly.js gl3d
 
-<<<<<<< HEAD
 The `gl3d` partial bundle contains trace modules `scatter`, `scatter3d`, `surface`, `mesh3d`, `isosurface`, `volume`, `cone` and `streamtube`.
-=======
-The `gl3d` partial bundle contains trace modules `scatter`, `scatter3d`, `surface`, `mesh3d`, `cone` and `streamtube`.
->>>>>>> Recreate dist
 
 #### Stats
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 3.4 MB | 1.4 MB | 435.5 kB |
-=======
-| 3.4 MB | 1.3 MB | 425.2 kB |
->>>>>>> Add showhovertext flag
-=======
-| 3.4 MB | 1.3 MB | 424.7 kB |
->>>>>>> Disable createHoverText
-=======
-| 3.4 MB | 1.3 MB | 426.4 kB |
->>>>>>> Recreate dist
-=======
-| 3.4 MB | 1.3 MB | 430 kB |
->>>>>>> Add support for numeral
+| 3.5 MB | 1.4 MB | 438.5 kB |
 
 #### CDN links
 
@@ -368,13 +257,8 @@ The `gl3d` partial bundle contains trace modules `scatter`, `scatter3d`, `surfac
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-gl3d-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-gl3d-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-gl3d-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-gl3d-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-gl3d-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-gl3d-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
@@ -411,23 +295,7 @@ The `gl2d` partial bundle contains trace modules `scatter`, `scattergl`, `splom`
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 3.4 MB | 1.4 MB | 450.7 kB |
-=======
-| 3.4 MB | 1.4 MB | 442.7 kB |
->>>>>>> Add showhovertext flag
-=======
-| 3.4 MB | 1.4 MB | 442.1 kB |
->>>>>>> Disable createHoverText
-=======
-| 3.4 MB | 1.4 MB | 444.5 kB |
->>>>>>> Recreate dist
-=======
-| 3.4 MB | 1.4 MB | 448.1 kB |
->>>>>>> Add support for numeral
+| 3.5 MB | 1.4 MB | 453.6 kB |
 
 #### CDN links
 
@@ -435,13 +303,8 @@ The `gl2d` partial bundle contains trace modules `scatter`, `scattergl`, `splom`
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-gl2d-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-gl2d-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-gl2d-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-gl2d-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-gl2d-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-gl2d-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
@@ -478,23 +341,7 @@ The `mapbox` partial bundle contains trace modules `scatter` and `scattermapbox`
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 2.8 MB | 1.4 MB | 416.6 kB |
-=======
-| 2.8 MB | 1.4 MB | 410.7 kB |
->>>>>>> Add showhovertext flag
-=======
-| 2.8 MB | 1.4 MB | 410.1 kB |
->>>>>>> Disable createHoverText
-=======
-| 2.8 MB | 1.4 MB | 412.6 kB |
->>>>>>> Recreate dist
-=======
-| 2.8 MB | 1.4 MB | 416.1 kB |
->>>>>>> Add support for numeral
+| 2.9 MB | 1.4 MB | 419.4 kB |
 
 #### CDN links
 
@@ -502,13 +349,8 @@ The `mapbox` partial bundle contains trace modules `scatter` and `scattermapbox`
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-mapbox-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-mapbox-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-mapbox-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-mapbox-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-mapbox-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-mapbox-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
@@ -539,33 +381,13 @@ var Plotly = require('plotly.js-mapbox-dist');
 
 ### plotly.js finance
 
-<<<<<<< HEAD
 The `finance` partial bundle contains trace modules `scatter`, `bar`, `histogram`, `pie`, `funnelarea`, `ohlc`, `candlestick`, `funnel` and `waterfall`.
-=======
-The `finance` partial bundle contains trace modules `scatter`, `bar`, `histogram`, `pie`, `ohlc` and `candlestick`.
->>>>>>> Recreate dist
 
 #### Stats
 
 | Raw size | Minified size | Minified + gzip size |
 |------|-----------------|------------------------|
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-| 2.5 MB | 893.1 kB | 290.1 kB |
-=======
-| 2.4 MB | 843.3 kB | 274.8 kB |
->>>>>>> Add showhovertext flag
-=======
-| 2.4 MB | 841.8 kB | 274.1 kB |
->>>>>>> Disable createHoverText
-=======
-| 2.4 MB | 852.1 kB | 277.7 kB |
->>>>>>> Recreate dist
-=======
-| 2.4 MB | 863 kB | 281.2 kB |
->>>>>>> Add support for numeral
+| 2.5 MB | 902.6 kB | 293 kB |
 
 #### CDN links
 
@@ -573,13 +395,8 @@ The `finance` partial bundle contains trace modules `scatter`, `bar`, `histogram
 | ------ | --- |
 | Latest | https://cdn.plot.ly/plotly-finance-latest.js |
 | Latest minified | https://cdn.plot.ly/plotly-finance-latest.min.js |
-<<<<<<< HEAD
 | Tagged | https://cdn.plot.ly/plotly-finance-1.48.0.js |
 | Tagged minified | https://cdn.plot.ly/plotly-finance-1.48.0.min.js |
-=======
-| Tagged | https://cdn.plot.ly/plotly-finance-1.45.3.js |
-| Tagged minified | https://cdn.plot.ly/plotly-finance-1.45.3.min.js |
->>>>>>> Recreate dist
 
 #### npm package (starting in `v1.39.0`)
 
