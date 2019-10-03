@@ -431,6 +431,47 @@ describe('Plotly.react transitions:', function() {
         .then(done);
     });
 
+    it('should no try to transition a trace which is not *animatable:true* yet', function(done) {
+        addSpies();
+
+        var trace = {
+            type: 'violin',
+            y: [1],
+            marker: {line: {width: 1}}
+        };
+
+        var data = [trace];
+        var layout = {transition: {duration: 10}};
+
+        // sanity check that this test actually tests what was intended
+        var Violin = Registry.modules.violin._module;
+        if(Violin.animatable || Violin.attributes.marker.line.width.anim !== true) {
+            fail('Test no longer tests its indented code path:' +
+                ' This test is meant to test that Plotly.react with' +
+                ' *anim:true* attributes in *animatable:false* modules' +
+                ' does not trigger Plots.transitionFromReact calls.'
+            );
+        }
+
+        Plotly.react(gd, data, layout)
+        .then(function() {
+            assertSpies('first draw', [
+                [Plots, 'transitionFromReact', 0]
+            ]);
+        })
+        .then(function() {
+            trace.marker.line.width = 5;
+            return Plotly.react(gd, data, layout);
+        })
+        .then(function() {
+            assertSpies('after (transition) react call', [
+                [Plots, 'transitionFromReact', 0]
+            ]);
+        })
+        .catch(failTest)
+        .then(done);
+    });
+
     it('should not try to transition when the *config* has changed', function(done) {
         addSpies();
 
@@ -984,6 +1025,75 @@ describe('Plotly.react transitions:', function() {
             var traceNodesNew = gd.querySelectorAll('.scatterlayer > .trace');
             _assertTraceNodes(msg, [traceNodes[0], traceNodesNew[1]], [[360, 90], [120, 210]]);
         })
+        .catch(failTest)
+        .then(done);
+    });
+
+    it('should not leak axis update from subplot to subplot', function(done) {
+        function _react(modifs) {
+            return function() {
+                for(var k in modifs) {
+                    gd.layout[k] = modifs[k];
+                }
+                return Plotly.react(gd, gd.data, gd.layout);
+            };
+        }
+
+        function _assert(msg, exp) {
+            return function() {
+                var fullLayout = gd._fullLayout;
+                for(var k in exp) {
+                    expect(fullLayout[k].range).toBeCloseToArray(exp[k], 2, msg + '| ' + k);
+                }
+            };
+        }
+
+        Plotly.plot(gd, [{
+            x: [0.1, 0.2, 0.3],
+            y: [0.4, 0.5, 0.6],
+        }, {
+            x: [0.2, 0.3, 0.4],
+            y: [0.5, 0.6, 0.7],
+            xaxis: 'x2',
+            yaxis: 'y2',
+        }, {
+            x: [0.3, 0.5, 0.7],
+            y: [0.7, 0.2, 0.2],
+            xaxis: 'x3',
+            yaxis: 'y3',
+        }], {
+            grid: {rows: 1, columns: 3, pattern: 'independent'},
+            showlegend: false,
+            transition: {duration: 10}
+        })
+        .then(_assert('base', {
+            xaxis: [0.0825, 0.3174], xaxis2: [0.1825, 0.417], xaxis3: [0.265, 0.7349],
+            yaxis: [0.385, 0.614], yaxis2: [0.485, 0.714], yaxis3: [0.163, 0.7366]
+        }))
+        .then(_react({
+            xaxis: {range: [-10, 10]},
+            yaxis: {range: [-10, 10]}
+        }))
+        .then(_assert('after xy range transition', {
+            xaxis: [-10, 10], xaxis2: [0.1825, 0.417], xaxis3: [0.265, 0.7349],
+            yaxis: [-10, 10], yaxis2: [0.485, 0.714], yaxis3: [0.163, 0.7366]
+        }))
+        .then(_react({
+            xaxis2: {range: [-20, 20]},
+            yaxis2: {range: [-20, 20]}
+        }))
+        .then(_assert('after x2y2 range transition', {
+            xaxis: [-10, 10], xaxis2: [-20, 20], xaxis3: [0.265, 0.7349],
+            yaxis: [-10, 10], yaxis2: [-20, 20], yaxis3: [0.163, 0.7366]
+        }))
+        .then(_react({
+            xaxis3: {range: [-30, 30]},
+            yaxis3: {range: [-30, 30]}
+        }))
+        .then(_assert('after x3y3 range transition', {
+            xaxis: [-10, 10], xaxis2: [-20, 20], xaxis3: [-30, 30],
+            yaxis: [-10, 10], yaxis2: [-20, 20], yaxis3: [-30, 30]
+        }))
         .catch(failTest)
         .then(done);
     });

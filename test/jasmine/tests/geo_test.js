@@ -11,11 +11,13 @@ var d3 = require('d3');
 var createGraphDiv = require('../assets/create_graph_div');
 var destroyGraphDiv = require('../assets/destroy_graph_div');
 var failTest = require('../assets/fail_test');
+var negateIf = require('../assets/negate_if');
 var getClientPosition = require('../assets/get_client_position');
 var mouseEvent = require('../assets/mouse_event');
 var click = require('../assets/click');
+var drag = require('../assets/drag');
 
-var DBLCLICKDELAY = require('@src/constants/interactions').DBLCLICKDELAY;
+var DBLCLICKDELAY = require('@src/plot_api/plot_config').dfltConfig.doubleClickDelay;
 var HOVERMINTIME = require('@src/components/fx').constants.HOVERMINTIME;
 
 // use local topojson files
@@ -1336,18 +1338,58 @@ describe('Test geo interactions', function() {
         .then(done);
     });
 
-    it('should not make request for topojson when not needed', function(done) {
-        var gd = createGraphDiv();
-        var fig = Lib.extendDeep({}, require('@mocks/geo_skymap.json'));
+    describe('should not make request for topojson when not needed', function() {
+        var gd;
 
-        spyOn(d3, 'json').and.callThrough();
+        beforeEach(function() {
+            if(window.PlotlyGeoAssets && window.PlotlyGeoAssets.topojson) {
+                delete window.PlotlyGeoAssets.topojson.world_110m;
+            }
+            gd = createGraphDiv();
+            spyOn(d3, 'json').and.callThrough();
+        });
 
-        Plotly.plot(gd, fig)
-        .then(function() {
-            expect(d3.json).toHaveBeenCalledTimes(0);
-        })
-        .catch(failTest)
-        .then(done);
+        function _assert(cnt) {
+            return function() {
+                expect(d3.json).toHaveBeenCalledTimes(cnt);
+            };
+        }
+
+        it('- no base layers + lon/lat traces', function(done) {
+            var fig = Lib.extendDeep({}, require('@mocks/geo_skymap.json'));
+
+            Plotly.plot(gd, fig)
+            .then(_assert(0))
+            .then(function() { return Plotly.relayout(gd, 'geo.showcoastlines', true); })
+            .then(_assert(1))
+            .catch(failTest)
+            .then(done);
+        });
+
+        it('- no base layers + choropleth', function(done) {
+            Plotly.plot(gd, [{
+                type: 'choropleth',
+                locations: ['CAN'],
+                z: [10]
+            }], {
+                geo: {showcoastlines: false}
+            })
+            .then(_assert(1))
+            .catch(failTest)
+            .then(done);
+        });
+
+        it('- no base layers + location scattergeo', function(done) {
+            Plotly.plot(gd, [{
+                type: 'scattergeo',
+                locations: ['CAN'],
+            }], {
+                geo: {showcoastlines: false}
+            })
+            .then(_assert(1))
+            .catch(failTest)
+            .then(done);
+        });
     });
 });
 
@@ -1570,8 +1612,8 @@ describe('Test geo base layers', function() {
             var cd0 = gd.calcdata[0];
             var subplot = gd._fullLayout.geo._subplot;
 
-            expect(cd0[0].geojson).negateIf(geojson[0]).toBe(null);
-            expect(cd0[1].geojson).negateIf(geojson[1]).toBe(null);
+            negateIf(geojson[0], expect(cd0[0].geojson)).toBe(null);
+            negateIf(geojson[1], expect(cd0[1].geojson)).toBe(null);
 
             expect(Object.keys(subplot.layers).length).toEqual(layers.length, '# of layers');
 
@@ -1717,20 +1759,6 @@ describe('Test geo zoom/pan/drag interactions:', function() {
         dblClickCnt = 0;
     }
 
-
-    function drag(path) {
-        var len = path.length;
-
-        mouseEvent('mousemove', path[0][0], path[0][1]);
-        mouseEvent('mousedown', path[0][0], path[0][1]);
-
-        path.slice(1, len).forEach(function(pt) {
-            mouseEvent('mousemove', pt[0], pt[1]);
-        });
-
-        mouseEvent('mouseup', path[len - 1][0], path[len - 1][1]);
-    }
-
     function scroll(pos, delta) {
         return new Promise(function(resolve) {
             mouseEvent('mousemove', pos[0], pos[1]);
@@ -1789,7 +1817,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
             ], [
                 [90, 0], [350, 260], [0, 0], 101.9
             ], undefined);
-            return drag([[350, 250], [400, 250]]);
+            return drag({path: [[350, 250], [400, 250]], noCover: true});
         })
         .then(function() {
             _assert('after east-west drag', [
@@ -1799,7 +1827,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
             ], [
                 'geo.projection.rotation.lon', 'geo.center.lon'
             ]);
-            return drag([[400, 250], [400, 300]]);
+            return drag({path: [[400, 250], [400, 300]], noCover: true});
         })
         .then(function() {
             _assert('after north-south drag', [
@@ -1880,7 +1908,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
             ], [
                 [75, -45], 160
             ], undefined);
-            return drag([[250, 250], [300, 250]]);
+            return drag({path: [[250, 250], [300, 250]], noCover: true});
         })
         .then(function() {
             _assert('after east-west drag', [
@@ -1890,7 +1918,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
             ], [
                 'geo.projection.rotation.lon', 'geo.projection.rotation.lat'
             ]);
-            return drag([[250, 250], [300, 300]]);
+            return drag({path: [[250, 250], [300, 300]], noCover: true});
         })
         .then(function() {
             _assert('after NW-SE drag', [
@@ -1973,7 +2001,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
             ], [
                 [247, 260], [0, 57.5], 292.2
             ], undefined);
-            return drag([[250, 250], [200, 200]]);
+            return drag({path: [[250, 250], [200, 200]], noCover: true});
         })
         .then(function() {
             _assert('after SW-NE drag', [
@@ -2054,7 +2082,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
             ], [
                 [416, 309], 738.5
             ], undefined);
-            return drag([[250, 250], [200, 200]]);
+            return drag({path: [[250, 250], [200, 200]], noCover: true});
         })
         .then(function() {
             _assert('after NW-SE drag', [
@@ -2192,7 +2220,7 @@ describe('Test geo zoom/pan/drag interactions:', function() {
                         gd.on('plotly_relayouting', function(e) {
                             events.push(e);
                         });
-                        return drag(path);
+                        return drag({path: path, noCover: true});
                     })
                     .then(function() {
                         expect(events.length).toEqual(path.length - 1);

@@ -10,6 +10,10 @@
 
 var barAttrs = require('../bar/attributes');
 var lineAttrs = require('../scatter/attributes').line;
+var plotAttrs = require('../../plots/attributes');
+var hovertemplateAttrs = require('../../plots/template_attributes').hovertemplateAttrs;
+var texttemplateAttrs = require('../../plots/template_attributes').texttemplateAttrs;
+var constants = require('./constants');
 var extendFlat = require('../../lib/extend').extendFlat;
 var Color = require('../../components/color');
 
@@ -22,7 +26,13 @@ module.exports = {
     dy: barAttrs.dy,
 
     hovertext: barAttrs.hovertext,
-    hovertemplate: barAttrs.hovertemplate,
+    hovertemplate: hovertemplateAttrs({}, {
+        keys: constants.eventDataKeys
+    }),
+
+    hoverinfo: extendFlat({}, plotAttrs.hoverinfo, {
+        flags: ['name', 'x', 'y', 'text', 'percent initial', 'percent previous', 'percent total']
+    }),
 
     textinfo: {
         valType: 'flaglist',
@@ -37,6 +47,10 @@ module.exports = {
             'are computed separately (per trace).'
         ].join(' ')
     },
+    // TODO: incorporate `label` and `value` in the eventData
+    texttemplate: texttemplateAttrs({editType: 'plot'}, {
+        keys: constants.eventDataKeys.concat(['label', 'value'])
+    }),
 
     text: barAttrs.text,
     textposition: extendFlat({}, barAttrs.textposition, {dflt: 'auto'}),

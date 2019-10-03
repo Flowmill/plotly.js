@@ -16,6 +16,7 @@ var rgb = color.rgb;
 
 var customAssertions = require('../assets/custom_assertions');
 var assertHoverLabelContent = customAssertions.assertHoverLabelContent;
+var checkTextTemplate = require('../assets/check_texttemplate');
 var Fx = require('@src/components/fx');
 
 var d3 = require('d3');
@@ -1208,6 +1209,18 @@ describe('A waterfall plot', function() {
         .catch(failTest)
         .then(done);
     });
+
+    checkTextTemplate([{
+        type: 'waterfall',
+        y: [1, 5, 3, 2],
+        text: ['A', 'B', 'C', 'D'],
+        textposition: 'inside',
+        hovertemplate: '%{text}'
+    }], 'text.bartext', [
+      ['%{value}', ['1', '6', '9', '11']],
+      ['%{initial} %{delta} %{final}', ['0 1 1', '1 5 6', '6 3 9', '9 2 11']],
+      [['%{y}', '%{value}', '%{text}', '%{label}'], ['1', '6', 'C', '3']]
+    ]);
 });
 
 describe('waterfall visibility toggling:', function() {
@@ -1379,13 +1392,41 @@ describe('waterfall hover', function() {
             .then(done);
         });
 
-        it('should use hovertemplate if specified', function(done) {
+        it('should turn off hoverinfo flags with hoveinfo none or skip', function(done) {
+            gd = createGraphDiv();
+
+            var mock = Lib.extendDeep({}, require('@mocks/text_chart_arrays'));
+            mock.data.forEach(function(t, i) {
+                t.type = 'waterfall';
+                if(i === 0) {
+                    t.hoverinfo = 'none';
+                } else {
+                    t.hoverinfo = 'skip';
+                }
+            });
+
+            function _hover() {
+                var evt = { xpx: 125, ypx: 150 };
+                Fx.hover('graph', evt, 'xy');
+            }
+
+            Plotly.plot(gd, mock)
+            .then(_hover)
+            .then(function() {
+                expect(d3.selectAll('g.hovertext').size()).toBe(0);
+            })
+            .catch(failTest)
+            .then(done);
+        });
+
+        it('should turn on hoverinfo flags with hoveinfo all', function(done) {
             gd = createGraphDiv();
 
             var mock = Lib.extendDeep({}, require('@mocks/text_chart_arrays'));
             mock.data.forEach(function(t) {
                 t.type = 'waterfall';
-                t.hovertemplate = '%{y}<extra></extra>';
+                t.base = 1000;
+                t.hoverinfo = 'all';
             });
 
             function _hover() {
@@ -1397,11 +1438,45 @@ describe('waterfall hover', function() {
             .then(_hover)
             .then(function() {
                 assertHoverLabelContent({
-                    nums: ['1', '2', '1.5'],
+                    nums: [
+                        '1001\nHover text A\n1 ▲\nInitial: 1000',
+                        '1002\nHover text G\n2 ▲\nInitial: 1000',
+                        '1,001.5\na (hover)\n1.5 ▲\nInitial: 1000'
+                    ],
+                    name: ['Lines, Marke...', 'Lines and Text', 'missing text'],
+                    axis: '0'
+                });
+            })
+            .catch(failTest)
+            .then(done);
+        });
+
+        it('should use hovertemplate if specified', function(done) {
+            gd = createGraphDiv();
+
+            var mock = Lib.extendDeep({}, require('@mocks/text_chart_arrays'));
+            mock.data.forEach(function(t) {
+                t.type = 'waterfall';
+                t.hovertemplate = 'Value: %{y}<br>SUM: %{final}<br>START: %{initial}<br>DIFF: %{delta}<extra></extra>';
+            });
+
+            function _hover() {
+                var evt = { xpx: 125, ypx: 150 };
+                Fx.hover('graph', evt, 'xy');
+            }
+
+            Plotly.plot(gd, mock)
+            .then(_hover)
+            .then(function() {
+                assertHoverLabelContent({
+                    nums: [
+                        'Value: 1\nSUM: 1\nSTART: 0\nDIFF: 1',
+                        'Value: 2\nSUM: 2\nSTART: 0\nDIFF: 2',
+                        'Value: 1.5\nSUM: 1.5\nSTART: 0\nDIFF: 1.5'
+                    ],
                     name: ['', '', ''],
                     axis: '0'
                 });
-                // return Plotly.restyle(gd, 'text', ['APPLE', 'BANANA', 'ORANGE']);
             })
             .catch(failTest)
             .then(done);

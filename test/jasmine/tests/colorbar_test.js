@@ -8,6 +8,7 @@ var subroutines = require('@src/plot_api/subroutines');
 var createGraphDiv = require('../assets/create_graph_div');
 var destroyGraphDiv = require('../assets/destroy_graph_div');
 var failTest = require('../assets/fail_test');
+var negateIf = require('../assets/negate_if');
 var supplyAllDefaults = require('../assets/supply_defaults');
 var assertPlotSize = require('../assets/custom_assertions').assertPlotSize;
 var drag = require('../assets/drag');
@@ -119,7 +120,7 @@ describe('Test colorbar:', function() {
                 var cbbg = colorbars.selectAll('.cbbg');
                 var cbfills = colorbars.selectAll('.cbfill');
 
-                expect(cbfills.size()).negateIf(multiFill).toBe(1);
+                negateIf(multiFill, expect(cbfills.size())).toBe(1);
 
                 if(!cbHeight) cbHeight = 400;
                 var bgHeight = +cbbg.attr('height');
@@ -406,7 +407,7 @@ describe('Test colorbar:', function() {
                 expect(gd.data[0].colorbar).toBeUndefined();
                 expect(gd._fullData[0].colorbar.x).toBe(1.02);
                 expect(gd._fullData[0].colorbar.y).toBe(0.5);
-                return drag(getCBNode(), -100, 100);
+                return drag({node: getCBNode(), dpos: [-100, 100]});
             })
             .then(function() {
                 expect(gd.data[0].colorbar.x).toBeWithin(0.591, 0.01);
@@ -426,7 +427,7 @@ describe('Test colorbar:', function() {
                 expect(gd.data[0].marker.colorbar).toBeUndefined();
                 expect(gd._fullData[0].marker.colorbar.x).toBe(1.02);
                 expect(gd._fullData[0].marker.colorbar.y).toBe(0.5);
-                return drag(getCBNode(), -100, 100);
+                return drag({node: getCBNode(), dpos: [-100, 100]});
             })
             .then(function() {
                 expect(gd.data[0].marker.colorbar.x).toBeWithin(0.591, 0.01);
@@ -446,7 +447,7 @@ describe('Test colorbar:', function() {
                 expect(gd.layout.coloraxis.colorbar).toBeUndefined();
                 expect(gd._fullLayout.coloraxis.colorbar.x).toBe(1.02);
                 expect(gd._fullLayout.coloraxis.colorbar.y).toBe(0.5);
-                return drag(getCBNode(), -100, 100);
+                return drag({node: getCBNode(), dpos: [-100, 100]});
             })
             .then(function() {
                 expect(gd.layout.coloraxis.colorbar.x).toBeWithin(0.591, 0.01);

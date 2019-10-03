@@ -11,6 +11,7 @@ var supplyAllDefaults = require('../assets/supply_defaults');
 
 var mouseEvent = require('../assets/mouse_event');
 var assertHoverLabelContent = customAssertions.assertHoverLabelContent;
+var checkTextTemplate = require('../assets/check_texttemplate');
 
 var assertClip = customAssertions.assertClip;
 var assertNodeDisplay = customAssertions.assertNodeDisplay;
@@ -422,6 +423,9 @@ describe('scatterternary hover', function() {
         .then(function() {
             scatterPointData = _hover(gd, xval, yval, hovermode);
             expect(scatterPointData[0].hovertemplate).toEqual('tpl');
+            expect(scatterPointData[0].aLabel).toBe('0.3333333');
+            expect(scatterPointData[0].bLabel).toBe('0.1111111');
+            expect(scatterPointData[0].cLabel).toBe('0.5555556');
         })
         .catch(failTest)
         .then(done);
@@ -550,4 +554,17 @@ describe('Test scatterternary *cliponaxis*', function() {
         .catch(failTest)
         .then(done);
     });
+});
+
+describe('Test scatterternary texttemplate:', function() {
+    checkTextTemplate([{
+        'type': 'scatterternary',
+        'a': [3, 2, 5],
+        'b': [2, 5, 2],
+        'c': [5, 2, 2 ],
+        'mode': 'markers+text',
+        'text': ['A', 'B', 'C']
+    }], 'g.textpoint', [
+        ['%{text} (%{a:.1f}, %{b:.1f}, %{c:.1f})', ['A (3.0, 2.0, 5.0)', 'B (2.0, 5.0, 2.0)', 'C (5.0, 2.0, 2.0)']]
+    ]);
 });

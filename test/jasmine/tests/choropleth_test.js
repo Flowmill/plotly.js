@@ -71,6 +71,23 @@ describe('Test choropleth', function() {
             Choropleth.supplyDefaults(traceIn, traceOut, defaultColor, layout);
             expect(traceOut.visible).toBe(false);
         });
+
+        it('should not coerce *marker.line.color* when *marker.line.width* is *0*', function() {
+            traceIn = {
+                locations: ['CAN', 'USA'],
+                z: [1, 2],
+                marker: {
+                    line: {
+                        color: 'red',
+                        width: 0
+                    }
+                }
+            };
+
+            Choropleth.supplyDefaults(traceIn, traceOut, defaultColor, layout);
+            expect(traceOut.marker.line.width).toBe(0, 'mlw');
+            expect(traceOut.marker.line.color).toBe(undefined, 'mlc');
+        });
     });
 });
 
@@ -199,6 +216,31 @@ describe('Test choropleth hover:', function() {
             ['RUS', 'trace 1']
         )
         .then(done);
+    });
+
+    describe('should preserve z formatting hovetemplate equivalence', function() {
+        var base = function() {
+            return {
+                data: [{
+                    type: 'choropleth',
+                    locations: ['RUS'],
+                    z: [10.02132132143214321]
+                }]
+            };
+        };
+
+        var pos = [400, 160];
+        var exp = ['10.02132', 'RUS'];
+
+        it('- base case (truncate z decimals)', function(done) {
+            run(pos, base(), exp).then(done);
+        });
+
+        it('- hovertemplate case (same z truncation)', function(done) {
+            var fig = base();
+            fig.hovertemplate = '%{z}<extra>%{location}</extra>';
+            run(pos, fig, exp).then(done);
+        });
     });
 });
 

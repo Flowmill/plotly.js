@@ -15,6 +15,7 @@ var supplyAllDefaults = require('../assets/supply_defaults');
 var mockLists = require('../assets/mock_lists');
 var mouseEvent = require('../assets/mouse_event');
 var drag = require('../assets/drag');
+var delay = require('../assets/delay');
 
 var MAPBOX_ACCESS_TOKEN = require('@build/credentials.json').MAPBOX_ACCESS_TOKEN;
 
@@ -881,7 +882,7 @@ describe('@noCIdep Plotly.react', function() {
     });
 
     mockLists.mapbox.forEach(function(mockSpec) {
-        it('@noCI can redraw "' + mockSpec[0] + '" with no changes as a noop (mapbpox mocks)', function(done) {
+        it('@noCI @gl can redraw "' + mockSpec[0] + '" with no changes as a noop (mapbpox mocks)', function(done) {
             Plotly.setPlotConfig({
                 mapboxAccessToken: MAPBOX_ACCESS_TOKEN
             });
@@ -944,7 +945,10 @@ describe('Plotly.react and uirevision attributes', function() {
         gd = createGraphDiv();
     });
 
-    afterEach(destroyGraphDiv);
+    afterEach(function() {
+        Plotly.purge(gd);
+        destroyGraphDiv();
+    });
 
     function checkCloseIfArray(val1, val2, msg) {
         if(Array.isArray(val1) && Array.isArray(val2)) {
@@ -1504,8 +1508,7 @@ describe('Plotly.react and uirevision attributes', function() {
         function editSelection() {
             // drag across the upper right quadrant, so we'll select
             // curve 0 point 1 and curve 1 point 2
-            return drag(document.querySelector('.nsewdrag'),
-                148, 100, '', 150, 102);
+            return drag({node: document.querySelector('.nsewdrag'), dpos: [148, 100], pos0: [150, 102]});
         }
 
         var checkNoSelection = checkState([
@@ -1547,8 +1550,7 @@ describe('Plotly.react and uirevision attributes', function() {
         function editSelection() {
             // drag across the upper right quadrant, so we'll select
             // curve 0 point 1 and curve 1 point 2
-            return drag(document.querySelector('.nsewdrag'),
-                148, 148, '', 150, 102);
+            return drag({node: document.querySelector('.nsewdrag'), dpos: [148, 148], pos0: [150, 102]});
         }
 
         var checkNoSelection = checkState([{selectedpoints: undefined}]);
@@ -1800,24 +1802,25 @@ describe('Plotly.react and uirevision attributes', function() {
         }
 
         function editTrace() {
-            var _;
             return Registry.call('_guiRestyle', gd,
                 {'line.colorbar.title.text': 'color', name: 'name'},
                 [0]
             )
             .then(function() {
-                return drag(axisDragNode(0), 0, 50, _, _, _, _, true);
+                return drag({node: axisDragNode(0), dpos: [0, 50], noCover: true});
             })
+            .then(delay(100))
             .then(function() {
-                return drag(axisDragNode(0), 0, -50, _, _, _, _, true);
+                return drag({node: axisDragNode(0), dpos: [0, -50], noCover: true});
             })
+            .then(delay(100))
             .then(function() {
-                return drag(axisDragNode(1), 0, -50, _, _, _, _, true);
+                return drag({node: axisDragNode(1), dpos: [0, -50], noCover: true});
             });
         }
 
         _run(fig, editTrace, checkState([attrs(true)]), checkState([attrs()])).then(done);
-    });
+    }, 5 * jasmine.DEFAULT_TIMEOUT_INTERVAL);
 
     it('preserves editable: true axis titles using the axis uirevisions', function(done) {
         function fig(mainRev, axRev) {
@@ -1887,6 +1890,42 @@ describe('Plotly.react and uirevision attributes', function() {
         .then(function() {
             return Plotly.react(gd, [{
                 type: 'sunburst',
+                labels: ['Eve', 'Cain', 'Seth', 'Enos', 'Noam', 'Abel', 'Awan', 'Enoch', 'Azura', 'Joe'],
+                parents: ['', 'Eve', 'Eve', 'Seth', 'Seth', 'Eve', 'Eve', 'Awan', 'Eve', 'Seth'],
+                uirevision: 1
+            }]);
+        })
+        .then(function() {
+            assertLevel('after reacting with new data, but with same uirevision', 'Seth');
+        })
+        .catch(failTest)
+        .then(done);
+    });
+
+    it('preserves treemap level changes', function(done) {
+        function assertLevel(msg, exp) {
+            expect(gd._fullData[0].level).toBe(exp, msg);
+        }
+
+        Plotly.react(gd, [{
+            type: 'treemap',
+            labels: ['Eve', 'Cain', 'Seth', 'Enos', 'Noam', 'Abel', 'Awan', 'Enoch', 'Azura'],
+            parents: ['', 'Eve', 'Eve', 'Seth', 'Seth', 'Eve', 'Eve', 'Awan', 'Eve'],
+            uirevision: 1
+        }])
+        .then(function() {
+            assertLevel('no set level at start', undefined);
+        })
+        .then(function() {
+            var nodeSeth = d3.select('.slice:nth-child(2)').node();
+            mouseEvent('click', 0, 0, {element: nodeSeth});
+        })
+        .then(function() {
+            assertLevel('after clicking on Seth sector', 'Seth');
+        })
+        .then(function() {
+            return Plotly.react(gd, [{
+                type: 'treemap',
                 labels: ['Eve', 'Cain', 'Seth', 'Enos', 'Noam', 'Abel', 'Awan', 'Enoch', 'Azura', 'Joe'],
                 parents: ['', 'Eve', 'Eve', 'Seth', 'Seth', 'Eve', 'Eve', 'Awan', 'Eve', 'Seth'],
                 uirevision: 1
@@ -1997,13 +2036,6 @@ describe('Test Plotly.react + interactions under uirevision:', function() {
             });
         }
 
-        function _drag(x0, y0, dx, dy) {
-            mouseEvent('mousemove', x0, y0);
-            mouseEvent('mousedown', x0, y0);
-            mouseEvent('mousemove', x0 + dx, y0 + dy);
-            mouseEvent('mouseup', x0 + dx, y0 + dy);
-        }
-
         // should be same before & after 2nd react()
         function _assertGUI(msg) {
             var TOL = 2;
@@ -2036,7 +2068,7 @@ describe('Test Plotly.react + interactions under uirevision:', function() {
 
             expect(gd._fullLayout._preGUI).toEqual({});
         })
-        .then(function() { return _drag(200, 200, 50, 50); })
+        .then(function() { return drag({pos0: [200, 200], dpos: [50, 50], noCover: true}); })
         .then(function() { _assertGUI('before'); })
         .then(_react)
         .then(function() { _assertGUI('after'); })

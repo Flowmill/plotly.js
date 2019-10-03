@@ -9,6 +9,7 @@ var mouseEvent = require('../assets/mouse_event');
 
 var customAssertions = require('../assets/custom_assertions');
 var assertHoverLabelContent = customAssertions.assertHoverLabelContent;
+var checkTextTemplate = require('../assets/check_texttemplate');
 
 describe('Test scatterpolar trace defaults:', function() {
     var traceOut;
@@ -115,7 +116,7 @@ describe('Test scatterpolar hover:', function() {
             fig.data[2].hovertemplate = 'template %{r} %{theta}';
             return fig;
         },
-        nums: 'template 4.02289202968 128.342009045',
+        nums: 'template 4.022892 128.342°',
         name: 'Trial 3'
     }, {
         desc: 'with hovertemplate and empty trace name',
@@ -124,7 +125,7 @@ describe('Test scatterpolar hover:', function() {
             fig.data[2].name = '';
             return fig;
         },
-        nums: 'template 4.02289202968 128.342009045',
+        nums: 'template 4.022892 128.342°',
         name: ''
     }, {
         desc: '(no labels - out of sector)',
@@ -197,4 +198,18 @@ describe('Test scatterpolar hover:', function() {
             run(specs).catch(failTest).then(done);
         });
     });
+});
+
+describe('Test scatterpolar texttemplate:', function() {
+    checkTextTemplate([{
+        'type': 'scatterpolar',
+        'mode': 'markers+text',
+        'text': ['A', 'B', 'C'],
+        'textposition': 'top center',
+        'r': [1, 0.5, 1],
+        'theta': [0, 90, 180],
+    }], 'g.textpoint', [
+        ['%{text}: (%{r:0.2f}, %{theta:0.1f})', ['A: (1.00, 0.0)', 'B: (0.50, 90.0)', 'C: (1.00, 180.0)']],
+        [['', 'b%{theta:0.2f}', '%{theta:0.2f}'], ['', 'b90.00', '180.00']]
+    ]);
 });

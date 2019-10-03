@@ -23,6 +23,8 @@ var axisIDs = require('./cartesian/axis_ids');
 var animationAttrs = require('./animation_attributes');
 var frameAttrs = require('./frame_attributes');
 
+var getModuleCalcData = require('../plots/get_data').getModuleCalcData;
+
 var relinkPrivateKeys = Lib.relinkPrivateKeys;
 var _ = Lib._;
 
@@ -75,12 +77,7 @@ plots.resize = function(gd) {
     gd = Lib.getGraphDiv(gd);
 
     return new Promise(function(resolve, reject) {
-        function isHidden(gd) {
-            var display = window.getComputedStyle(gd).display;
-            return !display || display === 'none';
-        }
-
-        if(!gd || isHidden(gd)) {
+        if(!gd || Lib.isHidden(gd)) {
             reject(new Error('Resize must be passed a displayed plot div element.'));
         }
 
@@ -88,7 +85,7 @@ plots.resize = function(gd) {
 
         gd._redrawTimer = setTimeout(function() {
             // return if there is nothing to resize or is hidden
-            if(!gd.layout || (gd.layout.width && gd.layout.height) || isHidden(gd)) {
+            if(!gd.layout || (gd.layout.width && gd.layout.height) || Lib.isHidden(gd)) {
                 resolve(gd);
                 return;
             }
@@ -925,6 +922,26 @@ plots.linkSubplots = function(newFullData, newFullLayout, oldFullData, oldFullLa
         ax._counterAxes.sort(axisIDs.idSort);
         ax._subplotsWith.sort(Lib.subplotSort);
         ax._mainSubplot = findMainSubplot(ax, newFullLayout);
+
+        // find "full" domain span of counter axes,
+        // this loop can be costly, so only compute it when required
+        if(ax._counterAxes.length && (
+            (ax.spikemode && ax.spikemode.indexOf('across') !== -1) ||
+            (ax.automargin && ax.mirror) ||
+            Registry.getComponentMethod('rangeslider', 'isVisible')(ax)
+        )) {
+            var min = 1;
+            var max = 0;
+            for(j = 0; j < ax._counterAxes.length; j++) {
+                var ax2 = axisIDs.getFromId(mockGd, ax._counterAxes[j]);
+                min = Math.min(min, ax2.domain[0]);
+                max = Math.max(max, ax2.domain[1]);
+            }
+            if(min < max) {
+                ax._counterDomainMin = min;
+                ax._counterDomainMax = max;
+            }
+        }
     }
 };
 
@@ -1650,7 +1667,6 @@ plots.purge = function(gd) {
         fullLayout._glcontainer.remove();
         fullLayout._glcanvas = null;
     }
-    if(fullLayout._geocontainer !== undefined) fullLayout._geocontainer.remove();
 
     // remove modebar
     if(fullLayout._modeBar) fullLayout._modeBar.destroy();
@@ -1825,8 +1841,14 @@ plots.autoMargin = function(gd, id, o) {
 
             // if the item is too big, just give it enough automargin to
             // make sure you can still grab it and bring it back
-            if(o.l + o.r > fullLayout.width * 0.5) o.l = o.r = 0;
-            if(o.b + o.t > fullLayout.height * 0.5) o.b = o.t = 0;
+            if(o.l + o.r > fullLayout.width * 0.5) {
+                Lib.log('Margin push', id, 'is too big in x, dropping');
+                o.l = o.r = 0;
+            }
+            if(o.b + o.t > fullLayout.height * 0.5) {
+                Lib.log('Margin push', id, 'is too big in y, dropping');
+                o.b = o.t = 0;
+            }
 
             var xl = o.xl !== undefined ? o.xl : o.x;
             var xr = o.xr !== undefined ? o.xr : o.x;
@@ -1843,7 +1865,7 @@ plots.autoMargin = function(gd, id, o) {
         }
 
         if(!fullLayout._replotting) {
-            plots.doAutoMargin(gd);
+            return plots.doAutoMargin(gd);
         }
     }
 };
@@ -1940,7 +1962,19 @@ plots.doAutoMargin = function(gd) {
         } else {
             fullLayout._redrawFromAutoMarginCount = 1;
         }
-        return Registry.call('plot', gd);
+
+        // Always allow at least one redraw and give each margin-push
+        // call 3 loops to converge. Of course, for most cases this way too many,
+        // but let's keep things on the safe side until we fix our
+        // auto-margin pipeline problems:
+        // https://github.com/plotly/plotly.js/issues/2704
+        var maxNumberOfRedraws = 3 * (1 + Object.keys(pushMarginIds).length);
+
+        if(fullLayout._redrawFromAutoMarginCount < maxNumberOfRedraws) {
+            return Registry.call('plot', gd);
+        } else {
+            Lib.warn('Too many auto-margin redraws.');
+        }
     }
 };
 
@@ -2412,26 +2446,25 @@ plots.transition = function(gd, data, layout, traces, frameOpts, transitionOpts)
                 var xr0 = xa.range.slice();
                 var yr0 = ya.range.slice();
 
-                var xr1;
+                var xr1 = null;
+                var yr1 = null;
+                var editX = null;
+                var editY = null;
+
                 if(Array.isArray(newLayout[xa._name + '.range'])) {
                     xr1 = newLayout[xa._name + '.range'].slice();
                 } else if(Array.isArray((newLayout[xa._name] || {}).range)) {
                     xr1 = newLayout[xa._name].range.slice();
                 }
-
-                var yr1;
                 if(Array.isArray(newLayout[ya._name + '.range'])) {
                     yr1 = newLayout[ya._name + '.range'].slice();
                 } else if(Array.isArray((newLayout[ya._name] || {}).range)) {
                     yr1 = newLayout[ya._name].range.slice();
                 }
 
-                var editX;
                 if(xr0 && xr1 && (xr0[0] !== xr1[0] || xr0[1] !== xr1[1])) {
                     editX = {xr0: xr0, xr1: xr1};
                 }
-
-                var editY;
                 if(yr0 && yr1 && (yr0[0] !== yr1[0] || yr0[1] !== yr1[1])) {
                     editY = {yr0: yr0, yr1: yr1};
                 }
@@ -2523,12 +2556,12 @@ plots.transitionFromReact = function(gd, restyleFlags, relayoutFlags, oldFullLay
             xa.setScale();
             ya.setScale();
 
-            var editX;
+            var editX = null;
+            var editY = null;
+
             if(xr0[0] !== xr1[0] || xr0[1] !== xr1[1]) {
                 editX = {xr0: xr0, xr1: xr1};
             }
-
-            var editY;
             if(yr0[0] !== yr1[0] || yr0[1] !== yr1[1]) {
                 editY = {yr0: yr0, yr1: yr1};
             }
@@ -2742,7 +2775,7 @@ plots.doCalcdata = function(gd, traces) {
     // XXX: Is this correct? Needs a closer look so that *some* traces can be recomputed without
     // *all* needing doCalcdata:
     var calcdata = new Array(fullData.length);
-    var oldCalcdata = (gd.calcdata || []).slice(0);
+    var oldCalcdata = (gd.calcdata || []).slice();
     gd.calcdata = calcdata;
 
     // extra helper variables
@@ -2758,9 +2791,10 @@ plots.doCalcdata = function(gd, traces) {
     gd._hmpixcount = 0;
     gd._hmlumcount = 0;
 
-    // for sharing colors across pies / sunbursts / funnelarea (and for legend)
+    // for sharing colors across pies / sunbursts / treemap / funnelarea (and for legend)
     fullLayout._piecolormap = {};
     fullLayout._sunburstcolormap = {};
+    fullLayout._treemapcolormap = {};
     fullLayout._funnelareacolormap = {};
 
     // If traces were specified and this trace was not included,
@@ -2887,6 +2921,9 @@ plots.doCalcdata = function(gd, traces) {
     // Sort axis categories per value if specified
     var sorted = sortAxisCategoriesByValue(axList, gd);
     if(sorted.length) {
+        // how many box/violins plots do we have (in case they're grouped)
+        fullLayout._numBoxes = 0;
+        fullLayout._numViolins = 0;
         // If a sort operation was performed, run calc() again
         for(i = 0; i < sorted.length; i++) calci(sorted[i], true);
         for(i = 0; i < sorted.length; i++) calci(sorted[i], false);
@@ -2961,7 +2998,10 @@ function sortAxisCategoriesByValue(axList, gd) {
                 if(fullTrace.visible !== true) continue;
 
                 var type = fullTrace.type;
-                if(Registry.traceIs(fullTrace, 'histogram')) delete fullTrace._autoBinFinished;
+                if(Registry.traceIs(fullTrace, 'histogram')) {
+                    delete fullTrace._xautoBinFinished;
+                    delete fullTrace._yautoBinFinished;
+                }
 
                 var cd = gd.calcdata[traceIndex];
                 for(k = 0; k < cd.length; k++) {
@@ -3183,4 +3223,19 @@ plots.generalUpdatePerTraceModule = function(gd, subplot, subplotCalcData, subpl
 
     // update moduleName -> calcData hash
     subplot.traceHash = traceHash;
+};
+
+plots.plotBasePlot = function(desiredType, gd, traces, transitionOpts, makeOnCompleteCallback) {
+    var _module = Registry.getModule(desiredType);
+    var cdmodule = getModuleCalcData(gd.calcdata, _module)[0];
+    _module.plot(gd, cdmodule, transitionOpts, makeOnCompleteCallback);
+};
+
+plots.cleanBasePlot = function(desiredType, newFullData, newFullLayout, oldFullData, oldFullLayout) {
+    var had = (oldFullLayout._has && oldFullLayout._has(desiredType));
+    var has = (newFullLayout._has && newFullLayout._has(desiredType));
+
+    if(had && !has) {
+        oldFullLayout['_' + desiredType + 'layer'].selectAll('g.trace').remove();
+    }
 };
