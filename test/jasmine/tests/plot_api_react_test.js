@@ -1450,6 +1450,39 @@ describe('Plotly.react and uirevision attributes', function() {
         _run(fig, editView, checkOriginalView, checkEditedView).then(done);
     });
 
+    it('preserves geo viewport changes using geo.uirevision (fitbounds case)', function(done) {
+        function fig(mainRev, geoRev) {
+            return {
+                data: [{
+                    type: 'scattergeo', lon: [0, -75], lat: [0, 45]
+                }],
+                layout: {
+                    uirevision: mainRev,
+                    geo: {uirevision: geoRev, fitbounds: 'locations'}
+                }
+            };
+        }
+
+        function attrs(original) {
+            return {
+                'geo.fitbounds': original ? ['locations', 'locations'] : false,
+                'geo.projection.scale': original ? [undefined, undefined] : 3,
+                'geo.projection.rotation.lon': original ? [undefined, undefined] : -45,
+                'geo.center.lat': original ? [undefined, undefined] : 22,
+                'geo.center.lon': original ? [undefined, undefined] : -45
+            };
+        }
+
+        function editView() {
+            return Registry.call('_guiRelayout', gd, attrs());
+        }
+
+        var checkOriginalView = checkState([], attrs(true));
+        var checkEditedView = checkState([], attrs());
+
+        _run(fig, editView, checkOriginalView, checkEditedView).then(done);
+    });
+
     it('@gl preserves 3d camera changes using scene.uirevision', function(done) {
         function fig(mainRev, sceneRev) {
             return {
@@ -1968,11 +2001,14 @@ describe('Test Plotly.react + interactions under uirevision:', function() {
         function _mouseup() {
             var sceneLayout = gd._fullLayout.scene;
             var cameraOld = sceneLayout.camera;
-            sceneLayout._scene.setCamera({
-                projection: {type: 'perspective'},
-                eye: {x: 2, y: 2, z: 2},
-                center: cameraOld.center,
-                up: cameraOld.up
+            sceneLayout._scene.setViewport({
+                camera: {
+                    projection: {type: 'perspective'},
+                    eye: {x: 2, y: 2, z: 2},
+                    center: cameraOld.center,
+                    up: cameraOld.up
+                },
+                aspectratio: gd._fullLayout.scene.aspectratio
             });
 
             var target = gd.querySelector('.svg-container .gl-container #scene canvas');

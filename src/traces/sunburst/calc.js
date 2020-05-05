@@ -1,5 +1,5 @@
 /**
-* Copyright 2012-2019, Plotly, Inc.
+* Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
 *
 * This source code is licensed under the MIT license found in the
@@ -15,10 +15,9 @@ var Lib = require('../../lib');
 var makeColorScaleFn = require('../../components/colorscale').makeColorScaleFuncFromTrace;
 var makePullColorFn = require('../pie/calc').makePullColorFn;
 var generateExtendedColors = require('../pie/calc').generateExtendedColors;
+var colorscaleCalc = require('../../components/colorscale').calc;
 
-var Colorscale = require('../../components/colorscale');
-var hasColorscale = Colorscale.hasColorscale;
-var colorscaleCalc = Colorscale.calc;
+var ALMOST_EQUAL = require('../../constants/numerical').ALMOST_EQUAL;
 
 var sunburstExtendedColorWays = {};
 var treemapExtendedColorWays = {};
@@ -168,7 +167,7 @@ exports.calc = function(gd, trace) {
                             v = partialSum;
                         }
 
-                        if(v < partialSum) {
+                        if(v < partialSum * ALMOST_EQUAL) {
                             failed = true;
                             return Lib.warn([
                                 'Total value for node', d.data.data.id,
@@ -198,9 +197,10 @@ exports.calc = function(gd, trace) {
     var pullColor;
     var scaleColor;
     var colors = trace.marker.colors || [];
-    trace._hasColorscale = hasColorscale(trace, 'marker');
+    var hasColors = !!colors.length;
+
     if(trace._hasColorscale) {
-        if(!colors.length) {
+        if(!hasColors) {
             colors = hasValues ? trace.values : trace._values;
         }
 

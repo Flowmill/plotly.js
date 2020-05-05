@@ -1,5 +1,5 @@
 /**
-* Copyright 2012-2019, Plotly, Inc.
+* Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
 *
 * This source code is licensed under the MIT license found in the
@@ -65,15 +65,23 @@ module.exports = function drawDescendants(gd, cd, entry, slices, opts) {
 
     var sliceData = allData.descendants();
 
-    slices = slices.data(sliceData, function(pt) {
-        // hide slices that won't show up on graph
-        if(pt.depth >= trace._maxDepth) {
+    var minVisibleDepth = Infinity;
+    var maxVisibleDepth = -Infinity;
+    sliceData.forEach(function(pt) {
+        var depth = pt.depth;
+        if(depth >= trace._maxDepth) {
+            // hide slices that won't show up on graph
             pt.x0 = pt.x1 = (pt.x0 + pt.x1) / 2;
             pt.y0 = pt.y1 = (pt.y0 + pt.y1) / 2;
+        } else {
+            minVisibleDepth = Math.min(minVisibleDepth, depth);
+            maxVisibleDepth = Math.max(maxVisibleDepth, depth);
         }
-
-        return helpers.getPtId(pt);
     });
+
+    slices = slices.data(sliceData, helpers.getPtId);
+
+    trace._maxVisibleLayers = isFinite(maxVisibleDepth) ? maxVisibleDepth - minVisibleDepth + 1 : 0;
 
     slices.enter().append('g')
         .classed('slice', true);
@@ -174,24 +182,20 @@ module.exports = function drawDescendants(gd, cd, entry, slices, opts) {
             s.attr('data-notex', 1);
         });
 
+        var font = Lib.ensureUniformFontSize(gd, helpers.determineTextFont(trace, pt, fullLayout.font));
+
         sliceText.text(pt._text || ' ') // use one space character instead of a blank string to avoid jumps during transition
             .classed('slicetext', true)
             .attr('text-anchor', hasRight ? 'end' : (hasLeft || isHeader) ? 'start' : 'middle')
-            .call(Drawing.font, helpers.determineTextFont(trace, pt, fullLayout.font))
+            .call(Drawing.font, font)
             .call(svgTextUtils.convertToTspans, gd);
 
         pt.textBB = Drawing.bBox(sliceText.node());
         pt.transform = toMoveInsideSlice(pt, {
+            fontSize: font.size,
             isHeader: isHeader
         });
-
-        if(helpers.isOutsideText(trace, pt)) {
-            // consider in/out diff font sizes
-            pt.transform.targetY -= (
-                helpers.getOutsideTextFontKey('size', trace, pt, fullLayout.font) -
-                helpers.getInsideTextFontKey('size', trace, pt, fullLayout.font)
-            );
-        }
+        pt.transform.fontSize = font.size;
 
         if(hasTransition) {
             sliceText.transition().attrTween('transform', function(pt2) {

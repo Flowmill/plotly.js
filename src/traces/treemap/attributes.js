@@ -1,5 +1,5 @@
 /**
-* Copyright 2012-2019, Plotly, Inc.
+* Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
 *
 * This source code is licensed under the MIT license found in the
@@ -139,29 +139,20 @@ module.exports = {
 
         colors: sunburstAttrs.marker.colors,
 
-        opacitybase: {
-            valType: 'number',
+        depthfade: {
+            valType: 'enumerated',
+            values: [true, false, 'reversed'],
             editType: 'style',
             role: 'style',
-            min: 0,
-            max: 1,
-            dflt: 0.5,
             description: [
-                'Sets the base opacity of the headers based on the depth from the entry.',
-                'This options is not available when having a `colorscale`.'
-            ].join(' ')
-        },
-
-        opacitystep: {
-            valType: 'number',
-            editType: 'style',
-            role: 'style',
-            min: 0,
-            max: 1,
-            dflt: 0.5,
-            description: [
-                'Sets the increment for opacity of the headers based on the depth from the entry.',
-                'This options is not available when having a `colorscale`.'
+                'Determines if the sector colors are faded towards',
+                'the background from the leaves up to the headers.',
+                'This option is unavailable when a `colorscale` is present,',
+                'defaults to false when `marker.colors` is set,',
+                'but otherwise defaults to true.',
+                'When set to *reversed*, the fading direction is inverted,',
+                'that is the top elements within hierarchy are drawn with fully saturated colors',
+                'while the leaves are faded towards the background color.'
             ].join(' ')
         },
 
@@ -231,18 +222,6 @@ module.exports = {
             ].join(' ')
         },
 
-        opacity: {
-            valType: 'number',
-            editType: 'style',
-            role: 'style',
-            min: 0,
-            dflt: 0.5,
-            description: [
-                'Sets the opacity of the pathbar',
-                'This options is not available when having a `colorscale`.'
-            ].join(' ')
-        },
-
         textfont: extendFlat({}, pieAttrs.textfont, {
             description: 'Sets the font used inside `pathbar`.'
         }),
@@ -265,7 +244,15 @@ module.exports = {
 
     textfont: pieAttrs.textfont,
     insidetextfont: pieAttrs.insidetextfont,
-    outsidetextfont: pieAttrs.outsidetextfont,
+    outsidetextfont: extendFlat({}, pieAttrs.outsidetextfont, {
+        description: [
+            'Sets the font used for `textinfo` lying outside the sector.',
+            'This option refers to the root of the hierarchy',
+            'presented on top left corner of a treemap graph.',
+            'Please note that if a hierarchy has multiple root nodes,',
+            'this option won\'t have any effect and `insidetextfont` would be used.'
+        ].join(' ')
+    }),
 
     textposition: {
         valType: 'enumerated',
