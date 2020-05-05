@@ -170,5 +170,10 @@
     "through2": "^3.0.1",
     "true-case-path": "^2.2.1",
     "watchify": "^3.11.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
   }
 }
