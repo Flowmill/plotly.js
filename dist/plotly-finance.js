@@ -54705,39 +54705,42 @@ var MICROSECONDS_PER_SEC = 1e6;
  *
  * This will gracefully handle different scales of time, including:
  * microseconds, milliseconds, seconds, minutes, and hours.
+ *
+ * In general, we use formatMetric() when formatting latencies in tables or
+ * tooltips. However, this function is exported because we sometimes need more
+ * control over the precision of formatted times.
  */
 function formatDuration(durationSec) {
-  var precision = '0.2s';
-  var format = d3.format(precision);
+  const format = d3.format('0.2s');
 
-  if (durationSec < SEC_PER_MILLISECONDS) {
-    // duration in [0, 1millisecond) gets formatted as microseconds
+  if (durationSec === 0.0) {
+    return '0';
+  } else if (durationSec < SEC_PER_MILLISECONDS) {
+    // duration in (0, 1millisecond) gets formatted as microseconds
     var durationNs = durationSec * MICROSECONDS_PER_SEC;
     // \u00B5s is unicode for mu
-    return format(durationNs) + '\u00B5s';
+    return `${format(durationNs)}\u00B5s`;
   } else if (durationSec >= SEC_PER_MILLISECONDS && durationSec < 1.0) {
     // duration in [1ms, 1sec) gets formattted as ms.
     var durationMs = durationSec * MILLISECONDS_PER_SEC;
-    return format(durationMs) + 'ms';
+    return `${format(durationMs)}ms`;
   } else if (durationSec >= 1.0 && durationSec < SECONDS_PER_MIN) {
     // duration in [1sec, 1min) gets formatted as sec.
-    return format(durationSec) + 's';
+    return `${format(durationSec)}s`;
   } else if (durationSec >= SECONDS_PER_MIN && durationSec < SECONDS_PER_HOUR) {
     // duration in [60sec, 1hr) gets formatted as hh:mm.
-    var minutes = Math.floor(durationSec / SECONDS_PER_MIN);
-    var seconds = Math.round(durationSec - minutes * SECONDS_PER_MIN);
+    var durationMinutes = Math.floor(durationSec / SECONDS_PER_MIN);
+    var durationSeconds = Math.round(durationSec - minutes * SECONDS_PER_MIN);
     // %-M will omit the leading 0 from the number of minutes
-    return d3.time.format('%-M:%S')(new Date(0, 0, 0, 0, minutes, seconds));
+    return d3.time.format('%-M:%S')(
+      new Date(0, 0, 0, 0, durationMinutes, durationSeconds)
+    );
   }
 
-  // Duration > 1hr should never happen, but handle it anyway.
-  var hours = Math.floor(durationSec / SECONDS_PER_HOUR);
-  var remainingSec = Math.round(durationSec - hours * SECONDS_PER_HOUR);
-  var minutesDuration = Math.round(remainingSec / SECONDS_PER_MIN);
-  remainingSec = remainingSec - minutesDuration * SECONDS_PER_MIN;
-  var secondsDuration = Math.round(remainingSec);
-  return d3.time.format('%-H:%M:%S')(
-    new Date(0, 0, 0, hours, minutesDuration, secondsDuration)
+  // duration > 1hr should never happen, but handle it anyway.
+  var durationHours = Math.floor(durationSec / SECONDS_PER_HOUR);
+  return (
+    `${d3.format('0.1s')(durationHours)}` + (durationHours > 1 ? 'hrs' : 'hr')
   );
 }
 
