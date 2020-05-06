@@ -88573,7 +88573,9 @@ function formatDuration(durationSec) {
   } else if (durationSec >= SECONDS_PER_MIN && durationSec < SECONDS_PER_HOUR) {
     // duration in [60sec, 1hr) gets formatted as hh:mm.
     var durationMinutes = Math.floor(durationSec / SECONDS_PER_MIN);
-    var durationSeconds = Math.round(durationSec - minutes * SECONDS_PER_MIN);
+    var durationSeconds = Math.round(
+      durationSec - durationMinutes * SECONDS_PER_MIN
+    );
     // %-M will omit the leading 0 from the number of minutes
     return d3.time.format('%-M:%S')(
       new Date(0, 0, 0, 0, durationMinutes, durationSeconds)
