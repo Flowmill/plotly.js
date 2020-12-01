@@ -104,8 +104,7 @@ var FLAKY_LIST = [
     'treemap_coffee',
     'treemap_textposition',
     'treemap_with-without_values',
-    'trace_metatext',
-    'gl3d_directions-streamtube1'
+    'gl3d_directions-streamtube1',
 ];
 
 console.log('');

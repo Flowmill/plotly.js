@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+/**
+* plotly.js (geo) v1.57.1
+* Copyright 2012-2020, Plotly, Inc.
+* All rights reserved.
+* Licensed under the MIT license
+*/
+>>>>>>> upstream/master
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Plotly = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 'use strict';
 
@@ -66,7 +75,11 @@ for(var selector in rules) {
     Lib.addStyleRule(fullSelector, rules[selector]);
 }
 
+<<<<<<< HEAD
 },{"../src/lib":178}],2:[function(_dereq_,module,exports){
+=======
+},{"../src/lib":181}],2:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79,7 +92,11 @@ for(var selector in rules) {
 
 module.exports = _dereq_('../src/traces/choropleth');
 
+<<<<<<< HEAD
 },{"../src/traces/choropleth":287}],3:[function(_dereq_,module,exports){
+=======
+},{"../src/traces/choropleth":291}],3:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -92,7 +109,11 @@ module.exports = _dereq_('../src/traces/choropleth');
 
 module.exports = _dereq_('../src/core');
 
+<<<<<<< HEAD
 },{"../src/core":158}],4:[function(_dereq_,module,exports){
+=======
+},{"../src/core":160}],4:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -125,7 +146,11 @@ module.exports = Plotly;
 
 module.exports = _dereq_('../src/traces/scattergeo');
 
+<<<<<<< HEAD
 },{"../src/traces/scattergeo":328}],6:[function(_dereq_,module,exports){
+=======
+},{"../src/traces/scattergeo":333}],6:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var meta_1 = _dereq_("@turf/meta");
@@ -2969,6 +2994,1090 @@ module.exports = {
 }
 
 },{}],13:[function(_dereq_,module,exports){
+// https://d3js.org/d3-time-format/ v2.2.3 Copyright 2019 Mike Bostock
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-time')) :
+typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
+(global = global || self, factory(global.d3 = global.d3 || {}, global.d3));
+}(this, function (exports, d3Time) { 'use strict';
+
+function localDate(d) {
+  if (0 <= d.y && d.y < 100) {
+    var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
+    date.setFullYear(d.y);
+    return date;
+  }
+  return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
+}
+
+function utcDate(d) {
+  if (0 <= d.y && d.y < 100) {
+    var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
+    date.setUTCFullYear(d.y);
+    return date;
+  }
+  return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
+}
+
+function newDate(y, m, d) {
+  return {y: y, m: m, d: d, H: 0, M: 0, S: 0, L: 0};
+}
+
+function formatLocale(locale) {
+  var locale_dateTime = locale.dateTime,
+      locale_date = locale.date,
+      locale_time = locale.time,
+      locale_periods = locale.periods,
+      locale_weekdays = locale.days,
+      locale_shortWeekdays = locale.shortDays,
+      locale_months = locale.months,
+      locale_shortMonths = locale.shortMonths;
+
+  var periodRe = formatRe(locale_periods),
+      periodLookup = formatLookup(locale_periods),
+      weekdayRe = formatRe(locale_weekdays),
+      weekdayLookup = formatLookup(locale_weekdays),
+      shortWeekdayRe = formatRe(locale_shortWeekdays),
+      shortWeekdayLookup = formatLookup(locale_shortWeekdays),
+      monthRe = formatRe(locale_months),
+      monthLookup = formatLookup(locale_months),
+      shortMonthRe = formatRe(locale_shortMonths),
+      shortMonthLookup = formatLookup(locale_shortMonths);
+
+  var formats = {
+    "a": formatShortWeekday,
+    "A": formatWeekday,
+    "b": formatShortMonth,
+    "B": formatMonth,
+    "c": null,
+    "d": formatDayOfMonth,
+    "e": formatDayOfMonth,
+    "f": formatMicroseconds,
+    "H": formatHour24,
+    "I": formatHour12,
+    "j": formatDayOfYear,
+    "L": formatMilliseconds,
+    "m": formatMonthNumber,
+    "M": formatMinutes,
+    "p": formatPeriod,
+    "q": formatQuarter,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
+    "S": formatSeconds,
+    "u": formatWeekdayNumberMonday,
+    "U": formatWeekNumberSunday,
+    "V": formatWeekNumberISO,
+    "w": formatWeekdayNumberSunday,
+    "W": formatWeekNumberMonday,
+    "x": null,
+    "X": null,
+    "y": formatYear,
+    "Y": formatFullYear,
+    "Z": formatZone,
+    "%": formatLiteralPercent
+  };
+
+  var utcFormats = {
+    "a": formatUTCShortWeekday,
+    "A": formatUTCWeekday,
+    "b": formatUTCShortMonth,
+    "B": formatUTCMonth,
+    "c": null,
+    "d": formatUTCDayOfMonth,
+    "e": formatUTCDayOfMonth,
+    "f": formatUTCMicroseconds,
+    "H": formatUTCHour24,
+    "I": formatUTCHour12,
+    "j": formatUTCDayOfYear,
+    "L": formatUTCMilliseconds,
+    "m": formatUTCMonthNumber,
+    "M": formatUTCMinutes,
+    "p": formatUTCPeriod,
+    "q": formatUTCQuarter,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
+    "S": formatUTCSeconds,
+    "u": formatUTCWeekdayNumberMonday,
+    "U": formatUTCWeekNumberSunday,
+    "V": formatUTCWeekNumberISO,
+    "w": formatUTCWeekdayNumberSunday,
+    "W": formatUTCWeekNumberMonday,
+    "x": null,
+    "X": null,
+    "y": formatUTCYear,
+    "Y": formatUTCFullYear,
+    "Z": formatUTCZone,
+    "%": formatLiteralPercent
+  };
+
+  var parses = {
+    "a": parseShortWeekday,
+    "A": parseWeekday,
+    "b": parseShortMonth,
+    "B": parseMonth,
+    "c": parseLocaleDateTime,
+    "d": parseDayOfMonth,
+    "e": parseDayOfMonth,
+    "f": parseMicroseconds,
+    "H": parseHour24,
+    "I": parseHour24,
+    "j": parseDayOfYear,
+    "L": parseMilliseconds,
+    "m": parseMonthNumber,
+    "M": parseMinutes,
+    "p": parsePeriod,
+    "q": parseQuarter,
+    "Q": parseUnixTimestamp,
+    "s": parseUnixTimestampSeconds,
+    "S": parseSeconds,
+    "u": parseWeekdayNumberMonday,
+    "U": parseWeekNumberSunday,
+    "V": parseWeekNumberISO,
+    "w": parseWeekdayNumberSunday,
+    "W": parseWeekNumberMonday,
+    "x": parseLocaleDate,
+    "X": parseLocaleTime,
+    "y": parseYear,
+    "Y": parseFullYear,
+    "Z": parseZone,
+    "%": parseLiteralPercent
+  };
+
+  // These recursive directive definitions must be deferred.
+  formats.x = newFormat(locale_date, formats);
+  formats.X = newFormat(locale_time, formats);
+  formats.c = newFormat(locale_dateTime, formats);
+  utcFormats.x = newFormat(locale_date, utcFormats);
+  utcFormats.X = newFormat(locale_time, utcFormats);
+  utcFormats.c = newFormat(locale_dateTime, utcFormats);
+
+  function newFormat(specifier, formats) {
+    return function(date) {
+      var string = [],
+          i = -1,
+          j = 0,
+          n = specifier.length,
+          c,
+          pad,
+          format;
+
+      if (!(date instanceof Date)) date = new Date(+date);
+
+      while (++i < n) {
+        if (specifier.charCodeAt(i) === 37) {
+          string.push(specifier.slice(j, i));
+          if ((pad = pads[c = specifier.charAt(++i)]) != null) c = specifier.charAt(++i);
+          else pad = c === "e" ? " " : "0";
+          if (format = formats[c]) c = format(date, pad);
+          string.push(c);
+          j = i + 1;
+        }
+      }
+
+      string.push(specifier.slice(j, i));
+      return string.join("");
+    };
+  }
+
+  function newParse(specifier, Z) {
+    return function(string) {
+      var d = newDate(1900, undefined, 1),
+          i = parseSpecifier(d, specifier, string += "", 0),
+          week, day;
+      if (i != string.length) return null;
+
+      // If a UNIX timestamp is specified, return it.
+      if ("Q" in d) return new Date(d.Q);
+      if ("s" in d) return new Date(d.s * 1000 + ("L" in d ? d.L : 0));
+
+      // If this is utcParse, never use the local timezone.
+      if (Z && !("Z" in d)) d.Z = 0;
+
+      // The am-pm flag is 0 for AM, and 1 for PM.
+      if ("p" in d) d.H = d.H % 12 + d.p * 12;
+
+      // If the month was not specified, inherit from the quarter.
+      if (d.m === undefined) d.m = "q" in d ? d.q : 0;
+
+      // Convert day-of-week and week-of-year to day-of-year.
+      if ("V" in d) {
+        if (d.V < 1 || d.V > 53) return null;
+        if (!("w" in d)) d.w = 1;
+        if ("Z" in d) {
+          week = utcDate(newDate(d.y, 0, 1)), day = week.getUTCDay();
+          week = day > 4 || day === 0 ? d3Time.utcMonday.ceil(week) : d3Time.utcMonday(week);
+          week = d3Time.utcDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getUTCFullYear();
+          d.m = week.getUTCMonth();
+          d.d = week.getUTCDate() + (d.w + 6) % 7;
+        } else {
+          week = localDate(newDate(d.y, 0, 1)), day = week.getDay();
+          week = day > 4 || day === 0 ? d3Time.timeMonday.ceil(week) : d3Time.timeMonday(week);
+          week = d3Time.timeDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getFullYear();
+          d.m = week.getMonth();
+          d.d = week.getDate() + (d.w + 6) % 7;
+        }
+      } else if ("W" in d || "U" in d) {
+        if (!("w" in d)) d.w = "u" in d ? d.u % 7 : "W" in d ? 1 : 0;
+        day = "Z" in d ? utcDate(newDate(d.y, 0, 1)).getUTCDay() : localDate(newDate(d.y, 0, 1)).getDay();
+        d.m = 0;
+        d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
+      }
+
+      // If a time zone is specified, all fields are interpreted as UTC and then
+      // offset according to the specified time zone.
+      if ("Z" in d) {
+        d.H += d.Z / 100 | 0;
+        d.M += d.Z % 100;
+        return utcDate(d);
+      }
+
+      // Otherwise, all fields are in local time.
+      return localDate(d);
+    };
+  }
+
+  function parseSpecifier(d, specifier, string, j) {
+    var i = 0,
+        n = specifier.length,
+        m = string.length,
+        c,
+        parse;
+
+    while (i < n) {
+      if (j >= m) return -1;
+      c = specifier.charCodeAt(i++);
+      if (c === 37) {
+        c = specifier.charAt(i++);
+        parse = parses[c in pads ? specifier.charAt(i++) : c];
+        if (!parse || ((j = parse(d, string, j)) < 0)) return -1;
+      } else if (c != string.charCodeAt(j++)) {
+        return -1;
+      }
+    }
+
+    return j;
+  }
+
+  function parsePeriod(d, string, i) {
+    var n = periodRe.exec(string.slice(i));
+    return n ? (d.p = periodLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseShortWeekday(d, string, i) {
+    var n = shortWeekdayRe.exec(string.slice(i));
+    return n ? (d.w = shortWeekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseWeekday(d, string, i) {
+    var n = weekdayRe.exec(string.slice(i));
+    return n ? (d.w = weekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseShortMonth(d, string, i) {
+    var n = shortMonthRe.exec(string.slice(i));
+    return n ? (d.m = shortMonthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseMonth(d, string, i) {
+    var n = monthRe.exec(string.slice(i));
+    return n ? (d.m = monthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseLocaleDateTime(d, string, i) {
+    return parseSpecifier(d, locale_dateTime, string, i);
+  }
+
+  function parseLocaleDate(d, string, i) {
+    return parseSpecifier(d, locale_date, string, i);
+  }
+
+  function parseLocaleTime(d, string, i) {
+    return parseSpecifier(d, locale_time, string, i);
+  }
+
+  function formatShortWeekday(d) {
+    return locale_shortWeekdays[d.getDay()];
+  }
+
+  function formatWeekday(d) {
+    return locale_weekdays[d.getDay()];
+  }
+
+  function formatShortMonth(d) {
+    return locale_shortMonths[d.getMonth()];
+  }
+
+  function formatMonth(d) {
+    return locale_months[d.getMonth()];
+  }
+
+  function formatPeriod(d) {
+    return locale_periods[+(d.getHours() >= 12)];
+  }
+
+  function formatQuarter(d) {
+    return 1 + ~~(d.getMonth() / 3);
+  }
+
+  function formatUTCShortWeekday(d) {
+    return locale_shortWeekdays[d.getUTCDay()];
+  }
+
+  function formatUTCWeekday(d) {
+    return locale_weekdays[d.getUTCDay()];
+  }
+
+  function formatUTCShortMonth(d) {
+    return locale_shortMonths[d.getUTCMonth()];
+  }
+
+  function formatUTCMonth(d) {
+    return locale_months[d.getUTCMonth()];
+  }
+
+  function formatUTCPeriod(d) {
+    return locale_periods[+(d.getUTCHours() >= 12)];
+  }
+
+  function formatUTCQuarter(d) {
+    return 1 + ~~(d.getUTCMonth() / 3);
+  }
+
+  return {
+    format: function(specifier) {
+      var f = newFormat(specifier += "", formats);
+      f.toString = function() { return specifier; };
+      return f;
+    },
+    parse: function(specifier) {
+      var p = newParse(specifier += "", false);
+      p.toString = function() { return specifier; };
+      return p;
+    },
+    utcFormat: function(specifier) {
+      var f = newFormat(specifier += "", utcFormats);
+      f.toString = function() { return specifier; };
+      return f;
+    },
+    utcParse: function(specifier) {
+      var p = newParse(specifier += "", true);
+      p.toString = function() { return specifier; };
+      return p;
+    }
+  };
+}
+
+var pads = {"-": "", "_": " ", "0": "0"},
+    numberRe = /^\s*\d+/, // note: ignores next directive
+    percentRe = /^%/,
+    requoteRe = /[\\^$*+?|[\]().{}]/g;
+
+function pad(value, fill, width) {
+  var sign = value < 0 ? "-" : "",
+      string = (sign ? -value : value) + "",
+      length = string.length;
+  return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
+}
+
+function requote(s) {
+  return s.replace(requoteRe, "\\$&");
+}
+
+function formatRe(names) {
+  return new RegExp("^(?:" + names.map(requote).join("|") + ")", "i");
+}
+
+function formatLookup(names) {
+  var map = {}, i = -1, n = names.length;
+  while (++i < n) map[names[i].toLowerCase()] = i;
+  return map;
+}
+
+function parseWeekdayNumberSunday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.w = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekdayNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.u = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekNumberSunday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.U = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekNumberISO(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.V = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.W = +n[0], i + n[0].length) : -1;
+}
+
+function parseFullYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 4));
+  return n ? (d.y = +n[0], i + n[0].length) : -1;
+}
+
+function parseYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
+}
+
+function parseZone(d, string, i) {
+  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
+  return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
+}
+
+function parseQuarter(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.q = n[0] * 3 - 3, i + n[0].length) : -1;
+}
+
+function parseMonthNumber(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
+}
+
+function parseDayOfMonth(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.d = +n[0], i + n[0].length) : -1;
+}
+
+function parseDayOfYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 3));
+  return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
+}
+
+function parseHour24(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.H = +n[0], i + n[0].length) : -1;
+}
+
+function parseMinutes(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.M = +n[0], i + n[0].length) : -1;
+}
+
+function parseSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.S = +n[0], i + n[0].length) : -1;
+}
+
+function parseMilliseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 3));
+  return n ? (d.L = +n[0], i + n[0].length) : -1;
+}
+
+function parseMicroseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 6));
+  return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
+}
+
+function parseLiteralPercent(d, string, i) {
+  var n = percentRe.exec(string.slice(i, i + 1));
+  return n ? i + n[0].length : -1;
+}
+
+function parseUnixTimestamp(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.Q = +n[0], i + n[0].length) : -1;
+}
+
+function parseUnixTimestampSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.s = +n[0], i + n[0].length) : -1;
+}
+
+function formatDayOfMonth(d, p) {
+  return pad(d.getDate(), p, 2);
+}
+
+function formatHour24(d, p) {
+  return pad(d.getHours(), p, 2);
+}
+
+function formatHour12(d, p) {
+  return pad(d.getHours() % 12 || 12, p, 2);
+}
+
+function formatDayOfYear(d, p) {
+  return pad(1 + d3Time.timeDay.count(d3Time.timeYear(d), d), p, 3);
+}
+
+function formatMilliseconds(d, p) {
+  return pad(d.getMilliseconds(), p, 3);
+}
+
+function formatMicroseconds(d, p) {
+  return formatMilliseconds(d, p) + "000";
+}
+
+function formatMonthNumber(d, p) {
+  return pad(d.getMonth() + 1, p, 2);
+}
+
+function formatMinutes(d, p) {
+  return pad(d.getMinutes(), p, 2);
+}
+
+function formatSeconds(d, p) {
+  return pad(d.getSeconds(), p, 2);
+}
+
+function formatWeekdayNumberMonday(d) {
+  var day = d.getDay();
+  return day === 0 ? 7 : day;
+}
+
+function formatWeekNumberSunday(d, p) {
+  return pad(d3Time.timeSunday.count(d3Time.timeYear(d) - 1, d), p, 2);
+}
+
+function formatWeekNumberISO(d, p) {
+  var day = d.getDay();
+  d = (day >= 4 || day === 0) ? d3Time.timeThursday(d) : d3Time.timeThursday.ceil(d);
+  return pad(d3Time.timeThursday.count(d3Time.timeYear(d), d) + (d3Time.timeYear(d).getDay() === 4), p, 2);
+}
+
+function formatWeekdayNumberSunday(d) {
+  return d.getDay();
+}
+
+function formatWeekNumberMonday(d, p) {
+  return pad(d3Time.timeMonday.count(d3Time.timeYear(d) - 1, d), p, 2);
+}
+
+function formatYear(d, p) {
+  return pad(d.getFullYear() % 100, p, 2);
+}
+
+function formatFullYear(d, p) {
+  return pad(d.getFullYear() % 10000, p, 4);
+}
+
+function formatZone(d) {
+  var z = d.getTimezoneOffset();
+  return (z > 0 ? "-" : (z *= -1, "+"))
+      + pad(z / 60 | 0, "0", 2)
+      + pad(z % 60, "0", 2);
+}
+
+function formatUTCDayOfMonth(d, p) {
+  return pad(d.getUTCDate(), p, 2);
+}
+
+function formatUTCHour24(d, p) {
+  return pad(d.getUTCHours(), p, 2);
+}
+
+function formatUTCHour12(d, p) {
+  return pad(d.getUTCHours() % 12 || 12, p, 2);
+}
+
+function formatUTCDayOfYear(d, p) {
+  return pad(1 + d3Time.utcDay.count(d3Time.utcYear(d), d), p, 3);
+}
+
+function formatUTCMilliseconds(d, p) {
+  return pad(d.getUTCMilliseconds(), p, 3);
+}
+
+function formatUTCMicroseconds(d, p) {
+  return formatUTCMilliseconds(d, p) + "000";
+}
+
+function formatUTCMonthNumber(d, p) {
+  return pad(d.getUTCMonth() + 1, p, 2);
+}
+
+function formatUTCMinutes(d, p) {
+  return pad(d.getUTCMinutes(), p, 2);
+}
+
+function formatUTCSeconds(d, p) {
+  return pad(d.getUTCSeconds(), p, 2);
+}
+
+function formatUTCWeekdayNumberMonday(d) {
+  var dow = d.getUTCDay();
+  return dow === 0 ? 7 : dow;
+}
+
+function formatUTCWeekNumberSunday(d, p) {
+  return pad(d3Time.utcSunday.count(d3Time.utcYear(d) - 1, d), p, 2);
+}
+
+function formatUTCWeekNumberISO(d, p) {
+  var day = d.getUTCDay();
+  d = (day >= 4 || day === 0) ? d3Time.utcThursday(d) : d3Time.utcThursday.ceil(d);
+  return pad(d3Time.utcThursday.count(d3Time.utcYear(d), d) + (d3Time.utcYear(d).getUTCDay() === 4), p, 2);
+}
+
+function formatUTCWeekdayNumberSunday(d) {
+  return d.getUTCDay();
+}
+
+function formatUTCWeekNumberMonday(d, p) {
+  return pad(d3Time.utcMonday.count(d3Time.utcYear(d) - 1, d), p, 2);
+}
+
+function formatUTCYear(d, p) {
+  return pad(d.getUTCFullYear() % 100, p, 2);
+}
+
+function formatUTCFullYear(d, p) {
+  return pad(d.getUTCFullYear() % 10000, p, 4);
+}
+
+function formatUTCZone() {
+  return "+0000";
+}
+
+function formatLiteralPercent() {
+  return "%";
+}
+
+function formatUnixTimestamp(d) {
+  return +d;
+}
+
+function formatUnixTimestampSeconds(d) {
+  return Math.floor(+d / 1000);
+}
+
+var locale;
+
+defaultLocale({
+  dateTime: "%x, %X",
+  date: "%-m/%-d/%Y",
+  time: "%-I:%M:%S %p",
+  periods: ["AM", "PM"],
+  days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+});
+
+function defaultLocale(definition) {
+  locale = formatLocale(definition);
+  exports.timeFormat = locale.format;
+  exports.timeParse = locale.parse;
+  exports.utcFormat = locale.utcFormat;
+  exports.utcParse = locale.utcParse;
+  return locale;
+}
+
+var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
+
+function formatIsoNative(date) {
+  return date.toISOString();
+}
+
+var formatIso = Date.prototype.toISOString
+    ? formatIsoNative
+    : exports.utcFormat(isoSpecifier);
+
+function parseIsoNative(string) {
+  var date = new Date(string);
+  return isNaN(date) ? null : date;
+}
+
+var parseIso = +new Date("2000-01-01T00:00:00.000Z")
+    ? parseIsoNative
+    : exports.utcParse(isoSpecifier);
+
+exports.isoFormat = formatIso;
+exports.isoParse = parseIso;
+exports.timeFormatDefaultLocale = defaultLocale;
+exports.timeFormatLocale = formatLocale;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+
+},{"d3-time":14}],14:[function(_dereq_,module,exports){
+// https://d3js.org/d3-time/ v1.1.0 Copyright 2019 Mike Bostock
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+typeof define === 'function' && define.amd ? define(['exports'], factory) :
+(global = global || self, factory(global.d3 = global.d3 || {}));
+}(this, function (exports) { 'use strict';
+
+var t0 = new Date,
+    t1 = new Date;
+
+function newInterval(floori, offseti, count, field) {
+
+  function interval(date) {
+    return floori(date = arguments.length === 0 ? new Date : new Date(+date)), date;
+  }
+
+  interval.floor = function(date) {
+    return floori(date = new Date(+date)), date;
+  };
+
+  interval.ceil = function(date) {
+    return floori(date = new Date(date - 1)), offseti(date, 1), floori(date), date;
+  };
+
+  interval.round = function(date) {
+    var d0 = interval(date),
+        d1 = interval.ceil(date);
+    return date - d0 < d1 - date ? d0 : d1;
+  };
+
+  interval.offset = function(date, step) {
+    return offseti(date = new Date(+date), step == null ? 1 : Math.floor(step)), date;
+  };
+
+  interval.range = function(start, stop, step) {
+    var range = [], previous;
+    start = interval.ceil(start);
+    step = step == null ? 1 : Math.floor(step);
+    if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
+    do range.push(previous = new Date(+start)), offseti(start, step), floori(start);
+    while (previous < start && start < stop);
+    return range;
+  };
+
+  interval.filter = function(test) {
+    return newInterval(function(date) {
+      if (date >= date) while (floori(date), !test(date)) date.setTime(date - 1);
+    }, function(date, step) {
+      if (date >= date) {
+        if (step < 0) while (++step <= 0) {
+          while (offseti(date, -1), !test(date)) {} // eslint-disable-line no-empty
+        } else while (--step >= 0) {
+          while (offseti(date, +1), !test(date)) {} // eslint-disable-line no-empty
+        }
+      }
+    });
+  };
+
+  if (count) {
+    interval.count = function(start, end) {
+      t0.setTime(+start), t1.setTime(+end);
+      floori(t0), floori(t1);
+      return Math.floor(count(t0, t1));
+    };
+
+    interval.every = function(step) {
+      step = Math.floor(step);
+      return !isFinite(step) || !(step > 0) ? null
+          : !(step > 1) ? interval
+          : interval.filter(field
+              ? function(d) { return field(d) % step === 0; }
+              : function(d) { return interval.count(0, d) % step === 0; });
+    };
+  }
+
+  return interval;
+}
+
+var millisecond = newInterval(function() {
+  // noop
+}, function(date, step) {
+  date.setTime(+date + step);
+}, function(start, end) {
+  return end - start;
+});
+
+// An optimized implementation for this simple case.
+millisecond.every = function(k) {
+  k = Math.floor(k);
+  if (!isFinite(k) || !(k > 0)) return null;
+  if (!(k > 1)) return millisecond;
+  return newInterval(function(date) {
+    date.setTime(Math.floor(date / k) * k);
+  }, function(date, step) {
+    date.setTime(+date + step * k);
+  }, function(start, end) {
+    return (end - start) / k;
+  });
+};
+var milliseconds = millisecond.range;
+
+var durationSecond = 1e3;
+var durationMinute = 6e4;
+var durationHour = 36e5;
+var durationDay = 864e5;
+var durationWeek = 6048e5;
+
+var second = newInterval(function(date) {
+  date.setTime(date - date.getMilliseconds());
+}, function(date, step) {
+  date.setTime(+date + step * durationSecond);
+}, function(start, end) {
+  return (end - start) / durationSecond;
+}, function(date) {
+  return date.getUTCSeconds();
+});
+var seconds = second.range;
+
+var minute = newInterval(function(date) {
+  date.setTime(date - date.getMilliseconds() - date.getSeconds() * durationSecond);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getMinutes();
+});
+var minutes = minute.range;
+
+var hour = newInterval(function(date) {
+  date.setTime(date - date.getMilliseconds() - date.getSeconds() * durationSecond - date.getMinutes() * durationMinute);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getHours();
+});
+var hours = hour.range;
+
+var day = newInterval(function(date) {
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setDate(date.getDate() + step);
+}, function(start, end) {
+  return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationDay;
+}, function(date) {
+  return date.getDate() - 1;
+});
+var days = day.range;
+
+function weekday(i) {
+  return newInterval(function(date) {
+    date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setDate(date.getDate() + step * 7);
+  }, function(start, end) {
+    return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationWeek;
+  });
+}
+
+var sunday = weekday(0);
+var monday = weekday(1);
+var tuesday = weekday(2);
+var wednesday = weekday(3);
+var thursday = weekday(4);
+var friday = weekday(5);
+var saturday = weekday(6);
+
+var sundays = sunday.range;
+var mondays = monday.range;
+var tuesdays = tuesday.range;
+var wednesdays = wednesday.range;
+var thursdays = thursday.range;
+var fridays = friday.range;
+var saturdays = saturday.range;
+
+var month = newInterval(function(date) {
+  date.setDate(1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setMonth(date.getMonth() + step);
+}, function(start, end) {
+  return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
+}, function(date) {
+  return date.getMonth();
+});
+var months = month.range;
+
+var year = newInterval(function(date) {
+  date.setMonth(0, 1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setFullYear(date.getFullYear() + step);
+}, function(start, end) {
+  return end.getFullYear() - start.getFullYear();
+}, function(date) {
+  return date.getFullYear();
+});
+
+// An optimized implementation for this simple case.
+year.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setFullYear(Math.floor(date.getFullYear() / k) * k);
+    date.setMonth(0, 1);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setFullYear(date.getFullYear() + step * k);
+  });
+};
+var years = year.range;
+
+var utcMinute = newInterval(function(date) {
+  date.setUTCSeconds(0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getUTCMinutes();
+});
+var utcMinutes = utcMinute.range;
+
+var utcHour = newInterval(function(date) {
+  date.setUTCMinutes(0, 0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getUTCHours();
+});
+var utcHours = utcHour.range;
+
+var utcDay = newInterval(function(date) {
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCDate(date.getUTCDate() + step);
+}, function(start, end) {
+  return (end - start) / durationDay;
+}, function(date) {
+  return date.getUTCDate() - 1;
+});
+var utcDays = utcDay.range;
+
+function utcWeekday(i) {
+  return newInterval(function(date) {
+    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCDate(date.getUTCDate() + step * 7);
+  }, function(start, end) {
+    return (end - start) / durationWeek;
+  });
+}
+
+var utcSunday = utcWeekday(0);
+var utcMonday = utcWeekday(1);
+var utcTuesday = utcWeekday(2);
+var utcWednesday = utcWeekday(3);
+var utcThursday = utcWeekday(4);
+var utcFriday = utcWeekday(5);
+var utcSaturday = utcWeekday(6);
+
+var utcSundays = utcSunday.range;
+var utcMondays = utcMonday.range;
+var utcTuesdays = utcTuesday.range;
+var utcWednesdays = utcWednesday.range;
+var utcThursdays = utcThursday.range;
+var utcFridays = utcFriday.range;
+var utcSaturdays = utcSaturday.range;
+
+var utcMonth = newInterval(function(date) {
+  date.setUTCDate(1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCMonth(date.getUTCMonth() + step);
+}, function(start, end) {
+  return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
+}, function(date) {
+  return date.getUTCMonth();
+});
+var utcMonths = utcMonth.range;
+
+var utcYear = newInterval(function(date) {
+  date.setUTCMonth(0, 1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCFullYear(date.getUTCFullYear() + step);
+}, function(start, end) {
+  return end.getUTCFullYear() - start.getUTCFullYear();
+}, function(date) {
+  return date.getUTCFullYear();
+});
+
+// An optimized implementation for this simple case.
+utcYear.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setUTCFullYear(Math.floor(date.getUTCFullYear() / k) * k);
+    date.setUTCMonth(0, 1);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCFullYear(date.getUTCFullYear() + step * k);
+  });
+};
+var utcYears = utcYear.range;
+
+exports.timeDay = day;
+exports.timeDays = days;
+exports.timeFriday = friday;
+exports.timeFridays = fridays;
+exports.timeHour = hour;
+exports.timeHours = hours;
+exports.timeInterval = newInterval;
+exports.timeMillisecond = millisecond;
+exports.timeMilliseconds = milliseconds;
+exports.timeMinute = minute;
+exports.timeMinutes = minutes;
+exports.timeMonday = monday;
+exports.timeMondays = mondays;
+exports.timeMonth = month;
+exports.timeMonths = months;
+exports.timeSaturday = saturday;
+exports.timeSaturdays = saturdays;
+exports.timeSecond = second;
+exports.timeSeconds = seconds;
+exports.timeSunday = sunday;
+exports.timeSundays = sundays;
+exports.timeThursday = thursday;
+exports.timeThursdays = thursdays;
+exports.timeTuesday = tuesday;
+exports.timeTuesdays = tuesdays;
+exports.timeWednesday = wednesday;
+exports.timeWednesdays = wednesdays;
+exports.timeWeek = sunday;
+exports.timeWeeks = sundays;
+exports.timeYear = year;
+exports.timeYears = years;
+exports.utcDay = utcDay;
+exports.utcDays = utcDays;
+exports.utcFriday = utcFriday;
+exports.utcFridays = utcFridays;
+exports.utcHour = utcHour;
+exports.utcHours = utcHours;
+exports.utcMillisecond = millisecond;
+exports.utcMilliseconds = milliseconds;
+exports.utcMinute = utcMinute;
+exports.utcMinutes = utcMinutes;
+exports.utcMonday = utcMonday;
+exports.utcMondays = utcMondays;
+exports.utcMonth = utcMonth;
+exports.utcMonths = utcMonths;
+exports.utcSaturday = utcSaturday;
+exports.utcSaturdays = utcSaturdays;
+exports.utcSecond = second;
+exports.utcSeconds = seconds;
+exports.utcSunday = utcSunday;
+exports.utcSundays = utcSundays;
+exports.utcThursday = utcThursday;
+exports.utcThursdays = utcThursdays;
+exports.utcTuesday = utcTuesday;
+exports.utcTuesdays = utcTuesdays;
+exports.utcWednesday = utcWednesday;
+exports.utcWednesdays = utcWednesdays;
+exports.utcWeek = utcSunday;
+exports.utcWeeks = utcSundays;
+exports.utcYear = utcYear;
+exports.utcYears = utcYears;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+
+},{}],15:[function(_dereq_,module,exports){
 !function() {
   var d3 = {
     version: "3.5.17"
@@ -12523,7 +13632,7 @@ module.exports = {
   });
   if (typeof define === "function" && define.amd) this.d3 = d3, define(d3); else if (typeof module === "object" && module.exports) module.exports = d3; else this.d3 = d3;
 }();
-},{}],14:[function(_dereq_,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 (function (process,global){
 /*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
@@ -13701,7 +14810,11 @@ return Promise$1;
 
 
 }).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+<<<<<<< HEAD
 },{"_process":32}],15:[function(_dereq_,module,exports){
+=======
+},{"_process":33}],17:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
  * inspired by is-number <https://github.com/jonschlinkert/is-number>
  * but significantly simplified and sped up by ignoring number and string constructors
@@ -13727,7 +14840,7 @@ module.exports = function(n) {
     return n - n < 1;
 };
 
-},{"is-string-blank":20}],16:[function(_dereq_,module,exports){
+},{"is-string-blank":22}],18:[function(_dereq_,module,exports){
 module.exports = fromQuat;
 
 /**
@@ -13775,7 +14888,7 @@ function fromQuat(out, q) {
 
     return out;
 };
-},{}],17:[function(_dereq_,module,exports){
+},{}],19:[function(_dereq_,module,exports){
 (function (global){
 'use strict'
 
@@ -13792,7 +14905,7 @@ else {
 module.exports = hasHover
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"is-browser":19}],18:[function(_dereq_,module,exports){
+},{"is-browser":21}],20:[function(_dereq_,module,exports){
 'use strict'
 
 var isBrowser = _dereq_('is-browser')
@@ -13818,9 +14931,9 @@ function detect() {
 
 module.exports = isBrowser && detect()
 
-},{"is-browser":19}],19:[function(_dereq_,module,exports){
+},{"is-browser":21}],21:[function(_dereq_,module,exports){
 module.exports = true;
-},{}],20:[function(_dereq_,module,exports){
+},{}],22:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -13857,7 +14970,7 @@ module.exports = function(str){
     return true;
 }
 
-},{}],21:[function(_dereq_,module,exports){
+},{}],23:[function(_dereq_,module,exports){
 var rootPosition = { left: 0, top: 0 }
 
 module.exports = mouseEventOffset
@@ -13884,6 +14997,7 @@ function getBoundingClientOffset (element) {
   }
 }
 
+<<<<<<< HEAD
 },{}],22:[function(_dereq_,module,exports){
 /*! @preserve
  * numeral.js
@@ -14900,6 +16014,9 @@ return numeral;
 }));
 
 },{}],23:[function(_dereq_,module,exports){
+=======
+},{}],24:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 
 module.exports = parse
 
@@ -14958,7 +16075,11 @@ function parseValues(args) {
 	return numbers ? numbers.map(Number) : []
 }
 
+<<<<<<< HEAD
 },{}],24:[function(_dereq_,module,exports){
+=======
+},{}],25:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /*
  * @copyright 2016 Sean Connelly (@voidqk), http://syntheti.cc
  * @license MIT
@@ -15086,7 +16207,11 @@ if (typeof window === 'object')
 
 module.exports = PolyBool;
 
+<<<<<<< HEAD
 },{"./lib/build-log":25,"./lib/epsilon":26,"./lib/geojson":27,"./lib/intersecter":28,"./lib/segment-chainer":30,"./lib/segment-selector":31}],25:[function(_dereq_,module,exports){
+=======
+},{"./lib/build-log":26,"./lib/epsilon":27,"./lib/geojson":28,"./lib/intersecter":29,"./lib/segment-chainer":31,"./lib/segment-selector":32}],26:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15201,7 +16326,11 @@ function BuildLog(){
 
 module.exports = BuildLog;
 
+<<<<<<< HEAD
 },{}],26:[function(_dereq_,module,exports){
+=======
+},{}],27:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15373,7 +16502,11 @@ function Epsilon(eps){
 
 module.exports = Epsilon;
 
+<<<<<<< HEAD
 },{}],27:[function(_dereq_,module,exports){
+=======
+},{}],28:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2017, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15563,7 +16696,11 @@ var GeoJSON = {
 
 module.exports = GeoJSON;
 
+<<<<<<< HEAD
 },{}],28:[function(_dereq_,module,exports){
+=======
+},{}],29:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16070,7 +17207,11 @@ function Intersecter(selfIntersection, eps, buildLog){
 
 module.exports = Intersecter;
 
+<<<<<<< HEAD
 },{"./linked-list":29}],29:[function(_dereq_,module,exports){
+=======
+},{"./linked-list":30}],30:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16153,7 +17294,11 @@ var LinkedList = {
 
 module.exports = LinkedList;
 
+<<<<<<< HEAD
 },{}],30:[function(_dereq_,module,exports){
+=======
+},{}],31:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16407,7 +17552,11 @@ function SegmentChainer(segments, eps, buildLog){
 
 module.exports = SegmentChainer;
 
+<<<<<<< HEAD
 },{}],31:[function(_dereq_,module,exports){
+=======
+},{}],32:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16575,7 +17724,11 @@ var SegmentSelector = {
 
 module.exports = SegmentSelector;
 
+<<<<<<< HEAD
 },{}],32:[function(_dereq_,module,exports){
+=======
+},{}],33:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -16761,8 +17914,13 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+<<<<<<< HEAD
 },{}],33:[function(_dereq_,module,exports){
 // TinyColor v1.4.1
+=======
+},{}],34:[function(_dereq_,module,exports){
+// TinyColor v1.4.2
+>>>>>>> upstream/master
 // https://github.com/bgrins/TinyColor
 // Brian Grinstead, MIT License
 
@@ -17958,7 +19116,11 @@ else {
 
 })(Math);
 
+<<<<<<< HEAD
 },{}],34:[function(_dereq_,module,exports){
+=======
+},{}],35:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 // https://github.com/topojson/topojson-client v3.1.0 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -18468,7 +19630,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
+<<<<<<< HEAD
 },{}],35:[function(_dereq_,module,exports){
+=======
+},{}],36:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -18539,7 +19705,11 @@ module.exports = [
     }
 ];
 
+<<<<<<< HEAD
 },{}],36:[function(_dereq_,module,exports){
+=======
+},{}],37:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -18554,7 +19724,34 @@ var ARROWPATHS = _dereq_('./arrow_paths');
 var fontAttrs = _dereq_('../../plots/font_attributes');
 var cartesianConstants = _dereq_('../../plots/cartesian/constants');
 var templatedArray = _dereq_('../../plot_api/plot_template').templatedArray;
+var axisPlaceableObjs = _dereq_('../../constants/axis_placeable_objects');
 
+function arrowAxisRefDescription(axis) {
+    return [
+        'In order for absolute positioning of the arrow to work, *a' + axis +
+        'ref* must be exactly the same as *' + axis + 'ref*, otherwise *a' + axis +
+        'ref* will revert to *pixel* (explained next).',
+        'For relative positioning, *a' + axis + 'ref* can be set to *pixel*,',
+        'in which case the *a' + axis + '* value is specified in pixels',
+        'relative to *' + axis + '*.',
+        'Absolute positioning is useful',
+        'for trendline annotations which should continue to indicate',
+        'the correct trend when zoomed. Relative positioning is useful',
+        'for specifying the text offset for an annotated point.'
+    ].join(' ');
+}
+
+function arrowCoordinateDescription(axis, lower, upper) {
+    return [
+        'Sets the', axis, 'component of the arrow tail about the arrow head.',
+        'If `a' + axis + 'ref` is `pixel`, a positive (negative)',
+        'component corresponds to an arrow pointing',
+        'from', upper, 'to', lower, '(' + lower, 'to', upper + ').',
+        'If `a' + axis + 'ref` is not `pixel` and is exactly the same as `' + axis + 'ref`,',
+        'this is an absolute value on that axis,',
+        'like `' + axis + '`, specified in the same coordinates as `' + axis + 'ref`.'
+    ].join(' ');
+}
 
 module.exports = templatedArray('annotation', {
     visible: {
@@ -18894,7 +20091,11 @@ module.exports = templatedArray('annotation', {
     }
 });
 
+<<<<<<< HEAD
 },{"../../plot_api/plot_template":213,"../../plots/cartesian/constants":229,"../../plots/font_attributes":251,"./arrow_paths":35}],37:[function(_dereq_,module,exports){
+=======
+},{"../../constants/axis_placeable_objects":155,"../../plot_api/plot_template":216,"../../plots/cartesian/constants":233,"../../plots/font_attributes":255,"./arrow_paths":36}],38:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -18931,10 +20132,12 @@ function annAutorange(gd) {
     Lib.filterVisible(fullLayout.annotations).forEach(function(ann) {
         var xa = Axes.getFromId(gd, ann.xref);
         var ya = Axes.getFromId(gd, ann.yref);
+        var xRefType = Axes.getRefType(ann.xref);
+        var yRefType = Axes.getRefType(ann.yref);
 
         ann._extremes = {};
-        if(xa) calcAxisExpansion(ann, xa);
-        if(ya) calcAxisExpansion(ann, ya);
+        if(xRefType === 'range') calcAxisExpansion(ann, xa);
+        if(yRefType === 'range') calcAxisExpansion(ann, ya);
     });
 }
 
@@ -18983,7 +20186,11 @@ function calcAxisExpansion(ann, ax) {
     ann._extremes[axId] = extremes;
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/cartesian/axes":223,"./draw":42}],38:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/cartesian/axes":227,"./draw":43}],39:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -19121,7 +20328,11 @@ function clickData2r(d, ax) {
     return ax.type === 'log' ? ax.l2r(d) : ax.d2r(d);
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"../../registry":273}],39:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"../../registry":277}],40:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -19200,7 +20411,11 @@ module.exports = function handleAnnotationCommonDefaults(annIn, annOut, fullLayo
     coerce('captureevents', !!hoverText);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../color":51}],40:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../color":52}],41:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -19263,7 +20478,11 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib/to_log_range":201,"fast-isnumeric":15}],41:[function(_dereq_,module,exports){
+=======
+},{"../../lib/to_log_range":204,"fast-isnumeric":17}],42:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -19326,7 +20545,8 @@ function handleAnnotationDefaults(annIn, annOut, fullLayout) {
         if(showArrow) {
             var arrowPosAttr = 'a' + axLetter;
             // axref, ayref
-            var aaxRef = Axes.coerceRef(annIn, annOut, gdMock, arrowPosAttr, 'pixel');
+            var aaxRef = Axes.coerceRef(annIn, annOut, gdMock, arrowPosAttr, 'pixel',
+                    ['pixel', 'paper']);
 
             // for now the arrow can only be on the same axis or specified as pixels
             // TODO: sometime it might be interesting to allow it to be on *any* axis
@@ -19370,7 +20590,11 @@ function handleAnnotationDefaults(annIn, annOut, fullLayout) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/array_container_defaults":219,"../../plots/cartesian/axes":223,"./attributes":36,"./common_defaults":39}],42:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/array_container_defaults":222,"../../plots/cartesian/axes":227,"./attributes":37,"./common_defaults":40}],43:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -19444,6 +20668,31 @@ function drawOne(gd, index) {
     if(ya) ya.setScale();
 
     drawRaw(gd, options, index, false, xa, ya);
+}
+
+// Convert pixels to the coordinates relevant for the axis referred to. For
+// example, for paper it would convert to a value normalized by the dimension of
+// the plot.
+// axDomainRef: if true and axa defined, draws relative to axis domain,
+// otherwise draws relative to data (if axa defined) or paper (if not).
+function shiftPosition(axa, dAx, axLetter, gs, options) {
+    var optAx = options[axLetter];
+    var axRef = options[axLetter + 'ref'];
+    var vertical = axLetter.indexOf('y') !== -1;
+    var axDomainRef = Axes.getRefType(axRef) === 'domain';
+    var gsDim = vertical ? gs.h : gs.w;
+    if(axa) {
+        if(axDomainRef) {
+            // here optAx normalized to length of axis (e.g., normally in range
+            // 0 to 1). But dAx is in pixels. So we normalize dAx to length of
+            // axis before doing the math.
+            return optAx + (vertical ? -dAx : dAx) / axa._length;
+        } else {
+            return axa.p2r(axa.r2p(optAx) + dAx);
+        }
+    } else {
+        return optAx + (vertical ? -dAx : dAx) / gsDim;
+    }
 }
 
 /**
@@ -19669,13 +20918,14 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
             var alignPosition;
             var autoAlignFraction;
             var textShift;
+            var axRefType = Axes.getRefType(axRef);
 
             /*
              * calculate the *primary* pixel position
              * which is the arrowhead if there is one,
              * otherwise the text anchor point
              */
-            if(ax) {
+            if(ax && (axRefType !== 'domain')) {
                 // check if annotation is off screen, to bypass DOM manipulations
                 var posFraction = ax.r2fraction(options[axLetter]);
                 if(posFraction < 0 || posFraction > 1) {
@@ -19691,12 +20941,17 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
                 basePx = ax._offset + ax.r2p(options[axLetter]);
                 autoAlignFraction = 0.5;
             } else {
+                var axRefTypeEqDomain = axRefType === 'domain';
                 if(axLetter === 'x') {
                     alignPosition = options[axLetter];
-                    basePx = gs.l + gs.w * alignPosition;
+                    basePx = axRefTypeEqDomain ?
+                        ax._offset + ax._length * alignPosition :
+                        basePx = gs.l + gs.w * alignPosition;
                 } else {
                     alignPosition = 1 - options[axLetter];
-                    basePx = gs.t + gs.h * alignPosition;
+                    basePx = axRefTypeEqDomain ?
+                        ax._offset + ax._length * alignPosition :
+                        basePx = gs.t + gs.h * alignPosition;
                 }
                 autoAlignFraction = options.showarrow ? 0.5 : alignPosition;
             }
@@ -19713,8 +20968,29 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
                     annSizeFromHeight * shiftFraction(0.5, options.yanchor);
 
                 if(tailRef === axRef) {
-                    posPx.tail = ax._offset + ax.r2p(arrowLength);
-                    // tail is data-referenced: autorange pads the text in px from the tail
+                    // In the case tailRefType is 'domain' or 'paper', the arrow's
+                    // position is set absolutely, which is consistent with how
+                    // it behaves when its position is set in data ('range')
+                    // coordinates.
+                    var tailRefType = Axes.getRefType(tailRef);
+                    if(tailRefType === 'domain') {
+                        if(axLetter === 'y') {
+                            arrowLength = 1 - arrowLength;
+                        }
+                        posPx.tail = ax._offset + ax._length * arrowLength;
+                    } else if(tailRefType === 'paper') {
+                        if(axLetter === 'y') {
+                            arrowLength = 1 - arrowLength;
+                            posPx.tail = gs.t + gs.h * arrowLength;
+                        } else {
+                            posPx.tail = gs.l + gs.w * arrowLength;
+                        }
+                    } else {
+                        // assumed tailRef is range or paper referenced
+                        posPx.tail = ax._offset + ax.r2p(arrowLength);
+                    }
+                    // tail is range- or domain-referenced: autorange pads the
+                    // text in px from the tail
                     textPadShift = textShift;
                 } else {
                     posPx.tail = basePx + arrowLength;
@@ -19935,19 +21211,20 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
                         var ycenter = annxy0[1] + dy;
                         annTextGroupInner.call(Drawing.setTranslate, xcenter, ycenter);
 
-                        modifyItem('x', xa ?
-                            xa.p2r(xa.r2p(options.x) + dx) :
-                            (options.x + (dx / gs.w)));
-                        modifyItem('y', ya ?
-                            ya.p2r(ya.r2p(options.y) + dy) :
-                            (options.y - (dy / gs.h)));
+                        modifyItem('x',
+                            shiftPosition(xa, dx, 'x', gs, options));
+                        modifyItem('y',
+                            shiftPosition(ya, dy, 'y', gs, options));
 
+                        // for these 2 calls to shiftPosition, it is assumed xa, ya are
+                        // defined, so gsDim will not be used, but we put it in
+                        // anyways for consistency
                         if(options.axref === options.xref) {
-                            modifyItem('ax', xa.p2r(xa.r2p(options.ax) + dx));
+                            modifyItem('ax', shiftPosition(xa, dx, 'ax', gs, options));
                         }
 
                         if(options.ayref === options.yref) {
-                            modifyItem('ay', ya.p2r(ya.r2p(options.ay) + dy));
+                            modifyItem('ay', shiftPosition(ya, dy, 'ay', gs, options));
                         }
 
                         arrowGroup.attr('transform', 'translate(' + dx + ',' + dy + ')');
@@ -19982,14 +21259,17 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
                 moveFn: function(dx, dy) {
                     var csr = 'pointer';
                     if(options.showarrow) {
+                        // for these 2 calls to shiftPosition, it is assumed xa, ya are
+                        // defined, so gsDim will not be used, but we put it in
+                        // anyways for consistency
                         if(options.axref === options.xref) {
-                            modifyItem('ax', xa.p2r(xa.r2p(options.ax) + dx));
+                            modifyItem('ax', shiftPosition(xa, dx, 'ax', gs, options));
                         } else {
                             modifyItem('ax', options.ax + dx);
                         }
 
                         if(options.ayref === options.yref) {
-                            modifyItem('ay', ya.p2r(ya.r2p(options.ay) + dy));
+                            modifyItem('ay', shiftPosition(ya, dy, 'ay', gs.w, options));
                         } else {
                             modifyItem('ay', options.ay + dy);
                         }
@@ -19998,7 +21278,9 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
                     } else if(!subplotId) {
                         var xUpdate, yUpdate;
                         if(xa) {
-                            xUpdate = xa.p2r(xa.r2p(options.x) + dx);
+                            // shiftPosition will not execute code where xa was
+                            // undefined, so we use to calculate xUpdate too
+                            xUpdate = shiftPosition(xa, dx, 'x', gs, options);
                         } else {
                             var widthFraction = options._xsize / gs.w;
                             var xLeft = options.x + (options._xshift - options.xshift) / gs.w - widthFraction / 2;
@@ -20008,7 +21290,9 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
                         }
 
                         if(ya) {
-                            yUpdate = ya.p2r(ya.r2p(options.y) + dy);
+                            // shiftPosition will not execute code where ya was
+                            // undefined, so we use to calculate yUpdate too
+                            yUpdate = shiftPosition(ya, dy, 'y', gs, options);
                         } else {
                             var heightFraction = options._ysize / gs.h;
                             var yBottom = options.y - (options._yshift + options.yshift) / gs.h - heightFraction / 2;
@@ -20070,7 +21354,11 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
     } else annText.call(textLayout);
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../lib/setcursor":197,"../../lib/svg_text_utils":199,"../../plot_api/plot_template":213,"../../plots/cartesian/axes":223,"../../plots/plots":264,"../../registry":273,"../color":51,"../dragelement":70,"../drawing":73,"../fx":91,"./draw_arrow_head":43,"d3":13}],43:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../lib/setcursor":200,"../../lib/svg_text_utils":202,"../../plot_api/plot_template":216,"../../plots/cartesian/axes":227,"../../plots/plots":268,"../../registry":277,"../color":52,"../dragelement":71,"../drawing":74,"../fx":92,"./draw_arrow_head":44,"d3":15}],44:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20221,7 +21509,11 @@ module.exports = function drawArrowHead(el3, ends, options) {
     if(doEnd) drawhead(headStyle, end, endRot, scale);
 };
 
+<<<<<<< HEAD
 },{"../color":51,"./arrow_paths":35,"d3":13}],44:[function(_dereq_,module,exports){
+=======
+},{"../color":52,"./arrow_paths":36,"d3":15}],45:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20255,7 +21547,11 @@ module.exports = {
     convertCoords: _dereq_('./convert_coords')
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/include_components":235,"./attributes":36,"./calc_autorange":37,"./click":38,"./convert_coords":40,"./defaults":41,"./draw":42}],45:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/include_components":239,"./attributes":37,"./calc_autorange":38,"./click":39,"./convert_coords":41,"./defaults":42,"./draw":43}],46:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20343,7 +21639,11 @@ module.exports = overrideAll(templatedArray('annotation', {
     // zref: 'z'
 }), 'calc', 'from-root');
 
+<<<<<<< HEAD
 },{"../../plot_api/edit_types":206,"../../plot_api/plot_template":213,"../annotations/attributes":36}],46:[function(_dereq_,module,exports){
+=======
+},{"../../plot_api/edit_types":209,"../../plot_api/plot_template":216,"../annotations/attributes":37}],47:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20408,7 +21708,11 @@ function mockAnnAxes(ann, scene) {
     };
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/cartesian/axes":223}],47:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/cartesian/axes":227}],48:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20484,7 +21788,11 @@ function handleAnnotationDefaults(annIn, annOut, sceneLayout, opts) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/array_container_defaults":219,"../../plots/cartesian/axes":223,"../annotations/common_defaults":39,"./attributes":45}],48:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/array_container_defaults":222,"../../plots/cartesian/axes":227,"../annotations/common_defaults":40,"./attributes":46}],49:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20536,7 +21844,11 @@ module.exports = function draw(scene) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../plots/gl3d/project":261,"../annotations/draw":42}],49:[function(_dereq_,module,exports){
+=======
+},{"../../plots/gl3d/project":265,"../annotations/draw":43}],50:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20584,7 +21896,11 @@ function includeGL3D(layoutIn, layoutOut) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273,"./attributes":45,"./convert":46,"./defaults":47,"./draw":48}],50:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"./attributes":46,"./convert":47,"./defaults":48,"./draw":49}],51:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20624,7 +21940,11 @@ exports.borderLine = '#BEC8D9';
 // gives back exactly lightLine if the other colors are defaults.
 exports.lightFraction = 100 * (0xe - 0x4) / (0xf - 0x4);
 
+<<<<<<< HEAD
 },{}],51:[function(_dereq_,module,exports){
+=======
+},{}],52:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20798,7 +22118,11 @@ function cleanOne(val) {
     return 'rgb(' + rgbStr + ')';
 }
 
+<<<<<<< HEAD
 },{"./attributes":50,"fast-isnumeric":15,"tinycolor2":33}],52:[function(_dereq_,module,exports){
+=======
+},{"./attributes":51,"fast-isnumeric":17,"tinycolor2":34}],53:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -20939,6 +22263,7 @@ module.exports = overrideAll({
     showticksuffix: axesAttrs.showticksuffix,
     separatethousands: axesAttrs.separatethousands,
     exponentformat: axesAttrs.exponentformat,
+    minexponent: axesAttrs.minexponent,
     showexponent: axesAttrs.showexponent,
     title: {
         text: {
@@ -20977,7 +22302,11 @@ module.exports = overrideAll({
     }
 }, 'colorbars', 'from-root');
 
+<<<<<<< HEAD
 },{"../../lib/extend":171,"../../plot_api/edit_types":206,"../../plots/cartesian/layout_attributes":237,"../../plots/font_attributes":251}],53:[function(_dereq_,module,exports){
+=======
+},{"../../lib/extend":173,"../../plot_api/edit_types":209,"../../plots/cartesian/layout_attributes":241,"../../plots/font_attributes":255}],54:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -21005,7 +22334,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],54:[function(_dereq_,module,exports){
+=======
+},{}],55:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -21071,7 +22404,11 @@ module.exports = function colorbarDefaults(containerIn, containerOut, layout) {
     coerce('title.side');
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"../../plots/cartesian/tick_label_defaults":244,"../../plots/cartesian/tick_mark_defaults":245,"../../plots/cartesian/tick_value_defaults":246,"./attributes":52}],55:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"../../plots/cartesian/tick_label_defaults":248,"../../plots/cartesian/tick_mark_defaults":249,"../../plots/cartesian/tick_value_defaults":250,"./attributes":53}],56:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -21471,6 +22808,7 @@ function drawColorBar(g, opts, gd) {
 
         var fills = g.select('.' + cn.cbfills)
             .selectAll('rect.' + cn.cbfill)
+            .attr('style', '')
             .data(fillLevels);
         fills.enter().append('rect')
             .classed(cn.cbfill, true)
@@ -21757,6 +23095,7 @@ function mockColorBarAxis(gd, opts, zrange) {
         tickangle: opts.tickangle,
         tickformat: opts.tickformat,
         exponentformat: opts.exponentformat,
+        minexponent: opts.minexponent,
         separatethousands: opts.separatethousands,
         showexponent: opts.showexponent,
         showtickprefix: opts.showtickprefix,
@@ -21780,6 +23119,7 @@ function mockColorBarAxis(gd, opts, zrange) {
         font: fullLayout.font,
         noHover: true,
         noTickson: true,
+        noTicklabelmode: true,
         calendar: fullLayout.calendar  // not really necessary (yet?)
     };
 
@@ -21797,7 +23137,11 @@ module.exports = {
     draw: draw
 };
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../lib":178,"../../lib/extend":171,"../../lib/setcursor":197,"../../lib/svg_text_utils":199,"../../plots/cartesian/axes":223,"../../plots/cartesian/axis_defaults":225,"../../plots/cartesian/layout_attributes":237,"../../plots/cartesian/position_defaults":240,"../../plots/plots":264,"../../registry":273,"../color":51,"../colorscale/helpers":62,"../dragelement":70,"../drawing":73,"../titles":146,"./constants":53,"d3":13,"tinycolor2":33}],56:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../lib":181,"../../lib/extend":173,"../../lib/setcursor":200,"../../lib/svg_text_utils":202,"../../plots/cartesian/axes":227,"../../plots/cartesian/axis_defaults":229,"../../plots/cartesian/layout_attributes":241,"../../plots/cartesian/position_defaults":244,"../../plots/plots":268,"../../registry":277,"../color":52,"../colorscale/helpers":63,"../dragelement":71,"../drawing":74,"../titles":147,"./constants":54,"d3":15,"tinycolor2":34}],57:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -21816,7 +23160,11 @@ module.exports = function hasColorbar(container) {
     return Lib.isPlainObject(container.colorbar);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],57:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],58:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -21838,7 +23186,11 @@ module.exports = {
     hasColorbar: _dereq_('./has_colorbar')
 };
 
+<<<<<<< HEAD
 },{"./attributes":52,"./defaults":54,"./draw":55,"./has_colorbar":56}],58:[function(_dereq_,module,exports){
+=======
+},{"./attributes":53,"./defaults":55,"./draw":56,"./has_colorbar":57}],59:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22046,7 +23398,11 @@ module.exports = function colorScaleAttrs(context, opts) {
     return attrs;
 };
 
+<<<<<<< HEAD
 },{"../../lib/regex":193,"../colorbar/attributes":52,"./scales.js":66}],59:[function(_dereq_,module,exports){
+=======
+},{"../../lib/regex":196,"../colorbar/attributes":53,"./scales.js":67}],60:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22125,7 +23481,11 @@ module.exports = function calc(gd, trace, opts) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./helpers":62,"fast-isnumeric":15}],60:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./helpers":63,"fast-isnumeric":17}],61:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22202,7 +23562,11 @@ module.exports = function crossTraceDefaults(fullData, fullLayout) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./helpers":62}],61:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./helpers":63}],62:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22327,7 +23691,11 @@ module.exports = function colorScaleDefaults(parentContIn, parentContOut, layout
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273,"../colorbar/defaults":54,"../colorbar/has_colorbar":56,"./scales":66,"fast-isnumeric":15}],62:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"../colorbar/defaults":55,"../colorbar/has_colorbar":57,"./scales":67,"fast-isnumeric":17}],63:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22567,7 +23935,11 @@ module.exports = {
     makeColorScaleFuncFromTrace: makeColorScaleFuncFromTrace
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../color":51,"./scales":66,"d3":13,"fast-isnumeric":15,"tinycolor2":33}],63:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../color":52,"./scales":67,"d3":15,"fast-isnumeric":17,"tinycolor2":34}],64:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22609,7 +23981,11 @@ module.exports = {
     makeColorScaleFuncFromTrace: helpers.makeColorScaleFuncFromTrace
 };
 
+<<<<<<< HEAD
 },{"./attributes":58,"./calc":59,"./cross_trace_defaults":60,"./defaults":61,"./helpers":62,"./layout_attributes":64,"./layout_defaults":65,"./scales":66}],64:[function(_dereq_,module,exports){
+=======
+},{"./attributes":59,"./calc":60,"./cross_trace_defaults":61,"./defaults":62,"./helpers":63,"./layout_attributes":65,"./layout_defaults":66,"./scales":67}],65:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22670,7 +24046,11 @@ module.exports = {
     }))
 };
 
+<<<<<<< HEAD
 },{"../../lib/extend":171,"./attributes":58,"./scales":66}],65:[function(_dereq_,module,exports){
+=======
+},{"../../lib/extend":173,"./attributes":59,"./scales":67}],66:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22721,7 +24101,11 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"./defaults":61,"./layout_attributes":64}],66:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"./defaults":62,"./layout_attributes":65}],67:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22925,7 +24309,11 @@ module.exports = {
     isValid: isValidScale
 };
 
+<<<<<<< HEAD
 },{"tinycolor2":33}],67:[function(_dereq_,module,exports){
+=======
+},{"tinycolor2":34}],68:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22958,7 +24346,11 @@ module.exports = function align(v, dv, v0, v1, anchor) {
     return vc;
 };
 
+<<<<<<< HEAD
 },{}],68:[function(_dereq_,module,exports){
+=======
+},{}],69:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -22996,7 +24388,11 @@ module.exports = function getCursor(x, y, xanchor, yanchor) {
     return cursorset[y][x];
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],69:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],70:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -23055,7 +24451,11 @@ exports.selectingOrDrawing = function(dragmode) {
     );
 };
 
+<<<<<<< HEAD
 },{}],70:[function(_dereq_,module,exports){
+=======
+},{}],71:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -23347,7 +24747,11 @@ function pointerOffset(e) {
     );
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/cartesian/constants":229,"./align":67,"./cursor":68,"./unhover":71,"has-hover":17,"has-passive-events":18,"mouse-event-offset":21}],71:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/cartesian/constants":233,"./align":68,"./cursor":69,"./unhover":72,"has-hover":19,"has-passive-events":20,"mouse-event-offset":23}],72:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -23402,7 +24806,11 @@ unhover.raw = function raw(gd, evt) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib/dom":169,"../../lib/events":170,"../../lib/throttle":200,"../fx/constants":85}],72:[function(_dereq_,module,exports){
+=======
+},{"../../lib/dom":171,"../../lib/events":172,"../../lib/throttle":203,"../fx/constants":86}],73:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -23427,7 +24835,11 @@ exports.dash = {
     
 };
 
+<<<<<<< HEAD
 },{}],73:[function(_dereq_,module,exports){
+=======
+},{}],74:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -23650,8 +25062,11 @@ Object.keys(SYMBOLDEFS).forEach(function(k) {
     var n = symDef.n;
     drawing.symbolList.push(
         n,
+        String(n),
         k,
+
         n + 100,
+        String(n + 100),
         k + '-open'
     );
     drawing.symbolNames[n] = k;
@@ -23665,8 +25080,11 @@ Object.keys(SYMBOLDEFS).forEach(function(k) {
     } else {
         drawing.symbolList.push(
             n + 200,
+            String(n + 200),
             k + '-dot',
+
             n + 300,
+            String(n + 300),
             k + '-open-dot'
         );
     }
@@ -23680,7 +25098,9 @@ var MAXSYMBOL = drawing.symbolNames.length;
 var DOTPATH = 'M0,0.5L0.5,0L0,-0.5L-0.5,0Z';
 
 drawing.symbolNumber = function(v) {
-    if(typeof v === 'string') {
+    if(isNumeric(v)) {
+        v = +v;
+    } else if(typeof v === 'string') {
         var vbase = 0;
         if(v.indexOf('-open') > 0) {
             vbase = 100;
@@ -24615,7 +26035,11 @@ drawing.setTextPointsScale = function(selection, xScale, yScale) {
     });
 };
 
+<<<<<<< HEAD
 },{"../../components/fx/helpers":87,"../../constants/alignment":153,"../../constants/interactions":155,"../../constants/xmlns_namespaces":157,"../../lib":178,"../../lib/svg_text_utils":199,"../../registry":273,"../../traces/scatter/make_bubble_size_func":312,"../../traces/scatter/subtypes":319,"../color":51,"../colorscale":63,"./symbol_defs":74,"d3":13,"fast-isnumeric":15,"tinycolor2":33}],74:[function(_dereq_,module,exports){
+=======
+},{"../../components/fx/helpers":88,"../../constants/alignment":154,"../../constants/interactions":157,"../../constants/xmlns_namespaces":159,"../../lib":181,"../../lib/svg_text_utils":202,"../../registry":277,"../../traces/scatter/make_bubble_size_func":316,"../../traces/scatter/subtypes":324,"../color":52,"../colorscale":64,"./symbol_defs":75,"d3":15,"fast-isnumeric":17,"tinycolor2":34}],75:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25100,10 +26524,90 @@ module.exports = {
         needLine: true,
         noDot: true,
         noFill: true
+    },
+    'arrow-up': {
+        n: 45,
+        f: function(r) {
+            var rx = d3.round(r, 2);
+            var ry = d3.round(r * 2, 2);
+            return 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-down': {
+        n: 46,
+        f: function(r) {
+            var rx = d3.round(r, 2);
+            var ry = d3.round(r * 2, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-left': {
+        n: 47,
+        f: function(r) {
+            var rx = d3.round(r * 2, 2);
+            var ry = d3.round(r, 2);
+            return 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-right': {
+        n: 48,
+        f: function(r) {
+            var rx = d3.round(r * 2, 2);
+            var ry = d3.round(r, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-bar-up': {
+        n: 49,
+        f: function(r) {
+            var rx = d3.round(r, 2);
+            var ry = d3.round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-down': {
+        n: 50,
+        f: function(r) {
+            var rx = d3.round(r, 2);
+            var ry = d3.round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-left': {
+        n: 51,
+        f: function(r) {
+            var rx = d3.round(r * 2, 2);
+            var ry = d3.round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-right': {
+        n: 52,
+        f: function(r) {
+            var rx = d3.round(r * 2, 2);
+            var ry = d3.round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
     }
 };
 
+<<<<<<< HEAD
 },{"d3":13}],75:[function(_dereq_,module,exports){
+=======
+},{"d3":15}],76:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25218,7 +26722,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],76:[function(_dereq_,module,exports){
+=======
+},{}],77:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25304,7 +26812,11 @@ function calcOneAxis(calcTrace, trace, axis, coord) {
     baseExtremes.max = baseExtremes.max.concat(extremes.max);
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/cartesian/axes":223,"../../registry":273,"./compute_error":77,"fast-isnumeric":15}],77:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/cartesian/axes":227,"../../registry":277,"./compute_error":78,"fast-isnumeric":17}],78:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25405,7 +26917,11 @@ function makeComputeErrorValue(type, value) {
     }
 }
 
+<<<<<<< HEAD
 },{}],78:[function(_dereq_,module,exports){
+=======
+},{}],79:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25480,7 +26996,11 @@ module.exports = function(traceIn, traceOut, defaultColor, opts) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"../../registry":273,"./attributes":75,"fast-isnumeric":15}],79:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"../../registry":277,"./attributes":76,"fast-isnumeric":17}],80:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25549,7 +27069,11 @@ function hoverInfo(calcPoint, trace, hoverPoint) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/edit_types":206,"./attributes":75,"./calc":76,"./compute_error":77,"./defaults":78,"./plot":80,"./style":81}],80:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/edit_types":209,"./attributes":76,"./calc":77,"./compute_error":78,"./defaults":79,"./plot":81,"./style":82}],81:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25721,7 +27245,11 @@ function errorCoords(d, xa, ya) {
     return out;
 }
 
+<<<<<<< HEAD
 },{"../../traces/scatter/subtypes":319,"../drawing":73,"d3":13,"fast-isnumeric":15}],81:[function(_dereq_,module,exports){
+=======
+},{"../../traces/scatter/subtypes":324,"../drawing":74,"d3":15,"fast-isnumeric":17}],82:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25758,7 +27286,11 @@ module.exports = function style(traces) {
     });
 };
 
+<<<<<<< HEAD
 },{"../color":51,"d3":13}],82:[function(_dereq_,module,exports){
+=======
+},{"../color":52,"d3":15}],83:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25794,7 +27326,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib/extend":171,"../../plots/font_attributes":251,"./layout_attributes":92}],83:[function(_dereq_,module,exports){
+=======
+},{"../../lib/extend":173,"../../plots/font_attributes":255,"./layout_attributes":93}],84:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25853,7 +27389,11 @@ function paste(traceAttr, cd, cdAttr, fn) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273}],84:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277}],85:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25890,7 +27430,11 @@ module.exports = function click(gd, evt, subplot) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../registry":273,"./hover":88}],85:[function(_dereq_,module,exports){
+=======
+},{"../../registry":277,"./hover":89}],86:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25922,7 +27466,11 @@ module.exports = {
     HOVERID: '-hover'
 };
 
+<<<<<<< HEAD
 },{}],86:[function(_dereq_,module,exports){
+=======
+},{}],87:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -25948,7 +27496,11 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     handleHoverLabelDefaults(traceIn, traceOut, coerce, opts);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./attributes":82,"./hoverlabel_defaults":89}],87:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./attributes":83,"./hoverlabel_defaults":90}],88:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -26210,7 +27762,11 @@ exports.isXYhover = function(hovermode) {
     return !!xyHoverMode[hovermode];
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],88:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],89:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -27325,8 +28881,13 @@ function createHoverText(hoverData, opts, gd) {
     hoverLabels.each(function(d) {
         var g = d3.select(this).attr('transform', '');
 
+        var dColor = d.color;
+        if(Array.isArray(dColor)) {
+            dColor = dColor[d.eventData[0].pointNumber];
+        }
+
         // combine possible non-opaque trace color with bgColor
-        var color0 = d.bgcolor || d.color;
+        var color0 = d.bgcolor || dColor;
         // color for 'nums' part of the label
         var numsColor = Color.combine(
             Color.opacity(color0) ? color0 : Color.defaultLine,
@@ -27334,7 +28895,7 @@ function createHoverText(hoverData, opts, gd) {
         );
         // color for 'name' part of the label
         var nameColor = Color.combine(
-            Color.opacity(d.color) ? d.color : Color.defaultLine,
+            Color.opacity(dColor) ? dColor : Color.defaultLine,
             bgColor
         );
         // find a contrasting color for border and text
@@ -28073,7 +29634,11 @@ function plainText(s, len) {
     });
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../lib/events":170,"../../lib/override_cursor":189,"../../lib/svg_text_utils":199,"../../plots/cartesian/axes":223,"../../registry":273,"../color":51,"../dragelement":70,"../drawing":73,"../legend/defaults":103,"../legend/draw":104,"./constants":85,"./helpers":87,"d3":13,"fast-isnumeric":15,"tinycolor2":33}],89:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../lib/events":172,"../../lib/override_cursor":192,"../../lib/svg_text_utils":202,"../../plots/cartesian/axes":227,"../../registry":277,"../color":52,"../dragelement":71,"../drawing":74,"../legend/defaults":104,"../legend/draw":105,"./constants":86,"./helpers":88,"d3":15,"fast-isnumeric":17,"tinycolor2":34}],90:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28119,7 +29684,11 @@ module.exports = function handleHoverLabelDefaults(contIn, contOut, coerce, opts
     coerce('hoverlabel.align', opts.align);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../color":51,"./helpers":87}],90:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../color":52,"./helpers":88}],91:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28175,7 +29744,11 @@ function isHoriz(fullData, fullLayout) {
     return true;
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"./layout_attributes":92}],91:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./layout_attributes":93}],92:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28254,7 +29827,11 @@ function castHoverinfo(trace, fullLayout, ptNumber) {
     return Lib.castOption(trace, ptNumber, 'hoverinfo', _coerce);
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../dragelement":70,"./attributes":82,"./calc":83,"./click":84,"./constants":85,"./defaults":86,"./helpers":87,"./hover":88,"./layout_attributes":92,"./layout_defaults":93,"./layout_global_defaults":94,"d3":13}],92:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../dragelement":71,"./attributes":83,"./calc":84,"./click":85,"./constants":86,"./defaults":87,"./helpers":88,"./hover":89,"./layout_attributes":93,"./layout_defaults":94,"./layout_global_defaults":95,"d3":15}],93:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28378,7 +29955,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../plots/font_attributes":251,"./constants":85}],93:[function(_dereq_,module,exports){
+=======
+},{"../../plots/font_attributes":255,"./constants":86}],94:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28426,7 +30007,11 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
     handleHoverLabelDefaults(layoutIn, layoutOut, coerce);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./helpers":87,"./hoverlabel_defaults":89,"./hovermode_defaults":90,"./layout_attributes":92}],94:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./helpers":88,"./hoverlabel_defaults":90,"./hovermode_defaults":91,"./layout_attributes":93}],95:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28449,7 +30034,11 @@ module.exports = function supplyLayoutGlobalDefaults(layoutIn, layoutOut) {
     handleHoverLabelDefaults(layoutIn, layoutOut, coerce);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./hoverlabel_defaults":89,"./layout_attributes":92}],95:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./hoverlabel_defaults":90,"./layout_attributes":93}],96:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28823,7 +30412,11 @@ module.exports = {
     contentDefaults: contentDefaults
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../lib/regex":193,"../../plot_api/plot_template":213,"../../plots/cartesian/constants":229,"../../plots/domain":250}],96:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../lib/regex":196,"../../plot_api/plot_template":216,"../../plots/cartesian/constants":233,"../../plots/domain":254}],97:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -28836,6 +30429,7 @@ module.exports = {
 
 var cartesianConstants = _dereq_('../../plots/cartesian/constants');
 var templatedArray = _dereq_('../../plot_api/plot_template').templatedArray;
+var axisPlaceableObjs = _dereq_('../../constants/axis_placeable_objects');
 
 
 module.exports = templatedArray('image', {
@@ -28958,7 +30552,11 @@ module.exports = templatedArray('image', {
     editType: 'arraydraw'
 });
 
+<<<<<<< HEAD
 },{"../../plot_api/plot_template":213,"../../plots/cartesian/constants":229}],97:[function(_dereq_,module,exports){
+=======
+},{"../../constants/axis_placeable_objects":155,"../../plot_api/plot_template":216,"../../plots/cartesian/constants":233}],98:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29039,7 +30637,11 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib/to_log_range":201,"fast-isnumeric":15}],98:[function(_dereq_,module,exports){
+=======
+},{"../../lib/to_log_range":204,"fast-isnumeric":17}],99:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29091,7 +30693,7 @@ function imageDefaults(imageIn, imageOut, fullLayout) {
     for(var i = 0; i < 2; i++) {
         // 'paper' is the fallback axref
         var axLetter = axLetters[i];
-        var axRef = Axes.coerceRef(imageIn, imageOut, gdMock, axLetter, 'paper');
+        var axRef = Axes.coerceRef(imageIn, imageOut, gdMock, axLetter, 'paper', undefined);
 
         if(axRef !== 'paper') {
             var ax = Axes.getFromId(gdMock, axRef);
@@ -29104,7 +30706,11 @@ function imageDefaults(imageIn, imageOut, fullLayout) {
     return imageOut;
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/array_container_defaults":219,"../../plots/cartesian/axes":223,"./attributes":96}],99:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/array_container_defaults":222,"../../plots/cartesian/axes":227,"./attributes":97}],100:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29118,6 +30724,7 @@ function imageDefaults(imageIn, imageOut, fullLayout) {
 var d3 = _dereq_('d3');
 var Drawing = _dereq_('../drawing');
 var Axes = _dereq_('../../plots/cartesian/axes');
+var axisIds = _dereq_('../../plots/cartesian/axis_ids');
 var xmlnsNamespaces = _dereq_('../../constants/xmlns_namespaces');
 
 module.exports = function draw(gd) {
@@ -29134,7 +30741,7 @@ module.exports = function draw(gd) {
 
         if(img.visible) {
             if(img.layer === 'below' && img.xref !== 'paper' && img.yref !== 'paper') {
-                subplot = img.xref + img.yref;
+                subplot = axisIds.ref2id(img.xref) + axisIds.ref2id(img.yref);
 
                 var plotinfo = fullLayout._plots[subplot];
 
@@ -29237,10 +30844,25 @@ module.exports = function draw(gd) {
         // Axes if specified
         var xa = Axes.getFromId(gd, d.xref);
         var ya = Axes.getFromId(gd, d.yref);
+        var xIsDomain = Axes.getRefType(d.xref) === 'domain';
+        var yIsDomain = Axes.getRefType(d.yref) === 'domain';
 
         var size = fullLayout._size;
-        var width = xa ? Math.abs(xa.l2p(d.sizex) - xa.l2p(0)) : d.sizex * size.w;
-        var height = ya ? Math.abs(ya.l2p(d.sizey) - ya.l2p(0)) : d.sizey * size.h;
+        var width, height;
+        if(xa !== undefined) {
+            width = ((typeof(d.xref) === 'string') && xIsDomain) ?
+                xa._length * d.sizex :
+                Math.abs(xa.l2p(d.sizex) - xa.l2p(0));
+        } else {
+            width = d.sizex * size.w;
+        }
+        if(ya !== undefined) {
+            height = ((typeof(d.yref) === 'string') && yIsDomain) ?
+                ya._length * d.sizey :
+                Math.abs(ya.l2p(d.sizey) - ya.l2p(0));
+        } else {
+            height = d.sizey * size.h;
+        }
 
         // Offsets for anchor positioning
         var xOffset = width * anchors.x[d.xanchor].offset;
@@ -29249,8 +30871,25 @@ module.exports = function draw(gd) {
         var sizing = anchors.x[d.xanchor].sizing + anchors.y[d.yanchor].sizing;
 
         // Final positions
-        var xPos = (xa ? xa.r2p(d.x) + xa._offset : d.x * size.w + size.l) + xOffset;
-        var yPos = (ya ? ya.r2p(d.y) + ya._offset : size.h - d.y * size.h + size.t) + yOffset;
+        var xPos, yPos;
+        if(xa !== undefined) {
+            xPos = ((typeof(d.xref) === 'string') && xIsDomain) ?
+                xa._length * d.x + xa._offset :
+                xa.r2p(d.x) + xa._offset;
+        } else {
+            xPos = d.x * size.w + size.l;
+        }
+        xPos += xOffset;
+        if(ya !== undefined) {
+            yPos = ((typeof(d.yref) === 'string') && yIsDomain) ?
+                // consistent with "paper" yref value, where positive values
+                // move up the page
+                ya._length * (1 - d.y) + ya._offset :
+                ya.r2p(d.y) + ya._offset;
+        } else {
+            yPos = size.h - d.y * size.h + size.t;
+        }
+        yPos += yOffset;
 
         // Construct the proper aspectRatio attribute
         switch(d.sizing) {
@@ -29274,8 +30913,8 @@ module.exports = function draw(gd) {
 
 
         // Set proper clipping on images
-        var xId = xa ? xa._id : '';
-        var yId = ya ? ya._id : '';
+        var xId = xa && (Axes.getRefType(d.xref) !== 'domain') ? xa._id : '';
+        var yId = ya && (Axes.getRefType(d.yref) !== 'domain') ? ya._id : '';
         var clipAxes = xId + yId;
 
         Drawing.setClipUrl(
@@ -29329,7 +30968,11 @@ module.exports = function draw(gd) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../constants/xmlns_namespaces":157,"../../plots/cartesian/axes":223,"../drawing":73,"d3":13}],100:[function(_dereq_,module,exports){
+=======
+},{"../../constants/xmlns_namespaces":159,"../../plots/cartesian/axes":227,"../../plots/cartesian/axis_ids":230,"../drawing":74,"d3":15}],101:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29353,7 +30996,11 @@ module.exports = {
     convertCoords: _dereq_('./convert_coords')
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/include_components":235,"./attributes":96,"./convert_coords":97,"./defaults":98,"./draw":99}],101:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/include_components":239,"./attributes":97,"./convert_coords":98,"./defaults":99,"./draw":100}],102:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29514,7 +31161,11 @@ module.exports = {
     editType: 'legend'
 };
 
+<<<<<<< HEAD
 },{"../../plots/font_attributes":251,"../color/attributes":50}],102:[function(_dereq_,module,exports){
+=======
+},{"../../plots/font_attributes":255,"../color/attributes":51}],103:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29540,7 +31191,11 @@ module.exports = {
     itemGap: 5
 };
 
+<<<<<<< HEAD
 },{}],103:[function(_dereq_,module,exports){
+=======
+},{}],104:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29674,7 +31329,11 @@ module.exports = function legendDefaults(layoutIn, layoutOut, fullData) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"../../plots/layout_attributes":262,"../../registry":273,"./attributes":101,"./helpers":107}],104:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"../../plots/layout_attributes":266,"../../registry":277,"./attributes":102,"./helpers":108}],105:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -29766,11 +31425,12 @@ module.exports = function draw(gd, opts) {
     if(title.text) {
         var titleEl = Lib.ensureSingle(scrollBox, 'text', 'legendtitletext');
         titleEl.attr('text-anchor', 'start')
-            .classed('user-select-none', true)
             .call(Drawing.font, title.font)
             .text(title.text);
 
         textLayout(titleEl, scrollBox, gd, opts); // handle mathjax or multi-line text and compute title height
+    } else {
+        scrollBox.selectAll('.legendtitletext').remove();
     }
 
     var scrollBar = Lib.ensureSingle(legend, 'rect', 'scrollbar', function(s) {
@@ -30085,7 +31745,6 @@ function drawTexts(g, gd, opts) {
     var textEl = Lib.ensureSingle(g, 'text', 'legendtext');
 
     textEl.attr('text-anchor', 'start')
-        .classed('user-select-none', true)
         .call(Drawing.font, opts.font)
         .text(isEditable ? ensureLength(name, maxNameLength) : name);
 
@@ -30142,10 +31801,13 @@ function setupTraceToggle(g, gd) {
     var numClicks = 1;
 
     var traceToggle = Lib.ensureSingle(g, 'rect', 'legendtoggle', function(s) {
-        s.style('cursor', 'pointer')
-            .attr('pointer-events', 'all')
-            .call(Color.fill, 'rgba(0,0,0,0)');
+        if(!gd._context.staticPlot) {
+            s.style('cursor', 'pointer').attr('pointer-events', 'all');
+        }
+        s.call(Color.fill, 'rgba(0,0,0,0)');
     });
+
+    if(gd._context.staticPlot) return;
 
     traceToggle.on('mousedown', function() {
         newMouseDownTime = (new Date()).getTime();
@@ -30383,7 +32045,7 @@ function computeLegendDimensions(gd, groups, traces, opts) {
                 var w = textGap + d[0].width;
                 var next = (oneRowLegend ? w : maxItemWidth) + itemGap;
 
-                if((next + bw + offsetX) > opts._maxWidth) {
+                if((next + bw + offsetX - itemGap) >= opts._maxWidth) {
                     maxRowWidth = Math.max(maxRowWidth, rowWidth);
                     offsetX = 0;
                     offsetY += maxItemHeightInRow;
@@ -30466,7 +32128,11 @@ function getYanchor(opts) {
         'top';
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../lib":178,"../../lib/events":170,"../../lib/svg_text_utils":199,"../../plots/plots":264,"../../registry":273,"../color":51,"../dragelement":70,"../drawing":73,"./constants":102,"./get_legend_data":105,"./handle_click":106,"./helpers":107,"./style":109,"d3":13}],105:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../lib":181,"../../lib/events":172,"../../lib/svg_text_utils":202,"../../plots/plots":268,"../../registry":277,"../color":52,"../dragelement":71,"../drawing":74,"./constants":103,"./get_legend_data":106,"./handle_click":107,"./helpers":108,"./style":110,"d3":15}],106:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -30575,7 +32241,11 @@ module.exports = function getLegendData(calcdata, opts) {
     return legendData;
 };
 
+<<<<<<< HEAD
 },{"../../registry":273,"./helpers":107}],106:[function(_dereq_,module,exports){
+=======
+},{"../../registry":277,"./helpers":108}],107:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -30814,7 +32484,11 @@ module.exports = function handleClick(g, gd, numClicks) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273}],107:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277}],108:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -30838,7 +32512,11 @@ exports.isReversed = function isReversed(legendLayout) {
     return (legendLayout.traceorder || '').indexOf('reversed') !== -1;
 };
 
+<<<<<<< HEAD
 },{}],108:[function(_dereq_,module,exports){
+=======
+},{}],109:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -30862,7 +32540,11 @@ module.exports = {
     style: _dereq_('./style')
 };
 
+<<<<<<< HEAD
 },{"./attributes":101,"./defaults":103,"./draw":104,"./style":109}],109:[function(_dereq_,module,exports){
+=======
+},{"./attributes":102,"./defaults":104,"./draw":105,"./style":110}],110:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -31489,7 +33171,11 @@ function getGradientDirection(reversescale, isRadial) {
     return str + (reversescale ? '' : 'reversed');
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273,"../../traces/pie/helpers":292,"../../traces/pie/style_one":293,"../../traces/scatter/subtypes":319,"../color":51,"../colorscale/helpers":62,"../drawing":73,"d3":13}],110:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"../../traces/pie/helpers":296,"../../traces/pie/style_one":297,"../../traces/scatter/subtypes":324,"../color":52,"../colorscale/helpers":63,"../drawing":74,"d3":15}],111:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -31882,6 +33568,9 @@ modeBarButtons.resetCameraLastSave3d = {
 function handleCamera3d(gd, ev) {
     var button = ev.currentTarget;
     var attr = button.getAttribute('data-attr');
+    var resetLastSave = attr === 'resetLastSave';
+    var resetDefault = attr === 'resetDefault';
+
     var fullLayout = gd._fullLayout;
     var sceneIds = fullLayout._subplots.gl3d || [];
     var aobj = {};
@@ -31894,12 +33583,12 @@ function handleCamera3d(gd, ev) {
         var scene = fullLayout[sceneId]._scene;
         var didUpdate;
 
-        if(attr === 'resetLastSave') {
+        if(resetLastSave) {
             aobj[camera + '.up'] = scene.viewInitial.up;
             aobj[camera + '.eye'] = scene.viewInitial.eye;
             aobj[camera + '.center'] = scene.viewInitial.center;
             didUpdate = true;
-        } else if(attr === 'resetDefault') {
+        } else if(resetDefault) {
             aobj[camera + '.up'] = null;
             aobj[camera + '.eye'] = null;
             aobj[camera + '.center'] = null;
@@ -32222,7 +33911,11 @@ function resetView(gd, subplotType) {
     Registry.call('_guiRelayout', gd, aObj);
 }
 
+<<<<<<< HEAD
 },{"../../fonts/ploticon":160,"../../lib":178,"../../plots/cartesian/axis_ids":226,"../../plots/plots":264,"../../registry":273,"../shapes/draw":132}],111:[function(_dereq_,module,exports){
+=======
+},{"../../fonts/ploticon":162,"../../lib":181,"../../plots/cartesian/axis_ids":230,"../../plots/plots":268,"../../registry":277,"../shapes/draw":133}],112:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -32236,7 +33929,11 @@ function resetView(gd, subplotType) {
 
 exports.manage = _dereq_('./manage');
 
+<<<<<<< HEAD
 },{"./manage":112}],112:[function(_dereq_,module,exports){
+=======
+},{"./manage":113}],113:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -32532,7 +34229,11 @@ function fillCustomButton(customButtons) {
     return customButtons;
 }
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/axis_ids":226,"../../registry":273,"../../traces/scatter/subtypes":319,"../fx/helpers":87,"./buttons":110,"./modebar":113}],113:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/axis_ids":230,"../../registry":277,"../../traces/scatter/subtypes":324,"../fx/helpers":88,"./buttons":111,"./modebar":114}],114:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -32878,7 +34579,11 @@ function createModeBar(gd, buttons) {
 
 module.exports = createModeBar;
 
+<<<<<<< HEAD
 },{"../../fonts/ploticon":160,"../../lib":178,"d3":13,"fast-isnumeric":15}],114:[function(_dereq_,module,exports){
+=======
+},{"../../fonts/ploticon":162,"../../lib":181,"d3":15,"fast-isnumeric":17}],115:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33014,7 +34719,11 @@ module.exports = {
     editType: 'plot'
 };
 
+<<<<<<< HEAD
 },{"../../plot_api/plot_template":213,"../../plots/font_attributes":251,"../color/attributes":50}],115:[function(_dereq_,module,exports){
+=======
+},{"../../plot_api/plot_template":216,"../../plots/font_attributes":255,"../color/attributes":51}],116:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33043,7 +34752,11 @@ module.exports = {
     darkAmount: 10
 };
 
+<<<<<<< HEAD
 },{}],116:[function(_dereq_,module,exports){
+=======
+},{}],117:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33135,7 +34848,11 @@ function getPosDflt(containerOut, layout, counterAxes) {
     return [containerOut.domain[0], posY + constants.yPad];
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"../../plots/array_container_defaults":219,"../color":51,"./attributes":114,"./constants":115}],117:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"../../plots/array_container_defaults":222,"../color":52,"./attributes":115,"./constants":116}],118:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33282,8 +34999,7 @@ function drawButtonText(button, selectorLayout, d, gd) {
     }
 
     var text = Lib.ensureSingle(button, 'text', 'selector-text', function(s) {
-        s.classed('user-select-none', true)
-            .attr('text-anchor', 'middle');
+        s.attr('text-anchor', 'middle');
     });
 
     text.call(Drawing.font, selectorLayout.font)
@@ -33392,7 +35108,11 @@ function reposition(gd, buttons, opts, axName, selector) {
     selector.attr('transform', 'translate(' + lx + ',' + ly + ')');
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../lib":178,"../../lib/svg_text_utils":199,"../../plots/cartesian/axis_ids":226,"../../plots/plots":264,"../../registry":273,"../color":51,"../drawing":73,"./constants":115,"./get_update_object":118,"d3":13}],118:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../lib":181,"../../lib/svg_text_utils":202,"../../plots/cartesian/axis_ids":230,"../../plots/plots":268,"../../registry":277,"../color":52,"../drawing":74,"./constants":116,"./get_update_object":119,"d3":15}],119:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33446,7 +35166,11 @@ function getXRange(axisLayout, buttonLayout) {
     return [range0, range1];
 }
 
+<<<<<<< HEAD
 },{"d3":13}],119:[function(_dereq_,module,exports){
+=======
+},{"d3":15}],120:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33473,7 +35197,11 @@ module.exports = {
     draw: _dereq_('./draw')
 };
 
+<<<<<<< HEAD
 },{"./attributes":114,"./defaults":116,"./draw":117}],120:[function(_dereq_,module,exports){
+=======
+},{"./attributes":115,"./defaults":117,"./draw":118}],121:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33547,7 +35275,11 @@ module.exports = {
     editType: 'calc'
 };
 
+<<<<<<< HEAD
 },{"../color/attributes":50}],121:[function(_dereq_,module,exports){
+=======
+},{"../color/attributes":51}],122:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33581,7 +35313,11 @@ module.exports = function calcAutorange(gd) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/autorange":222,"../../plots/cartesian/axis_ids":226,"./constants":122}],122:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/autorange":226,"../../plots/cartesian/axis_ids":230,"./constants":123}],123:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33637,7 +35373,11 @@ module.exports = {
     extraPad: 15
 };
 
+<<<<<<< HEAD
 },{}],123:[function(_dereq_,module,exports){
+=======
+},{}],124:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33723,7 +35463,11 @@ module.exports = function handleDefaults(layoutIn, layoutOut, axName) {
     containerOut._input = containerIn;
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plot_api/plot_template":213,"../../plots/cartesian/axis_ids":226,"./attributes":120,"./oppaxis_attributes":127}],124:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plot_api/plot_template":216,"../../plots/cartesian/axis_ids":230,"./attributes":121,"./oppaxis_attributes":128}],125:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -33958,25 +35702,30 @@ module.exports = function(gd) {
 };
 
 function setupDragElement(rangeSlider, gd, axisOpts, opts) {
+    if(gd._context.staticPlot) return;
+
     var slideBox = rangeSlider.select('rect.' + constants.slideBoxClassName).node();
     var grabAreaMin = rangeSlider.select('rect.' + constants.grabAreaMinClassName).node();
     var grabAreaMax = rangeSlider.select('rect.' + constants.grabAreaMaxClassName).node();
 
-    rangeSlider.on('mousedown', function() {
+    function mouseDownHandler() {
         var event = d3.event;
         var target = event.target;
-        var startX = event.clientX;
+        var startX = event.clientX || event.touches[0].clientX;
         var offsetX = startX - rangeSlider.node().getBoundingClientRect().left;
         var minVal = opts.d2p(axisOpts._rl[0]);
         var maxVal = opts.d2p(axisOpts._rl[1]);
 
         var dragCover = dragElement.coverSlip();
 
+        this.addEventListener('touchmove', mouseMove);
+        this.addEventListener('touchend', mouseUp);
         dragCover.addEventListener('mousemove', mouseMove);
         dragCover.addEventListener('mouseup', mouseUp);
 
         function mouseMove(e) {
-            var delta = +e.clientX - startX;
+            var clientX = e.clientX || e.touches[0].clientX;
+            var delta = +clientX - startX;
             var pixelMin, pixelMax, cursor;
 
             switch(target) {
@@ -34021,9 +35770,14 @@ function setupDragElement(rangeSlider, gd, axisOpts, opts) {
         function mouseUp() {
             dragCover.removeEventListener('mousemove', mouseMove);
             dragCover.removeEventListener('mouseup', mouseUp);
+            this.removeEventListener('touchmove', mouseMove);
+            this.removeEventListener('touchend', mouseUp);
             Lib.removeElement(dragCover);
         }
-    });
+    }
+
+    rangeSlider.on('mousedown', mouseDownHandler);
+    rangeSlider.on('touchstart', mouseDownHandler);
 }
 
 function setDataRange(rangeSlider, gd, axisOpts, opts) {
@@ -34337,14 +36091,12 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
     handleMax.attr(handleDynamicAttrs);
 
     // <g grabarea />
-    if(gd._context.staticPlot) return;
-
     var grabAreaFixAttrs = {
         width: constants.grabAreaWidth,
         x: 0,
         y: 0,
         fill: constants.grabAreaFill,
-        cursor: constants.grabAreaCursor
+        cursor: !gd._context.staticPlot ? constants.grabAreaCursor : undefined,
     };
 
     var grabAreaMin = Lib.ensureSingle(grabberMin, 'rect', constants.grabAreaMinClassName, function(s) {
@@ -34358,7 +36110,11 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
     grabAreaMax.attr('height', opts._height);
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../lib/setcursor":197,"../../plots/cartesian":236,"../../plots/cartesian/axis_ids":226,"../../plots/plots":264,"../../registry":273,"../color":51,"../dragelement":70,"../drawing":73,"../titles":146,"./constants":122,"d3":13}],125:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../lib/setcursor":200,"../../plots/cartesian":240,"../../plots/cartesian/axis_ids":230,"../../plots/plots":268,"../../registry":277,"../color":52,"../dragelement":71,"../drawing":74,"../titles":147,"./constants":123,"d3":15}],126:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34433,7 +36189,11 @@ exports.autoMarginOpts = function(gd, ax) {
     };
 };
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../lib/svg_text_utils":199,"../../plots/cartesian/axis_ids":226,"./constants":122}],126:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../lib/svg_text_utils":202,"../../plots/cartesian/axis_ids":230,"./constants":123}],127:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34472,7 +36232,11 @@ module.exports = {
     autoMarginOpts: helpers.autoMarginOpts
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./attributes":120,"./calc_autorange":121,"./defaults":123,"./draw":124,"./helpers":125,"./oppaxis_attributes":127}],127:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./attributes":121,"./calc_autorange":122,"./defaults":124,"./draw":125,"./helpers":126,"./oppaxis_attributes":128}],128:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34510,7 +36274,11 @@ module.exports = {
     editType: 'calc'
 };
 
+<<<<<<< HEAD
 },{}],128:[function(_dereq_,module,exports){
+=======
+},{}],129:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34526,6 +36294,7 @@ var scatterLineAttrs = _dereq_('../../traces/scatter/attributes').line;
 var dash = _dereq_('../drawing/attributes').dash;
 var extendFlat = _dereq_('../../lib/extend').extendFlat;
 var templatedArray = _dereq_('../../plot_api/plot_template').templatedArray;
+var axisPlaceableObjs = _dereq_('../../constants/axis_placeable_objects');
 
 module.exports = templatedArray('shape', {
     visible: {
@@ -34662,7 +36431,11 @@ module.exports = templatedArray('shape', {
     editType: 'arraydraw'
 });
 
+<<<<<<< HEAD
 },{"../../lib/extend":171,"../../plot_api/plot_template":213,"../../traces/scatter/attributes":295,"../annotations/attributes":36,"../drawing/attributes":72}],129:[function(_dereq_,module,exports){
+=======
+},{"../../constants/axis_placeable_objects":155,"../../lib/extend":173,"../../plot_api/plot_template":216,"../../traces/scatter/attributes":299,"../annotations/attributes":37,"../drawing/attributes":73}],130:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34690,9 +36463,12 @@ module.exports = function calcAutorange(gd) {
         var shape = shapeList[i];
         shape._extremes = {};
 
-        var ax, bounds;
+        var ax; var bounds;
+        var xRefType = Axes.getRefType(shape.xref);
+        var yRefType = Axes.getRefType(shape.yref);
 
-        if(shape.xref !== 'paper') {
+        // paper and axis domain referenced shapes don't affect autorange
+        if(shape.xref !== 'paper' && xRefType !== 'domain') {
             var vx0 = shape.xsizemode === 'pixel' ? shape.xanchor : shape.x0;
             var vx1 = shape.xsizemode === 'pixel' ? shape.xanchor : shape.x1;
             ax = Axes.getFromId(gd, shape.xref);
@@ -34703,7 +36479,7 @@ module.exports = function calcAutorange(gd) {
             }
         }
 
-        if(shape.yref !== 'paper') {
+        if(shape.yref !== 'paper' && yRefType !== 'domain') {
             var vy0 = shape.ysizemode === 'pixel' ? shape.yanchor : shape.y0;
             var vy1 = shape.ysizemode === 'pixel' ? shape.yanchor : shape.y1;
             ax = Axes.getFromId(gd, shape.yref);
@@ -34779,7 +36555,11 @@ function shapeBounds(ax, v0, v1, path, paramsToUse) {
     if(max >= min) return [min, max];
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/cartesian/axes":223,"./constants":130,"./helpers":139}],130:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/cartesian/axes":227,"./constants":131,"./helpers":140}],131:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34843,7 +36623,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],131:[function(_dereq_,module,exports){
+=======
+},{}],132:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -34909,9 +36693,11 @@ function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
         var r2pos;
 
         // xref, yref
-        var axRef = Axes.coerceRef(shapeIn, shapeOut, gdMock, axLetter, '', 'paper');
+        var axRef = Axes.coerceRef(shapeIn, shapeOut, gdMock, axLetter, undefined,
+            'paper');
+        var axRefType = Axes.getRefType(axRef);
 
-        if(axRef !== 'paper') {
+        if(axRefType === 'range') {
             ax = Axes.getFromId(gdMock, axRef);
             ax._shapeIndices.push(shapeOut._index);
             r2pos = helpers.rangeToShapePosition(ax);
@@ -34972,7 +36758,11 @@ function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/array_container_defaults":219,"../../plots/cartesian/axes":223,"./attributes":128,"./helpers":139}],132:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/array_container_defaults":222,"../../plots/cartesian/axes":227,"./attributes":129,"./helpers":140}],133:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -35158,7 +36948,10 @@ function setClipPath(shapePath, gd, shapeOptions) {
     // note that for layer="below" the clipAxes can be different from the
     // subplot we're drawing this in. This could cause problems if the shape
     // spans two subplots. See https://github.com/plotly/plotly.js/issues/1452
-    var clipAxes = (shapeOptions.xref + shapeOptions.yref).replace(/paper/g, '');
+    //
+    // if axis is 'paper' or an axis with " domain" appended, then there is no
+    // clip axis
+    var clipAxes = (shapeOptions.xref + shapeOptions.yref).replace(/paper/g, '').replace(/[xyz][1-9]* *domain/g, '');
 
     Drawing.setClipUrl(
         shapePath,
@@ -35184,11 +36977,13 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer, editHe
 
     // setup conversion functions
     var xa = Axes.getFromId(gd, shapeOptions.xref);
+    var xRefType = Axes.getRefType(shapeOptions.xref);
     var ya = Axes.getFromId(gd, shapeOptions.yref);
-    var x2p = helpers.getDataToPixel(gd, xa);
-    var y2p = helpers.getDataToPixel(gd, ya, true);
-    var p2x = helpers.getPixelToData(gd, xa);
-    var p2y = helpers.getPixelToData(gd, ya, true);
+    var yRefType = Axes.getRefType(shapeOptions.yref);
+    var x2p = helpers.getDataToPixel(gd, xa, false, xRefType);
+    var y2p = helpers.getDataToPixel(gd, ya, true, yRefType);
+    var p2x = helpers.getPixelToData(gd, xa, false, xRefType);
+    var p2y = helpers.getPixelToData(gd, ya, true, yRefType);
 
     var sensoryElement = obtainSensoryElement();
     var dragOptions = {
@@ -35559,6 +37354,8 @@ function setupDragElement(gd, shapePath, shapeOptions, index, shapeLayer, editHe
 
 function getPathString(gd, options) {
     var type = options.type;
+    var xRefType = Axes.getRefType(options.xref);
+    var yRefType = Axes.getRefType(options.yref);
     var xa = Axes.getFromId(gd, options.xref);
     var ya = Axes.getFromId(gd, options.yref);
     var gs = gd._fullLayout._size;
@@ -35566,15 +37363,23 @@ function getPathString(gd, options) {
     var x0, x1, y0, y1;
 
     if(xa) {
-        x2r = helpers.shapePositionToRange(xa);
-        x2p = function(v) { return xa._offset + xa.r2p(x2r(v, true)); };
+        if(xRefType === 'domain') {
+            x2p = function(v) { return xa._offset + xa._length * v; };
+        } else {
+            x2r = helpers.shapePositionToRange(xa);
+            x2p = function(v) { return xa._offset + xa.r2p(x2r(v, true)); };
+        }
     } else {
         x2p = function(v) { return gs.l + gs.w * v; };
     }
 
     if(ya) {
-        y2r = helpers.shapePositionToRange(ya);
-        y2p = function(v) { return ya._offset + ya.r2p(y2r(v, true)); };
+        if(yRefType === 'domain') {
+            y2p = function(v) { return ya._offset + ya._length * (1 - v); };
+        } else {
+            y2r = helpers.shapePositionToRange(ya);
+            y2p = function(v) { return ya._offset + ya.r2p(y2r(v, true)); };
+        }
     } else {
         y2p = function(v) { return gs.t + gs.h * (1 - v); };
     }
@@ -35731,7 +37536,11 @@ function eraseActiveShape(gd) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../lib/setcursor":197,"../../plot_api/plot_template":213,"../../plots/cartesian/axes":223,"../../plots/cartesian/handle_outline":233,"../../registry":273,"../color":51,"../dragelement":70,"../drawing":73,"./constants":130,"./draw_newshape/display_outlines":136,"./draw_newshape/helpers":137,"./helpers":139}],133:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../lib/setcursor":200,"../../plot_api/plot_template":216,"../../plots/cartesian/axes":227,"../../plots/cartesian/handle_outline":237,"../../registry":277,"../color":52,"../dragelement":71,"../drawing":74,"./constants":131,"./draw_newshape/display_outlines":137,"./draw_newshape/helpers":138,"./helpers":140}],134:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -35834,7 +37643,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../../lib/extend":171,"../../drawing/attributes":72}],134:[function(_dereq_,module,exports){
+=======
+},{"../../../lib/extend":173,"../../drawing/attributes":73}],135:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -35858,7 +37671,11 @@ module.exports = {
     SQRT2: Math.sqrt(2)
 };
 
+<<<<<<< HEAD
 },{}],135:[function(_dereq_,module,exports){
+=======
+},{}],136:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -35890,7 +37707,11 @@ module.exports = function supplyDrawNewShapeDefaults(layoutIn, layoutOut, coerce
     coerce('activeshape.opacity');
 };
 
+<<<<<<< HEAD
 },{"../../color":51}],136:[function(_dereq_,module,exports){
+=======
+},{"../../color":52}],137:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -36185,7 +38006,11 @@ function recordPositions(polygonsOut, polygonsIn) {
     return polygonsOut;
 }
 
+<<<<<<< HEAD
 },{"../../../plots/cartesian/handle_outline":233,"../../../registry":273,"../../dragelement":70,"../../dragelement/helpers":69,"./constants":134,"./helpers":137,"./newshapes":138}],137:[function(_dereq_,module,exports){
+=======
+},{"../../../plots/cartesian/handle_outline":237,"../../../registry":277,"../../dragelement":71,"../../dragelement/helpers":70,"./constants":135,"./helpers":138,"./newshapes":139}],138:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -36523,7 +38348,11 @@ exports.ellipseOver = function(pos) {
     };
 };
 
+<<<<<<< HEAD
 },{"../../../plots/cartesian/helpers":234,"./constants":134,"parse-svg-path":23}],138:[function(_dereq_,module,exports){
+=======
+},{"../../../plots/cartesian/helpers":238,"./constants":135,"parse-svg-path":24}],139:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -36782,7 +38611,11 @@ function fixDatesForPaths(polygons, xaxis, yaxis) {
     return polygons;
 }
 
+<<<<<<< HEAD
 },{"../../../plots/cartesian/handle_outline":233,"../../../plots/cartesian/helpers":234,"../../dragelement/helpers":69,"./constants":134,"./helpers":137}],139:[function(_dereq_,module,exports){
+=======
+},{"../../../plots/cartesian/handle_outline":237,"../../../plots/cartesian/helpers":238,"../../dragelement/helpers":70,"./constants":135,"./helpers":138}],140:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -36843,18 +38676,24 @@ exports.extractPathCoords = function(path, paramsToUse) {
     return extractedCoordinates;
 };
 
-exports.getDataToPixel = function(gd, axis, isVertical) {
+exports.getDataToPixel = function(gd, axis, isVertical, refType) {
     var gs = gd._fullLayout._size;
     var dataToPixel;
 
     if(axis) {
-        var d2r = exports.shapePositionToRange(axis);
+        if(refType === 'domain') {
+            dataToPixel = function(v) {
+                return axis._length * (isVertical ? (1 - v) : v) + axis._offset;
+            };
+        } else {
+            var d2r = exports.shapePositionToRange(axis);
 
-        dataToPixel = function(v) {
-            return axis._offset + axis.r2p(d2r(v, true));
-        };
+            dataToPixel = function(v) {
+                return axis._offset + axis.r2p(d2r(v, true));
+            };
 
-        if(axis.type === 'date') dataToPixel = exports.decodeDate(dataToPixel);
+            if(axis.type === 'date') dataToPixel = exports.decodeDate(dataToPixel);
+        }
     } else if(isVertical) {
         dataToPixel = function(v) { return gs.t + gs.h * (1 - v); };
     } else {
@@ -36864,13 +38703,20 @@ exports.getDataToPixel = function(gd, axis, isVertical) {
     return dataToPixel;
 };
 
-exports.getPixelToData = function(gd, axis, isVertical) {
+exports.getPixelToData = function(gd, axis, isVertical, opt) {
     var gs = gd._fullLayout._size;
     var pixelToData;
 
     if(axis) {
-        var r2d = exports.rangeToShapePosition(axis);
-        pixelToData = function(p) { return r2d(axis.p2r(p - axis._offset)); };
+        if(opt === 'domain') {
+            pixelToData = function(p) {
+                var q = (p - axis._offset) / axis._length;
+                return isVertical ? 1 - q : q;
+            };
+        } else {
+            var r2d = exports.rangeToShapePosition(axis);
+            pixelToData = function(p) { return r2d(axis.p2r(p - axis._offset)); };
+        }
     } else if(isVertical) {
         pixelToData = function(p) { return 1 - (p - gs.t) / gs.h; };
     } else {
@@ -36927,7 +38773,11 @@ exports.makeOptionsAndPlotinfo = function(gd, index) {
     };
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./constants":130}],140:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./constants":131}],141:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -36955,7 +38805,11 @@ module.exports = {
     drawOne: drawModule.drawOne
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/include_components":235,"./attributes":128,"./calc_autorange":129,"./defaults":131,"./draw":132,"./draw_newshape/defaults":135}],141:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/include_components":239,"./attributes":129,"./calc_autorange":130,"./defaults":132,"./draw":133,"./draw_newshape/defaults":136}],142:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -37198,7 +39052,11 @@ module.exports = overrideAll(templatedArray('slider', {
     }
 }), 'arraydraw', 'from-root');
 
+<<<<<<< HEAD
 },{"../../lib/extend":171,"../../plot_api/edit_types":206,"../../plot_api/plot_template":213,"../../plots/animation_attributes":218,"../../plots/font_attributes":251,"../../plots/pad_attributes":263,"./constants":142}],142:[function(_dereq_,module,exports){
+=======
+},{"../../lib/extend":173,"../../plot_api/edit_types":209,"../../plot_api/plot_template":216,"../../plots/animation_attributes":221,"../../plots/font_attributes":255,"../../plots/pad_attributes":267,"./constants":143}],143:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -37292,7 +39150,11 @@ module.exports = {
     currentValueInset: 0,
 };
 
+<<<<<<< HEAD
 },{}],143:[function(_dereq_,module,exports){
+=======
+},{}],144:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -37407,7 +39269,11 @@ function stepDefaults(valueIn, valueOut) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/array_container_defaults":219,"./attributes":141,"./constants":142}],144:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/array_container_defaults":222,"./attributes":142,"./constants":143}],145:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -37712,11 +39578,10 @@ function drawCurrentValue(sliderGroup, sliderOpts, valueOverride) {
     }
 
     var text = Lib.ensureSingle(sliderGroup, 'text', constants.labelClass, function(s) {
-        s.classed('user-select-none', true)
-            .attr({
-                'text-anchor': textAnchor,
-                'data-notex': 1
-            });
+        s.attr({
+            'text-anchor': textAnchor,
+            'data-notex': 1
+        });
     });
 
     var str = sliderOpts.currentvalue.prefix ? sliderOpts.currentvalue.prefix : '';
@@ -37767,11 +39632,10 @@ function drawGrip(sliderGroup, gd, sliderOpts) {
 
 function drawLabel(item, data, sliderOpts) {
     var text = Lib.ensureSingle(item, 'text', constants.labelClass, function(s) {
-        s.classed('user-select-none', true)
-            .attr({
-                'text-anchor': 'middle',
-                'data-notex': 1
-            });
+        s.attr({
+            'text-anchor': 'middle',
+            'data-notex': 1
+        });
     });
 
     var tx = data.step.label;
@@ -38039,7 +39903,11 @@ function drawRail(sliderGroup, sliderOpts) {
     );
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../lib":178,"../../lib/svg_text_utils":199,"../../plot_api/plot_template":213,"../../plots/plots":264,"../color":51,"../drawing":73,"./constants":142,"d3":13}],145:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../lib":181,"../../lib/svg_text_utils":202,"../../plot_api/plot_template":216,"../../plots/plots":268,"../color":52,"../drawing":74,"./constants":143,"d3":15}],146:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -38062,7 +39930,11 @@ module.exports = {
     draw: _dereq_('./draw')
 };
 
+<<<<<<< HEAD
 },{"./attributes":141,"./constants":142,"./defaults":143,"./draw":144}],146:[function(_dereq_,module,exports){
+=======
+},{"./attributes":142,"./constants":143,"./defaults":144,"./draw":145}],147:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -38329,7 +40201,11 @@ module.exports = {
     draw: draw
 };
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../constants/interactions":155,"../../lib":178,"../../lib/svg_text_utils":199,"../../plots/plots":264,"../../registry":273,"../color":51,"../drawing":73,"d3":13,"fast-isnumeric":15}],147:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../constants/interactions":157,"../../lib":181,"../../lib/svg_text_utils":202,"../../plots/plots":268,"../../registry":277,"../color":52,"../drawing":74,"d3":15,"fast-isnumeric":17}],148:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -38498,7 +40374,11 @@ module.exports = overrideAll(templatedArray('updatemenu', {
     }
 }), 'arraydraw', 'from-root');
 
+<<<<<<< HEAD
 },{"../../lib/extend":171,"../../plot_api/edit_types":206,"../../plot_api/plot_template":213,"../../plots/font_attributes":251,"../../plots/pad_attributes":263,"../color/attributes":50}],148:[function(_dereq_,module,exports){
+=======
+},{"../../lib/extend":173,"../../plot_api/edit_types":209,"../../plot_api/plot_template":216,"../../plots/font_attributes":255,"../../plots/pad_attributes":267,"../color/attributes":51}],149:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -38579,7 +40459,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],149:[function(_dereq_,module,exports){
+=======
+},{}],150:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -38662,7 +40546,11 @@ function buttonDefaults(buttonIn, buttonOut) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/array_container_defaults":219,"./attributes":147,"./constants":148}],150:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/array_container_defaults":222,"./attributes":148,"./constants":149}],151:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -38860,8 +40748,7 @@ function drawHeader(gd, gHeader, gButton, scrollBox, menuOpts) {
 
     // draw drop arrow at the right edge
     var arrow = Lib.ensureSingle(gHeader, 'text', constants.headerArrowClassName, function(s) {
-        s.classed('user-select-none', true)
-            .attr('text-anchor', 'end')
+        s.attr('text-anchor', 'end')
             .call(Drawing.font, menuOpts.font)
             .text(constants.arrowSymbol[menuOpts.direction]);
     });
@@ -39100,11 +40987,10 @@ function drawItemRect(item, menuOpts) {
 
 function drawItemText(item, menuOpts, itemOpts, gd) {
     var text = Lib.ensureSingle(item, 'text', constants.itemTextClassName, function(s) {
-        s.classed('user-select-none', true)
-            .attr({
-                'text-anchor': 'start',
-                'data-notex': 1
-            });
+        s.attr({
+            'text-anchor': 'start',
+            'data-notex': 1
+        });
     });
 
     var tx = itemOpts.label;
@@ -39315,9 +41201,15 @@ function removeAllButtons(gButton, newMenuIndexAttr) {
         .selectAll('g.' + constants.dropdownButtonClassName).remove();
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../lib":178,"../../lib/svg_text_utils":199,"../../plot_api/plot_template":213,"../../plots/plots":264,"../color":51,"../drawing":73,"./constants":148,"./scrollbox":152,"d3":13}],151:[function(_dereq_,module,exports){
 arguments[4][145][0].apply(exports,arguments)
 },{"./attributes":147,"./constants":148,"./defaults":149,"./draw":150,"dup":145}],152:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../lib":181,"../../lib/svg_text_utils":202,"../../plot_api/plot_template":216,"../../plots/plots":268,"../color":52,"../drawing":74,"./constants":149,"./scrollbox":153,"d3":15}],152:[function(_dereq_,module,exports){
+arguments[4][146][0].apply(exports,arguments)
+},{"./attributes":148,"./constants":149,"./defaults":150,"./draw":151,"dup":146}],153:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -39782,7 +41674,11 @@ ScrollBox.prototype.setTranslate = function setTranslate(translateX, translateY)
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../color":51,"../drawing":73,"d3":13}],153:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../color":52,"../drawing":74,"d3":15}],154:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -39847,7 +41743,43 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],154:[function(_dereq_,module,exports){
+=======
+},{}],155:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2020, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+module.exports = {
+    axisRefDescription: function(axisname, lower, upper) {
+        return [
+            'If set to a', axisname, 'axis id (e.g. *' + axisname + '* or',
+            '*' + axisname + '2*), the `' + axisname + '` position refers to a',
+            axisname, 'coordinate. If set to *paper*, the `' + axisname + '`',
+            'position refers to the distance from the', lower, 'of the plotting',
+            'area in normalized coordinates where *0* (*1*) corresponds to the',
+            lower, '(' + upper + '). If set to a', axisname, 'axis ID followed by',
+            '*domain* (separated by a space), the position behaves like for',
+            '*paper*, but refers to the distance in fractions of the domain',
+            'length from the', lower, 'of the domain of that axis: e.g.,',
+            '*' + axisname + '2 domain* refers to the domain of the second',
+            axisname, ' axis and a', axisname, 'position of 0.5 refers to the',
+            'point between the', lower, 'and the', upper, 'of the domain of the',
+            'second', axisname, 'axis.',
+        ].join(' ');
+    }
+};
+
+},{}],156:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -39860,10 +41792,14 @@ module.exports = {
 
 module.exports = {
     FORMAT_LINK: 'https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format',
-    DATE_FORMAT_LINK: 'https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format'
+    DATE_FORMAT_LINK: 'https://github.com/d3/d3-time-format#locale_format'
 };
 
+<<<<<<< HEAD
 },{}],155:[function(_dereq_,module,exports){
+=======
+},{}],157:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -39886,7 +41822,11 @@ module.exports = {
     DESELECTDIM: 0.2
 };
 
+<<<<<<< HEAD
 },{}],156:[function(_dereq_,module,exports){
+=======
+},{}],158:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -39920,9 +41860,17 @@ module.exports = {
      * to remind us that not all years and months
      * have the same length
      */
+    ONEMAXYEAR: 31622400000, // 366 * ONEDAY
     ONEAVGYEAR: 31557600000, // 365.25 days
+    ONEMINYEAR: 31536000000, // 365 * ONEDAY
+    ONEMAXQUARTER: 7948800000, // 92 * ONEDAY
+    ONEAVGQUARTER: 7889400000, // 1/4 of ONEAVGYEAR
+    ONEMINQUARTER: 7689600000, // 89 * ONEDAY
+    ONEMAXMONTH: 2678400000, // 31 * ONEDAY
     ONEAVGMONTH: 2629800000, // 1/12 of ONEAVGYEAR
-    ONEDAY: 86400000,
+    ONEMINMONTH: 2419200000, // 28 * ONEDAY
+    ONEWEEK: 604800000, // 7 * ONEDAY
+    ONEDAY: 86400000, // 24 * ONEHOUR
     ONEHOUR: 3600000,
     ONEMIN: 60000,
     ONESEC: 1000,
@@ -39951,7 +41899,11 @@ module.exports = {
     MINUS_SIGN: '\u2212'
 };
 
+<<<<<<< HEAD
 },{}],157:[function(_dereq_,module,exports){
+=======
+},{}],159:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -39975,7 +41927,11 @@ exports.svgAttrs = {
     'xmlns:xlink': exports.xlink
 };
 
+<<<<<<< HEAD
 },{}],158:[function(_dereq_,module,exports){
+=======
+},{}],160:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40061,7 +42017,11 @@ exports.Queue = _dereq_('./lib/queue');
 // export d3 used in the bundle
 exports.d3 = _dereq_('d3');
 
+<<<<<<< HEAD
 },{"../build/plotcss":1,"./components/annotations":44,"./components/annotations3d":49,"./components/colorbar":57,"./components/colorscale":63,"./components/errorbars":79,"./components/fx":91,"./components/grid":95,"./components/images":100,"./components/legend":108,"./components/rangeselector":119,"./components/rangeslider":126,"./components/shapes":140,"./components/sliders":145,"./components/updatemenus":151,"./fonts/mathjax_config":159,"./fonts/ploticon":160,"./lib/queue":192,"./locale-en":204,"./locale-en-us":203,"./plot_api":208,"./plot_api/plot_schema":212,"./plots/plots":264,"./registry":273,"./snapshot":278,"./traces/scatter":307,"./version":332,"d3":13,"es6-promise":14}],159:[function(_dereq_,module,exports){
+=======
+},{"../build/plotcss":1,"./components/annotations":45,"./components/annotations3d":50,"./components/colorbar":58,"./components/colorscale":64,"./components/errorbars":80,"./components/fx":92,"./components/grid":96,"./components/images":101,"./components/legend":109,"./components/rangeselector":120,"./components/rangeslider":127,"./components/shapes":141,"./components/sliders":146,"./components/updatemenus":152,"./fonts/mathjax_config":161,"./fonts/ploticon":162,"./lib/queue":195,"./locale-en":207,"./locale-en-us":206,"./plot_api":211,"./plot_api/plot_schema":215,"./plots/plots":268,"./registry":277,"./snapshot":282,"./traces/scatter":311,"./version":337,"d3":15,"es6-promise":16}],161:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40092,7 +42052,11 @@ module.exports = function() {
     }
 };
 
+<<<<<<< HEAD
 },{}],160:[function(_dereq_,module,exports){
+=======
+},{}],162:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40272,7 +42236,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],161:[function(_dereq_,module,exports){
+=======
+},{}],163:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40336,7 +42304,11 @@ exports.isBottomAnchor = function isBottomAnchor(opts) {
     );
 };
 
+<<<<<<< HEAD
 },{}],162:[function(_dereq_,module,exports){
+=======
+},{}],164:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40577,7 +42549,11 @@ module.exports = {
     pathAnnulus: pathAnnulus
 };
 
+<<<<<<< HEAD
 },{"./mod":185}],163:[function(_dereq_,module,exports){
+=======
+},{"./mod":188}],165:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40734,7 +42710,11 @@ function _rowLength(z, fn, len0) {
     return 0;
 }
 
+<<<<<<< HEAD
 },{}],164:[function(_dereq_,module,exports){
+=======
+},{}],166:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40767,7 +42747,11 @@ module.exports = function cleanNumber(v) {
     return BADNUM;
 };
 
+<<<<<<< HEAD
 },{"../constants/numerical":156,"fast-isnumeric":15}],165:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":158,"fast-isnumeric":17}],167:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40795,7 +42779,11 @@ module.exports = function clearGlCanvases(gd) {
     }
 };
 
+<<<<<<< HEAD
 },{}],166:[function(_dereq_,module,exports){
+=======
+},{}],168:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -40818,7 +42806,11 @@ module.exports = function clearResponsive(gd) {
     }
 };
 
+<<<<<<< HEAD
 },{}],167:[function(_dereq_,module,exports){
+=======
+},{}],169:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -41282,7 +43274,11 @@ function validate(value, opts) {
 }
 exports.validate = validate;
 
+<<<<<<< HEAD
 },{"../components/colorscale/scales":66,"../constants/interactions":155,"../plots/attributes":220,"./array":163,"./mod":185,"./nested_property":186,"./regex":193,"fast-isnumeric":15,"tinycolor2":33}],168:[function(_dereq_,module,exports){
+=======
+},{"../components/colorscale/scales":67,"../constants/interactions":157,"../plots/attributes":223,"./array":165,"./mod":188,"./nested_property":189,"./regex":196,"fast-isnumeric":17,"tinycolor2":34}],170:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -41294,7 +43290,7 @@ exports.validate = validate;
 
 'use strict';
 
-var d3 = _dereq_('d3');
+var timeFormat = _dereq_('d3-time-format').timeFormat;
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Loggers = _dereq_('./loggers');
@@ -41310,11 +43306,11 @@ var EPOCHJD = constants.EPOCHJD;
 
 var Registry = _dereq_('../registry');
 
-var utcFormat = d3.time.format.utc;
+var utcFormat = _dereq_('d3-time-format').utcFormat;
 
-var DATETIME_REGEXP = /^\s*(-?\d\d\d\d|\d\d)(-(\d?\d)(-(\d?\d)([ Tt]([01]?\d|2[0-3])(:([0-5]\d)(:([0-5]\d(\.\d+)?))?(Z|z|[+\-]\d\d:?\d\d)?)?)?)?)?\s*$/m;
+var DATETIME_REGEXP = /^\s*(-?\d\d\d\d|\d\d)(-(\d?\d)(-(\d?\d)([ Tt]([01]?\d|2[0-3])(:([0-5]\d)(:([0-5]\d(\.\d+)?))?(Z|z|[+\-]\d\d(:?\d\d)?)?)?)?)?)?\s*$/m;
 // special regex for chinese calendars to support yyyy-mmi-dd etc for intercalary months
-var DATETIME_REGEXP_CN = /^\s*(-?\d\d\d\d|\d\d)(-(\d?\di?)(-(\d?\d)([ Tt]([01]?\d|2[0-3])(:([0-5]\d)(:([0-5]\d(\.\d+)?))?(Z|z|[+\-]\d\d:?\d\d)?)?)?)?)?\s*$/m;
+var DATETIME_REGEXP_CN = /^\s*(-?\d\d\d\d|\d\d)(-(\d?\di?)(-(\d?\d)([ Tt]([01]?\d|2[0-3])(:([0-5]\d)(:([0-5]\d(\.\d+)?))?(Z|z|[+\-]\d\d(:?\d\d)?)?)?)?)?)?\s*$/m;
 
 // for 2-digit years, the first year we map them onto
 var YFIRST = new Date().getFullYear() - 70;
@@ -41330,9 +43326,23 @@ function isWorldCalendar(calendar) {
 /*
  * dateTick0: get the canonical tick for this calendar
  *
+ * integer weekdays : Saturday: 0, Sunday: 1, Monday: 2, etc.
+ */
+exports.dateTick0 = function(calendar, dayOfWeek) {
+    var tick0 = _dateTick0(calendar, !!dayOfWeek);
+    if(dayOfWeek < 2) return tick0;
+
+    var v = exports.dateTime2ms(tick0, calendar);
+    v += ONEDAY * (dayOfWeek - 1); // shift Sunday to Monday, etc.
+    return exports.ms2DateTime(v, 0, calendar);
+};
+
+/*
+ * _dateTick0: get the canonical tick for this calendar
+ *
  * bool sunday is for week ticks, shift it to a Sunday.
  */
-exports.dateTick0 = function(calendar, sunday) {
+function _dateTick0(calendar, sunday) {
     if(isWorldCalendar(calendar)) {
         return sunday ?
             Registry.getComponentMethod('calendars', 'CANONICAL_SUNDAY')[calendar] :
@@ -41340,7 +43350,7 @@ exports.dateTick0 = function(calendar, sunday) {
     } else {
         return sunday ? '2000-01-02' : '2000-01-01';
     }
-};
+}
 
 /*
  * dfltRange: for each calendar, give a valid default range
@@ -41375,8 +43385,9 @@ var MIN_MS, MAX_MS;
  *    -?YYYY-mm-dd<sep>HH:MM:SS.sss<tzInfo>?
  *
  * <sep>: space (our normal standard) or T or t (ISO-8601)
- * <tzInfo>: Z, z, or [+\-]HH:?MM and we THROW IT AWAY
+ * <tzInfo>: Z, z, [+\-]HH:?MM or [+\-]HH and we THROW IT AWAY
  * this format comes from https://tools.ietf.org/html/rfc3339#section-5.6
+ * and 4.2.5.1 Difference between local time and UTC of day (ISO-8601)
  * but we allow it even with a space as the separator
  *
  * May truncate after any full field, and sss can be any length
@@ -41396,14 +43407,14 @@ var MIN_MS, MAX_MS;
  * you can use a gregorian date string prefixed with 'G' or 'g'.
  *
  * Where to cut off 2-digit years between 1900s and 2000s?
- * from http://support.microsoft.com/kb/244664:
+ * from https://docs.microsoft.com/en-us/office/troubleshoot/excel/two-digit-year-numbers#the-2029-rule:
  *   1930-2029 (the most retro of all...)
  * but in my mac chrome from eg. d=new Date(Date.parse('8/19/50')):
  *   1950-2049
  * by Java, from http://stackoverflow.com/questions/2024273/:
  *   now-80 - now+19
  * or FileMaker Pro, from
- *      http://www.filemaker.com/12help/html/add_view_data.4.21.html:
+ *      https://fmhelp.filemaker.com/help/18/fmp/en/index.html#page/FMP_Help/dates-with-two-digit-years.html:
  *   now-70 - now+29
  * but python strptime etc, via
  *      http://docs.python.org/py3k/library/time.html:
@@ -41590,7 +43601,7 @@ exports.ms2DateTimeLocal = function(ms) {
 
     var msecTenths = Math.floor(mod(ms + 0.05, 1) * 10);
     var d = new Date(Math.round(ms - msecTenths / 10));
-    var dateStr = d3.time.format('%Y-%m-%d')(d);
+    var dateStr = timeFormat('%Y-%m-%d')(d);
     var h = d.getHours();
     var m = d.getMinutes();
     var s = d.getSeconds();
@@ -41868,7 +43879,11 @@ exports.findExactDates = function(data, calendar) {
     };
 };
 
+<<<<<<< HEAD
 },{"../constants/numerical":156,"../registry":273,"./loggers":182,"./mod":185,"d3":13,"fast-isnumeric":15}],169:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":158,"../registry":277,"./loggers":185,"./mod":188,"d3-time-format":13,"fast-isnumeric":17}],171:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -41971,7 +43986,11 @@ module.exports = {
     deleteRelatedStyleRule: deleteRelatedStyleRule
 };
 
+<<<<<<< HEAD
 },{"./loggers":182,"d3":13}],170:[function(_dereq_,module,exports){
+=======
+},{"./loggers":185,"d3":15}],172:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -42144,7 +44163,11 @@ var Events = {
 
 module.exports = Events;
 
+<<<<<<< HEAD
 },{"events":11}],171:[function(_dereq_,module,exports){
+=======
+},{"events":11}],173:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -42258,7 +44281,11 @@ function _extend(inputs, isDeep, keepAllKeys, noArrayCopies) {
     return target;
 }
 
+<<<<<<< HEAD
 },{"./is_plain_object.js":179}],172:[function(_dereq_,module,exports){
+=======
+},{"./is_plain_object.js":182}],174:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -42309,7 +44336,11 @@ module.exports = function filterUnique(array) {
     return out;
 };
 
+<<<<<<< HEAD
 },{}],173:[function(_dereq_,module,exports){
+=======
+},{}],175:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -42357,7 +44388,11 @@ function isCalcData(cont) {
     );
 }
 
+<<<<<<< HEAD
 },{}],174:[function(_dereq_,module,exports){
+=======
+},{}],176:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -42742,7 +44777,11 @@ module.exports = {
     computeBbox: computeBbox
 };
 
+<<<<<<< HEAD
 },{"./identity":177,"./is_plain_object":179,"./loggers":182,"./nested_property":186,"./polygon":190,"@turf/area":6,"@turf/bbox":7,"@turf/centroid":8,"country-regex":12,"d3":13}],175:[function(_dereq_,module,exports){
+=======
+},{"./identity":179,"./is_plain_object":182,"./loggers":185,"./nested_property":189,"./polygon":193,"@turf/area":6,"@turf/bbox":7,"@turf/centroid":8,"country-regex":12,"d3":15}],177:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -42859,7 +44898,11 @@ exports.makeBlank = function() {
     };
 };
 
+<<<<<<< HEAD
 },{"../constants/numerical":156}],176:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":158}],178:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -43103,7 +45146,11 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
     return pt;
 };
 
+<<<<<<< HEAD
 },{"./mod":185}],177:[function(_dereq_,module,exports){
+=======
+},{"./mod":188}],179:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -43119,7 +45166,53 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
 
 module.exports = function identity(d) { return d; };
 
+<<<<<<< HEAD
 },{}],178:[function(_dereq_,module,exports){
+=======
+},{}],180:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2020, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+
+'use strict';
+
+module.exports = function incrementNumeric(x, delta) {
+    if(!delta) return x;
+
+    // Note 1:
+    // 0.3 != 0.1 + 0.2 == 0.30000000000000004
+    // but 0.3 == (10 * 0.1 + 10 * 0.2) / 10
+    // Attempt to use integer steps to increment
+    var scale = 1 / Math.abs(delta);
+    var newX = (scale > 1) ? (
+        scale * x +
+        scale * delta
+    ) / scale : x + delta;
+
+    // Note 2:
+    // now we may also consider rounding to cover few more edge cases
+    // e.g. 0.3 * 3 = 0.8999999999999999
+    var lenX1 = String(newX).length;
+    if(lenX1 > 16) {
+        var lenDt = String(delta).length;
+        var lenX0 = String(x).length;
+
+        if(lenX1 >= lenX0 + lenDt) { // likely a rounding error!
+            var s = parseFloat(newX).toPrecision(12);
+            if(s.indexOf('e+') === -1) newX = +s;
+        }
+    }
+
+    return newX;
+};
+
+},{}],181:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -43131,6 +45224,7 @@ module.exports = function identity(d) { return d; };
 'use strict';
 
 var d3 = _dereq_('d3');
+var utcFormat = _dereq_('d3-time-format').utcFormat;
 var isNumeric = _dereq_('fast-isnumeric');
 
 var numConstants = _dereq_('../constants/numerical');
@@ -43279,6 +45373,8 @@ lib.filterUnique = _dereq_('./filter_unique');
 lib.filterVisible = _dereq_('./filter_visible');
 lib.pushUnique = _dereq_('./push_unique');
 
+lib.increment = _dereq_('./increment');
+
 lib.cleanNumber = _dereq_('./clean_number');
 
 lib.ensureNumber = function ensureNumber(v) {
@@ -43379,10 +45475,10 @@ lib.bBoxIntersect = function(a, b, pad) {
  * func: the function to apply
  * x1, x2: optional extra args
  */
-lib.simpleMap = function(array, func, x1, x2) {
+lib.simpleMap = function(array, func, x1, x2, opts) {
     var len = array.length;
     var out = new Array(len);
-    for(var i = 0; i < len; i++) out[i] = func(array[i], x1, x2);
+    for(var i = 0; i < len; i++) out[i] = func(array[i], x1, x2, opts);
     return out;
 };
 
@@ -43833,6 +45929,11 @@ lib.isSafari = function() {
     return IS_SAFARI_REGEX.test(window.navigator.userAgent);
 };
 
+var IS_IOS_REGEX = /iPad|iPhone|iPod/;
+lib.isIOS = function() {
+    return IS_IOS_REGEX.test(window.navigator.userAgent);
+};
+
 /**
  * Duck typing to recognize a d3 selection, mostly for IE9's benefit
  * because it doesn't handle instanceof like modern browsers
@@ -44204,7 +46305,7 @@ function templateFormatString(string, labels, d3locale) {
             }
 
             if(format[0] === '|') {
-                fmt = d3locale ? d3locale.timeFormat.utc : d3.time.format.utc;
+                fmt = d3locale ? d3locale.timeFormat : utcFormat;
                 var ms = lib.dateTime2ms(value);
                 value = lib.formatDate(ms, format.replace(TEMPLATE_STRING_FORMAT_SEPARATOR, ''), false, fmt);
             }
@@ -44359,7 +46460,28 @@ lib.ensureUniformFontSize = function(gd, baseFont) {
     return out;
 };
 
+<<<<<<< HEAD
 },{"../constants/numerical":156,"./anchor_utils":161,"./angles":162,"./array":163,"./clean_number":164,"./clear_responsive":166,"./coerce":167,"./dates":168,"./dom":169,"./extend":171,"./filter_unique":172,"./filter_visible":173,"./geometry2d":176,"./identity":177,"./is_plain_object":179,"./keyed_container":180,"./localize":181,"./loggers":182,"./make_trace_groups":183,"./matrix":184,"./mod":185,"./nested_property":186,"./noop":187,"./notifier":188,"./push_unique":191,"./regex":193,"./relative_attr":194,"./relink_private":195,"./search":196,"./stats":198,"./throttle":200,"./to_log_range":201,"d3":13,"fast-isnumeric":15}],179:[function(_dereq_,module,exports){
+=======
+/**
+ * provide a human-readable list e.g. "A, B, C and D" with an ending separator
+ *
+ * @param {array} arr : the array to join
+ * @param {string} mainSeparator : main separator
+ * @param {string} lastSeparator : last separator
+ *
+ * @return {string} : joined list
+ */
+lib.join2 = function(arr, mainSeparator, lastSeparator) {
+    var len = arr.length;
+    if(len > 1) {
+        return arr.slice(0, -1).join(mainSeparator) + lastSeparator + arr[len - 1];
+    }
+    return arr.join(mainSeparator);
+};
+
+},{"../constants/numerical":158,"./anchor_utils":163,"./angles":164,"./array":165,"./clean_number":166,"./clear_responsive":168,"./coerce":169,"./dates":170,"./dom":171,"./extend":173,"./filter_unique":174,"./filter_visible":175,"./geometry2d":178,"./identity":179,"./increment":180,"./is_plain_object":182,"./keyed_container":183,"./localize":184,"./loggers":185,"./make_trace_groups":186,"./matrix":187,"./mod":188,"./nested_property":189,"./noop":190,"./notifier":191,"./push_unique":194,"./regex":196,"./relative_attr":197,"./relink_private":198,"./search":199,"./stats":201,"./throttle":203,"./to_log_range":204,"d3":15,"d3-time-format":13,"fast-isnumeric":17}],182:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44387,7 +46509,11 @@ module.exports = function isPlainObject(obj) {
     );
 };
 
+<<<<<<< HEAD
 },{}],180:[function(_dereq_,module,exports){
+=======
+},{}],183:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44580,7 +46706,11 @@ module.exports = function keyedContainer(baseObj, path, keyName, valueName) {
     return obj;
 };
 
+<<<<<<< HEAD
 },{"./nested_property":186}],181:[function(_dereq_,module,exports){
+=======
+},{"./nested_property":189}],184:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44636,7 +46766,11 @@ module.exports = function localize(gd, s) {
     return s;
 };
 
+<<<<<<< HEAD
 },{"../registry":273}],182:[function(_dereq_,module,exports){
+=======
+},{"../registry":277}],185:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44746,7 +46880,11 @@ function apply(f, args) {
     }
 }
 
+<<<<<<< HEAD
 },{"../plot_api/plot_config":211,"./notifier":188}],183:[function(_dereq_,module,exports){
+=======
+},{"../plot_api/plot_config":214,"./notifier":191}],186:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44789,7 +46927,11 @@ module.exports = function makeTraceGroups(traceLayer, cdModule, cls) {
     return traces;
 };
 
+<<<<<<< HEAD
 },{"d3":13}],184:[function(_dereq_,module,exports){
+=======
+},{"d3":15}],187:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44896,7 +47038,11 @@ exports.apply2DTransform2 = function(transform) {
     };
 };
 
+<<<<<<< HEAD
 },{}],185:[function(_dereq_,module,exports){
+=======
+},{}],188:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -44931,7 +47077,11 @@ module.exports = {
     modHalf: modHalf
 };
 
+<<<<<<< HEAD
 },{}],186:[function(_dereq_,module,exports){
+=======
+},{}],189:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45177,7 +47327,11 @@ function badContainer(container, propStr, propParts) {
     };
 }
 
+<<<<<<< HEAD
 },{"./array":163,"fast-isnumeric":15}],187:[function(_dereq_,module,exports){
+=======
+},{"./array":165,"fast-isnumeric":17}],190:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45193,7 +47347,11 @@ function badContainer(container, propStr, propParts) {
 
 module.exports = function noop() {};
 
+<<<<<<< HEAD
 },{}],188:[function(_dereq_,module,exports){
+=======
+},{}],191:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45281,7 +47439,11 @@ module.exports = function(text, displayLength) {
         });
 };
 
+<<<<<<< HEAD
 },{"d3":13,"fast-isnumeric":15}],189:[function(_dereq_,module,exports){
+=======
+},{"d3":15,"fast-isnumeric":17}],192:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45329,7 +47491,11 @@ module.exports = function overrideCursor(el3, csr) {
     }
 };
 
+<<<<<<< HEAD
 },{"./setcursor":197}],190:[function(_dereq_,module,exports){
+=======
+},{"./setcursor":200}],193:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45581,7 +47747,11 @@ polygon.filter = function filter(pts, tolerance) {
     };
 };
 
+<<<<<<< HEAD
 },{"../constants/numerical":156,"./matrix":184}],191:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":158,"./matrix":187}],194:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45619,7 +47789,11 @@ module.exports = function pushUnique(array, item) {
     return array;
 };
 
+<<<<<<< HEAD
 },{}],192:[function(_dereq_,module,exports){
+=======
+},{}],195:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45827,7 +48001,11 @@ queue.plotDo = function(gd, func, args) {
 
 module.exports = queue;
 
+<<<<<<< HEAD
 },{"../lib":178,"../plot_api/plot_config":211}],193:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plot_api/plot_config":214}],196:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45857,7 +48035,11 @@ exports.counter = function(head, tail, openEnded, matchBeginning) {
     return new RegExp(startWithPrefix + head + '([2-9]|[1-9][0-9]+)?' + fullTail);
 };
 
+<<<<<<< HEAD
 },{}],194:[function(_dereq_,module,exports){
+=======
+},{}],197:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45910,7 +48092,11 @@ module.exports = function(baseAttr, relativeAttr) {
     return baseAttr + relativeAttr;
 };
 
+<<<<<<< HEAD
 },{}],195:[function(_dereq_,module,exports){
+=======
+},{}],198:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45937,9 +48123,8 @@ module.exports = function relinkPrivateKeys(toContainer, fromContainer) {
         var fromVal = fromContainer[k];
         var toVal = toContainer[k];
 
-        if(toVal === fromVal) {
-            continue;
-        }
+        if(toVal === fromVal) continue;
+
         if(k.charAt(0) === '_' || typeof fromVal === 'function') {
             // if it already exists at this point, it's something
             // that we recreate each time around, so ignore it
@@ -45968,7 +48153,11 @@ module.exports = function relinkPrivateKeys(toContainer, fromContainer) {
     }
 };
 
+<<<<<<< HEAD
 },{"./array":163,"./is_plain_object":179}],196:[function(_dereq_,module,exports){
+=======
+},{"./array":165,"./is_plain_object":182}],199:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -45983,6 +48172,7 @@ module.exports = function relinkPrivateKeys(toContainer, fromContainer) {
 var isNumeric = _dereq_('fast-isnumeric');
 var loggers = _dereq_('./loggers');
 var identity = _dereq_('./identity');
+var BADNUM = _dereq_('../constants/numerical').BADNUM;
 
 // don't trust floating point equality - fraction of bin size to call
 // "on the line" and ensure that they go the right way specified by
@@ -46041,24 +48231,41 @@ exports.sorterDes = function(a, b) { return b - a; };
  * just be off by a rounding error
  * return the distinct values and the minimum difference between any two
  */
-exports.distinctVals = function(valsIn) {
+exports.distinctVals = function(valsIn, opts) {
+    var unitMinDiff = (opts || {}).unitMinDiff;
+
     var vals = valsIn.slice();  // otherwise we sort the original array...
-    vals.sort(exports.sorterAsc);
+    vals.sort(exports.sorterAsc); // undefined listed in the end - also works on IE11
 
-    var l = vals.length - 1;
-    var minDiff = (vals[l] - vals[0]) || 1;
-    var errDiff = minDiff / (l || 1) / 10000;
-    var v2 = [vals[0]];
+    var last;
+    for(last = vals.length - 1; last > -1; last--) {
+        if(vals[last] !== BADNUM) break;
+    }
 
-    for(var i = 0; i < l; i++) {
+    var minDiff = 1;
+    if(!unitMinDiff) minDiff = (vals[last] - vals[0]) || 1;
+
+    var errDiff = minDiff / (last || 1) / 10000;
+    var newVals = [];
+    var preV;
+    for(var i = 0; i <= last; i++) {
+        var v = vals[i];
+
         // make sure values aren't just off by a rounding error
-        if(vals[i + 1] > vals[i] + errDiff) {
-            minDiff = Math.min(minDiff, vals[i + 1] - vals[i]);
-            v2.push(vals[i + 1]);
+        var diff = v - preV;
+
+        if(preV === undefined) {
+            newVals.push(v);
+            preV = v;
+        } else if(diff > errDiff) {
+            minDiff = Math.min(minDiff, diff);
+
+            newVals.push(v);
+            preV = v;
         }
     }
 
-    return {vals: v2, minDiff: minDiff};
+    return {vals: newVals, minDiff: minDiff};
 };
 
 /**
@@ -46155,7 +48362,11 @@ exports.findIndexOfMin = function(arr, fn) {
     return ind;
 };
 
+<<<<<<< HEAD
 },{"./identity":177,"./loggers":182,"fast-isnumeric":15}],197:[function(_dereq_,module,exports){
+=======
+},{"../constants/numerical":158,"./identity":179,"./loggers":185,"fast-isnumeric":17}],200:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -46178,7 +48389,11 @@ module.exports = function setCursor(el3, csr) {
     if(csr) el3.classed('cursor-' + csr, true);
 };
 
+<<<<<<< HEAD
 },{}],198:[function(_dereq_,module,exports){
+=======
+},{}],201:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -46288,7 +48503,11 @@ exports.interp = function(arr, n) {
     return frac * arr[Math.ceil(n)] + (1 - frac) * arr[Math.floor(n)];
 };
 
+<<<<<<< HEAD
 },{"./array":163,"fast-isnumeric":15}],199:[function(_dereq_,module,exports){
+=======
+},{"./array":165,"fast-isnumeric":17}],202:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47167,7 +49386,11 @@ exports.makeEditable = function(context, options) {
     return d3.rebind(context, dispatch, 'on');
 };
 
+<<<<<<< HEAD
 },{"../constants/alignment":153,"../constants/xmlns_namespaces":157,"../lib":178,"d3":13}],200:[function(_dereq_,module,exports){
+=======
+},{"../constants/alignment":154,"../constants/xmlns_namespaces":159,"../lib":181,"d3":15}],203:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47270,7 +49493,11 @@ function _clearTimeout(cache) {
     }
 }
 
+<<<<<<< HEAD
 },{}],201:[function(_dereq_,module,exports){
+=======
+},{}],204:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47298,7 +49525,11 @@ module.exports = function toLogRange(val, range) {
     return newVal;
 };
 
+<<<<<<< HEAD
 },{"fast-isnumeric":15}],202:[function(_dereq_,module,exports){
+=======
+},{"fast-isnumeric":17}],205:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47332,7 +49563,11 @@ topojsonUtils.getTopojsonFeatures = function(trace, topojson) {
     return topojsonFeature(topojson, obj).features;
 };
 
+<<<<<<< HEAD
 },{"../plots/geo/constants":253,"topojson-client":34}],203:[function(_dereq_,module,exports){
+=======
+},{"../plots/geo/constants":257,"topojson-client":35}],206:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47354,7 +49589,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],204:[function(_dereq_,module,exports){
+=======
+},{}],207:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47397,7 +49636,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],205:[function(_dereq_,module,exports){
+=======
+},{}],208:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47455,7 +49698,11 @@ module.exports = function containerArrayMatch(astr) {
     return {array: arrayStr, index: Number(match[1]), property: match[3] || ''};
 };
 
+<<<<<<< HEAD
 },{"../registry":273}],206:[function(_dereq_,module,exports){
+=======
+},{"../registry":277}],209:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47580,7 +49827,11 @@ function overrideOne(attr, editTypeOverride, overrideContainers, key) {
     }
 }
 
+<<<<<<< HEAD
 },{"../lib":178}],207:[function(_dereq_,module,exports){
+=======
+},{"../lib":181}],210:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -47757,6 +50008,16 @@ exports.cleanLayout = function(layout) {
         cleanAxRef(shape, 'yref');
     }
 
+    var imagesLen = Array.isArray(layout.images) ? layout.images.length : 0;
+    for(i = 0; i < imagesLen; i++) {
+        var image = layout.images[i];
+
+        if(!Lib.isPlainObject(image)) continue;
+
+        cleanAxRef(image, 'xref');
+        cleanAxRef(image, 'yref');
+    }
+
     var legend = layout.legend;
     if(legend) {
         // check for old-style legend positioning (x or y is +/- 100)
@@ -47801,7 +50062,7 @@ function cleanAxRef(container, attr) {
     var valIn = container[attr];
     var axLetter = attr.charAt(0);
     if(valIn && valIn !== 'paper') {
-        container[attr] = cleanId(valIn, axLetter);
+        container[attr] = cleanId(valIn, axLetter, true);
     }
 }
 
@@ -48272,7 +50533,11 @@ exports.clearAxisTypes = function(gd, traces, layoutUpdate) {
     }
 };
 
+<<<<<<< HEAD
 },{"../components/color":51,"../lib":178,"../plots/cartesian/axis_ids":226,"../plots/plots":264,"../registry":273,"fast-isnumeric":15,"gl-mat4/fromQuat":16}],208:[function(_dereq_,module,exports){
+=======
+},{"../components/color":52,"../lib":181,"../plots/cartesian/axis_ids":230,"../plots/plots":268,"../registry":277,"fast-isnumeric":17,"gl-mat4/fromQuat":18}],211:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -48315,7 +50580,11 @@ var templateApi = _dereq_('./template_api');
 exports.makeTemplate = templateApi.makeTemplate;
 exports.validateTemplate = templateApi.validateTemplate;
 
+<<<<<<< HEAD
 },{"../snapshot/download":275,"./plot_api":210,"./template_api":215,"./to_image":216,"./validate":217}],209:[function(_dereq_,module,exports){
+=======
+},{"../snapshot/download":279,"./plot_api":213,"./template_api":218,"./to_image":219,"./validate":220}],212:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -48528,7 +50797,11 @@ exports.applyContainerArrayChanges = function applyContainerArrayChanges(gd, np,
     return true;
 };
 
+<<<<<<< HEAD
 },{"../lib/is_plain_object":179,"../lib/loggers":182,"../lib/noop":187,"../lib/search":196,"../registry":273,"./container_array_match":205}],210:[function(_dereq_,module,exports){
+=======
+},{"../lib/is_plain_object":182,"../lib/loggers":185,"../lib/noop":190,"../lib/search":199,"../registry":277,"./container_array_match":208}],213:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -48683,7 +50956,13 @@ function plot(gd, data, layout, config) {
     fullLayout._replotting = true;
 
     // make or remake the framework if we need to
-    if(graphWasEmpty) makePlotFramework(gd);
+    if(graphWasEmpty || fullLayout._shouldCreateBgLayer) {
+        makePlotFramework(gd);
+
+        if(fullLayout._shouldCreateBgLayer) {
+            delete fullLayout._shouldCreateBgLayer;
+        }
+    }
 
     // polar need a different framework
     if(gd.framework !== makePlotFramework) {
@@ -50264,13 +52543,14 @@ function _restyle(gd, aobj, traces) {
         // swap hovermode if set to "compare x/y data"
         if(ai === 'orientationaxes') {
             var hovermode = nestedProperty(gd.layout, 'hovermode');
-            if(hovermode.get() === 'x') {
+            var h = hovermode.get();
+            if(h === 'x') {
                 hovermode.set('y');
-            } else if(hovermode.get() === 'y') {
+            } else if(h === 'y') {
                 hovermode.set('x');
-            } else if(hovermode.get() === 'x unified') {
+            } else if(h === 'x unified') {
                 hovermode.set('y unified');
-            } else if(hovermode.get() === 'y unified') {
+            } else if(h === 'y unified') {
                 hovermode.set('x unified');
             }
         }
@@ -51237,6 +53517,16 @@ function react(gd, data, layout, config) {
 
         applyUIRevisions(gd.data, gd.layout, oldFullData, oldFullLayout);
 
+        var allNames = Object.getOwnPropertyNames(oldFullLayout);
+        for(var q = 0; q < allNames.length; q++) {
+            var name = allNames[q];
+            var start = name.substring(0, 5);
+            if(start === 'xaxis' || start === 'yaxis') {
+                var emptyCategories = oldFullLayout[name]._emptyCategories;
+                if(emptyCategories) emptyCategories();
+            }
+        }
+
         // "true" skips updating calcdata and remapping arrays from calcTransforms,
         // which supplyDefaults usually does at the end, but we may need to NOT do
         // if the diff (which we haven't determined yet) says we'll recalc
@@ -51284,6 +53574,8 @@ function react(gd, data, layout, config) {
         // when at least one animatable attribute has changed,
         // N.B. config changed aren't animatable
         if(newFullLayout.transition && !configChanged && (restyleFlags.anim || relayoutFlags.anim)) {
+            if(relayoutFlags.ticks) seq.push(subroutines.doTicksRelayout);
+
             Plots.doCalcdata(gd);
             subroutines.doAutoRangeAndConstraints(gd);
 
@@ -52229,13 +54521,15 @@ function makePlotFramework(gd) {
 
     // Plot container
     fullLayout._container = gd3.selectAll('.plot-container').data([0]);
-    fullLayout._container.enter().insert('div', ':first-child')
+    fullLayout._container.enter()
+        .insert('div', ':first-child')
         .classed('plot-container', true)
         .classed('plotly', true);
 
     // Make the svg container
     fullLayout._paperdiv = fullLayout._container.selectAll('.svg-container').data([0]);
     fullLayout._paperdiv.enter().append('div')
+        .classed('user-select-none', true)
         .classed('svg-container', true)
         .style('position', 'relative');
 
@@ -52261,6 +54555,7 @@ function makePlotFramework(gd) {
         .classed('main-svg', true);
 
     fullLayout._modebardiv = fullLayout._paperdiv.append('div');
+    delete fullLayout._modeBar;
 
     fullLayout._hoverpaper = fullLayout._paperdiv.append('svg')
         .classed('main-svg', true);
@@ -52394,7 +54689,11 @@ exports._guiUpdate = guiEdit(update);
 
 exports._storeDirectGUIEdit = _storeDirectGUIEdit;
 
+<<<<<<< HEAD
 },{"../components/color":51,"../components/drawing":73,"../constants/xmlns_namespaces":157,"../lib":178,"../lib/events":170,"../lib/queue":192,"../lib/svg_text_utils":199,"../plots/cartesian/axes":223,"../plots/cartesian/constants":229,"../plots/cartesian/graph_interact":232,"../plots/cartesian/select":242,"../plots/plots":264,"../plots/polar/legacy":267,"../registry":273,"./edit_types":206,"./helpers":207,"./manage_arrays":209,"./plot_config":211,"./plot_schema":212,"./subroutines":214,"d3":13,"fast-isnumeric":15,"has-hover":17}],211:[function(_dereq_,module,exports){
+=======
+},{"../components/color":52,"../components/drawing":74,"../constants/xmlns_namespaces":159,"../lib":181,"../lib/events":172,"../lib/queue":195,"../lib/svg_text_utils":202,"../plots/cartesian/axes":227,"../plots/cartesian/constants":233,"../plots/cartesian/graph_interact":236,"../plots/cartesian/select":246,"../plots/plots":268,"../plots/polar/legacy":271,"../registry":277,"./edit_types":209,"./helpers":210,"./manage_arrays":212,"./plot_config":214,"./plot_schema":215,"./subroutines":217,"d3":15,"fast-isnumeric":17,"has-hover":19}],214:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -52709,7 +55008,11 @@ module.exports = {
     dfltConfig: dfltConfig
 };
 
+<<<<<<< HEAD
 },{}],212:[function(_dereq_,module,exports){
+=======
+},{}],215:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -53420,7 +55723,11 @@ function insertAttrs(baseAttrs, newAttrs, astr) {
     np.set(extendDeepAll(np.get() || {}, newAttrs));
 }
 
+<<<<<<< HEAD
 },{"../lib":178,"../plots/animation_attributes":218,"../plots/attributes":220,"../plots/frame_attributes":252,"../plots/layout_attributes":262,"../plots/polar/legacy/area_attributes":265,"../plots/polar/legacy/axis_attributes":266,"../registry":273,"./edit_types":206,"./plot_config":211}],213:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plots/animation_attributes":221,"../plots/attributes":223,"../plots/frame_attributes":256,"../plots/layout_attributes":266,"../plots/polar/legacy/area_attributes":269,"../plots/polar/legacy/axis_attributes":270,"../registry":277,"./edit_types":209,"./plot_config":214}],216:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -53732,7 +56039,11 @@ exports.arrayEditor = function(parentIn, containerStr, itemOut) {
     };
 };
 
+<<<<<<< HEAD
 },{"../lib":178,"../plots/attributes":220}],214:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plots/attributes":223}],217:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -54478,7 +56789,11 @@ exports.drawMarginPushers = function(gd) {
     Registry.getComponentMethod('colorbar', 'draw')(gd);
 };
 
+<<<<<<< HEAD
 },{"../components/color":51,"../components/drawing":73,"../components/modebar":111,"../components/titles":146,"../constants/alignment":153,"../lib":178,"../lib/clear_gl_canvases":165,"../plots/cartesian/autorange":222,"../plots/cartesian/axes":223,"../plots/cartesian/constraints":230,"../plots/plots":264,"../registry":273,"d3":13}],215:[function(_dereq_,module,exports){
+=======
+},{"../components/color":52,"../components/drawing":74,"../components/modebar":112,"../components/titles":147,"../constants/alignment":154,"../lib":181,"../lib/clear_gl_canvases":167,"../plots/cartesian/autorange":226,"../plots/cartesian/axes":227,"../plots/cartesian/constraints":234,"../plots/plots":268,"../registry":277,"d3":15}],218:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -54940,7 +57255,11 @@ function format(opts) {
     return opts;
 }
 
+<<<<<<< HEAD
 },{"../lib":178,"../plots/attributes":220,"../plots/plots":264,"./plot_config":211,"./plot_schema":212,"./plot_template":213}],216:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plots/attributes":223,"../plots/plots":268,"./plot_config":214,"./plot_schema":215,"./plot_template":216}],219:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -55037,7 +57356,7 @@ function toImage(gd, opts) {
     }
 
     if(!isImpliedOrValid('format')) {
-        throw new Error('Image format is not jpeg, png, svg or webp.');
+        throw new Error('Export format is not ' + Lib.join2(attrs.format.values, ', ', ' or ') + '.');
     }
 
     var fullOpts = {};
@@ -55161,7 +57480,11 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
+<<<<<<< HEAD
 },{"../lib":178,"../plots/plots":264,"../snapshot/helpers":277,"../snapshot/svgtoimg":279,"../snapshot/tosvg":281,"../version":332,"./plot_api":210,"fast-isnumeric":15}],217:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plots/plots":268,"../snapshot/helpers":281,"../snapshot/svgtoimg":283,"../snapshot/tosvg":285,"../version":337,"./plot_api":213,"fast-isnumeric":17}],220:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -55203,6 +57526,9 @@ var isArrayOrTypedArray = Lib.isArrayOrTypedArray;
  *      error message (shown in console in logger config argument is enable)
  */
 module.exports = function validate(data, layout) {
+    if(data === undefined) data = [];
+    if(layout === undefined) layout = {};
+
     var schema = PlotSchema.get();
     var errorList = [];
     var gd = {_context: Lib.extendFlat({}, dfltConfig)};
@@ -55589,7 +57915,11 @@ function convertPathToAttributeString(path) {
     return astr;
 }
 
+<<<<<<< HEAD
 },{"../lib":178,"../plots/plots":264,"./plot_config":211,"./plot_schema":212}],218:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plots/plots":268,"./plot_config":214,"./plot_schema":215}],221:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -55701,7 +58031,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],219:[function(_dereq_,module,exports){
+=======
+},{}],222:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -55796,7 +58130,11 @@ module.exports = function handleArrayContainerDefaults(parentObjIn, parentObjOut
     return contOut;
 };
 
+<<<<<<< HEAD
 },{"../lib":178,"../plot_api/plot_template":213}],220:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plot_api/plot_template":216}],223:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -55937,7 +58275,103 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../components/fx/attributes":82}],221:[function(_dereq_,module,exports){
+=======
+},{"../components/fx/attributes":83}],224:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2020, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var isNumeric = _dereq_('fast-isnumeric');
+var Lib = _dereq_('../../lib');
+var dateTime2ms = Lib.dateTime2ms;
+var incrementMonth = Lib.incrementMonth;
+var constants = _dereq_('../../constants/numerical');
+var ONEAVGMONTH = constants.ONEAVGMONTH;
+
+module.exports = function alignPeriod(trace, ax, axLetter, vals) {
+    if(ax.type !== 'date') return vals;
+
+    var alignment = trace[axLetter + 'periodalignment'];
+    if(!alignment) return vals;
+
+    var period = trace[axLetter + 'period'];
+    var mPeriod;
+    if(isNumeric(period)) {
+        period = +period;
+        if(period <= 0) return vals;
+    } else if(typeof period === 'string' && period.charAt(0) === 'M') {
+        var n = +(period.substring(1));
+        if(n > 0 && Math.round(n) === n) {
+            mPeriod = n;
+        } else return vals;
+    }
+
+    var calendar = ax.calendar;
+
+    var isStart = 'start' === alignment;
+    // var isMiddle = 'middle' === alignment;
+    var isEnd = 'end' === alignment;
+
+    var period0 = trace[axLetter + 'period0'];
+    var base = dateTime2ms(period0, calendar) || 0;
+
+    var newVals = [];
+    var len = vals.length;
+    for(var i = 0; i < len; i++) {
+        var v = vals[i];
+
+        var nEstimated, startTime, endTime;
+        if(mPeriod) {
+            // guess at how many periods away from base we are
+            nEstimated = Math.round((v - base) / (mPeriod * ONEAVGMONTH));
+            endTime = incrementMonth(base, mPeriod * nEstimated, calendar);
+
+            // iterate to get the exact bounds before and after v
+            // there may be ways to make this faster, but most of the time
+            // we'll only execute each loop zero or one time.
+            while(endTime > v) {
+                endTime = incrementMonth(endTime, -mPeriod, calendar);
+            }
+            while(endTime <= v) {
+                endTime = incrementMonth(endTime, mPeriod, calendar);
+            }
+
+            // now we know endTime is the boundary immediately after v
+            // so startTime is obtained by incrementing backward one period.
+            startTime = incrementMonth(endTime, -mPeriod, calendar);
+        } else { // case of ms
+            nEstimated = Math.round((v - base) / period);
+            endTime = base + nEstimated * period;
+
+            while(endTime > v) {
+                endTime -= period;
+            }
+            while(endTime <= v) {
+                endTime += period;
+            }
+
+            startTime = endTime - period;
+        }
+
+        newVals[i] = (
+            isStart ? startTime :
+            isEnd ? endTime :
+            (startTime + endTime) / 2
+        );
+    }
+    return newVals;
+};
+
+},{"../../constants/numerical":158,"../../lib":181,"fast-isnumeric":17}],225:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -55966,7 +58400,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],222:[function(_dereq_,module,exports){
+=======
+},{}],226:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -56478,7 +58916,11 @@ function goodNumber(v) {
 function lessOrEqual(v0, v1) { return v0 <= v1; }
 function greaterOrEqual(v0, v1) { return v0 >= v1; }
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"../../registry":273,"fast-isnumeric":15}],223:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"../../registry":277,"fast-isnumeric":17}],227:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
  * Copyright 2012-2020, Plotly, Inc.
  * All rights reserved.
@@ -56505,9 +58947,18 @@ var axAttrs = _dereq_('./layout_attributes');
 var cleanTicks = _dereq_('./clean_ticks');
 
 var constants = _dereq_('../../constants/numerical');
+var ONEMAXYEAR = constants.ONEMAXYEAR;
 var ONEAVGYEAR = constants.ONEAVGYEAR;
+var ONEMINYEAR = constants.ONEMINYEAR;
+var ONEMAXQUARTER = constants.ONEMAXQUARTER;
+var ONEAVGQUARTER = constants.ONEAVGQUARTER;
+var ONEMINQUARTER = constants.ONEMINQUARTER;
+var ONEMAXMONTH = constants.ONEMAXMONTH;
 var ONEAVGMONTH = constants.ONEAVGMONTH;
+var ONEMINMONTH = constants.ONEMINMONTH;
+var ONEWEEK = constants.ONEWEEK;
 var ONEDAY = constants.ONEDAY;
+var HALFDAY = ONEDAY / 2;
 var ONEHOUR = constants.ONEHOUR;
 var ONEMIN = constants.ONEMIN;
 var ONESEC = constants.ONESEC;
@@ -56538,6 +58989,15 @@ var autorange = _dereq_('./autorange');
 axes.getAutoRange = autorange.getAutoRange;
 axes.findExtremes = autorange.findExtremes;
 
+var epsilon = 0.0001;
+function expandRange(range) {
+    var delta = (range[1] - range[0]) * epsilon;
+    return [
+        range[0] - delta,
+        range[1] + delta
+    ];
+}
+
 /*
  * find the list of possible axes to reference with an xref or yref attribute
  * and coerce it to that list
@@ -56549,6 +59009,7 @@ axes.findExtremes = autorange.findExtremes;
  * extraOption: aside from existing axes with this letter, what non-axis value is allowed?
  *     Only required if it's different from `dflt`
  */
+<<<<<<< HEAD
 axes.coerceRef = function (
   containerIn,
   containerOut,
@@ -56572,9 +59033,45 @@ axes.coerceRef = function (
     values: axlist.concat(extraOption ? [extraOption] : []),
     dflt: dflt
   };
+=======
+axes.coerceRef = function(containerIn, containerOut, gd, attr, dflt, extraOption) {
+    var axLetter = attr.charAt(attr.length - 1);
+    var axlist = gd._fullLayout._subplots[axLetter + 'axis'];
+    var refAttr = attr + 'ref';
+    var attrDef = {};
+
+    if(!dflt) dflt = axlist[0] || (typeof extraOption === 'string' ? extraOption : extraOption[0]);
+    if(!extraOption) extraOption = dflt;
+    axlist = axlist.concat(axlist.map(function(x) { return x + ' domain'; }));
+
+    // data-ref annotations are not supported in gl2d yet
+
+    attrDef[refAttr] = {
+        valType: 'enumerated',
+        values: axlist.concat(extraOption ?
+            (typeof extraOption === 'string' ? [extraOption] : extraOption) :
+            []),
+        dflt: dflt
+    };
+>>>>>>> upstream/master
 
   // xref, yref
   return Lib.coerce(containerIn, containerOut, attrDef, refAttr);
+};
+
+/*
+ * Get the type of an axis reference. This can be 'range', 'domain', or 'paper'.
+ * This assumes ar is a valid axis reference and returns 'range' if it doesn't
+ * match the patterns for 'paper' or 'domain'.
+ *
+ * ar: the axis reference string
+ *
+ */
+axes.getRefType = function(ar) {
+    if(ar === undefined) { return ar; }
+    if(ar === 'paper') { return 'paper'; }
+    if(ar === 'pixel') { return 'pixel'; }
+    if(/( domain)$/.test(ar)) { return 'domain'; } else { return 'range'; }
 };
 
 /*
@@ -56599,6 +59096,7 @@ axes.coerceRef = function (
  * - for date axes: JS Dates or milliseconds, and convert to date strings
  * - for other types: coerce them to numbers
  */
+<<<<<<< HEAD
 axes.coercePosition = function (containerOut, gd, coerce, axRef, attr, dflt) {
   var cleanPos, pos;
 
@@ -56613,6 +59111,21 @@ axes.coercePosition = function (containerOut, gd, coerce, axRef, attr, dflt) {
   }
 
   containerOut[attr] = cleanPos(pos);
+=======
+axes.coercePosition = function(containerOut, gd, coerce, axRef, attr, dflt) {
+    var cleanPos, pos;
+    var axRefType = axes.getRefType(axRef);
+    if(axRefType !== 'range') {
+        cleanPos = Lib.ensureNumber;
+        pos = coerce(attr, dflt);
+    } else {
+        var ax = axes.getFromId(gd, axRef);
+        dflt = ax.fraction2r(dflt);
+        pos = coerce(attr, dflt);
+        cleanPos = ax.cleanPos;
+    }
+    containerOut[attr] = cleanPos(pos);
+>>>>>>> upstream/master
 };
 
 axes.cleanPosition = function (pos, gd, axRef) {
@@ -56976,6 +59489,7 @@ function autoShiftNumericBins(binStart, data, ax, dataMin, dataMax) {
 }
 
 function autoShiftMonthBins(binStart, data, dtick, dataMin, calendar) {
+<<<<<<< HEAD
   var stats = Lib.findExactDates(data, calendar);
   // number of data points that needs to be an exact value
   // to shift that increment to (near) the bin center
@@ -57001,6 +59515,37 @@ function autoShiftMonthBins(binStart, data, dtick, dataMin, calendar) {
       // smarter like showing the bin boundaries (or the bounds of the actual
       // data in each bin)
       binStart -= ONEDAY / 2;
+=======
+    var stats = Lib.findExactDates(data, calendar);
+    // number of data points that needs to be an exact value
+    // to shift that increment to (near) the bin center
+    var threshold = 0.8;
+
+    if(stats.exactDays > threshold) {
+        var numMonths = Number(dtick.substr(1));
+
+        if((stats.exactYears > threshold) && (numMonths % 12 === 0)) {
+            // The exact middle of a non-leap-year is 1.5 days into July
+            // so if we start the bins here, all but leap years will
+            // get hover-labeled as exact years.
+            binStart = axes.tickIncrement(binStart, 'M6', 'reverse') + ONEDAY * 1.5;
+        } else if(stats.exactMonths > threshold) {
+            // Months are not as clean, but if we shift half the *longest*
+            // month (31/2 days) then 31-day months will get labeled exactly
+            // and shorter months will get labeled with the correct month
+            // but shifted 12-36 hours into it.
+            binStart = axes.tickIncrement(binStart, 'M1', 'reverse') + ONEDAY * 15.5;
+        } else {
+            // Shifting half a day is exact, but since these are month bins it
+            // will always give a somewhat odd-looking label, until we do something
+            // smarter like showing the bin boundaries (or the bounds of the actual
+            // data in each bin)
+            binStart -= HALFDAY;
+        }
+        var nextBinStart = axes.tickIncrement(binStart, dtick);
+
+        if(nextBinStart <= dataMin) return nextBinStart;
+>>>>>>> upstream/master
     }
     var nextBinStart = axes.tickIncrement(binStart, dtick);
 
@@ -57014,6 +59559,7 @@ function autoShiftMonthBins(binStart, data, dtick, dataMin, calendar) {
 // ----------------------------------------------------
 
 // ensure we have tick0, dtick, and tick rounding calculated
+<<<<<<< HEAD
 axes.prepTicks = function (ax) {
   var rng = Lib.simpleMap(ax.range, ax.r2l);
 
@@ -57030,6 +59576,32 @@ axes.prepTicks = function (ax) {
         minPx = ax._id.charAt(0) === 'y' ? 40 : 80;
         nt = Lib.constrain(ax._length / minPx, 4, 9) + 1;
       }
+=======
+axes.prepTicks = function(ax, opts) {
+    var rng = Lib.simpleMap(ax.range, ax.r2l, undefined, undefined, opts);
+
+    ax._dtickInit = ax.dtick;
+    ax._tick0Init = ax.tick0;
+
+    // calculate max number of (auto) ticks to display based on plot size
+    if(ax.tickmode === 'auto' || !ax.dtick) {
+        var nt = ax.nticks;
+        var minPx;
+
+        if(!nt) {
+            if(ax.type === 'category' || ax.type === 'multicategory') {
+                minPx = ax.tickfont ? (ax.tickfont.size || 12) * 1.2 : 15;
+                nt = ax._length / minPx;
+            } else {
+                minPx = ax._id.charAt(0) === 'y' ? 40 : 80;
+                nt = Lib.constrain(ax._length / minPx, 4, 9) + 1;
+            }
+
+            // radial axes span half their domain,
+            // multiply nticks value by two to get correct number of auto ticks.
+            if(ax._name === 'radialaxis') nt *= 2;
+        }
+>>>>>>> upstream/master
 
       // radial axes span half their domain,
       // multiply nticks value by two to get correct number of auto ticks.
@@ -57040,8 +59612,13 @@ axes.prepTicks = function (ax) {
     // have explicit tickvals without tick text
     if (ax.tickmode === 'array') nt *= 100;
 
+<<<<<<< HEAD
     ax._roughDTick = (Math.abs(rng[1] - rng[0]) - (ax._lBreaks || 0)) / nt;
     axes.autoTicks(ax, ax._roughDTick);
+=======
+        ax._roughDTick = Math.abs(rng[1] - rng[0]) / nt;
+        axes.autoTicks(ax, ax._roughDTick);
+>>>>>>> upstream/master
 
     // check for a forced minimum dtick
     if (ax._minDtick > 0 && ax.dtick < ax._minDtick * 2) {
@@ -57050,10 +59627,21 @@ axes.prepTicks = function (ax) {
     }
   }
 
+<<<<<<< HEAD
   // check for missing tick0
   if (!ax.tick0) {
     ax.tick0 = ax.type === 'date' ? '2000-01-01' : 0;
   }
+=======
+    if(ax.ticklabelmode === 'period') {
+        adjustPeriodDelta(ax);
+    }
+
+    // check for missing tick0
+    if(!ax.tick0) {
+        ax.tick0 = (ax.type === 'date') ? '2000-01-01' : 0;
+    }
+>>>>>>> upstream/master
 
   // ensure we don't try to make ticks below our minimum precision
   // see https://github.com/plotly/plotly.js/issues/2892
@@ -57063,10 +59651,195 @@ axes.prepTicks = function (ax) {
   autoTickRound(ax);
 };
 
+function nMonths(dtick) {
+    return +(dtick.substring(1));
+}
+
+function adjustPeriodDelta(ax) { // adjusts ax.dtick and sets ax._definedDelta
+    var definedDelta;
+
+    function mDate() {
+        return !(
+            isNumeric(ax.dtick) ||
+            ax.dtick.charAt(0) !== 'M'
+        );
+    }
+    var isMDate = mDate();
+    var tickformat = axes.getTickFormat(ax);
+    if(tickformat) {
+        var noDtick = ax._dtickInit !== ax.dtick;
+        if(
+            !(/%[fLQsSMX]/.test(tickformat))
+            // %f: microseconds as a decimal number [000000, 999999]
+            // %L: milliseconds as a decimal number [000, 999]
+            // %Q: milliseconds since UNIX epoch
+            // %s: seconds since UNIX epoch
+            // %S: second as a decimal number [00,61]
+            // %M: minute as a decimal number [00,59]
+            // %X: the locale’s time, such as %-I:%M:%S %p
+        ) {
+            if(
+                /%[HI]/.test(tickformat)
+                // %H: hour (24-hour clock) as a decimal number [00,23]
+                // %I: hour (12-hour clock) as a decimal number [01,12]
+            ) {
+                definedDelta = ONEHOUR;
+                if(noDtick && !isMDate && ax.dtick < ONEHOUR) ax.dtick = ONEHOUR;
+            } else if(
+                /%p/.test(tickformat) // %p: either AM or PM
+            ) {
+                definedDelta = HALFDAY;
+                if(noDtick && !isMDate && ax.dtick < HALFDAY) ax.dtick = HALFDAY;
+            } else if(
+                /%[Aadejuwx]/.test(tickformat)
+                // %A: full weekday name
+                // %a: abbreviated weekday name
+                // %d: zero-padded day of the month as a decimal number [01,31]
+                // %e: space-padded day of the month as a decimal number [ 1,31]
+                // %j: day of the year as a decimal number [001,366]
+                // %u: Monday-based (ISO 8601) weekday as a decimal number [1,7]
+                // %w: Sunday-based weekday as a decimal number [0,6]
+                // %x: the locale’s date, such as %-m/%-d/%Y
+            ) {
+                definedDelta = ONEDAY;
+                if(noDtick && !isMDate && ax.dtick < ONEDAY) ax.dtick = ONEDAY;
+            } else if(
+                /%[UVW]/.test(tickformat)
+                // %U: Sunday-based week of the year as a decimal number [00,53]
+                // %V: ISO 8601 week of the year as a decimal number [01, 53]
+                // %W: Monday-based week of the year as a decimal number [00,53]
+            ) {
+                definedDelta = ONEWEEK;
+                if(noDtick && !isMDate && ax.dtick < ONEWEEK) ax.dtick = ONEWEEK;
+            } else if(
+                /%[Bbm]/.test(tickformat)
+                // %B: full month name
+                // %b: abbreviated month name
+                // %m: month as a decimal number [01,12]
+            ) {
+                definedDelta = ONEAVGMONTH;
+                if(noDtick && (
+                    isMDate ? nMonths(ax.dtick) < 1 : ax.dtick < ONEMINMONTH)
+                ) ax.dtick = 'M1';
+            } else if(
+                /%[q]/.test(tickformat)
+                // %q: quarter of the year as a decimal number [1,4]
+            ) {
+                definedDelta = ONEAVGQUARTER;
+                if(noDtick && (
+                    isMDate ? nMonths(ax.dtick) < 3 : ax.dtick < ONEMINQUARTER)
+                ) ax.dtick = 'M3';
+            } else if(
+                /%[Yy]/.test(tickformat)
+                // %Y: year with century as a decimal number, such as 1999
+                // %y: year without century as a decimal number [00,99]
+            ) {
+                definedDelta = ONEAVGYEAR;
+                if(noDtick && (
+                    isMDate ? nMonths(ax.dtick) < 12 : ax.dtick < ONEMINYEAR)
+                ) ax.dtick = 'M12';
+            }
+        }
+    }
+
+    isMDate = mDate();
+    if(isMDate && ax.tick0 === ax._dowTick0) {
+        // discard Sunday/Monday tweaks
+        ax.tick0 = ax._rawTick0;
+    }
+
+    ax._definedDelta = definedDelta;
+}
+
+function positionPeriodTicks(tickVals, ax, definedDelta) {
+    for(var i = 0; i < tickVals.length; i++) {
+        var v = tickVals[i].value;
+
+        var a = i;
+        var b = i + 1;
+        if(i < tickVals.length - 1) {
+            a = i;
+            b = i + 1;
+        } else if(i > 0) {
+            a = i - 1;
+            b = i;
+        } else {
+            a = i;
+            b = i;
+        }
+
+        var A = tickVals[a].value;
+        var B = tickVals[b].value;
+        var actualDelta = Math.abs(B - A);
+        var delta = definedDelta || actualDelta;
+        var periodLength = 0;
+
+        if(delta >= ONEMINYEAR) {
+            if(actualDelta >= ONEMINYEAR && actualDelta <= ONEMAXYEAR) {
+                periodLength = actualDelta;
+            } else {
+                periodLength = ONEAVGYEAR;
+            }
+        } else if(definedDelta === ONEAVGQUARTER && delta >= ONEMINQUARTER) {
+            if(actualDelta >= ONEMINQUARTER && actualDelta <= ONEMAXQUARTER) {
+                periodLength = actualDelta;
+            } else {
+                periodLength = ONEAVGQUARTER;
+            }
+        } else if(delta >= ONEMINMONTH) {
+            if(actualDelta >= ONEMINMONTH && actualDelta <= ONEMAXMONTH) {
+                periodLength = actualDelta;
+            } else {
+                periodLength = ONEAVGMONTH;
+            }
+        } else if(definedDelta === ONEWEEK && delta >= ONEWEEK) {
+            periodLength = ONEWEEK;
+        } else if(delta >= ONEDAY) {
+            periodLength = ONEDAY;
+        } else if(definedDelta === HALFDAY && delta >= HALFDAY) {
+            periodLength = HALFDAY;
+        } else if(definedDelta === ONEHOUR && delta >= ONEHOUR) {
+            periodLength = ONEHOUR;
+        }
+
+        var inBetween;
+        if(periodLength >= actualDelta) {
+            // ensure new label positions remain between ticks
+            periodLength = actualDelta;
+            inBetween = true;
+        }
+
+        var endPeriod = v + periodLength;
+        if(ax.rangebreaks && periodLength > 0) {
+            var nAll = 84; // highly divisible 7 * 12
+            var n = 0;
+            for(var c = 0; c < nAll; c++) {
+                var r = (c + 0.5) / nAll;
+                if(ax.maskBreaks(v * (1 - r) + r * endPeriod) !== BADNUM) n++;
+            }
+            periodLength *= n / nAll;
+
+            if(!periodLength) {
+                tickVals[i].drop = true;
+            }
+
+            if(inBetween && actualDelta > ONEWEEK) periodLength = actualDelta; // center monthly & longer periods
+        }
+
+        if(
+            periodLength > 0 || // not instant
+            i === 0 // taking care first tick added
+        ) {
+            tickVals[i].periodX = v + periodLength / 2;
+        }
+    }
+}
+
 // calculate the ticks: text, values, positioning
 // if ticks are set to automatic, determine the right values (tick0,dtick)
 // in any case, set tickround to # of digits to round tick labels to,
 // or codes to this effect for log and date scales
+<<<<<<< HEAD
 axes.calcTicks = function calcTicks(ax) {
   axes.prepTicks(ax);
   var rng = Lib.simpleMap(ax.range, ax.r2l);
@@ -57094,6 +59867,30 @@ axes.calcTicks = function calcTicks(ax) {
       ? Math.max(-0.5, endTick)
       : Math.min(ax._categories.length - 0.5, endTick);
   }
+=======
+axes.calcTicks = function calcTicks(ax, opts) {
+    axes.prepTicks(ax, opts);
+    var rng = Lib.simpleMap(ax.range, ax.r2l, undefined, undefined, opts);
+
+    // now that we've figured out the auto values for formatting
+    // in case we're missing some ticktext, we can break out for array ticks
+    if(ax.tickmode === 'array') return arrayTicks(ax);
+
+    // add a tiny bit so we get ticks which may have rounded out
+    var exRng = expandRange(rng);
+    var startTick = exRng[0];
+    var endTick = exRng[1];
+    // check for reversed axis
+    var axrev = (rng[1] < rng[0]);
+    var minRange = Math.min(rng[0], rng[1]);
+    var maxRange = Math.max(rng[0], rng[1]);
+
+    var isDLog = (ax.type === 'log') && !(isNumeric(ax.dtick) || ax.dtick.charAt(0) === 'L');
+    var isPeriod = ax.ticklabelmode === 'period';
+
+    // find the first tick
+    ax._tmin = axes.tickFirst(ax, opts);
+>>>>>>> upstream/master
 
   var isDLog =
     ax.type === 'log' && !(isNumeric(ax.dtick) || ax.dtick.charAt(0) === 'L');
@@ -57125,6 +59922,7 @@ axes.calcTicks = function calcTicks(ax) {
     }
   }
 
+<<<<<<< HEAD
   generateTicks();
 
   if (ax.rangebreaks) {
@@ -57141,10 +59939,20 @@ axes.calcTicks = function calcTicks(ax) {
               break;
             }
           }
+=======
+    var x = ax._tmin;
+
+    if(ax.rangebreaks && ax._tick0Init !== ax.tick0) {
+        // adjust tick0
+        x = moveOutsideBreak(x, ax);
+        if(!axrev) {
+            x = axes.tickIncrement(x, ax.dtick, !axrev, ax.calendar);
+>>>>>>> upstream/master
         }
       }
     }
 
+<<<<<<< HEAD
     // reduce ticks
     var len = tickVals.length;
     if (len > 2) {
@@ -57163,12 +59971,80 @@ axes.calcTicks = function calcTicks(ax) {
         if (prevPos === undefined || Math.abs(pos - prevPos) > tf2) {
           prevPos = pos;
           newTickVals.push(tickVals[q]);
+=======
+    if(isPeriod) {
+        // add one item to label period before tick0
+        x = axes.tickIncrement(x, ax.dtick, !axrev, ax.calendar);
+    }
+
+    var maxTicks = Math.max(1000, ax._length || 0);
+    var tickVals = [];
+    var xPrevious = null;
+    for(;
+        (axrev) ? (x >= endTick) : (x <= endTick);
+        x = axes.tickIncrement(x, ax.dtick, axrev, ax.calendar)
+    ) {
+        if(ax.rangebreaks) {
+            if(!axrev) {
+                if(x < startTick) continue;
+                if(ax.maskBreaks(x) === BADNUM && moveOutsideBreak(x, ax) >= maxRange) break;
+            }
+        }
+
+        // prevent infinite loops - no more than one tick per pixel,
+        // and make sure each value is different from the previous
+        if(tickVals.length > maxTicks || x === xPrevious) break;
+        xPrevious = x;
+
+        var minor = false;
+        if(isDLog && (x !== (x | 0))) {
+            minor = true;
+        }
+
+        tickVals.push({
+            minor: minor,
+            value: x
+        });
+    }
+
+    if(isPeriod) positionPeriodTicks(tickVals, ax, ax._definedDelta);
+
+    var i;
+    if(ax.rangebreaks) {
+        var flip = ax._id.charAt(0) === 'y';
+
+        var fontSize = 1; // one pixel minimum
+        if(ax.tickmode === 'auto') {
+            fontSize = ax.tickfont ? ax.tickfont.size : 12;
+        }
+
+        var prevL = NaN;
+        for(i = tickVals.length - 1; i > -1; i--) {
+            if(tickVals[i].drop) {
+                tickVals.splice(i, 1);
+                continue;
+            }
+
+            tickVals[i].value = moveOutsideBreak(tickVals[i].value, ax);
+
+            // avoid overlaps
+            var l = ax.c2p(tickVals[i].value);
+            if(flip ?
+                (prevL > l - fontSize) :
+                (prevL < l + fontSize)
+            ) { // ensure one pixel minimum
+                tickVals.splice(axrev ? i + 1 : i, 1);
+            } else {
+                prevL = l;
+            }
+>>>>>>> upstream/master
         }
       }
       tickVals = newTickVals.reverse();
     }
   }
 
+<<<<<<< HEAD
   // If same angle over a full circle, the last tick vals is a duplicate.
   // TODO must do something similar for angular date axes.
   if (isAngular(ax) && Math.abs(rng[1] - rng[0]) === 360) {
@@ -57198,6 +60074,52 @@ axes.calcTicks = function calcTicks(ax) {
       _minor // noSuffixPrefix
     );
   }
+=======
+    // If same angle over a full circle, the last tick vals is a duplicate.
+    // TODO must do something similar for angular date axes.
+    if(isAngular(ax) && Math.abs(rng[1] - rng[0]) === 360) {
+        tickVals.pop();
+    }
+
+    // save the last tick as well as first, so we can
+    // show the exponent only on the last one
+    ax._tmax = (tickVals[tickVals.length - 1] || {}).value;
+
+    // for showing the rest of a date when the main tick label is only the
+    // latter part: ax._prevDateHead holds what we showed most recently.
+    // Start with it cleared and mark that we're in calcTicks (ie calculating a
+    // whole string of these so we should care what the previous date head was!)
+    ax._prevDateHead = '';
+    ax._inCalcTicks = true;
+
+    var ticksOut = [];
+    var t, p;
+    for(i = 0; i < tickVals.length; i++) {
+        var _minor = tickVals[i].minor;
+        var _value = tickVals[i].value;
+
+        t = axes.tickText(
+            ax,
+            _value,
+            false, // hover
+            _minor // noSuffixPrefix
+        );
+
+        p = tickVals[i].periodX;
+        if(p !== undefined) {
+            t.periodX = p;
+            if(p > maxRange || p < minRange) { // hide label if outside the range
+                if(p > maxRange) t.periodX = maxRange;
+                if(p < minRange) t.periodX = minRange;
+
+                t.text = ' '; // don't use an empty string here which can confuse automargin (issue 5132)
+                ax._prevDateHead = '';
+            }
+        }
+
+        ticksOut.push(t);
+    }
+>>>>>>> upstream/master
 
   ax._inCalcTicks = false;
 
@@ -57205,6 +60127,7 @@ axes.calcTicks = function calcTicks(ax) {
 };
 
 function arrayTicks(ax) {
+<<<<<<< HEAD
   var vals = ax.tickvals;
   var text = ax.ticktext;
   var ticksOut = new Array(vals.length);
@@ -57229,6 +60152,24 @@ function arrayTicks(ax) {
     ax.dtick =
       'L' + Math.pow(10, Math.floor(Math.min(ax.range[0], ax.range[1])) - 1);
   }
+=======
+    var vals = ax.tickvals;
+    var text = ax.ticktext;
+    var ticksOut = new Array(vals.length);
+    var rng = Lib.simpleMap(ax.range, ax.r2l);
+    var exRng = expandRange(rng);
+    var tickMin = Math.min(exRng[0], exRng[1]);
+    var tickMax = Math.max(exRng[0], exRng[1]);
+    var j = 0;
+
+    // without a text array, just format the given values as any other ticks
+    // except with more precision to the numbers
+    if(!Array.isArray(text)) text = [];
+
+    // make sure showing ticks doesn't accidentally add new categories
+    // TODO multicategory, if we allow ticktext / tickvals
+    var tickVal2l = ax.type === 'category' ? ax.d2l_noadd : ax.d2l;
+>>>>>>> upstream/master
 
   for (var i = 0; i < vals.length; i++) {
     var vali = tickVal2l(vals[i]);
@@ -57298,9 +60239,56 @@ function roundDTick(roughDTick, base, roundingSet) {
 axes.autoTicks = function (ax, roughDTick) {
   var base;
 
+<<<<<<< HEAD
   function getBase(v) {
     return Math.pow(v, Math.floor(Math.log(roughDTick) / Math.LN10));
   }
+=======
+    if(ax.type === 'date') {
+        ax.tick0 = Lib.dateTick0(ax.calendar, 0);
+
+        // the criteria below are all based on the rough spacing we calculate
+        // being > half of the final unit - so precalculate twice the rough val
+        var roughX2 = 2 * roughDTick;
+
+        if(roughX2 > ONEAVGYEAR) {
+            roughDTick /= ONEAVGYEAR;
+            base = getBase(10);
+            ax.dtick = 'M' + (12 * roundDTick(roughDTick, base, roundBase10));
+        } else if(roughX2 > ONEAVGMONTH) {
+            roughDTick /= ONEAVGMONTH;
+            ax.dtick = 'M' + roundDTick(roughDTick, 1, roundBase24);
+        } else if(roughX2 > ONEDAY) {
+            ax.dtick = roundDTick(roughDTick, ONEDAY, ax._hasDayOfWeekBreaks ? [1, 2, 7, 14] : roundDays);
+            // get week ticks on sunday
+            // this will also move the base tick off 2000-01-01 if dtick is
+            // 2 or 3 days... but that's a weird enough case that we'll ignore it.
+            var tickformat = axes.getTickFormat(ax);
+            var isPeriod = ax.ticklabelmode === 'period';
+            if(isPeriod) ax._rawTick0 = ax.tick0;
+
+            if(/%[uVW]/.test(tickformat)) {
+                ax.tick0 = Lib.dateTick0(ax.calendar, 2); // Monday
+            } else {
+                ax.tick0 = Lib.dateTick0(ax.calendar, 1); // Sunday
+            }
+
+            if(isPeriod) ax._dowTick0 = ax.tick0;
+        } else if(roughX2 > ONEHOUR) {
+            ax.dtick = roundDTick(roughDTick, ONEHOUR, roundBase24);
+        } else if(roughX2 > ONEMIN) {
+            ax.dtick = roundDTick(roughDTick, ONEMIN, roundBase60);
+        } else if(roughX2 > ONESEC) {
+            ax.dtick = roundDTick(roughDTick, ONESEC, roundBase60);
+        } else {
+            // milliseconds
+            base = getBase(10);
+            ax.dtick = roundDTick(roughDTick, base, roundBase10);
+        }
+    } else if(ax.type === 'log') {
+        ax.tick0 = 0;
+        var rng = Lib.simpleMap(ax.range, ax.r2l);
+>>>>>>> upstream/master
 
   if (ax.type === 'date') {
     ax.tick0 = Lib.dateTick0(ax.calendar);
@@ -57396,6 +60384,7 @@ function autoTickRound(ax) {
     dtick = 1;
   }
 
+<<<<<<< HEAD
   if (ax.type === 'category' || ax.type === 'multicategory') {
     ax._tickround = null;
   }
@@ -57419,6 +60408,55 @@ function autoTickRound(ax) {
       ax._tickround = 'M';
     } else if ((dtick >= ONESEC && tick0len <= 19) || dtick >= ONEMIN) {
       ax._tickround = 'S';
+=======
+    if(ax.type === 'category' || ax.type === 'multicategory') {
+        ax._tickround = null;
+    }
+    if(ax.type === 'date') {
+        // If tick0 is unusual, give tickround a bit more information
+        // not necessarily *all* the information in tick0 though, if it's really odd
+        // minimal string length for tick0: 'd' is 10, 'M' is 16, 'S' is 19
+        // take off a leading minus (year < 0) and i (intercalary month) so length is consistent
+        var tick0ms = ax.r2l(ax.tick0);
+        var tick0str = ax.l2r(tick0ms).replace(/(^-|i)/g, '');
+        var tick0len = tick0str.length;
+
+        if(String(dtick).charAt(0) === 'M') {
+            // any tick0 more specific than a year: alway show the full date
+            if(tick0len > 10 || tick0str.substr(5) !== '01-01') ax._tickround = 'd';
+            // show the month unless ticks are full multiples of a year
+            else ax._tickround = (+(dtick.substr(1)) % 12 === 0) ? 'y' : 'm';
+        } else if((dtick >= ONEDAY && tick0len <= 10) || (dtick >= ONEDAY * 15)) ax._tickround = 'd';
+        else if((dtick >= ONEMIN && tick0len <= 16) || (dtick >= ONEHOUR)) ax._tickround = 'M';
+        else if((dtick >= ONESEC && tick0len <= 19) || (dtick >= ONEMIN)) ax._tickround = 'S';
+        else {
+            // tickround is a number of digits of fractional seconds
+            // of any two adjacent ticks, at least one will have the maximum fractional digits
+            // of all possible ticks - so take the max. length of tick0 and the next one
+            var tick1len = ax.l2r(tick0ms + dtick).replace(/^-/, '').length;
+            ax._tickround = Math.max(tick0len, tick1len) - 20;
+
+            // We shouldn't get here... but in case there's a situation I'm
+            // not thinking of where tick0str and tick1str are identical or
+            // something, fall back on maximum precision
+            if(ax._tickround < 0) ax._tickround = 4;
+        }
+    } else if(isNumeric(dtick) || dtick.charAt(0) === 'L') {
+        // linear or log (except D1, D2)
+        var rng = ax.range.map(ax.r2d || Number);
+        if(!isNumeric(dtick)) dtick = Number(dtick.substr(1));
+        // 2 digits past largest digit of dtick
+        ax._tickround = 2 - Math.floor(Math.log(dtick) / Math.LN10 + 0.01);
+
+        var maxend = Math.max(Math.abs(rng[0]), Math.abs(rng[1]));
+        var rangeexp = Math.floor(Math.log(maxend) / Math.LN10 + 0.01);
+        var minexponent = ax.minexponent === undefined ? 3 : ax.minexponent;
+        if(Math.abs(rangeexp) > minexponent) {
+            if(isSIFormat(ax.exponentformat) && !beyondSI(rangeexp)) {
+                ax._tickexponent = 3 * Math.round((rangeexp - 1) / 3);
+            } else ax._tickexponent = rangeexp;
+        }
+>>>>>>> upstream/master
     } else {
       // tickround is a number of digits of fractional seconds
       // of any two adjacent ticks, at least one will have the maximum fractional digits
@@ -57457,8 +60495,16 @@ function autoTickRound(ax) {
 // for pure powers of 10
 // numeric ticks always have constant differences, other datetime ticks
 // can all be calculated as constant number of milliseconds
+<<<<<<< HEAD
 axes.tickIncrement = function (x, dtick, axrev, calendar) {
   var axSign = axrev ? -1 : 1;
+=======
+axes.tickIncrement = function(x, dtick, axrev, calendar) {
+    var axSign = axrev ? -1 : 1;
+
+    // includes linear, all dates smaller than month, and pure 10^n in log
+    if(isNumeric(dtick)) return Lib.increment(x, axSign * dtick);
+>>>>>>> upstream/master
 
   // includes linear, all dates smaller than month, and pure 10^n in log
   if (isNumeric(dtick)) return x + axSign * dtick;
@@ -57472,6 +60518,7 @@ axes.tickIncrement = function (x, dtick, axrev, calendar) {
     return Lib.incrementMonth(x, dtSigned, calendar);
   } else if (tType === 'L') {
     // Log scales: Linear, Digits
+<<<<<<< HEAD
     return Math.log(Math.pow(10, x) + dtSigned) / Math.LN10;
   } else if (tType === 'D') {
     // log10 of 2,5,10, or all digits (logs just have to be
@@ -57507,6 +60554,35 @@ axes.tickFirst = function (ax) {
     }
     return tmin;
   }
+=======
+    if(tType === 'L') return Math.log(Math.pow(10, x) + dtSigned) / Math.LN10;
+
+    // log10 of 2,5,10, or all digits (logs just have to be
+    // close enough to round)
+    if(tType === 'D') {
+        var tickset = (dtick === 'D2') ? roundLog2 : roundLog1;
+        var x2 = x + axSign * 0.01;
+        var frac = Lib.roundUp(Lib.mod(x2, 1), tickset, axrev);
+
+        return Math.floor(x2) +
+            Math.log(d3.round(Math.pow(10, frac), 1)) / Math.LN10;
+    }
+
+    throw 'unrecognized dtick ' + String(dtick);
+};
+
+// calculate the first tick on an axis
+axes.tickFirst = function(ax, opts) {
+    var r2l = ax.r2l || Number;
+    var rng = Lib.simpleMap(ax.range, r2l, undefined, undefined, opts);
+    var axrev = rng[1] < rng[0];
+    var sRound = axrev ? Math.floor : Math.ceil;
+    // add a tiny extra bit to make sure we get ticks
+    // that may have been rounded out
+    var r0 = expandRange(rng)[0];
+    var dtick = ax.dtick;
+    var tick0 = r2l(ax.tick0);
+>>>>>>> upstream/master
 
   var tType = dtick.charAt(0);
   var dtNum = Number(dtick.substr(1));
@@ -58003,6 +61079,7 @@ function customFormat(tickformat, v, ax) {
 }
 
 function numFormat(v, ax, fmtoverride, hover) {
+<<<<<<< HEAD
   var isNeg = v < 0;
   // max number of digits past decimal point to show
   var tickRound = ax._tickround;
@@ -58071,6 +61148,58 @@ function numFormat(v, ax, fmtoverride, hover) {
       v = String(Math.round(v));
       v = v.substr(0, v.length + tickRound);
       for (var i = tickRound; i < 0; i++) v += '0';
+=======
+    var isNeg = v < 0;
+    // max number of digits past decimal point to show
+    var tickRound = ax._tickround;
+    var exponentFormat = fmtoverride || ax.exponentformat || 'B';
+    var exponent = ax._tickexponent;
+    var tickformat = axes.getTickFormat(ax);
+    var separatethousands = ax.separatethousands;
+
+    // special case for hover: set exponent just for this value, and
+    // add a couple more digits of precision over tick labels
+    if(hover) {
+        // make a dummy axis obj to get the auto rounding and exponent
+        var ah = {
+            exponentformat: exponentFormat,
+            minexponent: ax.minexponent,
+            dtick: ax.showexponent === 'none' ? ax.dtick :
+                (isNumeric(v) ? Math.abs(v) || 1 : 1),
+            // if not showing any exponents, don't change the exponent
+            // from what we calculate
+            range: ax.showexponent === 'none' ? ax.range.map(ax.r2d) : [0, v || 1]
+        };
+        autoTickRound(ah);
+        tickRound = (Number(ah._tickround) || 0) + 4;
+        exponent = ah._tickexponent;
+        if(ax.hoverformat) tickformat = ax.hoverformat;
+    }
+
+    if(tickformat) return ax._numFormat(tickformat)(v).replace(/-/g, MINUS_SIGN);
+
+    // 'epsilon' - rounding increment
+    var e = Math.pow(10, -tickRound) / 2;
+
+    // exponentFormat codes:
+    // 'e' (1.2e+6, default)
+    // 'E' (1.2E+6)
+    // 'SI' (1.2M)
+    // 'B' (same as SI except 10^9=B not G)
+    // 'none' (1200000)
+    // 'power' (1.2x10^6)
+    // 'hide' (1.2, use 3rd argument=='hide' to eg
+    //      only show exponent on last tick)
+    if(exponentFormat === 'none') exponent = 0;
+
+    // take the sign out, put it back manually at the end
+    // - makes cases easier
+    v = Math.abs(v);
+    if(v < e) {
+        // 0 is just 0, but may get exponent if it's the last tick
+        v = '0';
+        isNeg = false;
+>>>>>>> upstream/master
     } else {
       v = String(v);
       var dp = v.indexOf('.') + 1;
@@ -58398,11 +61527,78 @@ axes.drawOne = function (gd, ax, opts) {
 
   ax.setScale();
 
+<<<<<<< HEAD
   var fullLayout = gd._fullLayout;
   var axId = ax._id;
   var axLetter = axId.charAt(0);
   var counterLetter = axes.counterLetter(axId);
   var mainPlotinfo = fullLayout._plots[ax._mainSubplot];
+=======
+    var fullLayout = gd._fullLayout;
+    var axId = ax._id;
+    var axLetter = axId.charAt(0);
+    var counterLetter = axes.counterLetter(axId);
+    var mainPlotinfo = fullLayout._plots[ax._mainSubplot];
+
+    // this happens when updating matched group with 'missing' axes
+    if(!mainPlotinfo) return;
+
+    var mainAxLayer = mainPlotinfo[axLetter + 'axislayer'];
+    var mainLinePosition = ax._mainLinePosition;
+    var mainMirrorPosition = ax._mainMirrorPosition;
+
+    var vals = ax._vals = axes.calcTicks(ax);
+
+    // Add a couple of axis properties that should cause us to recreate
+    // elements. Used in d3 data function.
+    var axInfo = [ax.mirror, mainLinePosition, mainMirrorPosition].join('_');
+    for(i = 0; i < vals.length; i++) {
+        vals[i].axInfo = axInfo;
+    }
+
+    // stash selections to avoid DOM queries e.g.
+    // - stash tickLabels selection, so that drawTitle can use it to scoot title
+    ax._selections = {};
+    // stash tick angle (including the computed 'auto' values) per tick-label class
+    // linkup 'previous' tick angles on redraws
+    if(ax._tickAngles) ax._prevTickAngles = ax._tickAngles;
+    ax._tickAngles = {};
+    // measure [in px] between axis position and outward-most part of bounding box
+    // (touching either the tick label or ticks)
+    // depth can be expansive to compute, so we only do so when required
+    ax._depth = null;
+
+    // calcLabelLevelBbox can be expensive,
+    // so make sure to not call it twice during the same Axes.drawOne call
+    // by stashing label-level bounding boxes per tick-label class
+    var llbboxes = {};
+    function getLabelLevelBbox(suffix) {
+        var cls = axId + (suffix || 'tick');
+        if(!llbboxes[cls]) llbboxes[cls] = calcLabelLevelBbox(ax, cls);
+        return llbboxes[cls];
+    }
+
+    if(!ax.visible) return;
+
+    var transFn = axes.makeTransFn(ax);
+    var transTickLabelFn = ax.ticklabelmode === 'period' ?
+        axes.makeTransPeriodFn(ax) :
+        axes.makeTransFn(ax);
+
+    var tickVals;
+    // We remove zero lines, grid lines, and inside ticks if they're within 1px of the end
+    // The key case here is removing zero lines when the axis bound is zero
+    var valsClipped;
+
+    if(ax.tickson === 'boundaries') {
+        var boundaryVals = getBoundaryVals(ax, vals);
+        valsClipped = axes.clipEnds(ax, boundaryVals);
+        tickVals = ax.ticks === 'inside' ? valsClipped : boundaryVals;
+    } else {
+        valsClipped = axes.clipEnds(ax, vals);
+        tickVals = ax.ticks === 'inside' ? valsClipped : vals;
+    }
+>>>>>>> upstream/master
 
   // this happens when updating matched group with 'missing' axes
   if (!mainPlotinfo) return;
@@ -58543,6 +61739,7 @@ axes.drawOne = function (gd, ax, opts) {
     }
   }
 
+<<<<<<< HEAD
   for (i = 0; i < tickSubplots.length; i++) {
     sp = tickSubplots[i];
     plotinfo = fullLayout._plots[sp];
@@ -58557,6 +61754,15 @@ axes.drawOne = function (gd, ax, opts) {
       layer: plotinfo[axLetter + 'axislayer'],
       path: spTickPath,
       transFn: transFn
+=======
+    seq.push(function() {
+        return axes.drawLabels(gd, ax, {
+            vals: vals,
+            layer: mainAxLayer,
+            transFn: transTickLabelFn,
+            labelFns: axes.makeLabelFns(ax, mainLinePosition)
+        });
+>>>>>>> upstream/master
     });
   }
 
@@ -58797,6 +62003,7 @@ function getDividerVals(ax, vals) {
   var out = [];
   var i, current;
 
+<<<<<<< HEAD
   // never used for labels;
   // no need to worry about the other tickTextObj keys
   var _push = function (d, bndIndex) {
@@ -58813,6 +62020,28 @@ function getDividerVals(ax, vals) {
         _push(d, 0);
       }
       current = d.text2;
+=======
+    var reversed = (vals.length && vals[vals.length - 1].x < vals[0].x);
+
+    // never used for labels;
+    // no need to worry about the other tickTextObj keys
+    var _push = function(d, bndIndex) {
+        var xb = d.xbnd[bndIndex];
+        if(xb !== null) {
+            out.push(Lib.extendFlat({}, d, {x: xb}));
+        }
+    };
+
+    if(ax.showdividers && vals.length) {
+        for(i = 0; i < vals.length; i++) {
+            var d = vals[i];
+            if(d.text2 !== current) {
+                _push(d, reversed ? 1 : 0);
+            }
+            current = d.text2;
+        }
+        _push(vals[i - 1], reversed ? 0 : 1);
+>>>>>>> upstream/master
     }
     _push(vals[i - 1], 1);
   }
@@ -58912,6 +62141,14 @@ axes.makeTransFn = function (ax) {
     : function (d) {
         return 'translate(0,' + (offset + ax.l2p(d.x)) + ')';
       };
+};
+
+axes.makeTransPeriodFn = function(ax) {
+    var axLetter = ax._id.charAt(0);
+    var offset = ax._offset;
+    return axLetter === 'x' ?
+        function(d) { return 'translate(' + (offset + ax.l2p(d.periodX !== undefined ? d.periodX : d.x)) + ',0)'; } :
+        function(d) { return 'translate(0,' + (offset + ax.l2p(d.periodX !== undefined ? d.periodX : d.x)) + ')'; };
 };
 
 /**
@@ -59059,9 +62296,23 @@ axes.drawTicks = function (gd, ax, opts) {
 
   var cls = ax._id + 'tick';
 
+<<<<<<< HEAD
   var ticks = opts.layer
     .selectAll('path.' + cls)
     .data(ax.ticks ? opts.vals : [], tickDataFn);
+=======
+    var vals = opts.vals;
+    if(
+        ax.ticklabelmode === 'period'
+    ) {
+        // drop very first tick that we added to handle period
+        vals = vals.slice();
+        vals.shift();
+    }
+
+    var ticks = opts.layer.selectAll('path.' + cls)
+        .data(ax.ticks ? vals : [], tickDataFn);
+>>>>>>> upstream/master
 
   ticks.exit().remove();
 
@@ -59219,6 +62470,7 @@ axes.drawZeroLine = function (gd, ax, opts) {
  *  + {fn} anchorFn
  *  + {fn} heightFn
  */
+<<<<<<< HEAD
 axes.drawLabels = function (gd, ax, opts) {
   opts = opts || {};
 
@@ -59254,6 +62506,20 @@ axes.drawLabels = function (gd, ax, opts) {
         .call(Drawing.font, d.font, d.fontSize, d.fontColor)
         .text(d.text)
         .call(svgTextUtils.convertToTspans, gd);
+=======
+axes.drawLabels = function(gd, ax, opts) {
+    opts = opts || {};
+
+    var fullLayout = gd._fullLayout;
+    var axId = ax._id;
+    var axLetter = axId.charAt(0);
+    var cls = opts.cls || axId + 'tick';
+    var vals = opts.vals;
+
+    var labelFns = opts.labelFns;
+    var tickAngle = opts.secondary ? 0 : ax.tickangle;
+    var prevAngle = (ax._prevTickAngles || {})[cls];
+>>>>>>> upstream/master
 
       if (gd._promises[newPromise]) {
         // if we have an async label, we'll deal with that
@@ -59955,7 +63221,22 @@ function isAngular(ax) {
   return ax._id === 'angularaxis';
 }
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/drawing":73,"../../components/titles":146,"../../constants/alignment":153,"../../constants/numerical":156,"../../lib":178,"../../lib/svg_text_utils":199,"../../plots/plots":264,"../../registry":273,"./autorange":222,"./axis_autotype":224,"./axis_ids":226,"./clean_ticks":228,"./layout_attributes":237,"./set_convert":243,"d3":13,"fast-isnumeric":15,"numeral":22}],224:[function(_dereq_,module,exports){
+=======
+function moveOutsideBreak(v, ax) {
+    var len = ax._rangebreaks.length;
+    for(var k = 0; k < len; k++) {
+        var brk = ax._rangebreaks[k];
+        if(v >= brk.min && v < brk.max) {
+            return brk.max;
+        }
+    }
+    return v;
+}
+
+},{"../../components/color":52,"../../components/drawing":74,"../../components/titles":147,"../../constants/alignment":154,"../../constants/numerical":158,"../../lib":181,"../../lib/svg_text_utils":202,"../../plots/plots":268,"../../registry":277,"./autorange":226,"./axis_autotype":228,"./axis_ids":230,"./clean_ticks":232,"./layout_attributes":241,"./set_convert":247,"d3":15,"fast-isnumeric":17}],228:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -60050,7 +63331,11 @@ function multiCategory(a) {
     return Lib.isArrayOrTypedArray(a[0]) && Lib.isArrayOrTypedArray(a[1]);
 }
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"fast-isnumeric":15}],225:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"fast-isnumeric":17}],229:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -60179,6 +63464,8 @@ module.exports = function handleAxisDefaults(containerIn, containerOut, coerce, 
     }
 
     if(axType === 'date') {
+        if(!options.noTicklabelmode) coerce('ticklabelmode');
+
         handleArrayContainerDefaults(containerIn, containerOut, {
             name: 'rangebreaks',
             inclusionAttr: 'enabled',
@@ -60331,7 +63618,11 @@ function indexOfDay(v) {
     ];
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273,"../array_container_defaults":219,"./category_order_defaults":227,"./constants":229,"./layout_attributes":237,"./line_grid_defaults":239,"./set_convert":243,"./tick_label_defaults":244,"./tick_mark_defaults":245,"./tick_value_defaults":246,"fast-isnumeric":15}],226:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"../array_container_defaults":222,"./category_order_defaults":231,"./constants":233,"./layout_attributes":241,"./line_grid_defaults":243,"./set_convert":247,"./tick_label_defaults":248,"./tick_mark_defaults":249,"./tick_value_defaults":250,"fast-isnumeric":17}],230:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -60352,7 +63643,7 @@ var constants = _dereq_('./constants');
 // completely in favor of just 'x' if it weren't ingrained in the API etc.
 exports.id2name = function id2name(id) {
     if(typeof id !== 'string' || !id.match(constants.AX_ID_PATTERN)) return;
-    var axNum = id.substr(1);
+    var axNum = id.split(' ')[0].substr(1);
     if(axNum === '1') axNum = '';
     return id.charAt(0) + 'axis' + axNum;
 };
@@ -60364,13 +63655,20 @@ exports.name2id = function name2id(name) {
     return name.charAt(0) + axNum;
 };
 
-exports.cleanId = function cleanId(id, axLetter) {
-    if(!id.match(constants.AX_ID_PATTERN)) return;
+/*
+ * Cleans up the number of an axis, e.g., 'x002'->'x2', 'x0'->'x', 'x1' -> 'x',
+ * etc.
+ * If domainId is true, then id could be a domain reference and if it is, the
+ * ' domain' part is kept at the end of the axis ID string.
+ */
+exports.cleanId = function cleanId(id, axLetter, domainId) {
+    var domainTest = /( domain)$/.test(id);
+    if(typeof id !== 'string' || !id.match(constants.AX_ID_PATTERN)) return;
     if(axLetter && id.charAt(0) !== axLetter) return;
-
-    var axNum = id.substr(1).replace(/^0+/, '');
+    if(domainTest && (!domainId)) return;
+    var axNum = id.split(' ')[0].substr(1).replace(/^0+/, '');
     if(axNum === '1') axNum = '';
-    return id.charAt(0) + axNum;
+    return id.charAt(0) + axNum + (domainTest && domainId ? ' domain' : '');
 };
 
 // get all axis objects, as restricted in listNames
@@ -60416,6 +63714,8 @@ exports.listIds = function(gd, axLetter) {
 // optionally, id can be a subplot (ie 'x2y3') and type gets x or y from it
 exports.getFromId = function(gd, id, type) {
     var fullLayout = gd._fullLayout;
+    // remove "domain" suffix
+    id = ((id === undefined) || (typeof(id) !== 'string')) ? id : id.replace(' domain', '');
 
     if(type === 'x') id = id.replace(/y[0-9]*/, '');
     else if(type === 'y') id = id.replace(/x[0-9]*/, '');
@@ -60458,7 +63758,25 @@ exports.getAxisGroup = function getAxisGroup(fullLayout, axId) {
     return axId;
 };
 
+<<<<<<< HEAD
 },{"../../registry":273,"./constants":229}],227:[function(_dereq_,module,exports){
+=======
+/*
+ * An axis reference (e.g., the contents at the 'xref' key of an object) might
+ * have extra information appended. Extract the axis ID only.
+ *
+ * ar: the axis reference string
+ *
+ */
+exports.ref2id = function(ar) {
+    // This assumes ar has been coerced via coerceRef, and uses the shortcut of
+    // checking if the first letter matches [xyz] to determine if it should
+    // return the axis ID. Otherwise it returns false.
+    return (/^[xyz]/.test(ar)) ? ar.split(' ')[0] : false;
+};
+
+},{"../../registry":277,"./constants":233}],231:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -60552,7 +63870,11 @@ module.exports = function handleCategoryOrderDefaults(containerIn, containerOut,
     }
 };
 
+<<<<<<< HEAD
 },{}],228:[function(_dereq_,module,exports){
+=======
+},{}],232:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -60565,7 +63887,9 @@ module.exports = function handleCategoryOrderDefaults(containerIn, containerOut,
 
 var isNumeric = _dereq_('fast-isnumeric');
 var Lib = _dereq_('../../lib');
-var ONEDAY = _dereq_('../../constants/numerical').ONEDAY;
+var constants = _dereq_('../../constants/numerical');
+var ONEDAY = constants.ONEDAY;
+var ONEWEEK = constants.ONEWEEK;
 
 /**
  * Return a validated dtick value for this axis
@@ -60630,7 +63954,9 @@ exports.dtick = function(dtick, axType) {
  */
 exports.tick0 = function(tick0, axType, calendar, dtick) {
     if(axType === 'date') {
-        return Lib.cleanDate(tick0, Lib.dateTick0(calendar));
+        return Lib.cleanDate(tick0,
+            Lib.dateTick0(calendar, (dtick % ONEWEEK === 0) ? 1 : 0)
+        );
     }
     if(dtick === 'D1' || dtick === 'D2') {
         // D1 and D2 modes ignore tick0 entirely
@@ -60640,7 +63966,11 @@ exports.tick0 = function(tick0, axType, calendar, dtick) {
     return isNumeric(tick0) ? Number(tick0) : 0;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"fast-isnumeric":15}],229:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"fast-isnumeric":17}],233:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -60655,8 +63985,8 @@ var counterRegex = _dereq_('../../lib/regex').counter;
 
 module.exports = {
     idRegex: {
-        x: counterRegex('x'),
-        y: counterRegex('y')
+        x: counterRegex('x', '( domain)?'),
+        y: counterRegex('y', '( domain)?')
     },
 
     attrRegex: counterRegex('[xy]axis'),
@@ -60668,7 +63998,7 @@ module.exports = {
     // pattern matching axis ids and names
     // note that this is more permissive than counterRegex, as
     // id2name, name2id, and cleanId accept "x1" etc
-    AX_ID_PATTERN: /^[xyz][0-9]*$/,
+    AX_ID_PATTERN: /^[xyz][0-9]*( domain)?$/,
     AX_NAME_PATTERN: /^[xyz]axis[0-9]*$/,
 
     // and for 2D subplots
@@ -60732,7 +64062,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib/regex":193}],230:[function(_dereq_,module,exports){
+=======
+},{"../../lib/regex":196}],234:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -61118,7 +64452,11 @@ function updateDomain(ax, factor) {
     ax.setScale();
 }
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153,"../../constants/numerical":156,"../../lib":178,"./autorange":222,"./axis_ids":226,"./scale_zoom":241}],231:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154,"../../constants/numerical":158,"../../lib":181,"./autorange":226,"./axis_ids":230,"./scale_zoom":245}],235:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -62351,6 +65689,10 @@ function attachWheelEventHandler(element, handler) {
     if(!supportsPassive) {
         if(element.onwheel !== undefined) element.onwheel = handler;
         else if(element.onmousewheel !== undefined) element.onmousewheel = handler;
+        else if(!element.isAddedWheelEvent) {
+            element.isAddedWheelEvent = true;
+            element.addEventListener('wheel', handler, {passive: false});
+        }
     } else {
         var wheelEventName = element.onwheel !== undefined ? 'wheel' : 'mousewheel';
 
@@ -62386,7 +65728,11 @@ module.exports = {
     attachWheelEventHandler: attachWheelEventHandler
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/dragelement":70,"../../components/dragelement/helpers":69,"../../components/drawing":73,"../../components/fx":91,"../../constants/alignment":153,"../../lib":178,"../../lib/clear_gl_canvases":165,"../../lib/setcursor":197,"../../lib/svg_text_utils":199,"../../plot_api/subroutines":214,"../../registry":273,"../plots":264,"./axes":223,"./axis_ids":226,"./constants":229,"./scale_zoom":241,"./select":242,"d3":13,"has-passive-events":18,"tinycolor2":33}],232:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/dragelement":71,"../../components/dragelement/helpers":70,"../../components/drawing":74,"../../components/fx":92,"../../constants/alignment":154,"../../lib":181,"../../lib/clear_gl_canvases":167,"../../lib/setcursor":200,"../../lib/svg_text_utils":202,"../../plot_api/subroutines":217,"../../registry":277,"../plots":268,"./axes":227,"./axis_ids":230,"./constants":233,"./scale_zoom":245,"./select":246,"d3":15,"has-passive-events":20,"tinycolor2":34}],236:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -62554,7 +65900,11 @@ exports.updateFx = function(gd) {
     setCursor(fullLayout._draggers, cursor);
 };
 
+<<<<<<< HEAD
 },{"../../components/dragelement":70,"../../components/fx":91,"../../lib/setcursor":197,"./constants":229,"./dragbox":231,"d3":13}],233:[function(_dereq_,module,exports){
+=======
+},{"../../components/dragelement":71,"../../components/fx":92,"../../lib/setcursor":200,"./constants":233,"./dragbox":235,"d3":15}],237:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -62590,7 +65940,11 @@ module.exports = {
     clearSelect: clearSelect
 };
 
+<<<<<<< HEAD
 },{}],234:[function(_dereq_,module,exports){
+=======
+},{}],238:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -62644,7 +65998,11 @@ module.exports = {
     getTransform: getTransform
 };
 
+<<<<<<< HEAD
 },{}],235:[function(_dereq_,module,exports){
+=======
+},{}],239:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -62658,6 +66016,7 @@ module.exports = {
 
 var Registry = _dereq_('../../registry');
 var Lib = _dereq_('../../lib');
+var axisIds = _dereq_('./axis_ids');
 
 /**
  * Factory function for checking component arrays for subplot references.
@@ -62687,8 +66046,10 @@ module.exports = function makeIncludeComponents(containerArrayName) {
             var itemi = array[i];
             if(!Lib.isPlainObject(itemi)) continue;
 
-            var xref = itemi.xref;
-            var yref = itemi.yref;
+            // call cleanId because if xref, or yref has something appended
+            // (e.g., ' domain') this will get removed.
+            var xref = axisIds.cleanId(itemi.xref, 'x', false);
+            var yref = axisIds.cleanId(itemi.yref, 'y', false);
 
             var hasXref = idRegex.x.test(xref);
             var hasYref = idRegex.y.test(yref);
@@ -62719,7 +66080,11 @@ module.exports = function makeIncludeComponents(containerArrayName) {
     };
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273}],236:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"./axis_ids":230}],240:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -63134,7 +66499,7 @@ function makeSubplotData(gd) {
             overlays.push(id);
         } else {
             plotinfo.mainplot = undefined;
-            plotinfo.mainPlotinfo = undefined;
+            plotinfo.mainplotinfo = undefined;
             regulars.push(id);
         }
     }
@@ -63336,7 +66701,11 @@ exports.toSVG = function(gd) {
 
 exports.updateFx = _dereq_('./graph_interact').updateFx;
 
+<<<<<<< HEAD
 },{"../../components/drawing":73,"../../constants/xmlns_namespaces":157,"../../lib":178,"../../registry":273,"../get_data":260,"../plots":264,"./attributes":221,"./axis_ids":226,"./constants":229,"./graph_interact":232,"./layout_attributes":237,"./layout_defaults":238,"./transition_axes":247,"d3":13}],237:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":74,"../../constants/xmlns_namespaces":159,"../../lib":181,"../../registry":277,"../get_data":264,"../plots":268,"./attributes":225,"./axis_ids":230,"./constants":233,"./graph_interact":236,"./layout_attributes":241,"./layout_defaults":242,"./transition_axes":251,"d3":15}],241:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -63626,6 +66995,14 @@ module.exports = {
         editType: 'ticks',
         
     },
+    ticklabelmode: {
+        valType: 'enumerated',
+        values: ['instant', 'period'],
+        dflt: 'instant',
+        
+        editType: 'ticks',
+        
+    },
     mirror: {
         valType: 'enumerated',
         values: [true, 'ticks', false, 'all', 'allticks'],
@@ -63762,6 +67139,14 @@ module.exports = {
         valType: 'enumerated',
         values: ['none', 'e', 'E', 'power', 'SI', 'B'],
         dflt: 'B',
+        
+        editType: 'ticks',
+        
+    },
+    minexponent: {
+        valType: 'number',
+        dflt: 3,
+        min: 0,
         
         editType: 'ticks',
         
@@ -64017,7 +67402,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/color/attributes":50,"../../components/drawing/attributes":72,"../../constants/docs":154,"../../constants/numerical":156,"../../lib/extend":171,"../../plot_api/plot_template":213,"../font_attributes":251,"./constants":229}],238:[function(_dereq_,module,exports){
+=======
+},{"../../components/color/attributes":51,"../../components/drawing/attributes":73,"../../constants/docs":156,"../../constants/numerical":158,"../../lib/extend":173,"../../plot_api/plot_template":216,"../font_attributes":255,"./constants":233}],242:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -64488,7 +67877,11 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/fx/helpers":87,"../../components/fx/hovermode_defaults":90,"../../lib":178,"../../plot_api/plot_template":213,"../../registry":273,"../layout_attributes":262,"./axis_defaults":225,"./axis_ids":226,"./constants":229,"./constraints":230,"./layout_attributes":237,"./position_defaults":240,"./type_defaults":248}],239:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/fx/helpers":88,"../../components/fx/hovermode_defaults":91,"../../lib":181,"../../plot_api/plot_template":216,"../../registry":277,"../layout_attributes":266,"./axis_defaults":229,"./axis_ids":230,"./constants":233,"./constraints":234,"./layout_attributes":241,"./position_defaults":244,"./type_defaults":252}],243:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -64553,7 +67946,11 @@ module.exports = function handleLineGridDefaults(containerIn, containerOut, coer
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/color/attributes":50,"../../lib":178,"tinycolor2":33}],240:[function(_dereq_,module,exports){
+=======
+},{"../../components/color/attributes":51,"../../lib":181,"tinycolor2":34}],244:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -64641,7 +68038,11 @@ module.exports = function handlePositionDefaults(containerIn, containerOut, coer
     return containerOut;
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"fast-isnumeric":15}],241:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"fast-isnumeric":17}],245:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -64669,7 +68070,11 @@ module.exports = function scaleZoom(ax, factor, centerFraction) {
     ];
 };
 
+<<<<<<< HEAD
 },{"../../constants/alignment":153}],242:[function(_dereq_,module,exports){
+=======
+},{"../../constants/alignment":154}],246:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -65604,7 +69009,11 @@ module.exports = {
     selectOnClick: selectOnClick
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/dragelement/helpers":69,"../../components/drawing":73,"../../components/fx":91,"../../components/fx/helpers":87,"../../components/shapes/draw_newshape/display_outlines":136,"../../components/shapes/draw_newshape/helpers":137,"../../components/shapes/draw_newshape/newshapes":138,"../../lib":178,"../../lib/clear_gl_canvases":165,"../../lib/polygon":190,"../../lib/throttle":200,"../../plot_api/subroutines":214,"../../registry":273,"./axis_ids":226,"./constants":229,"./handle_outline":233,"./helpers":234,"polybooljs":24}],243:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/dragelement/helpers":70,"../../components/drawing":74,"../../components/fx":92,"../../components/fx/helpers":88,"../../components/shapes/draw_newshape/display_outlines":137,"../../components/shapes/draw_newshape/helpers":138,"../../components/shapes/draw_newshape/newshapes":139,"../../lib":181,"../../lib/clear_gl_canvases":167,"../../lib/polygon":193,"../../lib/throttle":203,"../../plot_api/subroutines":217,"../../registry":277,"./axis_ids":230,"./constants":233,"./handle_outline":237,"./helpers":238,"polybooljs":25}],247:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -65616,6 +69025,7 @@ module.exports = {
 'use strict';
 
 var d3 = _dereq_('d3');
+var utcFormat = _dereq_('d3-time-format').utcFormat;
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Lib = _dereq_('../../lib');
@@ -65629,13 +69039,13 @@ var numConstants = _dereq_('../../constants/numerical');
 var FP_SAFE = numConstants.FP_SAFE;
 var BADNUM = numConstants.BADNUM;
 var LOG_CLIP = numConstants.LOG_CLIP;
+var ONEWEEK = numConstants.ONEWEEK;
 var ONEDAY = numConstants.ONEDAY;
 var ONEHOUR = numConstants.ONEHOUR;
 var ONEMIN = numConstants.ONEMIN;
 var ONESEC = numConstants.ONESEC;
 
 var axisIds = _dereq_('./axis_ids');
-
 var constants = _dereq_('./constants');
 var HOUR_PATTERN = constants.HOUR_PATTERN;
 var WEEKDAY_PATTERN = constants.WEEKDAY_PATTERN;
@@ -65697,7 +69107,14 @@ module.exports = function setConvert(ax, fullLayout) {
      * - inserts a dummy arg so calendar is the 3rd arg (see notes below).
      * - defaults to ax.calendar
      */
-    function dt2ms(v, _, calendar) {
+    function dt2ms(v, _, calendar, opts) {
+        if((opts || {}).msUTC && isNumeric(v)) {
+            // For now it is only used
+            // to fix bar length in milliseconds & gl3d ticks
+            // It could be applied in other places in v2
+            return +v;
+        }
+
         // NOTE: Changed this behavior: previously we took any numeric value
         // to be a ms, even if it was a string that could be a bare year.
         // Now we convert it as a date if at all possible, and only try
@@ -65782,6 +69199,10 @@ module.exports = function setConvert(ax, fullLayout) {
         var index = getCategoryIndex(v);
         if(index !== undefined) return index;
         if(isNumeric(v)) return +v;
+    }
+
+    function getRangePosition(v) {
+        return isNumeric(v) ? +v : getCategoryIndex(v);
     }
 
     // include 2 fractional digits on pixel, for PDF zooming etc
@@ -65915,12 +69336,12 @@ module.exports = function setConvert(ax, fullLayout) {
         ax.d2r = ax.d2l_noadd = getCategoryPosition;
 
         ax.r2c = function(v) {
-            var index = getCategoryPosition(v);
+            var index = getRangePosition(v);
             return index !== undefined ? index : ax.fraction2r(0.5);
         };
 
         ax.l2r = ax.c2r = ensureNumber;
-        ax.r2l = getCategoryPosition;
+        ax.r2l = getRangePosition;
 
         ax.d2p = function(v) { return ax.l2p(ax.r2c(v)); };
         ax.p2d = function(px) { return getCategoryName(p2l(px)); };
@@ -66293,9 +69714,7 @@ module.exports = function setConvert(ax, fullLayout) {
             var isNewBreak = true;
             for(var j = 0; j < rangebreaksOut.length; j++) {
                 var brkj = rangebreaksOut[j];
-                if(min > brkj.max || max < brkj.min) {
-                    // potentially a new break
-                } else {
+                if(min < brkj.max && max >= brkj.min) {
                     if(min < brkj.min) {
                         brkj.min = min;
                     }
@@ -66335,7 +69754,7 @@ module.exports = function setConvert(ax, fullLayout) {
 
                     switch(brk.pattern) {
                         case WEEKDAY_PATTERN:
-                            step = 7 * ONEDAY;
+                            step = ONEWEEK;
 
                             bndDelta = (
                                 (b1 < b0 ? 7 : 0) +
@@ -66400,7 +69819,7 @@ module.exports = function setConvert(ax, fullLayout) {
     //          the first letter of ax._id?)
     // in case the expected data isn't there, make a list of
     // integers based on the opposite data
-    ax.makeCalcdata = function(trace, axLetter) {
+    ax.makeCalcdata = function(trace, axLetter, opts) {
         var arrayIn, arrayOut, i, len;
 
         var axType = ax.type;
@@ -66424,7 +69843,7 @@ module.exports = function setConvert(ax, fullLayout) {
 
             arrayOut = new Array(len);
             for(i = 0; i < len; i++) {
-                arrayOut[i] = ax.d2c(arrayIn[i], 0, cal);
+                arrayOut[i] = ax.d2c(arrayIn[i], 0, cal, opts);
             }
         } else {
             var v0 = ((axLetter + '0') in trace) ? ax.d2c(trace[axLetter + '0'], 0, cal) : 0;
@@ -66472,13 +69891,13 @@ module.exports = function setConvert(ax, fullLayout) {
         }
     };
 
+    ax._emptyCategories = function() {
+        ax._categories = [];
+        ax._categoriesMap = {};
+    };
+
     // should skip if not category nor multicategory
     ax.clearCalc = function() {
-        var emptyCategories = function() {
-            ax._categories = [];
-            ax._categoriesMap = {};
-        };
-
         var matchGroups = fullLayout._axisMatchGroups;
 
         if(matchGroups && matchGroups.length) {
@@ -66505,14 +69924,14 @@ module.exports = function setConvert(ax, fullLayout) {
                         ax._categories = categories;
                         ax._categoriesMap = categoriesMap;
                     } else {
-                        emptyCategories();
+                        ax._emptyCategories();
                     }
                     break;
                 }
             }
-            if(!found) emptyCategories();
+            if(!found) ax._emptyCategories();
         } else {
-            emptyCategories();
+            ax._emptyCategories();
         }
 
         if(ax._initialCategories) {
@@ -66526,12 +69945,8 @@ module.exports = function setConvert(ax, fullLayout) {
     // returns the indices of the traces affected by the reordering
     ax.sortByInitialCategories = function() {
         var affectedTraces = [];
-        var emptyCategories = function() {
-            ax._categories = [];
-            ax._categoriesMap = {};
-        };
 
-        emptyCategories();
+        ax._emptyCategories();
 
         if(ax._initialCategories) {
             for(var j = 0; j < ax._initialCategories.length; j++) {
@@ -66560,7 +69975,7 @@ module.exports = function setConvert(ax, fullLayout) {
     // Fall back on default format for dummy axes that don't care about formatting
     var locale = fullLayout._d3locale;
     if(ax.type === 'date') {
-        ax._dateFormat = locale ? locale.timeFormat.utc : d3.time.format.utc;
+        ax._dateFormat = locale ? locale.timeFormat : utcFormat;
         ax._extraFormat = fullLayout._extraFormat;
     }
     // occasionally we need _numFormat to pass through
@@ -66573,7 +69988,11 @@ module.exports = function setConvert(ax, fullLayout) {
     delete ax._forceTick0;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"./axis_ids":226,"./constants":229,"d3":13,"fast-isnumeric":15}],244:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"./axis_ids":230,"./constants":233,"d3":15,"d3-time-format":13,"fast-isnumeric":17}],248:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -66648,6 +70067,7 @@ function handleOtherDefaults(containerIn, containerOut, coerce, axType, options)
             if(!tickFormat && axType !== 'date') {
                 coerce('showexponent', showAttrDflt);
                 coerce('exponentformat');
+                coerce('minexponent');
                 coerce('separatethousands');
             }
         }
@@ -66694,7 +70114,11 @@ function tickformatstopDefaults(valueIn, valueOut) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../array_container_defaults":219,"./layout_attributes":237}],245:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../array_container_defaults":222,"./layout_attributes":241}],249:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -66727,7 +70151,11 @@ module.exports = function handleTickDefaults(containerIn, containerOut, coerce, 
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"./layout_attributes":237}],246:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./layout_attributes":241}],250:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -66739,6 +70167,7 @@ module.exports = function handleTickDefaults(containerIn, containerOut, coerce, 
 'use strict';
 
 var cleanTicks = _dereq_('./clean_ticks');
+var isArrayOrTypedArray = _dereq_('../../lib').isArrayOrTypedArray;
 
 module.exports = function handleTickValueDefaults(containerIn, containerOut, coerce, axType) {
     function readInput(attr) {
@@ -66751,18 +70180,11 @@ module.exports = function handleTickValueDefaults(containerIn, containerOut, coe
     var _tick0 = readInput('tick0');
     var _dtick = readInput('dtick');
     var _tickvals = readInput('tickvals');
-    var _tickmode = readInput('tickmode');
-    var tickmode;
 
-    if(_tickmode === 'array' &&
-            (axType === 'log' || axType === 'date')) {
-        tickmode = containerOut.tickmode = 'auto';
-    } else {
-        var tickmodeDefault = Array.isArray(_tickvals) ? 'array' :
-            _dtick ? 'linear' :
-            'auto';
-        tickmode = coerce('tickmode', tickmodeDefault);
-    }
+    var tickmodeDefault = isArrayOrTypedArray(_tickvals) ? 'array' :
+        _dtick ? 'linear' :
+        'auto';
+    var tickmode = coerce('tickmode', tickmodeDefault);
 
     if(tickmode === 'auto') coerce('nticks');
     else if(tickmode === 'linear') {
@@ -66780,7 +70202,11 @@ module.exports = function handleTickValueDefaults(containerIn, containerOut, coe
     }
 };
 
+<<<<<<< HEAD
 },{"./clean_ticks":228}],247:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"./clean_ticks":232}],251:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -66993,7 +70419,11 @@ module.exports = function transitionAxes(gd, edits, transitionOpts, makeOnComple
     return Promise.resolve();
 };
 
+<<<<<<< HEAD
 },{"../../components/drawing":73,"../../lib":178,"../../registry":273,"./axes":223,"d3":13}],248:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":74,"../../lib":181,"../../registry":277,"./axes":227,"d3":15}],252:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -67130,7 +70560,11 @@ function isBoxWithoutPositionCoords(trace, axLetter) {
     );
 }
 
+<<<<<<< HEAD
 },{"../../registry":273,"./axis_autotype":224}],249:[function(_dereq_,module,exports){
+=======
+},{"../../registry":277,"./axis_autotype":228}],253:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -67557,7 +70991,11 @@ function crawl(attrs, callback, path, depth) {
     });
 }
 
+<<<<<<< HEAD
 },{"../lib":178,"../registry":273}],250:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../registry":277}],254:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -67669,7 +71107,11 @@ exports.defaults = function(containerOut, layout, coerce, dfltDomains) {
     if(!(y[0] < y[1])) containerOut.domain.y = dfltY.slice();
 };
 
+<<<<<<< HEAD
 },{"../lib/extend":171}],251:[function(_dereq_,module,exports){
+=======
+},{"../lib/extend":173}],255:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -67734,7 +71176,11 @@ module.exports = function(opts) {
     return attrs;
 };
 
+<<<<<<< HEAD
 },{}],252:[function(_dereq_,module,exports){
+=======
+},{}],256:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -67780,7 +71226,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{}],253:[function(_dereq_,module,exports){
+=======
+},{}],257:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -67955,7 +71405,11 @@ exports.layerNameToAdjective = {
     frame: 'frame'
 };
 
+<<<<<<< HEAD
 },{}],254:[function(_dereq_,module,exports){
+=======
+},{}],258:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -68188,7 +71642,7 @@ proto.updateProjection = function(geoCalcData, fullLayout) {
 
             var projType = projLayout.type;
             var lonHalfSpan = (constants.lonaxisSpan[projType] / 2) || 180;
-            var latHalfSpan = (constants.lataxisSpan[projType] / 2) || 180;
+            var latHalfSpan = (constants.lataxisSpan[projType] / 2) || 90;
 
             lonaxisRange = [midLon - lonHalfSpan, midLon + lonHalfSpan];
             lataxisRange = [midLat - latHalfSpan, midLat + latHalfSpan];
@@ -68789,7 +72243,11 @@ function makeRangeBox(lon, lat) {
     };
 }
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/dragelement":70,"../../components/drawing":73,"../../components/fx":91,"../../lib":178,"../../lib/geo_location_utils":174,"../../lib/topojson_utils":202,"../../registry":273,"../cartesian/autorange":222,"../cartesian/axes":223,"../cartesian/select":242,"../plots":264,"./constants":253,"./projections":258,"./zoom":259,"d3":13,"topojson-client":34}],255:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/dragelement":71,"../../components/drawing":74,"../../components/fx":92,"../../lib":181,"../../lib/geo_location_utils":176,"../../lib/topojson_utils":205,"../../registry":277,"../cartesian/autorange":226,"../cartesian/axes":227,"../cartesian/select":246,"../plots":268,"./constants":257,"./projections":262,"./zoom":263,"d3":15,"topojson-client":35}],259:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -68883,7 +72341,11 @@ module.exports = {
     clean: clean
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/get_data":260,"./geo":254,"./layout_attributes":256,"./layout_defaults":257}],256:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/get_data":264,"./geo":258,"./layout_attributes":260,"./layout_defaults":261}],260:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -69174,7 +72636,11 @@ attrs.uirevision = {
     
 };
 
+<<<<<<< HEAD
 },{"../../components/color/attributes":50,"../../plot_api/edit_types":206,"../domain":250,"./constants":253}],257:[function(_dereq_,module,exports){
+=======
+},{"../../components/color/attributes":51,"../../plot_api/edit_types":209,"../domain":254,"./constants":257}],261:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -69402,7 +72868,11 @@ function handleGeoDefaults(geoLayoutIn, geoLayoutOut, coerce, opts) {
     }
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../get_data":260,"../subplot_defaults":271,"./constants":253,"./layout_attributes":256}],258:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../get_data":264,"../subplot_defaults":275,"./constants":257,"./layout_attributes":260}],262:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -69848,7 +73318,11 @@ function addProjectionsToD3(d3) {
 
 module.exports = addProjectionsToD3;
 
+<<<<<<< HEAD
 },{}],259:[function(_dereq_,module,exports){
+=======
+},{}],263:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -70360,7 +73834,11 @@ function d3eventDispatch(target) {
     return dispatch;
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273,"d3":13}],260:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"d3":15}],264:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -70489,7 +73967,11 @@ exports.getSubplotData = function getSubplotData(data, type, subplotId) {
     return subplotData;
 };
 
+<<<<<<< HEAD
 },{"../registry":273,"./cartesian/constants":229}],261:[function(_dereq_,module,exports){
+=======
+},{"../registry":277,"./cartesian/constants":233}],265:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -70523,7 +74005,11 @@ function project(camera, v) {
 
 module.exports = project;
 
+<<<<<<< HEAD
 },{}],262:[function(_dereq_,module,exports){
+=======
+},{}],266:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -70711,6 +74197,12 @@ module.exports = {
         },
         editType: 'plot'
     },
+    computed: {
+        valType: 'any',
+        
+        editType: 'none',
+        
+    },
     paper_bgcolor: {
         valType: 'color',
         
@@ -70850,7 +74342,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../components/color/attributes":50,"../components/shapes/draw_newshape/attributes":133,"../lib/extend":171,"./animation_attributes":218,"./font_attributes":251,"./pad_attributes":263}],263:[function(_dereq_,module,exports){
+=======
+},{"../components/color/attributes":51,"../components/shapes/draw_newshape/attributes":134,"../lib/extend":173,"./animation_attributes":221,"./font_attributes":255,"./pad_attributes":267}],267:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -70905,7 +74401,11 @@ module.exports = function(opts) {
     };
 };
 
+<<<<<<< HEAD
 },{}],264:[function(_dereq_,module,exports){
+=======
+},{}],268:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -70917,6 +74417,7 @@ module.exports = function(opts) {
 'use strict';
 
 var d3 = _dereq_('d3');
+var timeFormatLocale = _dereq_('d3-time-format').timeFormatLocale;
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Registry = _dereq_('../registry');
@@ -71390,6 +74891,20 @@ plots.supplyDefaults = function(gd, opts) {
     // clean subplots and other artifacts from previous plot calls
     plots.cleanPlot(newFullData, newFullLayout, oldFullData, oldFullLayout);
 
+    var hadGL2D = !!(oldFullLayout._has && oldFullLayout._has('gl2d'));
+    var hasGL2D = !!(newFullLayout._has && newFullLayout._has('gl2d'));
+    var hadCartesian = !!(oldFullLayout._has && oldFullLayout._has('cartesian'));
+    var hasCartesian = !!(newFullLayout._has && newFullLayout._has('cartesian'));
+    var hadBgLayer = hadCartesian || hadGL2D;
+    var hasBgLayer = hasCartesian || hasGL2D;
+    if(hadBgLayer && !hasBgLayer) {
+        // remove bgLayer
+        oldFullLayout._bgLayer.remove();
+    } else if(hasBgLayer && !hadBgLayer) {
+        // create bgLayer
+        newFullLayout._shouldCreateBgLayer = true;
+    }
+
     // clear selection outline until we implement persistent selection,
     // don't clear them though when drag handlers (e.g. listening to
     // `plotly_selecting`) update the graph.
@@ -71617,7 +75132,10 @@ function getFormatter(formatObj, separators) {
     formatObj.decimal = separators.charAt(0);
     formatObj.thousands = separators.charAt(1);
 
-    return d3.locale(formatObj);
+    return {
+        numberFormat: d3.locale(formatObj).numberFormat,
+        timeFormat: timeFormatLocale(formatObj).utcFormat
+    };
 }
 
 function fillMetaTextHelpers(newFullData, newFullLayout) {
@@ -72460,6 +75978,15 @@ plots.supplyLayoutGlobalDefaults = function(layoutIn, layoutOut, formatObj) {
     )(layoutIn, layoutOut, coerce);
 };
 
+function getComputedSize(attr) {
+    return (
+        (typeof attr === 'string') &&
+        (attr.substr(attr.length - 2) === 'px') &&
+        parseFloat(attr)
+    );
+}
+
+
 plots.plotAutoSize = function plotAutoSize(gd, layout, fullLayout) {
     var context = gd._context || {};
     var frameMargins = context.frameMargins;
@@ -72486,8 +76013,8 @@ plots.plotAutoSize = function plotAutoSize(gd, layout, fullLayout) {
         // but don't enforce any ratio restrictions
         var computedStyle = isPlotDiv ? window.getComputedStyle(gd) : {};
 
-        newWidth = parseFloat(computedStyle.width) || parseFloat(computedStyle.maxWidth) || fullLayout.width;
-        newHeight = parseFloat(computedStyle.height) || parseFloat(computedStyle.maxHeight) || fullLayout.height;
+        newWidth = getComputedSize(computedStyle.width) || getComputedSize(computedStyle.maxWidth) || fullLayout.width;
+        newHeight = getComputedSize(computedStyle.height) || getComputedSize(computedStyle.maxHeight) || fullLayout.height;
 
         if(isNumeric(frameMargins) && frameMargins > 0) {
             var factor = 1 - 2 * frameMargins;
@@ -72913,6 +76440,7 @@ plots.doAutoMargin = function(gd) {
         if(fullLayout._redrawFromAutoMarginCount < maxNumberOfRedraws) {
             return Registry.call('plot', gd);
         } else {
+            fullLayout._size = oldMargins;
             Lib.warn('Too many auto-margin redraws.');
         }
     }
@@ -73041,7 +76569,20 @@ plots.graphJson = function(gd, dataonly, mode, output, useDefaults, includeConfi
             return d;
         })
     };
-    if(!dataonly) { obj.layout = stripObj(layout); }
+    if(!dataonly) {
+        obj.layout = stripObj(layout);
+        if(useDefaults) {
+            var gs = layout._size;
+            obj.layout.computed = {
+                margin: {
+                    b: gs.b,
+                    l: gs.l,
+                    r: gs.r,
+                    t: gs.t
+                }
+            };
+        }
+    }
 
     if(gd.framework && gd.framework.isPolar) obj = gd.framework.getConfig();
 
@@ -74217,7 +77758,11 @@ plots.cleanBasePlot = function(desiredType, newFullData, newFullLayout, oldFullD
     }
 };
 
+<<<<<<< HEAD
 },{"../components/color":51,"../constants/numerical":156,"../lib":178,"../plot_api/plot_schema":212,"../plot_api/plot_template":213,"../plots/get_data":260,"../registry":273,"./animation_attributes":218,"./attributes":220,"./cartesian/axis_ids":226,"./cartesian/handle_outline":233,"./command":249,"./font_attributes":251,"./frame_attributes":252,"./layout_attributes":262,"d3":13,"fast-isnumeric":15}],265:[function(_dereq_,module,exports){
+=======
+},{"../components/color":52,"../constants/numerical":158,"../lib":181,"../plot_api/plot_schema":215,"../plot_api/plot_template":216,"../plots/get_data":264,"../registry":277,"./animation_attributes":221,"./attributes":223,"./cartesian/axis_ids":230,"./cartesian/handle_outline":237,"./command":253,"./font_attributes":255,"./frame_attributes":256,"./layout_attributes":266,"d3":15,"d3-time-format":13,"fast-isnumeric":17}],269:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -74261,7 +77806,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../../lib/extend":171,"../../../traces/scatter/attributes":295}],266:[function(_dereq_,module,exports){
+=======
+},{"../../../lib/extend":173,"../../../traces/scatter/attributes":299}],270:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -74383,7 +77932,11 @@ module.exports = overrideAll({
     }
 }, 'plot', 'nested');
 
+<<<<<<< HEAD
 },{"../../../lib/extend":171,"../../../plot_api/edit_types":206,"../../cartesian/layout_attributes":237}],267:[function(_dereq_,module,exports){
+=======
+},{"../../../lib/extend":173,"../../../plot_api/edit_types":209,"../../cartesian/layout_attributes":241}],271:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -74398,7 +77951,11 @@ var Polar = module.exports = _dereq_('./micropolar');
 
 Polar.manager = _dereq_('./micropolar_manager');
 
+<<<<<<< HEAD
 },{"./micropolar":268,"./micropolar_manager":269}],268:[function(_dereq_,module,exports){
+=======
+},{"./micropolar":272,"./micropolar_manager":273}],272:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -75818,7 +79375,11 @@ var µ = module.exports = { version: '0.2.2' };
     return exports;
 };
 
+<<<<<<< HEAD
 },{"../../../constants/alignment":153,"../../../lib":178,"d3":13}],269:[function(_dereq_,module,exports){
+=======
+},{"../../../constants/alignment":154,"../../../lib":181,"d3":15}],273:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -75904,7 +79465,11 @@ manager.fillLayout = function(_gd) {
     _gd._fullLayout = extendDeepAll(dflts, _gd.layout);
 };
 
+<<<<<<< HEAD
 },{"../../../components/color":51,"../../../lib":178,"./micropolar":268,"./undo_manager":270,"d3":13}],270:[function(_dereq_,module,exports){
+=======
+},{"../../../components/color":52,"../../../lib":181,"./micropolar":272,"./undo_manager":274,"d3":15}],274:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -75970,7 +79535,11 @@ module.exports = function UndoManager() {
     };
 };
 
+<<<<<<< HEAD
 },{}],271:[function(_dereq_,module,exports){
+=======
+},{}],275:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -76055,7 +79624,11 @@ module.exports = function handleSubplotDefaults(layoutIn, layoutOut, fullData, o
     }
 };
 
+<<<<<<< HEAD
 },{"../lib":178,"../plot_api/plot_template":213,"./domain":250}],272:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plot_api/plot_template":216,"./domain":254}],276:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -76138,7 +79711,11 @@ exports.texttemplateAttrs = function(opts, extra) {
     return texttemplate;
 };
 
+<<<<<<< HEAD
 },{"../constants/docs":154}],273:[function(_dereq_,module,exports){
+=======
+},{"../constants/docs":156}],277:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -76604,7 +80181,11 @@ function getTraceType(traceType) {
     return traceType;
 }
 
+<<<<<<< HEAD
 },{"./lib/dom":169,"./lib/extend":171,"./lib/is_plain_object":179,"./lib/loggers":182,"./lib/noop":187,"./lib/push_unique":191,"./plots/attributes":220,"./plots/layout_attributes":262}],274:[function(_dereq_,module,exports){
+=======
+},{"./lib/dom":171,"./lib/extend":173,"./lib/is_plain_object":182,"./lib/loggers":185,"./lib/noop":190,"./lib/push_unique":194,"./plots/attributes":223,"./plots/layout_attributes":266}],278:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -76777,7 +80358,11 @@ module.exports = function clonePlot(graphObj, options) {
     return plotTile;
 };
 
+<<<<<<< HEAD
 },{"../lib":178,"../registry":273}],275:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../registry":277}],279:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -76811,6 +80396,8 @@ function downloadImage(gd, opts) {
 
     opts = opts || {};
     opts.format = opts.format || 'png';
+    opts.width = opts.width || null;
+    opts.height = opts.height || null;
     opts.imageDataOnly = true;
 
     return new Promise(function(resolve, reject) {
@@ -76847,7 +80434,11 @@ function downloadImage(gd, opts) {
 
 module.exports = downloadImage;
 
+<<<<<<< HEAD
 },{"../lib":178,"../plot_api/to_image":216,"./filesaver":276,"./helpers":277}],276:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../plot_api/to_image":219,"./filesaver":280,"./helpers":281}],280:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -76927,7 +80518,11 @@ function fileSaver(url, name, format) {
 
 module.exports = fileSaver;
 
+<<<<<<< HEAD
 },{"../lib":178,"./helpers":277}],277:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"./helpers":281}],281:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77010,7 +80605,11 @@ exports.IMAGE_URL_PREFIX = /^data:image\/\w+;base64,/;
 
 exports.MSG_IE_BAD_FORMAT = 'Sorry IE does not support downloading from canvas. Try {format:\'svg\'} instead.';
 
+<<<<<<< HEAD
 },{"../registry":273}],278:[function(_dereq_,module,exports){
+=======
+},{"../registry":277}],282:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77036,7 +80635,11 @@ var Snapshot = {
 
 module.exports = Snapshot;
 
+<<<<<<< HEAD
 },{"./cloneplot":274,"./download":275,"./helpers":277,"./svgtoimg":279,"./toimage":280,"./tosvg":281}],279:[function(_dereq_,module,exports){
+=======
+},{"./cloneplot":278,"./download":279,"./helpers":281,"./svgtoimg":283,"./toimage":284,"./tosvg":285}],283:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77163,7 +80766,11 @@ function svgToImg(opts) {
 
 module.exports = svgToImg;
 
+<<<<<<< HEAD
 },{"../lib":178,"./helpers":277,"events":11}],280:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"./helpers":281,"events":11}],284:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77240,7 +80847,11 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
+<<<<<<< HEAD
 },{"../lib":178,"../registry":273,"./cloneplot":274,"./helpers":277,"./svgtoimg":279,"./tosvg":281,"events":11}],281:[function(_dereq_,module,exports){
+=======
+},{"../lib":181,"../registry":277,"./cloneplot":278,"./helpers":281,"./svgtoimg":283,"./tosvg":285,"events":11}],285:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77429,7 +81040,11 @@ module.exports = function toSVG(gd, format, scale) {
     return s;
 };
 
+<<<<<<< HEAD
 },{"../components/color":51,"../components/drawing":73,"../constants/xmlns_namespaces":157,"../lib":178,"d3":13}],282:[function(_dereq_,module,exports){
+=======
+},{"../components/color":52,"../components/drawing":74,"../constants/xmlns_namespaces":159,"../lib":181,"d3":15}],286:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77521,7 +81136,11 @@ module.exports = extendFlat({
     })
 );
 
+<<<<<<< HEAD
 },{"../../components/color/attributes":50,"../../components/colorscale/attributes":58,"../../lib/extend":171,"../../plots/attributes":220,"../../plots/template_attributes":272,"../scattergeo/attributes":322}],283:[function(_dereq_,module,exports){
+=======
+},{"../../components/color/attributes":51,"../../components/colorscale/attributes":59,"../../lib/extend":173,"../../plots/attributes":223,"../../plots/template_attributes":276,"../scattergeo/attributes":327}],287:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77582,7 +81201,11 @@ module.exports = function calc(gd, trace) {
     return calcTrace;
 };
 
+<<<<<<< HEAD
 },{"../../components/colorscale/calc":59,"../../constants/numerical":156,"../scatter/arrays_to_calcdata":294,"../scatter/calc_selection":297,"fast-isnumeric":15}],284:[function(_dereq_,module,exports){
+=======
+},{"../../components/colorscale/calc":60,"../../constants/numerical":158,"../scatter/arrays_to_calcdata":298,"../scatter/calc_selection":301,"fast-isnumeric":17}],288:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77638,7 +81261,11 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     Lib.coerceSelectionMarkerOpacity(traceOut, coerce);
 };
 
+<<<<<<< HEAD
 },{"../../components/colorscale/defaults":61,"../../lib":178,"./attributes":282}],285:[function(_dereq_,module,exports){
+=======
+},{"../../components/colorscale/defaults":62,"../../lib":181,"./attributes":286}],289:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77663,7 +81290,11 @@ module.exports = function eventData(out, pt, trace, cd, pointNumber) {
     return out;
 };
 
+<<<<<<< HEAD
 },{}],286:[function(_dereq_,module,exports){
+=======
+},{}],290:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77755,7 +81386,11 @@ function makeHoverInfo(pointData, trace, pt) {
     pointData.extraText = text.join('<br>');
 }
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../plots/cartesian/axes":223,"./attributes":282}],287:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../plots/cartesian/axes":227,"./attributes":286}],291:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77788,7 +81423,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../plots/geo":255,"../heatmap/colorbar":291,"./attributes":282,"./calc":283,"./defaults":284,"./event_data":285,"./hover":286,"./plot":288,"./select":289,"./style":290}],288:[function(_dereq_,module,exports){
+=======
+},{"../../plots/geo":259,"../heatmap/colorbar":295,"./attributes":286,"./calc":287,"./defaults":288,"./event_data":289,"./hover":290,"./plot":292,"./select":293,"./style":294}],292:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77876,7 +81515,11 @@ module.exports = {
     plot: plot
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../lib/geo_location_utils":174,"../../lib/topojson_utils":202,"../../plots/cartesian/autorange":222,"./style":290,"d3":13}],289:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../lib/geo_location_utils":176,"../../lib/topojson_utils":205,"../../plots/cartesian/autorange":226,"./style":294,"d3":15}],293:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77925,7 +81568,11 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
+<<<<<<< HEAD
 },{}],290:[function(_dereq_,module,exports){
+=======
+},{}],294:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77981,7 +81628,11 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/colorscale":63,"../../components/drawing":73,"d3":13}],291:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/colorscale":64,"../../components/drawing":74,"d3":15}],295:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -77997,7 +81648,11 @@ module.exports = {
     max: 'zmax'
 };
 
+<<<<<<< HEAD
 },{}],292:[function(_dereq_,module,exports){
+=======
+},{}],296:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78010,19 +81665,21 @@ module.exports = {
 
 var Lib = _dereq_('../../lib');
 
+function format(vRounded) {
+    return (
+        vRounded.indexOf('e') !== -1 ? vRounded.replace(/[.]?0+e/, 'e') :
+        vRounded.indexOf('.') !== -1 ? vRounded.replace(/[.]?0+$/, '') :
+        vRounded
+    );
+}
+
 exports.formatPiePercent = function formatPiePercent(v, separators) {
-    var vRounded = (v * 100).toPrecision(3);
-    if(vRounded.lastIndexOf('.') !== -1) {
-        vRounded = vRounded.replace(/[.]?0+$/, '');
-    }
+    var vRounded = format((v * 100).toPrecision(3));
     return Lib.numSeparate(vRounded, separators) + '%';
 };
 
 exports.formatPieValue = function formatPieValue(v, separators) {
-    var vRounded = v.toPrecision(10);
-    if(vRounded.lastIndexOf('.') !== -1) {
-        vRounded = vRounded.replace(/[.]?0+$/, '');
-    }
+    var vRounded = format(v.toPrecision(10));
     return Lib.numSeparate(vRounded, separators);
 };
 
@@ -78039,7 +81696,15 @@ exports.castOption = function castOption(item, indices) {
     else if(item) return item;
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],293:[function(_dereq_,module,exports){
+=======
+exports.getRotationAngle = function(rotation) {
+    return (rotation === 'auto' ? 0 : rotation) * Math.PI / 180;
+};
+
+},{"../../lib":181}],297:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78063,7 +81728,11 @@ module.exports = function styleOne(s, pt, trace) {
         .call(Color.stroke, lineColor);
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"./helpers":292}],294:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"./helpers":296}],298:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78115,7 +81784,11 @@ module.exports = function arraysToCalcdata(cd, trace) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],295:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],299:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78134,7 +81807,40 @@ var dash = _dereq_('../../components/drawing/attributes').dash;
 
 var Drawing = _dereq_('../../components/drawing');
 var constants = _dereq_('./constants');
+
 var extendFlat = _dereq_('../../lib/extend').extendFlat;
+
+function axisPeriod(axis) {
+    return {
+        valType: 'any',
+        dflt: 0,
+        
+        editType: 'calc',
+        
+    };
+}
+
+function axisPeriod0(axis) {
+    return {
+        valType: 'any',
+        
+        editType: 'calc',
+        
+    };
+}
+
+function axisPeriodAlignment(axis) {
+    return {
+        valType: 'enumerated',
+        values: [
+            'start', 'middle', 'end'
+        ],
+        dflt: 'middle',
+        
+        editType: 'calc',
+        
+    };
+}
 
 module.exports = {
     x: {
@@ -78181,6 +81887,13 @@ module.exports = {
         anim: true,
         
     },
+
+    xperiod: axisPeriod('x'),
+    yperiod: axisPeriod('y'),
+    xperiod0: axisPeriod0('x0'),
+    yperiod0: axisPeriod0('y0'),
+    xperiodalignment: axisPeriodAlignment('x'),
+    yperiodalignment: axisPeriodAlignment('y'),
 
     stackgroup: {
         valType: 'string',
@@ -78529,7 +82242,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/colorscale/attributes":58,"../../components/drawing":73,"../../components/drawing/attributes":72,"../../lib/extend":171,"../../plots/font_attributes":251,"../../plots/template_attributes":272,"./constants":299}],296:[function(_dereq_,module,exports){
+=======
+},{"../../components/colorscale/attributes":59,"../../components/drawing":74,"../../components/drawing/attributes":73,"../../lib/extend":173,"../../plots/font_attributes":255,"../../plots/template_attributes":276,"./constants":303}],300:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78544,6 +82261,7 @@ var isNumeric = _dereq_('fast-isnumeric');
 var Lib = _dereq_('../../lib');
 
 var Axes = _dereq_('../../plots/cartesian/axes');
+var alignPeriod = _dereq_('../../plots/cartesian/align_period');
 var BADNUM = _dereq_('../../constants/numerical').BADNUM;
 
 var subTypes = _dereq_('./subtypes');
@@ -78555,8 +82273,11 @@ function calc(gd, trace) {
     var fullLayout = gd._fullLayout;
     var xa = Axes.getFromId(gd, trace.xaxis || 'x');
     var ya = Axes.getFromId(gd, trace.yaxis || 'y');
-    var x = xa.makeCalcdata(trace, 'x');
-    var y = ya.makeCalcdata(trace, 'y');
+    var origX = xa.makeCalcdata(trace, 'x');
+    var origY = ya.makeCalcdata(trace, 'y');
+    var x = alignPeriod(trace, xa, 'x', origX);
+    var y = alignPeriod(trace, ya, 'y', origY);
+
     var serieslen = trace._length;
     var cd = new Array(serieslen);
     var ids = trace.ids;
@@ -78587,6 +82308,9 @@ function calc(gd, trace) {
         calcAxisExpansion(gd, trace, xa, ya, x, y, ppad);
     }
 
+    var hasPeriodX = !!trace.xperiodalignment;
+    var hasPeriodY = !!trace.yperiodalignment;
+
     for(i = 0; i < serieslen; i++) {
         var cdi = cd[i] = {};
         var xValid = isNumeric(x[i]);
@@ -78594,6 +82318,13 @@ function calc(gd, trace) {
         if(xValid && yValid) {
             cdi[xAttr] = x[i];
             cdi[yAttr] = y[i];
+
+            if(hasPeriodX) {
+                cdi.orig_x = origX[i]; // used by hover
+            }
+            if(hasPeriodY) {
+                cdi.orig_y = origY[i]; // used by hover
+            }
         } else if(stackGroupOpts && (isV ? xValid : yValid)) {
             // if we're stacking we need to hold on to all valid positions
             // even with invalid sizes
@@ -78814,7 +82545,11 @@ module.exports = {
     getStackOpts: getStackOpts
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"../../plots/cartesian/axes":223,"./arrays_to_calcdata":294,"./calc_selection":297,"./colorscale_calc":298,"./subtypes":319,"fast-isnumeric":15}],297:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"../../plots/cartesian/align_period":224,"../../plots/cartesian/axes":227,"./arrays_to_calcdata":298,"./calc_selection":301,"./colorscale_calc":302,"./subtypes":324,"fast-isnumeric":17}],301:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78833,7 +82568,11 @@ module.exports = function calcSelection(cd, trace) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],298:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],302:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78876,7 +82615,11 @@ module.exports = function calcMarkerColorscale(gd, trace) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/colorscale/calc":59,"../../components/colorscale/helpers":62,"./subtypes":319}],299:[function(_dereq_,module,exports){
+=======
+},{"../../components/colorscale/calc":60,"../../components/colorscale/helpers":63,"./subtypes":324}],303:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -78905,7 +82648,11 @@ module.exports = {
     eventDataKeys: []
 };
 
+<<<<<<< HEAD
 },{}],300:[function(_dereq_,module,exports){
+=======
+},{}],304:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79086,7 +82833,11 @@ function getInterp(calcTrace, index, position, posAttr) {
     return pt0.s + (pt1.s - pt0.s) * (position - pt0[posAttr]) / (pt1[posAttr] - pt0[posAttr]);
 }
 
+<<<<<<< HEAD
 },{"./calc":296}],301:[function(_dereq_,module,exports){
+=======
+},{"./calc":300}],305:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79125,7 +82876,11 @@ module.exports = function crossTraceDefaults(fullData) {
     }
 };
 
+<<<<<<< HEAD
 },{}],302:[function(_dereq_,module,exports){
+=======
+},{}],306:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79143,6 +82898,7 @@ var attributes = _dereq_('./attributes');
 var constants = _dereq_('./constants');
 var subTypes = _dereq_('./subtypes');
 var handleXYDefaults = _dereq_('./xy_defaults');
+var handlePeriodDefaults = _dereq_('./period_defaults');
 var handleStackDefaults = _dereq_('./stack_defaults');
 var handleMarkerDefaults = _dereq_('./marker_defaults');
 var handleLineDefaults = _dereq_('./line_defaults');
@@ -79159,6 +82915,8 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     if(!len) traceOut.visible = false;
 
     if(!traceOut.visible) return;
+
+    handlePeriodDefaults(traceIn, traceOut, layout, coerce);
 
     var stackGroupOpts = handleStackDefaults(traceIn, traceOut, layout, coerce);
 
@@ -79215,7 +82973,11 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     Lib.coerceSelectionMarkerOpacity(traceOut, coerce);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273,"./attributes":295,"./constants":299,"./fillcolor_defaults":303,"./line_defaults":308,"./line_shape_defaults":310,"./marker_defaults":314,"./stack_defaults":317,"./subtypes":319,"./text_defaults":320,"./xy_defaults":321}],303:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277,"./attributes":299,"./constants":303,"./fillcolor_defaults":307,"./line_defaults":312,"./line_shape_defaults":314,"./marker_defaults":318,"./period_defaults":319,"./stack_defaults":322,"./subtypes":324,"./text_defaults":325,"./xy_defaults":326}],307:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79252,7 +83014,11 @@ module.exports = function fillColorDefaults(traceIn, traceOut, defaultColor, coe
     ));
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../lib":178}],304:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../lib":181}],308:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79278,7 +83044,11 @@ module.exports = function formatLabels(cdi, trace, fullLayout) {
     return labels;
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/axes":223}],305:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/axes":227}],309:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79327,7 +83097,11 @@ module.exports = function getTraceColor(trace, di) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"./subtypes":319}],306:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"./subtypes":324}],310:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79408,8 +83182,8 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
             // the normalized individual sizes, so that's what I'm doing here
             // for now.
             var sizeVal = orientation && (di.sNorm || di.s);
-            var xLabelVal = (orientation === 'h') ? sizeVal : di.x;
-            var yLabelVal = (orientation === 'v') ? sizeVal : di.y;
+            var xLabelVal = (orientation === 'h') ? sizeVal : di.orig_x !== undefined ? di.orig_x : di.x;
+            var yLabelVal = (orientation === 'v') ? sizeVal : di.orig_y !== undefined ? di.orig_y : di.y;
 
             Lib.extendFlat(pointData, {
                 color: getTraceColor(trace, di),
@@ -79522,7 +83296,11 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/fx":91,"../../lib":178,"../../registry":273,"./get_trace_color":305}],307:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/fx":92,"../../lib":181,"../../registry":277,"./get_trace_color":309}],311:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79568,7 +83346,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian":236,"./arrays_to_calcdata":294,"./attributes":295,"./calc":296,"./cross_trace_calc":300,"./cross_trace_defaults":301,"./defaults":302,"./format_labels":304,"./hover":306,"./marker_colorbar":313,"./plot":315,"./select":316,"./style":318,"./subtypes":319}],308:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian":240,"./arrays_to_calcdata":298,"./attributes":299,"./calc":300,"./cross_trace_calc":304,"./cross_trace_defaults":305,"./defaults":306,"./format_labels":308,"./hover":310,"./marker_colorbar":317,"./plot":320,"./select":321,"./style":323,"./subtypes":324}],312:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -79599,7 +83381,11 @@ module.exports = function lineDefaults(traceIn, traceOut, defaultColor, layout, 
     if(!(opts || {}).noDash) coerce('line.dash');
 };
 
+<<<<<<< HEAD
 },{"../../components/colorscale/defaults":61,"../../components/colorscale/helpers":62,"../../lib":178}],309:[function(_dereq_,module,exports){
+=======
+},{"../../components/colorscale/defaults":62,"../../components/colorscale/helpers":63,"../../lib":181}],313:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80060,7 +83846,11 @@ module.exports = function linePoints(d, opts) {
     return segments;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"./constants":299}],310:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"./constants":303}],314:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80079,7 +83869,11 @@ module.exports = function handleLineShapeDefaults(traceIn, traceOut, coerce) {
     if(shape === 'spline') coerce('line.smoothing');
 };
 
+<<<<<<< HEAD
 },{}],311:[function(_dereq_,module,exports){
+=======
+},{}],315:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80169,7 +83963,11 @@ module.exports = function linkTraces(gd, plotinfo, cdscatter) {
     return cdscatterSorted;
 };
 
+<<<<<<< HEAD
 },{}],312:[function(_dereq_,module,exports){
+=======
+},{}],316:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80211,7 +84009,11 @@ module.exports = function makeBubbleSizeFn(trace) {
     };
 };
 
+<<<<<<< HEAD
 },{"fast-isnumeric":15}],313:[function(_dereq_,module,exports){
+=======
+},{"fast-isnumeric":17}],317:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80229,7 +84031,11 @@ module.exports = {
     max: 'cmax'
 };
 
+<<<<<<< HEAD
 },{}],314:[function(_dereq_,module,exports){
+=======
+},{}],318:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80310,7 +84116,58 @@ module.exports = function markerDefaults(traceIn, traceOut, defaultColor, layout
     }
 };
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/colorscale/defaults":61,"../../components/colorscale/helpers":62,"./subtypes":319}],315:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/colorscale/defaults":62,"../../components/colorscale/helpers":63,"./subtypes":324}],319:[function(_dereq_,module,exports){
+/**
+* Copyright 2012-2020, Plotly, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+'use strict';
+
+var dateTick0 = _dereq_('../../lib').dateTick0;
+var numConstants = _dereq_('../../constants/numerical');
+var ONEWEEK = numConstants.ONEWEEK;
+
+function getPeriod0Dflt(period, calendar) {
+    if(period % ONEWEEK === 0) {
+        return dateTick0(calendar, 1); // Sunday
+    }
+    return dateTick0(calendar, 0);
+}
+
+module.exports = function handlePeriodDefaults(traceIn, traceOut, layout, coerce, opts) {
+    if(!opts) {
+        opts = {
+            x: true,
+            y: true
+        };
+    }
+
+    if(opts.x) {
+        var xperiod = coerce('xperiod');
+        if(xperiod) {
+            coerce('xperiod0', getPeriod0Dflt(xperiod, traceOut.xcalendar));
+            coerce('xperiodalignment');
+        }
+    }
+
+    if(opts.y) {
+        var yperiod = coerce('yperiod');
+        if(yperiod) {
+            coerce('yperiod0', getPeriod0Dflt(yperiod, traceOut.ycalendar));
+            coerce('yperiodalignment');
+        }
+    }
+};
+
+},{"../../constants/numerical":158,"../../lib":181}],320:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80871,7 +84728,11 @@ function selectMarkers(gd, idx, plotinfo, cdscatter, cdscatterAll) {
     });
 }
 
+<<<<<<< HEAD
 },{"../../components/drawing":73,"../../lib":178,"../../lib/polygon":190,"../../registry":273,"./line_points":309,"./link_traces":311,"./subtypes":319,"d3":13}],316:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":74,"../../lib":181,"../../lib/polygon":193,"../../registry":277,"./line_points":313,"./link_traces":315,"./subtypes":324,"d3":15}],321:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -80925,7 +84786,11 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
+<<<<<<< HEAD
 },{"./subtypes":319}],317:[function(_dereq_,module,exports){
+=======
+},{"./subtypes":324}],322:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81030,7 +84895,11 @@ module.exports = function handleStackDefaults(traceIn, traceOut, layout, coerce)
     }
 };
 
+<<<<<<< HEAD
 },{}],318:[function(_dereq_,module,exports){
+=======
+},{}],323:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81101,7 +84970,11 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
+<<<<<<< HEAD
 },{"../../components/drawing":73,"../../registry":273,"d3":13}],319:[function(_dereq_,module,exports){
+=======
+},{"../../components/drawing":74,"../../registry":277,"d3":15}],324:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81140,7 +85013,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],320:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],325:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81170,7 +85047,11 @@ module.exports = function(traceIn, traceOut, layout, coerce, opts) {
     }
 };
 
+<<<<<<< HEAD
 },{"../../lib":178}],321:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181}],326:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81214,7 +85095,11 @@ module.exports = function handleXYDefaults(traceIn, traceOut, layout, coerce) {
     return len;
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../../registry":273}],322:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../../registry":277}],327:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81333,7 +85218,11 @@ module.exports = overrideAll({
     hovertemplate: hovertemplateAttrs(),
 }, 'calc', 'nested');
 
+<<<<<<< HEAD
 },{"../../components/colorscale/attributes":58,"../../components/drawing/attributes":72,"../../lib/extend":171,"../../plot_api/edit_types":206,"../../plots/attributes":220,"../../plots/template_attributes":272,"../scatter/attributes":295}],323:[function(_dereq_,module,exports){
+=======
+},{"../../components/colorscale/attributes":59,"../../components/drawing/attributes":73,"../../lib/extend":173,"../../plot_api/edit_types":209,"../../plots/attributes":223,"../../plots/template_attributes":276,"../scatter/attributes":299}],328:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81401,7 +85290,11 @@ module.exports = function calc(gd, trace) {
     return calcTrace;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"../scatter/arrays_to_calcdata":294,"../scatter/calc_selection":297,"../scatter/colorscale_calc":298,"fast-isnumeric":15}],324:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"../scatter/arrays_to_calcdata":298,"../scatter/calc_selection":301,"../scatter/colorscale_calc":302,"fast-isnumeric":17}],329:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81484,7 +85377,11 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     Lib.coerceSelectionMarkerOpacity(traceOut, coerce);
 };
 
+<<<<<<< HEAD
 },{"../../lib":178,"../scatter/fillcolor_defaults":303,"../scatter/line_defaults":308,"../scatter/marker_defaults":314,"../scatter/subtypes":319,"../scatter/text_defaults":320,"./attributes":322}],325:[function(_dereq_,module,exports){
+=======
+},{"../../lib":181,"../scatter/fillcolor_defaults":307,"../scatter/line_defaults":312,"../scatter/marker_defaults":318,"../scatter/subtypes":324,"../scatter/text_defaults":325,"./attributes":327}],330:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81511,7 +85408,11 @@ module.exports = function eventData(out, pt, trace, cd, pointNumber) {
     return out;
 };
 
+<<<<<<< HEAD
 },{}],326:[function(_dereq_,module,exports){
+=======
+},{}],331:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81536,7 +85437,11 @@ module.exports = function formatLabels(cdi, trace, fullLayout) {
     return labels;
 };
 
+<<<<<<< HEAD
 },{"../../plots/cartesian/axes":223}],327:[function(_dereq_,module,exports){
+=======
+},{"../../plots/cartesian/axes":227}],332:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81648,7 +85553,11 @@ function getExtraText(trace, pt, pointData, labels) {
     return text.join('<br>');
 }
 
+<<<<<<< HEAD
 },{"../../components/fx":91,"../../constants/numerical":156,"../../lib":178,"../scatter/get_trace_color":305,"./attributes":322}],328:[function(_dereq_,module,exports){
+=======
+},{"../../components/fx":92,"../../constants/numerical":158,"../../lib":181,"../scatter/get_trace_color":309,"./attributes":327}],333:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81683,7 +85592,11 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
 },{"../../plots/geo":255,"../scatter/marker_colorbar":313,"../scatter/style":318,"./attributes":322,"./calc":323,"./defaults":324,"./event_data":325,"./format_labels":326,"./hover":327,"./plot":329,"./select":330,"./style":331}],329:[function(_dereq_,module,exports){
+=======
+},{"../../plots/geo":259,"../scatter/marker_colorbar":317,"../scatter/style":323,"./attributes":327,"./calc":328,"./defaults":329,"./event_data":330,"./format_labels":331,"./hover":332,"./plot":334,"./select":335,"./style":336}],334:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81812,7 +85725,11 @@ module.exports = {
     plot: plot
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../../lib":178,"../../lib/geo_location_utils":174,"../../lib/geojson_utils":175,"../../lib/topojson_utils":202,"../../plots/cartesian/autorange":222,"../scatter/calc":296,"../scatter/subtypes":319,"./style":331,"d3":13}],330:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../../lib":181,"../../lib/geo_location_utils":176,"../../lib/geojson_utils":177,"../../lib/topojson_utils":205,"../../plots/cartesian/autorange":226,"../scatter/calc":300,"../scatter/subtypes":324,"./style":336,"d3":15}],335:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81869,7 +85786,11 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
+<<<<<<< HEAD
 },{"../../constants/numerical":156,"../scatter/subtypes":319}],331:[function(_dereq_,module,exports){
+=======
+},{"../../constants/numerical":158,"../scatter/subtypes":324}],336:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81918,7 +85839,11 @@ function styleTrace(gd, calcTrace) {
         });
 }
 
+<<<<<<< HEAD
 },{"../../components/color":51,"../../components/drawing":73,"../scatter/style":318,"d3":13}],332:[function(_dereq_,module,exports){
+=======
+},{"../../components/color":52,"../../components/drawing":74,"../scatter/style":323,"d3":15}],337:[function(_dereq_,module,exports){
+>>>>>>> upstream/master
 /**
 * Copyright 2012-2020, Plotly, Inc.
 * All rights reserved.
@@ -81930,7 +85855,7 @@ function styleTrace(gd, calcTrace) {
 'use strict';
 
 // package version injected by `npm run preprocess`
-exports.version = '1.54.1';
+exports.version = '1.57.1';
 
 },{}]},{},[4])(4)
 });

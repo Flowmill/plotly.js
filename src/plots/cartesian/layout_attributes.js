@@ -102,6 +102,19 @@ module.exports = {
             'the axis in question.'
         ].join(' ')
     },
+    autotypenumbers: {
+        valType: 'enumerated',
+        values: ['convert types', 'strict'],
+        dflt: 'convert types',
+        role: 'info',
+        editType: 'calc',
+        description: [
+            'Using *strict* a numeric string in trace data is not converted to a number.',
+            'Using *convert types* a numeric string in trace data may be',
+            'treated as a number during automatic axis `type` detection.',
+            'Defaults to layout.autotypenumbers.'
+        ].join(' ')
+    },
     autorange: {
         valType: 'enumerated',
         values: [true, false, 'reversed'],
@@ -210,13 +223,13 @@ module.exports = {
     constrain: {
         valType: 'enumerated',
         values: ['range', 'domain'],
-        dflt: 'range',
         role: 'info',
         editType: 'plot',
         description: [
             'If this axis needs to be compressed (either due to its own `scaleanchor` and',
             '`scaleratio` or those of the other axis), determines how that happens:',
-            'by increasing the *range* (default), or by decreasing the *domain*.'
+            'by increasing the *range*, or by decreasing the *domain*.',
+            'Default is *domain* for axes containing image traces, *range* otherwise.'
         ].join(' ')
     },
     // constraintoward: not used directly, just put here for reference
@@ -478,6 +491,20 @@ module.exports = {
             'to the left/bottom of labels.'
         ].join(' ')
     },
+    ticklabelmode: {
+        valType: 'enumerated',
+        values: ['instant', 'period'],
+        dflt: 'instant',
+        role: 'info',
+        editType: 'ticks',
+        description: [
+            'Determines where tick labels are drawn with respect to their',
+            'corresponding ticks and grid lines.',
+            'Only has an effect for axes of `type` *date*',
+            'When set to *period*, tick labels are drawn in the middle of the period',
+            'between ticks.'
+        ].join(' ')
+    },
     mirror: {
         valType: 'enumerated',
         values: [true, 'ticks', false, 'all', 'allticks'],
@@ -664,6 +691,17 @@ module.exports = {
             'If *power*, 1x10^9 (with 9 in a super script).',
             'If *SI*, 1G.',
             'If *B*, 1B.'
+        ].join(' ')
+    },
+    minexponent: {
+        valType: 'number',
+        dflt: 3,
+        min: 0,
+        role: 'style',
+        editType: 'ticks',
+        description: [
+            'Hide SI prefix for 10^n if |n| is below this number.',
+            'This only has an effect when `tickformat` is *SI* or *B*.'
         ].join(' ')
     },
     separatethousands: {

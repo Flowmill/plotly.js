@@ -15,6 +15,7 @@ var Plots = require('../../plots/plots');
 
 var Registry = require('../../registry');
 var Lib = require('../../lib');
+var strTranslate = Lib.strTranslate;
 var svgTextUtils = require('../../lib/svg_text_utils');
 var Titles = require('../../components/titles');
 var Color = require('../../components/color');
@@ -24,9 +25,18 @@ var axAttrs = require('./layout_attributes');
 var cleanTicks = require('./clean_ticks');
 
 var constants = require('../../constants/numerical');
+var ONEMAXYEAR = constants.ONEMAXYEAR;
 var ONEAVGYEAR = constants.ONEAVGYEAR;
+var ONEMINYEAR = constants.ONEMINYEAR;
+var ONEMAXQUARTER = constants.ONEMAXQUARTER;
+var ONEAVGQUARTER = constants.ONEAVGQUARTER;
+var ONEMINQUARTER = constants.ONEMINQUARTER;
+var ONEMAXMONTH = constants.ONEMAXMONTH;
 var ONEAVGMONTH = constants.ONEAVGMONTH;
+var ONEMINMONTH = constants.ONEMINMONTH;
+var ONEWEEK = constants.ONEWEEK;
 var ONEDAY = constants.ONEDAY;
+var HALFDAY = ONEDAY / 2;
 var ONEHOUR = constants.ONEHOUR;
 var ONEMIN = constants.ONEMIN;
 var ONESEC = constants.ONESEC;
@@ -57,6 +67,15 @@ var autorange = require('./autorange');
 axes.getAutoRange = autorange.getAutoRange;
 axes.findExtremes = autorange.findExtremes;
 
+var epsilon = 0.0001;
+function expandRange(range) {
+    var delta = (range[1] - range[0]) * epsilon;
+    return [
+        range[0] - delta,
+        range[1] + delta
+    ];
+}
+
 /*
  * find the list of possible axes to reference with an xref or yref attribute
  * and coerce it to that list
@@ -68,32 +87,43 @@ axes.findExtremes = autorange.findExtremes;
  * extraOption: aside from existing axes with this letter, what non-axis value is allowed?
  *     Only required if it's different from `dflt`
  */
-axes.coerceRef = function (
-  containerIn,
-  containerOut,
-  gd,
-  attr,
-  dflt,
-  extraOption
-) {
-  var axLetter = attr.charAt(attr.length - 1);
-  var axlist = gd._fullLayout._subplots[axLetter + 'axis'];
-  var refAttr = attr + 'ref';
-  var attrDef = {};
+axes.coerceRef = function(containerIn, containerOut, gd, attr, dflt, extraOption) {
+    var axLetter = attr.charAt(attr.length - 1);
+    var axlist = gd._fullLayout._subplots[axLetter + 'axis'];
+    var refAttr = attr + 'ref';
+    var attrDef = {};
 
-  if (!dflt) dflt = axlist[0] || extraOption;
-  if (!extraOption) extraOption = dflt;
+    if(!dflt) dflt = axlist[0] || (typeof extraOption === 'string' ? extraOption : extraOption[0]);
+    if(!extraOption) extraOption = dflt;
+    axlist = axlist.concat(axlist.map(function(x) { return x + ' domain'; }));
 
-  // data-ref annotations are not supported in gl2d yet
+    // data-ref annotations are not supported in gl2d yet
 
-  attrDef[refAttr] = {
-    valType: 'enumerated',
-    values: axlist.concat(extraOption ? [extraOption] : []),
-    dflt: dflt
-  };
+    attrDef[refAttr] = {
+        valType: 'enumerated',
+        values: axlist.concat(extraOption ?
+            (typeof extraOption === 'string' ? [extraOption] : extraOption) :
+            []),
+        dflt: dflt
+    };
 
-  // xref, yref
-  return Lib.coerce(containerIn, containerOut, attrDef, refAttr);
+    // xref, yref
+    return Lib.coerce(containerIn, containerOut, attrDef, refAttr);
+};
+
+/*
+ * Get the type of an axis reference. This can be 'range', 'domain', or 'paper'.
+ * This assumes ar is a valid axis reference and returns 'range' if it doesn't
+ * match the patterns for 'paper' or 'domain'.
+ *
+ * ar: the axis reference string
+ *
+ */
+axes.getRefType = function(ar) {
+    if(ar === undefined) { return ar; }
+    if(ar === 'paper') { return 'paper'; }
+    if(ar === 'pixel') { return 'pixel'; }
+    if(/( domain)$/.test(ar)) { return 'domain'; } else { return 'range'; }
 };
 
 /*
@@ -118,20 +148,19 @@ axes.coerceRef = function (
  * - for date axes: JS Dates or milliseconds, and convert to date strings
  * - for other types: coerce them to numbers
  */
-axes.coercePosition = function (containerOut, gd, coerce, axRef, attr, dflt) {
-  var cleanPos, pos;
-
-  if (axRef === 'paper' || axRef === 'pixel') {
-    cleanPos = Lib.ensureNumber;
-    pos = coerce(attr, dflt);
-  } else {
-    var ax = axes.getFromId(gd, axRef);
-    dflt = ax.fraction2r(dflt);
-    pos = coerce(attr, dflt);
-    cleanPos = ax.cleanPos;
-  }
-
-  containerOut[attr] = cleanPos(pos);
+axes.coercePosition = function(containerOut, gd, coerce, axRef, attr, dflt) {
+    var cleanPos, pos;
+    var axRefType = axes.getRefType(axRef);
+    if(axRefType !== 'range') {
+        cleanPos = Lib.ensureNumber;
+        pos = coerce(attr, dflt);
+    } else {
+        var ax = axes.getFromId(gd, axRef);
+        dflt = ax.fraction2r(dflt);
+        pos = coerce(attr, dflt);
+        cleanPos = ax.cleanPos;
+    }
+    containerOut[attr] = cleanPos(pos);
 };
 
 axes.cleanPosition = function (pos, gd, axRef) {
@@ -176,34 +205,36 @@ axes.redrawComponents = function (gd, axIds) {
   _redrawOneComp('images', 'draw', '_imgIndices', true);
 };
 
-var getDataConversions = (axes.getDataConversions = function (
-  gd,
-  trace,
-  target,
-  targetArray
-) {
-  var ax;
+var getDataConversions = axes.getDataConversions = function(gd, trace, target, targetArray) {
+    var ax;
 
-  // If target points to an axis, use the type we already have for that
-  // axis to find the data type. Otherwise use the values to autotype.
-  var d2cTarget =
-    target === 'x' || target === 'y' || target === 'z' ? target : targetArray;
+    // If target points to an axis, use the type we already have for that
+    // axis to find the data type. Otherwise use the values to autotype.
+    var d2cTarget = (target === 'x' || target === 'y' || target === 'z') ?
+        target :
+        targetArray;
 
-  // In the case of an array target, make a mock data array
-  // and call supplyDefaults to the data type and
-  // setup the data-to-calc method.
-  if (Array.isArray(d2cTarget)) {
-    ax = {
-      type: autoType(targetArray),
-      _categories: []
-    };
-    axes.setConvert(ax);
+    // In the case of an array target, make a mock data array
+    // and call supplyDefaults to the data type and
+    // setup the data-to-calc method.
+    if(Array.isArray(d2cTarget)) {
+        ax = {
+            type: autoType(targetArray, undefined, {
+                autotypenumbers: gd._fullLayout.autotypenumbers
+            }),
+            _categories: []
+        };
+        axes.setConvert(ax);
 
-    // build up ax._categories (usually done during ax.makeCalcdata()
-    if (ax.type === 'category') {
-      for (var i = 0; i < targetArray.length; i++) {
-        ax.d2c(targetArray[i]);
-      }
+        // build up ax._categories (usually done during ax.makeCalcdata()
+        if(ax.type === 'category') {
+            for(var i = 0; i < targetArray.length; i++) {
+                ax.d2c(targetArray[i]);
+            }
+        }
+        // TODO what to do for transforms?
+    } else {
+        ax = axes.getFromTrace(gd, trace, d2cTarget);
     }
     // TODO what to do for transforms?
   } else {
@@ -231,17 +262,7 @@ function toString(v) {
   return String(v);
 }
 
-axes.getDataToCoordFunc = function (gd, trace, target, targetArray) {
-  return getDataConversions(gd, trace, target, targetArray).d2c;
-};
 
-// get counteraxis letter for this axis (name or id)
-// this can also be used as the id for default counter axis
-axes.counterLetter = function (id) {
-  var axLetter = id.charAt(0);
-  if (axLetter === 'x') return 'y';
-  if (axLetter === 'y') return 'x';
-};
 
 // incorporate a new minimum difference and first tick into
 // forced
@@ -495,31 +516,35 @@ function autoShiftNumericBins(binStart, data, ax, dataMin, dataMax) {
 }
 
 function autoShiftMonthBins(binStart, data, dtick, dataMin, calendar) {
-  var stats = Lib.findExactDates(data, calendar);
-  // number of data points that needs to be an exact value
-  // to shift that increment to (near) the bin center
-  var threshold = 0.8;
+    var stats = Lib.findExactDates(data, calendar);
+    // number of data points that needs to be an exact value
+    // to shift that increment to (near) the bin center
+    var threshold = 0.8;
 
-  if (stats.exactDays > threshold) {
-    var numMonths = Number(dtick.substr(1));
+    if(stats.exactDays > threshold) {
+        var numMonths = Number(dtick.substr(1));
 
-    if (stats.exactYears > threshold && numMonths % 12 === 0) {
-      // The exact middle of a non-leap-year is 1.5 days into July
-      // so if we start the bins here, all but leap years will
-      // get hover-labeled as exact years.
-      binStart = axes.tickIncrement(binStart, 'M6', 'reverse') + ONEDAY * 1.5;
-    } else if (stats.exactMonths > threshold) {
-      // Months are not as clean, but if we shift half the *longest*
-      // month (31/2 days) then 31-day months will get labeled exactly
-      // and shorter months will get labeled with the correct month
-      // but shifted 12-36 hours into it.
-      binStart = axes.tickIncrement(binStart, 'M1', 'reverse') + ONEDAY * 15.5;
-    } else {
-      // Shifting half a day is exact, but since these are month bins it
-      // will always give a somewhat odd-looking label, until we do something
-      // smarter like showing the bin boundaries (or the bounds of the actual
-      // data in each bin)
-      binStart -= ONEDAY / 2;
+        if((stats.exactYears > threshold) && (numMonths % 12 === 0)) {
+            // The exact middle of a non-leap-year is 1.5 days into July
+            // so if we start the bins here, all but leap years will
+            // get hover-labeled as exact years.
+            binStart = axes.tickIncrement(binStart, 'M6', 'reverse') + ONEDAY * 1.5;
+        } else if(stats.exactMonths > threshold) {
+            // Months are not as clean, but if we shift half the *longest*
+            // month (31/2 days) then 31-day months will get labeled exactly
+            // and shorter months will get labeled with the correct month
+            // but shifted 12-36 hours into it.
+            binStart = axes.tickIncrement(binStart, 'M1', 'reverse') + ONEDAY * 15.5;
+        } else {
+            // Shifting half a day is exact, but since these are month bins it
+            // will always give a somewhat odd-looking label, until we do something
+            // smarter like showing the bin boundaries (or the bounds of the actual
+            // data in each bin)
+            binStart -= HALFDAY;
+        }
+        var nextBinStart = axes.tickIncrement(binStart, dtick);
+
+        if(nextBinStart <= dataMin) return nextBinStart;
     }
     var nextBinStart = axes.tickIncrement(binStart, dtick);
 
@@ -533,8 +558,11 @@ function autoShiftMonthBins(binStart, data, dtick, dataMin, calendar) {
 // ----------------------------------------------------
 
 // ensure we have tick0, dtick, and tick rounding calculated
-axes.prepTicks = function (ax) {
-  var rng = Lib.simpleMap(ax.range, ax.r2l);
+axes.prepTicks = function(ax, opts) {
+    var rng = Lib.simpleMap(ax.range, ax.r2l, undefined, undefined, opts);
+
+    ax._dtickInit = ax.dtick;
+    ax._tick0Init = ax.tick0;
 
   // calculate max number of (auto) ticks to display based on plot size
   if (ax.tickmode === 'auto' || !ax.dtick) {
@@ -559,8 +587,8 @@ axes.prepTicks = function (ax) {
     // have explicit tickvals without tick text
     if (ax.tickmode === 'array') nt *= 100;
 
-    ax._roughDTick = (Math.abs(rng[1] - rng[0]) - (ax._lBreaks || 0)) / nt;
-    axes.autoTicks(ax, ax._roughDTick);
+        ax._roughDTick = Math.abs(rng[1] - rng[0]) / nt;
+        axes.autoTicks(ax, ax._roughDTick);
 
     // check for a forced minimum dtick
     if (ax._minDtick > 0 && ax.dtick < ax._minDtick * 2) {
@@ -569,10 +597,14 @@ axes.prepTicks = function (ax) {
     }
   }
 
-  // check for missing tick0
-  if (!ax.tick0) {
-    ax.tick0 = ax.type === 'date' ? '2000-01-01' : 0;
-  }
+    if(ax.ticklabelmode === 'period') {
+        adjustPeriodDelta(ax);
+    }
+
+    // check for missing tick0
+    if(!ax.tick0) {
+        ax.tick0 = (ax.type === 'date') ? '2000-01-01' : 0;
+    }
 
   // ensure we don't try to make ticks below our minimum precision
   // see https://github.com/plotly/plotly.js/issues/2892
@@ -582,141 +614,349 @@ axes.prepTicks = function (ax) {
   autoTickRound(ax);
 };
 
+function nMonths(dtick) {
+    return +(dtick.substring(1));
+}
+
+function adjustPeriodDelta(ax) { // adjusts ax.dtick and sets ax._definedDelta
+    var definedDelta;
+
+    function mDate() {
+        return !(
+            isNumeric(ax.dtick) ||
+            ax.dtick.charAt(0) !== 'M'
+        );
+    }
+    var isMDate = mDate();
+    var tickformat = axes.getTickFormat(ax);
+    if(tickformat) {
+        var noDtick = ax._dtickInit !== ax.dtick;
+        if(
+            !(/%[fLQsSMX]/.test(tickformat))
+            // %f: microseconds as a decimal number [000000, 999999]
+            // %L: milliseconds as a decimal number [000, 999]
+            // %Q: milliseconds since UNIX epoch
+            // %s: seconds since UNIX epoch
+            // %S: second as a decimal number [00,61]
+            // %M: minute as a decimal number [00,59]
+            // %X: the locale’s time, such as %-I:%M:%S %p
+        ) {
+            if(
+                /%[HI]/.test(tickformat)
+                // %H: hour (24-hour clock) as a decimal number [00,23]
+                // %I: hour (12-hour clock) as a decimal number [01,12]
+            ) {
+                definedDelta = ONEHOUR;
+                if(noDtick && !isMDate && ax.dtick < ONEHOUR) ax.dtick = ONEHOUR;
+            } else if(
+                /%p/.test(tickformat) // %p: either AM or PM
+            ) {
+                definedDelta = HALFDAY;
+                if(noDtick && !isMDate && ax.dtick < HALFDAY) ax.dtick = HALFDAY;
+            } else if(
+                /%[Aadejuwx]/.test(tickformat)
+                // %A: full weekday name
+                // %a: abbreviated weekday name
+                // %d: zero-padded day of the month as a decimal number [01,31]
+                // %e: space-padded day of the month as a decimal number [ 1,31]
+                // %j: day of the year as a decimal number [001,366]
+                // %u: Monday-based (ISO 8601) weekday as a decimal number [1,7]
+                // %w: Sunday-based weekday as a decimal number [0,6]
+                // %x: the locale’s date, such as %-m/%-d/%Y
+            ) {
+                definedDelta = ONEDAY;
+                if(noDtick && !isMDate && ax.dtick < ONEDAY) ax.dtick = ONEDAY;
+            } else if(
+                /%[UVW]/.test(tickformat)
+                // %U: Sunday-based week of the year as a decimal number [00,53]
+                // %V: ISO 8601 week of the year as a decimal number [01, 53]
+                // %W: Monday-based week of the year as a decimal number [00,53]
+            ) {
+                definedDelta = ONEWEEK;
+                if(noDtick && !isMDate && ax.dtick < ONEWEEK) ax.dtick = ONEWEEK;
+            } else if(
+                /%[Bbm]/.test(tickformat)
+                // %B: full month name
+                // %b: abbreviated month name
+                // %m: month as a decimal number [01,12]
+            ) {
+                definedDelta = ONEAVGMONTH;
+                if(noDtick && (
+                    isMDate ? nMonths(ax.dtick) < 1 : ax.dtick < ONEMINMONTH)
+                ) ax.dtick = 'M1';
+            } else if(
+                /%[q]/.test(tickformat)
+                // %q: quarter of the year as a decimal number [1,4]
+            ) {
+                definedDelta = ONEAVGQUARTER;
+                if(noDtick && (
+                    isMDate ? nMonths(ax.dtick) < 3 : ax.dtick < ONEMINQUARTER)
+                ) ax.dtick = 'M3';
+            } else if(
+                /%[Yy]/.test(tickformat)
+                // %Y: year with century as a decimal number, such as 1999
+                // %y: year without century as a decimal number [00,99]
+            ) {
+                definedDelta = ONEAVGYEAR;
+                if(noDtick && (
+                    isMDate ? nMonths(ax.dtick) < 12 : ax.dtick < ONEMINYEAR)
+                ) ax.dtick = 'M12';
+            }
+        }
+    }
+
+    isMDate = mDate();
+    if(isMDate && ax.tick0 === ax._dowTick0) {
+        // discard Sunday/Monday tweaks
+        ax.tick0 = ax._rawTick0;
+    }
+
+    ax._definedDelta = definedDelta;
+}
+
+function positionPeriodTicks(tickVals, ax, definedDelta) {
+    for(var i = 0; i < tickVals.length; i++) {
+        var v = tickVals[i].value;
+
+        var a = i;
+        var b = i + 1;
+        if(i < tickVals.length - 1) {
+            a = i;
+            b = i + 1;
+        } else if(i > 0) {
+            a = i - 1;
+            b = i;
+        } else {
+            a = i;
+            b = i;
+        }
+
+        var A = tickVals[a].value;
+        var B = tickVals[b].value;
+        var actualDelta = Math.abs(B - A);
+        var delta = definedDelta || actualDelta;
+        var periodLength = 0;
+
+        if(delta >= ONEMINYEAR) {
+            if(actualDelta >= ONEMINYEAR && actualDelta <= ONEMAXYEAR) {
+                periodLength = actualDelta;
+            } else {
+                periodLength = ONEAVGYEAR;
+            }
+        } else if(definedDelta === ONEAVGQUARTER && delta >= ONEMINQUARTER) {
+            if(actualDelta >= ONEMINQUARTER && actualDelta <= ONEMAXQUARTER) {
+                periodLength = actualDelta;
+            } else {
+                periodLength = ONEAVGQUARTER;
+            }
+        } else if(delta >= ONEMINMONTH) {
+            if(actualDelta >= ONEMINMONTH && actualDelta <= ONEMAXMONTH) {
+                periodLength = actualDelta;
+            } else {
+                periodLength = ONEAVGMONTH;
+            }
+        } else if(definedDelta === ONEWEEK && delta >= ONEWEEK) {
+            periodLength = ONEWEEK;
+        } else if(delta >= ONEDAY) {
+            periodLength = ONEDAY;
+        } else if(definedDelta === HALFDAY && delta >= HALFDAY) {
+            periodLength = HALFDAY;
+        } else if(definedDelta === ONEHOUR && delta >= ONEHOUR) {
+            periodLength = ONEHOUR;
+        }
+
+        var inBetween;
+        if(periodLength >= actualDelta) {
+            // ensure new label positions remain between ticks
+            periodLength = actualDelta;
+            inBetween = true;
+        }
+
+        var endPeriod = v + periodLength;
+        if(ax.rangebreaks && periodLength > 0) {
+            var nAll = 84; // highly divisible 7 * 12
+            var n = 0;
+            for(var c = 0; c < nAll; c++) {
+                var r = (c + 0.5) / nAll;
+                if(ax.maskBreaks(v * (1 - r) + r * endPeriod) !== BADNUM) n++;
+            }
+            periodLength *= n / nAll;
+
+            if(!periodLength) {
+                tickVals[i].drop = true;
+            }
+
+            if(inBetween && actualDelta > ONEWEEK) periodLength = actualDelta; // center monthly & longer periods
+        }
+
+        if(
+            periodLength > 0 || // not instant
+            i === 0 // taking care first tick added
+        ) {
+            tickVals[i].periodX = v + periodLength / 2;
+        }
+    }
+}
+
 // calculate the ticks: text, values, positioning
 // if ticks are set to automatic, determine the right values (tick0,dtick)
 // in any case, set tickround to # of digits to round tick labels to,
 // or codes to this effect for log and date scales
-axes.calcTicks = function calcTicks(ax) {
-  axes.prepTicks(ax);
-  var rng = Lib.simpleMap(ax.range, ax.r2l);
+axes.calcTicks = function calcTicks(ax, opts) {
+    axes.prepTicks(ax, opts);
+    var rng = Lib.simpleMap(ax.range, ax.r2l, undefined, undefined, opts);
 
-  // now that we've figured out the auto values for formatting
-  // in case we're missing some ticktext, we can break out for array ticks
-  if (ax.tickmode === 'array') return arrayTicks(ax);
+    // now that we've figured out the auto values for formatting
+    // in case we're missing some ticktext, we can break out for array ticks
+    if(ax.tickmode === 'array') return arrayTicks(ax);
 
-  // find the first tick
-  ax._tmin = axes.tickFirst(ax);
+    // add a tiny bit so we get ticks which may have rounded out
+    var exRng = expandRange(rng);
+    var startTick = exRng[0];
+    var endTick = exRng[1];
+    // check for reversed axis
+    var axrev = (rng[1] < rng[0]);
+    var minRange = Math.min(rng[0], rng[1]);
+    var maxRange = Math.max(rng[0], rng[1]);
 
-  // add a tiny bit so we get ticks which may have rounded out
-  var startTick = rng[0] * 1.0001 - rng[1] * 0.0001;
-  var endTick = rng[1] * 1.0001 - rng[0] * 0.0001;
-  // check for reversed axis
-  var axrev = rng[1] < rng[0];
+    var isDLog = (ax.type === 'log') && !(isNumeric(ax.dtick) || ax.dtick.charAt(0) === 'L');
+    var isPeriod = ax.ticklabelmode === 'period';
 
-  // No visible ticks? Quit.
-  // I've only seen this on category axes with all categories off the edge.
-  if (ax._tmin < startTick !== axrev) return [];
+    // find the first tick
+    ax._tmin = axes.tickFirst(ax, opts);
 
-  // return the full set of tick vals
-  if (ax.type === 'category' || ax.type === 'multicategory') {
-    endTick = axrev
-      ? Math.max(-0.5, endTick)
-      : Math.min(ax._categories.length - 0.5, endTick);
-  }
+    // No visible ticks? Quit.
+    // I've only seen this on category axes with all categories off the edge.
+    if((ax._tmin < startTick) !== axrev) return [];
 
-  var isDLog =
-    ax.type === 'log' && !(isNumeric(ax.dtick) || ax.dtick.charAt(0) === 'L');
+    // return the full set of tick vals
+    if(ax.type === 'category' || ax.type === 'multicategory') {
+        endTick = (axrev) ? Math.max(-0.5, endTick) :
+            Math.min(ax._categories.length - 0.5, endTick);
+    }
 
-  var tickVals;
-  function generateTicks() {
-    var xPrevious = null;
+    var x = ax._tmin;
+
+    if(ax.rangebreaks && ax._tick0Init !== ax.tick0) {
+        // adjust tick0
+        x = moveOutsideBreak(x, ax);
+        if(!axrev) {
+            x = axes.tickIncrement(x, ax.dtick, !axrev, ax.calendar);
+        }
+    }
+
+    if(isPeriod) {
+        // add one item to label period before tick0
+        x = axes.tickIncrement(x, ax.dtick, !axrev, ax.calendar);
+    }
+
     var maxTicks = Math.max(1000, ax._length || 0);
-    tickVals = [];
-    for (
-      var x = ax._tmin;
-      axrev ? x >= endTick : x <= endTick;
-      x = axes.tickIncrement(x, ax.dtick, axrev, ax.calendar)
+    var tickVals = [];
+    var xPrevious = null;
+    for(;
+        (axrev) ? (x >= endTick) : (x <= endTick);
+        x = axes.tickIncrement(x, ax.dtick, axrev, ax.calendar)
     ) {
-      // prevent infinite loops - no more than one tick per pixel,
-      // and make sure each value is different from the previous
-      if (tickVals.length > maxTicks || x === xPrevious) break;
-      xPrevious = x;
-
-      var minor = false;
-      if (isDLog && x !== (x | 0)) {
-        minor = true;
-      }
-
-      tickVals.push({
-        minor: minor,
-        value: x
-      });
-    }
-  }
-
-  generateTicks();
-
-  if (ax.rangebreaks) {
-    // replace ticks inside breaks that would get a tick
-    if (ax.tickmode === 'auto') {
-      for (var t = 0; t < tickVals.length; t++) {
-        var value = tickVals[t].value;
-        if (ax.maskBreaks(value) === BADNUM) {
-          // find which break we are in
-          for (var k = 0; k < ax._rangebreaks.length; k++) {
-            var brk = ax._rangebreaks[k];
-            if (value >= brk.min && value < brk.max) {
-              tickVals[t].value = brk.max; // replace with break end
-              break;
+        if(ax.rangebreaks) {
+            if(!axrev) {
+                if(x < startTick) continue;
+                if(ax.maskBreaks(x) === BADNUM && moveOutsideBreak(x, ax) >= maxRange) break;
             }
-          }
         }
-      }
+
+        // prevent infinite loops - no more than one tick per pixel,
+        // and make sure each value is different from the previous
+        if(tickVals.length > maxTicks || x === xPrevious) break;
+        xPrevious = x;
+
+        var minor = false;
+        if(isDLog && (x !== (x | 0))) {
+            minor = true;
+        }
+
+        tickVals.push({
+            minor: minor,
+            value: x
+        });
     }
 
-    // reduce ticks
-    var len = tickVals.length;
-    if (len > 2) {
-      var tf2 = 2 * (ax.tickfont ? ax.tickfont.size : 12);
+    if(isPeriod) positionPeriodTicks(tickVals, ax, ax._definedDelta);
 
-      var newTickVals = [];
-      var prevPos;
+    var i;
+    if(ax.rangebreaks) {
+        var flip = ax._id.charAt(0) === 'y';
 
-      var dir = axrev ? 1 : -1;
-      var first = axrev ? 0 : len - 1;
-      var last = axrev ? len - 1 : 0;
-      for (var q = first; dir * q <= dir * last; q += dir) {
-        // apply reverse loop to pick greater values in breaks first
-        var pos = ax.c2p(tickVals[q].value);
-
-        if (prevPos === undefined || Math.abs(pos - prevPos) > tf2) {
-          prevPos = pos;
-          newTickVals.push(tickVals[q]);
+        var fontSize = 1; // one pixel minimum
+        if(ax.tickmode === 'auto') {
+            fontSize = ax.tickfont ? ax.tickfont.size : 12;
         }
-      }
-      tickVals = newTickVals.reverse();
+
+        var prevL = NaN;
+        for(i = tickVals.length - 1; i > -1; i--) {
+            if(tickVals[i].drop) {
+                tickVals.splice(i, 1);
+                continue;
+            }
+
+            tickVals[i].value = moveOutsideBreak(tickVals[i].value, ax);
+
+            // avoid overlaps
+            var l = ax.c2p(tickVals[i].value);
+            if(flip ?
+                (prevL > l - fontSize) :
+                (prevL < l + fontSize)
+            ) { // ensure one pixel minimum
+                tickVals.splice(axrev ? i + 1 : i, 1);
+            } else {
+                prevL = l;
+            }
+        }
     }
-  }
 
-  // If same angle over a full circle, the last tick vals is a duplicate.
-  // TODO must do something similar for angular date axes.
-  if (isAngular(ax) && Math.abs(rng[1] - rng[0]) === 360) {
-    tickVals.pop();
-  }
+    // If same angle over a full circle, the last tick vals is a duplicate.
+    // TODO must do something similar for angular date axes.
+    if(isAngular(ax) && Math.abs(rng[1] - rng[0]) === 360) {
+        tickVals.pop();
+    }
 
-  // save the last tick as well as first, so we can
-  // show the exponent only on the last one
-  ax._tmax = (tickVals[tickVals.length - 1] || {}).value;
+    // save the last tick as well as first, so we can
+    // show the exponent only on the last one
+    ax._tmax = (tickVals[tickVals.length - 1] || {}).value;
 
-  // for showing the rest of a date when the main tick label is only the
-  // latter part: ax._prevDateHead holds what we showed most recently.
-  // Start with it cleared and mark that we're in calcTicks (ie calculating a
-  // whole string of these so we should care what the previous date head was!)
-  ax._prevDateHead = '';
-  ax._inCalcTicks = true;
+    // for showing the rest of a date when the main tick label is only the
+    // latter part: ax._prevDateHead holds what we showed most recently.
+    // Start with it cleared and mark that we're in calcTicks (ie calculating a
+    // whole string of these so we should care what the previous date head was!)
+    ax._prevDateHead = '';
+    ax._inCalcTicks = true;
 
-  var ticksOut = new Array(tickVals.length);
-  for (var i = 0; i < tickVals.length; i++) {
-    var _minor = tickVals[i].minor;
-    var _value = tickVals[i].value;
+    var ticksOut = [];
+    var t, p;
+    for(i = 0; i < tickVals.length; i++) {
+        var _minor = tickVals[i].minor;
+        var _value = tickVals[i].value;
 
-    ticksOut[i] = axes.tickText(
-      ax,
-      _value,
-      false, // hover
-      _minor // noSuffixPrefix
-    );
-  }
+        t = axes.tickText(
+            ax,
+            _value,
+            false, // hover
+            _minor // noSuffixPrefix
+        );
+
+        p = tickVals[i].periodX;
+        if(p !== undefined) {
+            t.periodX = p;
+            if(p > maxRange || p < minRange) { // hide label if outside the range
+                if(p > maxRange) t.periodX = maxRange;
+                if(p < minRange) t.periodX = minRange;
+
+                t.text = ' '; // don't use an empty string here which can confuse automargin (issue 5132)
+                ax._prevDateHead = '';
+            }
+        }
+
+        ticksOut.push(t);
+    }
 
   ax._inCalcTicks = false;
 
@@ -724,48 +964,46 @@ axes.calcTicks = function calcTicks(ax) {
 };
 
 function arrayTicks(ax) {
-  var vals = ax.tickvals;
-  var text = ax.ticktext;
-  var ticksOut = new Array(vals.length);
-  var rng = Lib.simpleMap(ax.range, ax.r2l);
-  var r0expanded = rng[0] * 1.0001 - rng[1] * 0.0001;
-  var r1expanded = rng[1] * 1.0001 - rng[0] * 0.0001;
-  var tickMin = Math.min(r0expanded, r1expanded);
-  var tickMax = Math.max(r0expanded, r1expanded);
-  var j = 0;
+    var vals = ax.tickvals;
+    var text = ax.ticktext;
+    var ticksOut = new Array(vals.length);
+    var rng = Lib.simpleMap(ax.range, ax.r2l);
+    var exRng = expandRange(rng);
+    var tickMin = Math.min(exRng[0], exRng[1]);
+    var tickMax = Math.max(exRng[0], exRng[1]);
+    var j = 0;
 
-  // without a text array, just format the given values as any other ticks
-  // except with more precision to the numbers
-  if (!Array.isArray(text)) text = [];
+    // without a text array, just format the given values as any other ticks
+    // except with more precision to the numbers
+    if(!Array.isArray(text)) text = [];
 
-  // make sure showing ticks doesn't accidentally add new categories
-  // TODO multicategory, if we allow ticktext / tickvals
-  var tickVal2l = ax.type === 'category' ? ax.d2l_noadd : ax.d2l;
+    // make sure showing ticks doesn't accidentally add new categories
+    // TODO multicategory, if we allow ticktext / tickvals
+    var tickVal2l = ax.type === 'category' ? ax.d2l_noadd : ax.d2l;
 
-  // array ticks on log axes always show the full number
-  // (if no explicit ticktext overrides it)
-  if (ax.type === 'log' && String(ax.dtick).charAt(0) !== 'L') {
-    ax.dtick =
-      'L' + Math.pow(10, Math.floor(Math.min(ax.range[0], ax.range[1])) - 1);
-  }
-
-  for (var i = 0; i < vals.length; i++) {
-    var vali = tickVal2l(vals[i]);
-    if (vali > tickMin && vali < tickMax) {
-      if (text[i] === undefined) ticksOut[j] = axes.tickText(ax, vali);
-      else ticksOut[j] = tickTextObj(ax, vali, String(text[i]));
-      j++;
+    // array ticks on log axes always show the full number
+    // (if no explicit ticktext overrides it)
+    if(ax.type === 'log' && String(ax.dtick).charAt(0) !== 'L') {
+        ax.dtick = 'L' + Math.pow(10, Math.floor(Math.min(ax.range[0], ax.range[1])) - 1);
     }
-  }
 
-  if (j < vals.length) ticksOut.splice(j, vals.length - j);
+    for(var i = 0; i < vals.length; i++) {
+        var vali = tickVal2l(vals[i]);
+        if(vali > tickMin && vali < tickMax) {
+            if(text[i] === undefined) ticksOut[j] = axes.tickText(ax, vali);
+            else ticksOut[j] = tickTextObj(ax, vali, String(text[i]));
+            j++;
+        }
+    }
 
-  if (ax.rangebreaks) {
-    // remove ticks falling inside rangebreaks
-    ticksOut = ticksOut.filter(function (d) {
-      return ax.maskBreaks(d.x) !== BADNUM;
-    });
-  }
+    if(j < vals.length) ticksOut.splice(j, vals.length - j);
+
+    if(ax.rangebreaks) {
+        // remove ticks falling inside rangebreaks
+        ticksOut = ticksOut.filter(function(d) {
+            return ax.maskBreaks(d.x) !== BADNUM;
+        });
+    }
 
   return ticksOut;
 }
@@ -814,43 +1052,83 @@ function roundDTick(roughDTick, base, roundingSet) {
 //      log with linear ticks: L# where # is the linear tick spacing
 //      log showing powers plus some intermediates:
 //          D1 shows all digits, D2 shows 2 and 5
-axes.autoTicks = function (ax, roughDTick) {
-  var base;
+axes.autoTicks = function(ax, roughDTick) {
+    var base;
 
-  function getBase(v) {
-    return Math.pow(v, Math.floor(Math.log(roughDTick) / Math.LN10));
-  }
+    function getBase(v) {
+        return Math.pow(v, Math.floor(Math.log(roughDTick) / Math.LN10));
+    }
 
-  if (ax.type === 'date') {
-    ax.tick0 = Lib.dateTick0(ax.calendar);
-    // the criteria below are all based on the rough spacing we calculate
-    // being > half of the final unit - so precalculate twice the rough val
-    var roughX2 = 2 * roughDTick;
+    if(ax.type === 'date') {
+        ax.tick0 = Lib.dateTick0(ax.calendar, 0);
 
-    if (roughX2 > ONEAVGYEAR) {
-      roughDTick /= ONEAVGYEAR;
-      base = getBase(10);
-      ax.dtick = 'M' + 12 * roundDTick(roughDTick, base, roundBase10);
-    } else if (roughX2 > ONEAVGMONTH) {
-      roughDTick /= ONEAVGMONTH;
-      ax.dtick = 'M' + roundDTick(roughDTick, 1, roundBase24);
-    } else if (roughX2 > ONEDAY) {
-      ax.dtick = roundDTick(
-        roughDTick,
-        ONEDAY,
-        ax._hasDayOfWeekBreaks ? [1, 7, 14] : roundDays
-      );
+        // the criteria below are all based on the rough spacing we calculate
+        // being > half of the final unit - so precalculate twice the rough val
+        var roughX2 = 2 * roughDTick;
 
-      // get week ticks on sunday
-      // this will also move the base tick off 2000-01-01 if dtick is
-      // 2 or 3 days... but that's a weird enough case that we'll ignore it.
-      ax.tick0 = Lib.dateTick0(ax.calendar, true);
-    } else if (roughX2 > ONEHOUR) {
-      ax.dtick = roundDTick(roughDTick, ONEHOUR, roundBase24);
-    } else if (roughX2 > ONEMIN) {
-      ax.dtick = roundDTick(roughDTick, ONEMIN, roundBase60);
-    } else if (roughX2 > ONESEC) {
-      ax.dtick = roundDTick(roughDTick, ONESEC, roundBase60);
+        if(roughX2 > ONEAVGYEAR) {
+            roughDTick /= ONEAVGYEAR;
+            base = getBase(10);
+            ax.dtick = 'M' + (12 * roundDTick(roughDTick, base, roundBase10));
+        } else if(roughX2 > ONEAVGMONTH) {
+            roughDTick /= ONEAVGMONTH;
+            ax.dtick = 'M' + roundDTick(roughDTick, 1, roundBase24);
+        } else if(roughX2 > ONEDAY) {
+            ax.dtick = roundDTick(roughDTick, ONEDAY, ax._hasDayOfWeekBreaks ? [1, 2, 7, 14] : roundDays);
+            // get week ticks on sunday
+            // this will also move the base tick off 2000-01-01 if dtick is
+            // 2 or 3 days... but that's a weird enough case that we'll ignore it.
+            var tickformat = axes.getTickFormat(ax);
+            var isPeriod = ax.ticklabelmode === 'period';
+            if(isPeriod) ax._rawTick0 = ax.tick0;
+
+            if(/%[uVW]/.test(tickformat)) {
+                ax.tick0 = Lib.dateTick0(ax.calendar, 2); // Monday
+            } else {
+                ax.tick0 = Lib.dateTick0(ax.calendar, 1); // Sunday
+            }
+
+            if(isPeriod) ax._dowTick0 = ax.tick0;
+        } else if(roughX2 > ONEHOUR) {
+            ax.dtick = roundDTick(roughDTick, ONEHOUR, roundBase24);
+        } else if(roughX2 > ONEMIN) {
+            ax.dtick = roundDTick(roughDTick, ONEMIN, roundBase60);
+        } else if(roughX2 > ONESEC) {
+            ax.dtick = roundDTick(roughDTick, ONESEC, roundBase60);
+        } else {
+            // milliseconds
+            base = getBase(10);
+            ax.dtick = roundDTick(roughDTick, base, roundBase10);
+        }
+    } else if(ax.type === 'log') {
+        ax.tick0 = 0;
+        var rng = Lib.simpleMap(ax.range, ax.r2l);
+
+        if(roughDTick > 0.7) {
+            // only show powers of 10
+            ax.dtick = Math.ceil(roughDTick);
+        } else if(Math.abs(rng[1] - rng[0]) < 1) {
+            // span is less than one power of 10
+            var nt = 1.5 * Math.abs((rng[1] - rng[0]) / roughDTick);
+
+            // ticks on a linear scale, labeled fully
+            roughDTick = Math.abs(Math.pow(10, rng[1]) -
+                Math.pow(10, rng[0])) / nt;
+            base = getBase(10);
+            ax.dtick = 'L' + roundDTick(roughDTick, base, roundBase10);
+        } else {
+            // include intermediates between powers of 10,
+            // labeled with small digits
+            // ax.dtick = "D2" (show 2 and 5) or "D1" (show all digits)
+            ax.dtick = (roughDTick > 0.3) ? 'D2' : 'D1';
+        }
+    } else if(ax.type === 'category' || ax.type === 'multicategory') {
+        ax.tick0 = 0;
+        ax.dtick = Math.ceil(Math.max(roughDTick, 1));
+    } else if(isAngular(ax)) {
+        ax.tick0 = 0;
+        base = 1;
+        ax.dtick = roundDTick(roughDTick, base, roundAngles);
     } else {
       // milliseconds
       base = getBase(10);
@@ -908,36 +1186,60 @@ axes.autoTicks = function (ax, roughDTick) {
 //   for date ticks, the last date part to show (y,m,d,H,M,S)
 //      or an integer # digits past seconds
 function autoTickRound(ax) {
-  var dtick = ax.dtick;
+    var dtick = ax.dtick;
 
-  ax._tickexponent = 0;
-  if (!isNumeric(dtick) && typeof dtick !== 'string') {
-    dtick = 1;
-  }
+    ax._tickexponent = 0;
+    if(!isNumeric(dtick) && typeof dtick !== 'string') {
+        dtick = 1;
+    }
 
-  if (ax.type === 'category' || ax.type === 'multicategory') {
-    ax._tickround = null;
-  }
-  if (ax.type === 'date') {
-    // If tick0 is unusual, give tickround a bit more information
-    // not necessarily *all* the information in tick0 though, if it's really odd
-    // minimal string length for tick0: 'd' is 10, 'M' is 16, 'S' is 19
-    // take off a leading minus (year < 0) and i (intercalary month) so length is consistent
-    var tick0ms = ax.r2l(ax.tick0);
-    var tick0str = ax.l2r(tick0ms).replace(/(^-|i)/g, '');
-    var tick0len = tick0str.length;
+    if(ax.type === 'category' || ax.type === 'multicategory') {
+        ax._tickround = null;
+    }
+    if(ax.type === 'date') {
+        // If tick0 is unusual, give tickround a bit more information
+        // not necessarily *all* the information in tick0 though, if it's really odd
+        // minimal string length for tick0: 'd' is 10, 'M' is 16, 'S' is 19
+        // take off a leading minus (year < 0) and i (intercalary month) so length is consistent
+        var tick0ms = ax.r2l(ax.tick0);
+        var tick0str = ax.l2r(tick0ms).replace(/(^-|i)/g, '');
+        var tick0len = tick0str.length;
 
-    if (String(dtick).charAt(0) === 'M') {
-      // any tick0 more specific than a year: alway show the full date
-      if (tick0len > 10 || tick0str.substr(5) !== '01-01') ax._tickround = 'd';
-      // show the month unless ticks are full multiples of a year
-      else ax._tickround = +dtick.substr(1) % 12 === 0 ? 'y' : 'm';
-    } else if ((dtick >= ONEDAY && tick0len <= 10) || dtick >= ONEDAY * 15) {
-      ax._tickround = 'd';
-    } else if ((dtick >= ONEMIN && tick0len <= 16) || dtick >= ONEHOUR) {
-      ax._tickround = 'M';
-    } else if ((dtick >= ONESEC && tick0len <= 19) || dtick >= ONEMIN) {
-      ax._tickround = 'S';
+        if(String(dtick).charAt(0) === 'M') {
+            // any tick0 more specific than a year: alway show the full date
+            if(tick0len > 10 || tick0str.substr(5) !== '01-01') ax._tickround = 'd';
+            // show the month unless ticks are full multiples of a year
+            else ax._tickround = (+(dtick.substr(1)) % 12 === 0) ? 'y' : 'm';
+        } else if((dtick >= ONEDAY && tick0len <= 10) || (dtick >= ONEDAY * 15)) ax._tickround = 'd';
+        else if((dtick >= ONEMIN && tick0len <= 16) || (dtick >= ONEHOUR)) ax._tickround = 'M';
+        else if((dtick >= ONESEC && tick0len <= 19) || (dtick >= ONEMIN)) ax._tickround = 'S';
+        else {
+            // tickround is a number of digits of fractional seconds
+            // of any two adjacent ticks, at least one will have the maximum fractional digits
+            // of all possible ticks - so take the max. length of tick0 and the next one
+            var tick1len = ax.l2r(tick0ms + dtick).replace(/^-/, '').length;
+            ax._tickround = Math.max(tick0len, tick1len) - 20;
+
+            // We shouldn't get here... but in case there's a situation I'm
+            // not thinking of where tick0str and tick1str are identical or
+            // something, fall back on maximum precision
+            if(ax._tickround < 0) ax._tickround = 4;
+        }
+    } else if(isNumeric(dtick) || dtick.charAt(0) === 'L') {
+        // linear or log (except D1, D2)
+        var rng = ax.range.map(ax.r2d || Number);
+        if(!isNumeric(dtick)) dtick = Number(dtick.substr(1));
+        // 2 digits past largest digit of dtick
+        ax._tickround = 2 - Math.floor(Math.log(dtick) / Math.LN10 + 0.01);
+
+        var maxend = Math.max(Math.abs(rng[0]), Math.abs(rng[1]));
+        var rangeexp = Math.floor(Math.log(maxend) / Math.LN10 + 0.01);
+        var minexponent = ax.minexponent === undefined ? 3 : ax.minexponent;
+        if(Math.abs(rangeexp) > minexponent) {
+            if(isSIFormat(ax.exponentformat) && !beyondSI(rangeexp)) {
+                ax._tickexponent = 3 * Math.round((rangeexp - 1) / 3);
+            } else ax._tickexponent = rangeexp;
+        }
     } else {
       // tickround is a number of digits of fractional seconds
       // of any two adjacent ticks, at least one will have the maximum fractional digits
@@ -976,8 +1278,11 @@ function autoTickRound(ax) {
 // for pure powers of 10
 // numeric ticks always have constant differences, other datetime ticks
 // can all be calculated as constant number of milliseconds
-axes.tickIncrement = function (x, dtick, axrev, calendar) {
-  var axSign = axrev ? -1 : 1;
+axes.tickIncrement = function(x, dtick, axrev, calendar) {
+    var axSign = axrev ? -1 : 1;
+
+    // includes linear, all dates smaller than month, and pure 10^n in log
+    if(isNumeric(dtick)) return Lib.increment(x, axSign * dtick);
 
   // includes linear, all dates smaller than month, and pure 10^n in log
   if (isNumeric(dtick)) return x + axSign * dtick;
@@ -991,87 +1296,81 @@ axes.tickIncrement = function (x, dtick, axrev, calendar) {
     return Lib.incrementMonth(x, dtSigned, calendar);
   } else if (tType === 'L') {
     // Log scales: Linear, Digits
-    return Math.log(Math.pow(10, x) + dtSigned) / Math.LN10;
-  } else if (tType === 'D') {
+    if(tType === 'L') return Math.log(Math.pow(10, x) + dtSigned) / Math.LN10;
+
     // log10 of 2,5,10, or all digits (logs just have to be
     // close enough to round)
-    var tickset = dtick === 'D2' ? roundLog2 : roundLog1;
-    var x2 = x + axSign * 0.01;
-    var frac = Lib.roundUp(Lib.mod(x2, 1), tickset, axrev);
+    if(tType === 'D') {
+        var tickset = (dtick === 'D2') ? roundLog2 : roundLog1;
+        var x2 = x + axSign * 0.01;
+        var frac = Lib.roundUp(Lib.mod(x2, 1), tickset, axrev);
 
-    return (
-      Math.floor(x2) + Math.log(d3.round(Math.pow(10, frac), 1)) / Math.LN10
-    );
-  } else throw 'unrecognized dtick ' + String(dtick);
+        return Math.floor(x2) +
+            Math.log(d3.round(Math.pow(10, frac), 1)) / Math.LN10;
+    }
+
+    throw 'unrecognized dtick ' + String(dtick);
 };
 
 // calculate the first tick on an axis
-axes.tickFirst = function (ax) {
-  var r2l = ax.r2l || Number;
-  var rng = Lib.simpleMap(ax.range, r2l);
-  var axrev = rng[1] < rng[0];
-  var sRound = axrev ? Math.floor : Math.ceil;
-  // add a tiny extra bit to make sure we get ticks
-  // that may have been rounded out
-  var r0 = rng[0] * 1.0001 - rng[1] * 0.0001;
-  var dtick = ax.dtick;
-  var tick0 = r2l(ax.tick0);
+axes.tickFirst = function(ax, opts) {
+    var r2l = ax.r2l || Number;
+    var rng = Lib.simpleMap(ax.range, r2l, undefined, undefined, opts);
+    var axrev = rng[1] < rng[0];
+    var sRound = axrev ? Math.floor : Math.ceil;
+    // add a tiny extra bit to make sure we get ticks
+    // that may have been rounded out
+    var r0 = expandRange(rng)[0];
+    var dtick = ax.dtick;
+    var tick0 = r2l(ax.tick0);
 
-  if (isNumeric(dtick)) {
-    var tmin = sRound((r0 - tick0) / dtick) * dtick + tick0;
+    if(isNumeric(dtick)) {
+        var tmin = sRound((r0 - tick0) / dtick) * dtick + tick0;
 
-    // make sure no ticks outside the category list
-    if (ax.type === 'category' || ax.type === 'multicategory') {
-      tmin = Lib.constrain(tmin, 0, ax._categories.length - 1);
+        // make sure no ticks outside the category list
+        if(ax.type === 'category' || ax.type === 'multicategory') {
+            tmin = Lib.constrain(tmin, 0, ax._categories.length - 1);
+        }
+        return tmin;
     }
-    return tmin;
-  }
 
-  var tType = dtick.charAt(0);
-  var dtNum = Number(dtick.substr(1));
+    var tType = dtick.charAt(0);
+    var dtNum = Number(dtick.substr(1));
 
-  // Dates: months (or years)
-  if (tType === 'M') {
-    var cnt = 0;
-    var t0 = tick0;
-    var t1, mult, newDTick;
+    // Dates: months (or years)
+    if(tType === 'M') {
+        var cnt = 0;
+        var t0 = tick0;
+        var t1, mult, newDTick;
 
-    // This algorithm should work for *any* nonlinear (but close to linear!)
-    // tick spacing. Limit to 10 iterations, for gregorian months it's normally <=3.
-    while (cnt < 10) {
-      t1 = axes.tickIncrement(t0, dtick, axrev, ax.calendar);
-      if ((t1 - r0) * (t0 - r0) <= 0) {
-        // t1 and t0 are on opposite sides of r0! we've succeeded!
-        if (axrev) return Math.min(t0, t1);
-        return Math.max(t0, t1);
-      }
-      mult = (r0 - (t0 + t1) / 2) / (t1 - t0);
-      newDTick = tType + (Math.abs(Math.round(mult)) || 1) * dtNum;
-      t0 = axes.tickIncrement(
-        t0,
-        newDTick,
-        mult < 0 ? !axrev : axrev,
-        ax.calendar
-      );
-      cnt++;
-    }
-    Lib.error('tickFirst did not converge', ax);
-    return t0;
-  } else if (tType === 'L') {
-    // Log scales: Linear, Digits
+        // This algorithm should work for *any* nonlinear (but close to linear!)
+        // tick spacing. Limit to 10 iterations, for gregorian months it's normally <=3.
+        while(cnt < 10) {
+            t1 = axes.tickIncrement(t0, dtick, axrev, ax.calendar);
+            if((t1 - r0) * (t0 - r0) <= 0) {
+                // t1 and t0 are on opposite sides of r0! we've succeeded!
+                if(axrev) return Math.min(t0, t1);
+                return Math.max(t0, t1);
+            }
+            mult = (r0 - ((t0 + t1) / 2)) / (t1 - t0);
+            newDTick = tType + ((Math.abs(Math.round(mult)) || 1) * dtNum);
+            t0 = axes.tickIncrement(t0, newDTick, mult < 0 ? !axrev : axrev, ax.calendar);
+            cnt++;
+        }
+        Lib.error('tickFirst did not converge', ax);
+        return t0;
+    } else if(tType === 'L') {
+        // Log scales: Linear, Digits
 
-    return (
-      Math.log(sRound((Math.pow(10, r0) - tick0) / dtNum) * dtNum + tick0) /
-      Math.LN10
-    );
-  } else if (tType === 'D') {
-    var tickset = dtick === 'D2' ? roundLog2 : roundLog1;
-    var frac = Lib.roundUp(Lib.mod(r0, 1), tickset, axrev);
+        return Math.log(sRound(
+            (Math.pow(10, r0) - tick0) / dtNum) * dtNum + tick0) / Math.LN10;
+    } else if(tType === 'D') {
+        var tickset = (dtick === 'D2') ? roundLog2 : roundLog1;
+        var frac = Lib.roundUp(Lib.mod(r0, 1), tickset, axrev);
 
-    return (
-      Math.floor(r0) + Math.log(d3.round(Math.pow(10, frac), 1)) / Math.LN10
-    );
-  } else throw 'unrecognized dtick ' + String(dtick);
+        return Math.floor(r0) +
+            Math.log(d3.round(Math.pow(10, frac), 1)) / Math.LN10;
+    } else throw 'unrecognized dtick ' + String(dtick);
 };
 
 // draw the text for one tick.
@@ -1522,74 +1821,58 @@ function customFormat(tickformat, v, ax) {
 }
 
 function numFormat(v, ax, fmtoverride, hover) {
-  var isNeg = v < 0;
-  // max number of digits past decimal point to show
-  var tickRound = ax._tickround;
-  var exponentFormat = fmtoverride || ax.exponentformat || 'B';
-  var exponent = ax._tickexponent;
-  var tickformat = axes.getTickFormat(ax);
-  var separatethousands = ax.separatethousands;
+    var isNeg = v < 0;
+    // max number of digits past decimal point to show
+    var tickRound = ax._tickround;
+    var exponentFormat = fmtoverride || ax.exponentformat || 'B';
+    var exponent = ax._tickexponent;
+    var tickformat = axes.getTickFormat(ax);
+    var separatethousands = ax.separatethousands;
 
-  // special case for hover: set exponent just for this value, and
-  // add a couple more digits of precision over tick labels
-  if (hover) {
-    // make a dummy axis obj to get the auto rounding and exponent
-    var ah = {
-      exponentformat: exponentFormat,
-      dtick:
-        ax.showexponent === 'none'
-          ? ax.dtick
-          : isNumeric(v)
-          ? Math.abs(v) || 1
-          : 1,
-      // if not showing any exponents, don't change the exponent
-      // from what we calculate
-      range: ax.showexponent === 'none' ? ax.range.map(ax.r2d) : [0, v || 1]
-    };
-    autoTickRound(ah);
-    tickRound = (Number(ah._tickround) || 0) + 4;
-    exponent = ah._tickexponent;
-    if (ax.hoverformat) tickformat = ax.hoverformat;
-  }
-
-  if (tickformat) {
-    return customFormat(tickformat, v, ax);
-  }
-
-  // 'epsilon' - rounding increment
-  var e = Math.pow(10, -tickRound) / 2;
-
-  // exponentFormat codes:
-  // 'e' (1.2e+6, default)
-  // 'E' (1.2E+6)
-  // 'SI' (1.2M)
-  // 'B' (same as SI except 10^9=B not G)
-  // 'none' (1200000)
-  // 'power' (1.2x10^6)
-  // 'hide' (1.2, use 3rd argument=='hide' to eg
-  //      only show exponent on last tick)
-  if (exponentFormat === 'none') exponent = 0;
-
-  // take the sign out, put it back manually at the end
-  // - makes cases easier
-  v = Math.abs(v);
-  if (v < e) {
-    // 0 is just 0, but may get exponent if it's the last tick
-    v = '0';
-    isNeg = false;
-  } else {
-    v += e;
-    // take out a common exponent, if any
-    if (exponent) {
-      v *= Math.pow(10, -exponent);
-      tickRound += exponent;
+    // special case for hover: set exponent just for this value, and
+    // add a couple more digits of precision over tick labels
+    if(hover) {
+        // make a dummy axis obj to get the auto rounding and exponent
+        var ah = {
+            exponentformat: exponentFormat,
+            minexponent: ax.minexponent,
+            dtick: ax.showexponent === 'none' ? ax.dtick :
+                (isNumeric(v) ? Math.abs(v) || 1 : 1),
+            // if not showing any exponents, don't change the exponent
+            // from what we calculate
+            range: ax.showexponent === 'none' ? ax.range.map(ax.r2d) : [0, v || 1]
+        };
+        autoTickRound(ah);
+        tickRound = (Number(ah._tickround) || 0) + 4;
+        exponent = ah._tickexponent;
+        if(ax.hoverformat) tickformat = ax.hoverformat;
     }
-    // round the mantissa
-    if (tickRound === 0) v = String(Math.floor(v));
-    else if (tickRound < 0) {
-      v = String(Math.round(v));
-      v = v.substr(0, v.length + tickRound);
-      for (var i = tickRound; i < 0; i++) v += '0';
+
+    if (tickformat) {
+      return customFormat(tickformat, v, ax);
+    }
+
+    // 'epsilon' - rounding increment
+    var e = Math.pow(10, -tickRound) / 2;
+
+    // exponentFormat codes:
+    // 'e' (1.2e+6, default)
+    // 'E' (1.2E+6)
+    // 'SI' (1.2M)
+    // 'B' (same as SI except 10^9=B not G)
+    // 'none' (1200000)
+    // 'power' (1.2x10^6)
+    // 'hide' (1.2, use 3rd argument=='hide' to eg
+    //      only show exponent on last tick)
+    if(exponentFormat === 'none') exponent = 0;
+
+    // take the sign out, put it back manually at the end
+    // - makes cases easier
+    v = Math.abs(v);
+    if(v < e) {
+        // 0 is just 0, but may get exponent if it's the last tick
+        v = '0';
+        isNeg = false;
     } else {
       v = String(v);
       var dp = v.indexOf('.') + 1;
@@ -1910,124 +2193,73 @@ axes.draw = function (gd, arg, opts) {
  * - ax._depth (when required only):
  * - and calls ax.setScale
  */
-axes.drawOne = function (gd, ax, opts) {
-  opts = opts || {};
+axes.drawOne = function(gd, ax, opts) {
+    opts = opts || {};
 
-  var i, sp, plotinfo;
+    var i, sp, plotinfo;
 
-  ax.setScale();
+    ax.setScale();
 
-  var fullLayout = gd._fullLayout;
-  var axId = ax._id;
-  var axLetter = axId.charAt(0);
-  var counterLetter = axes.counterLetter(axId);
-  var mainPlotinfo = fullLayout._plots[ax._mainSubplot];
+    var fullLayout = gd._fullLayout;
+    var axId = ax._id;
+    var axLetter = axId.charAt(0);
+    var counterLetter = axes.counterLetter(axId);
+    var mainPlotinfo = fullLayout._plots[ax._mainSubplot];
 
-  // this happens when updating matched group with 'missing' axes
-  if (!mainPlotinfo) return;
+    // this happens when updating matched group with 'missing' axes
+    if(!mainPlotinfo) return;
 
-  var mainAxLayer = mainPlotinfo[axLetter + 'axislayer'];
-  var mainLinePosition = ax._mainLinePosition;
-  var mainMirrorPosition = ax._mainMirrorPosition;
+    var mainAxLayer = mainPlotinfo[axLetter + 'axislayer'];
+    var mainLinePosition = ax._mainLinePosition;
+    var mainMirrorPosition = ax._mainMirrorPosition;
 
-  var vals = (ax._vals = axes.calcTicks(ax));
+    var vals = ax._vals = axes.calcTicks(ax);
 
-  // Add a couple of axis properties that should cause us to recreate
-  // elements. Used in d3 data function.
-  var axInfo = [ax.mirror, mainLinePosition, mainMirrorPosition].join('_');
-  for (i = 0; i < vals.length; i++) {
-    vals[i].axInfo = axInfo;
-  }
-
-  // stash selections to avoid DOM queries e.g.
-  // - stash tickLabels selection, so that drawTitle can use it to scoot title
-  ax._selections = {};
-  // stash tick angle (including the computed 'auto' values) per tick-label class
-  // linkup 'previous' tick angles on redraws
-  if (ax._tickAngles) ax._prevTickAngles = ax._tickAngles;
-  ax._tickAngles = {};
-  // measure [in px] between axis position and outward-most part of bounding box
-  // (touching either the tick label or ticks)
-  // depth can be expansive to compute, so we only do so when required
-  ax._depth = null;
-
-  // calcLabelLevelBbox can be expensive,
-  // so make sure to not call it twice during the same Axes.drawOne call
-  // by stashing label-level bounding boxes per tick-label class
-  var llbboxes = {};
-  function getLabelLevelBbox(suffix) {
-    var cls = axId + (suffix || 'tick');
-    if (!llbboxes[cls]) llbboxes[cls] = calcLabelLevelBbox(ax, cls);
-    return llbboxes[cls];
-  }
-
-  if (!ax.visible) return;
-
-  var transFn = axes.makeTransFn(ax);
-  var tickVals;
-  // We remove zero lines, grid lines, and inside ticks if they're within 1px of the end
-  // The key case here is removing zero lines when the axis bound is zero
-  var valsClipped;
-
-  if (ax.tickson === 'boundaries') {
-    var boundaryVals = getBoundaryVals(ax, vals);
-    valsClipped = axes.clipEnds(ax, boundaryVals);
-    tickVals = ax.ticks === 'inside' ? valsClipped : boundaryVals;
-  } else {
-    valsClipped = axes.clipEnds(ax, vals);
-    tickVals = ax.ticks === 'inside' ? valsClipped : vals;
-  }
-
-  var gridVals = (ax._gridVals = valsClipped);
-  var dividerVals = getDividerVals(ax, vals);
-
-  if (!fullLayout._hasOnlyLargeSploms) {
-    var subplotsWithAx = ax._subplotsWith;
-
-    // keep track of which subplots (by main counter axis) we've already
-    // drawn grids for, so we don't overdraw overlaying subplots
-    var finishedGrids = {};
-
-    for (i = 0; i < subplotsWithAx.length; i++) {
-      sp = subplotsWithAx[i];
-      plotinfo = fullLayout._plots[sp];
-
-      var counterAxis = plotinfo[counterLetter + 'axis'];
-      var mainCounterID = counterAxis._mainAxis._id;
-      if (finishedGrids[mainCounterID]) continue;
-      finishedGrids[mainCounterID] = 1;
-
-      var gridPath =
-        axLetter === 'x'
-          ? 'M0,' + counterAxis._offset + 'v' + counterAxis._length
-          : 'M' + counterAxis._offset + ',0h' + counterAxis._length;
-
-      axes.drawGrid(gd, ax, {
-        vals: gridVals,
-        counterAxis: counterAxis,
-        layer: plotinfo.gridlayer.select('.' + axId),
-        path: gridPath,
-        transFn: transFn
-      });
-      axes.drawZeroLine(gd, ax, {
-        counterAxis: counterAxis,
-        layer: plotinfo.zerolinelayer,
-        path: gridPath,
-        transFn: transFn
-      });
+    // Add a couple of axis properties that should cause us to recreate
+    // elements. Used in d3 data function.
+    var axInfo = [ax.mirror, mainLinePosition, mainMirrorPosition].join('_');
+    for(i = 0; i < vals.length; i++) {
+        vals[i].axInfo = axInfo;
     }
-  }
 
-  var tickSigns = axes.getTickSigns(ax);
-  var tickSubplots = [];
+    // stash selections to avoid DOM queries e.g.
+    // - stash tickLabels selection, so that drawTitle can use it to scoot title
+    ax._selections = {};
+    // stash tick angle (including the computed 'auto' values) per tick-label class
+    // linkup 'previous' tick angles on redraws
+    if(ax._tickAngles) ax._prevTickAngles = ax._tickAngles;
+    ax._tickAngles = {};
+    // measure [in px] between axis position and outward-most part of bounding box
+    // (touching either the tick label or ticks)
+    // depth can be expansive to compute, so we only do so when required
+    ax._depth = null;
 
-  if (ax.ticks) {
-    var mainTickPath = axes.makeTickPath(ax, mainLinePosition, tickSigns[2]);
-    var mirrorTickPath;
-    var fullTickPath;
-    if (ax._anchorAxis && ax.mirror && ax.mirror !== true) {
-      mirrorTickPath = axes.makeTickPath(ax, mainMirrorPosition, tickSigns[3]);
-      fullTickPath = mainTickPath + mirrorTickPath;
+    // calcLabelLevelBbox can be expensive,
+    // so make sure to not call it twice during the same Axes.drawOne call
+    // by stashing label-level bounding boxes per tick-label class
+    var llbboxes = {};
+    function getLabelLevelBbox(suffix) {
+        var cls = axId + (suffix || 'tick');
+        if(!llbboxes[cls]) llbboxes[cls] = calcLabelLevelBbox(ax, cls);
+        return llbboxes[cls];
+    }
+
+    if(!ax.visible) return;
+
+    var transFn = axes.makeTransFn(ax);
+    var transTickLabelFn = ax.ticklabelmode === 'period' ?
+        axes.makeTransPeriodFn(ax) :
+        axes.makeTransFn(ax);
+
+    var tickVals;
+    // We remove zero lines, grid lines, and inside ticks if they're within 1px of the end
+    // The key case here is removing zero lines when the axis bound is zero
+    var valsClipped;
+
+    if(ax.tickson === 'boundaries') {
+        var boundaryVals = getBoundaryVals(ax, vals);
+        valsClipped = axes.clipEnds(ax, boundaryVals);
+        tickVals = ax.ticks === 'inside' ? valsClipped : boundaryVals;
     } else {
       mirrorTickPath = '';
       fullTickPath = mainTickPath;
@@ -2050,11 +2282,18 @@ axes.drawOne = function (gd, ax, opts) {
       tickPath = fullTickPath;
     }
 
-    axes.drawTicks(gd, ax, {
-      vals: tickVals,
-      layer: mainAxLayer,
-      path: tickPath,
-      transFn: transFn
+    var seq = [];
+
+    // tick labels - for now just the main labels.
+    // TODO: mirror labels, esp for subplots
+
+    seq.push(function() {
+        return axes.drawLabels(gd, ax, {
+            vals: vals,
+            layer: mainAxLayer,
+            transFn: transTickLabelFn,
+            labelFns: axes.makeLabelFns(ax, mainLinePosition)
+        });
     });
 
     if (ax.mirror === 'allticks') {
@@ -2313,30 +2552,32 @@ function getSecondaryLabelVals(ax, vals) {
 }
 
 function getDividerVals(ax, vals) {
-  var out = [];
-  var i, current;
+    var out = [];
+    var i, current;
 
-  // never used for labels;
-  // no need to worry about the other tickTextObj keys
-  var _push = function (d, bndIndex) {
-    var xb = d.xbnd[bndIndex];
-    if (xb !== null) {
-      out.push(Lib.extendFlat({}, d, { x: xb }));
+    var reversed = (vals.length && vals[vals.length - 1].x < vals[0].x);
+
+    // never used for labels;
+    // no need to worry about the other tickTextObj keys
+    var _push = function(d, bndIndex) {
+        var xb = d.xbnd[bndIndex];
+        if(xb !== null) {
+            out.push(Lib.extendFlat({}, d, {x: xb}));
+        }
+    };
+
+    if(ax.showdividers && vals.length) {
+        for(i = 0; i < vals.length; i++) {
+            var d = vals[i];
+            if(d.text2 !== current) {
+                _push(d, reversed ? 1 : 0);
+            }
+            current = d.text2;
+        }
+        _push(vals[i - 1], reversed ? 0 : 1);
     }
-  };
 
-  if (ax.showdividers && vals.length) {
-    for (i = 0; i < vals.length; i++) {
-      var d = vals[i];
-      if (d.text2 !== current) {
-        _push(d, 0);
-      }
-      current = d.text2;
-    }
-    _push(vals[i - 1], 1);
-  }
-
-  return out;
+    return out;
 }
 
 function calcLabelLevelBbox(ax, cls) {
@@ -2421,17 +2662,35 @@ axes.getTickSigns = function (ax) {
  *  - {fn} l2p
  * @return {fn} function of calcTicks items
  */
-axes.makeTransFn = function (ax) {
-  var axLetter = ax._id.charAt(0);
-  var offset = ax._offset;
-  return axLetter === 'x'
-    ? function (d) {
-        return 'translate(' + (offset + ax.l2p(d.x)) + ',0)';
-      }
-    : function (d) {
-        return 'translate(0,' + (offset + ax.l2p(d.x)) + ')';
-      };
+axes.makeTransFn = function(ax) {
+    var axLetter = ax._id.charAt(0);
+    var offset = ax._offset;
+    return axLetter === 'x' ?
+        function(d) { return strTranslate(offset + ax.l2p(d.x), 0); } :
+        function(d) { return strTranslate(0, offset + ax.l2p(d.x)); };
 };
+
+axes.makeTransPeriodFn = function(ax) {
+    var axLetter = ax._id.charAt(0);
+    var offset = ax._offset;
+    return axLetter === 'x' ?
+        function(d) {
+            return strTranslate(
+                offset + ax.l2p(getPeriodX(d)),
+                0
+            );
+        } :
+        function(d) {
+            return strTranslate(
+                0,
+                offset + ax.l2p(getPeriodX(d))
+            );
+        };
+};
+
+function getPeriodX(d) {
+    return d.periodX !== undefined ? d.periodX : d.x;
+}
 
 /**
  * Make axis tick path string
@@ -2578,9 +2837,17 @@ axes.drawTicks = function (gd, ax, opts) {
 
   var cls = ax._id + 'tick';
 
-  var ticks = opts.layer
-    .selectAll('path.' + cls)
-    .data(ax.ticks ? opts.vals : [], tickDataFn);
+    var vals = opts.vals;
+    if(
+        ax.ticklabelmode === 'period'
+    ) {
+        // drop very first tick that we added to handle period
+        vals = vals.slice();
+        vals.shift();
+    }
+
+    var ticks = opts.layer.selectAll('path.' + cls)
+        .data(ax.ticks ? vals : [], tickDataFn);
 
   ticks.exit().remove();
 
@@ -2738,57 +3005,184 @@ axes.drawZeroLine = function (gd, ax, opts) {
  *  + {fn} anchorFn
  *  + {fn} heightFn
  */
-axes.drawLabels = function (gd, ax, opts) {
-  opts = opts || {};
+axes.drawLabels = function(gd, ax, opts) {
+    opts = opts || {};
 
-  var fullLayout = gd._fullLayout;
-  var axId = ax._id;
-  var axLetter = axId.charAt(0);
-  var cls = opts.cls || axId + 'tick';
-  var vals = opts.vals;
-  var labelFns = opts.labelFns;
-  var tickAngle = opts.secondary ? 0 : ax.tickangle;
-  var prevAngle = (ax._prevTickAngles || {})[cls];
+    var fullLayout = gd._fullLayout;
+    var axId = ax._id;
+    var axLetter = axId.charAt(0);
+    var cls = opts.cls || axId + 'tick';
+    var vals = opts.vals;
 
-  var tickLabels = opts.layer
-    .selectAll('g.' + cls)
-    .data(ax.showticklabels ? vals : [], tickDataFn);
+    var labelFns = opts.labelFns;
+    var tickAngle = opts.secondary ? 0 : ax.tickangle;
+    var prevAngle = (ax._prevTickAngles || {})[cls];
 
-  var labelsReady = [];
+    var tickLabels = opts.layer.selectAll('g.' + cls)
+        .data(ax.showticklabels ? vals : [], tickDataFn);
 
-  tickLabels
-    .enter()
-    .append('g')
-    .classed(cls, 1)
-    .append('text')
-    // only so tex has predictable alignment that we can
-    // alter later
-    .attr('text-anchor', 'middle')
-    .each(function (d) {
-      var thisLabel = d3.select(this);
-      var newPromise = gd._promises.length;
+    var labelsReady = [];
 
-      thisLabel
-        .call(svgTextUtils.positionText, labelFns.xFn(d), labelFns.yFn(d))
-        .call(Drawing.font, d.font, d.fontSize, d.fontColor)
-        .text(d.text)
-        .call(svgTextUtils.convertToTspans, gd);
+    tickLabels.enter().append('g')
+        .classed(cls, 1)
+        .append('text')
+            // only so tex has predictable alignment that we can
+            // alter later
+            .attr('text-anchor', 'middle')
+            .each(function(d) {
+                var thisLabel = d3.select(this);
+                var newPromise = gd._promises.length;
 
-      if (gd._promises[newPromise]) {
-        // if we have an async label, we'll deal with that
-        // all here so take it out of gd._promises and
-        // instead position the label and promise this in
-        // labelsReady
-        labelsReady.push(
-          gd._promises.pop().then(function () {
-            positionLabels(thisLabel, tickAngle);
-          })
-        );
-      } else {
-        // sync label: just position it now.
-        positionLabels(thisLabel, tickAngle);
-      }
-    });
+                thisLabel
+                    .call(svgTextUtils.positionText, labelFns.xFn(d), labelFns.yFn(d))
+                    .call(Drawing.font, d.font, d.fontSize, d.fontColor)
+                    .text(d.text)
+                    .call(svgTextUtils.convertToTspans, gd);
+
+                if(gd._promises[newPromise]) {
+                    // if we have an async label, we'll deal with that
+                    // all here so take it out of gd._promises and
+                    // instead position the label and promise this in
+                    // labelsReady
+                    labelsReady.push(gd._promises.pop().then(function() {
+                        positionLabels(thisLabel, tickAngle);
+                    }));
+                } else {
+                    // sync label: just position it now.
+                    positionLabels(thisLabel, tickAngle);
+                }
+            });
+
+    tickLabels.exit().remove();
+
+    if(opts.repositionOnUpdate) {
+        tickLabels.each(function(d) {
+            d3.select(this).select('text')
+                .call(svgTextUtils.positionText, labelFns.xFn(d), labelFns.yFn(d));
+        });
+    }
+
+    function positionLabels(s, angle) {
+        s.each(function(d) {
+            var thisLabel = d3.select(this);
+            var mathjaxGroup = thisLabel.select('.text-math-group');
+            var anchor = labelFns.anchorFn(d, angle);
+
+            var transform = opts.transFn.call(thisLabel.node(), d) +
+                ((isNumeric(angle) && +angle !== 0) ?
+                (' rotate(' + angle + ',' + labelFns.xFn(d) + ',' +
+                    (labelFns.yFn(d) - d.fontSize / 2) + ')') :
+                '');
+
+            // how much to shift a multi-line label to center it vertically.
+            var nLines = svgTextUtils.lineCount(thisLabel);
+            var lineHeight = LINE_SPACING * d.fontSize;
+            var anchorHeight = labelFns.heightFn(d, isNumeric(angle) ? +angle : 0, (nLines - 1) * lineHeight);
+
+            if(anchorHeight) {
+                transform += strTranslate(0, anchorHeight);
+            }
+
+            if(mathjaxGroup.empty()) {
+                thisLabel.select('text').attr({
+                    transform: transform,
+                    'text-anchor': anchor
+                });
+            } else {
+                var mjWidth = Drawing.bBox(mathjaxGroup.node()).width;
+                var mjShift = mjWidth * {end: -0.5, start: 0.5}[anchor];
+                mathjaxGroup.attr('transform', transform + strTranslate(mjShift, 0));
+            }
+        });
+    }
+
+    // make sure all labels are correctly positioned at their base angle
+    // the positionLabels call above is only for newly drawn labels.
+    // do this without waiting, using the last calculated angle to
+    // minimize flicker, then do it again when we know all labels are
+    // there, putting back the prescribed angle to check for overlaps.
+    positionLabels(tickLabels, (prevAngle + 1) ? prevAngle : tickAngle);
+
+    function allLabelsReady() {
+        return labelsReady.length && Promise.all(labelsReady);
+    }
+
+    var autoangle = null;
+
+    function fixLabelOverlaps() {
+        positionLabels(tickLabels, tickAngle);
+
+        // check for auto-angling if x labels overlap
+        // don't auto-angle at all for log axes with
+        // base and digit format
+        if(vals.length && axLetter === 'x' && !isNumeric(tickAngle) &&
+            (ax.type !== 'log' || String(ax.dtick).charAt(0) !== 'D')
+        ) {
+            autoangle = 0;
+
+            var maxFontSize = 0;
+            var lbbArray = [];
+            var i;
+
+            tickLabels.each(function(d) {
+                maxFontSize = Math.max(maxFontSize, d.fontSize);
+
+                var x = ax.l2p(d.x);
+                var thisLabel = selectTickLabel(this);
+                var bb = Drawing.bBox(thisLabel.node());
+
+                lbbArray.push({
+                    // ignore about y, just deal with x overlaps
+                    top: 0,
+                    bottom: 10,
+                    height: 10,
+                    left: x - bb.width / 2,
+                    // impose a 2px gap
+                    right: x + bb.width / 2 + 2,
+                    width: bb.width + 2
+                });
+            });
+
+            if((ax.tickson === 'boundaries' || ax.showdividers) && !opts.secondary) {
+                var gap = 2;
+                if(ax.ticks) gap += ax.tickwidth / 2;
+
+                // TODO should secondary labels also fall into this fix-overlap regime?
+
+                for(i = 0; i < lbbArray.length; i++) {
+                    var xbnd = vals[i].xbnd;
+                    var lbb = lbbArray[i];
+                    if(
+                        (xbnd[0] !== null && (lbb.left - ax.l2p(xbnd[0])) < gap) ||
+                        (xbnd[1] !== null && (ax.l2p(xbnd[1]) - lbb.right) < gap)
+                    ) {
+                        autoangle = 90;
+                        break;
+                    }
+                }
+            } else {
+                var vLen = vals.length;
+                var tickSpacing = Math.abs((vals[vLen - 1].x - vals[0].x) * ax._m) / (vLen - 1);
+                var rotate90 = (tickSpacing < maxFontSize * 2.5) || ax.type === 'multicategory';
+
+                // any overlap at all - set 30 degrees or 90 degrees
+                for(i = 0; i < lbbArray.length - 1; i++) {
+                    if(Lib.bBoxIntersect(lbbArray[i], lbbArray[i + 1])) {
+                        autoangle = rotate90 ? 90 : 30;
+                        break;
+                    }
+                }
+            }
+
+            if(autoangle) {
+                positionLabels(tickLabels, autoangle);
+            }
+        }
+    }
+
+    if(ax._selections) {
+        ax._selections[cls] = tickLabels;
+    }
 
   tickLabels.exit().remove();
 
@@ -3472,4 +3866,15 @@ function swapAxisAttrs(layout, key, xFullAxes, yFullAxes, dfltTitle) {
 
 function isAngular(ax) {
   return ax._id === 'angularaxis';
+}
+
+function moveOutsideBreak(v, ax) {
+    var len = ax._rangebreaks.length;
+    for(var k = 0; k < len; k++) {
+        var brk = ax._rangebreaks[k];
+        if(v >= brk.min && v < brk.max) {
+            return brk.max;
+        }
+    }
+    return v;
 }
