@@ -9,6 +9,9 @@
 'use strict';
 
 var d3 = require('d3');
+// begin changes
+var numeral = require('numeral');
+// end changes
 var isNumeric = require('fast-isnumeric');
 var Plots = require('../../plots/plots');
 
