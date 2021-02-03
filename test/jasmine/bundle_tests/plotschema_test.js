@@ -11,7 +11,6 @@ var surface = require('@src/traces/surface');
 var baseLayoutAttrs = require('@src/plots/layout_attributes');
 var cartesianAttrs = require('@src/plots/cartesian').layoutAttributes;
 var gl3dAttrs = require('@src/plots/gl3d').layoutAttributes;
-var polarLayoutAttrs = require('@src/plots/polar/legacy/axis_attributes');
 var annotationAttrs = require('@src/components/annotations').layoutAttributes;
 var updatemenuAttrs = require('@src/components/updatemenus').layoutAttributes;
 var cartesianIdRegex = require('@src/plots/cartesian/constants').idRegex;
@@ -26,7 +25,7 @@ describe('plot schema', function() {
     var isPlainObject = Lib.isPlainObject;
 
     var VALTYPES = Object.keys(valObjects);
-    var ROLES = ['info', 'style', 'data'];
+    var formerRoles = ['info', 'style', 'data'];
     var editType = plotSchema.defs.editType;
 
     function assertTraceSchema(callback) {
@@ -74,11 +73,12 @@ describe('plot schema', function() {
         );
     });
 
-    it('all attributes should only have valid `role`', function() {
+    it('all attributes should not have a former `role`', function() {
         assertPlotSchema(
             function(attr) {
                 if(isValObject(attr)) {
-                    expect(ROLES.indexOf(attr.role) !== -1).toBe(true, attr);
+                    expect(formerRoles.indexOf(attr.role) === -1).toBe(true, attr);
+                    expect(attr.role).toBeUndefined(attr);
                 }
             }
         );
@@ -224,7 +224,7 @@ describe('plot schema', function() {
         );
     });
 
-    it('deprecated attributes should have a `valType` and `role`', function() {
+    it('deprecated attributes should have a `valType` and not any former roles', function() {
         var DEPRECATED = '_deprecated';
 
         assertPlotSchema(
@@ -233,10 +233,10 @@ describe('plot schema', function() {
                     Object.keys(attr[DEPRECATED]).forEach(function(dAttrName) {
                         var dAttr = attr[DEPRECATED][dAttrName];
 
-                        expect(VALTYPES.indexOf(dAttr.valType) !== -1)
-                            .toBe(true, attrString + ': ' + dAttrName);
-                        expect(ROLES.indexOf(dAttr.role) !== -1)
-                            .toBe(true, attrString + ': ' + dAttrName);
+                        var msg = attrString + ': ' + dAttrName;
+                        expect(VALTYPES.indexOf(dAttr.valType) !== -1).toBe(true, msg);
+                        expect(formerRoles.indexOf(dAttr.role) === -1).toBe(true, msg);
+                        expect(dAttr.role).toBeUndefined(msg);
                     });
                 }
             }
@@ -466,13 +466,6 @@ describe('getTraceValObject', function() {
         expect(getTraceValObject({}, ['transforms', 0, 'operation'])).toBe(false);
     });
 
-    it('supports polar area attributes', function() {
-        var areaAttrs = require('@src/plots/polar/legacy/area_attributes');
-        expect(getTraceValObject({type: 'area'}, ['r'])).toBe(areaAttrs.r);
-        expect(getTraceValObject({type: 'area'}, ['t', 23])).toBe(areaAttrs.t);
-        expect(getTraceValObject({type: 'area'}, ['q'])).toBe(false);
-    });
-
     it('does not return attribute properties', function() {
         // it still returns the attribute itself - but maybe we should only do this
         // for valType: any? (or data_array/arrayOk with just an index)
@@ -582,17 +575,6 @@ describe('getLayoutValObject', function() {
         expect(getLayoutValObject(layout3D, ['scene0', 'bgcolor'])).toBe(false);
         expect(getLayoutValObject(layout3D, ['scene1', 'bgcolor'])).toBe(false);
         expect(getLayoutValObject(layout3D, ['scene2k', 'bgcolor'])).toBe(false);
-    });
-
-    it('finds polar attributes', function() {
-        expect(getLayoutValObject(blankLayout, ['direction']))
-            .toBe(polarLayoutAttrs.layout.direction);
-
-        expect(getLayoutValObject(blankLayout, ['radialaxis', 'range', 0]))
-            .toBe(polarLayoutAttrs.radialaxis.range.items[0]);
-
-        expect(getLayoutValObject(blankLayout, ['angularaxis', 'domain']))
-            .toBe(polarLayoutAttrs.angularaxis.domain);
     });
 
     it('lets gl2d override cartesian & global attrs', function() {

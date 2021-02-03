@@ -5,9 +5,6 @@ var list = [
     '1',
     '4',
     '5',
-    '6',
-    '7',
-    '8',
     '10',
     '11',
     '12',
@@ -42,6 +39,7 @@ var list = [
     'automargin-large-margins',
     'automargin-large-margins-both-sides',
     'automargin-large-margins-horizontal',
+    'automargin-narrow-indicator',
     'automargin-mirror-all',
     'automargin-mirror-allticks',
     'automargin-multiline-titles',
@@ -81,6 +79,10 @@ var list = [
     'axes_category_descending',
     'axes_category_descending_with_gaps',
     'axes_category_null',
+    'axes_chain_scaleanchor_matches',
+    'axes_chain_scaleanchor_matches2',
+    'axes_chain_scaleanchor_matches_inside-ticklabels',
+    'axes_chain_scaleanchor_matches2_inside-ticklabels',
     'axes_custom-ticks_log-date',
     'axes_enumerated_ticks',
     'axes_free_default',
@@ -258,6 +260,7 @@ var list = [
     'custom_colorscale',
     'custom_size_subplot',
     'date_axes',
+    'date_axes_side_top',
     'date_axes_period',
     'date_axes_period2',
     'date_axes_period_breaks_automargin',
@@ -649,6 +652,7 @@ var list = [
     'image_non_numeric',
     'image_opacity',
     'image_source_axis_reverse',
+    'image_source_axis_reverse_zsmooth',
     'image_with_gaps',
     'image_with_heatmap',
     'image_zmin_zmax',
@@ -718,8 +722,8 @@ var list = [
     'mapbox_choropleth0-legend',
     'mapbox_connectgaps',
     'mapbox_custom-style',
-    'mapbox_density-mulitple',
-    'mapbox_density-mulitple_legend',
+    'mapbox_density-multiple',
+    'mapbox_density-multiple_legend',
     'mapbox_density0',
     'mapbox_density0-legend',
     'mapbox_earthquake-density',
@@ -800,7 +804,6 @@ var list = [
     'plot_types',
     'point-selection',
     'point-selection2',
-    'polar_area_chart',
     'polar_bar-overlay',
     'polar_bar-stacked',
     'polar_bar-width-base-offset',
@@ -960,6 +963,15 @@ var list = [
     'tick-percent',
     'tickformat',
     'tickformatstops',
+    'ticklabelposition-0',
+    'ticklabelposition-1',
+    'ticklabelposition-2',
+    'ticklabelposition-3',
+    'ticklabelposition-4',
+    'ticklabelposition-a',
+    'ticklabelposition-b',
+    'ticklabelposition-c',
+    'ticklabelposition-d',
     'tickson_boundaries',
     'titles-avoid-labels',
     'trace_metatext',
@@ -976,6 +988,7 @@ var list = [
     'treemap_packings',
     'treemap_pad_mirror',
     'treemap_pad_transpose',
+    'treemap_root-color',
     'treemap_sunburst_basic',
     'treemap_sunburst_marker_colors',
     'treemap_textfit',
@@ -1017,6 +1030,7 @@ var list = [
     'updatemenus',
     'updatemenus_positioning',
     'updatemenus_toggle',
+    'vertical-tickangles',
     'violin_bandwidth-edge-cases',
     'violin_box_multiple_widths',
     'violin_box_overlay',
@@ -1079,9 +1093,6 @@ figs['0'] = require('@mocks/0');
 // figs['1'] = require('@mocks/1');
 figs['4'] = require('@mocks/4');
 figs['5'] = require('@mocks/5');
-// figs['6'] = require('@mocks/6');
-// figs['7'] = require('@mocks/7');
-// figs['8'] = require('@mocks/8');
 figs['10'] = require('@mocks/10');
 // figs['11'] = require('@mocks/11');
 // figs['12'] = require('@mocks/12');
@@ -1116,6 +1127,7 @@ figs['arrow-markers'] = require('@mocks/arrow-markers');
 figs['automargin-large-margins'] = require('@mocks/automargin-large-margins');
 figs['automargin-large-margins-both-sides'] = require('@mocks/automargin-large-margins-both-sides');
 figs['automargin-large-margins-horizontal'] = require('@mocks/automargin-large-margins-horizontal');
+figs['automargin-narrow-indicator'] = require('@mocks/automargin-narrow-indicator');
 figs['automargin-mirror-all'] = require('@mocks/automargin-mirror-all');
 figs['automargin-mirror-allticks'] = require('@mocks/automargin-mirror-allticks');
 figs['automargin-multiline-titles'] = require('@mocks/automargin-multiline-titles');
@@ -1155,6 +1167,10 @@ figs['axes_category_categoryarray_truncated_tails'] = require('@mocks/axes_categ
 // figs['axes_category_descending'] = require('@mocks/axes_category_descending');
 // figs['axes_category_descending_with_gaps'] = require('@mocks/axes_category_descending_with_gaps');
 figs['axes_category_null'] = require('@mocks/axes_category_null');
+figs['axes_chain_scaleanchor_matches'] = require('@mocks/axes_chain_scaleanchor_matches');
+figs['axes_chain_scaleanchor_matches2'] = require('@mocks/axes_chain_scaleanchor_matches2');
+figs['axes_chain_scaleanchor_matches_inside-ticklabels'] = require('@mocks/axes_chain_scaleanchor_matches_inside-ticklabels');
+figs['axes_chain_scaleanchor_matches2_inside-ticklabels'] = require('@mocks/axes_chain_scaleanchor_matches2_inside-ticklabels');
 figs['axes_custom-ticks_log-date'] = require('@mocks/axes_custom-ticks_log-date');
 figs['axes_enumerated_ticks'] = require('@mocks/axes_enumerated_ticks');
 figs['axes_free_default'] = require('@mocks/axes_free_default');
@@ -1332,6 +1348,7 @@ figs['contour-heatmap-coloring-set-contours'] = require('@mocks/contour-heatmap-
 figs['custom_colorscale'] = require('@mocks/custom_colorscale');
 figs['custom_size_subplot'] = require('@mocks/custom_size_subplot');
 figs['date_axes'] = require('@mocks/date_axes');
+figs['date_axes_side_top'] = require('@mocks/date_axes_side_top');
 figs['date_axes_period'] = require('@mocks/date_axes_period');
 figs['date_axes_period2'] = require('@mocks/date_axes_period2');
 figs['date_axes_period_breaks_automargin'] = require('@mocks/date_axes_period_breaks_automargin');
@@ -1723,6 +1740,7 @@ figs['image_colormodel'] = require('@mocks/image_colormodel');
 figs['image_non_numeric'] = require('@mocks/image_non_numeric');
 figs['image_opacity'] = require('@mocks/image_opacity');
 figs['image_source_axis_reverse'] = require('@mocks/image_source_axis_reverse');
+figs['image_source_axis_reverse_zsmooth'] = require('@mocks/image_source_axis_reverse_zsmooth');
 figs['image_with_gaps'] = require('@mocks/image_with_gaps');
 figs['image_with_heatmap'] = require('@mocks/image_with_heatmap');
 figs['image_zmin_zmax'] = require('@mocks/image_zmin_zmax');
@@ -1792,8 +1810,8 @@ figs['mapbox_choropleth0'] = require('@mocks/mapbox_choropleth0');
 figs['mapbox_choropleth0-legend'] = require('@mocks/mapbox_choropleth0-legend');
 figs['mapbox_connectgaps'] = require('@mocks/mapbox_connectgaps');
 figs['mapbox_custom-style'] = require('@mocks/mapbox_custom-style');
-figs['mapbox_density-mulitple'] = require('@mocks/mapbox_density-mulitple');
-figs['mapbox_density-mulitple_legend'] = require('@mocks/mapbox_density-mulitple_legend');
+figs['mapbox_density-multiple'] = require('@mocks/mapbox_density-multiple');
+figs['mapbox_density-multiple_legend'] = require('@mocks/mapbox_density-multiple_legend');
 figs['mapbox_density0'] = require('@mocks/mapbox_density0');
 figs['mapbox_density0-legend'] = require('@mocks/mapbox_density0-legend');
 figs['mapbox_earthquake-density'] = require('@mocks/mapbox_earthquake-density');
@@ -1874,7 +1892,6 @@ figs['pie_title_variations'] = require('@mocks/pie_title_variations');
 // figs['plot_types'] = require('@mocks/plot_types');
 figs['point-selection'] = require('@mocks/point-selection');
 figs['point-selection2'] = require('@mocks/point-selection2');
-// figs['polar_area_chart'] = require('@mocks/polar_area_chart');
 figs['polar_bar-overlay'] = require('@mocks/polar_bar-overlay');
 figs['polar_bar-stacked'] = require('@mocks/polar_bar-stacked');
 figs['polar_bar-width-base-offset'] = require('@mocks/polar_bar-width-base-offset');
@@ -2034,6 +2051,15 @@ figs['tick-increment'] = require('@mocks/tick-increment');
 figs['tick-percent'] = require('@mocks/tick-percent');
 figs['tickformat'] = require('@mocks/tickformat');
 figs['tickformatstops'] = require('@mocks/tickformatstops');
+figs['ticklabelposition-0'] = require('@mocks/ticklabelposition-0');
+figs['ticklabelposition-1'] = require('@mocks/ticklabelposition-1');
+figs['ticklabelposition-2'] = require('@mocks/ticklabelposition-2');
+figs['ticklabelposition-3'] = require('@mocks/ticklabelposition-3');
+figs['ticklabelposition-4'] = require('@mocks/ticklabelposition-4');
+figs['ticklabelposition-a'] = require('@mocks/ticklabelposition-a');
+figs['ticklabelposition-b'] = require('@mocks/ticklabelposition-b');
+figs['ticklabelposition-c'] = require('@mocks/ticklabelposition-c');
+figs['ticklabelposition-d'] = require('@mocks/ticklabelposition-d');
 figs['tickson_boundaries'] = require('@mocks/tickson_boundaries');
 // figs['titles-avoid-labels'] = require('@mocks/titles-avoid-labels');
 // figs['trace_metatext'] = require('@mocks/trace_metatext');
@@ -2050,6 +2076,7 @@ figs['treemap_packages_colorscale_novalue'] = require('@mocks/treemap_packages_c
 figs['treemap_packings'] = require('@mocks/treemap_packings');
 figs['treemap_pad_mirror'] = require('@mocks/treemap_pad_mirror');
 figs['treemap_pad_transpose'] = require('@mocks/treemap_pad_transpose');
+figs['treemap_root-color'] = require('@mocks/treemap_root-color');
 figs['treemap_sunburst_basic'] = require('@mocks/treemap_sunburst_basic');
 figs['treemap_sunburst_marker_colors'] = require('@mocks/treemap_sunburst_marker_colors');
 figs['treemap_textfit'] = require('@mocks/treemap_textfit');
@@ -2091,6 +2118,7 @@ figs['uniformtext_treemap_coffee-maxdepth3'] = require('@mocks/uniformtext_treem
 // figs['updatemenus'] = require('@mocks/updatemenus');
 figs['updatemenus_positioning'] = require('@mocks/updatemenus_positioning');
 figs['updatemenus_toggle'] = require('@mocks/updatemenus_toggle');
+figs['vertical-tickangles'] = require('@mocks/vertical-tickangles');
 figs['violin_bandwidth-edge-cases'] = require('@mocks/violin_bandwidth-edge-cases');
 figs['violin_box_multiple_widths'] = require('@mocks/violin_box_multiple_widths');
 figs['violin_box_overlay'] = require('@mocks/violin_box_overlay');

@@ -1,3 +1,9 @@
+/**
+* plotly.js (finance) v1.58.4
+* Copyright 2012-2021, Plotly, Inc.
+* All rights reserved.
+* Licensed under the MIT license
+*/
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Plotly = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 'use strict';
 
@@ -66,93 +72,57 @@ for(var selector in rules) {
     Lib.addStyleRule(fullSelector, rules[selector]);
 }
 
-},{"../src/lib":210}],2:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../src/lib":238}],2:[function(_dereq_,module,exports){
+'use strict';
 
+module.exports = _dereq_('../src/transforms/aggregate');
+
+},{"../src/transforms/aggregate":461}],3:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/bar');
 
-},{"../src/traces/bar":315}],3:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../src/traces/bar":338}],4:[function(_dereq_,module,exports){
+'use strict';
 
+module.exports = _dereq_('../src/components/calendars');
+
+},{"../src/components/calendars":107}],5:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/candlestick');
 
-},{"../src/traces/candlestick":333}],4:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../src/traces/candlestick":356}],6:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/core');
 
-},{"../src/core":191}],5:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../src/core":219}],7:[function(_dereq_,module,exports){
+'use strict';
 
+module.exports = _dereq_('../src/transforms/filter');
+
+},{"../src/transforms/filter":462}],8:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/funnel');
 
-},{"../src/traces/funnel":342}],6:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../src/traces/funnel":365}],9:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/funnelarea');
 
-},{"../src/traces/funnelarea":351}],7:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../src/traces/funnelarea":374}],10:[function(_dereq_,module,exports){
+'use strict';
 
+module.exports = _dereq_('../src/transforms/groupby');
+
+},{"../src/transforms/groupby":463}],11:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/histogram');
 
-},{"../src/traces/histogram":367}],8:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../src/traces/histogram":390}],12:[function(_dereq_,module,exports){
 'use strict';
 
 var Plotly = _dereq_('./core');
@@ -169,1626 +139,66 @@ Plotly.register([
     _dereq_('./indicator')
 ]);
 
-module.exports = Plotly;
+module.exports = _dereq_('./register_extra')(Plotly);
 
-},{"./bar":2,"./candlestick":3,"./core":4,"./funnel":5,"./funnelarea":6,"./histogram":7,"./indicator":9,"./ohlc":10,"./pie":11,"./waterfall":12}],9:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./bar":3,"./candlestick":5,"./core":6,"./funnel":8,"./funnelarea":9,"./histogram":11,"./indicator":13,"./ohlc":14,"./pie":15,"./register_extra":16,"./waterfall":18}],13:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/indicator');
 
-},{"../src/traces/indicator":374}],10:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../src/traces/indicator":397}],14:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/ohlc');
 
-},{"../src/traces/ohlc":380}],11:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../src/traces/ohlc":403}],15:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/pie');
 
-},{"../src/traces/pie":391}],12:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../src/traces/pie":414}],16:[function(_dereq_,module,exports){
+'use strict';
 
+module.exports = function registerExtra(Plotly) {
+    // transforms
+    //
+    // Please note that all *transform* methods are executed before
+    // all *calcTransform* methods - which could possibly lead to
+    // unexpected results when applying multiple transforms of different types
+    // to a given trace.
+    //
+    // For more info, see:
+    // https://github.com/plotly/plotly.js/pull/978#pullrequestreview-2403353
+    //
+    Plotly.register([
+        _dereq_('./aggregate'),
+        _dereq_('./filter'),
+        _dereq_('./groupby'),
+        _dereq_('./sort')
+    ]);
+
+    // components
+    Plotly.register([
+        _dereq_('./calendars')
+    ]);
+
+    return Plotly;
+};
+
+},{"./aggregate":2,"./calendars":4,"./filter":7,"./groupby":10,"./sort":17}],17:[function(_dereq_,module,exports){
+'use strict';
+
+module.exports = _dereq_('../src/transforms/sort');
+
+},{"../src/transforms/sort":465}],18:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/waterfall');
 
-},{"../src/traces/waterfall":433}],13:[function(_dereq_,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-'use strict';
-
-var R = typeof Reflect === 'object' ? Reflect : null
-var ReflectApply = R && typeof R.apply === 'function'
-  ? R.apply
-  : function ReflectApply(target, receiver, args) {
-    return Function.prototype.apply.call(target, receiver, args);
-  }
-
-var ReflectOwnKeys
-if (R && typeof R.ownKeys === 'function') {
-  ReflectOwnKeys = R.ownKeys
-} else if (Object.getOwnPropertySymbols) {
-  ReflectOwnKeys = function ReflectOwnKeys(target) {
-    return Object.getOwnPropertyNames(target)
-      .concat(Object.getOwnPropertySymbols(target));
-  };
-} else {
-  ReflectOwnKeys = function ReflectOwnKeys(target) {
-    return Object.getOwnPropertyNames(target);
-  };
-}
-
-function ProcessEmitWarning(warning) {
-  if (console && console.warn) console.warn(warning);
-}
-
-var NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {
-  return value !== value;
-}
-
-function EventEmitter() {
-  EventEmitter.init.call(this);
-}
-module.exports = EventEmitter;
-module.exports.once = once;
-
-// Backwards-compat with node 0.10.x
-EventEmitter.EventEmitter = EventEmitter;
-
-EventEmitter.prototype._events = undefined;
-EventEmitter.prototype._eventsCount = 0;
-EventEmitter.prototype._maxListeners = undefined;
-
-// By default EventEmitters will print a warning if more than 10 listeners are
-// added to it. This is a useful default which helps finding memory leaks.
-var defaultMaxListeners = 10;
-
-function checkListener(listener) {
-  if (typeof listener !== 'function') {
-    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
-  }
-}
-
-Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
-  enumerable: true,
-  get: function() {
-    return defaultMaxListeners;
-  },
-  set: function(arg) {
-    if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {
-      throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + arg + '.');
-    }
-    defaultMaxListeners = arg;
-  }
-});
-
-EventEmitter.init = function() {
-
-  if (this._events === undefined ||
-      this._events === Object.getPrototypeOf(this)._events) {
-    this._events = Object.create(null);
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-};
-
-// Obviously not all Emitters should be limited to 10. This function allows
-// that to be increased. Set to zero for unlimited.
-EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
-  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
-    throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.');
-  }
-  this._maxListeners = n;
-  return this;
-};
-
-function _getMaxListeners(that) {
-  if (that._maxListeners === undefined)
-    return EventEmitter.defaultMaxListeners;
-  return that._maxListeners;
-}
-
-EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
-  return _getMaxListeners(this);
-};
-
-EventEmitter.prototype.emit = function emit(type) {
-  var args = [];
-  for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
-  var doError = (type === 'error');
-
-  var events = this._events;
-  if (events !== undefined)
-    doError = (doError && events.error === undefined);
-  else if (!doError)
-    return false;
-
-  // If there is no 'error' event listener then throw.
-  if (doError) {
-    var er;
-    if (args.length > 0)
-      er = args[0];
-    if (er instanceof Error) {
-      // Note: The comments on the `throw` lines are intentional, they show
-      // up in Node's output if this results in an unhandled exception.
-      throw er; // Unhandled 'error' event
-    }
-    // At least give some kind of context to the user
-    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
-    err.context = er;
-    throw err; // Unhandled 'error' event
-  }
-
-  var handler = events[type];
-
-  if (handler === undefined)
-    return false;
-
-  if (typeof handler === 'function') {
-    ReflectApply(handler, this, args);
-  } else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i)
-      ReflectApply(listeners[i], this, args);
-  }
-
-  return true;
-};
-
-function _addListener(target, type, listener, prepend) {
-  var m;
-  var events;
-  var existing;
-
-  checkListener(listener);
-
-  events = target._events;
-  if (events === undefined) {
-    events = target._events = Object.create(null);
-    target._eventsCount = 0;
-  } else {
-    // To avoid recursion in the case that type === "newListener"! Before
-    // adding it to the listeners, first emit "newListener".
-    if (events.newListener !== undefined) {
-      target.emit('newListener', type,
-                  listener.listener ? listener.listener : listener);
-
-      // Re-assign `events` because a newListener handler could have caused the
-      // this._events to be assigned to a new object
-      events = target._events;
-    }
-    existing = events[type];
-  }
-
-  if (existing === undefined) {
-    // Optimize the case of one listener. Don't need the extra array object.
-    existing = events[type] = listener;
-    ++target._eventsCount;
-  } else {
-    if (typeof existing === 'function') {
-      // Adding the second element, need to change to array.
-      existing = events[type] =
-        prepend ? [listener, existing] : [existing, listener];
-      // If we've already got an array, just append.
-    } else if (prepend) {
-      existing.unshift(listener);
-    } else {
-      existing.push(listener);
-    }
-
-    // Check for listener leak
-    m = _getMaxListeners(target);
-    if (m > 0 && existing.length > m && !existing.warned) {
-      existing.warned = true;
-      // No error code for this since it is a Warning
-      // eslint-disable-next-line no-restricted-syntax
-      var w = new Error('Possible EventEmitter memory leak detected. ' +
-                          existing.length + ' ' + String(type) + ' listeners ' +
-                          'added. Use emitter.setMaxListeners() to ' +
-                          'increase limit');
-      w.name = 'MaxListenersExceededWarning';
-      w.emitter = target;
-      w.type = type;
-      w.count = existing.length;
-      ProcessEmitWarning(w);
-    }
-  }
-
-  return target;
-}
-
-EventEmitter.prototype.addListener = function addListener(type, listener) {
-  return _addListener(this, type, listener, false);
-};
-
-EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-
-EventEmitter.prototype.prependListener =
-    function prependListener(type, listener) {
-      return _addListener(this, type, listener, true);
-    };
-
-function onceWrapper() {
-  if (!this.fired) {
-    this.target.removeListener(this.type, this.wrapFn);
-    this.fired = true;
-    if (arguments.length === 0)
-      return this.listener.call(this.target);
-    return this.listener.apply(this.target, arguments);
-  }
-}
-
-function _onceWrap(target, type, listener) {
-  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
-  var wrapped = onceWrapper.bind(state);
-  wrapped.listener = listener;
-  state.wrapFn = wrapped;
-  return wrapped;
-}
-
-EventEmitter.prototype.once = function once(type, listener) {
-  checkListener(listener);
-  this.on(type, _onceWrap(this, type, listener));
-  return this;
-};
-
-EventEmitter.prototype.prependOnceListener =
-    function prependOnceListener(type, listener) {
-      checkListener(listener);
-      this.prependListener(type, _onceWrap(this, type, listener));
-      return this;
-    };
-
-// Emits a 'removeListener' event if and only if the listener was removed.
-EventEmitter.prototype.removeListener =
-    function removeListener(type, listener) {
-      var list, events, position, i, originalListener;
-
-      checkListener(listener);
-
-      events = this._events;
-      if (events === undefined)
-        return this;
-
-      list = events[type];
-      if (list === undefined)
-        return this;
-
-      if (list === listener || list.listener === listener) {
-        if (--this._eventsCount === 0)
-          this._events = Object.create(null);
-        else {
-          delete events[type];
-          if (events.removeListener)
-            this.emit('removeListener', type, list.listener || listener);
-        }
-      } else if (typeof list !== 'function') {
-        position = -1;
-
-        for (i = list.length - 1; i >= 0; i--) {
-          if (list[i] === listener || list[i].listener === listener) {
-            originalListener = list[i].listener;
-            position = i;
-            break;
-          }
-        }
-
-        if (position < 0)
-          return this;
-
-        if (position === 0)
-          list.shift();
-        else {
-          spliceOne(list, position);
-        }
-
-        if (list.length === 1)
-          events[type] = list[0];
-
-        if (events.removeListener !== undefined)
-          this.emit('removeListener', type, originalListener || listener);
-      }
-
-      return this;
-    };
-
-EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
-
-EventEmitter.prototype.removeAllListeners =
-    function removeAllListeners(type) {
-      var listeners, events, i;
-
-      events = this._events;
-      if (events === undefined)
-        return this;
-
-      // not listening for removeListener, no need to emit
-      if (events.removeListener === undefined) {
-        if (arguments.length === 0) {
-          this._events = Object.create(null);
-          this._eventsCount = 0;
-        } else if (events[type] !== undefined) {
-          if (--this._eventsCount === 0)
-            this._events = Object.create(null);
-          else
-            delete events[type];
-        }
-        return this;
-      }
-
-      // emit removeListener for all listeners on all events
-      if (arguments.length === 0) {
-        var keys = Object.keys(events);
-        var key;
-        for (i = 0; i < keys.length; ++i) {
-          key = keys[i];
-          if (key === 'removeListener') continue;
-          this.removeAllListeners(key);
-        }
-        this.removeAllListeners('removeListener');
-        this._events = Object.create(null);
-        this._eventsCount = 0;
-        return this;
-      }
-
-      listeners = events[type];
-
-      if (typeof listeners === 'function') {
-        this.removeListener(type, listeners);
-      } else if (listeners !== undefined) {
-        // LIFO order
-        for (i = listeners.length - 1; i >= 0; i--) {
-          this.removeListener(type, listeners[i]);
-        }
-      }
-
-      return this;
-    };
-
-function _listeners(target, type, unwrap) {
-  var events = target._events;
-
-  if (events === undefined)
-    return [];
-
-  var evlistener = events[type];
-  if (evlistener === undefined)
-    return [];
-
-  if (typeof evlistener === 'function')
-    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
-
-  return unwrap ?
-    unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
-}
-
-EventEmitter.prototype.listeners = function listeners(type) {
-  return _listeners(this, type, true);
-};
-
-EventEmitter.prototype.rawListeners = function rawListeners(type) {
-  return _listeners(this, type, false);
-};
-
-EventEmitter.listenerCount = function(emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-};
-
-EventEmitter.prototype.listenerCount = listenerCount;
-function listenerCount(type) {
-  var events = this._events;
-
-  if (events !== undefined) {
-    var evlistener = events[type];
-
-    if (typeof evlistener === 'function') {
-      return 1;
-    } else if (evlistener !== undefined) {
-      return evlistener.length;
-    }
-  }
-
-  return 0;
-}
-
-EventEmitter.prototype.eventNames = function eventNames() {
-  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
-};
-
-function arrayClone(arr, n) {
-  var copy = new Array(n);
-  for (var i = 0; i < n; ++i)
-    copy[i] = arr[i];
-  return copy;
-}
-
-function spliceOne(list, index) {
-  for (; index + 1 < list.length; index++)
-    list[index] = list[index + 1];
-  list.pop();
-}
-
-function unwrapListeners(arr) {
-  var ret = new Array(arr.length);
-  for (var i = 0; i < ret.length; ++i) {
-    ret[i] = arr[i].listener || arr[i];
-  }
-  return ret;
-}
-
-function once(emitter, name) {
-  return new Promise(function (resolve, reject) {
-    function eventListener() {
-      if (errorListener !== undefined) {
-        emitter.removeListener('error', errorListener);
-      }
-      resolve([].slice.call(arguments));
-    };
-    var errorListener;
-
-    // Adding an error listener is not optional because
-    // if an error is thrown on an event emitter we cannot
-    // guarantee that the actual event we are waiting will
-    // be fired. The result could be a silent way to create
-    // memory or file descriptor leaks, which is something
-    // we should avoid.
-    if (name !== 'error') {
-      errorListener = function errorListener(err) {
-        emitter.removeListener(name, eventListener);
-        reject(err);
-      };
-
-      emitter.once('error', errorListener);
-    }
-
-    emitter.once(name, eventListener);
-  });
-}
-
-},{}],14:[function(_dereq_,module,exports){
-// https://d3js.org/d3-time-format/ v2.2.3 Copyright 2019 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-time')) :
-typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
-(global = global || self, factory(global.d3 = global.d3 || {}, global.d3));
-}(this, function (exports, d3Time) { 'use strict';
-
-function localDate(d) {
-  if (0 <= d.y && d.y < 100) {
-    var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
-    date.setFullYear(d.y);
-    return date;
-  }
-  return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
-}
-
-function utcDate(d) {
-  if (0 <= d.y && d.y < 100) {
-    var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
-    date.setUTCFullYear(d.y);
-    return date;
-  }
-  return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
-}
-
-function newDate(y, m, d) {
-  return {y: y, m: m, d: d, H: 0, M: 0, S: 0, L: 0};
-}
-
-function formatLocale(locale) {
-  var locale_dateTime = locale.dateTime,
-      locale_date = locale.date,
-      locale_time = locale.time,
-      locale_periods = locale.periods,
-      locale_weekdays = locale.days,
-      locale_shortWeekdays = locale.shortDays,
-      locale_months = locale.months,
-      locale_shortMonths = locale.shortMonths;
-
-  var periodRe = formatRe(locale_periods),
-      periodLookup = formatLookup(locale_periods),
-      weekdayRe = formatRe(locale_weekdays),
-      weekdayLookup = formatLookup(locale_weekdays),
-      shortWeekdayRe = formatRe(locale_shortWeekdays),
-      shortWeekdayLookup = formatLookup(locale_shortWeekdays),
-      monthRe = formatRe(locale_months),
-      monthLookup = formatLookup(locale_months),
-      shortMonthRe = formatRe(locale_shortMonths),
-      shortMonthLookup = formatLookup(locale_shortMonths);
-
-  var formats = {
-    "a": formatShortWeekday,
-    "A": formatWeekday,
-    "b": formatShortMonth,
-    "B": formatMonth,
-    "c": null,
-    "d": formatDayOfMonth,
-    "e": formatDayOfMonth,
-    "f": formatMicroseconds,
-    "H": formatHour24,
-    "I": formatHour12,
-    "j": formatDayOfYear,
-    "L": formatMilliseconds,
-    "m": formatMonthNumber,
-    "M": formatMinutes,
-    "p": formatPeriod,
-    "q": formatQuarter,
-    "Q": formatUnixTimestamp,
-    "s": formatUnixTimestampSeconds,
-    "S": formatSeconds,
-    "u": formatWeekdayNumberMonday,
-    "U": formatWeekNumberSunday,
-    "V": formatWeekNumberISO,
-    "w": formatWeekdayNumberSunday,
-    "W": formatWeekNumberMonday,
-    "x": null,
-    "X": null,
-    "y": formatYear,
-    "Y": formatFullYear,
-    "Z": formatZone,
-    "%": formatLiteralPercent
-  };
-
-  var utcFormats = {
-    "a": formatUTCShortWeekday,
-    "A": formatUTCWeekday,
-    "b": formatUTCShortMonth,
-    "B": formatUTCMonth,
-    "c": null,
-    "d": formatUTCDayOfMonth,
-    "e": formatUTCDayOfMonth,
-    "f": formatUTCMicroseconds,
-    "H": formatUTCHour24,
-    "I": formatUTCHour12,
-    "j": formatUTCDayOfYear,
-    "L": formatUTCMilliseconds,
-    "m": formatUTCMonthNumber,
-    "M": formatUTCMinutes,
-    "p": formatUTCPeriod,
-    "q": formatUTCQuarter,
-    "Q": formatUnixTimestamp,
-    "s": formatUnixTimestampSeconds,
-    "S": formatUTCSeconds,
-    "u": formatUTCWeekdayNumberMonday,
-    "U": formatUTCWeekNumberSunday,
-    "V": formatUTCWeekNumberISO,
-    "w": formatUTCWeekdayNumberSunday,
-    "W": formatUTCWeekNumberMonday,
-    "x": null,
-    "X": null,
-    "y": formatUTCYear,
-    "Y": formatUTCFullYear,
-    "Z": formatUTCZone,
-    "%": formatLiteralPercent
-  };
-
-  var parses = {
-    "a": parseShortWeekday,
-    "A": parseWeekday,
-    "b": parseShortMonth,
-    "B": parseMonth,
-    "c": parseLocaleDateTime,
-    "d": parseDayOfMonth,
-    "e": parseDayOfMonth,
-    "f": parseMicroseconds,
-    "H": parseHour24,
-    "I": parseHour24,
-    "j": parseDayOfYear,
-    "L": parseMilliseconds,
-    "m": parseMonthNumber,
-    "M": parseMinutes,
-    "p": parsePeriod,
-    "q": parseQuarter,
-    "Q": parseUnixTimestamp,
-    "s": parseUnixTimestampSeconds,
-    "S": parseSeconds,
-    "u": parseWeekdayNumberMonday,
-    "U": parseWeekNumberSunday,
-    "V": parseWeekNumberISO,
-    "w": parseWeekdayNumberSunday,
-    "W": parseWeekNumberMonday,
-    "x": parseLocaleDate,
-    "X": parseLocaleTime,
-    "y": parseYear,
-    "Y": parseFullYear,
-    "Z": parseZone,
-    "%": parseLiteralPercent
-  };
-
-  // These recursive directive definitions must be deferred.
-  formats.x = newFormat(locale_date, formats);
-  formats.X = newFormat(locale_time, formats);
-  formats.c = newFormat(locale_dateTime, formats);
-  utcFormats.x = newFormat(locale_date, utcFormats);
-  utcFormats.X = newFormat(locale_time, utcFormats);
-  utcFormats.c = newFormat(locale_dateTime, utcFormats);
-
-  function newFormat(specifier, formats) {
-    return function(date) {
-      var string = [],
-          i = -1,
-          j = 0,
-          n = specifier.length,
-          c,
-          pad,
-          format;
-
-      if (!(date instanceof Date)) date = new Date(+date);
-
-      while (++i < n) {
-        if (specifier.charCodeAt(i) === 37) {
-          string.push(specifier.slice(j, i));
-          if ((pad = pads[c = specifier.charAt(++i)]) != null) c = specifier.charAt(++i);
-          else pad = c === "e" ? " " : "0";
-          if (format = formats[c]) c = format(date, pad);
-          string.push(c);
-          j = i + 1;
-        }
-      }
-
-      string.push(specifier.slice(j, i));
-      return string.join("");
-    };
-  }
-
-  function newParse(specifier, Z) {
-    return function(string) {
-      var d = newDate(1900, undefined, 1),
-          i = parseSpecifier(d, specifier, string += "", 0),
-          week, day;
-      if (i != string.length) return null;
-
-      // If a UNIX timestamp is specified, return it.
-      if ("Q" in d) return new Date(d.Q);
-      if ("s" in d) return new Date(d.s * 1000 + ("L" in d ? d.L : 0));
-
-      // If this is utcParse, never use the local timezone.
-      if (Z && !("Z" in d)) d.Z = 0;
-
-      // The am-pm flag is 0 for AM, and 1 for PM.
-      if ("p" in d) d.H = d.H % 12 + d.p * 12;
-
-      // If the month was not specified, inherit from the quarter.
-      if (d.m === undefined) d.m = "q" in d ? d.q : 0;
-
-      // Convert day-of-week and week-of-year to day-of-year.
-      if ("V" in d) {
-        if (d.V < 1 || d.V > 53) return null;
-        if (!("w" in d)) d.w = 1;
-        if ("Z" in d) {
-          week = utcDate(newDate(d.y, 0, 1)), day = week.getUTCDay();
-          week = day > 4 || day === 0 ? d3Time.utcMonday.ceil(week) : d3Time.utcMonday(week);
-          week = d3Time.utcDay.offset(week, (d.V - 1) * 7);
-          d.y = week.getUTCFullYear();
-          d.m = week.getUTCMonth();
-          d.d = week.getUTCDate() + (d.w + 6) % 7;
-        } else {
-          week = localDate(newDate(d.y, 0, 1)), day = week.getDay();
-          week = day > 4 || day === 0 ? d3Time.timeMonday.ceil(week) : d3Time.timeMonday(week);
-          week = d3Time.timeDay.offset(week, (d.V - 1) * 7);
-          d.y = week.getFullYear();
-          d.m = week.getMonth();
-          d.d = week.getDate() + (d.w + 6) % 7;
-        }
-      } else if ("W" in d || "U" in d) {
-        if (!("w" in d)) d.w = "u" in d ? d.u % 7 : "W" in d ? 1 : 0;
-        day = "Z" in d ? utcDate(newDate(d.y, 0, 1)).getUTCDay() : localDate(newDate(d.y, 0, 1)).getDay();
-        d.m = 0;
-        d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
-      }
-
-      // If a time zone is specified, all fields are interpreted as UTC and then
-      // offset according to the specified time zone.
-      if ("Z" in d) {
-        d.H += d.Z / 100 | 0;
-        d.M += d.Z % 100;
-        return utcDate(d);
-      }
-
-      // Otherwise, all fields are in local time.
-      return localDate(d);
-    };
-  }
-
-  function parseSpecifier(d, specifier, string, j) {
-    var i = 0,
-        n = specifier.length,
-        m = string.length,
-        c,
-        parse;
-
-    while (i < n) {
-      if (j >= m) return -1;
-      c = specifier.charCodeAt(i++);
-      if (c === 37) {
-        c = specifier.charAt(i++);
-        parse = parses[c in pads ? specifier.charAt(i++) : c];
-        if (!parse || ((j = parse(d, string, j)) < 0)) return -1;
-      } else if (c != string.charCodeAt(j++)) {
-        return -1;
-      }
-    }
-
-    return j;
-  }
-
-  function parsePeriod(d, string, i) {
-    var n = periodRe.exec(string.slice(i));
-    return n ? (d.p = periodLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseShortWeekday(d, string, i) {
-    var n = shortWeekdayRe.exec(string.slice(i));
-    return n ? (d.w = shortWeekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseWeekday(d, string, i) {
-    var n = weekdayRe.exec(string.slice(i));
-    return n ? (d.w = weekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseShortMonth(d, string, i) {
-    var n = shortMonthRe.exec(string.slice(i));
-    return n ? (d.m = shortMonthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseMonth(d, string, i) {
-    var n = monthRe.exec(string.slice(i));
-    return n ? (d.m = monthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseLocaleDateTime(d, string, i) {
-    return parseSpecifier(d, locale_dateTime, string, i);
-  }
-
-  function parseLocaleDate(d, string, i) {
-    return parseSpecifier(d, locale_date, string, i);
-  }
-
-  function parseLocaleTime(d, string, i) {
-    return parseSpecifier(d, locale_time, string, i);
-  }
-
-  function formatShortWeekday(d) {
-    return locale_shortWeekdays[d.getDay()];
-  }
-
-  function formatWeekday(d) {
-    return locale_weekdays[d.getDay()];
-  }
-
-  function formatShortMonth(d) {
-    return locale_shortMonths[d.getMonth()];
-  }
-
-  function formatMonth(d) {
-    return locale_months[d.getMonth()];
-  }
-
-  function formatPeriod(d) {
-    return locale_periods[+(d.getHours() >= 12)];
-  }
-
-  function formatQuarter(d) {
-    return 1 + ~~(d.getMonth() / 3);
-  }
-
-  function formatUTCShortWeekday(d) {
-    return locale_shortWeekdays[d.getUTCDay()];
-  }
-
-  function formatUTCWeekday(d) {
-    return locale_weekdays[d.getUTCDay()];
-  }
-
-  function formatUTCShortMonth(d) {
-    return locale_shortMonths[d.getUTCMonth()];
-  }
-
-  function formatUTCMonth(d) {
-    return locale_months[d.getUTCMonth()];
-  }
-
-  function formatUTCPeriod(d) {
-    return locale_periods[+(d.getUTCHours() >= 12)];
-  }
-
-  function formatUTCQuarter(d) {
-    return 1 + ~~(d.getUTCMonth() / 3);
-  }
-
-  return {
-    format: function(specifier) {
-      var f = newFormat(specifier += "", formats);
-      f.toString = function() { return specifier; };
-      return f;
-    },
-    parse: function(specifier) {
-      var p = newParse(specifier += "", false);
-      p.toString = function() { return specifier; };
-      return p;
-    },
-    utcFormat: function(specifier) {
-      var f = newFormat(specifier += "", utcFormats);
-      f.toString = function() { return specifier; };
-      return f;
-    },
-    utcParse: function(specifier) {
-      var p = newParse(specifier += "", true);
-      p.toString = function() { return specifier; };
-      return p;
-    }
-  };
-}
-
-var pads = {"-": "", "_": " ", "0": "0"},
-    numberRe = /^\s*\d+/, // note: ignores next directive
-    percentRe = /^%/,
-    requoteRe = /[\\^$*+?|[\]().{}]/g;
-
-function pad(value, fill, width) {
-  var sign = value < 0 ? "-" : "",
-      string = (sign ? -value : value) + "",
-      length = string.length;
-  return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
-}
-
-function requote(s) {
-  return s.replace(requoteRe, "\\$&");
-}
-
-function formatRe(names) {
-  return new RegExp("^(?:" + names.map(requote).join("|") + ")", "i");
-}
-
-function formatLookup(names) {
-  var map = {}, i = -1, n = names.length;
-  while (++i < n) map[names[i].toLowerCase()] = i;
-  return map;
-}
-
-function parseWeekdayNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.w = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekdayNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.u = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.U = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekNumberISO(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.V = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.W = +n[0], i + n[0].length) : -1;
-}
-
-function parseFullYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 4));
-  return n ? (d.y = +n[0], i + n[0].length) : -1;
-}
-
-function parseYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
-}
-
-function parseZone(d, string, i) {
-  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
-  return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
-}
-
-function parseQuarter(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.q = n[0] * 3 - 3, i + n[0].length) : -1;
-}
-
-function parseMonthNumber(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
-}
-
-function parseDayOfMonth(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.d = +n[0], i + n[0].length) : -1;
-}
-
-function parseDayOfYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
-  return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
-}
-
-function parseHour24(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.H = +n[0], i + n[0].length) : -1;
-}
-
-function parseMinutes(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.M = +n[0], i + n[0].length) : -1;
-}
-
-function parseSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.S = +n[0], i + n[0].length) : -1;
-}
-
-function parseMilliseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
-  return n ? (d.L = +n[0], i + n[0].length) : -1;
-}
-
-function parseMicroseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 6));
-  return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
-}
-
-function parseLiteralPercent(d, string, i) {
-  var n = percentRe.exec(string.slice(i, i + 1));
-  return n ? i + n[0].length : -1;
-}
-
-function parseUnixTimestamp(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
-  return n ? (d.Q = +n[0], i + n[0].length) : -1;
-}
-
-function parseUnixTimestampSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
-  return n ? (d.s = +n[0], i + n[0].length) : -1;
-}
-
-function formatDayOfMonth(d, p) {
-  return pad(d.getDate(), p, 2);
-}
-
-function formatHour24(d, p) {
-  return pad(d.getHours(), p, 2);
-}
-
-function formatHour12(d, p) {
-  return pad(d.getHours() % 12 || 12, p, 2);
-}
-
-function formatDayOfYear(d, p) {
-  return pad(1 + d3Time.timeDay.count(d3Time.timeYear(d), d), p, 3);
-}
-
-function formatMilliseconds(d, p) {
-  return pad(d.getMilliseconds(), p, 3);
-}
-
-function formatMicroseconds(d, p) {
-  return formatMilliseconds(d, p) + "000";
-}
-
-function formatMonthNumber(d, p) {
-  return pad(d.getMonth() + 1, p, 2);
-}
-
-function formatMinutes(d, p) {
-  return pad(d.getMinutes(), p, 2);
-}
-
-function formatSeconds(d, p) {
-  return pad(d.getSeconds(), p, 2);
-}
-
-function formatWeekdayNumberMonday(d) {
-  var day = d.getDay();
-  return day === 0 ? 7 : day;
-}
-
-function formatWeekNumberSunday(d, p) {
-  return pad(d3Time.timeSunday.count(d3Time.timeYear(d) - 1, d), p, 2);
-}
-
-function formatWeekNumberISO(d, p) {
-  var day = d.getDay();
-  d = (day >= 4 || day === 0) ? d3Time.timeThursday(d) : d3Time.timeThursday.ceil(d);
-  return pad(d3Time.timeThursday.count(d3Time.timeYear(d), d) + (d3Time.timeYear(d).getDay() === 4), p, 2);
-}
-
-function formatWeekdayNumberSunday(d) {
-  return d.getDay();
-}
-
-function formatWeekNumberMonday(d, p) {
-  return pad(d3Time.timeMonday.count(d3Time.timeYear(d) - 1, d), p, 2);
-}
-
-function formatYear(d, p) {
-  return pad(d.getFullYear() % 100, p, 2);
-}
-
-function formatFullYear(d, p) {
-  return pad(d.getFullYear() % 10000, p, 4);
-}
-
-function formatZone(d) {
-  var z = d.getTimezoneOffset();
-  return (z > 0 ? "-" : (z *= -1, "+"))
-      + pad(z / 60 | 0, "0", 2)
-      + pad(z % 60, "0", 2);
-}
-
-function formatUTCDayOfMonth(d, p) {
-  return pad(d.getUTCDate(), p, 2);
-}
-
-function formatUTCHour24(d, p) {
-  return pad(d.getUTCHours(), p, 2);
-}
-
-function formatUTCHour12(d, p) {
-  return pad(d.getUTCHours() % 12 || 12, p, 2);
-}
-
-function formatUTCDayOfYear(d, p) {
-  return pad(1 + d3Time.utcDay.count(d3Time.utcYear(d), d), p, 3);
-}
-
-function formatUTCMilliseconds(d, p) {
-  return pad(d.getUTCMilliseconds(), p, 3);
-}
-
-function formatUTCMicroseconds(d, p) {
-  return formatUTCMilliseconds(d, p) + "000";
-}
-
-function formatUTCMonthNumber(d, p) {
-  return pad(d.getUTCMonth() + 1, p, 2);
-}
-
-function formatUTCMinutes(d, p) {
-  return pad(d.getUTCMinutes(), p, 2);
-}
-
-function formatUTCSeconds(d, p) {
-  return pad(d.getUTCSeconds(), p, 2);
-}
-
-function formatUTCWeekdayNumberMonday(d) {
-  var dow = d.getUTCDay();
-  return dow === 0 ? 7 : dow;
-}
-
-function formatUTCWeekNumberSunday(d, p) {
-  return pad(d3Time.utcSunday.count(d3Time.utcYear(d) - 1, d), p, 2);
-}
-
-function formatUTCWeekNumberISO(d, p) {
-  var day = d.getUTCDay();
-  d = (day >= 4 || day === 0) ? d3Time.utcThursday(d) : d3Time.utcThursday.ceil(d);
-  return pad(d3Time.utcThursday.count(d3Time.utcYear(d), d) + (d3Time.utcYear(d).getUTCDay() === 4), p, 2);
-}
-
-function formatUTCWeekdayNumberSunday(d) {
-  return d.getUTCDay();
-}
-
-function formatUTCWeekNumberMonday(d, p) {
-  return pad(d3Time.utcMonday.count(d3Time.utcYear(d) - 1, d), p, 2);
-}
-
-function formatUTCYear(d, p) {
-  return pad(d.getUTCFullYear() % 100, p, 2);
-}
-
-function formatUTCFullYear(d, p) {
-  return pad(d.getUTCFullYear() % 10000, p, 4);
-}
-
-function formatUTCZone() {
-  return "+0000";
-}
-
-function formatLiteralPercent() {
-  return "%";
-}
-
-function formatUnixTimestamp(d) {
-  return +d;
-}
-
-function formatUnixTimestampSeconds(d) {
-  return Math.floor(+d / 1000);
-}
-
-var locale;
-
-defaultLocale({
-  dateTime: "%x, %X",
-  date: "%-m/%-d/%Y",
-  time: "%-I:%M:%S %p",
-  periods: ["AM", "PM"],
-  days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-  shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-});
-
-function defaultLocale(definition) {
-  locale = formatLocale(definition);
-  exports.timeFormat = locale.format;
-  exports.timeParse = locale.parse;
-  exports.utcFormat = locale.utcFormat;
-  exports.utcParse = locale.utcParse;
-  return locale;
-}
-
-var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
-
-function formatIsoNative(date) {
-  return date.toISOString();
-}
-
-var formatIso = Date.prototype.toISOString
-    ? formatIsoNative
-    : exports.utcFormat(isoSpecifier);
-
-function parseIsoNative(string) {
-  var date = new Date(string);
-  return isNaN(date) ? null : date;
-}
-
-var parseIso = +new Date("2000-01-01T00:00:00.000Z")
-    ? parseIsoNative
-    : exports.utcParse(isoSpecifier);
-
-exports.isoFormat = formatIso;
-exports.isoParse = parseIso;
-exports.timeFormatDefaultLocale = defaultLocale;
-exports.timeFormatLocale = formatLocale;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-}));
-
-},{"d3-time":15}],15:[function(_dereq_,module,exports){
-// https://d3js.org/d3-time/ v1.1.0 Copyright 2019 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(global = global || self, factory(global.d3 = global.d3 || {}));
-}(this, function (exports) { 'use strict';
-
-var t0 = new Date,
-    t1 = new Date;
-
-function newInterval(floori, offseti, count, field) {
-
-  function interval(date) {
-    return floori(date = arguments.length === 0 ? new Date : new Date(+date)), date;
-  }
-
-  interval.floor = function(date) {
-    return floori(date = new Date(+date)), date;
-  };
-
-  interval.ceil = function(date) {
-    return floori(date = new Date(date - 1)), offseti(date, 1), floori(date), date;
-  };
-
-  interval.round = function(date) {
-    var d0 = interval(date),
-        d1 = interval.ceil(date);
-    return date - d0 < d1 - date ? d0 : d1;
-  };
-
-  interval.offset = function(date, step) {
-    return offseti(date = new Date(+date), step == null ? 1 : Math.floor(step)), date;
-  };
-
-  interval.range = function(start, stop, step) {
-    var range = [], previous;
-    start = interval.ceil(start);
-    step = step == null ? 1 : Math.floor(step);
-    if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
-    do range.push(previous = new Date(+start)), offseti(start, step), floori(start);
-    while (previous < start && start < stop);
-    return range;
-  };
-
-  interval.filter = function(test) {
-    return newInterval(function(date) {
-      if (date >= date) while (floori(date), !test(date)) date.setTime(date - 1);
-    }, function(date, step) {
-      if (date >= date) {
-        if (step < 0) while (++step <= 0) {
-          while (offseti(date, -1), !test(date)) {} // eslint-disable-line no-empty
-        } else while (--step >= 0) {
-          while (offseti(date, +1), !test(date)) {} // eslint-disable-line no-empty
-        }
-      }
-    });
-  };
-
-  if (count) {
-    interval.count = function(start, end) {
-      t0.setTime(+start), t1.setTime(+end);
-      floori(t0), floori(t1);
-      return Math.floor(count(t0, t1));
-    };
-
-    interval.every = function(step) {
-      step = Math.floor(step);
-      return !isFinite(step) || !(step > 0) ? null
-          : !(step > 1) ? interval
-          : interval.filter(field
-              ? function(d) { return field(d) % step === 0; }
-              : function(d) { return interval.count(0, d) % step === 0; });
-    };
-  }
-
-  return interval;
-}
-
-var millisecond = newInterval(function() {
-  // noop
-}, function(date, step) {
-  date.setTime(+date + step);
-}, function(start, end) {
-  return end - start;
-});
-
-// An optimized implementation for this simple case.
-millisecond.every = function(k) {
-  k = Math.floor(k);
-  if (!isFinite(k) || !(k > 0)) return null;
-  if (!(k > 1)) return millisecond;
-  return newInterval(function(date) {
-    date.setTime(Math.floor(date / k) * k);
-  }, function(date, step) {
-    date.setTime(+date + step * k);
-  }, function(start, end) {
-    return (end - start) / k;
-  });
-};
-var milliseconds = millisecond.range;
-
-var durationSecond = 1e3;
-var durationMinute = 6e4;
-var durationHour = 36e5;
-var durationDay = 864e5;
-var durationWeek = 6048e5;
-
-var second = newInterval(function(date) {
-  date.setTime(date - date.getMilliseconds());
-}, function(date, step) {
-  date.setTime(+date + step * durationSecond);
-}, function(start, end) {
-  return (end - start) / durationSecond;
-}, function(date) {
-  return date.getUTCSeconds();
-});
-var seconds = second.range;
-
-var minute = newInterval(function(date) {
-  date.setTime(date - date.getMilliseconds() - date.getSeconds() * durationSecond);
-}, function(date, step) {
-  date.setTime(+date + step * durationMinute);
-}, function(start, end) {
-  return (end - start) / durationMinute;
-}, function(date) {
-  return date.getMinutes();
-});
-var minutes = minute.range;
-
-var hour = newInterval(function(date) {
-  date.setTime(date - date.getMilliseconds() - date.getSeconds() * durationSecond - date.getMinutes() * durationMinute);
-}, function(date, step) {
-  date.setTime(+date + step * durationHour);
-}, function(start, end) {
-  return (end - start) / durationHour;
-}, function(date) {
-  return date.getHours();
-});
-var hours = hour.range;
-
-var day = newInterval(function(date) {
-  date.setHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setDate(date.getDate() + step);
-}, function(start, end) {
-  return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationDay;
-}, function(date) {
-  return date.getDate() - 1;
-});
-var days = day.range;
-
-function weekday(i) {
-  return newInterval(function(date) {
-    date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
-    date.setHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setDate(date.getDate() + step * 7);
-  }, function(start, end) {
-    return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationWeek;
-  });
-}
-
-var sunday = weekday(0);
-var monday = weekday(1);
-var tuesday = weekday(2);
-var wednesday = weekday(3);
-var thursday = weekday(4);
-var friday = weekday(5);
-var saturday = weekday(6);
-
-var sundays = sunday.range;
-var mondays = monday.range;
-var tuesdays = tuesday.range;
-var wednesdays = wednesday.range;
-var thursdays = thursday.range;
-var fridays = friday.range;
-var saturdays = saturday.range;
-
-var month = newInterval(function(date) {
-  date.setDate(1);
-  date.setHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setMonth(date.getMonth() + step);
-}, function(start, end) {
-  return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
-}, function(date) {
-  return date.getMonth();
-});
-var months = month.range;
-
-var year = newInterval(function(date) {
-  date.setMonth(0, 1);
-  date.setHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setFullYear(date.getFullYear() + step);
-}, function(start, end) {
-  return end.getFullYear() - start.getFullYear();
-}, function(date) {
-  return date.getFullYear();
-});
-
-// An optimized implementation for this simple case.
-year.every = function(k) {
-  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
-    date.setFullYear(Math.floor(date.getFullYear() / k) * k);
-    date.setMonth(0, 1);
-    date.setHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setFullYear(date.getFullYear() + step * k);
-  });
-};
-var years = year.range;
-
-var utcMinute = newInterval(function(date) {
-  date.setUTCSeconds(0, 0);
-}, function(date, step) {
-  date.setTime(+date + step * durationMinute);
-}, function(start, end) {
-  return (end - start) / durationMinute;
-}, function(date) {
-  return date.getUTCMinutes();
-});
-var utcMinutes = utcMinute.range;
-
-var utcHour = newInterval(function(date) {
-  date.setUTCMinutes(0, 0, 0);
-}, function(date, step) {
-  date.setTime(+date + step * durationHour);
-}, function(start, end) {
-  return (end - start) / durationHour;
-}, function(date) {
-  return date.getUTCHours();
-});
-var utcHours = utcHour.range;
-
-var utcDay = newInterval(function(date) {
-  date.setUTCHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setUTCDate(date.getUTCDate() + step);
-}, function(start, end) {
-  return (end - start) / durationDay;
-}, function(date) {
-  return date.getUTCDate() - 1;
-});
-var utcDays = utcDay.range;
-
-function utcWeekday(i) {
-  return newInterval(function(date) {
-    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
-    date.setUTCHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setUTCDate(date.getUTCDate() + step * 7);
-  }, function(start, end) {
-    return (end - start) / durationWeek;
-  });
-}
-
-var utcSunday = utcWeekday(0);
-var utcMonday = utcWeekday(1);
-var utcTuesday = utcWeekday(2);
-var utcWednesday = utcWeekday(3);
-var utcThursday = utcWeekday(4);
-var utcFriday = utcWeekday(5);
-var utcSaturday = utcWeekday(6);
-
-var utcSundays = utcSunday.range;
-var utcMondays = utcMonday.range;
-var utcTuesdays = utcTuesday.range;
-var utcWednesdays = utcWednesday.range;
-var utcThursdays = utcThursday.range;
-var utcFridays = utcFriday.range;
-var utcSaturdays = utcSaturday.range;
-
-var utcMonth = newInterval(function(date) {
-  date.setUTCDate(1);
-  date.setUTCHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setUTCMonth(date.getUTCMonth() + step);
-}, function(start, end) {
-  return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
-}, function(date) {
-  return date.getUTCMonth();
-});
-var utcMonths = utcMonth.range;
-
-var utcYear = newInterval(function(date) {
-  date.setUTCMonth(0, 1);
-  date.setUTCHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setUTCFullYear(date.getUTCFullYear() + step);
-}, function(start, end) {
-  return end.getUTCFullYear() - start.getUTCFullYear();
-}, function(date) {
-  return date.getUTCFullYear();
-});
-
-// An optimized implementation for this simple case.
-utcYear.every = function(k) {
-  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
-    date.setUTCFullYear(Math.floor(date.getUTCFullYear() / k) * k);
-    date.setUTCMonth(0, 1);
-    date.setUTCHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setUTCFullYear(date.getUTCFullYear() + step * k);
-  });
-};
-var utcYears = utcYear.range;
-
-exports.timeDay = day;
-exports.timeDays = days;
-exports.timeFriday = friday;
-exports.timeFridays = fridays;
-exports.timeHour = hour;
-exports.timeHours = hours;
-exports.timeInterval = newInterval;
-exports.timeMillisecond = millisecond;
-exports.timeMilliseconds = milliseconds;
-exports.timeMinute = minute;
-exports.timeMinutes = minutes;
-exports.timeMonday = monday;
-exports.timeMondays = mondays;
-exports.timeMonth = month;
-exports.timeMonths = months;
-exports.timeSaturday = saturday;
-exports.timeSaturdays = saturdays;
-exports.timeSecond = second;
-exports.timeSeconds = seconds;
-exports.timeSunday = sunday;
-exports.timeSundays = sundays;
-exports.timeThursday = thursday;
-exports.timeThursdays = thursdays;
-exports.timeTuesday = tuesday;
-exports.timeTuesdays = tuesdays;
-exports.timeWednesday = wednesday;
-exports.timeWednesdays = wednesdays;
-exports.timeWeek = sunday;
-exports.timeWeeks = sundays;
-exports.timeYear = year;
-exports.timeYears = years;
-exports.utcDay = utcDay;
-exports.utcDays = utcDays;
-exports.utcFriday = utcFriday;
-exports.utcFridays = utcFridays;
-exports.utcHour = utcHour;
-exports.utcHours = utcHours;
-exports.utcMillisecond = millisecond;
-exports.utcMilliseconds = milliseconds;
-exports.utcMinute = utcMinute;
-exports.utcMinutes = utcMinutes;
-exports.utcMonday = utcMonday;
-exports.utcMondays = utcMondays;
-exports.utcMonth = utcMonth;
-exports.utcMonths = utcMonths;
-exports.utcSaturday = utcSaturday;
-exports.utcSaturdays = utcSaturdays;
-exports.utcSecond = second;
-exports.utcSeconds = seconds;
-exports.utcSunday = utcSunday;
-exports.utcSundays = utcSundays;
-exports.utcThursday = utcThursday;
-exports.utcThursdays = utcThursdays;
-exports.utcTuesday = utcTuesday;
-exports.utcTuesdays = utcTuesdays;
-exports.utcWednesday = utcWednesday;
-exports.utcWednesdays = utcWednesdays;
-exports.utcWeek = utcSunday;
-exports.utcWeeks = utcSundays;
-exports.utcYear = utcYear;
-exports.utcYears = utcYears;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-}));
-
-},{}],16:[function(_dereq_,module,exports){
+},{"../src/traces/waterfall":456}],19:[function(_dereq_,module,exports){
 !function() {
   var d3 = {
-    version: "3.5.17"
+    version: "3.5.18"
   };
   var d3_arraySlice = [].slice, d3_array = function(list) {
     return d3_arraySlice.call(list);
@@ -3825,9 +2235,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
       var o;
       return dsv.parseRows(text, function(row, i) {
         if (o) return o(row, i - 1);
-        var a = new Function("d", "return {" + row.map(function(name, i) {
-          return JSON.stringify(name) + ": d[" + i + "]";
-        }).join(",") + "}");
+        var a = function(d) {
+          var obj = {};
+          var len = row.length;
+          for (var k = 0; k < len; ++k) {
+            obj[row[k]] = d[k];
+          }
+          return obj;
+        };
         o = f ? function(row, i) {
           return f(a(row), i);
         } : a;
@@ -11340,1185 +9755,1569 @@ Object.defineProperty(exports, '__esModule', { value: true });
   });
   if (typeof define === "function" && define.amd) this.d3 = d3, define(d3); else if (typeof module === "object" && module.exports) module.exports = d3; else this.d3 = d3;
 }();
-},{}],17:[function(_dereq_,module,exports){
-(function (process,global){(function (){
-/*!
- * @overview es6-promise - a tiny implementation of Promises/A+.
- * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
- * @license   Licensed under MIT license
- *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
- * @version   v4.2.8+1e68dce6
- */
+},{}],20:[function(_dereq_,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.ES6Promise = factory());
-}(this, (function () { 'use strict';
+'use strict';
 
-function objectOrFunction(x) {
-  var type = typeof x;
-  return x !== null && (type === 'object' || type === 'function');
-}
+var R = typeof Reflect === 'object' ? Reflect : null
+var ReflectApply = R && typeof R.apply === 'function'
+  ? R.apply
+  : function ReflectApply(target, receiver, args) {
+    return Function.prototype.apply.call(target, receiver, args);
+  }
 
-function isFunction(x) {
-  return typeof x === 'function';
-}
-
-
-
-var _isArray = void 0;
-if (Array.isArray) {
-  _isArray = Array.isArray;
+var ReflectOwnKeys
+if (R && typeof R.ownKeys === 'function') {
+  ReflectOwnKeys = R.ownKeys
+} else if (Object.getOwnPropertySymbols) {
+  ReflectOwnKeys = function ReflectOwnKeys(target) {
+    return Object.getOwnPropertyNames(target)
+      .concat(Object.getOwnPropertySymbols(target));
+  };
 } else {
-  _isArray = function (x) {
-    return Object.prototype.toString.call(x) === '[object Array]';
+  ReflectOwnKeys = function ReflectOwnKeys(target) {
+    return Object.getOwnPropertyNames(target);
   };
 }
 
-var isArray = _isArray;
+function ProcessEmitWarning(warning) {
+  if (console && console.warn) console.warn(warning);
+}
 
-var len = 0;
-var vertxNext = void 0;
-var customSchedulerFn = void 0;
+var NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {
+  return value !== value;
+}
 
-var asap = function asap(callback, arg) {
-  queue[len] = callback;
-  queue[len + 1] = arg;
-  len += 2;
-  if (len === 2) {
-    // If len is 2, that means that we need to schedule an async flush.
-    // If additional callbacks are queued before the queue is flushed, they
-    // will be processed by this flush that we are scheduling.
-    if (customSchedulerFn) {
-      customSchedulerFn(flush);
-    } else {
-      scheduleFlush();
+function EventEmitter() {
+  EventEmitter.init.call(this);
+}
+module.exports = EventEmitter;
+module.exports.once = once;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._eventsCount = 0;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+var defaultMaxListeners = 10;
+
+function checkListener(listener) {
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
+}
+
+Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
+  enumerable: true,
+  get: function() {
+    return defaultMaxListeners;
+  },
+  set: function(arg) {
+    if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {
+      throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + arg + '.');
     }
+    defaultMaxListeners = arg;
+  }
+});
+
+EventEmitter.init = function() {
+
+  if (this._events === undefined ||
+      this._events === Object.getPrototypeOf(this)._events) {
+    this._events = Object.create(null);
+    this._eventsCount = 0;
+  }
+
+  this._maxListeners = this._maxListeners || undefined;
+};
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
+  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
+    throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.');
+  }
+  this._maxListeners = n;
+  return this;
+};
+
+function _getMaxListeners(that) {
+  if (that._maxListeners === undefined)
+    return EventEmitter.defaultMaxListeners;
+  return that._maxListeners;
+}
+
+EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
+  return _getMaxListeners(this);
+};
+
+EventEmitter.prototype.emit = function emit(type) {
+  var args = [];
+  for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
+  var doError = (type === 'error');
+
+  var events = this._events;
+  if (events !== undefined)
+    doError = (doError && events.error === undefined);
+  else if (!doError)
+    return false;
+
+  // If there is no 'error' event listener then throw.
+  if (doError) {
+    var er;
+    if (args.length > 0)
+      er = args[0];
+    if (er instanceof Error) {
+      // Note: The comments on the `throw` lines are intentional, they show
+      // up in Node's output if this results in an unhandled exception.
+      throw er; // Unhandled 'error' event
+    }
+    // At least give some kind of context to the user
+    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
+    err.context = er;
+    throw err; // Unhandled 'error' event
+  }
+
+  var handler = events[type];
+
+  if (handler === undefined)
+    return false;
+
+  if (typeof handler === 'function') {
+    ReflectApply(handler, this, args);
+  } else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      ReflectApply(listeners[i], this, args);
+  }
+
+  return true;
+};
+
+function _addListener(target, type, listener, prepend) {
+  var m;
+  var events;
+  var existing;
+
+  checkListener(listener);
+
+  events = target._events;
+  if (events === undefined) {
+    events = target._events = Object.create(null);
+    target._eventsCount = 0;
+  } else {
+    // To avoid recursion in the case that type === "newListener"! Before
+    // adding it to the listeners, first emit "newListener".
+    if (events.newListener !== undefined) {
+      target.emit('newListener', type,
+                  listener.listener ? listener.listener : listener);
+
+      // Re-assign `events` because a newListener handler could have caused the
+      // this._events to be assigned to a new object
+      events = target._events;
+    }
+    existing = events[type];
+  }
+
+  if (existing === undefined) {
+    // Optimize the case of one listener. Don't need the extra array object.
+    existing = events[type] = listener;
+    ++target._eventsCount;
+  } else {
+    if (typeof existing === 'function') {
+      // Adding the second element, need to change to array.
+      existing = events[type] =
+        prepend ? [listener, existing] : [existing, listener];
+      // If we've already got an array, just append.
+    } else if (prepend) {
+      existing.unshift(listener);
+    } else {
+      existing.push(listener);
+    }
+
+    // Check for listener leak
+    m = _getMaxListeners(target);
+    if (m > 0 && existing.length > m && !existing.warned) {
+      existing.warned = true;
+      // No error code for this since it is a Warning
+      // eslint-disable-next-line no-restricted-syntax
+      var w = new Error('Possible EventEmitter memory leak detected. ' +
+                          existing.length + ' ' + String(type) + ' listeners ' +
+                          'added. Use emitter.setMaxListeners() to ' +
+                          'increase limit');
+      w.name = 'MaxListenersExceededWarning';
+      w.emitter = target;
+      w.type = type;
+      w.count = existing.length;
+      ProcessEmitWarning(w);
+    }
+  }
+
+  return target;
+}
+
+EventEmitter.prototype.addListener = function addListener(type, listener) {
+  return _addListener(this, type, listener, false);
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.prependListener =
+    function prependListener(type, listener) {
+      return _addListener(this, type, listener, true);
+    };
+
+function onceWrapper() {
+  if (!this.fired) {
+    this.target.removeListener(this.type, this.wrapFn);
+    this.fired = true;
+    if (arguments.length === 0)
+      return this.listener.call(this.target);
+    return this.listener.apply(this.target, arguments);
+  }
+}
+
+function _onceWrap(target, type, listener) {
+  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
+  var wrapped = onceWrapper.bind(state);
+  wrapped.listener = listener;
+  state.wrapFn = wrapped;
+  return wrapped;
+}
+
+EventEmitter.prototype.once = function once(type, listener) {
+  checkListener(listener);
+  this.on(type, _onceWrap(this, type, listener));
+  return this;
+};
+
+EventEmitter.prototype.prependOnceListener =
+    function prependOnceListener(type, listener) {
+      checkListener(listener);
+      this.prependListener(type, _onceWrap(this, type, listener));
+      return this;
+    };
+
+// Emits a 'removeListener' event if and only if the listener was removed.
+EventEmitter.prototype.removeListener =
+    function removeListener(type, listener) {
+      var list, events, position, i, originalListener;
+
+      checkListener(listener);
+
+      events = this._events;
+      if (events === undefined)
+        return this;
+
+      list = events[type];
+      if (list === undefined)
+        return this;
+
+      if (list === listener || list.listener === listener) {
+        if (--this._eventsCount === 0)
+          this._events = Object.create(null);
+        else {
+          delete events[type];
+          if (events.removeListener)
+            this.emit('removeListener', type, list.listener || listener);
+        }
+      } else if (typeof list !== 'function') {
+        position = -1;
+
+        for (i = list.length - 1; i >= 0; i--) {
+          if (list[i] === listener || list[i].listener === listener) {
+            originalListener = list[i].listener;
+            position = i;
+            break;
+          }
+        }
+
+        if (position < 0)
+          return this;
+
+        if (position === 0)
+          list.shift();
+        else {
+          spliceOne(list, position);
+        }
+
+        if (list.length === 1)
+          events[type] = list[0];
+
+        if (events.removeListener !== undefined)
+          this.emit('removeListener', type, originalListener || listener);
+      }
+
+      return this;
+    };
+
+EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+
+EventEmitter.prototype.removeAllListeners =
+    function removeAllListeners(type) {
+      var listeners, events, i;
+
+      events = this._events;
+      if (events === undefined)
+        return this;
+
+      // not listening for removeListener, no need to emit
+      if (events.removeListener === undefined) {
+        if (arguments.length === 0) {
+          this._events = Object.create(null);
+          this._eventsCount = 0;
+        } else if (events[type] !== undefined) {
+          if (--this._eventsCount === 0)
+            this._events = Object.create(null);
+          else
+            delete events[type];
+        }
+        return this;
+      }
+
+      // emit removeListener for all listeners on all events
+      if (arguments.length === 0) {
+        var keys = Object.keys(events);
+        var key;
+        for (i = 0; i < keys.length; ++i) {
+          key = keys[i];
+          if (key === 'removeListener') continue;
+          this.removeAllListeners(key);
+        }
+        this.removeAllListeners('removeListener');
+        this._events = Object.create(null);
+        this._eventsCount = 0;
+        return this;
+      }
+
+      listeners = events[type];
+
+      if (typeof listeners === 'function') {
+        this.removeListener(type, listeners);
+      } else if (listeners !== undefined) {
+        // LIFO order
+        for (i = listeners.length - 1; i >= 0; i--) {
+          this.removeListener(type, listeners[i]);
+        }
+      }
+
+      return this;
+    };
+
+function _listeners(target, type, unwrap) {
+  var events = target._events;
+
+  if (events === undefined)
+    return [];
+
+  var evlistener = events[type];
+  if (evlistener === undefined)
+    return [];
+
+  if (typeof evlistener === 'function')
+    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+
+  return unwrap ?
+    unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+}
+
+EventEmitter.prototype.listeners = function listeners(type) {
+  return _listeners(this, type, true);
+};
+
+EventEmitter.prototype.rawListeners = function rawListeners(type) {
+  return _listeners(this, type, false);
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  if (typeof emitter.listenerCount === 'function') {
+    return emitter.listenerCount(type);
+  } else {
+    return listenerCount.call(emitter, type);
   }
 };
 
-function setScheduler(scheduleFn) {
-  customSchedulerFn = scheduleFn;
+EventEmitter.prototype.listenerCount = listenerCount;
+function listenerCount(type) {
+  var events = this._events;
+
+  if (events !== undefined) {
+    var evlistener = events[type];
+
+    if (typeof evlistener === 'function') {
+      return 1;
+    } else if (evlistener !== undefined) {
+      return evlistener.length;
+    }
+  }
+
+  return 0;
 }
 
-function setAsap(asapFn) {
-  asap = asapFn;
+EventEmitter.prototype.eventNames = function eventNames() {
+  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
+};
+
+function arrayClone(arr, n) {
+  var copy = new Array(n);
+  for (var i = 0; i < n; ++i)
+    copy[i] = arr[i];
+  return copy;
 }
 
-var browserWindow = typeof window !== 'undefined' ? window : undefined;
-var browserGlobal = browserWindow || {};
-var BrowserMutationObserver = browserGlobal.MutationObserver || browserGlobal.WebKitMutationObserver;
-var isNode = typeof self === 'undefined' && typeof process !== 'undefined' && {}.toString.call(process) === '[object process]';
+function spliceOne(list, index) {
+  for (; index + 1 < list.length; index++)
+    list[index] = list[index + 1];
+  list.pop();
+}
 
-// test for web worker but not in IE10
-var isWorker = typeof Uint8ClampedArray !== 'undefined' && typeof importScripts !== 'undefined' && typeof MessageChannel !== 'undefined';
+function unwrapListeners(arr) {
+  var ret = new Array(arr.length);
+  for (var i = 0; i < ret.length; ++i) {
+    ret[i] = arr[i].listener || arr[i];
+  }
+  return ret;
+}
 
-// node
-function useNextTick() {
-  // node version 0.10.x displays a deprecation warning when nextTick is used recursively
-  // see https://github.com/cujojs/when/issues/410 for details
-  return function () {
-    return process.nextTick(flush);
+function once(emitter, name) {
+  return new Promise(function (resolve, reject) {
+    function eventListener() {
+      if (errorListener !== undefined) {
+        emitter.removeListener('error', errorListener);
+      }
+      resolve([].slice.call(arguments));
+    };
+    var errorListener;
+
+    // Adding an error listener is not optional because
+    // if an error is thrown on an event emitter we cannot
+    // guarantee that the actual event we are waiting will
+    // be fired. The result could be a silent way to create
+    // memory or file descriptor leaks, which is something
+    // we should avoid.
+    if (name !== 'error') {
+      errorListener = function errorListener(err) {
+        emitter.removeListener(name, eventListener);
+        reject(err);
+      };
+
+      emitter.once('error', errorListener);
+    }
+
+    emitter.once(name, eventListener);
+  });
+}
+
+},{}],21:[function(_dereq_,module,exports){
+// https://d3js.org/d3-time-format/ v2.2.3 Copyright 2019 Mike Bostock
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-time')) :
+typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
+(global = global || self, factory(global.d3 = global.d3 || {}, global.d3));
+}(this, function (exports, d3Time) { 'use strict';
+
+function localDate(d) {
+  if (0 <= d.y && d.y < 100) {
+    var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
+    date.setFullYear(d.y);
+    return date;
+  }
+  return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
+}
+
+function utcDate(d) {
+  if (0 <= d.y && d.y < 100) {
+    var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
+    date.setUTCFullYear(d.y);
+    return date;
+  }
+  return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
+}
+
+function newDate(y, m, d) {
+  return {y: y, m: m, d: d, H: 0, M: 0, S: 0, L: 0};
+}
+
+function formatLocale(locale) {
+  var locale_dateTime = locale.dateTime,
+      locale_date = locale.date,
+      locale_time = locale.time,
+      locale_periods = locale.periods,
+      locale_weekdays = locale.days,
+      locale_shortWeekdays = locale.shortDays,
+      locale_months = locale.months,
+      locale_shortMonths = locale.shortMonths;
+
+  var periodRe = formatRe(locale_periods),
+      periodLookup = formatLookup(locale_periods),
+      weekdayRe = formatRe(locale_weekdays),
+      weekdayLookup = formatLookup(locale_weekdays),
+      shortWeekdayRe = formatRe(locale_shortWeekdays),
+      shortWeekdayLookup = formatLookup(locale_shortWeekdays),
+      monthRe = formatRe(locale_months),
+      monthLookup = formatLookup(locale_months),
+      shortMonthRe = formatRe(locale_shortMonths),
+      shortMonthLookup = formatLookup(locale_shortMonths);
+
+  var formats = {
+    "a": formatShortWeekday,
+    "A": formatWeekday,
+    "b": formatShortMonth,
+    "B": formatMonth,
+    "c": null,
+    "d": formatDayOfMonth,
+    "e": formatDayOfMonth,
+    "f": formatMicroseconds,
+    "H": formatHour24,
+    "I": formatHour12,
+    "j": formatDayOfYear,
+    "L": formatMilliseconds,
+    "m": formatMonthNumber,
+    "M": formatMinutes,
+    "p": formatPeriod,
+    "q": formatQuarter,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
+    "S": formatSeconds,
+    "u": formatWeekdayNumberMonday,
+    "U": formatWeekNumberSunday,
+    "V": formatWeekNumberISO,
+    "w": formatWeekdayNumberSunday,
+    "W": formatWeekNumberMonday,
+    "x": null,
+    "X": null,
+    "y": formatYear,
+    "Y": formatFullYear,
+    "Z": formatZone,
+    "%": formatLiteralPercent
   };
-}
 
-// vertx
-function useVertxTimer() {
-  if (typeof vertxNext !== 'undefined') {
-    return function () {
-      vertxNext(flush);
+  var utcFormats = {
+    "a": formatUTCShortWeekday,
+    "A": formatUTCWeekday,
+    "b": formatUTCShortMonth,
+    "B": formatUTCMonth,
+    "c": null,
+    "d": formatUTCDayOfMonth,
+    "e": formatUTCDayOfMonth,
+    "f": formatUTCMicroseconds,
+    "H": formatUTCHour24,
+    "I": formatUTCHour12,
+    "j": formatUTCDayOfYear,
+    "L": formatUTCMilliseconds,
+    "m": formatUTCMonthNumber,
+    "M": formatUTCMinutes,
+    "p": formatUTCPeriod,
+    "q": formatUTCQuarter,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
+    "S": formatUTCSeconds,
+    "u": formatUTCWeekdayNumberMonday,
+    "U": formatUTCWeekNumberSunday,
+    "V": formatUTCWeekNumberISO,
+    "w": formatUTCWeekdayNumberSunday,
+    "W": formatUTCWeekNumberMonday,
+    "x": null,
+    "X": null,
+    "y": formatUTCYear,
+    "Y": formatUTCFullYear,
+    "Z": formatUTCZone,
+    "%": formatLiteralPercent
+  };
+
+  var parses = {
+    "a": parseShortWeekday,
+    "A": parseWeekday,
+    "b": parseShortMonth,
+    "B": parseMonth,
+    "c": parseLocaleDateTime,
+    "d": parseDayOfMonth,
+    "e": parseDayOfMonth,
+    "f": parseMicroseconds,
+    "H": parseHour24,
+    "I": parseHour24,
+    "j": parseDayOfYear,
+    "L": parseMilliseconds,
+    "m": parseMonthNumber,
+    "M": parseMinutes,
+    "p": parsePeriod,
+    "q": parseQuarter,
+    "Q": parseUnixTimestamp,
+    "s": parseUnixTimestampSeconds,
+    "S": parseSeconds,
+    "u": parseWeekdayNumberMonday,
+    "U": parseWeekNumberSunday,
+    "V": parseWeekNumberISO,
+    "w": parseWeekdayNumberSunday,
+    "W": parseWeekNumberMonday,
+    "x": parseLocaleDate,
+    "X": parseLocaleTime,
+    "y": parseYear,
+    "Y": parseFullYear,
+    "Z": parseZone,
+    "%": parseLiteralPercent
+  };
+
+  // These recursive directive definitions must be deferred.
+  formats.x = newFormat(locale_date, formats);
+  formats.X = newFormat(locale_time, formats);
+  formats.c = newFormat(locale_dateTime, formats);
+  utcFormats.x = newFormat(locale_date, utcFormats);
+  utcFormats.X = newFormat(locale_time, utcFormats);
+  utcFormats.c = newFormat(locale_dateTime, utcFormats);
+
+  function newFormat(specifier, formats) {
+    return function(date) {
+      var string = [],
+          i = -1,
+          j = 0,
+          n = specifier.length,
+          c,
+          pad,
+          format;
+
+      if (!(date instanceof Date)) date = new Date(+date);
+
+      while (++i < n) {
+        if (specifier.charCodeAt(i) === 37) {
+          string.push(specifier.slice(j, i));
+          if ((pad = pads[c = specifier.charAt(++i)]) != null) c = specifier.charAt(++i);
+          else pad = c === "e" ? " " : "0";
+          if (format = formats[c]) c = format(date, pad);
+          string.push(c);
+          j = i + 1;
+        }
+      }
+
+      string.push(specifier.slice(j, i));
+      return string.join("");
     };
   }
 
-  return useSetTimeout();
-}
-
-function useMutationObserver() {
-  var iterations = 0;
-  var observer = new BrowserMutationObserver(flush);
-  var node = document.createTextNode('');
-  observer.observe(node, { characterData: true });
-
-  return function () {
-    node.data = iterations = ++iterations % 2;
-  };
-}
-
-// web worker
-function useMessageChannel() {
-  var channel = new MessageChannel();
-  channel.port1.onmessage = flush;
-  return function () {
-    return channel.port2.postMessage(0);
-  };
-}
-
-function useSetTimeout() {
-  // Store setTimeout reference so es6-promise will be unaffected by
-  // other code modifying setTimeout (like sinon.useFakeTimers())
-  var globalSetTimeout = setTimeout;
-  return function () {
-    return globalSetTimeout(flush, 1);
-  };
-}
-
-var queue = new Array(1000);
-function flush() {
-  for (var i = 0; i < len; i += 2) {
-    var callback = queue[i];
-    var arg = queue[i + 1];
-
-    callback(arg);
-
-    queue[i] = undefined;
-    queue[i + 1] = undefined;
-  }
-
-  len = 0;
-}
-
-function attemptVertx() {
-  try {
-    var vertx = Function('return this')().require('vertx');
-    vertxNext = vertx.runOnLoop || vertx.runOnContext;
-    return useVertxTimer();
-  } catch (e) {
-    return useSetTimeout();
-  }
-}
-
-var scheduleFlush = void 0;
-// Decide what async method to use to triggering processing of queued callbacks:
-if (isNode) {
-  scheduleFlush = useNextTick();
-} else if (BrowserMutationObserver) {
-  scheduleFlush = useMutationObserver();
-} else if (isWorker) {
-  scheduleFlush = useMessageChannel();
-} else if (browserWindow === undefined && typeof _dereq_ === 'function') {
-  scheduleFlush = attemptVertx();
-} else {
-  scheduleFlush = useSetTimeout();
-}
-
-function then(onFulfillment, onRejection) {
-  var parent = this;
-
-  var child = new this.constructor(noop);
-
-  if (child[PROMISE_ID] === undefined) {
-    makePromise(child);
-  }
-
-  var _state = parent._state;
-
-
-  if (_state) {
-    var callback = arguments[_state - 1];
-    asap(function () {
-      return invokeCallback(_state, child, callback, parent._result);
-    });
-  } else {
-    subscribe(parent, child, onFulfillment, onRejection);
-  }
-
-  return child;
-}
-
-/**
-  `Promise.resolve` returns a promise that will become resolved with the
-  passed `value`. It is shorthand for the following:
-
-  ```javascript
-  let promise = new Promise(function(resolve, reject){
-    resolve(1);
-  });
-
-  promise.then(function(value){
-    // value === 1
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  let promise = Promise.resolve(1);
-
-  promise.then(function(value){
-    // value === 1
-  });
-  ```
-
-  @method resolve
-  @static
-  @param {Any} value value that the returned promise will be resolved with
-  Useful for tooling.
-  @return {Promise} a promise that will become fulfilled with the given
-  `value`
-*/
-function resolve$1(object) {
-  /*jshint validthis:true */
-  var Constructor = this;
-
-  if (object && typeof object === 'object' && object.constructor === Constructor) {
-    return object;
-  }
-
-  var promise = new Constructor(noop);
-  resolve(promise, object);
-  return promise;
-}
-
-var PROMISE_ID = Math.random().toString(36).substring(2);
-
-function noop() {}
-
-var PENDING = void 0;
-var FULFILLED = 1;
-var REJECTED = 2;
-
-function selfFulfillment() {
-  return new TypeError("You cannot resolve a promise with itself");
-}
-
-function cannotReturnOwn() {
-  return new TypeError('A promises callback cannot return that same promise.');
-}
-
-function tryThen(then$$1, value, fulfillmentHandler, rejectionHandler) {
-  try {
-    then$$1.call(value, fulfillmentHandler, rejectionHandler);
-  } catch (e) {
-    return e;
-  }
-}
-
-function handleForeignThenable(promise, thenable, then$$1) {
-  asap(function (promise) {
-    var sealed = false;
-    var error = tryThen(then$$1, thenable, function (value) {
-      if (sealed) {
-        return;
-      }
-      sealed = true;
-      if (thenable !== value) {
-        resolve(promise, value);
-      } else {
-        fulfill(promise, value);
-      }
-    }, function (reason) {
-      if (sealed) {
-        return;
-      }
-      sealed = true;
-
-      reject(promise, reason);
-    }, 'Settle: ' + (promise._label || ' unknown promise'));
-
-    if (!sealed && error) {
-      sealed = true;
-      reject(promise, error);
-    }
-  }, promise);
-}
-
-function handleOwnThenable(promise, thenable) {
-  if (thenable._state === FULFILLED) {
-    fulfill(promise, thenable._result);
-  } else if (thenable._state === REJECTED) {
-    reject(promise, thenable._result);
-  } else {
-    subscribe(thenable, undefined, function (value) {
-      return resolve(promise, value);
-    }, function (reason) {
-      return reject(promise, reason);
-    });
-  }
-}
-
-function handleMaybeThenable(promise, maybeThenable, then$$1) {
-  if (maybeThenable.constructor === promise.constructor && then$$1 === then && maybeThenable.constructor.resolve === resolve$1) {
-    handleOwnThenable(promise, maybeThenable);
-  } else {
-    if (then$$1 === undefined) {
-      fulfill(promise, maybeThenable);
-    } else if (isFunction(then$$1)) {
-      handleForeignThenable(promise, maybeThenable, then$$1);
-    } else {
-      fulfill(promise, maybeThenable);
-    }
-  }
-}
-
-function resolve(promise, value) {
-  if (promise === value) {
-    reject(promise, selfFulfillment());
-  } else if (objectOrFunction(value)) {
-    var then$$1 = void 0;
-    try {
-      then$$1 = value.then;
-    } catch (error) {
-      reject(promise, error);
-      return;
-    }
-    handleMaybeThenable(promise, value, then$$1);
-  } else {
-    fulfill(promise, value);
-  }
-}
-
-function publishRejection(promise) {
-  if (promise._onerror) {
-    promise._onerror(promise._result);
-  }
-
-  publish(promise);
-}
-
-function fulfill(promise, value) {
-  if (promise._state !== PENDING) {
-    return;
-  }
-
-  promise._result = value;
-  promise._state = FULFILLED;
-
-  if (promise._subscribers.length !== 0) {
-    asap(publish, promise);
-  }
-}
-
-function reject(promise, reason) {
-  if (promise._state !== PENDING) {
-    return;
-  }
-  promise._state = REJECTED;
-  promise._result = reason;
-
-  asap(publishRejection, promise);
-}
-
-function subscribe(parent, child, onFulfillment, onRejection) {
-  var _subscribers = parent._subscribers;
-  var length = _subscribers.length;
-
-
-  parent._onerror = null;
-
-  _subscribers[length] = child;
-  _subscribers[length + FULFILLED] = onFulfillment;
-  _subscribers[length + REJECTED] = onRejection;
-
-  if (length === 0 && parent._state) {
-    asap(publish, parent);
-  }
-}
-
-function publish(promise) {
-  var subscribers = promise._subscribers;
-  var settled = promise._state;
-
-  if (subscribers.length === 0) {
-    return;
-  }
-
-  var child = void 0,
-      callback = void 0,
-      detail = promise._result;
-
-  for (var i = 0; i < subscribers.length; i += 3) {
-    child = subscribers[i];
-    callback = subscribers[i + settled];
-
-    if (child) {
-      invokeCallback(settled, child, callback, detail);
-    } else {
-      callback(detail);
-    }
-  }
-
-  promise._subscribers.length = 0;
-}
-
-function invokeCallback(settled, promise, callback, detail) {
-  var hasCallback = isFunction(callback),
-      value = void 0,
-      error = void 0,
-      succeeded = true;
-
-  if (hasCallback) {
-    try {
-      value = callback(detail);
-    } catch (e) {
-      succeeded = false;
-      error = e;
-    }
-
-    if (promise === value) {
-      reject(promise, cannotReturnOwn());
-      return;
-    }
-  } else {
-    value = detail;
-  }
-
-  if (promise._state !== PENDING) {
-    // noop
-  } else if (hasCallback && succeeded) {
-    resolve(promise, value);
-  } else if (succeeded === false) {
-    reject(promise, error);
-  } else if (settled === FULFILLED) {
-    fulfill(promise, value);
-  } else if (settled === REJECTED) {
-    reject(promise, value);
-  }
-}
-
-function initializePromise(promise, resolver) {
-  try {
-    resolver(function resolvePromise(value) {
-      resolve(promise, value);
-    }, function rejectPromise(reason) {
-      reject(promise, reason);
-    });
-  } catch (e) {
-    reject(promise, e);
-  }
-}
-
-var id = 0;
-function nextId() {
-  return id++;
-}
-
-function makePromise(promise) {
-  promise[PROMISE_ID] = id++;
-  promise._state = undefined;
-  promise._result = undefined;
-  promise._subscribers = [];
-}
-
-function validationError() {
-  return new Error('Array Methods must be provided an Array');
-}
-
-var Enumerator = function () {
-  function Enumerator(Constructor, input) {
-    this._instanceConstructor = Constructor;
-    this.promise = new Constructor(noop);
-
-    if (!this.promise[PROMISE_ID]) {
-      makePromise(this.promise);
-    }
-
-    if (isArray(input)) {
-      this.length = input.length;
-      this._remaining = input.length;
-
-      this._result = new Array(this.length);
-
-      if (this.length === 0) {
-        fulfill(this.promise, this._result);
-      } else {
-        this.length = this.length || 0;
-        this._enumerate(input);
-        if (this._remaining === 0) {
-          fulfill(this.promise, this._result);
-        }
-      }
-    } else {
-      reject(this.promise, validationError());
-    }
-  }
-
-  Enumerator.prototype._enumerate = function _enumerate(input) {
-    for (var i = 0; this._state === PENDING && i < input.length; i++) {
-      this._eachEntry(input[i], i);
-    }
-  };
-
-  Enumerator.prototype._eachEntry = function _eachEntry(entry, i) {
-    var c = this._instanceConstructor;
-    var resolve$$1 = c.resolve;
-
-
-    if (resolve$$1 === resolve$1) {
-      var _then = void 0;
-      var error = void 0;
-      var didError = false;
-      try {
-        _then = entry.then;
-      } catch (e) {
-        didError = true;
-        error = e;
-      }
-
-      if (_then === then && entry._state !== PENDING) {
-        this._settledAt(entry._state, i, entry._result);
-      } else if (typeof _then !== 'function') {
-        this._remaining--;
-        this._result[i] = entry;
-      } else if (c === Promise$1) {
-        var promise = new c(noop);
-        if (didError) {
-          reject(promise, error);
+  function newParse(specifier, Z) {
+    return function(string) {
+      var d = newDate(1900, undefined, 1),
+          i = parseSpecifier(d, specifier, string += "", 0),
+          week, day;
+      if (i != string.length) return null;
+
+      // If a UNIX timestamp is specified, return it.
+      if ("Q" in d) return new Date(d.Q);
+      if ("s" in d) return new Date(d.s * 1000 + ("L" in d ? d.L : 0));
+
+      // If this is utcParse, never use the local timezone.
+      if (Z && !("Z" in d)) d.Z = 0;
+
+      // The am-pm flag is 0 for AM, and 1 for PM.
+      if ("p" in d) d.H = d.H % 12 + d.p * 12;
+
+      // If the month was not specified, inherit from the quarter.
+      if (d.m === undefined) d.m = "q" in d ? d.q : 0;
+
+      // Convert day-of-week and week-of-year to day-of-year.
+      if ("V" in d) {
+        if (d.V < 1 || d.V > 53) return null;
+        if (!("w" in d)) d.w = 1;
+        if ("Z" in d) {
+          week = utcDate(newDate(d.y, 0, 1)), day = week.getUTCDay();
+          week = day > 4 || day === 0 ? d3Time.utcMonday.ceil(week) : d3Time.utcMonday(week);
+          week = d3Time.utcDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getUTCFullYear();
+          d.m = week.getUTCMonth();
+          d.d = week.getUTCDate() + (d.w + 6) % 7;
         } else {
-          handleMaybeThenable(promise, entry, _then);
+          week = localDate(newDate(d.y, 0, 1)), day = week.getDay();
+          week = day > 4 || day === 0 ? d3Time.timeMonday.ceil(week) : d3Time.timeMonday(week);
+          week = d3Time.timeDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getFullYear();
+          d.m = week.getMonth();
+          d.d = week.getDate() + (d.w + 6) % 7;
         }
-        this._willSettleAt(promise, i);
-      } else {
-        this._willSettleAt(new c(function (resolve$$1) {
-          return resolve$$1(entry);
-        }), i);
+      } else if ("W" in d || "U" in d) {
+        if (!("w" in d)) d.w = "u" in d ? d.u % 7 : "W" in d ? 1 : 0;
+        day = "Z" in d ? utcDate(newDate(d.y, 0, 1)).getUTCDay() : localDate(newDate(d.y, 0, 1)).getDay();
+        d.m = 0;
+        d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
       }
-    } else {
-      this._willSettleAt(resolve$$1(entry), i);
-    }
-  };
 
-  Enumerator.prototype._settledAt = function _settledAt(state, i, value) {
-    var promise = this.promise;
-
-
-    if (promise._state === PENDING) {
-      this._remaining--;
-
-      if (state === REJECTED) {
-        reject(promise, value);
-      } else {
-        this._result[i] = value;
+      // If a time zone is specified, all fields are interpreted as UTC and then
+      // offset according to the specified time zone.
+      if ("Z" in d) {
+        d.H += d.Z / 100 | 0;
+        d.M += d.Z % 100;
+        return utcDate(d);
       }
-    }
 
-    if (this._remaining === 0) {
-      fulfill(promise, this._result);
-    }
-  };
-
-  Enumerator.prototype._willSettleAt = function _willSettleAt(promise, i) {
-    var enumerator = this;
-
-    subscribe(promise, undefined, function (value) {
-      return enumerator._settledAt(FULFILLED, i, value);
-    }, function (reason) {
-      return enumerator._settledAt(REJECTED, i, reason);
-    });
-  };
-
-  return Enumerator;
-}();
-
-/**
-  `Promise.all` accepts an array of promises, and returns a new promise which
-  is fulfilled with an array of fulfillment values for the passed promises, or
-  rejected with the reason of the first passed promise to be rejected. It casts all
-  elements of the passed iterable to promises as it runs this algorithm.
-
-  Example:
-
-  ```javascript
-  let promise1 = resolve(1);
-  let promise2 = resolve(2);
-  let promise3 = resolve(3);
-  let promises = [ promise1, promise2, promise3 ];
-
-  Promise.all(promises).then(function(array){
-    // The array here would be [ 1, 2, 3 ];
-  });
-  ```
-
-  If any of the `promises` given to `all` are rejected, the first promise
-  that is rejected will be given as an argument to the returned promises's
-  rejection handler. For example:
-
-  Example:
-
-  ```javascript
-  let promise1 = resolve(1);
-  let promise2 = reject(new Error("2"));
-  let promise3 = reject(new Error("3"));
-  let promises = [ promise1, promise2, promise3 ];
-
-  Promise.all(promises).then(function(array){
-    // Code here never runs because there are rejected promises!
-  }, function(error) {
-    // error.message === "2"
-  });
-  ```
-
-  @method all
-  @static
-  @param {Array} entries array of promises
-  @param {String} label optional string for labeling the promise.
-  Useful for tooling.
-  @return {Promise} promise that is fulfilled when all `promises` have been
-  fulfilled, or rejected if any of them become rejected.
-  @static
-*/
-function all(entries) {
-  return new Enumerator(this, entries).promise;
-}
-
-/**
-  `Promise.race` returns a new promise which is settled in the same way as the
-  first passed promise to settle.
-
-  Example:
-
-  ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 1');
-    }, 200);
-  });
-
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 2');
-    }, 100);
-  });
-
-  Promise.race([promise1, promise2]).then(function(result){
-    // result === 'promise 2' because it was resolved before promise1
-    // was resolved.
-  });
-  ```
-
-  `Promise.race` is deterministic in that only the state of the first
-  settled promise matters. For example, even if other promises given to the
-  `promises` array argument are resolved, but the first settled promise has
-  become rejected before the other promises became fulfilled, the returned
-  promise will become rejected:
-
-  ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 1');
-    }, 200);
-  });
-
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      reject(new Error('promise 2'));
-    }, 100);
-  });
-
-  Promise.race([promise1, promise2]).then(function(result){
-    // Code here never runs
-  }, function(reason){
-    // reason.message === 'promise 2' because promise 2 became rejected before
-    // promise 1 became fulfilled
-  });
-  ```
-
-  An example real-world use case is implementing timeouts:
-
-  ```javascript
-  Promise.race([ajax('foo.json'), timeout(5000)])
-  ```
-
-  @method race
-  @static
-  @param {Array} promises array of promises to observe
-  Useful for tooling.
-  @return {Promise} a promise which settles in the same way as the first passed
-  promise to settle.
-*/
-function race(entries) {
-  /*jshint validthis:true */
-  var Constructor = this;
-
-  if (!isArray(entries)) {
-    return new Constructor(function (_, reject) {
-      return reject(new TypeError('You must pass an array to race.'));
-    });
-  } else {
-    return new Constructor(function (resolve, reject) {
-      var length = entries.length;
-      for (var i = 0; i < length; i++) {
-        Constructor.resolve(entries[i]).then(resolve, reject);
-      }
-    });
+      // Otherwise, all fields are in local time.
+      return localDate(d);
+    };
   }
+
+  function parseSpecifier(d, specifier, string, j) {
+    var i = 0,
+        n = specifier.length,
+        m = string.length,
+        c,
+        parse;
+
+    while (i < n) {
+      if (j >= m) return -1;
+      c = specifier.charCodeAt(i++);
+      if (c === 37) {
+        c = specifier.charAt(i++);
+        parse = parses[c in pads ? specifier.charAt(i++) : c];
+        if (!parse || ((j = parse(d, string, j)) < 0)) return -1;
+      } else if (c != string.charCodeAt(j++)) {
+        return -1;
+      }
+    }
+
+    return j;
+  }
+
+  function parsePeriod(d, string, i) {
+    var n = periodRe.exec(string.slice(i));
+    return n ? (d.p = periodLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseShortWeekday(d, string, i) {
+    var n = shortWeekdayRe.exec(string.slice(i));
+    return n ? (d.w = shortWeekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseWeekday(d, string, i) {
+    var n = weekdayRe.exec(string.slice(i));
+    return n ? (d.w = weekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseShortMonth(d, string, i) {
+    var n = shortMonthRe.exec(string.slice(i));
+    return n ? (d.m = shortMonthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseMonth(d, string, i) {
+    var n = monthRe.exec(string.slice(i));
+    return n ? (d.m = monthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseLocaleDateTime(d, string, i) {
+    return parseSpecifier(d, locale_dateTime, string, i);
+  }
+
+  function parseLocaleDate(d, string, i) {
+    return parseSpecifier(d, locale_date, string, i);
+  }
+
+  function parseLocaleTime(d, string, i) {
+    return parseSpecifier(d, locale_time, string, i);
+  }
+
+  function formatShortWeekday(d) {
+    return locale_shortWeekdays[d.getDay()];
+  }
+
+  function formatWeekday(d) {
+    return locale_weekdays[d.getDay()];
+  }
+
+  function formatShortMonth(d) {
+    return locale_shortMonths[d.getMonth()];
+  }
+
+  function formatMonth(d) {
+    return locale_months[d.getMonth()];
+  }
+
+  function formatPeriod(d) {
+    return locale_periods[+(d.getHours() >= 12)];
+  }
+
+  function formatQuarter(d) {
+    return 1 + ~~(d.getMonth() / 3);
+  }
+
+  function formatUTCShortWeekday(d) {
+    return locale_shortWeekdays[d.getUTCDay()];
+  }
+
+  function formatUTCWeekday(d) {
+    return locale_weekdays[d.getUTCDay()];
+  }
+
+  function formatUTCShortMonth(d) {
+    return locale_shortMonths[d.getUTCMonth()];
+  }
+
+  function formatUTCMonth(d) {
+    return locale_months[d.getUTCMonth()];
+  }
+
+  function formatUTCPeriod(d) {
+    return locale_periods[+(d.getUTCHours() >= 12)];
+  }
+
+  function formatUTCQuarter(d) {
+    return 1 + ~~(d.getUTCMonth() / 3);
+  }
+
+  return {
+    format: function(specifier) {
+      var f = newFormat(specifier += "", formats);
+      f.toString = function() { return specifier; };
+      return f;
+    },
+    parse: function(specifier) {
+      var p = newParse(specifier += "", false);
+      p.toString = function() { return specifier; };
+      return p;
+    },
+    utcFormat: function(specifier) {
+      var f = newFormat(specifier += "", utcFormats);
+      f.toString = function() { return specifier; };
+      return f;
+    },
+    utcParse: function(specifier) {
+      var p = newParse(specifier += "", true);
+      p.toString = function() { return specifier; };
+      return p;
+    }
+  };
 }
 
-/**
-  `Promise.reject` returns a promise rejected with the passed `reason`.
-  It is shorthand for the following:
+var pads = {"-": "", "_": " ", "0": "0"},
+    numberRe = /^\s*\d+/, // note: ignores next directive
+    percentRe = /^%/,
+    requoteRe = /[\\^$*+?|[\]().{}]/g;
 
-  ```javascript
-  let promise = new Promise(function(resolve, reject){
-    reject(new Error('WHOOPS'));
-  });
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  let promise = Promise.reject(new Error('WHOOPS'));
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  @method reject
-  @static
-  @param {Any} reason value that the returned promise will be rejected with.
-  Useful for tooling.
-  @return {Promise} a promise rejected with the given `reason`.
-*/
-function reject$1(reason) {
-  /*jshint validthis:true */
-  var Constructor = this;
-  var promise = new Constructor(noop);
-  reject(promise, reason);
-  return promise;
+function pad(value, fill, width) {
+  var sign = value < 0 ? "-" : "",
+      string = (sign ? -value : value) + "",
+      length = string.length;
+  return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
 }
 
-function needsResolver() {
-  throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
+function requote(s) {
+  return s.replace(requoteRe, "\\$&");
 }
 
-function needsNew() {
-  throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
+function formatRe(names) {
+  return new RegExp("^(?:" + names.map(requote).join("|") + ")", "i");
 }
 
-/**
-  Promise objects represent the eventual result of an asynchronous operation. The
-  primary way of interacting with a promise is through its `then` method, which
-  registers callbacks to receive either a promise's eventual value or the reason
-  why the promise cannot be fulfilled.
+function formatLookup(names) {
+  var map = {}, i = -1, n = names.length;
+  while (++i < n) map[names[i].toLowerCase()] = i;
+  return map;
+}
 
-  Terminology
-  -----------
+function parseWeekdayNumberSunday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.w = +n[0], i + n[0].length) : -1;
+}
 
-  - `promise` is an object or function with a `then` method whose behavior conforms to this specification.
-  - `thenable` is an object or function that defines a `then` method.
-  - `value` is any legal JavaScript value (including undefined, a thenable, or a promise).
-  - `exception` is a value that is thrown using the throw statement.
-  - `reason` is a value that indicates why a promise was rejected.
-  - `settled` the final resting state of a promise, fulfilled or rejected.
+function parseWeekdayNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.u = +n[0], i + n[0].length) : -1;
+}
 
-  A promise can be in one of three states: pending, fulfilled, or rejected.
+function parseWeekNumberSunday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.U = +n[0], i + n[0].length) : -1;
+}
 
-  Promises that are fulfilled have a fulfillment value and are in the fulfilled
-  state.  Promises that are rejected have a rejection reason and are in the
-  rejected state.  A fulfillment value is never a thenable.
+function parseWeekNumberISO(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.V = +n[0], i + n[0].length) : -1;
+}
 
-  Promises can also be said to *resolve* a value.  If this value is also a
-  promise, then the original promise's settled state will match the value's
-  settled state.  So a promise that *resolves* a promise that rejects will
-  itself reject, and a promise that *resolves* a promise that fulfills will
-  itself fulfill.
+function parseWeekNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.W = +n[0], i + n[0].length) : -1;
+}
 
+function parseFullYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 4));
+  return n ? (d.y = +n[0], i + n[0].length) : -1;
+}
 
-  Basic Usage:
-  ------------
+function parseYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
+}
 
-  ```js
-  let promise = new Promise(function(resolve, reject) {
-    // on success
-    resolve(value);
+function parseZone(d, string, i) {
+  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
+  return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
+}
 
-    // on failure
-    reject(reason);
-  });
+function parseQuarter(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.q = n[0] * 3 - 3, i + n[0].length) : -1;
+}
 
-  promise.then(function(value) {
-    // on fulfillment
-  }, function(reason) {
-    // on rejection
-  });
-  ```
+function parseMonthNumber(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
+}
 
-  Advanced Usage:
-  ---------------
+function parseDayOfMonth(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.d = +n[0], i + n[0].length) : -1;
+}
 
-  Promises shine when abstracting away asynchronous interactions such as
-  `XMLHttpRequest`s.
+function parseDayOfYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 3));
+  return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
+}
 
-  ```js
-  function getJSON(url) {
-    return new Promise(function(resolve, reject){
-      let xhr = new XMLHttpRequest();
+function parseHour24(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.H = +n[0], i + n[0].length) : -1;
+}
 
-      xhr.open('GET', url);
-      xhr.onreadystatechange = handler;
-      xhr.responseType = 'json';
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.send();
+function parseMinutes(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.M = +n[0], i + n[0].length) : -1;
+}
 
-      function handler() {
-        if (this.readyState === this.DONE) {
-          if (this.status === 200) {
-            resolve(this.response);
-          } else {
-            reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
-          }
+function parseSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.S = +n[0], i + n[0].length) : -1;
+}
+
+function parseMilliseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 3));
+  return n ? (d.L = +n[0], i + n[0].length) : -1;
+}
+
+function parseMicroseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 6));
+  return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
+}
+
+function parseLiteralPercent(d, string, i) {
+  var n = percentRe.exec(string.slice(i, i + 1));
+  return n ? i + n[0].length : -1;
+}
+
+function parseUnixTimestamp(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.Q = +n[0], i + n[0].length) : -1;
+}
+
+function parseUnixTimestampSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.s = +n[0], i + n[0].length) : -1;
+}
+
+function formatDayOfMonth(d, p) {
+  return pad(d.getDate(), p, 2);
+}
+
+function formatHour24(d, p) {
+  return pad(d.getHours(), p, 2);
+}
+
+function formatHour12(d, p) {
+  return pad(d.getHours() % 12 || 12, p, 2);
+}
+
+function formatDayOfYear(d, p) {
+  return pad(1 + d3Time.timeDay.count(d3Time.timeYear(d), d), p, 3);
+}
+
+function formatMilliseconds(d, p) {
+  return pad(d.getMilliseconds(), p, 3);
+}
+
+function formatMicroseconds(d, p) {
+  return formatMilliseconds(d, p) + "000";
+}
+
+function formatMonthNumber(d, p) {
+  return pad(d.getMonth() + 1, p, 2);
+}
+
+function formatMinutes(d, p) {
+  return pad(d.getMinutes(), p, 2);
+}
+
+function formatSeconds(d, p) {
+  return pad(d.getSeconds(), p, 2);
+}
+
+function formatWeekdayNumberMonday(d) {
+  var day = d.getDay();
+  return day === 0 ? 7 : day;
+}
+
+function formatWeekNumberSunday(d, p) {
+  return pad(d3Time.timeSunday.count(d3Time.timeYear(d) - 1, d), p, 2);
+}
+
+function formatWeekNumberISO(d, p) {
+  var day = d.getDay();
+  d = (day >= 4 || day === 0) ? d3Time.timeThursday(d) : d3Time.timeThursday.ceil(d);
+  return pad(d3Time.timeThursday.count(d3Time.timeYear(d), d) + (d3Time.timeYear(d).getDay() === 4), p, 2);
+}
+
+function formatWeekdayNumberSunday(d) {
+  return d.getDay();
+}
+
+function formatWeekNumberMonday(d, p) {
+  return pad(d3Time.timeMonday.count(d3Time.timeYear(d) - 1, d), p, 2);
+}
+
+function formatYear(d, p) {
+  return pad(d.getFullYear() % 100, p, 2);
+}
+
+function formatFullYear(d, p) {
+  return pad(d.getFullYear() % 10000, p, 4);
+}
+
+function formatZone(d) {
+  var z = d.getTimezoneOffset();
+  return (z > 0 ? "-" : (z *= -1, "+"))
+      + pad(z / 60 | 0, "0", 2)
+      + pad(z % 60, "0", 2);
+}
+
+function formatUTCDayOfMonth(d, p) {
+  return pad(d.getUTCDate(), p, 2);
+}
+
+function formatUTCHour24(d, p) {
+  return pad(d.getUTCHours(), p, 2);
+}
+
+function formatUTCHour12(d, p) {
+  return pad(d.getUTCHours() % 12 || 12, p, 2);
+}
+
+function formatUTCDayOfYear(d, p) {
+  return pad(1 + d3Time.utcDay.count(d3Time.utcYear(d), d), p, 3);
+}
+
+function formatUTCMilliseconds(d, p) {
+  return pad(d.getUTCMilliseconds(), p, 3);
+}
+
+function formatUTCMicroseconds(d, p) {
+  return formatUTCMilliseconds(d, p) + "000";
+}
+
+function formatUTCMonthNumber(d, p) {
+  return pad(d.getUTCMonth() + 1, p, 2);
+}
+
+function formatUTCMinutes(d, p) {
+  return pad(d.getUTCMinutes(), p, 2);
+}
+
+function formatUTCSeconds(d, p) {
+  return pad(d.getUTCSeconds(), p, 2);
+}
+
+function formatUTCWeekdayNumberMonday(d) {
+  var dow = d.getUTCDay();
+  return dow === 0 ? 7 : dow;
+}
+
+function formatUTCWeekNumberSunday(d, p) {
+  return pad(d3Time.utcSunday.count(d3Time.utcYear(d) - 1, d), p, 2);
+}
+
+function formatUTCWeekNumberISO(d, p) {
+  var day = d.getUTCDay();
+  d = (day >= 4 || day === 0) ? d3Time.utcThursday(d) : d3Time.utcThursday.ceil(d);
+  return pad(d3Time.utcThursday.count(d3Time.utcYear(d), d) + (d3Time.utcYear(d).getUTCDay() === 4), p, 2);
+}
+
+function formatUTCWeekdayNumberSunday(d) {
+  return d.getUTCDay();
+}
+
+function formatUTCWeekNumberMonday(d, p) {
+  return pad(d3Time.utcMonday.count(d3Time.utcYear(d) - 1, d), p, 2);
+}
+
+function formatUTCYear(d, p) {
+  return pad(d.getUTCFullYear() % 100, p, 2);
+}
+
+function formatUTCFullYear(d, p) {
+  return pad(d.getUTCFullYear() % 10000, p, 4);
+}
+
+function formatUTCZone() {
+  return "+0000";
+}
+
+function formatLiteralPercent() {
+  return "%";
+}
+
+function formatUnixTimestamp(d) {
+  return +d;
+}
+
+function formatUnixTimestampSeconds(d) {
+  return Math.floor(+d / 1000);
+}
+
+var locale;
+
+defaultLocale({
+  dateTime: "%x, %X",
+  date: "%-m/%-d/%Y",
+  time: "%-I:%M:%S %p",
+  periods: ["AM", "PM"],
+  days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+});
+
+function defaultLocale(definition) {
+  locale = formatLocale(definition);
+  exports.timeFormat = locale.format;
+  exports.timeParse = locale.parse;
+  exports.utcFormat = locale.utcFormat;
+  exports.utcParse = locale.utcParse;
+  return locale;
+}
+
+var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
+
+function formatIsoNative(date) {
+  return date.toISOString();
+}
+
+var formatIso = Date.prototype.toISOString
+    ? formatIsoNative
+    : exports.utcFormat(isoSpecifier);
+
+function parseIsoNative(string) {
+  var date = new Date(string);
+  return isNaN(date) ? null : date;
+}
+
+var parseIso = +new Date("2000-01-01T00:00:00.000Z")
+    ? parseIsoNative
+    : exports.utcParse(isoSpecifier);
+
+exports.isoFormat = formatIso;
+exports.isoParse = parseIso;
+exports.timeFormatDefaultLocale = defaultLocale;
+exports.timeFormatLocale = formatLocale;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+
+},{"d3-time":22}],22:[function(_dereq_,module,exports){
+// https://d3js.org/d3-time/ v1.1.0 Copyright 2019 Mike Bostock
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+typeof define === 'function' && define.amd ? define(['exports'], factory) :
+(global = global || self, factory(global.d3 = global.d3 || {}));
+}(this, function (exports) { 'use strict';
+
+var t0 = new Date,
+    t1 = new Date;
+
+function newInterval(floori, offseti, count, field) {
+
+  function interval(date) {
+    return floori(date = arguments.length === 0 ? new Date : new Date(+date)), date;
+  }
+
+  interval.floor = function(date) {
+    return floori(date = new Date(+date)), date;
+  };
+
+  interval.ceil = function(date) {
+    return floori(date = new Date(date - 1)), offseti(date, 1), floori(date), date;
+  };
+
+  interval.round = function(date) {
+    var d0 = interval(date),
+        d1 = interval.ceil(date);
+    return date - d0 < d1 - date ? d0 : d1;
+  };
+
+  interval.offset = function(date, step) {
+    return offseti(date = new Date(+date), step == null ? 1 : Math.floor(step)), date;
+  };
+
+  interval.range = function(start, stop, step) {
+    var range = [], previous;
+    start = interval.ceil(start);
+    step = step == null ? 1 : Math.floor(step);
+    if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
+    do range.push(previous = new Date(+start)), offseti(start, step), floori(start);
+    while (previous < start && start < stop);
+    return range;
+  };
+
+  interval.filter = function(test) {
+    return newInterval(function(date) {
+      if (date >= date) while (floori(date), !test(date)) date.setTime(date - 1);
+    }, function(date, step) {
+      if (date >= date) {
+        if (step < 0) while (++step <= 0) {
+          while (offseti(date, -1), !test(date)) {} // eslint-disable-line no-empty
+        } else while (--step >= 0) {
+          while (offseti(date, +1), !test(date)) {} // eslint-disable-line no-empty
         }
-      };
-    });
-  }
-
-  getJSON('/posts.json').then(function(json) {
-    // on fulfillment
-  }, function(reason) {
-    // on rejection
-  });
-  ```
-
-  Unlike callbacks, promises are great composable primitives.
-
-  ```js
-  Promise.all([
-    getJSON('/posts'),
-    getJSON('/comments')
-  ]).then(function(values){
-    values[0] // => postsJSON
-    values[1] // => commentsJSON
-
-    return values;
-  });
-  ```
-
-  @class Promise
-  @param {Function} resolver
-  Useful for tooling.
-  @constructor
-*/
-
-var Promise$1 = function () {
-  function Promise(resolver) {
-    this[PROMISE_ID] = nextId();
-    this._result = this._state = undefined;
-    this._subscribers = [];
-
-    if (noop !== resolver) {
-      typeof resolver !== 'function' && needsResolver();
-      this instanceof Promise ? initializePromise(this, resolver) : needsNew();
-    }
-  }
-
-  /**
-  The primary way of interacting with a promise is through its `then` method,
-  which registers callbacks to receive either a promise's eventual value or the
-  reason why the promise cannot be fulfilled.
-   ```js
-  findUser().then(function(user){
-    // user is available
-  }, function(reason){
-    // user is unavailable, and you are given the reason why
-  });
-  ```
-   Chaining
-  --------
-   The return value of `then` is itself a promise.  This second, 'downstream'
-  promise is resolved with the return value of the first promise's fulfillment
-  or rejection handler, or rejected if the handler throws an exception.
-   ```js
-  findUser().then(function (user) {
-    return user.name;
-  }, function (reason) {
-    return 'default name';
-  }).then(function (userName) {
-    // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
-    // will be `'default name'`
-  });
-   findUser().then(function (user) {
-    throw new Error('Found user, but still unhappy');
-  }, function (reason) {
-    throw new Error('`findUser` rejected and we're unhappy');
-  }).then(function (value) {
-    // never reached
-  }, function (reason) {
-    // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
-    // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
-  });
-  ```
-  If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
-   ```js
-  findUser().then(function (user) {
-    throw new PedagogicalException('Upstream error');
-  }).then(function (value) {
-    // never reached
-  }).then(function (value) {
-    // never reached
-  }, function (reason) {
-    // The `PedgagocialException` is propagated all the way down to here
-  });
-  ```
-   Assimilation
-  ------------
-   Sometimes the value you want to propagate to a downstream promise can only be
-  retrieved asynchronously. This can be achieved by returning a promise in the
-  fulfillment or rejection handler. The downstream promise will then be pending
-  until the returned promise is settled. This is called *assimilation*.
-   ```js
-  findUser().then(function (user) {
-    return findCommentsByAuthor(user);
-  }).then(function (comments) {
-    // The user's comments are now available
-  });
-  ```
-   If the assimliated promise rejects, then the downstream promise will also reject.
-   ```js
-  findUser().then(function (user) {
-    return findCommentsByAuthor(user);
-  }).then(function (comments) {
-    // If `findCommentsByAuthor` fulfills, we'll have the value here
-  }, function (reason) {
-    // If `findCommentsByAuthor` rejects, we'll have the reason here
-  });
-  ```
-   Simple Example
-  --------------
-   Synchronous Example
-   ```javascript
-  let result;
-   try {
-    result = findResult();
-    // success
-  } catch(reason) {
-    // failure
-  }
-  ```
-   Errback Example
-   ```js
-  findResult(function(result, err){
-    if (err) {
-      // failure
-    } else {
-      // success
-    }
-  });
-  ```
-   Promise Example;
-   ```javascript
-  findResult().then(function(result){
-    // success
-  }, function(reason){
-    // failure
-  });
-  ```
-   Advanced Example
-  --------------
-   Synchronous Example
-   ```javascript
-  let author, books;
-   try {
-    author = findAuthor();
-    books  = findBooksByAuthor(author);
-    // success
-  } catch(reason) {
-    // failure
-  }
-  ```
-   Errback Example
-   ```js
-   function foundBooks(books) {
-   }
-   function failure(reason) {
-   }
-   findAuthor(function(author, err){
-    if (err) {
-      failure(err);
-      // failure
-    } else {
-      try {
-        findBoooksByAuthor(author, function(books, err) {
-          if (err) {
-            failure(err);
-          } else {
-            try {
-              foundBooks(books);
-            } catch(reason) {
-              failure(reason);
-            }
-          }
-        });
-      } catch(error) {
-        failure(err);
       }
-      // success
-    }
-  });
-  ```
-   Promise Example;
-   ```javascript
-  findAuthor().
-    then(findBooksByAuthor).
-    then(function(books){
-      // found books
-  }).catch(function(reason){
-    // something went wrong
-  });
-  ```
-   @method then
-  @param {Function} onFulfilled
-  @param {Function} onRejected
-  Useful for tooling.
-  @return {Promise}
-  */
-
-  /**
-  `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
-  as the catch block of a try/catch statement.
-  ```js
-  function findAuthor(){
-  throw new Error('couldn't find that author');
-  }
-  // synchronous
-  try {
-  findAuthor();
-  } catch(reason) {
-  // something went wrong
-  }
-  // async with promises
-  findAuthor().catch(function(reason){
-  // something went wrong
-  });
-  ```
-  @method catch
-  @param {Function} onRejection
-  Useful for tooling.
-  @return {Promise}
-  */
-
-
-  Promise.prototype.catch = function _catch(onRejection) {
-    return this.then(null, onRejection);
+    });
   };
 
-  /**
-    `finally` will be invoked regardless of the promise's fate just as native
-    try/catch/finally behaves
-  
-    Synchronous example:
-  
-    ```js
-    findAuthor() {
-      if (Math.random() > 0.5) {
-        throw new Error();
-      }
-      return new Author();
-    }
-  
-    try {
-      return findAuthor(); // succeed or fail
-    } catch(error) {
-      return findOtherAuther();
-    } finally {
-      // always runs
-      // doesn't affect the return value
-    }
-    ```
-  
-    Asynchronous example:
-  
-    ```js
-    findAuthor().catch(function(reason){
-      return findOtherAuther();
-    }).finally(function(){
-      // author was either found, or not
-    });
-    ```
-  
-    @method finally
-    @param {Function} callback
-    @return {Promise}
-  */
+  if (count) {
+    interval.count = function(start, end) {
+      t0.setTime(+start), t1.setTime(+end);
+      floori(t0), floori(t1);
+      return Math.floor(count(t0, t1));
+    };
 
-
-  Promise.prototype.finally = function _finally(callback) {
-    var promise = this;
-    var constructor = promise.constructor;
-
-    if (isFunction(callback)) {
-      return promise.then(function (value) {
-        return constructor.resolve(callback()).then(function () {
-          return value;
-        });
-      }, function (reason) {
-        return constructor.resolve(callback()).then(function () {
-          throw reason;
-        });
-      });
-    }
-
-    return promise.then(callback, callback);
-  };
-
-  return Promise;
-}();
-
-Promise$1.prototype.then = then;
-Promise$1.all = all;
-Promise$1.race = race;
-Promise$1.resolve = resolve$1;
-Promise$1.reject = reject$1;
-Promise$1._setScheduler = setScheduler;
-Promise$1._setAsap = setAsap;
-Promise$1._asap = asap;
-
-/*global self*/
-function polyfill() {
-  var local = void 0;
-
-  if (typeof global !== 'undefined') {
-    local = global;
-  } else if (typeof self !== 'undefined') {
-    local = self;
-  } else {
-    try {
-      local = Function('return this')();
-    } catch (e) {
-      throw new Error('polyfill failed because global object is unavailable in this environment');
-    }
+    interval.every = function(step) {
+      step = Math.floor(step);
+      return !isFinite(step) || !(step > 0) ? null
+          : !(step > 1) ? interval
+          : interval.filter(field
+              ? function(d) { return field(d) % step === 0; }
+              : function(d) { return interval.count(0, d) % step === 0; });
+    };
   }
 
-  var P = local.Promise;
-
-  if (P) {
-    var promiseToString = null;
-    try {
-      promiseToString = Object.prototype.toString.call(P.resolve());
-    } catch (e) {
-      // silently ignored
-    }
-
-    if (promiseToString === '[object Promise]' && !P.cast) {
-      return;
-    }
-  }
-
-  local.Promise = Promise$1;
+  return interval;
 }
 
-// Strange compat..
-Promise$1.polyfill = polyfill;
-Promise$1.Promise = Promise$1;
+var millisecond = newInterval(function() {
+  // noop
+}, function(date, step) {
+  date.setTime(+date + step);
+}, function(start, end) {
+  return end - start;
+});
 
-return Promise$1;
+// An optimized implementation for this simple case.
+millisecond.every = function(k) {
+  k = Math.floor(k);
+  if (!isFinite(k) || !(k > 0)) return null;
+  if (!(k > 1)) return millisecond;
+  return newInterval(function(date) {
+    date.setTime(Math.floor(date / k) * k);
+  }, function(date, step) {
+    date.setTime(+date + step * k);
+  }, function(start, end) {
+    return (end - start) / k;
+  });
+};
+var milliseconds = millisecond.range;
 
-})));
+var durationSecond = 1e3;
+var durationMinute = 6e4;
+var durationHour = 36e5;
+var durationDay = 864e5;
+var durationWeek = 6048e5;
 
+var second = newInterval(function(date) {
+  date.setTime(date - date.getMilliseconds());
+}, function(date, step) {
+  date.setTime(+date + step * durationSecond);
+}, function(start, end) {
+  return (end - start) / durationSecond;
+}, function(date) {
+  return date.getUTCSeconds();
+});
+var seconds = second.range;
 
+var minute = newInterval(function(date) {
+  date.setTime(date - date.getMilliseconds() - date.getSeconds() * durationSecond);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getMinutes();
+});
+var minutes = minute.range;
 
+var hour = newInterval(function(date) {
+  date.setTime(date - date.getMilliseconds() - date.getSeconds() * durationSecond - date.getMinutes() * durationMinute);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getHours();
+});
+var hours = hour.range;
 
+var day = newInterval(function(date) {
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setDate(date.getDate() + step);
+}, function(start, end) {
+  return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationDay;
+}, function(date) {
+  return date.getDate() - 1;
+});
+var days = day.range;
 
-}).call(this)}).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":64}],18:[function(_dereq_,module,exports){
+function weekday(i) {
+  return newInterval(function(date) {
+    date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setDate(date.getDate() + step * 7);
+  }, function(start, end) {
+    return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationWeek;
+  });
+}
+
+var sunday = weekday(0);
+var monday = weekday(1);
+var tuesday = weekday(2);
+var wednesday = weekday(3);
+var thursday = weekday(4);
+var friday = weekday(5);
+var saturday = weekday(6);
+
+var sundays = sunday.range;
+var mondays = monday.range;
+var tuesdays = tuesday.range;
+var wednesdays = wednesday.range;
+var thursdays = thursday.range;
+var fridays = friday.range;
+var saturdays = saturday.range;
+
+var month = newInterval(function(date) {
+  date.setDate(1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setMonth(date.getMonth() + step);
+}, function(start, end) {
+  return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
+}, function(date) {
+  return date.getMonth();
+});
+var months = month.range;
+
+var year = newInterval(function(date) {
+  date.setMonth(0, 1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setFullYear(date.getFullYear() + step);
+}, function(start, end) {
+  return end.getFullYear() - start.getFullYear();
+}, function(date) {
+  return date.getFullYear();
+});
+
+// An optimized implementation for this simple case.
+year.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setFullYear(Math.floor(date.getFullYear() / k) * k);
+    date.setMonth(0, 1);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setFullYear(date.getFullYear() + step * k);
+  });
+};
+var years = year.range;
+
+var utcMinute = newInterval(function(date) {
+  date.setUTCSeconds(0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getUTCMinutes();
+});
+var utcMinutes = utcMinute.range;
+
+var utcHour = newInterval(function(date) {
+  date.setUTCMinutes(0, 0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getUTCHours();
+});
+var utcHours = utcHour.range;
+
+var utcDay = newInterval(function(date) {
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCDate(date.getUTCDate() + step);
+}, function(start, end) {
+  return (end - start) / durationDay;
+}, function(date) {
+  return date.getUTCDate() - 1;
+});
+var utcDays = utcDay.range;
+
+function utcWeekday(i) {
+  return newInterval(function(date) {
+    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCDate(date.getUTCDate() + step * 7);
+  }, function(start, end) {
+    return (end - start) / durationWeek;
+  });
+}
+
+var utcSunday = utcWeekday(0);
+var utcMonday = utcWeekday(1);
+var utcTuesday = utcWeekday(2);
+var utcWednesday = utcWeekday(3);
+var utcThursday = utcWeekday(4);
+var utcFriday = utcWeekday(5);
+var utcSaturday = utcWeekday(6);
+
+var utcSundays = utcSunday.range;
+var utcMondays = utcMonday.range;
+var utcTuesdays = utcTuesday.range;
+var utcWednesdays = utcWednesday.range;
+var utcThursdays = utcThursday.range;
+var utcFridays = utcFriday.range;
+var utcSaturdays = utcSaturday.range;
+
+var utcMonth = newInterval(function(date) {
+  date.setUTCDate(1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCMonth(date.getUTCMonth() + step);
+}, function(start, end) {
+  return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
+}, function(date) {
+  return date.getUTCMonth();
+});
+var utcMonths = utcMonth.range;
+
+var utcYear = newInterval(function(date) {
+  date.setUTCMonth(0, 1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCFullYear(date.getUTCFullYear() + step);
+}, function(start, end) {
+  return end.getUTCFullYear() - start.getUTCFullYear();
+}, function(date) {
+  return date.getUTCFullYear();
+});
+
+// An optimized implementation for this simple case.
+utcYear.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setUTCFullYear(Math.floor(date.getUTCFullYear() / k) * k);
+    date.setUTCMonth(0, 1);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCFullYear(date.getUTCFullYear() + step * k);
+  });
+};
+var utcYears = utcYear.range;
+
+exports.timeDay = day;
+exports.timeDays = days;
+exports.timeFriday = friday;
+exports.timeFridays = fridays;
+exports.timeHour = hour;
+exports.timeHours = hours;
+exports.timeInterval = newInterval;
+exports.timeMillisecond = millisecond;
+exports.timeMilliseconds = milliseconds;
+exports.timeMinute = minute;
+exports.timeMinutes = minutes;
+exports.timeMonday = monday;
+exports.timeMondays = mondays;
+exports.timeMonth = month;
+exports.timeMonths = months;
+exports.timeSaturday = saturday;
+exports.timeSaturdays = saturdays;
+exports.timeSecond = second;
+exports.timeSeconds = seconds;
+exports.timeSunday = sunday;
+exports.timeSundays = sundays;
+exports.timeThursday = thursday;
+exports.timeThursdays = thursdays;
+exports.timeTuesday = tuesday;
+exports.timeTuesdays = tuesdays;
+exports.timeWednesday = wednesday;
+exports.timeWednesdays = wednesdays;
+exports.timeWeek = sunday;
+exports.timeWeeks = sundays;
+exports.timeYear = year;
+exports.timeYears = years;
+exports.utcDay = utcDay;
+exports.utcDays = utcDays;
+exports.utcFriday = utcFriday;
+exports.utcFridays = utcFridays;
+exports.utcHour = utcHour;
+exports.utcHours = utcHours;
+exports.utcMillisecond = millisecond;
+exports.utcMilliseconds = milliseconds;
+exports.utcMinute = utcMinute;
+exports.utcMinutes = utcMinutes;
+exports.utcMonday = utcMonday;
+exports.utcMondays = utcMondays;
+exports.utcMonth = utcMonth;
+exports.utcMonths = utcMonths;
+exports.utcSaturday = utcSaturday;
+exports.utcSaturdays = utcSaturdays;
+exports.utcSecond = second;
+exports.utcSeconds = seconds;
+exports.utcSunday = utcSunday;
+exports.utcSundays = utcSundays;
+exports.utcThursday = utcThursday;
+exports.utcThursdays = utcThursdays;
+exports.utcTuesday = utcTuesday;
+exports.utcTuesdays = utcTuesdays;
+exports.utcWednesday = utcWednesday;
+exports.utcWednesdays = utcWednesdays;
+exports.utcWeek = utcSunday;
+exports.utcWeeks = utcSundays;
+exports.utcYear = utcYear;
+exports.utcYears = utcYears;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+
+},{}],23:[function(_dereq_,module,exports){
 /**
  * inspired by is-number <https://github.com/jonschlinkert/is-number>
  * but significantly simplified and sped up by ignoring number and string constructors
@@ -12544,7 +11343,7 @@ module.exports = function(n) {
     return n - n < 1;
 };
 
-},{"is-string-blank":52}],19:[function(_dereq_,module,exports){
+},{"is-string-blank":58}],24:[function(_dereq_,module,exports){
 module.exports = adjoint;
 
 /**
@@ -12578,7 +11377,7 @@ function adjoint(out, a) {
     out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
     return out;
 };
-},{}],20:[function(_dereq_,module,exports){
+},{}],25:[function(_dereq_,module,exports){
 module.exports = clone;
 
 /**
@@ -12607,7 +11406,7 @@ function clone(a) {
     out[15] = a[15];
     return out;
 };
-},{}],21:[function(_dereq_,module,exports){
+},{}],26:[function(_dereq_,module,exports){
 module.exports = copy;
 
 /**
@@ -12636,7 +11435,7 @@ function copy(out, a) {
     out[15] = a[15];
     return out;
 };
-},{}],22:[function(_dereq_,module,exports){
+},{}],27:[function(_dereq_,module,exports){
 module.exports = create;
 
 /**
@@ -12664,7 +11463,7 @@ function create() {
     out[15] = 1;
     return out;
 };
-},{}],23:[function(_dereq_,module,exports){
+},{}],28:[function(_dereq_,module,exports){
 module.exports = determinant;
 
 /**
@@ -12695,7 +11494,7 @@ function determinant(a) {
     // Calculate the determinant
     return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 };
-},{}],24:[function(_dereq_,module,exports){
+},{}],29:[function(_dereq_,module,exports){
 module.exports = fromQuat;
 
 /**
@@ -12743,7 +11542,7 @@ function fromQuat(out, q) {
 
     return out;
 };
-},{}],25:[function(_dereq_,module,exports){
+},{}],30:[function(_dereq_,module,exports){
 module.exports = fromRotation
 
 /**
@@ -12798,7 +11597,7 @@ function fromRotation(out, rad, axis) {
   return out
 }
 
-},{}],26:[function(_dereq_,module,exports){
+},{}],31:[function(_dereq_,module,exports){
 module.exports = fromRotationTranslation;
 
 /**
@@ -12852,7 +11651,7 @@ function fromRotationTranslation(out, q, v) {
     
     return out;
 };
-},{}],27:[function(_dereq_,module,exports){
+},{}],32:[function(_dereq_,module,exports){
 module.exports = fromScaling
 
 /**
@@ -12886,7 +11685,7 @@ function fromScaling(out, v) {
   return out
 }
 
-},{}],28:[function(_dereq_,module,exports){
+},{}],33:[function(_dereq_,module,exports){
 module.exports = fromTranslation
 
 /**
@@ -12920,7 +11719,7 @@ function fromTranslation(out, v) {
   return out
 }
 
-},{}],29:[function(_dereq_,module,exports){
+},{}],34:[function(_dereq_,module,exports){
 module.exports = fromXRotation
 
 /**
@@ -12957,7 +11756,7 @@ function fromXRotation(out, rad) {
     out[15] = 1
     return out
 }
-},{}],30:[function(_dereq_,module,exports){
+},{}],35:[function(_dereq_,module,exports){
 module.exports = fromYRotation
 
 /**
@@ -12994,7 +11793,7 @@ function fromYRotation(out, rad) {
     out[15] = 1
     return out
 }
-},{}],31:[function(_dereq_,module,exports){
+},{}],36:[function(_dereq_,module,exports){
 module.exports = fromZRotation
 
 /**
@@ -13031,7 +11830,7 @@ function fromZRotation(out, rad) {
     out[15] = 1
     return out
 }
-},{}],32:[function(_dereq_,module,exports){
+},{}],37:[function(_dereq_,module,exports){
 module.exports = frustum;
 
 /**
@@ -13068,7 +11867,7 @@ function frustum(out, left, right, bottom, top, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],33:[function(_dereq_,module,exports){
+},{}],38:[function(_dereq_,module,exports){
 module.exports = identity;
 
 /**
@@ -13096,7 +11895,7 @@ function identity(out) {
     out[15] = 1;
     return out;
 };
-},{}],34:[function(_dereq_,module,exports){
+},{}],39:[function(_dereq_,module,exports){
 module.exports = {
   create: _dereq_('./create')
   , clone: _dereq_('./clone')
@@ -13129,7 +11928,7 @@ module.exports = {
   , str: _dereq_('./str')
 }
 
-},{"./adjoint":19,"./clone":20,"./copy":21,"./create":22,"./determinant":23,"./fromQuat":24,"./fromRotation":25,"./fromRotationTranslation":26,"./fromScaling":27,"./fromTranslation":28,"./fromXRotation":29,"./fromYRotation":30,"./fromZRotation":31,"./frustum":32,"./identity":33,"./invert":35,"./lookAt":36,"./multiply":37,"./ortho":38,"./perspective":39,"./perspectiveFromFieldOfView":40,"./rotate":41,"./rotateX":42,"./rotateY":43,"./rotateZ":44,"./scale":45,"./str":46,"./translate":47,"./transpose":48}],35:[function(_dereq_,module,exports){
+},{"./adjoint":24,"./clone":25,"./copy":26,"./create":27,"./determinant":28,"./fromQuat":29,"./fromRotation":30,"./fromRotationTranslation":31,"./fromScaling":32,"./fromTranslation":33,"./fromXRotation":34,"./fromYRotation":35,"./fromZRotation":36,"./frustum":37,"./identity":38,"./invert":40,"./lookAt":41,"./multiply":42,"./ortho":43,"./perspective":44,"./perspectiveFromFieldOfView":45,"./rotate":46,"./rotateX":47,"./rotateY":48,"./rotateZ":49,"./scale":50,"./str":51,"./translate":52,"./transpose":53}],40:[function(_dereq_,module,exports){
 module.exports = invert;
 
 /**
@@ -13185,7 +11984,7 @@ function invert(out, a) {
 
     return out;
 };
-},{}],36:[function(_dereq_,module,exports){
+},{}],41:[function(_dereq_,module,exports){
 var identity = _dereq_('./identity');
 
 module.exports = lookAt;
@@ -13276,7 +12075,7 @@ function lookAt(out, eye, center, up) {
 
     return out;
 };
-},{"./identity":33}],37:[function(_dereq_,module,exports){
+},{"./identity":38}],42:[function(_dereq_,module,exports){
 module.exports = multiply;
 
 /**
@@ -13319,7 +12118,7 @@ function multiply(out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
-},{}],38:[function(_dereq_,module,exports){
+},{}],43:[function(_dereq_,module,exports){
 module.exports = ortho;
 
 /**
@@ -13356,7 +12155,7 @@ function ortho(out, left, right, bottom, top, near, far) {
     out[15] = 1;
     return out;
 };
-},{}],39:[function(_dereq_,module,exports){
+},{}],44:[function(_dereq_,module,exports){
 module.exports = perspective;
 
 /**
@@ -13390,7 +12189,7 @@ function perspective(out, fovy, aspect, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],40:[function(_dereq_,module,exports){
+},{}],45:[function(_dereq_,module,exports){
 module.exports = perspectiveFromFieldOfView;
 
 /**
@@ -13432,7 +12231,7 @@ function perspectiveFromFieldOfView(out, fov, near, far) {
 }
 
 
-},{}],41:[function(_dereq_,module,exports){
+},{}],46:[function(_dereq_,module,exports){
 module.exports = rotate;
 
 /**
@@ -13497,7 +12296,7 @@ function rotate(out, a, rad, axis) {
     }
     return out;
 };
-},{}],42:[function(_dereq_,module,exports){
+},{}],47:[function(_dereq_,module,exports){
 module.exports = rotateX;
 
 /**
@@ -13542,7 +12341,7 @@ function rotateX(out, a, rad) {
     out[11] = a23 * c - a13 * s;
     return out;
 };
-},{}],43:[function(_dereq_,module,exports){
+},{}],48:[function(_dereq_,module,exports){
 module.exports = rotateY;
 
 /**
@@ -13587,7 +12386,7 @@ function rotateY(out, a, rad) {
     out[11] = a03 * s + a23 * c;
     return out;
 };
-},{}],44:[function(_dereq_,module,exports){
+},{}],49:[function(_dereq_,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -13632,7 +12431,7 @@ function rotateZ(out, a, rad) {
     out[7] = a13 * c - a03 * s;
     return out;
 };
-},{}],45:[function(_dereq_,module,exports){
+},{}],50:[function(_dereq_,module,exports){
 module.exports = scale;
 
 /**
@@ -13664,7 +12463,7 @@ function scale(out, a, v) {
     out[15] = a[15];
     return out;
 };
-},{}],46:[function(_dereq_,module,exports){
+},{}],51:[function(_dereq_,module,exports){
 module.exports = str;
 
 /**
@@ -13679,7 +12478,7 @@ function str(a) {
                     a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' + 
                     a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 };
-},{}],47:[function(_dereq_,module,exports){
+},{}],52:[function(_dereq_,module,exports){
 module.exports = translate;
 
 /**
@@ -13718,7 +12517,7 @@ function translate(out, a, v) {
 
     return out;
 };
-},{}],48:[function(_dereq_,module,exports){
+},{}],53:[function(_dereq_,module,exports){
 module.exports = transpose;
 
 /**
@@ -13768,7 +12567,7 @@ function transpose(out, a) {
     
     return out;
 };
-},{}],49:[function(_dereq_,module,exports){
+},{}],54:[function(_dereq_,module,exports){
 (function (global){(function (){
 'use strict'
 
@@ -13785,7 +12584,7 @@ else {
 module.exports = hasHover
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"is-browser":51}],50:[function(_dereq_,module,exports){
+},{"is-browser":56}],55:[function(_dereq_,module,exports){
 'use strict'
 
 var isBrowser = _dereq_('is-browser')
@@ -13811,9 +12610,46 @@ function detect() {
 
 module.exports = isBrowser && detect()
 
-},{"is-browser":51}],51:[function(_dereq_,module,exports){
+},{"is-browser":56}],56:[function(_dereq_,module,exports){
 module.exports = true;
-},{}],52:[function(_dereq_,module,exports){
+},{}],57:[function(_dereq_,module,exports){
+'use strict'
+
+module.exports = isMobile
+module.exports.isMobile = isMobile
+module.exports.default = isMobile
+
+var mobileRE = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series[46]0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i
+
+var tabletRE = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series[46]0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino|android|ipad|playbook|silk/i
+
+function isMobile (opts) {
+  if (!opts) opts = {}
+  var ua = opts.ua
+  if (!ua && typeof navigator !== 'undefined') ua = navigator.userAgent
+  if (ua && ua.headers && typeof ua.headers['user-agent'] === 'string') {
+    ua = ua.headers['user-agent']
+  }
+  if (typeof ua !== 'string') return false
+
+  var result = opts.tablet ? tabletRE.test(ua) : mobileRE.test(ua)
+
+  if (
+    !result &&
+    opts.tablet &&
+    opts.featureDetect &&
+    navigator &&
+    navigator.maxTouchPoints > 1 &&
+    ua.indexOf('Macintosh') !== -1 &&
+    ua.indexOf('Safari') !== -1
+  ) {
+    result = true
+  }
+
+  return result
+}
+
+},{}],58:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -13850,7 +12686,7 @@ module.exports = function(str){
     return true;
 }
 
-},{}],53:[function(_dereq_,module,exports){
+},{}],59:[function(_dereq_,module,exports){
 var rootPosition = { left: 0, top: 0 }
 
 module.exports = mouseEventOffset
@@ -13877,7 +12713,384 @@ function getBoundingClientOffset (element) {
   }
 }
 
-},{}],54:[function(_dereq_,module,exports){
+},{}],60:[function(_dereq_,module,exports){
+(function (global,setImmediate){(function (){
+/*! Native Promise Only
+    v0.8.1 (c) Kyle Simpson
+    MIT License: http://getify.mit-license.org
+*/
+
+(function UMD(name,context,definition){
+	// special form of UMD for polyfilling across evironments
+	context[name] = context[name] || definition();
+	if (typeof module != "undefined" && module.exports) { module.exports = context[name]; }
+	else if (typeof define == "function" && define.amd) { define(function $AMD$(){ return context[name]; }); }
+})("Promise",typeof global != "undefined" ? global : this,function DEF(){
+	/*jshint validthis:true */
+	"use strict";
+
+	var builtInProp, cycle, scheduling_queue,
+		ToString = Object.prototype.toString,
+		timer = (typeof setImmediate != "undefined") ?
+			function timer(fn) { return setImmediate(fn); } :
+			setTimeout
+	;
+
+	// dammit, IE8.
+	try {
+		Object.defineProperty({},"x",{});
+		builtInProp = function builtInProp(obj,name,val,config) {
+			return Object.defineProperty(obj,name,{
+				value: val,
+				writable: true,
+				configurable: config !== false
+			});
+		};
+	}
+	catch (err) {
+		builtInProp = function builtInProp(obj,name,val) {
+			obj[name] = val;
+			return obj;
+		};
+	}
+
+	// Note: using a queue instead of array for efficiency
+	scheduling_queue = (function Queue() {
+		var first, last, item;
+
+		function Item(fn,self) {
+			this.fn = fn;
+			this.self = self;
+			this.next = void 0;
+		}
+
+		return {
+			add: function add(fn,self) {
+				item = new Item(fn,self);
+				if (last) {
+					last.next = item;
+				}
+				else {
+					first = item;
+				}
+				last = item;
+				item = void 0;
+			},
+			drain: function drain() {
+				var f = first;
+				first = last = cycle = void 0;
+
+				while (f) {
+					f.fn.call(f.self);
+					f = f.next;
+				}
+			}
+		};
+	})();
+
+	function schedule(fn,self) {
+		scheduling_queue.add(fn,self);
+		if (!cycle) {
+			cycle = timer(scheduling_queue.drain);
+		}
+	}
+
+	// promise duck typing
+	function isThenable(o) {
+		var _then, o_type = typeof o;
+
+		if (o != null &&
+			(
+				o_type == "object" || o_type == "function"
+			)
+		) {
+			_then = o.then;
+		}
+		return typeof _then == "function" ? _then : false;
+	}
+
+	function notify() {
+		for (var i=0; i<this.chain.length; i++) {
+			notifyIsolated(
+				this,
+				(this.state === 1) ? this.chain[i].success : this.chain[i].failure,
+				this.chain[i]
+			);
+		}
+		this.chain.length = 0;
+	}
+
+	// NOTE: This is a separate function to isolate
+	// the `try..catch` so that other code can be
+	// optimized better
+	function notifyIsolated(self,cb,chain) {
+		var ret, _then;
+		try {
+			if (cb === false) {
+				chain.reject(self.msg);
+			}
+			else {
+				if (cb === true) {
+					ret = self.msg;
+				}
+				else {
+					ret = cb.call(void 0,self.msg);
+				}
+
+				if (ret === chain.promise) {
+					chain.reject(TypeError("Promise-chain cycle"));
+				}
+				else if (_then = isThenable(ret)) {
+					_then.call(ret,chain.resolve,chain.reject);
+				}
+				else {
+					chain.resolve(ret);
+				}
+			}
+		}
+		catch (err) {
+			chain.reject(err);
+		}
+	}
+
+	function resolve(msg) {
+		var _then, self = this;
+
+		// already triggered?
+		if (self.triggered) { return; }
+
+		self.triggered = true;
+
+		// unwrap
+		if (self.def) {
+			self = self.def;
+		}
+
+		try {
+			if (_then = isThenable(msg)) {
+				schedule(function(){
+					var def_wrapper = new MakeDefWrapper(self);
+					try {
+						_then.call(msg,
+							function $resolve$(){ resolve.apply(def_wrapper,arguments); },
+							function $reject$(){ reject.apply(def_wrapper,arguments); }
+						);
+					}
+					catch (err) {
+						reject.call(def_wrapper,err);
+					}
+				})
+			}
+			else {
+				self.msg = msg;
+				self.state = 1;
+				if (self.chain.length > 0) {
+					schedule(notify,self);
+				}
+			}
+		}
+		catch (err) {
+			reject.call(new MakeDefWrapper(self),err);
+		}
+	}
+
+	function reject(msg) {
+		var self = this;
+
+		// already triggered?
+		if (self.triggered) { return; }
+
+		self.triggered = true;
+
+		// unwrap
+		if (self.def) {
+			self = self.def;
+		}
+
+		self.msg = msg;
+		self.state = 2;
+		if (self.chain.length > 0) {
+			schedule(notify,self);
+		}
+	}
+
+	function iteratePromises(Constructor,arr,resolver,rejecter) {
+		for (var idx=0; idx<arr.length; idx++) {
+			(function IIFE(idx){
+				Constructor.resolve(arr[idx])
+				.then(
+					function $resolver$(msg){
+						resolver(idx,msg);
+					},
+					rejecter
+				);
+			})(idx);
+		}
+	}
+
+	function MakeDefWrapper(self) {
+		this.def = self;
+		this.triggered = false;
+	}
+
+	function MakeDef(self) {
+		this.promise = self;
+		this.state = 0;
+		this.triggered = false;
+		this.chain = [];
+		this.msg = void 0;
+	}
+
+	function Promise(executor) {
+		if (typeof executor != "function") {
+			throw TypeError("Not a function");
+		}
+
+		if (this.__NPO__ !== 0) {
+			throw TypeError("Not a promise");
+		}
+
+		// instance shadowing the inherited "brand"
+		// to signal an already "initialized" promise
+		this.__NPO__ = 1;
+
+		var def = new MakeDef(this);
+
+		this["then"] = function then(success,failure) {
+			var o = {
+				success: typeof success == "function" ? success : true,
+				failure: typeof failure == "function" ? failure : false
+			};
+			// Note: `then(..)` itself can be borrowed to be used against
+			// a different promise constructor for making the chained promise,
+			// by substituting a different `this` binding.
+			o.promise = new this.constructor(function extractChain(resolve,reject) {
+				if (typeof resolve != "function" || typeof reject != "function") {
+					throw TypeError("Not a function");
+				}
+
+				o.resolve = resolve;
+				o.reject = reject;
+			});
+			def.chain.push(o);
+
+			if (def.state !== 0) {
+				schedule(notify,def);
+			}
+
+			return o.promise;
+		};
+		this["catch"] = function $catch$(failure) {
+			return this.then(void 0,failure);
+		};
+
+		try {
+			executor.call(
+				void 0,
+				function publicResolve(msg){
+					resolve.call(def,msg);
+				},
+				function publicReject(msg) {
+					reject.call(def,msg);
+				}
+			);
+		}
+		catch (err) {
+			reject.call(def,err);
+		}
+	}
+
+	var PromisePrototype = builtInProp({},"constructor",Promise,
+		/*configurable=*/false
+	);
+
+	// Note: Android 4 cannot use `Object.defineProperty(..)` here
+	Promise.prototype = PromisePrototype;
+
+	// built-in "brand" to signal an "uninitialized" promise
+	builtInProp(PromisePrototype,"__NPO__",0,
+		/*configurable=*/false
+	);
+
+	builtInProp(Promise,"resolve",function Promise$resolve(msg) {
+		var Constructor = this;
+
+		// spec mandated checks
+		// note: best "isPromise" check that's practical for now
+		if (msg && typeof msg == "object" && msg.__NPO__ === 1) {
+			return msg;
+		}
+
+		return new Constructor(function executor(resolve,reject){
+			if (typeof resolve != "function" || typeof reject != "function") {
+				throw TypeError("Not a function");
+			}
+
+			resolve(msg);
+		});
+	});
+
+	builtInProp(Promise,"reject",function Promise$reject(msg) {
+		return new this(function executor(resolve,reject){
+			if (typeof resolve != "function" || typeof reject != "function") {
+				throw TypeError("Not a function");
+			}
+
+			reject(msg);
+		});
+	});
+
+	builtInProp(Promise,"all",function Promise$all(arr) {
+		var Constructor = this;
+
+		// spec mandated checks
+		if (ToString.call(arr) != "[object Array]") {
+			return Constructor.reject(TypeError("Not an array"));
+		}
+		if (arr.length === 0) {
+			return Constructor.resolve([]);
+		}
+
+		return new Constructor(function executor(resolve,reject){
+			if (typeof resolve != "function" || typeof reject != "function") {
+				throw TypeError("Not a function");
+			}
+
+			var len = arr.length, msgs = Array(len), count = 0;
+
+			iteratePromises(Constructor,arr,function resolver(idx,msg) {
+				msgs[idx] = msg;
+				if (++count === len) {
+					resolve(msgs);
+				}
+			},reject);
+		});
+	});
+
+	builtInProp(Promise,"race",function Promise$race(arr) {
+		var Constructor = this;
+
+		// spec mandated checks
+		if (ToString.call(arr) != "[object Array]") {
+			return Constructor.reject(TypeError("Not an array"));
+		}
+
+		return new Constructor(function executor(resolve,reject){
+			if (typeof resolve != "function" || typeof reject != "function") {
+				throw TypeError("Not a function");
+			}
+
+			iteratePromises(Constructor,arr,function resolver(idx,msg){
+				resolve(msg);
+			},reject);
+		});
+	});
+
+	return Promise;
+});
+
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},_dereq_("timers").setImmediate)
+},{"timers":73}],61:[function(_dereq_,module,exports){
 /*! @preserve
  * numeral.js
  * version : 2.0.6
@@ -14892,7 +14105,99 @@ function getBoundingClientOffset (element) {
 return numeral;
 }));
 
-},{}],55:[function(_dereq_,module,exports){
+},{}],62:[function(_dereq_,module,exports){
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+'use strict';
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+},{}],63:[function(_dereq_,module,exports){
 
 module.exports = parse
 
@@ -14951,7 +14256,7 @@ function parseValues(args) {
 	return numbers ? numbers.map(Number) : []
 }
 
-},{}],56:[function(_dereq_,module,exports){
+},{}],64:[function(_dereq_,module,exports){
 /*
  * @copyright 2016 Sean Connelly (@voidqk), http://syntheti.cc
  * @license MIT
@@ -15079,7 +14384,7 @@ if (typeof window === 'object')
 
 module.exports = PolyBool;
 
-},{"./lib/build-log":57,"./lib/epsilon":58,"./lib/geojson":59,"./lib/intersecter":60,"./lib/segment-chainer":62,"./lib/segment-selector":63}],57:[function(_dereq_,module,exports){
+},{"./lib/build-log":65,"./lib/epsilon":66,"./lib/geojson":67,"./lib/intersecter":68,"./lib/segment-chainer":70,"./lib/segment-selector":71}],65:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15194,7 +14499,7 @@ function BuildLog(){
 
 module.exports = BuildLog;
 
-},{}],58:[function(_dereq_,module,exports){
+},{}],66:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15366,7 +14671,7 @@ function Epsilon(eps){
 
 module.exports = Epsilon;
 
-},{}],59:[function(_dereq_,module,exports){
+},{}],67:[function(_dereq_,module,exports){
 // (c) Copyright 2017, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15556,7 +14861,7 @@ var GeoJSON = {
 
 module.exports = GeoJSON;
 
-},{}],60:[function(_dereq_,module,exports){
+},{}],68:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16063,7 +15368,7 @@ function Intersecter(selfIntersection, eps, buildLog){
 
 module.exports = Intersecter;
 
-},{"./linked-list":61}],61:[function(_dereq_,module,exports){
+},{"./linked-list":69}],69:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16146,7 +15451,7 @@ var LinkedList = {
 
 module.exports = LinkedList;
 
-},{}],62:[function(_dereq_,module,exports){
+},{}],70:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16400,7 +15705,7 @@ function SegmentChainer(segments, eps, buildLog){
 
 module.exports = SegmentChainer;
 
-},{}],63:[function(_dereq_,module,exports){
+},{}],71:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -16568,7 +15873,7 @@ var SegmentSelector = {
 
 module.exports = SegmentSelector;
 
-},{}],64:[function(_dereq_,module,exports){
+},{}],72:[function(_dereq_,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -16754,7 +16059,86 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],65:[function(_dereq_,module,exports){
+},{}],73:[function(_dereq_,module,exports){
+(function (setImmediate,clearImmediate){(function (){
+var nextTick = _dereq_('process/browser.js').nextTick;
+var apply = Function.prototype.apply;
+var slice = Array.prototype.slice;
+var immediateIds = {};
+var nextImmediateId = 0;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) { timeout.close(); };
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(window, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// That's not how node.js implements it but the exposed api is the same.
+exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
+  var id = nextImmediateId++;
+  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
+
+  immediateIds[id] = true;
+
+  nextTick(function onNextTick() {
+    if (immediateIds[id]) {
+      // fn.call() is faster so we optimize for the common use-case
+      // @see http://jsperf.com/call-apply-segu
+      if (args) {
+        fn.apply(null, args);
+      } else {
+        fn.call(null);
+      }
+      // Prevent ids from leaking
+      exports.clearImmediate(id);
+    }
+  });
+
+  return id;
+};
+
+exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
+  delete immediateIds[id];
+};
+}).call(this)}).call(this,_dereq_("timers").setImmediate,_dereq_("timers").clearImmediate)
+},{"process/browser.js":72,"timers":73}],74:[function(_dereq_,module,exports){
 // TinyColor v1.4.2
 // https://github.com/bgrins/TinyColor
 // Brian Grinstead, MIT License
@@ -17951,15 +17335,5206 @@ else {
 
 })(Math);
 
-},{}],66:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{}],75:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
+﻿/* http://keith-wood.name/calendars.html
+   Traditional Chinese calendar for jQuery v2.0.2.
+   Written by Nicolas Riesco (enquiries@nicolasriesco.net) December 2016.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+var gregorianCalendar = main.instance();
+
+/** Implementation of the traditional Chinese calendar.
+    Source of calendar tables https://github.com/isee15/Lunar-Solar-Calendar-Converter .
+    @class ChineseCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function ChineseCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+ChineseCalendar.prototype = new main.baseCalendar;
+
+assign(ChineseCalendar.prototype, {
+    /** The calendar name.
+        @memberof ChineseCalendar */
+    name: 'Chinese',
+     /** Julian date of start of Gregorian epoch: 1 January 0001 CE.
+        @memberof GregorianCalendar */
+    jdEpoch: 1721425.5,
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof ChineseCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        This calendar uses month indices to account for intercalary months. 
+        @memberof ChineseCalendar */
+    minMonth: 0,
+    /** The first month in the year.
+        This calendar uses month indices to account for intercalary months. 
+        @memberof ChineseCalendar */
+    firstMonth: 0,
+    /** The minimum day number.
+        @memberof ChineseCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof ChineseCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Chinese',
+            epochs: ['BEC', 'EC'],
+            monthNumbers: function(date, padded) {
+                if (typeof date === 'string') {
+                    var match = date.match(MONTH_NUMBER_REGEXP);
+                    return (match) ? match[0] : '';
+                }
+
+                var year = this._validateYear(date);
+                var monthIndex = date.month();
+
+                var month = '' + this.toChineseMonth(year, monthIndex);
+
+                if (padded && month.length < 2) {
+                    month = "0" + month;
+                }
+
+                if (this.isIntercalaryMonth(year, monthIndex)) {
+                    month += 'i';
+                }
+
+                return month;
+            },
+            monthNames: function(date) {
+                if (typeof date === 'string') {
+                    var match = date.match(MONTH_NAME_REGEXP);
+                    return (match) ? match[0] : '';
+                }
+
+                var year = this._validateYear(date);
+                var monthIndex = date.month();
+
+                var month = this.toChineseMonth(year, monthIndex);
+
+                var monthName = ['一月','二月','三月','四月','五月','六月',
+                    '七月','八月','九月','十月','十一月','十二月'][month - 1];
+
+                if (this.isIntercalaryMonth(year, monthIndex)) {
+                    monthName = '闰' + monthName;
+                }
+
+                return monthName;
+            },
+            monthNamesShort: function(date) {
+                if (typeof date === 'string') {
+                    var match = date.match(MONTH_SHORT_NAME_REGEXP);
+                    return (match) ? match[0] : '';
+                }
+
+                var year = this._validateYear(date);
+                var monthIndex = date.month();
+
+                var month = this.toChineseMonth(year, monthIndex);
+
+                var monthName = ['一','二','三','四','五','六',
+                    '七','八','九','十','十一','十二'][month - 1];
+
+                if (this.isIntercalaryMonth(year, monthIndex)) {
+                    monthName = '闰' + monthName;
+                }
+
+                return monthName;
+            },
+            parseMonth: function(year, monthString) {
+                year = this._validateYear(year);
+                var month = parseInt(monthString);
+                var isIntercalary;
+
+                if (!isNaN(month)) {
+                    var i = monthString[monthString.length - 1];
+                    isIntercalary = (i === 'i' || i === 'I');
+                } else {
+                    if (monthString[0] === '闰') {
+                        isIntercalary = true;
+                        monthString = monthString.substring(1);
+                    }
+                    if (monthString[monthString.length - 1] === '月') {
+                        monthString = monthString.substring(0, monthString.length - 1);
+                    }
+                    month = 1 +
+                        ['一','二','三','四','五','六',
+                        '七','八','九','十','十一','十二'].indexOf(monthString);
+                }
+
+                var monthIndex = this.toMonthIndex(year, month, isIntercalary);
+                return monthIndex;
+            },
+            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            digits: null,
+            dateFormat: 'yyyy/mm/dd',
+            firstDay: 1,
+            isRTL: false
+        }
+    },
+
+    /** Check that a candidate date is from the same calendar and is valid.
+        @memberof BaseCalendar
+        @private
+        @param year {CDate|number} The date or the year to validate.
+        @param error {string} Error message if invalid.
+        @return {number} The year.
+        @throws Error if year out of range. */
+    _validateYear: function(year, error) {
+        if (year.year) {
+            year = year.year();
+        }
+
+        if (typeof year !== 'number' || year < 1888 || year > 2111) {
+            throw error.replace(/\{0\}/, this.local.name);
+        }
+
+        return year;
+    },
+
+    /** Retrieve the month index (i.e. accounting for intercalary months).
+        @memberof ChineseCalendar
+        @param year {number} The year.
+        @param month {number} The month (1 for first month).
+        @param [isIntercalary=false] {boolean} If month is intercalary.
+        @return {number} The month index (0 for first month).
+        @throws Error if an invalid month/year or a different calendar used. */
+    toMonthIndex: function(year, month, isIntercalary) {
+        // compute intercalary month in the year (0 if none)
+        var intercalaryMonth = this.intercalaryMonth(year);
+
+        // validate month
+        var invalidIntercalaryMonth = 
+            (isIntercalary && month !== intercalaryMonth);
+        if (invalidIntercalaryMonth || month < 1 || month > 12) {
+            throw main.local.invalidMonth
+                .replace(/\{0\}/, this.local.name);
+        }
+
+        // compute month index
+        var monthIndex;
+
+        if (!intercalaryMonth) {
+            monthIndex = month - 1;
+        } else if(!isIntercalary && month <= intercalaryMonth) {
+            monthIndex = month - 1;
+        } else {
+            monthIndex = month;
+        }
+
+        return monthIndex;
+    },
+
+    /** Retrieve the month (i.e. accounting for intercalary months).
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date or the year to examine.
+        @param monthIndex {number} The month index (0 for first month).
+        @return {number} The month (1 for first month).
+        @throws Error if an invalid month/year or a different calendar used. */
+    toChineseMonth: function(year, monthIndex) {
+        if (year.year) {
+            year = year.year();
+            monthIndex = year.month();
+        }
+
+        // compute intercalary month in the year (0 if none)
+        var intercalaryMonth = this.intercalaryMonth(year);
+
+        // validate month
+        var maxMonthIndex = (intercalaryMonth) ? 12 : 11;
+        if (monthIndex < 0 || monthIndex > maxMonthIndex) {
+            throw main.local.invalidMonth
+                .replace(/\{0\}/, this.local.name);
+        }
+
+        // compute Chinese month
+        var month;
+
+        if (!intercalaryMonth) {
+            month = monthIndex + 1;
+        } else if(monthIndex < intercalaryMonth) {
+            month = monthIndex + 1;
+        } else {
+            month = monthIndex;
+        }
+
+        return month;
+    },
+
+    /** Determine the intercalary month of a year (if any).
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The intercalary month number, or 0 if none.
+        @throws Error if an invalid year or a different calendar used. */
+    intercalaryMonth: function(year) {
+        year = this._validateYear(year);
+
+        var monthDaysTable = LUNAR_MONTH_DAYS[year - LUNAR_MONTH_DAYS[0]];
+        var intercalaryMonth = monthDaysTable >> 13;
+
+        return intercalaryMonth;
+    },
+
+    /** Determine whether this date is an intercalary month.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [monthIndex] {number} The month index to examine.
+        @return {boolean} <code>true</code> if this is an intercalary month, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    isIntercalaryMonth: function(year, monthIndex) {
+        if (year.year) {
+            year = year.year();
+            monthIndex = year.month();
+        }
+
+        var intercalaryMonth = this.intercalaryMonth(year);
+
+        return !!intercalaryMonth && intercalaryMonth === monthIndex;
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        return (this.intercalaryMonth(year) !== 0);
+    },
+
+    /** Determine the week of the year for a date - ISO 8601.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [monthIndex] {number} The month index to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, monthIndex, day) {
+        // compute Chinese new year
+        var validatedYear =
+            this._validateYear(year, main.local.invalidyear);
+        var packedDate =
+            CHINESE_NEW_YEAR[validatedYear - CHINESE_NEW_YEAR[0]];
+
+        var y = (packedDate >> 9) & 0xFFF;
+        var m = (packedDate >> 5) & 0x0F;
+        var d = packedDate & 0x1F;
+        
+        // find first Thrusday of the year
+        var firstThursday;
+        firstThursday = gregorianCalendar.newDate(y, m, d);
+        firstThursday.add(4 - (firstThursday.dayOfWeek() || 7), 'd');
+
+        // compute days from first Thursday
+        var offset =
+            this.toJD(year, monthIndex, day) - firstThursday.toJD();
+        return 1 + Math.floor(offset / 7);
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        return (this.leapYear(year)) ? 13 : 12;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [monthIndex] {number} The month index.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, monthIndex) {
+        if (year.year) {
+            monthIndex = year.month();
+            year = year.year();
+        }
+
+        year = this._validateYear(year);
+
+        var monthDaysTable = LUNAR_MONTH_DAYS[year - LUNAR_MONTH_DAYS[0]];
+
+        var intercalaryMonth = monthDaysTable >> 13;
+        var maxMonthIndex = (intercalaryMonth) ? 12 : 11;
+        if (monthIndex > maxMonthIndex) {
+            throw main.local.invalidMonth
+                .replace(/\{0\}/, this.local.name);
+        }
+
+        var daysInMonth = (monthDaysTable & (1 << (12 - monthIndex))) ?
+            30 : 29;
+
+        return daysInMonth;
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [monthIndex] {number} The month index to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, monthIndex, day) {
+        return (this.dayOfWeek(year, monthIndex, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof ChineseCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [monthIndex] {number} The month index to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, monthIndex, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = this._validateYear(date.year());
+        monthIndex = date.month();
+        day = date.day();
+
+        var isIntercalary = this.isIntercalaryMonth(year, monthIndex);
+        var month = this.toChineseMonth(year, monthIndex);
+
+        var solar = toSolar(year, month, day, isIntercalary);
+
+        return gregorianCalendar.toJD(solar.year, solar.month, solar.day);
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof ChineseCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        var date = gregorianCalendar.fromJD(jd);
+        var lunar = toLunar(date.year(), date.month(), date.day());
+        var monthIndex = this.toMonthIndex(
+            lunar.year, lunar.month, lunar.isIntercalary);
+        return this.newDate(lunar.year, monthIndex, lunar.day);
+    },
+
+    /** Create a new date from a string.
+        @memberof ChineseCalendar
+        @param dateString {string} String representing a Chinese date
+        @return {CDate} The new date.
+        @throws Error if an invalid date. */
+    fromString: function(dateString) {
+        var match = dateString.match(DATE_REGEXP);
+
+        var year = this._validateYear(+match[1]);
+
+        var month = +match[2];
+        var isIntercalary = !!match[3];
+        var monthIndex = this.toMonthIndex(year, month, isIntercalary);
+
+        var day = +match[4];
+
+        return this.newDate(year, monthIndex, day);
+    },
+
+    /** Add period(s) to a date.
+        Cater for no year zero.
+        @memberof ChineseCalendar
+        @param date {CDate} The starting date.
+        @param offset {number} The number of periods to adjust by.
+        @param period {string} One of 'y' for year, 'm' for month, 'w' for week, 'd' for day.
+        @return {CDate} The updated date.
+        @throws Error if a different calendar used. */
+    add: function(date, offset, period) {
+        var year = date.year();
+        var monthIndex = date.month();
+        var isIntercalary = this.isIntercalaryMonth(year, monthIndex);
+        var month = this.toChineseMonth(year, monthIndex);
+
+        var cdate = Object.getPrototypeOf(ChineseCalendar.prototype)
+            .add.call(this, date, offset, period);
+
+        if (period === 'y') {
+            // Resync month
+            var resultYear = cdate.year();
+            var resultMonthIndex = cdate.month();
+
+            // Using the fact the month index of an intercalary month
+            // equals its month number:
+            var resultCanBeIntercalaryMonth =
+                this.isIntercalaryMonth(resultYear, month);
+
+            var correctedMonthIndex =
+                (isIntercalary && resultCanBeIntercalaryMonth) ?
+                this.toMonthIndex(resultYear, month, true) :
+                this.toMonthIndex(resultYear, month, false);
+
+            if (correctedMonthIndex !== resultMonthIndex) {
+                cdate.month(correctedMonthIndex);
+            }
+        }
+
+        return cdate;
+    },
+});
+
+// Used by ChineseCalendar.prototype.fromString
+var DATE_REGEXP = /^\s*(-?\d\d\d\d|\d\d)[-/](\d?\d)([iI]?)[-/](\d?\d)/m;
+var MONTH_NUMBER_REGEXP = /^\d?\d[iI]?/m;
+var MONTH_NAME_REGEXP = /^闰?十?[一二三四五六七八九]?月/m;
+var MONTH_SHORT_NAME_REGEXP = /^闰?十?[一二三四五六七八九]?/m;
+
+// Chinese calendar implementation
+main.calendars.chinese = ChineseCalendar;
+
+// Chinese calendar tables from year 1888 to 2111
+//
+// Source:
+// https://github.com/isee15/Lunar-Solar-Calendar-Converter.git
+
+// Table of intercalary months and days per month from year 1888 to 2111
+//
+// bit (12 - i):        days in the i^th month
+//                      (= 0 if i^th lunar month has 29 days)
+//                      (= 1 if i^th lunar month has 30 days)
+//                      (first month in lunar year is i = 0)
+// bits (13,14,15,16):  intercalary month
+//                      (= 0 if lunar year has no intercalary month)
+var LUNAR_MONTH_DAYS = [1887, 0x1694, 0x16aa, 0x4ad5,
+    0xab6, 0xc4b7, 0x4ae, 0xa56, 0xb52a, 0x1d2a, 0xd54, 0x75aa, 0x156a,
+    0x1096d, 0x95c, 0x14ae, 0xaa4d, 0x1a4c, 0x1b2a, 0x8d55, 0xad4,
+    0x135a, 0x495d, 0x95c, 0xd49b, 0x149a, 0x1a4a, 0xbaa5, 0x16a8,
+    0x1ad4, 0x52da, 0x12b6, 0xe937, 0x92e, 0x1496, 0xb64b, 0xd4a,
+    0xda8, 0x95b5, 0x56c, 0x12ae, 0x492f, 0x92e, 0xcc96, 0x1a94,
+    0x1d4a, 0xada9, 0xb5a, 0x56c, 0x726e, 0x125c, 0xf92d, 0x192a,
+    0x1a94, 0xdb4a, 0x16aa, 0xad4, 0x955b, 0x4ba, 0x125a, 0x592b,
+    0x152a, 0xf695, 0xd94, 0x16aa, 0xaab5, 0x9b4, 0x14b6, 0x6a57,
+    0xa56, 0x1152a, 0x1d2a, 0xd54, 0xd5aa, 0x156a, 0x96c, 0x94ae,
+    0x14ae, 0xa4c, 0x7d26, 0x1b2a, 0xeb55, 0xad4, 0x12da, 0xa95d,
+    0x95a, 0x149a, 0x9a4d, 0x1a4a, 0x11aa5, 0x16a8, 0x16d4, 0xd2da,
+    0x12b6, 0x936, 0x9497, 0x1496, 0x1564b, 0xd4a, 0xda8, 0xd5b4,
+    0x156c, 0x12ae, 0xa92f, 0x92e, 0xc96, 0x6d4a, 0x1d4a, 0x10d65,
+    0xb58, 0x156c, 0xb26d, 0x125c, 0x192c, 0x9a95, 0x1a94, 0x1b4a,
+    0x4b55, 0xad4, 0xf55b, 0x4ba, 0x125a, 0xb92b, 0x152a, 0x1694,
+    0x96aa, 0x15aa, 0x12ab5, 0x974, 0x14b6, 0xca57, 0xa56, 0x1526,
+    0x8e95, 0xd54, 0x15aa, 0x49b5, 0x96c, 0xd4ae, 0x149c, 0x1a4c,
+    0xbd26, 0x1aa6, 0xb54, 0x6d6a, 0x12da, 0x1695d, 0x95a, 0x149a,
+    0xda4b, 0x1a4a, 0x1aa4, 0xbb54, 0x16b4, 0xada, 0x495b, 0x936,
+    0xf497, 0x1496, 0x154a, 0xb6a5, 0xda4, 0x15b4, 0x6ab6, 0x126e,
+    0x1092f, 0x92e, 0xc96, 0xcd4a, 0x1d4a, 0xd64, 0x956c, 0x155c,
+    0x125c, 0x792e, 0x192c, 0xfa95, 0x1a94, 0x1b4a, 0xab55, 0xad4,
+    0x14da, 0x8a5d, 0xa5a, 0x1152b, 0x152a, 0x1694, 0xd6aa, 0x15aa,
+    0xab4, 0x94ba, 0x14b6, 0xa56, 0x7527, 0xd26, 0xee53, 0xd54, 0x15aa,
+    0xa9b5, 0x96c, 0x14ae, 0x8a4e, 0x1a4c, 0x11d26, 0x1aa4, 0x1b54,
+    0xcd6a, 0xada, 0x95c, 0x949d, 0x149a, 0x1a2a, 0x5b25, 0x1aa4,
+    0xfb52, 0x16b4, 0xaba, 0xa95b, 0x936, 0x1496, 0x9a4b, 0x154a,
+    0x136a5, 0xda4, 0x15ac];
+
+// Table of Chinese New Years from year 1888 to 2111
+// 
+// bits (0 to 4):   solar day
+// bits (5 to 8):   solar month
+// bits (9 to 20):  solar year
+var CHINESE_NEW_YEAR = [1887, 0xec04c, 0xec23f, 0xec435, 0xec649,
+    0xec83e, 0xeca51, 0xecc46, 0xece3a, 0xed04d, 0xed242, 0xed436,
+    0xed64a, 0xed83f, 0xeda53, 0xedc48, 0xede3d, 0xee050, 0xee244,
+    0xee439, 0xee64d, 0xee842, 0xeea36, 0xeec4a, 0xeee3e, 0xef052,
+    0xef246, 0xef43a, 0xef64e, 0xef843, 0xefa37, 0xefc4b, 0xefe41,
+    0xf0054, 0xf0248, 0xf043c, 0xf0650, 0xf0845, 0xf0a38, 0xf0c4d,
+    0xf0e42, 0xf1037, 0xf124a, 0xf143e, 0xf1651, 0xf1846, 0xf1a3a,
+    0xf1c4e, 0xf1e44, 0xf2038, 0xf224b, 0xf243f, 0xf2653, 0xf2848,
+    0xf2a3b, 0xf2c4f, 0xf2e45, 0xf3039, 0xf324d, 0xf3442, 0xf3636,
+    0xf384a, 0xf3a3d, 0xf3c51, 0xf3e46, 0xf403b, 0xf424e, 0xf4443,
+    0xf4638, 0xf484c, 0xf4a3f, 0xf4c52, 0xf4e48, 0xf503c, 0xf524f,
+    0xf5445, 0xf5639, 0xf584d, 0xf5a42, 0xf5c35, 0xf5e49, 0xf603e,
+    0xf6251, 0xf6446, 0xf663b, 0xf684f, 0xf6a43, 0xf6c37, 0xf6e4b,
+    0xf703f, 0xf7252, 0xf7447, 0xf763c, 0xf7850, 0xf7a45, 0xf7c39,
+    0xf7e4d, 0xf8042, 0xf8254, 0xf8449, 0xf863d, 0xf8851, 0xf8a46,
+    0xf8c3b, 0xf8e4f, 0xf9044, 0xf9237, 0xf944a, 0xf963f, 0xf9853,
+    0xf9a47, 0xf9c3c, 0xf9e50, 0xfa045, 0xfa238, 0xfa44c, 0xfa641,
+    0xfa836, 0xfaa49, 0xfac3d, 0xfae52, 0xfb047, 0xfb23a, 0xfb44e,
+    0xfb643, 0xfb837, 0xfba4a, 0xfbc3f, 0xfbe53, 0xfc048, 0xfc23c,
+    0xfc450, 0xfc645, 0xfc839, 0xfca4c, 0xfcc41, 0xfce36, 0xfd04a,
+    0xfd23d, 0xfd451, 0xfd646, 0xfd83a, 0xfda4d, 0xfdc43, 0xfde37,
+    0xfe04b, 0xfe23f, 0xfe453, 0xfe648, 0xfe83c, 0xfea4f, 0xfec44,
+    0xfee38, 0xff04c, 0xff241, 0xff436, 0xff64a, 0xff83e, 0xffa51,
+    0xffc46, 0xffe3a, 0x10004e, 0x100242, 0x100437, 0x10064b, 0x100841,
+    0x100a53, 0x100c48, 0x100e3c, 0x10104f, 0x101244, 0x101438,
+    0x10164c, 0x101842, 0x101a35, 0x101c49, 0x101e3d, 0x102051,
+    0x102245, 0x10243a, 0x10264e, 0x102843, 0x102a37, 0x102c4b,
+    0x102e3f, 0x103053, 0x103247, 0x10343b, 0x10364f, 0x103845,
+    0x103a38, 0x103c4c, 0x103e42, 0x104036, 0x104249, 0x10443d,
+    0x104651, 0x104846, 0x104a3a, 0x104c4e, 0x104e43, 0x105038,
+    0x10524a, 0x10543e, 0x105652, 0x105847, 0x105a3b, 0x105c4f,
+    0x105e45, 0x106039, 0x10624c, 0x106441, 0x106635, 0x106849,
+    0x106a3d, 0x106c51, 0x106e47, 0x10703c, 0x10724f, 0x107444,
+    0x107638, 0x10784c, 0x107a3f, 0x107c53, 0x107e48];
+
+function toLunar(yearOrDate, monthOrResult, day, result) {
+    var solarDate;
+    var lunarDate;
+
+    if(typeof yearOrDate === 'object') {
+        solarDate = yearOrDate;
+        lunarDate = monthOrResult || {};
+
+    } else {
+        var isValidYear = (typeof yearOrDate === 'number') &&
+            (yearOrDate >= 1888) && (yearOrDate <= 2111);
+        if(!isValidYear)
+            throw new Error("Solar year outside range 1888-2111");
+
+        var isValidMonth = (typeof monthOrResult === 'number') &&
+            (monthOrResult >= 1) && (monthOrResult <= 12);
+        if(!isValidMonth)
+            throw new Error("Solar month outside range 1 - 12");
+
+        var isValidDay = (typeof day === 'number') && (day >= 1) && (day <= 31);
+        if(!isValidDay)
+            throw new Error("Solar day outside range 1 - 31");
+
+        solarDate = {
+            year: yearOrDate,
+            month: monthOrResult,
+            day: day,
+        };
+        lunarDate = result || {};
+    }
+
+    // Compute Chinese new year and lunar year
+    var chineseNewYearPackedDate =
+        CHINESE_NEW_YEAR[solarDate.year - CHINESE_NEW_YEAR[0]];
+
+    var packedDate = (solarDate.year << 9) | (solarDate.month << 5)
+        | solarDate.day;
+
+    lunarDate.year = (packedDate >= chineseNewYearPackedDate) ?
+        solarDate.year :
+        solarDate.year - 1;
+
+    chineseNewYearPackedDate =
+        CHINESE_NEW_YEAR[lunarDate.year - CHINESE_NEW_YEAR[0]];
+
+    var y = (chineseNewYearPackedDate >> 9) & 0xFFF;
+    var m = (chineseNewYearPackedDate >> 5) & 0x0F;
+    var d = chineseNewYearPackedDate & 0x1F;
+
+    // Compute days from new year
+    var daysFromNewYear;
+
+    var chineseNewYearJSDate = new Date(y, m -1, d);
+    var jsDate = new Date(solarDate.year, solarDate.month - 1, solarDate.day);
+
+    daysFromNewYear = Math.round(
+        (jsDate - chineseNewYearJSDate) / (24 * 3600 * 1000));
+
+    // Compute lunar month and day
+    var monthDaysTable = LUNAR_MONTH_DAYS[lunarDate.year - LUNAR_MONTH_DAYS[0]];
+
+    var i;
+    for(i = 0; i < 13; i++) {
+        var daysInMonth = (monthDaysTable & (1 << (12 - i))) ? 30 : 29;
+
+        if (daysFromNewYear < daysInMonth) {
+            break;
+        }
+
+        daysFromNewYear -= daysInMonth;
+    }
+
+    var intercalaryMonth = monthDaysTable >> 13;
+    if (!intercalaryMonth || i < intercalaryMonth) {
+        lunarDate.isIntercalary = false;
+        lunarDate.month = 1 + i;
+    } else if (i === intercalaryMonth) {
+        lunarDate.isIntercalary = true;
+        lunarDate.month = i;
+    } else {
+        lunarDate.isIntercalary = false;
+        lunarDate.month = i;
+    }
+
+    lunarDate.day = 1 + daysFromNewYear;
+
+    return lunarDate;
+}
+
+function toSolar(yearOrDate, monthOrResult, day, isIntercalaryOrResult, result) {
+    var solarDate;
+    var lunarDate;
+
+    if(typeof yearOrDate === 'object') {
+        lunarDate = yearOrDate;
+        solarDate = monthOrResult || {};
+
+    } else {
+        var isValidYear = (typeof yearOrDate === 'number') &&
+            (yearOrDate >= 1888) && (yearOrDate <= 2111);
+        if(!isValidYear)
+            throw new Error("Lunar year outside range 1888-2111");
+
+        var isValidMonth = (typeof monthOrResult === 'number') &&
+            (monthOrResult >= 1) && (monthOrResult <= 12);
+        if(!isValidMonth)
+            throw new Error("Lunar month outside range 1 - 12");
+
+        var isValidDay = (typeof day === 'number') && (day >= 1) && (day <= 30);
+        if(!isValidDay)
+            throw new Error("Lunar day outside range 1 - 30");
+
+        var isIntercalary;
+        if(typeof isIntercalaryOrResult === 'object') {
+            isIntercalary = false;
+            solarDate = isIntercalaryOrResult;
+        } else {
+            isIntercalary = !!isIntercalaryOrResult;
+            solarDate = result || {};
+        }
+
+        lunarDate = {
+            year: yearOrDate,
+            month: monthOrResult,
+            day: day,
+            isIntercalary: isIntercalary,
+        };
+    }
+
+    // Compute days from new year
+    var daysFromNewYear;
+
+    daysFromNewYear = lunarDate.day - 1;
+
+    var monthDaysTable = LUNAR_MONTH_DAYS[lunarDate.year - LUNAR_MONTH_DAYS[0]];
+    var intercalaryMonth = monthDaysTable >> 13;
+
+    var monthsFromNewYear;
+    if (!intercalaryMonth) {
+        monthsFromNewYear = lunarDate.month - 1;
+    } else if (lunarDate.month > intercalaryMonth) {
+        monthsFromNewYear = lunarDate.month;
+    } else if (lunarDate.isIntercalary) {
+        monthsFromNewYear = lunarDate.month;
+    } else {
+        monthsFromNewYear = lunarDate.month - 1;
+    }
+
+    for(var i = 0; i < monthsFromNewYear; i++) {
+        var daysInMonth = (monthDaysTable & (1 << (12 - i))) ? 30 : 29;
+        daysFromNewYear += daysInMonth;
+    }
+
+    // Compute Chinese new year
+    var packedDate = CHINESE_NEW_YEAR[lunarDate.year - CHINESE_NEW_YEAR[0]];
+
+    var y = (packedDate >> 9) & 0xFFF;
+    var m = (packedDate >> 5) & 0x0F;
+    var d = packedDate & 0x1F;
+
+    // Compute solar date
+    var jsDate = new Date(y, m - 1, d + daysFromNewYear);
+
+    solarDate.year = jsDate.getFullYear();
+    solarDate.month = 1 + jsDate.getMonth();
+    solarDate.day = jsDate.getDate();
+
+    return solarDate;
+}
+
+
+},{"../main":89,"object-assign":62}],76:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Coptic calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) February 2010.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Coptic calendar.
+    See <a href="http://en.wikipedia.org/wiki/Coptic_calendar">http://en.wikipedia.org/wiki/Coptic_calendar</a>.
+    See also Calendrical Calculations: The Millennium Edition
+    (<a href="http://emr.cs.iit.edu/home/reingold/calendar-book/index.shtml">http://emr.cs.iit.edu/home/reingold/calendar-book/index.shtml</a>).
+    @class CopticCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function CopticCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+CopticCalendar.prototype = new main.baseCalendar;
+
+assign(CopticCalendar.prototype, {
+    /** The calendar name.
+        @memberof CopticCalendar */
+    name: 'Coptic',
+    /** Julian date of start of Coptic epoch: 29 August 284 CE (Gregorian).
+        @memberof CopticCalendar */
+    jdEpoch: 1825029.5,
+    /** Days per month in a common year.
+        @memberof CopticCalendar */
+    daysPerMonth: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof CopticCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof CopticCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof CopticCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof CopticCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof CopticCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Coptic',
+            epochs: ['BAM', 'AM'],
+            monthNames: ['Thout', 'Paopi', 'Hathor', 'Koiak', 'Tobi', 'Meshir',
+            'Paremhat', 'Paremoude', 'Pashons', 'Paoni', 'Epip', 'Mesori', 'Pi Kogi Enavot'],
+            monthNamesShort: ['Tho', 'Pao', 'Hath', 'Koi', 'Tob', 'Mesh',
+            'Pat', 'Pad', 'Pash', 'Pao', 'Epi', 'Meso', 'PiK'],
+            dayNames: ['Tkyriaka', 'Pesnau', 'Pshoment', 'Peftoou', 'Ptiou', 'Psoou', 'Psabbaton'],
+            dayNamesShort: ['Tky', 'Pes', 'Psh', 'Pef', 'Pti', 'Pso', 'Psa'],
+            dayNamesMin: ['Tk', 'Pes', 'Psh', 'Pef', 'Pt', 'Pso', 'Psa'],
+            digits: null,
+            dateFormat: 'dd/mm/yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof CopticCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = date.year() + (date.year() < 0 ? 1 : 0); // No year zero
+        return year % 4 === 3 || year % 4 === -1;
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof CopticCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay,
+            main.local.invalidYear || main.regionalOptions[''].invalidYear);
+        return 13;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof CopticCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number) the month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof CopticCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 13 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof CopticCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param month {number} The month to examine.
+        @param day {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof CopticCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number) the month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year();
+        if (year < 0) { year++; } // No year zero
+        return date.day() + (date.month() - 1) * 30 +
+            (year - 1) * 365 + Math.floor(year / 4) + this.jdEpoch - 1;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof CopticCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        var c = Math.floor(jd) + 0.5 - this.jdEpoch;
+        var year = Math.floor((c - Math.floor((c + 366) / 1461)) / 365) + 1;
+        if (year <= 0) { year--; } // No year zero
+        c = Math.floor(jd) + 0.5 - this.newDate(year, 1, 1).toJD();
+        var month = Math.floor(c / 30) + 1;
+        var day = c - (month - 1) * 30 + 1;
+        return this.newDate(year, month, day);
+    }
+});
+
+// Coptic calendar implementation
+main.calendars.coptic = CopticCalendar;
+
+
+},{"../main":89,"object-assign":62}],77:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Discworld calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) January 2016.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Discworld calendar - Unseen University version.
+    See also <a href="http://wiki.lspace.org/mediawiki/Discworld_calendar">http://wiki.lspace.org/mediawiki/Discworld_calendar</a>
+    and <a href="http://discworld.wikia.com/wiki/Discworld_calendar">http://discworld.wikia.com/wiki/Discworld_calendar</a>.
+    @class DiscworldCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function DiscworldCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+DiscworldCalendar.prototype = new main.baseCalendar;
+
+assign(DiscworldCalendar.prototype, {
+    /** The calendar name.
+        @memberof DiscworldCalendar */
+    name: 'Discworld',
+    /** Julian date of start of Discworld epoch: 1 January 0001 CE.
+        @memberof DiscworldCalendar */
+    jdEpoch: 1721425.5,
+    /** Days per month in a common year.
+        @memberof DiscworldCalendar */
+    daysPerMonth: [16, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof DiscworldCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof DiscworldCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof DiscworldCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof DiscworldCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof DiscworldCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Discworld',
+            epochs: ['BUC', 'UC'],
+            monthNames: ['Ick', 'Offle', 'February', 'March', 'April', 'May', 'June',
+            'Grune', 'August', 'Spune', 'Sektober', 'Ember', 'December'],
+            monthNamesShort: ['Ick', 'Off', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Gru', 'Aug', 'Spu', 'Sek', 'Emb', 'Dec'],
+            dayNames: ['Sunday', 'Octeday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            dayNamesShort: ['Sun', 'Oct', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dayNamesMin: ['Su', 'Oc', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            digits: null,
+            dateFormat: 'yyyy/mm/dd',
+            firstDay: 2,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return false;
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return 13;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return 400;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 8) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1];
+    },
+
+    /** Retrieve the number of days in a week.
+        @memberof DiscworldCalendar
+        @return {number} The number of days. */
+    daysInWeek: function() {
+        return 8;
+    },
+
+    /** Retrieve the day of the week for a date.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The day of the week: 0 to number of days - 1.
+        @throws Error if an invalid date or a different calendar used. */
+    dayOfWeek: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        return (date.day() + 1) % 8;
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        var dow = this.dayOfWeek(year, month, day);
+        return (dow >= 2 && dow <= 6);
+    },
+
+    /** Retrieve additional information about a date.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {object} Additional information - contents depends on calendar.
+        @throws Error if an invalid date or a different calendar used. */
+    extraInfo: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        return {century: centuries[Math.floor((date.year() - 1) / 100) + 1] || ''};
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof DiscworldCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year() + (date.year() < 0 ? 1 : 0);
+        month = date.month();
+        day = date.day();
+        return day + (month > 1 ? 16 : 0) + (month > 2 ? (month - 2) * 32 : 0) +
+            (year - 1) * 400 + this.jdEpoch - 1;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof DiscworldCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        jd = Math.floor(jd + 0.5) - Math.floor(this.jdEpoch) - 1;
+        var year = Math.floor(jd / 400) + 1;
+        jd -= (year - 1) * 400;
+        jd += (jd > 15 ? 16 : 0);
+        var month = Math.floor(jd / 32) + 1;
+        var day = jd - (month - 1) * 32 + 1;
+        return this.newDate(year <= 0 ? year - 1 : year, month, day);
+    }
+});
+
+// Names of the centuries
+var centuries = {
+    20: 'Fruitbat',
+    21: 'Anchovy'
+};
+
+// Discworld calendar implementation
+main.calendars.discworld = DiscworldCalendar;
+
+
+},{"../main":89,"object-assign":62}],78:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Ethiopian calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) February 2010.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Ethiopian calendar.
+    See <a href="http://en.wikipedia.org/wiki/Ethiopian_calendar">http://en.wikipedia.org/wiki/Ethiopian_calendar</a>.
+    See also Calendrical Calculations: The Millennium Edition
+    (<a href="http://emr.cs.iit.edu/home/reingold/calendar-book/index.shtml">http://emr.cs.iit.edu/home/reingold/calendar-book/index.shtml</a>).
+    @class EthiopianCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function EthiopianCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+EthiopianCalendar.prototype = new main.baseCalendar;
+
+assign(EthiopianCalendar.prototype, {
+    /** The calendar name.
+        @memberof EthiopianCalendar */
+    name: 'Ethiopian',
+    /** Julian date of start of Ethiopian epoch: 27 August 8 CE (Gregorian).
+        @memberof EthiopianCalendar */
+    jdEpoch: 1724220.5,
+    /** Days per month in a common year.
+        @memberof EthiopianCalendar */
+    daysPerMonth: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof EthiopianCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof EthiopianCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof EthiopianCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof EthiopianCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof EthiopianCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Ethiopian',
+            epochs: ['BEE', 'EE'],
+            monthNames: ['Meskerem', 'Tikemet', 'Hidar', 'Tahesas', 'Tir', 'Yekatit',
+            'Megabit', 'Miazia', 'Genbot', 'Sene', 'Hamle', 'Nehase', 'Pagume'],
+            monthNamesShort: ['Mes', 'Tik', 'Hid', 'Tah', 'Tir', 'Yek',
+            'Meg', 'Mia', 'Gen', 'Sen', 'Ham', 'Neh', 'Pag'],
+            dayNames: ['Ehud', 'Segno', 'Maksegno', 'Irob', 'Hamus', 'Arb', 'Kidame'],
+            dayNamesShort: ['Ehu', 'Seg', 'Mak', 'Iro', 'Ham', 'Arb', 'Kid'],
+            dayNamesMin: ['Eh', 'Se', 'Ma', 'Ir', 'Ha', 'Ar', 'Ki'],
+            digits: null,
+            dateFormat: 'dd/mm/yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof EthiopianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = date.year() + (date.year() < 0 ? 1 : 0); // No year zero
+        return year % 4 === 3 || year % 4 === -1;
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof EthiopianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay,
+            main.local.invalidYear || main.regionalOptions[''].invalidYear);
+        return 13;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof EthiopianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof EthiopianCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 13 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof EthiopianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof EthiopianCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year();
+        if (year < 0) { year++; } // No year zero
+        return date.day() + (date.month() - 1) * 30 +
+            (year - 1) * 365 + Math.floor(year / 4) + this.jdEpoch - 1;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof EthiopianCalendar
+        @param jd {number} the Julian date to convert.
+        @return {CDate} the equivalent date. */
+    fromJD: function(jd) {
+        var c = Math.floor(jd) + 0.5 - this.jdEpoch;
+        var year = Math.floor((c - Math.floor((c + 366) / 1461)) / 365) + 1;
+        if (year <= 0) { year--; } // No year zero
+        c = Math.floor(jd) + 0.5 - this.newDate(year, 1, 1).toJD();
+        var month = Math.floor(c / 30) + 1;
+        var day = c - (month - 1) * 30 + 1;
+        return this.newDate(year, month, day);
+    }
+});
+
+// Ethiopian calendar implementation
+main.calendars.ethiopian = EthiopianCalendar;
+
+
+},{"../main":89,"object-assign":62}],79:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Hebrew calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Hebrew civil calendar.
+    Based on code from <a href="http://www.fourmilab.ch/documents/calendar/">http://www.fourmilab.ch/documents/calendar/</a>.
+    See also <a href="http://en.wikipedia.org/wiki/Hebrew_calendar">http://en.wikipedia.org/wiki/Hebrew_calendar</a>.
+    @class HebrewCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function HebrewCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+HebrewCalendar.prototype = new main.baseCalendar;
+
+assign(HebrewCalendar.prototype, {
+    /** The calendar name.
+        @memberof HebrewCalendar */
+    name: 'Hebrew',
+    /** Julian date of start of Hebrew epoch: 7 October 3761 BCE.
+        @memberof HebrewCalendar */
+    jdEpoch: 347995.5,
+    /** Days per month in a common year.
+        @memberof HebrewCalendar */
+    daysPerMonth: [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 29],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof HebrewCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof HebrewCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof HebrewCalendar */
+    firstMonth: 7,
+    /** The minimum day number.
+        @memberof HebrewCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof HebrewCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Hebrew',
+            epochs: ['BAM', 'AM'],
+            monthNames: ['Nisan', 'Iyar', 'Sivan', 'Tammuz', 'Av', 'Elul',
+            'Tishrei', 'Cheshvan', 'Kislev', 'Tevet', 'Shevat', 'Adar', 'Adar II'],
+            monthNamesShort: ['Nis', 'Iya', 'Siv', 'Tam', 'Av', 'Elu', 'Tis', 'Che', 'Kis', 'Tev', 'She', 'Ada', 'Ad2'],
+            dayNames: ['Yom Rishon', 'Yom Sheni', 'Yom Shlishi', 'Yom Revi\'i', 'Yom Chamishi', 'Yom Shishi', 'Yom Shabbat'],
+            dayNamesShort: ['Ris', 'She', 'Shl', 'Rev', 'Cha', 'Shi', 'Sha'],
+            dayNamesMin: ['Ri','She','Shl','Re','Ch','Shi','Sha'],
+            digits: null,
+            dateFormat: 'dd/mm/yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return this._leapYear(date.year());
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof HebrewCalendar
+        @private
+        @param year {number} The year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    _leapYear: function(year) {
+        year = (year < 0 ? year + 1 : year);
+        return mod(year * 7 + 1, 19) < 7;
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return this._leapYear(year.year ? year.year() : year) ? 13 : 12;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        year = date.year();
+        return this.toJD((year === -1 ? +1 : year + 1), 7, 1) - this.toJD(year, 7, 1);
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        if (year.year) {
+            month = year.month();
+            year = year.year();
+        }
+        this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return (month === 12 && this.leapYear(year) ? 30 : // Adar I
+                (month === 8 && mod(this.daysInYear(year), 10) === 5 ? 30 : // Cheshvan in shlemah year
+                (month === 9 && mod(this.daysInYear(year), 10) === 3 ? 29 : // Kislev in chaserah year
+                this.daysPerMonth[month - 1])));
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return this.dayOfWeek(year, month, day) !== 6;
+    },
+
+    /** Retrieve additional information about a date - year type.
+        @memberof HebrewCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {object} Additional information - contents depends on calendar.
+        @throws Error if an invalid date or a different calendar used. */
+    extraInfo: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        return {yearType: (this.leapYear(date) ? 'embolismic' : 'common') + ' ' +
+            ['deficient', 'regular', 'complete'][this.daysInYear(date) % 10 - 3]};
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof HebrewCalendar
+        @param year {CDate)|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year();
+        month = date.month();
+        day = date.day();
+        var adjYear = (year <= 0 ? year + 1 : year);
+        var jd = this.jdEpoch + this._delay1(adjYear) +
+            this._delay2(adjYear) + day + 1;
+        if (month < 7) {
+            for (var m = 7; m <= this.monthsInYear(year); m++) {
+                jd += this.daysInMonth(year, m);
+            }
+            for (var m = 1; m < month; m++) {
+                jd += this.daysInMonth(year, m);
+            }
+        }
+        else {
+            for (var m = 7; m < month; m++) {
+                jd += this.daysInMonth(year, m);
+            }
+        }
+        return jd;
+    },
+
+    /** Test for delay of start of new year and to avoid
+        Sunday, Wednesday, or Friday as start of the new year.
+        @memberof HebrewCalendar
+        @private
+        @param year {number} The year to examine.
+        @return {number} The days to offset by. */
+    _delay1: function(year) {
+        var months = Math.floor((235 * year - 234) / 19);
+        var parts = 12084 + 13753 * months;
+        var day = months * 29 + Math.floor(parts / 25920);
+        if (mod(3 * (day + 1), 7) < 3) {
+            day++;
+        }
+        return day;
+    },
+
+    /** Check for delay in start of new year due to length of adjacent years.
+        @memberof HebrewCalendar
+        @private
+        @param year {number} The year to examine.
+        @return {number} The days to offset by. */
+    _delay2: function(year) {
+        var last = this._delay1(year - 1);
+        var present = this._delay1(year);
+        var next = this._delay1(year + 1);
+        return ((next - present) === 356 ? 2 : ((present - last) === 382 ? 1 : 0));
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof HebrewCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        jd = Math.floor(jd) + 0.5;
+        var year = Math.floor(((jd - this.jdEpoch) * 98496.0) / 35975351.0) - 1;
+        while (jd >= this.toJD((year === -1 ? +1 : year + 1), 7, 1)) {
+            year++;
+        }
+        var month = (jd < this.toJD(year, 1, 1)) ? 7 : 1;
+        while (jd > this.toJD(year, month, this.daysInMonth(year, month))) {
+            month++;
+        }
+        var day = jd - this.toJD(year, month, 1) + 1;
+        return this.newDate(year, month, day);
+    }
+});
+
+// Modulus function which works for non-integers.
+function mod(a, b) {
+    return a - (b * Math.floor(a / b));
+}
+
+// Hebrew calendar implementation
+main.calendars.hebrew = HebrewCalendar;
+
+
+},{"../main":89,"object-assign":62}],80:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Islamic calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Islamic or '16 civil' calendar.
+    Based on code from <a href="http://www.iranchamber.com/calendar/converter/iranian_calendar_converter.php">http://www.iranchamber.com/calendar/converter/iranian_calendar_converter.php</a>.
+    See also <a href="http://en.wikipedia.org/wiki/Islamic_calendar">http://en.wikipedia.org/wiki/Islamic_calendar</a>.
+    @class IslamicCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function IslamicCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+IslamicCalendar.prototype = new main.baseCalendar;
+
+assign(IslamicCalendar.prototype, {
+    /** The calendar name.
+        @memberof IslamicCalendar */
+    name: 'Islamic',
+    /** Julian date of start of Islamic epoch: 16 July 622 CE.
+        @memberof IslamicCalendar */
+    jdEpoch: 1948439.5,
+    /** Days per month in a common year.
+        @memberof IslamicCalendar */
+    daysPerMonth: [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof IslamicCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof IslamicCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof IslamicCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof IslamicCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof IslamicCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Islamic',
+            epochs: ['BH', 'AH'],
+            monthNames: ['Muharram', 'Safar', 'Rabi\' al-awwal', 'Rabi\' al-thani', 'Jumada al-awwal', 'Jumada al-thani',
+            'Rajab', 'Sha\'aban', 'Ramadan', 'Shawwal', 'Dhu al-Qi\'dah', 'Dhu al-Hijjah'],
+            monthNamesShort: ['Muh', 'Saf', 'Rab1', 'Rab2', 'Jum1', 'Jum2', 'Raj', 'Sha\'', 'Ram', 'Shaw', 'DhuQ', 'DhuH'],
+            dayNames: ['Yawm al-ahad', 'Yawm al-ithnayn', 'Yawm ath-thulaathaa\'',
+            'Yawm al-arbi\'aa\'', 'Yawm al-khamīs', 'Yawm al-jum\'a', 'Yawm as-sabt'],
+            dayNamesShort: ['Aha', 'Ith', 'Thu', 'Arb', 'Kha', 'Jum', 'Sab'],
+            dayNamesMin: ['Ah','It','Th','Ar','Kh','Ju','Sa'],
+            digits: null,
+            dateFormat: 'yyyy/mm/dd',
+            firstDay: 6,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof IslamicCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return (date.year() * 11 + 14) % 30 < 11;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof IslamicCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof IslamicCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function(year) {
+        return (this.leapYear(year) ? 355 : 354);
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof IslamicCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 12 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof IslamicCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return this.dayOfWeek(year, month, day) !== 5;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof IslamicCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year();
+        month = date.month();
+        day = date.day();
+        year = (year <= 0 ? year + 1 : year);
+        return day + Math.ceil(29.5 * (month - 1)) + (year - 1) * 354 +
+            Math.floor((3 + (11 * year)) / 30) + this.jdEpoch - 1;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof IslamicCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        jd = Math.floor(jd) + 0.5;
+        var year = Math.floor((30 * (jd - this.jdEpoch) + 10646) / 10631);
+        year = (year <= 0 ? year - 1 : year);
+        var month = Math.min(12, Math.ceil((jd - 29 - this.toJD(year, 1, 1)) / 29.5) + 1);
+        var day = jd - this.toJD(year, month, 1) + 1;
+        return this.newDate(year, month, day);
+    }
+});
+
+// Islamic (16 civil) calendar implementation
+main.calendars.islamic = IslamicCalendar;
+
+
+},{"../main":89,"object-assign":62}],81:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Julian calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Julian calendar.
+    Based on code from <a href="http://www.fourmilab.ch/documents/calendar/">http://www.fourmilab.ch/documents/calendar/</a>.
+    See also <a href="http://en.wikipedia.org/wiki/Julian_calendar">http://en.wikipedia.org/wiki/Julian_calendar</a>.
+    @class JulianCalendar
+    @augments BaseCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function JulianCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+JulianCalendar.prototype = new main.baseCalendar;
+
+assign(JulianCalendar.prototype, {
+    /** The calendar name.
+        @memberof JulianCalendar */
+    name: 'Julian',
+    /** Julian date of start of Julian epoch: 1 January 0001 AD = 30 December 0001 BCE.
+        @memberof JulianCalendar */
+    jdEpoch: 1721423.5,
+    /** Days per month in a common year.
+        @memberof JulianCalendar */
+    daysPerMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof JulianCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof JulianCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof JulianCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof JulianCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof JulianCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Julian',
+            epochs: ['BC', 'AD'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'],
+            monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            digits: null,
+            dateFormat: 'mm/dd/yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof JulianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = (date.year() < 0 ? date.year() + 1 : date.year()); // No year zero
+        return (year % 4) === 0;
+    },
+
+    /** Determine the week of the year for a date - ISO 8601.
+        @memberof JulianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Thursday of this week starting on Monday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(4 - (checkDate.dayOfWeek() || 7), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof JulianCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 2 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof JulianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} True if a week day, false if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof JulianCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year();
+        month = date.month();
+        day = date.day();
+        if (year < 0) { year++; } // No year zero
+        // Jean Meeus algorithm, "Astronomical Algorithms", 1991
+        if (month <= 2) {
+            year--;
+            month += 12;
+        }
+        return Math.floor(365.25 * (year + 4716)) +
+            Math.floor(30.6001 * (month + 1)) + day - 1524.5;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof JulianCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        // Jean Meeus algorithm, "Astronomical Algorithms", 1991
+        var a = Math.floor(jd + 0.5);
+        var b = a + 1524;
+        var c = Math.floor((b - 122.1) / 365.25);
+        var d = Math.floor(365.25 * c);
+        var e = Math.floor((b - d) / 30.6001);
+        var month = e - Math.floor(e < 14 ? 1 : 13);
+        var year = c - Math.floor(month > 2 ? 4716 : 4715);
+        var day = b - d - Math.floor(30.6001 * e);
+        if (year <= 0) { year--; } // No year zero
+        return this.newDate(year, month, day);
+    }
+});
+
+// Julian calendar implementation
+main.calendars.julian = JulianCalendar;
+
+
+},{"../main":89,"object-assign":62}],82:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Mayan calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Mayan Long Count calendar.
+    See also <a href="http://en.wikipedia.org/wiki/Mayan_calendar">http://en.wikipedia.org/wiki/Mayan_calendar</a>.
+    @class MayanCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function MayanCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+MayanCalendar.prototype = new main.baseCalendar;
+
+assign(MayanCalendar.prototype, {
+    /** The calendar name.
+        @memberof MayanCalendar */
+    name: 'Mayan',
+    /** Julian date of start of Mayan epoch: 11 August 3114 BCE.
+        @memberof MayanCalendar */
+    jdEpoch: 584282.5,
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof MayanCalendar */
+    hasYearZero: true,
+    /** The minimum month number.
+        @memberof MayanCalendar */
+    minMonth: 0,
+    /** The first month in the year.
+        @memberof MayanCalendar */
+    firstMonth: 0,
+    /** The minimum day number.
+        @memberof MayanCalendar */
+    minDay: 0,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof MayanCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left.
+        @property haabMonths {string[]} The names of the Haab months.
+        @property tzolkinMonths {string[]} The names of the Tzolkin months. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Mayan',
+            epochs: ['', ''],
+            monthNames: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '10', '11', '12', '13', '14', '15', '16', '17'],
+            monthNamesShort: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '10', '11', '12', '13', '14', '15', '16', '17'],
+            dayNames: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'],
+            dayNamesShort: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'],
+            dayNamesMin: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'],
+            digits: null,
+            dateFormat: 'YYYY.m.d',
+            firstDay: 0,
+            isRTL: false,
+            haabMonths: ['Pop', 'Uo', 'Zip', 'Zotz', 'Tzec', 'Xul', 'Yaxkin', 'Mol', 'Chen', 'Yax',
+            'Zac', 'Ceh', 'Mac', 'Kankin', 'Muan', 'Pax', 'Kayab', 'Cumku', 'Uayeb'],
+            tzolkinMonths: ['Imix', 'Ik', 'Akbal', 'Kan', 'Chicchan', 'Cimi', 'Manik', 'Lamat', 'Muluc', 'Oc',
+            'Chuen', 'Eb', 'Ben', 'Ix', 'Men', 'Cib', 'Caban', 'Etznab', 'Cauac', 'Ahau']
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return false;
+    },
+
+    /** Format the year, if not a simple sequential number.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to format or the year to format.
+        @return {string} The formatted year.
+        @throws Error if an invalid year or a different calendar used. */
+    formatYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        year = date.year();
+        var baktun = Math.floor(year / 400);
+        year = year % 400;
+        year += (year < 0 ? 400 : 0);
+        var katun = Math.floor(year / 20);
+        return baktun + '.' + katun + '.' + (year % 20);
+    },
+
+    /** Convert from the formatted year back to a single number.
+        @memberof MayanCalendar
+        @param years {string} The year as n.n.n.
+        @return {number} The sequential year.
+        @throws Error if an invalid value is supplied. */
+    forYear: function(years) {
+        years = years.split('.');
+        if (years.length < 3) {
+            throw 'Invalid Mayan year';
+        }
+        var year = 0;
+        for (var i = 0; i < years.length; i++) {
+            var y = parseInt(years[i], 10);
+            if (Math.abs(y) > 19 || (i > 0 && y < 0)) {
+                throw 'Invalid Mayan year';
+            }
+            year = year * 20 + y;
+        }
+        return year;
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return 18;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        this._validate(year, month, day, main.local.invalidDate);
+        return 0;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return 360;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return 20;
+    },
+
+    /** Retrieve the number of days in a week.
+        @memberof MayanCalendar
+        @return {number} The number of days. */
+    daysInWeek: function() {
+        return 5; // Just for formatting
+    },
+
+    /** Retrieve the day of the week for a date.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The day of the week: 0 to number of days - 1.
+        @throws Error if an invalid date or a different calendar used. */
+    dayOfWeek: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        return date.day();
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        this._validate(year, month, day, main.local.invalidDate);
+        return true;
+    },
+
+    /** Retrieve additional information about a date - Haab and Tzolkin equivalents.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {object} Additional information - contents depends on calendar.
+        @throws Error if an invalid date or a different calendar used. */
+    extraInfo: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        var jd = date.toJD();
+        var haab = this._toHaab(jd);
+        var tzolkin = this._toTzolkin(jd);
+        return {haabMonthName: this.local.haabMonths[haab[0] - 1],
+            haabMonth: haab[0], haabDay: haab[1],
+            tzolkinDayName: this.local.tzolkinMonths[tzolkin[0] - 1],
+            tzolkinDay: tzolkin[0], tzolkinTrecena: tzolkin[1]};
+    },
+
+    /** Retrieve Haab date from a Julian date.
+        @memberof MayanCalendar
+        @private
+        @param jd  {number} The Julian date.
+        @return {number[]} Corresponding Haab month and day. */
+    _toHaab: function(jd) {
+        jd -= this.jdEpoch;
+        var day = mod(jd + 8 + ((18 - 1) * 20), 365);
+        return [Math.floor(day / 20) + 1, mod(day, 20)];
+    },
+
+    /** Retrieve Tzolkin date from a Julian date.
+        @memberof MayanCalendar
+        @private
+        @param jd {number} The Julian date.
+        @return {number[]} Corresponding Tzolkin day and trecena. */
+    _toTzolkin: function(jd) {
+        jd -= this.jdEpoch;
+        return [amod(jd + 20, 20), amod(jd + 4, 13)];
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof MayanCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        return date.day() + (date.month() * 20) + (date.year() * 360) + this.jdEpoch;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof MayanCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        jd = Math.floor(jd) + 0.5 - this.jdEpoch;
+        var year = Math.floor(jd / 360);
+        jd = jd % 360;
+        jd += (jd < 0 ? 360 : 0);
+        var month = Math.floor(jd / 20);
+        var day = jd % 20;
+        return this.newDate(year, month, day);
+    }
+});
+
+// Modulus function which works for non-integers.
+function mod(a, b) {
+    return a - (b * Math.floor(a / b));
+}
+
+// Modulus function which returns numerator if modulus is zero.
+function amod(a, b) {
+    return mod(a - 1, b) + 1;
+}
+
+// Mayan calendar implementation
+main.calendars.mayan = MayanCalendar;
+
+
+},{"../main":89,"object-assign":62}],83:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* http://keith-wood.name/calendars.html
+   Nanakshahi calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) January 2016.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Nanakshahi calendar.
+    See also <a href="https://en.wikipedia.org/wiki/Nanakshahi_calendar">https://en.wikipedia.org/wiki/Nanakshahi_calendar</a>.
+    @class NanakshahiCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function NanakshahiCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+NanakshahiCalendar.prototype = new main.baseCalendar;
+
+var gregorian = main.instance('gregorian');
+
+assign(NanakshahiCalendar.prototype, {
+    /** The calendar name.
+        @memberof NanakshahiCalendar */
+    name: 'Nanakshahi',
+    /** Julian date of start of Nanakshahi epoch: 14 March 1469 CE.
+        @memberof NanakshahiCalendar */
+    jdEpoch: 2257673.5,
+    /** Days per month in a common year.
+        @memberof NanakshahiCalendar */
+    daysPerMonth: [31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30, 30],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof NanakshahiCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof NanakshahiCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof NanakshahiCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof NanakshahiCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof NanakshahiCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Nanakshahi',
+            epochs: ['BN', 'AN'],
+            monthNames: ['Chet', 'Vaisakh', 'Jeth', 'Harh', 'Sawan', 'Bhadon',
+            'Assu', 'Katak', 'Maghar', 'Poh', 'Magh', 'Phagun'],
+            monthNamesShort: ['Che', 'Vai', 'Jet', 'Har', 'Saw', 'Bha', 'Ass', 'Kat', 'Mgr', 'Poh', 'Mgh', 'Pha'],
+            dayNames: ['Somvaar', 'Mangalvar', 'Budhvaar', 'Veervaar', 'Shukarvaar', 'Sanicharvaar', 'Etvaar'],
+            dayNamesShort: ['Som', 'Mangal', 'Budh', 'Veer', 'Shukar', 'Sanichar', 'Et'],
+            dayNamesMin: ['So', 'Ma', 'Bu', 'Ve', 'Sh', 'Sa', 'Et'],
+            digits: null,
+            dateFormat: 'dd-mm-yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof NanakshahiCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay,
+            main.local.invalidYear || main.regionalOptions[''].invalidYear);
+        return gregorian.leapYear(date.year() + (date.year() < 1 ? 1 : 0) + 1469);
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof NanakshahiCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Monday of this week starting on Monday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(1 - (checkDate.dayOfWeek() || 7), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof NanakshahiCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 12 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof NanakshahiCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof NanakshahiCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidMonth);
+        var year = date.year();
+        if (year < 0) { year++; } // No year zero
+        var doy = date.day();
+        for (var m = 1; m < date.month(); m++) {
+            doy += this.daysPerMonth[m - 1];
+        }
+        return doy + gregorian.toJD(year + 1468, 3, 13);
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof NanakshahiCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        jd = Math.floor(jd + 0.5);
+        var year = Math.floor((jd - (this.jdEpoch - 1)) / 366);
+        while (jd >= this.toJD(year + 1, 1, 1)) {
+            year++;
+        }
+        var day = jd - Math.floor(this.toJD(year, 1, 1) + 0.5) + 1;
+        var month = 1;
+        while (day > this.daysInMonth(year, month)) {
+            day -= this.daysInMonth(year, month);
+            month++;
+        }
+        return this.newDate(year, month, day);
+    }
+});
+
+// Nanakshahi calendar implementation
+main.calendars.nanakshahi = NanakshahiCalendar;
+
+
+},{"../main":89,"object-assign":62}],84:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Nepali calendar for jQuery v2.0.2.
+   Written by Artur Neumann (ict.projects{at}nepal.inf.org) April 2013.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Nepali civil calendar.
+    Based on the ideas from 
+    <a href="http://codeissue.com/articles/a04e050dea7468f/algorithm-to-convert-english-date-to-nepali-date-using-c-net">http://codeissue.com/articles/a04e050dea7468f/algorithm-to-convert-english-date-to-nepali-date-using-c-net</a>
+    and <a href="http://birenj2ee.blogspot.com/2011/04/nepali-calendar-in-java.html">http://birenj2ee.blogspot.com/2011/04/nepali-calendar-in-java.html</a>
+    See also <a href="http://en.wikipedia.org/wiki/Nepali_calendar">http://en.wikipedia.org/wiki/Nepali_calendar</a>
+    and <a href="https://en.wikipedia.org/wiki/Bikram_Samwat">https://en.wikipedia.org/wiki/Bikram_Samwat</a>.
+    @class NepaliCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function NepaliCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+NepaliCalendar.prototype = new main.baseCalendar;
+
+assign(NepaliCalendar.prototype, {
+    /** The calendar name.
+        @memberof NepaliCalendar */
+    name: 'Nepali',
+    /** Julian date of start of Nepali epoch: 14 April 57 BCE.
+        @memberof NepaliCalendar */
+    jdEpoch: 1700709.5,
+    /** Days per month in a common year.
+        @memberof NepaliCalendar */
+    daysPerMonth: [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof NepaliCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof NepaliCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof NepaliCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof NepaliCalendar */
+    minDay: 1, 
+    /** The number of days in the year.
+        @memberof NepaliCalendar */
+    daysPerYear: 365,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof NepaliCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Nepali',
+            epochs: ['BBS', 'ABS'],
+            monthNames: ['Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra', 'Ashwin',
+            'Kartik', 'Mangsir', 'Paush', 'Mangh', 'Falgun', 'Chaitra'],
+            monthNamesShort: ['Bai', 'Je', 'As', 'Shra', 'Bha', 'Ash', 'Kar', 'Mang', 'Pau', 'Ma', 'Fal', 'Chai'],
+            dayNames: ['Aaitabaar', 'Sombaar', 'Manglbaar', 'Budhabaar', 'Bihibaar', 'Shukrabaar', 'Shanibaar'],
+            dayNamesShort: ['Aaita', 'Som', 'Mangl', 'Budha', 'Bihi', 'Shukra', 'Shani'],
+            dayNamesMin: ['Aai', 'So', 'Man', 'Bu', 'Bi', 'Shu', 'Sha'],
+            digits: null,
+            dateFormat: 'dd/mm/yyyy',
+            firstDay: 1,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof NepaliCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        return this.daysInYear(year) !== this.daysPerYear;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof NepaliCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof NepaliCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        year = date.year();
+        if (typeof this.NEPALI_CALENDAR_DATA[year] === 'undefined') {
+            return this.daysPerYear;
+        }
+        var daysPerYear = 0;
+        for (var month_number = this.minMonth; month_number <= 12; month_number++) {
+            daysPerYear += this.NEPALI_CALENDAR_DATA[year][month_number];
+        }
+        return daysPerYear;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof NepaliCalendar
+        @param year {CDate|number| The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        if (year.year) {
+            month = year.month();
+            year = year.year();
+        }
+        this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return (typeof this.NEPALI_CALENDAR_DATA[year] === 'undefined' ?
+            this.daysPerMonth[month - 1] : this.NEPALI_CALENDAR_DATA[year][month]);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof NepaliCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return this.dayOfWeek(year, month, day) !== 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof NepaliCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(nepaliYear, nepaliMonth, nepaliDay) {
+        var date = this._validate(nepaliYear, nepaliMonth, nepaliDay, main.local.invalidDate);
+        nepaliYear = date.year();
+        nepaliMonth = date.month();
+        nepaliDay = date.day();
+        var gregorianCalendar = main.instance();
+        var gregorianDayOfYear = 0; // We will add all the days that went by since
+        // the 1st. January and then we can get the Gregorian Date
+        var nepaliMonthToCheck = nepaliMonth;
+        var nepaliYearToCheck = nepaliYear;
+        this._createMissingCalendarData(nepaliYear);
+        // Get the correct year
+        var gregorianYear = nepaliYear - (nepaliMonthToCheck > 9 || (nepaliMonthToCheck === 9 &&
+            nepaliDay >= this.NEPALI_CALENDAR_DATA[nepaliYearToCheck][0]) ? 56 : 57);
+        // First we add the amount of days in the actual Nepali month as the day of year in the
+        // Gregorian one because at least this days are gone since the 1st. Jan. 
+        if (nepaliMonth !== 9) {
+            gregorianDayOfYear = nepaliDay;
+            nepaliMonthToCheck--;
+        }
+        // Now we loop throw all Nepali month and add the amount of days to gregorianDayOfYear 
+        // we do this till we reach Paush (9th month). 1st. January always falls in this month  
+        while (nepaliMonthToCheck !== 9) {
+            if (nepaliMonthToCheck <= 0) {
+                nepaliMonthToCheck = 12;
+                nepaliYearToCheck--;
+            }                
+            gregorianDayOfYear += this.NEPALI_CALENDAR_DATA[nepaliYearToCheck][nepaliMonthToCheck];
+            nepaliMonthToCheck--;
+        }        
+        // If the date that has to be converted is in Paush (month no. 9) we have to do some other calculation
+        if (nepaliMonth === 9) {
+            // Add the days that are passed since the first day of Paush and substract the
+            // amount of days that lie between 1st. Jan and 1st Paush
+            gregorianDayOfYear += nepaliDay - this.NEPALI_CALENDAR_DATA[nepaliYearToCheck][0];
+            // For the first days of Paush we are now in negative values,
+            // because in the end of the gregorian year we substract
+            // 365 / 366 days (P.S. remember math in school + - gives -)
+            if (gregorianDayOfYear < 0) {
+                gregorianDayOfYear += gregorianCalendar.daysInYear(gregorianYear);
+            }
+        }
+        else {
+            gregorianDayOfYear += this.NEPALI_CALENDAR_DATA[nepaliYearToCheck][9] -
+                this.NEPALI_CALENDAR_DATA[nepaliYearToCheck][0];
+        }        
+        return gregorianCalendar.newDate(gregorianYear, 1 ,1).add(gregorianDayOfYear, 'd').toJD();
+    },
+    
+    /** Create a new date from a Julian date.
+        @memberof NepaliCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        var gregorianCalendar =  main.instance();
+        var gregorianDate = gregorianCalendar.fromJD(jd);
+        var gregorianYear = gregorianDate.year();
+        var gregorianDayOfYear = gregorianDate.dayOfYear();
+        var nepaliYear = gregorianYear + 56; //this is not final, it could be also +57 but +56 is always true for 1st Jan.
+        this._createMissingCalendarData(nepaliYear);
+        var nepaliMonth = 9; // Jan 1 always fall in Nepali month Paush which is the 9th month of Nepali calendar.
+        // Get the Nepali day in Paush (month 9) of 1st January 
+        var dayOfFirstJanInPaush = this.NEPALI_CALENDAR_DATA[nepaliYear][0];
+        // Check how many days are left of Paush .
+        // Days calculated from 1st Jan till the end of the actual Nepali month, 
+        // we use this value to check if the gregorian Date is in the actual Nepali month.
+        var daysSinceJanFirstToEndOfNepaliMonth =
+            this.NEPALI_CALENDAR_DATA[nepaliYear][nepaliMonth] - dayOfFirstJanInPaush + 1;
+        // If the gregorian day-of-year is smaller o equal than the sum of days between the 1st January and 
+        // the end of the actual nepali month we found the correct nepali month.
+        // Example: 
+        // The 4th February 2011 is the gregorianDayOfYear 35 (31 days of January + 4)
+        // 1st January 2011 is in the nepali year 2067, where 1st. January is in the 17th day of Paush (9th month)
+        // In 2067 Paush has 30days, This means (30-17+1=14) there are 14days between 1st January and end of Paush 
+        // (including 17th January)
+        // The gregorianDayOfYear (35) is bigger than 14, so we check the next month
+        // The next nepali month (Mangh) has 29 days 
+        // 29+14=43, this is bigger than gregorianDayOfYear(35) so, we found the correct nepali month
+        while (gregorianDayOfYear > daysSinceJanFirstToEndOfNepaliMonth) {
+            nepaliMonth++;
+            if (nepaliMonth > 12) {
+                nepaliMonth = 1;
+                nepaliYear++;
+            }    
+            daysSinceJanFirstToEndOfNepaliMonth += this.NEPALI_CALENDAR_DATA[nepaliYear][nepaliMonth];
+        }
+        // The last step is to calculate the nepali day-of-month
+        // to continue our example from before:
+        // we calculated there are 43 days from 1st. January (17 Paush) till end of Mangh (29 days)
+        // when we subtract from this 43 days the day-of-year of the the Gregorian date (35),
+        // we know how far the searched day is away from the end of the Nepali month.
+        // So we simply subtract this number from the amount of days in this month (30) 
+        var nepaliDayOfMonth = this.NEPALI_CALENDAR_DATA[nepaliYear][nepaliMonth] -
+            (daysSinceJanFirstToEndOfNepaliMonth - gregorianDayOfYear);        
+        return this.newDate(nepaliYear, nepaliMonth, nepaliDayOfMonth);
+    },
+    
+    /** Creates missing data in the NEPALI_CALENDAR_DATA table.
+        This data will not be correct but just give an estimated result. Mostly -/+ 1 day
+        @private
+        @param nepaliYear {number} The missing year number. */
+    _createMissingCalendarData: function(nepaliYear) {
+        var tmp_calendar_data = this.daysPerMonth.slice(0);
+        tmp_calendar_data.unshift(17);
+        for (var nepaliYearToCreate = (nepaliYear - 1); nepaliYearToCreate < (nepaliYear + 2); nepaliYearToCreate++) {
+            if (typeof this.NEPALI_CALENDAR_DATA[nepaliYearToCreate] === 'undefined') {
+                this.NEPALI_CALENDAR_DATA[nepaliYearToCreate] = tmp_calendar_data;
+            }
+        }
+    },
+    
+    NEPALI_CALENDAR_DATA:  {
+        // These data are from http://www.ashesh.com.np
+        1970: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1971: [18, 31, 31, 32, 31, 32, 30, 30, 29, 30, 29, 30, 30],
+        1972: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        1973: [19, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        1974: [19, 31, 31, 32, 30, 31, 31, 30, 29, 30, 29, 30, 30],
+        1975: [18, 31, 31, 32, 32, 30, 31, 30, 29, 30, 29, 30, 30],
+        1976: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        1977: [18, 31, 32, 31, 32, 31, 31, 29, 30, 29, 30, 29, 31],
+        1978: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1979: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        1980: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        1981: [18, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        1982: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1983: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        1984: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        1985: [18, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        1986: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1987: [18, 31, 32, 31, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        1988: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        1989: [18, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        1990: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1991: [18, 31, 32, 31, 32, 31, 30, 30, 29, 30, 29, 30, 30],    
+        // These data are from http://nepalicalendar.rat32.com/index.php
+        1992: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        1993: [18, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        1994: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1995: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        1996: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        1997: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1998: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        1999: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2000: [17, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2001: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2002: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2003: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2004: [17, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2005: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2006: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2007: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2008: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 29, 31],
+        2009: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2010: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2011: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2012: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        2013: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2014: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2015: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2016: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        2017: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2018: [18, 31, 32, 31, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2019: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2020: [17, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        2021: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2022: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        2023: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2024: [17, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        2025: [18, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2026: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2027: [17, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2028: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2029: [18, 31, 31, 32, 31, 32, 30, 30, 29, 30, 29, 30, 30],
+        2030: [17, 31, 32, 31, 32, 31, 30, 30, 30, 30, 30, 30, 31],
+        2031: [17, 31, 32, 31, 32, 31, 31, 31, 31, 31, 31, 31, 31],
+        2032: [17, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+        2033: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2034: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2035: [17, 30, 32, 31, 32, 31, 31, 29, 30, 30, 29, 29, 31],
+        2036: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2037: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2038: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2039: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        2040: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2041: [18, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2042: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2043: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        2044: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2045: [18, 31, 32, 31, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2046: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2047: [17, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        2048: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2049: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        2050: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2051: [17, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        2052: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2053: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        2054: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2055: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 30, 29, 30],
+        2056: [17, 31, 31, 32, 31, 32, 30, 30, 29, 30, 29, 30, 30],
+        2057: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2058: [17, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2059: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2060: [17, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2061: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2062: [17, 30, 32, 31, 32, 31, 31, 29, 30, 29, 30, 29, 31],
+        2063: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2064: [17, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2065: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2066: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 29, 31],
+        2067: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2068: [17, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2069: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2070: [17, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30],
+        2071: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2072: [17, 31, 32, 31, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2073: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
+        2074: [17, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        2075: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2076: [16, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        2077: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+        2078: [17, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30],
+        2079: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
+        2080: [16, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30],
+        // These data are from http://www.ashesh.com.np/nepali-calendar/
+        2081: [17, 31, 31, 32, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2082: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2083: [17, 31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30],
+        2084: [17, 31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30],
+        2085: [17, 31, 32, 31, 32, 31, 31, 30, 30, 29, 30, 30, 30],
+        2086: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2087: [16, 31, 31, 32, 31, 31, 31, 30, 30, 29, 30, 30, 30],
+        2088: [16, 30, 31, 32, 32, 30, 31, 30, 30, 29, 30, 30, 30],
+        2089: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2090: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2091: [16, 31, 31, 32, 31, 31, 31, 30, 30, 29, 30, 30, 30],
+        2092: [16, 31, 31, 32, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2093: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2094: [17, 31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30],
+        2095: [17, 31, 31, 32, 31, 31, 31, 30, 29, 30, 30, 30, 30],
+        2096: [17, 30, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
+        2097: [17, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30],
+        2098: [17, 31, 31, 32, 31, 31, 31, 29, 30, 29, 30, 30, 31],
+        2099: [17, 31, 31, 32, 31, 31, 31, 30, 29, 29, 30, 30, 30],
+        2100: [17, 31, 32, 31, 32, 30, 31, 30, 29, 30, 29, 30, 30]    
+    }
+});    
+
+// Nepali calendar implementation
+main.calendars.nepali = NepaliCalendar;
+
+
+},{"../main":89,"object-assign":62}],85:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Persian calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the Persian or Jalali calendar.
+    Based on code from <a href="http://www.iranchamber.com/calendar/converter/iranian_calendar_converter.php">http://www.iranchamber.com/calendar/converter/iranian_calendar_converter.php</a>.
+    See also <a href="http://en.wikipedia.org/wiki/Iranian_calendar">http://en.wikipedia.org/wiki/Iranian_calendar</a>.
+    @class PersianCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function PersianCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+PersianCalendar.prototype = new main.baseCalendar;
+
+assign(PersianCalendar.prototype, {
+    /** The calendar name.
+        @memberof PersianCalendar */
+    name: 'Persian',
+    /** Julian date of start of Persian epoch: 19 March 622 CE.
+        @memberof PersianCalendar */
+    jdEpoch: 1948320.5,
+    /** Days per month in a common year.
+        @memberof PersianCalendar */
+    daysPerMonth: [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof PersianCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof PersianCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof PersianCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof PersianCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof PersianCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Persian',
+            epochs: ['BP', 'AP'],
+            monthNames: ['Farvardin', 'Ordibehesht', 'Khordad', 'Tir', 'Mordad', 'Shahrivar',
+            'Mehr', 'Aban', 'Azar', 'Day', 'Bahman', 'Esfand'],
+            monthNamesShort: ['Far', 'Ord', 'Kho', 'Tir', 'Mor', 'Sha', 'Meh', 'Aba', 'Aza', 'Day', 'Bah', 'Esf'],
+            dayNames: ['Yekshambe', 'Doshambe', 'Seshambe', 'Chæharshambe', 'Panjshambe', 'Jom\'e', 'Shambe'],
+            dayNamesShort: ['Yek', 'Do', 'Se', 'Chæ', 'Panj', 'Jom', 'Sha'],
+            dayNamesMin: ['Ye','Do','Se','Ch','Pa','Jo','Sh'],
+            digits: null,
+            dateFormat: 'yyyy/mm/dd',
+            firstDay: 6,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof PersianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return (((((date.year() - (date.year() > 0 ? 474 : 473)) % 2820) +
+            474 + 38) * 682) % 2816) < 682;
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof PersianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Saturday of this week starting on Saturday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-((checkDate.dayOfWeek() + 1) % 7), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof PersianCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 12 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof PersianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return this.dayOfWeek(year, month, day) !== 5;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof PersianCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        year = date.year();
+        month = date.month();
+        day = date.day();
+        var epBase = year - (year >= 0 ? 474 : 473);
+        var epYear = 474 + mod(epBase, 2820);
+        return day + (month <= 7 ? (month - 1) * 31 : (month - 1) * 30 + 6) +
+            Math.floor((epYear * 682 - 110) / 2816) + (epYear - 1) * 365 +
+            Math.floor(epBase / 2820) * 1029983 + this.jdEpoch - 1;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof PersianCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        jd = Math.floor(jd) + 0.5;
+        var depoch = jd - this.toJD(475, 1, 1);
+        var cycle = Math.floor(depoch / 1029983);
+        var cyear = mod(depoch, 1029983);
+        var ycycle = 2820;
+        if (cyear !== 1029982) {
+            var aux1 = Math.floor(cyear / 366);
+            var aux2 = mod(cyear, 366);
+            ycycle = Math.floor(((2134 * aux1) + (2816 * aux2) + 2815) / 1028522) + aux1 + 1;
+        }
+        var year = ycycle + (2820 * cycle) + 474;
+        year = (year <= 0 ? year - 1 : year);
+        var yday = jd - this.toJD(year, 1, 1) + 1;
+        var month = (yday <= 186 ? Math.ceil(yday / 31) : Math.ceil((yday - 6) / 30));
+        var day = jd - this.toJD(year, month, 1) + 1;
+        return this.newDate(year, month, day);
+    }
+});
+
+// Modulus function which works for non-integers.
+function mod(a, b) {
+    return a - (b * Math.floor(a / b));
+}
+
+// Persian (Jalali) calendar implementation
+main.calendars.persian = PersianCalendar;
+main.calendars.jalali = PersianCalendar;
+
+
+},{"../main":89,"object-assign":62}],86:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Taiwanese (Minguo) calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) February 2010.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+var gregorianCalendar = main.instance();
+
+/** Implementation of the Taiwanese calendar.
+    See http://en.wikipedia.org/wiki/Minguo_calendar.
+    @class TaiwanCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function TaiwanCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+TaiwanCalendar.prototype = new main.baseCalendar;
+
+assign(TaiwanCalendar.prototype, {
+    /** The calendar name.
+        @memberof TaiwanCalendar */
+    name: 'Taiwan',
+    /** Julian date of start of Taiwan epoch: 1 January 1912 CE (Gregorian).
+        @memberof TaiwanCalendar */
+    jdEpoch: 2419402.5,
+    /** Difference in years between Taiwan and Gregorian calendars.
+        @memberof TaiwanCalendar */
+    yearsOffset: 1911,
+    /** Days per month in a common year.
+        @memberof TaiwanCalendar */
+    daysPerMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof TaiwanCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof TaiwanCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof TaiwanCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof TaiwanCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof TaiwanCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Taiwan',
+            epochs: ['BROC', 'ROC'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'],
+            monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            digits: null,
+            dateFormat: 'yyyy/mm/dd',
+            firstDay: 1,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof TaiwanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = this._t2gYear(date.year());
+        return gregorianCalendar.leapYear(year);
+    },
+
+    /** Determine the week of the year for a date - ISO 8601.
+        @memberof TaiwanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = this._t2gYear(date.year());
+        return gregorianCalendar.weekOfYear(year, date.month(), date.day());
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof TaiwanCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 2 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof TaiwanCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof TaiwanCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        var year = this._t2gYear(date.year());
+        return gregorianCalendar.toJD(year, date.month(), date.day());
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof TaiwanCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        var date = gregorianCalendar.fromJD(jd);
+        var year = this._g2tYear(date.year());
+        return this.newDate(year, date.month(), date.day());
+    },
+
+    /** Convert Taiwanese to Gregorian year.
+        @memberof TaiwanCalendar
+        @private
+        @param year {number} The Taiwanese year.
+        @return {number} The corresponding Gregorian year. */
+    _t2gYear: function(year) {
+        return year + this.yearsOffset + (year >= -this.yearsOffset && year <= -1 ? 1 : 0);
+    },
+
+    /** Convert Gregorian to Taiwanese year.
+        @memberof TaiwanCalendar
+        @private
+        @param year {number} The Gregorian year.
+        @return {number} The corresponding Taiwanese year. */
+    _g2tYear: function(year) {
+        return year - this.yearsOffset - (year >= 1 && year <= this.yearsOffset ? 1 : 0);
+    }
+});
+
+// Taiwan calendar implementation
+main.calendars.taiwan = TaiwanCalendar;
+
+
+},{"../main":89,"object-assign":62}],87:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Thai calendar for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) February 2010.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+var gregorianCalendar = main.instance();
+
+/** Implementation of the Thai calendar.
+    See http://en.wikipedia.org/wiki/Thai_calendar.
+    @class ThaiCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function ThaiCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+ThaiCalendar.prototype = new main.baseCalendar;
+
+assign(ThaiCalendar.prototype, {
+    /** The calendar name.
+        @memberof ThaiCalendar */
+    name: 'Thai',
+    /** Julian date of start of Thai epoch: 1 January 543 BCE (Gregorian).
+        @memberof ThaiCalendar */
+    jdEpoch: 1523098.5,
+    /** Difference in years between Thai and Gregorian calendars.
+        @memberof ThaiCalendar */
+    yearsOffset: 543, 
+    /** Days per month in a common year.
+        @memberof ThaiCalendar */
+    daysPerMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof ThaiCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof ThaiCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof ThaiCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof ThaiCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof ThaiCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Thai',
+            epochs: ['BBE', 'BE'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'],
+            monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            digits: null,
+            dateFormat: 'dd/mm/yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof ThaiCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = this._t2gYear(date.year());
+        return gregorianCalendar.leapYear(year);
+    },
+
+    /** Determine the week of the year for a date - ISO 8601.
+        @memberof ThaiCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        var year = this._t2gYear(date.year());
+        return gregorianCalendar.weekOfYear(year, date.month(), date.day());
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof ThaiCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 2 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof ThaiCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof ThaiCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        var year = this._t2gYear(date.year());
+        return gregorianCalendar.toJD(year, date.month(), date.day());
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof ThaiCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        var date = gregorianCalendar.fromJD(jd);
+        var year = this._g2tYear(date.year());
+        return this.newDate(year, date.month(), date.day());
+    },
+
+    /** Convert Thai to Gregorian year.
+        @memberof ThaiCalendar
+        @private
+        @param year {number} The Thai year.
+        @return {number} The corresponding Gregorian year. */
+    _t2gYear: function(year) {
+        return year - this.yearsOffset - (year >= 1 && year <= this.yearsOffset ? 1 : 0);
+    },
+
+    /** Convert Gregorian to Thai year.
+        @memberof ThaiCalendar
+        @private
+        @param year {number} The Gregorian year.
+        @return {number} The corresponding Thai year. */
+    _g2tYear: function(year) {
+        return year + this.yearsOffset + (year >= -this.yearsOffset && year <= -1 ? 1 : 0);
+    }
+});
+
+// Thai calendar implementation
+main.calendars.thai = ThaiCalendar;
+
+
+},{"../main":89,"object-assign":62}],88:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   UmmAlQura calendar for jQuery v2.0.2.
+   Written by Amro Osama March 2013.
+   Modified by Binnooh.com & www.elm.sa - 2014 - Added dates back to 1276 Hijri year.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var main = _dereq_('../main');
+var assign = _dereq_('object-assign');
+
+
+/** Implementation of the UmmAlQura or 'saudi' calendar.
+    See also <a href="http://en.wikipedia.org/wiki/Islamic_calendar#Saudi_Arabia.27s_Umm_al-Qura_calendar">http://en.wikipedia.org/wiki/Islamic_calendar#Saudi_Arabia.27s_Umm_al-Qura_calendar</a>.
+    <a href="http://www.ummulqura.org.sa/About.aspx">http://www.ummulqura.org.sa/About.aspx</a>
+    <a href="http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm">http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm</a>
+    @class UmmAlQuraCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function UmmAlQuraCalendar(language) {
+    this.local = this.regionalOptions[language || ''] || this.regionalOptions[''];
+}
+
+UmmAlQuraCalendar.prototype = new main.baseCalendar;
+
+assign(UmmAlQuraCalendar.prototype, {
+    /** The calendar name.
+        @memberof UmmAlQuraCalendar */
+    name: 'UmmAlQura',
+    //jdEpoch: 1948440, // Julian date of start of UmmAlQura epoch: 14 March 1937 CE
+    //daysPerMonth: // Days per month in a common year, replaced by a method.
+    /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof UmmAlQuraCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof UmmAlQuraCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof UmmAlQuraCalendar */
+    firstMonth: 1,
+    /** The minimum day number.
+        @memberof UmmAlQuraCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof UmmAlQuraCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Umm al-Qura',
+            epochs: ['BH', 'AH'],
+            monthNames: ['Al-Muharram', 'Safar', 'Rabi\' al-awwal', 'Rabi\' Al-Thani', 'Jumada Al-Awwal', 'Jumada Al-Thani',
+            'Rajab', 'Sha\'aban', 'Ramadan', 'Shawwal', 'Dhu al-Qi\'dah', 'Dhu al-Hijjah'],
+            monthNamesShort: ['Muh', 'Saf', 'Rab1', 'Rab2', 'Jum1', 'Jum2', 'Raj', 'Sha\'', 'Ram', 'Shaw', 'DhuQ', 'DhuH'],
+            dayNames: ['Yawm al-Ahad', 'Yawm al-Ithnain', 'Yawm al-Thalāthā’', 'Yawm al-Arba‘ā’', 'Yawm al-Khamīs', 'Yawm al-Jum‘a', 'Yawm al-Sabt'],
+            dayNamesMin: ['Ah', 'Ith', 'Th', 'Ar', 'Kh', 'Ju', 'Sa'],
+            digits: null,
+            dateFormat: 'yyyy/mm/dd',
+            firstDay: 6,
+            isRTL: true
+        }
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof UmmAlQuraCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function (year) {
+        var date = this._validate(year, this.minMonth, this.minDay, main.local.invalidYear);
+        return (this.daysInYear(date.year()) === 355);
+    },
+
+    /** Determine the week of the year for a date.
+        @memberof UmmAlQuraCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function (year, month, day) {
+        // Find Sunday of this week starting on Sunday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(-checkDate.dayOfWeek(), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof UmmAlQuraCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function (year) {
+        var daysCount = 0;
+        for (var i = 1; i <= 12; i++) {
+            daysCount += this.daysInMonth(year, i);
+        }
+        return daysCount;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof UmmAlQuraCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function (year, month) {
+        var date = this._validate(year, month, this.minDay, main.local.invalidMonth);
+        var mcjdn = date.toJD() - 2400000 + 0.5; // Modified Chronological Julian Day Number (MCJDN)
+        // the MCJDN's of the start of the lunations in the Umm al-Qura calendar are stored in the 'ummalqura_dat' array
+        var index = 0;
+        for (var i = 0; i < ummalqura_dat.length; i++) {
+            if (ummalqura_dat[i] > mcjdn) {
+                return (ummalqura_dat[index] - ummalqura_dat[index - 1]);
+            }
+            index++;
+        }
+        return 30; // Unknown outside
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof UmmAlQuraCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function (year, month, day) {
+        return this.dayOfWeek(year, month, day) !== 5;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof UmmAlQuraCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function (year, month, day) {
+        var date = this._validate(year, month, day, main.local.invalidDate);
+        var index = (12 * (date.year() - 1)) + date.month() - 15292;
+        var mcjdn = date.day() + ummalqura_dat[index - 1] - 1;
+        return mcjdn + 2400000 - 0.5; // Modified Chronological Julian Day Number (MCJDN)
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof UmmAlQuraCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function (jd) {
+        var mcjdn = jd - 2400000 + 0.5; // Modified Chronological Julian Day Number (MCJDN)
+        // the MCJDN's of the start of the lunations in the Umm al-Qura calendar 
+        // are stored in the 'ummalqura_dat' array
+        var index = 0;
+        for (var i = 0; i < ummalqura_dat.length; i++) {
+            if (ummalqura_dat[i] > mcjdn) break;
+            index++;
+        }
+        var lunation = index + 15292; //UmmAlQura Lunation Number
+        var ii = Math.floor((lunation - 1) / 12);
+        var year = ii + 1;
+        var month = lunation - 12 * ii;
+        var day = mcjdn - ummalqura_dat[index - 1] + 1;
+        return this.newDate(year, month, day);
+    },
+
+    /** Determine whether a date is valid for this calendar.
+        @memberof UmmAlQuraCalendar
+        @param year {number} The year to examine.
+        @param month {number} The month to examine.
+        @param day {number} The day to examine.
+        @return {boolean} <code>true</code> if a valid date, <code>false</code> if not. */
+    isValid: function(year, month, day) {
+        var valid = main.baseCalendar.prototype.isValid.apply(this, arguments);
+        if (valid) {
+            year = (year.year != null ? year.year : year);
+            valid = (year >= 1276 && year <= 1500);
+        }
+        return valid;
+    },
+
+    /** Check that a candidate date is from the same calendar and is valid.
+        @memberof UmmAlQuraCalendar
+        @private
+        @param year {CDate|number} The date to validate or the year to validate.
+        @param month {number} The month to validate.
+        @param day {number} The day to validate.
+        @param error {string} Error message if invalid.
+        @throws Error if different calendars used or invalid date. */
+    _validate: function(year, month, day, error) {
+        var date = main.baseCalendar.prototype._validate.apply(this, arguments);
+        if (date.year < 1276 || date.year > 1500) {
+            throw error.replace(/\{0\}/, this.local.name);
+        }
+        return date;
+    }
+});
+
+// UmmAlQura calendar implementation
+main.calendars.ummalqura = UmmAlQuraCalendar;
+
+var ummalqura_dat = [
+    20,    50,    79,    109,   138,   168,   197,   227,   256,   286,   315,   345,   374,   404,   433,   463,   492,   522,   551,   581, 
+    611,   641,   670,   700,   729,   759,   788,   818,   847,   877,   906,   936,   965,   995,   1024,  1054,  1083,  1113,  1142,  1172,
+    1201,  1231,  1260,  1290,  1320,  1350,  1379,  1409,  1438,  1468,  1497,  1527,  1556,  1586,  1615,  1645,  1674,  1704,  1733,  1763,
+    1792,  1822,  1851,  1881,  1910,  1940,  1969,  1999,  2028,  2058,  2087,  2117,  2146,  2176,  2205,  2235,  2264,  2294,  2323,  2353,
+    2383,  2413,  2442,  2472,  2501,  2531,  2560,  2590,  2619,  2649,  2678,  2708,  2737,  2767,  2796,  2826,  2855,  2885,  2914,  2944,
+    2973,  3003,  3032,  3062,  3091,  3121,  3150,  3180,  3209,  3239,  3268,  3298,  3327,  3357,  3386,  3416,  3446,  3476,  3505,  3535,
+    3564,  3594,  3623,  3653,  3682,  3712,  3741,  3771,  3800,  3830,  3859,  3889,  3918,  3948,  3977,  4007,  4036,  4066,  4095,  4125,
+    4155,  4185,  4214,  4244,  4273,  4303,  4332,  4362,  4391,  4421,  4450,  4480,  4509,  4539,  4568,  4598,  4627,  4657,  4686,  4716,
+    4745,  4775,  4804,  4834,  4863,  4893,  4922,  4952,  4981,  5011,  5040,  5070,  5099,  5129,  5158,  5188,  5218,  5248,  5277,  5307,
+    5336,  5366,  5395,  5425,  5454,  5484,  5513,  5543,  5572,  5602,  5631,  5661,  5690,  5720,  5749,  5779,  5808,  5838,  5867,  5897,
+    5926,  5956,  5985,  6015,  6044,  6074,  6103,  6133,  6162,  6192,  6221,  6251,  6281,  6311,  6340,  6370,  6399,  6429,  6458,  6488,
+    6517,  6547,  6576,  6606,  6635,  6665,  6694,  6724,  6753,  6783,  6812,  6842,  6871,  6901,  6930,  6960,  6989,  7019,  7048,  7078,
+    7107,  7137,  7166,  7196,  7225,  7255,  7284,  7314,  7344,  7374,  7403,  7433,  7462,  7492,  7521,  7551,  7580,  7610,  7639,  7669,
+    7698,  7728,  7757,  7787,  7816,  7846,  7875,  7905,  7934,  7964,  7993,  8023,  8053,  8083,  8112,  8142,  8171,  8201,  8230,  8260,
+    8289,  8319,  8348,  8378,  8407,  8437,  8466,  8496,  8525,  8555,  8584,  8614,  8643,  8673,  8702,  8732,  8761,  8791,  8821,  8850,
+    8880,  8909,  8938,  8968,  8997,  9027,  9056,  9086,  9115,  9145,  9175,  9205,  9234,  9264,  9293,  9322,  9352,  9381,  9410,  9440,
+    9470,  9499,  9529,  9559,  9589,  9618,  9648,  9677,  9706,  9736,  9765,  9794,  9824,  9853,  9883,  9913,  9943,  9972,  10002, 10032,
+    10061, 10090, 10120, 10149, 10178, 10208, 10237, 10267, 10297, 10326, 10356, 10386, 10415, 10445, 10474, 10504, 10533, 10562, 10592, 10621,
+    10651, 10680, 10710, 10740, 10770, 10799, 10829, 10858, 10888, 10917, 10947, 10976, 11005, 11035, 11064, 11094, 11124, 11153, 11183, 11213,
+    11242, 11272, 11301, 11331, 11360, 11389, 11419, 11448, 11478, 11507, 11537, 11567, 11596, 11626, 11655, 11685, 11715, 11744, 11774, 11803,
+    11832, 11862, 11891, 11921, 11950, 11980, 12010, 12039, 12069, 12099, 12128, 12158, 12187, 12216, 12246, 12275, 12304, 12334, 12364, 12393,
+    12423, 12453, 12483, 12512, 12542, 12571, 12600, 12630, 12659, 12688, 12718, 12747, 12777, 12807, 12837, 12866, 12896, 12926, 12955, 12984,
+    13014, 13043, 13072, 13102, 13131, 13161, 13191, 13220, 13250, 13280, 13310, 13339, 13368, 13398, 13427, 13456, 13486, 13515, 13545, 13574,
+    13604, 13634, 13664, 13693, 13723, 13752, 13782, 13811, 13840, 13870, 13899, 13929, 13958, 13988, 14018, 14047, 14077, 14107, 14136, 14166,
+    14195, 14224, 14254, 14283, 14313, 14342, 14372, 14401, 14431, 14461, 14490, 14520, 14550, 14579, 14609, 14638, 14667, 14697, 14726, 14756,
+    14785, 14815, 14844, 14874, 14904, 14933, 14963, 14993, 15021, 15051, 15081, 15110, 15140, 15169, 15199, 15228, 15258, 15287, 15317, 15347,
+    15377, 15406, 15436, 15465, 15494, 15524, 15553, 15582, 15612, 15641, 15671, 15701, 15731, 15760, 15790, 15820, 15849, 15878, 15908, 15937,
+    15966, 15996, 16025, 16055, 16085, 16114, 16144, 16174, 16204, 16233, 16262, 16292, 16321, 16350, 16380, 16409, 16439, 16468, 16498, 16528,
+    16558, 16587, 16617, 16646, 16676, 16705, 16734, 16764, 16793, 16823, 16852, 16882, 16912, 16941, 16971, 17001, 17030, 17060, 17089, 17118,
+    17148, 17177, 17207, 17236, 17266, 17295, 17325, 17355, 17384, 17414, 17444, 17473, 17502, 17532, 17561, 17591, 17620, 17650, 17679, 17709,
+    17738, 17768, 17798, 17827, 17857, 17886, 17916, 17945, 17975, 18004, 18034, 18063, 18093, 18122, 18152, 18181, 18211, 18241, 18270, 18300,
+    18330, 18359, 18388, 18418, 18447, 18476, 18506, 18535, 18565, 18595, 18625, 18654, 18684, 18714, 18743, 18772, 18802, 18831, 18860, 18890,
+    18919, 18949, 18979, 19008, 19038, 19068, 19098, 19127, 19156, 19186, 19215, 19244, 19274, 19303, 19333, 19362, 19392, 19422, 19452, 19481,
+    19511, 19540, 19570, 19599, 19628, 19658, 19687, 19717, 19746, 19776, 19806, 19836, 19865, 19895, 19924, 19954, 19983, 20012, 20042, 20071,
+    20101, 20130, 20160, 20190, 20219, 20249, 20279, 20308, 20338, 20367, 20396, 20426, 20455, 20485, 20514, 20544, 20573, 20603, 20633, 20662,
+    20692, 20721, 20751, 20780, 20810, 20839, 20869, 20898, 20928, 20957, 20987, 21016, 21046, 21076, 21105, 21135, 21164, 21194, 21223, 21253,
+    21282, 21312, 21341, 21371, 21400, 21430, 21459, 21489, 21519, 21548, 21578, 21607, 21637, 21666, 21696, 21725, 21754, 21784, 21813, 21843,
+    21873, 21902, 21932, 21962, 21991, 22021, 22050, 22080, 22109, 22138, 22168, 22197, 22227, 22256, 22286, 22316, 22346, 22375, 22405, 22434,
+    22464, 22493, 22522, 22552, 22581, 22611, 22640, 22670, 22700, 22730, 22759, 22789, 22818, 22848, 22877, 22906, 22936, 22965, 22994, 23024,
+    23054, 23083, 23113, 23143, 23173, 23202, 23232, 23261, 23290, 23320, 23349, 23379, 23408, 23438, 23467, 23497, 23527, 23556, 23586, 23616,
+    23645, 23674, 23704, 23733, 23763, 23792, 23822, 23851, 23881, 23910, 23940, 23970, 23999, 24029, 24058, 24088, 24117, 24147, 24176, 24206,
+    24235, 24265, 24294, 24324, 24353, 24383, 24413, 24442, 24472, 24501, 24531, 24560, 24590, 24619, 24648, 24678, 24707, 24737, 24767, 24796,
+    24826, 24856, 24885, 24915, 24944, 24974, 25003, 25032, 25062, 25091, 25121, 25150, 25180, 25210, 25240, 25269, 25299, 25328, 25358, 25387,
+    25416, 25446, 25475, 25505, 25534, 25564, 25594, 25624, 25653, 25683, 25712, 25742, 25771, 25800, 25830, 25859, 25888, 25918, 25948, 25977,
+    26007, 26037, 26067, 26096, 26126, 26155, 26184, 26214, 26243, 26272, 26302, 26332, 26361, 26391, 26421, 26451, 26480, 26510, 26539, 26568,
+    26598, 26627, 26656, 26686, 26715, 26745, 26775, 26805, 26834, 26864, 26893, 26923, 26952, 26982, 27011, 27041, 27070, 27099, 27129, 27159,
+    27188, 27218, 27248, 27277, 27307, 27336, 27366, 27395, 27425, 27454, 27484, 27513, 27542, 27572, 27602, 27631, 27661, 27691, 27720, 27750,
+    27779, 27809, 27838, 27868, 27897, 27926, 27956, 27985, 28015, 28045, 28074, 28104, 28134, 28163, 28193, 28222, 28252, 28281, 28310, 28340,
+    28369, 28399, 28428, 28458, 28488, 28517, 28547, 28577,
+    // From 1356
+    28607, 28636, 28665, 28695, 28724, 28754, 28783, 28813, 28843, 28872, 28901, 28931, 28960, 28990, 29019, 29049, 29078, 29108, 29137, 29167,
+    29196, 29226, 29255, 29285, 29315, 29345, 29375, 29404, 29434, 29463, 29492, 29522, 29551, 29580, 29610, 29640, 29669, 29699, 29729, 29759,
+    29788, 29818, 29847, 29876, 29906, 29935, 29964, 29994, 30023, 30053, 30082, 30112, 30141, 30171, 30200, 30230, 30259, 30289, 30318, 30348,
+    30378, 30408, 30437, 30467, 30496, 30526, 30555, 30585, 30614, 30644, 30673, 30703, 30732, 30762, 30791, 30821, 30850, 30880, 30909, 30939,
+    30968, 30998, 31027, 31057, 31086, 31116, 31145, 31175, 31204, 31234, 31263, 31293, 31322, 31352, 31381, 31411, 31441, 31471, 31500, 31530,
+    31559, 31589, 31618, 31648, 31676, 31706, 31736, 31766, 31795, 31825, 31854, 31884, 31913, 31943, 31972, 32002, 32031, 32061, 32090, 32120,
+    32150, 32180, 32209, 32239, 32268, 32298, 32327, 32357, 32386, 32416, 32445, 32475, 32504, 32534, 32563, 32593, 32622, 32652, 32681, 32711,
+    32740, 32770, 32799, 32829, 32858, 32888, 32917, 32947, 32976, 33006, 33035, 33065, 33094, 33124, 33153, 33183, 33213, 33243, 33272, 33302,
+    33331, 33361, 33390, 33420, 33450, 33479, 33509, 33539, 33568, 33598, 33627, 33657, 33686, 33716, 33745, 33775, 33804, 33834, 33863, 33893,
+    33922, 33952, 33981, 34011, 34040, 34069, 34099, 34128, 34158, 34187, 34217, 34247, 34277, 34306, 34336, 34365, 34395, 34424, 34454, 34483,
+    34512, 34542, 34571, 34601, 34631, 34660, 34690, 34719, 34749, 34778, 34808, 34837, 34867, 34896, 34926, 34955, 34985, 35015, 35044, 35074,
+    35103, 35133, 35162, 35192, 35222, 35251, 35280, 35310, 35340, 35370, 35399, 35429, 35458, 35488, 35517, 35547, 35576, 35605, 35635, 35665,
+    35694, 35723, 35753, 35782, 35811, 35841, 35871, 35901, 35930, 35960, 35989, 36019, 36048, 36078, 36107, 36136, 36166, 36195, 36225, 36254,
+    36284, 36314, 36343, 36373, 36403, 36433, 36462, 36492, 36521, 36551, 36580, 36610, 36639, 36669, 36698, 36728, 36757, 36786, 36816, 36845,
+    36875, 36904, 36934, 36963, 36993, 37022, 37052, 37081, 37111, 37141, 37170, 37200, 37229, 37259, 37288, 37318, 37347, 37377, 37406, 37436,
+    37465, 37495, 37524, 37554, 37584, 37613, 37643, 37672, 37701, 37731, 37760, 37790, 37819, 37849, 37878, 37908, 37938, 37967, 37997, 38027,
+    38056, 38085, 38115, 38144, 38174, 38203, 38233, 38262, 38292, 38322, 38351, 38381, 38410, 38440, 38469, 38499, 38528, 38558, 38587, 38617,
+    38646, 38676, 38705, 38735, 38764, 38794, 38823, 38853, 38882, 38912, 38941, 38971, 39001, 39030, 39059, 39089, 39118, 39148, 39178, 39208,
+    39237, 39267, 39297, 39326, 39355, 39385, 39414, 39444, 39473, 39503, 39532, 39562, 39592, 39621, 39650, 39680, 39709, 39739, 39768, 39798,
+    39827, 39857, 39886, 39916, 39946, 39975, 40005, 40035, 40064, 40094, 40123, 40153, 40182, 40212, 40241, 40271, 40300, 40330, 40359, 40389,
+    40418, 40448, 40477, 40507, 40536, 40566, 40595, 40625, 40655, 40685, 40714, 40744, 40773, 40803, 40832, 40862, 40892, 40921, 40951, 40980,
+    41009, 41039, 41068, 41098, 41127, 41157, 41186, 41216, 41245, 41275, 41304, 41334, 41364, 41393, 41422, 41452, 41481, 41511, 41540, 41570,
+    41599, 41629, 41658, 41688, 41718, 41748, 41777, 41807, 41836, 41865, 41894, 41924, 41953, 41983, 42012, 42042, 42072, 42102, 42131, 42161,
+    42190, 42220, 42249, 42279, 42308, 42337, 42367, 42397, 42426, 42456, 42485, 42515, 42545, 42574, 42604, 42633, 42662, 42692, 42721, 42751,
+    42780, 42810, 42839, 42869, 42899, 42929, 42958, 42988, 43017, 43046, 43076, 43105, 43135, 43164, 43194, 43223, 43253, 43283, 43312, 43342,
+    43371, 43401, 43430, 43460, 43489, 43519, 43548, 43578, 43607, 43637, 43666, 43696, 43726, 43755, 43785, 43814, 43844, 43873, 43903, 43932,
+    43962, 43991, 44021, 44050, 44080, 44109, 44139, 44169, 44198, 44228, 44258, 44287, 44317, 44346, 44375, 44405, 44434, 44464, 44493, 44523,
+    44553, 44582, 44612, 44641, 44671, 44700, 44730, 44759, 44788, 44818, 44847, 44877, 44906, 44936, 44966, 44996, 45025, 45055, 45084, 45114,
+    45143, 45172, 45202, 45231, 45261, 45290, 45320, 45350, 45380, 45409, 45439, 45468, 45498, 45527, 45556, 45586, 45615, 45644, 45674, 45704,
+    45733, 45763, 45793, 45823, 45852, 45882, 45911, 45940, 45970, 45999, 46028, 46058, 46088, 46117, 46147, 46177, 46206, 46236, 46265, 46295,
+    46324, 46354, 46383, 46413, 46442, 46472, 46501, 46531, 46560, 46590, 46620, 46649, 46679, 46708, 46738, 46767, 46797, 46826, 46856, 46885,
+    46915, 46944, 46974, 47003, 47033, 47063, 47092, 47122, 47151, 47181, 47210, 47240, 47269, 47298, 47328, 47357, 47387, 47417, 47446, 47476,
+    47506, 47535, 47565, 47594, 47624, 47653, 47682, 47712, 47741, 47771, 47800, 47830, 47860, 47890, 47919, 47949, 47978, 48008, 48037, 48066,
+    48096, 48125, 48155, 48184, 48214, 48244, 48273, 48303, 48333, 48362, 48392, 48421, 48450, 48480, 48509, 48538, 48568, 48598, 48627, 48657,
+    48687, 48717, 48746, 48776, 48805, 48834, 48864, 48893, 48922, 48952, 48982, 49011, 49041, 49071, 49100, 49130, 49160, 49189, 49218, 49248,
+    49277, 49306, 49336, 49365, 49395, 49425, 49455, 49484, 49514, 49543, 49573, 49602, 49632, 49661, 49690, 49720, 49749, 49779, 49809, 49838,
+    49868, 49898, 49927, 49957, 49986, 50016, 50045, 50075, 50104, 50133, 50163, 50192, 50222, 50252, 50281, 50311, 50340, 50370, 50400, 50429,
+    50459, 50488, 50518, 50547, 50576, 50606, 50635, 50665, 50694, 50724, 50754, 50784, 50813, 50843, 50872, 50902, 50931, 50960, 50990, 51019,
+    51049, 51078, 51108, 51138, 51167, 51197, 51227, 51256, 51286, 51315, 51345, 51374, 51403, 51433, 51462, 51492, 51522, 51552, 51582, 51611,
+    51641, 51670, 51699, 51729, 51758, 51787, 51816, 51846, 51876, 51906, 51936, 51965, 51995, 52025, 52054, 52083, 52113, 52142, 52171, 52200,
+    52230, 52260, 52290, 52319, 52349, 52379, 52408, 52438, 52467, 52497, 52526, 52555, 52585, 52614, 52644, 52673, 52703, 52733, 52762, 52792,
+    52822, 52851, 52881, 52910, 52939, 52969, 52998, 53028, 53057, 53087, 53116, 53146, 53176, 53205, 53235, 53264, 53294, 53324, 53353, 53383,
+    53412, 53441, 53471, 53500, 53530, 53559, 53589, 53619, 53648, 53678, 53708, 53737, 53767, 53796, 53825, 53855, 53884, 53913, 53943, 53973,
+    54003, 54032, 54062, 54092, 54121, 54151, 54180, 54209, 54239, 54268, 54297, 54327, 54357, 54387, 54416, 54446, 54476, 54505, 54535, 54564,
+    54593, 54623, 54652, 54681, 54711, 54741, 54770, 54800, 54830, 54859, 54889, 54919, 54948, 54977, 55007, 55036, 55066, 55095, 55125, 55154,
+    55184, 55213, 55243, 55273, 55302, 55332, 55361, 55391, 55420, 55450, 55479, 55508, 55538, 55567, 55597, 55627, 55657, 55686, 55716, 55745,
+    55775, 55804, 55834, 55863, 55892, 55922, 55951, 55981, 56011, 56040, 56070, 56100, 56129, 56159, 56188, 56218, 56247, 56276, 56306, 56335,
+    56365, 56394, 56424, 56454, 56483, 56513, 56543, 56572, 56601, 56631, 56660, 56690, 56719, 56749, 56778, 56808, 56837, 56867, 56897, 56926,
+    56956, 56985, 57015, 57044, 57074, 57103, 57133, 57162, 57192, 57221, 57251, 57280, 57310, 57340, 57369, 57399, 57429, 57458, 57487, 57517,
+    57546, 57576, 57605, 57634, 57664, 57694, 57723, 57753, 57783, 57813, 57842, 57871, 57901, 57930, 57959, 57989, 58018, 58048, 58077, 58107,
+    58137, 58167, 58196, 58226, 58255, 58285, 58314, 58343, 58373, 58402, 58432, 58461, 58491, 58521, 58551, 58580, 58610, 58639, 58669, 58698,
+    58727, 58757, 58786, 58816, 58845, 58875, 58905, 58934, 58964, 58994, 59023, 59053, 59082, 59111, 59141, 59170, 59200, 59229, 59259, 59288,
+    59318, 59348, 59377, 59407, 59436, 59466, 59495, 59525, 59554, 59584, 59613, 59643, 59672, 59702, 59731, 59761, 59791, 59820, 59850, 59879,
+    59909, 59939, 59968, 59997, 60027, 60056, 60086, 60115, 60145, 60174, 60204, 60234, 60264, 60293, 60323, 60352, 60381, 60411, 60440, 60469,
+    60499, 60528, 60558, 60588, 60618, 60648, 60677, 60707, 60736, 60765, 60795, 60824, 60853, 60883, 60912, 60942, 60972, 61002, 61031, 61061,
+    61090, 61120, 61149, 61179, 61208, 61237, 61267, 61296, 61326, 61356, 61385, 61415, 61445, 61474, 61504, 61533, 61563, 61592, 61621, 61651,
+    61680, 61710, 61739, 61769, 61799, 61828, 61858, 61888, 61917, 61947, 61976, 62006, 62035, 62064, 62094, 62123, 62153, 62182, 62212, 62242,
+    62271, 62301, 62331, 62360, 62390, 62419, 62448, 62478, 62507, 62537, 62566, 62596, 62625, 62655, 62685, 62715, 62744, 62774, 62803, 62832,
+    62862, 62891, 62921, 62950, 62980, 63009, 63039, 63069, 63099, 63128, 63157, 63187, 63216, 63246, 63275, 63305, 63334, 63363, 63393, 63423,
+    63453, 63482, 63512, 63541, 63571, 63600, 63630, 63659, 63689, 63718, 63747, 63777, 63807, 63836, 63866, 63895, 63925, 63955, 63984, 64014,
+    64043, 64073, 64102, 64131, 64161, 64190, 64220, 64249, 64279, 64309, 64339, 64368, 64398, 64427, 64457, 64486, 64515, 64545, 64574, 64603,
+    64633, 64663, 64692, 64722, 64752, 64782, 64811, 64841, 64870, 64899, 64929, 64958, 64987, 65017, 65047, 65076, 65106, 65136, 65166, 65195,
+    65225, 65254, 65283, 65313, 65342, 65371, 65401, 65431, 65460, 65490, 65520, 65549, 65579, 65608, 65638, 65667, 65697, 65726, 65755, 65785,
+    65815, 65844, 65874, 65903, 65933, 65963, 65992, 66022, 66051, 66081, 66110, 66140, 66169, 66199, 66228, 66258, 66287, 66317, 66346, 66376,
+    66405, 66435, 66465, 66494, 66524, 66553, 66583, 66612, 66641, 66671, 66700, 66730, 66760, 66789, 66819, 66849, 66878, 66908, 66937, 66967,
+    66996, 67025, 67055, 67084, 67114, 67143, 67173, 67203, 67233, 67262, 67292, 67321, 67351, 67380, 67409, 67439, 67468, 67497, 67527, 67557,
+    67587, 67617, 67646, 67676, 67705, 67735, 67764, 67793, 67823, 67852, 67882, 67911, 67941, 67971, 68000, 68030, 68060, 68089, 68119, 68148,
+    68177, 68207, 68236, 68266, 68295, 68325, 68354, 68384, 68414, 68443, 68473, 68502, 68532, 68561, 68591, 68620, 68650, 68679, 68708, 68738,
+    68768, 68797, 68827, 68857, 68886, 68916, 68946, 68975, 69004, 69034, 69063, 69092, 69122, 69152, 69181, 69211, 69240, 69270, 69300, 69330,
+    69359, 69388, 69418, 69447, 69476, 69506, 69535, 69565, 69595, 69624, 69654, 69684, 69713, 69743, 69772, 69802, 69831, 69861, 69890, 69919,
+    69949, 69978, 70008, 70038, 70067, 70097, 70126, 70156, 70186, 70215, 70245, 70274, 70303, 70333, 70362, 70392, 70421, 70451, 70481, 70510,
+    70540, 70570, 70599, 70629, 70658, 70687, 70717, 70746, 70776, 70805, 70835, 70864, 70894, 70924, 70954, 70983, 71013, 71042, 71071, 71101,
+    71130, 71159, 71189, 71218, 71248, 71278, 71308, 71337, 71367, 71397, 71426, 71455, 71485, 71514, 71543, 71573, 71602, 71632, 71662, 71691,
+    71721, 71751, 71781, 71810, 71839, 71869, 71898, 71927, 71957, 71986, 72016, 72046, 72075, 72105, 72135, 72164, 72194, 72223, 72253, 72282,
+    72311, 72341, 72370, 72400, 72429, 72459, 72489, 72518, 72548, 72577, 72607, 72637, 72666, 72695, 72725, 72754, 72784, 72813, 72843, 72872,
+    72902, 72931, 72961, 72991, 73020, 73050, 73080, 73109, 73139, 73168, 73197, 73227, 73256, 73286, 73315, 73345, 73375, 73404, 73434, 73464,
+    73493, 73523, 73552, 73581, 73611, 73640, 73669, 73699, 73729, 73758, 73788, 73818, 73848, 73877, 73907, 73936, 73965, 73995, 74024, 74053,
+    74083, 74113, 74142, 74172, 74202, 74231, 74261, 74291, 74320, 74349, 74379, 74408, 74437, 74467, 74497, 74526, 74556, 74586, 74615, 74645,
+    74675, 74704, 74733, 74763, 74792, 74822, 74851, 74881, 74910, 74940, 74969, 74999, 75029, 75058, 75088, 75117, 75147, 75176, 75206, 75235,
+    75264, 75294, 75323, 75353, 75383, 75412, 75442, 75472, 75501, 75531, 75560, 75590, 75619, 75648, 75678, 75707, 75737, 75766, 75796, 75826,
+    75856, 75885, 75915, 75944, 75974, 76003, 76032, 76062, 76091, 76121, 76150, 76180, 76210, 76239, 76269, 76299, 76328, 76358, 76387, 76416,
+    76446, 76475, 76505, 76534, 76564, 76593, 76623, 76653, 76682, 76712, 76741, 76771, 76801, 76830, 76859, 76889, 76918, 76948, 76977, 77007,
+    77036, 77066, 77096, 77125, 77155, 77185, 77214, 77243, 77273, 77302, 77332, 77361, 77390, 77420, 77450, 77479, 77509, 77539, 77569, 77598,
+    77627, 77657, 77686, 77715, 77745, 77774, 77804, 77833, 77863, 77893, 77923, 77952, 77982, 78011, 78041, 78070, 78099, 78129, 78158, 78188,
+    78217, 78247, 78277, 78307, 78336, 78366, 78395, 78425, 78454, 78483, 78513, 78542, 78572, 78601, 78631, 78661, 78690, 78720, 78750, 78779,
+    78808, 78838, 78867, 78897, 78926, 78956, 78985, 79015, 79044, 79074, 79104, 79133, 79163, 79192, 79222, 79251, 79281, 79310, 79340, 79369,
+    79399, 79428, 79458, 79487, 79517, 79546, 79576, 79606, 79635, 79665, 79695, 79724, 79753, 79783, 79812, 79841, 79871, 79900, 79930, 79960,
+    79990];
+
+
+},{"../main":89,"object-assign":62}],89:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Calendars for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var assign = _dereq_('object-assign');
+
+
+function Calendars() {
+    this.regionalOptions = [];
+    this.regionalOptions[''] = {
+        invalidCalendar: 'Calendar {0} not found',
+        invalidDate: 'Invalid {0} date',
+        invalidMonth: 'Invalid {0} month',
+        invalidYear: 'Invalid {0} year',
+        differentCalendars: 'Cannot mix {0} and {1} dates'
+    };
+    this.local = this.regionalOptions[''];
+    this.calendars = {};
+    this._localCals = {};
+}
+
+/** Create the calendars plugin.
+    <p>Provides support for various world calendars in a consistent manner.</p>
+     @class Calendars
+    @example _exports.instance('julian').newDate(2014, 12, 25) */
+assign(Calendars.prototype, {
+
+    /** Obtain a calendar implementation and localisation.
+        @memberof Calendars
+        @param [name='gregorian'] {string} The name of the calendar, e.g. 'gregorian', 'persian', 'islamic'.
+        @param [language=''] {string} The language code to use for localisation (default is English).
+        @return {Calendar} The calendar and localisation.
+        @throws Error if calendar not found. */
+    instance: function(name, language) {
+        name = (name || 'gregorian').toLowerCase();
+        language = language || '';
+        var cal = this._localCals[name + '-' + language];
+        if (!cal && this.calendars[name]) {
+            cal = new this.calendars[name](language);
+            this._localCals[name + '-' + language] = cal;
+        }
+        if (!cal) {
+            throw (this.local.invalidCalendar || this.regionalOptions[''].invalidCalendar).
+                replace(/\{0\}/, name);
+        }
+        return cal;
+    },
+
+    /** Create a new date - for today if no other parameters given.
+        @memberof Calendars
+        @param year {CDate|number} The date to copy or the year for the date.
+        @param [month] {number} The month for the date.
+        @param [day] {number} The day for the date.
+        @param [calendar='gregorian'] {BaseCalendar|string} The underlying calendar or the name of the calendar.
+        @param [language=''] {string} The language to use for localisation (default English).
+        @return {CDate} The new date.
+        @throws Error if an invalid date. */
+    newDate: function(year, month, day, calendar, language) {
+        calendar = (year != null && year.year ? year.calendar() : (typeof calendar === 'string' ?
+            this.instance(calendar, language) : calendar)) || this.instance();
+        return calendar.newDate(year, month, day);
+    },
+    
+    /** A simple digit substitution function for localising numbers via the Calendar digits option.
+        @member Calendars
+        @param digits {string[]} The substitute digits, for 0 through 9.
+        @return {function} The substitution function. */
+    substituteDigits: function(digits) {
+        return function(value) {
+            return (value + '').replace(/[0-9]/g, function(digit) {
+                return digits[digit];
+            });
+        }
+    },
+    
+    /** Digit substitution function for localising Chinese style numbers via the Calendar digits option.
+        @member Calendars
+        @param digits {string[]} The substitute digits, for 0 through 9.
+        @param powers {string[]} The characters denoting powers of 10, i.e. 1, 10, 100, 1000.
+        @return {function} The substitution function. */
+    substituteChineseDigits: function(digits, powers) {
+        return function(value) {
+            var localNumber = '';
+            var power = 0;
+            while (value > 0) {
+                var units = value % 10;
+                localNumber = (units === 0 ? '' : digits[units] + powers[power]) + localNumber;
+                power++;
+                value = Math.floor(value / 10);
+            }
+            if (localNumber.indexOf(digits[1] + powers[1]) === 0) {
+                localNumber = localNumber.substr(1);
+            }
+            return localNumber || digits[0];
+        }
+    }
+});
+
+/** Generic date, based on a particular calendar.
+    @class CDate
+    @param calendar {BaseCalendar} The underlying calendar implementation.
+    @param year {number} The year for this date.
+    @param month {number} The month for this date.
+    @param day {number} The day for this date.
+    @return {CDate} The date object.
+    @throws Error if an invalid date. */
+function CDate(calendar, year, month, day) {
+    this._calendar = calendar;
+    this._year = year;
+    this._month = month;
+    this._day = day;
+    if (this._calendar._validateLevel === 0 &&
+            !this._calendar.isValid(this._year, this._month, this._day)) {
+        throw (_exports.local.invalidDate || _exports.regionalOptions[''].invalidDate).
+            replace(/\{0\}/, this._calendar.local.name);
+    }
+}
+
+/** Pad a numeric value with leading zeroes.
+    @private
+    @param value {number} The number to format.
+    @param length {number} The minimum length.
+    @return {string} The formatted number. */
+function pad(value, length) {
+    value = '' + value;
+    return '000000'.substring(0, length - value.length) + value;
+}
+
+assign(CDate.prototype, {
+
+    /** Create a new date.
+        @memberof CDate
+        @param [year] {CDate|number} The date to copy or the year for the date (default this date).
+        @param [month] {number} The month for the date.
+        @param [day] {number} The day for the date.
+        @return {CDate} The new date.
+        @throws Error if an invalid date. */
+    newDate: function(year, month, day) {
+        return this._calendar.newDate((year == null ? this : year), month, day);
+    },
+
+    /** Set or retrieve the year for this date.
+        @memberof CDate
+        @param [year] {number} The year for the date.
+        @return {number|CDate} The date's year (if no parameter) or the updated date.
+        @throws Error if an invalid date. */
+    year: function(year) {
+        return (arguments.length === 0 ? this._year : this.set(year, 'y'));
+    },
+
+    /** Set or retrieve the month for this date.
+        @memberof CDate
+        @param [month] {number} The month for the date.
+        @return {number|CDate} The date's month (if no parameter) or the updated date.
+        @throws Error if an invalid date. */
+    month: function(month) {
+        return (arguments.length === 0 ? this._month : this.set(month, 'm'));
+    },
+
+    /** Set or retrieve the day for this date.
+        @memberof CDate
+        @param [day] {number} The day for the date.
+        @return {number|CData} The date's day (if no parameter) or the updated date.
+        @throws Error if an invalid date. */
+    day: function(day) {
+        return (arguments.length === 0 ? this._day : this.set(day, 'd'));
+    },
+
+    /** Set new values for this date.
+        @memberof CDate
+        @param year {number} The year for the date.
+        @param month {number} The month for the date.
+        @param day {number} The day for the date.
+        @return {CDate} The updated date.
+        @throws Error if an invalid date. */
+    date: function(year, month, day) {
+        if (!this._calendar.isValid(year, month, day)) {
+            throw (_exports.local.invalidDate || _exports.regionalOptions[''].invalidDate).
+                replace(/\{0\}/, this._calendar.local.name);
+        }
+        this._year = year;
+        this._month = month;
+        this._day = day;
+        return this;
+    },
+
+    /** Determine whether this date is in a leap year.
+        @memberof CDate
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not. */
+    leapYear: function() {
+        return this._calendar.leapYear(this);
+    },
+
+    /** Retrieve the epoch designator for this date, e.g. BCE or CE.
+        @memberof CDate
+        @return {string} The current epoch. */
+    epoch: function() {
+        return this._calendar.epoch(this);
+    },
+
+    /** Format the year, if not a simple sequential number.
+        @memberof CDate
+        @return {string} The formatted year. */
+    formatYear: function() {
+        return this._calendar.formatYear(this);
+    },
+
+    /** Retrieve the month of the year for this date,
+        i.e. the month's position within a numbered year.
+        @memberof CDate
+        @return {number} The month of the year: <code>minMonth</code> to months per year. */
+    monthOfYear: function() {
+        return this._calendar.monthOfYear(this);
+    },
+
+    /** Retrieve the week of the year for this date.
+        @memberof CDate
+        @return {number} The week of the year: 1 to weeks per year. */
+    weekOfYear: function() {
+        return this._calendar.weekOfYear(this);
+    },
+
+    /** Retrieve the number of days in the year for this date.
+        @memberof CDate
+        @return {number} The number of days in this year. */
+    daysInYear: function() {
+        return this._calendar.daysInYear(this);
+    },
+
+    /** Retrieve the day of the year for this date.
+        @memberof CDate
+        @return {number} The day of the year: 1 to days per year. */
+    dayOfYear: function() {
+        return this._calendar.dayOfYear(this);
+    },
+
+    /** Retrieve the number of days in the month for this date.
+        @memberof CDate
+        @return {number} The number of days. */
+    daysInMonth: function() {
+        return this._calendar.daysInMonth(this);
+    },
+
+    /** Retrieve the day of the week for this date.
+        @memberof CDate
+        @return {number} The day of the week: 0 to number of days - 1. */
+    dayOfWeek: function() {
+        return this._calendar.dayOfWeek(this);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof CDate
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not. */
+    weekDay: function() {
+        return this._calendar.weekDay(this);
+    },
+
+    /** Retrieve additional information about this date.
+        @memberof CDate
+        @return {object} Additional information - contents depends on calendar. */
+    extraInfo: function() {
+        return this._calendar.extraInfo(this);
+    },
+
+    /** Add period(s) to a date.
+        @memberof CDate
+        @param offset {number} The number of periods to adjust by.
+        @param period {string} One of 'y' for year, 'm' for month, 'w' for week, 'd' for day.
+        @return {CDate} The updated date. */
+    add: function(offset, period) {
+        return this._calendar.add(this, offset, period);
+    },
+
+    /** Set a portion of the date.
+        @memberof CDate
+        @param value {number} The new value for the period.
+        @param period {string} One of 'y' for year, 'm' for month, 'd' for day.
+        @return {CDate} The updated date.
+        @throws Error if not a valid date. */
+    set: function(value, period) {
+        return this._calendar.set(this, value, period);
+    },
+
+    /** Compare this date to another date.
+        @memberof CDate
+        @param date {CDate} The other date.
+        @return {number} -1 if this date is before the other date,
+                0 if they are equal, or +1 if this date is after the other date. */
+    compareTo: function(date) {
+        if (this._calendar.name !== date._calendar.name) {
+            throw (_exports.local.differentCalendars || _exports.regionalOptions[''].differentCalendars).
+                replace(/\{0\}/, this._calendar.local.name).replace(/\{1\}/, date._calendar.local.name);
+        }
+        var c = (this._year !== date._year ? this._year - date._year :
+            this._month !== date._month ? this.monthOfYear() - date.monthOfYear() :
+            this._day - date._day);
+        return (c === 0 ? 0 : (c < 0 ? -1 : +1));
+    },
+
+    /** Retrieve the calendar backing this date.
+        @memberof CDate
+        @return {BaseCalendar} The calendar implementation. */
+    calendar: function() {
+        return this._calendar;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof CDate
+        @return {number} The equivalent Julian date. */
+    toJD: function() {
+        return this._calendar.toJD(this);
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof CDate
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        return this._calendar.fromJD(jd);
+    },
+
+    /** Convert this date to a standard (Gregorian) JavaScript Date.
+        @memberof CDate
+        @return {Date} The equivalent JavaScript date. */
+    toJSDate: function() {
+        return this._calendar.toJSDate(this);
+    },
+
+    /** Create a new date from a standard (Gregorian) JavaScript Date.
+        @memberof CDate
+        @param jsd {Date} The JavaScript date to convert.
+        @return {CDate} The equivalent date. */
+    fromJSDate: function(jsd) {
+        return this._calendar.fromJSDate(jsd);
+    },
+
+    /** Convert to a string for display.
+        @memberof CDate
+        @return {string} This date as a string. */
+    toString: function() {
+        return (this.year() < 0 ? '-' : '') + pad(Math.abs(this.year()), 4) +
+            '-' + pad(this.month(), 2) + '-' + pad(this.day(), 2);
+    }
+});
+
+/** Basic functionality for all calendars.
+    Other calendars should extend this:
+    <pre>OtherCalendar.prototype = new BaseCalendar;</pre>
+    @class BaseCalendar */
+function BaseCalendar() {
+    this.shortYearCutoff = '+10';
+}
+
+assign(BaseCalendar.prototype, {
+    _validateLevel: 0, // "Stack" to turn validation on/off
+
+    /** Create a new date within this calendar - today if no parameters given.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to duplicate or the year for the date.
+        @param [month] {number} The month for the date.
+        @param [day] {number} The day for the date.
+        @return {CDate} The new date.
+        @throws Error if not a valid date or a different calendar used. */
+    newDate: function(year, month, day) {
+        if (year == null) {
+            return this.today();
+        }
+        if (year.year) {
+            this._validate(year, month, day,
+                _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+            day = year.day();
+            month = year.month();
+            year = year.year();
+        }
+        return new CDate(this, year, month, day);
+    },
+
+    /** Create a new date for today.
+        @memberof BaseCalendar
+        @return {CDate} Today's date. */
+    today: function() {
+        return this.fromJSDate(new Date());
+    },
+
+    /** Retrieve the epoch designator for this date.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {string} The current epoch.
+        @throws Error if an invalid year or a different calendar used. */
+    epoch: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay,
+            _exports.local.invalidYear || _exports.regionalOptions[''].invalidYear);
+        return (date.year() < 0 ? this.local.epochs[0] : this.local.epochs[1]);
+    },
+
+    /** Format the year, if not a simple sequential number
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to format or the year to format.
+        @return {string} The formatted year.
+        @throws Error if an invalid year or a different calendar used. */
+    formatYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay,
+            _exports.local.invalidYear || _exports.regionalOptions[''].invalidYear);
+        return (date.year() < 0 ? '-' : '') + pad(Math.abs(date.year()), 4)
+    },
+
+    /** Retrieve the number of months in a year.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of months.
+        @throws Error if an invalid year or a different calendar used. */
+    monthsInYear: function(year) {
+        this._validate(year, this.minMonth, this.minDay,
+            _exports.local.invalidYear || _exports.regionalOptions[''].invalidYear);
+        return 12;
+    },
+
+    /** Calculate the month's ordinal position within the year -
+        for those calendars that don't start at month 1!
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param month {number} The month to examine.
+        @return {number} The ordinal position, starting from <code>minMonth</code>.
+        @throws Error if an invalid year/month or a different calendar used. */
+    monthOfYear: function(year, month) {
+        var date = this._validate(year, month, this.minDay,
+            _exports.local.invalidMonth || _exports.regionalOptions[''].invalidMonth);
+        return (date.month() + this.monthsInYear(date) - this.firstMonth) %
+            this.monthsInYear(date) + this.minMonth;
+    },
+
+    /** Calculate actual month from ordinal position, starting from minMonth.
+        @memberof BaseCalendar
+        @param year {number} The year to examine.
+        @param ord {number} The month's ordinal position.
+        @return {number} The month's number.
+        @throws Error if an invalid year/month. */
+    fromMonthOfYear: function(year, ord) {
+        var m = (ord + this.firstMonth - 2 * this.minMonth) %
+            this.monthsInYear(year) + this.minMonth;
+        this._validate(year, m, this.minDay,
+            _exports.local.invalidMonth || _exports.regionalOptions[''].invalidMonth);
+        return m;
+    },
+
+    /** Retrieve the number of days in a year.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {number} The number of days.
+        @throws Error if an invalid year or a different calendar used. */
+    daysInYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay,
+            _exports.local.invalidYear || _exports.regionalOptions[''].invalidYear);
+        return (this.leapYear(date) ? 366 : 365);
+    },
+
+    /** Retrieve the day of the year for a date.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The day of the year.
+        @throws Error if an invalid date or a different calendar used. */
+    dayOfYear: function(year, month, day) {
+        var date = this._validate(year, month, day,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        return date.toJD() - this.newDate(date.year(),
+            this.fromMonthOfYear(date.year(), this.minMonth), this.minDay).toJD() + 1;
+    },
+
+    /** Retrieve the number of days in a week.
+        @memberof BaseCalendar
+        @return {number} The number of days. */
+    daysInWeek: function() {
+        return 7;
+    },
+
+    /** Retrieve the day of the week for a date.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The day of the week: 0 to number of days - 1.
+        @throws Error if an invalid date or a different calendar used. */
+    dayOfWeek: function(year, month, day) {
+        var date = this._validate(year, month, day,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        return (Math.floor(this.toJD(date)) + 2) % this.daysInWeek();
+    },
+
+    /** Retrieve additional information about a date.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {object} Additional information - contents depends on calendar.
+        @throws Error if an invalid date or a different calendar used. */
+    extraInfo: function(year, month, day) {
+        this._validate(year, month, day,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        return {};
+    },
+
+    /** Add period(s) to a date.
+        Cater for no year zero.
+        @memberof BaseCalendar
+        @param date {CDate} The starting date.
+        @param offset {number} The number of periods to adjust by.
+        @param period {string} One of 'y' for year, 'm' for month, 'w' for week, 'd' for day.
+        @return {CDate} The updated date.
+        @throws Error if a different calendar used. */
+    add: function(date, offset, period) {
+        this._validate(date, this.minMonth, this.minDay,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        return this._correctAdd(date, this._add(date, offset, period), offset, period);
+    },
+
+    /** Add period(s) to a date.
+        @memberof BaseCalendar
+        @private
+        @param date {CDate} The starting date.
+        @param offset {number} The number of periods to adjust by.
+        @param period {string} One of 'y' for year, 'm' for month, 'w' for week, 'd' for day.
+        @return {CDate} The updated date. */
+    _add: function(date, offset, period) {
+        this._validateLevel++;
+        if (period === 'd' || period === 'w') {
+            var jd = date.toJD() + offset * (period === 'w' ? this.daysInWeek() : 1);
+            var d = date.calendar().fromJD(jd);
+            this._validateLevel--;
+            return [d.year(), d.month(), d.day()];
+        }
+        try {
+            var y = date.year() + (period === 'y' ? offset : 0);
+            var m = date.monthOfYear() + (period === 'm' ? offset : 0);
+            var d = date.day();// + (period === 'd' ? offset : 0) +
+                //(period === 'w' ? offset * this.daysInWeek() : 0);
+            var resyncYearMonth = function(calendar) {
+                while (m < calendar.minMonth) {
+                    y--;
+                    m += calendar.monthsInYear(y);
+                }
+                var yearMonths = calendar.monthsInYear(y);
+                while (m > yearMonths - 1 + calendar.minMonth) {
+                    y++;
+                    m -= yearMonths;
+                    yearMonths = calendar.monthsInYear(y);
+                }
+            };
+            if (period === 'y') {
+                if (date.month() !== this.fromMonthOfYear(y, m)) { // Hebrew
+                    m = this.newDate(y, date.month(), this.minDay).monthOfYear();
+                }
+                m = Math.min(m, this.monthsInYear(y));
+                d = Math.min(d, this.daysInMonth(y, this.fromMonthOfYear(y, m)));
+            }
+            else if (period === 'm') {
+                resyncYearMonth(this);
+                d = Math.min(d, this.daysInMonth(y, this.fromMonthOfYear(y, m)));
+            }
+            var ymd = [y, this.fromMonthOfYear(y, m), d];
+            this._validateLevel--;
+            return ymd;
+        }
+        catch (e) {
+            this._validateLevel--;
+            throw e;
+        }
+    },
+
+    /** Correct a candidate date after adding period(s) to a date.
+        Handle no year zero if necessary.
+        @memberof BaseCalendar
+        @private
+        @param date {CDate} The starting date.
+        @param ymd {number[]} The added date.
+        @param offset {number} The number of periods to adjust by.
+        @param period {string} One of 'y' for year, 'm' for month, 'w' for week, 'd' for day.
+        @return {CDate} The updated date. */
+    _correctAdd: function(date, ymd, offset, period) {
+        if (!this.hasYearZero && (period === 'y' || period === 'm')) {
+            if (ymd[0] === 0 || // In year zero
+                    (date.year() > 0) !== (ymd[0] > 0)) { // Crossed year zero
+                var adj = {y: [1, 1, 'y'], m: [1, this.monthsInYear(-1), 'm'],
+                    w: [this.daysInWeek(), this.daysInYear(-1), 'd'],
+                    d: [1, this.daysInYear(-1), 'd']}[period];
+                var dir = (offset < 0 ? -1 : +1);
+                ymd = this._add(date, offset * adj[0] + dir * adj[1], adj[2]);
+            }
+        }
+        return date.date(ymd[0], ymd[1], ymd[2]);
+    },
+
+    /** Set a portion of the date.
+        @memberof BaseCalendar
+        @param date {CDate} The starting date.
+        @param value {number} The new value for the period.
+        @param period {string} One of 'y' for year, 'm' for month, 'd' for day.
+        @return {CDate} The updated date.
+        @throws Error if an invalid date or a different calendar used. */
+    set: function(date, value, period) {
+        this._validate(date, this.minMonth, this.minDay,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        var y = (period === 'y' ? value : date.year());
+        var m = (period === 'm' ? value : date.month());
+        var d = (period === 'd' ? value : date.day());
+        if (period === 'y' || period === 'm') {
+            d = Math.min(d, this.daysInMonth(y, m));
+        }
+        return date.date(y, m, d);
+    },
+
+    /** Determine whether a date is valid for this calendar.
+        @memberof BaseCalendar
+        @param year {number} The year to examine.
+        @param month {number} The month to examine.
+        @param day {number} The day to examine.
+        @return {boolean} <code>true</code> if a valid date, <code>false</code> if not. */
+    isValid: function(year, month, day) {
+        this._validateLevel++;
+        var valid = (this.hasYearZero || year !== 0);
+        if (valid) {
+            var date = this.newDate(year, month, this.minDay);
+            valid = (month >= this.minMonth && month - this.minMonth < this.monthsInYear(date)) &&
+                (day >= this.minDay && day - this.minDay < this.daysInMonth(date));
+        }
+        this._validateLevel--;
+        return valid;
+    },
+
+    /** Convert the date to a standard (Gregorian) JavaScript Date.
+        @memberof BaseCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {Date} The equivalent JavaScript date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJSDate: function(year, month, day) {
+        var date = this._validate(year, month, day,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        return _exports.instance().fromJD(this.toJD(date)).toJSDate();
+    },
+
+    /** Convert the date from a standard (Gregorian) JavaScript Date.
+        @memberof BaseCalendar
+        @param jsd {Date} The JavaScript date.
+        @return {CDate} The equivalent calendar date. */
+    fromJSDate: function(jsd) {
+        return this.fromJD(_exports.instance().fromJSDate(jsd).toJD());
+    },
+
+    /** Check that a candidate date is from the same calendar and is valid.
+        @memberof BaseCalendar
+        @private
+        @param year {CDate|number} The date to validate or the year to validate.
+        @param [month] {number} The month to validate.
+        @param [day] {number} The day to validate.
+        @param error {string} Rrror message if invalid.
+        @throws Error if different calendars used or invalid date. */
+    _validate: function(year, month, day, error) {
+        if (year.year) {
+            if (this._validateLevel === 0 && this.name !== year.calendar().name) {
+                throw (_exports.local.differentCalendars || _exports.regionalOptions[''].differentCalendars).
+                    replace(/\{0\}/, this.local.name).replace(/\{1\}/, year.calendar().local.name);
+            }
+            return year;
+        }
+        try {
+            this._validateLevel++;
+            if (this._validateLevel === 1 && !this.isValid(year, month, day)) {
+                throw error.replace(/\{0\}/, this.local.name);
+            }
+            var date = this.newDate(year, month, day);
+            this._validateLevel--;
+            return date;
+        }
+        catch (e) {
+            this._validateLevel--;
+            throw e;
+        }
+    }
+});
+
+/** Implementation of the Proleptic Gregorian Calendar.
+    See <a href=":http://en.wikipedia.org/wiki/Gregorian_calendar">http://en.wikipedia.org/wiki/Gregorian_calendar</a>
+    and <a href="http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar</a>.
+    @class GregorianCalendar
+    @augments BaseCalendar
+    @param [language=''] {string} The language code (default English) for localisation. */
+function GregorianCalendar(language) {
+    this.local = this.regionalOptions[language] || this.regionalOptions[''];
+}
+
+GregorianCalendar.prototype = new BaseCalendar;
+
+assign(GregorianCalendar.prototype, {
+    /** The calendar name.
+        @memberof GregorianCalendar */
+    name: 'Gregorian',
+     /** Julian date of start of Gregorian epoch: 1 January 0001 CE.
+        @memberof GregorianCalendar */
+    jdEpoch: 1721425.5,
+     /** Days per month in a common year.
+        @memberof GregorianCalendar */
+    daysPerMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+     /** <code>true</code> if has a year zero, <code>false</code> if not.
+        @memberof GregorianCalendar */
+    hasYearZero: false,
+    /** The minimum month number.
+        @memberof GregorianCalendar */
+    minMonth: 1,
+    /** The first month in the year.
+        @memberof GregorianCalendar */
+    firstMonth: 1,
+     /** The minimum day number.
+        @memberof GregorianCalendar */
+    minDay: 1,
+
+    /** Localisations for the plugin.
+        Entries are objects indexed by the language code ('' being the default US/English).
+        Each object has the following attributes.
+        @memberof GregorianCalendar
+        @property name {string} The calendar name.
+        @property epochs {string[]} The epoch names.
+        @property monthNames {string[]} The long names of the months of the year.
+        @property monthNamesShort {string[]} The short names of the months of the year.
+        @property dayNames {string[]} The long names of the days of the week.
+        @property dayNamesShort {string[]} The short names of the days of the week.
+        @property dayNamesMin {string[]} The minimal names of the days of the week.
+        @property dateFormat {string} The date format for this calendar.
+                See the options on <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a> for details.
+        @property firstDay {number} The number of the first day of the week, starting at 0.
+        @property isRTL {number} <code>true</code> if this localisation reads right-to-left. */
+    regionalOptions: { // Localisations
+        '': {
+            name: 'Gregorian',
+            epochs: ['BCE', 'CE'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'],
+            monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            digits: null,
+            dateFormat: 'mm/dd/yyyy',
+            firstDay: 0,
+            isRTL: false
+        }
+    },
+    
+    /** Determine whether this date is in a leap year.
+        @memberof GregorianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
+        @throws Error if an invalid year or a different calendar used. */
+    leapYear: function(year) {
+        var date = this._validate(year, this.minMonth, this.minDay,
+            _exports.local.invalidYear || _exports.regionalOptions[''].invalidYear);
+        var year = date.year() + (date.year() < 0 ? 1 : 0); // No year zero
+        return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+    },
+
+    /** Determine the week of the year for a date - ISO 8601.
+        @memberof GregorianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {number} The week of the year, starting from 1.
+        @throws Error if an invalid date or a different calendar used. */
+    weekOfYear: function(year, month, day) {
+        // Find Thursday of this week starting on Monday
+        var checkDate = this.newDate(year, month, day);
+        checkDate.add(4 - (checkDate.dayOfWeek() || 7), 'd');
+        return Math.floor((checkDate.dayOfYear() - 1) / 7) + 1;
+    },
+
+    /** Retrieve the number of days in a month.
+        @memberof GregorianCalendar
+        @param year {CDate|number} The date to examine or the year of the month.
+        @param [month] {number} The month.
+        @return {number} The number of days in this month.
+        @throws Error if an invalid month/year or a different calendar used. */
+    daysInMonth: function(year, month) {
+        var date = this._validate(year, month, this.minDay,
+            _exports.local.invalidMonth || _exports.regionalOptions[''].invalidMonth);
+        return this.daysPerMonth[date.month() - 1] +
+            (date.month() === 2 && this.leapYear(date.year()) ? 1 : 0);
+    },
+
+    /** Determine whether this date is a week day.
+        @memberof GregorianCalendar
+        @param year {CDate|number} The date to examine or the year to examine.
+        @param [month] {number} The month to examine.
+        @param [day] {number} The day to examine.
+        @return {boolean} <code>true</code> if a week day, <code>false</code> if not.
+        @throws Error if an invalid date or a different calendar used. */
+    weekDay: function(year, month, day) {
+        return (this.dayOfWeek(year, month, day) || 7) < 6;
+    },
+
+    /** Retrieve the Julian date equivalent for this date,
+        i.e. days since January 1, 4713 BCE Greenwich noon.
+        @memberof GregorianCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {number} The equivalent Julian date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJD: function(year, month, day) {
+        var date = this._validate(year, month, day,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        year = date.year();
+        month = date.month();
+        day = date.day();
+        if (year < 0) { year++; } // No year zero
+        // Jean Meeus algorithm, "Astronomical Algorithms", 1991
+        if (month < 3) {
+            month += 12;
+            year--;
+        }
+        var a = Math.floor(year / 100);
+        var b = 2 - a + Math.floor(a / 4);
+        return Math.floor(365.25 * (year + 4716)) +
+            Math.floor(30.6001 * (month + 1)) + day + b - 1524.5;
+    },
+
+    /** Create a new date from a Julian date.
+        @memberof GregorianCalendar
+        @param jd {number} The Julian date to convert.
+        @return {CDate} The equivalent date. */
+    fromJD: function(jd) {
+        // Jean Meeus algorithm, "Astronomical Algorithms", 1991
+        var z = Math.floor(jd + 0.5);
+        var a = Math.floor((z - 1867216.25) / 36524.25);
+        a = z + 1 + a - Math.floor(a / 4);
+        var b = a + 1524;
+        var c = Math.floor((b - 122.1) / 365.25);
+        var d = Math.floor(365.25 * c);
+        var e = Math.floor((b - d) / 30.6001);
+        var day = b - d - Math.floor(e * 30.6001);
+        var month = e - (e > 13.5 ? 13 : 1);
+        var year = c - (month > 2.5 ? 4716 : 4715);
+        if (year <= 0) { year--; } // No year zero
+        return this.newDate(year, month, day);
+    },
+
+    /** Convert this date to a standard (Gregorian) JavaScript Date.
+        @memberof GregorianCalendar
+        @param year {CDate|number} The date to convert or the year to convert.
+        @param [month] {number} The month to convert.
+        @param [day] {number} The day to convert.
+        @return {Date} The equivalent JavaScript date.
+        @throws Error if an invalid date or a different calendar used. */
+    toJSDate: function(year, month, day) {
+        var date = this._validate(year, month, day,
+            _exports.local.invalidDate || _exports.regionalOptions[''].invalidDate);
+        var jsd = new Date(date.year(), date.month() - 1, date.day());
+        jsd.setHours(0);
+        jsd.setMinutes(0);
+        jsd.setSeconds(0);
+        jsd.setMilliseconds(0);
+        // Hours may be non-zero on daylight saving cut-over:
+        // > 12 when midnight changeover, but then cannot generate
+        // midnight datetime, so jump to 1AM, otherwise reset.
+        jsd.setHours(jsd.getHours() > 12 ? jsd.getHours() + 2 : 0);
+        return jsd;
+    },
+
+    /** Create a new date from a standard (Gregorian) JavaScript Date.
+        @memberof GregorianCalendar
+        @param jsd {Date} The JavaScript date to convert.
+        @return {CDate} The equivalent date. */
+    fromJSDate: function(jsd) {
+        return this.newDate(jsd.getFullYear(), jsd.getMonth() + 1, jsd.getDate());
+    }
+});
+
+// Singleton manager
+var _exports = module.exports = new Calendars();
+
+// Date template
+_exports.cdate = CDate;
+
+// Base calendar template
+_exports.baseCalendar = BaseCalendar;
+
+// Gregorian calendar implementation
+_exports.calendars.gregorian = GregorianCalendar;
+
+
+},{"object-assign":62}],90:[function(_dereq_,module,exports){
+/*
+ * World Calendars
+ * https://github.com/alexcjohnson/world-calendars
+ *
+ * Batch-converted from kbwood/calendars
+ * Many thanks to Keith Wood and all of the contributors to the original project!
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+﻿/* http://keith-wood.name/calendars.html
+   Calendars extras for jQuery v2.0.2.
+   Written by Keith Wood (wood.keith{at}optusnet.com.au) August 2009.
+   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Please attribute the author if you use it. */
+
+var assign = _dereq_('object-assign');
+var main = _dereq_('./main');
+
+
+assign(main.regionalOptions[''], {
+    invalidArguments: 'Invalid arguments',
+    invalidFormat: 'Cannot format a date from another calendar',
+    missingNumberAt: 'Missing number at position {0}',
+    unknownNameAt: 'Unknown name at position {0}',
+    unexpectedLiteralAt: 'Unexpected literal at position {0}',
+    unexpectedText: 'Additional text found at end'
+});
+main.local = main.regionalOptions[''];
+
+assign(main.cdate.prototype, {
+
+    /** Format this date.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof CDate
+        @param [format] {string} The date format to use (see <a href="BaseCalendar.html#formatDate"><code>formatDate</code></a>).
+        @param [settings] {object} Options for the <code>formatDate</code> function.
+        @return {string} The formatted date. */
+    formatDate: function(format, settings) {
+        if (typeof format !== 'string') {
+            settings = format;
+            format = '';
+        }
+        return this._calendar.formatDate(format || '', this, settings);
+    }
+});
+
+assign(main.baseCalendar.prototype, {
+
+    UNIX_EPOCH: main.instance().newDate(1970, 1, 1).toJD(),
+    SECS_PER_DAY: 24 * 60 * 60,
+    TICKS_EPOCH: main.instance().jdEpoch, // 1 January 0001 CE
+    TICKS_PER_DAY: 24 * 60 * 60 * 10000000,
+
+    /** Date form for ATOM (RFC 3339/ISO 8601).
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    ATOM: 'yyyy-mm-dd',
+    /** Date form for cookies.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    COOKIE: 'D, dd M yyyy',
+    /** Date form for full date.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    FULL: 'DD, MM d, yyyy',
+    /** Date form for ISO 8601.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    ISO_8601: 'yyyy-mm-dd',
+    /** Date form for Julian date.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    JULIAN: 'J',
+    /** Date form for RFC 822.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    RFC_822: 'D, d M yy',
+    /** Date form for RFC 850.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    RFC_850: 'DD, dd-M-yy',
+    /** Date form for RFC 1036.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    RFC_1036: 'D, d M yy',
+    /** Date form for RFC 1123.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    RFC_1123: 'D, d M yyyy',
+    /** Date form for RFC 2822.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    RFC_2822: 'D, d M yyyy',
+    /** Date form for RSS (RFC 822).
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    RSS: 'D, d M yy',
+    /** Date form for Windows ticks.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    TICKS: '!',
+    /** Date form for Unix timestamp.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    TIMESTAMP: '@',
+    /** Date form for W3c (ISO 8601).
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar */
+    W3C: 'yyyy-mm-dd',
+
+    /** Format a date object into a string value.
+        The format can be combinations of the following:
+        <ul>
+        <li>d  - day of month (no leading zero)</li>
+        <li>dd - day of month (two digit)</li>
+        <li>o  - day of year (no leading zeros)</li>
+        <li>oo - day of year (three digit)</li>
+        <li>D  - day name short</li>
+        <li>DD - day name long</li>
+        <li>w  - week of year (no leading zero)</li>
+        <li>ww - week of year (two digit)</li>
+        <li>m  - month of year (no leading zero)</li>
+        <li>mm - month of year (two digit)</li>
+        <li>M  - month name short</li>
+        <li>MM - month name long</li>
+        <li>yy - year (two digit)</li>
+        <li>yyyy - year (four digit)</li>
+        <li>YYYY - formatted year</li>
+        <li>J  - Julian date (days since January 1, 4713 BCE Greenwich noon)</li>
+        <li>@  - Unix timestamp (s since 01/01/1970)</li>
+        <li>!  - Windows ticks (100ns since 01/01/0001)</li>
+        <li>'...' - literal text</li>
+        <li>'' - single quote</li>
+        </ul>
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar
+        @param [format] {string} The desired format of the date (defaults to calendar format).
+        @param date {CDate} The date value to format.
+        @param [settings] {object} Addition options, whose attributes include:
+        @property [dayNamesShort] {string[]} Abbreviated names of the days from Sunday.
+        @property [dayNames] {string[]} Names of the days from Sunday.
+        @property [monthNamesShort] {string[]} Abbreviated names of the months.
+        @property [monthNames] {string[]} Names of the months.
+        @property [calculateWeek] {CalendarsPickerCalculateWeek} Function that determines week of the year.
+        @property [localNumbers=false] {boolean} <code>true</code> to localise numbers (if available),
+                  <code>false</code> to use normal Arabic numerals.
+        @return {string} The date in the above format.
+        @throws Errors if the date is from a different calendar. */
+    formatDate: function(format, date, settings) {
+        if (typeof format !== 'string') {
+            settings = date;
+            date = format;
+            format = '';
+        }
+        if (!date) {
+            return '';
+        }
+        if (date.calendar() !== this) {
+            throw main.local.invalidFormat || main.regionalOptions[''].invalidFormat;
+        }
+        format = format || this.local.dateFormat;
+        settings = settings || {};
+        var dayNamesShort = settings.dayNamesShort || this.local.dayNamesShort;
+        var dayNames = settings.dayNames || this.local.dayNames;
+        var monthNumbers = settings.monthNumbers || this.local.monthNumbers;
+        var monthNamesShort = settings.monthNamesShort || this.local.monthNamesShort;
+        var monthNames = settings.monthNames || this.local.monthNames;
+        var calculateWeek = settings.calculateWeek || this.local.calculateWeek;
+        // Check whether a format character is doubled
+        var doubled = function(match, step) {
+            var matches = 1;
+            while (iFormat + matches < format.length && format.charAt(iFormat + matches) === match) {
+                matches++;
+            }
+            iFormat += matches - 1;
+            return Math.floor(matches / (step || 1)) > 1;
+        };
+        // Format a number, with leading zeroes if necessary
+        var formatNumber = function(match, value, len, step) {
+            var num = '' + value;
+            if (doubled(match, step)) {
+                while (num.length < len) {
+                    num = '0' + num;
+                }
+            }
+            return num;
+        };
+        // Format a name, short or long as requested
+        var formatName = function(match, value, shortNames, longNames) {
+            return (doubled(match) ? longNames[value] : shortNames[value]);
+        };
+        // Format month number
+        // (e.g. Chinese calendar needs to account for intercalary months)
+        var calendar = this;
+        var formatMonth = function(date) {
+            return (typeof monthNumbers === 'function') ?
+                monthNumbers.call(calendar, date, doubled('m')) :
+                localiseNumbers(formatNumber('m', date.month(), 2));
+        };
+        // Format a month name, short or long as requested
+        var formatMonthName = function(date, useLongName) {
+            if (useLongName) {
+                return (typeof monthNames === 'function') ?
+                    monthNames.call(calendar, date) :
+                    monthNames[date.month() - calendar.minMonth];
+            } else {
+                return (typeof monthNamesShort === 'function') ?
+                    monthNamesShort.call(calendar, date) :
+                    monthNamesShort[date.month() - calendar.minMonth];
+            }
+        };
+        // Localise numbers if requested and available
+        var digits = this.local.digits;
+        var localiseNumbers = function(value) {
+            return (settings.localNumbers && digits ? digits(value) : value);
+        };
+        var output = '';
+        var literal = false;
+        for (var iFormat = 0; iFormat < format.length; iFormat++) {
+            if (literal) {
+                if (format.charAt(iFormat) === "'" && !doubled("'")) {
+                    literal = false;
+                }
+                else {
+                    output += format.charAt(iFormat);
+                }
+            }
+            else {
+                switch (format.charAt(iFormat)) {
+                    case 'd': output += localiseNumbers(formatNumber('d', date.day(), 2)); break;
+                    case 'D': output += formatName('D', date.dayOfWeek(),
+                        dayNamesShort, dayNames); break;
+                    case 'o': output += formatNumber('o', date.dayOfYear(), 3); break;
+                    case 'w': output += formatNumber('w', date.weekOfYear(), 2); break;
+                    case 'm': output += formatMonth(date); break;
+                    case 'M': output += formatMonthName(date, doubled('M')); break;
+                    case 'y':
+                        output += (doubled('y', 2) ? date.year() :
+                            (date.year() % 100 < 10 ? '0' : '') + date.year() % 100);
+                        break;
+                    case 'Y':
+                        doubled('Y', 2);
+                        output += date.formatYear();
+                        break;
+                    case 'J': output += date.toJD(); break;
+                    case '@': output += (date.toJD() - this.UNIX_EPOCH) * this.SECS_PER_DAY; break;
+                    case '!': output += (date.toJD() - this.TICKS_EPOCH) * this.TICKS_PER_DAY; break;
+                    case "'":
+                        if (doubled("'")) {
+                            output += "'";
+                        }
+                        else {
+                            literal = true;
+                        }
+                        break;
+                    default:
+                        output += format.charAt(iFormat);
+                }
+            }
+        }
+        return output;
+    },
+
+    /** Parse a string value into a date object.
+        See <a href="#formatDate"><code>formatDate</code></a> for the possible formats, plus:
+        <ul>
+        <li>* - ignore rest of string</li>
+        </ul>
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar
+        @param format {string} The expected format of the date ('' for default calendar format).
+        @param value {string} The date in the above format.
+        @param [settings] {object} Additional options whose attributes include:
+        @property [shortYearCutoff] {number} The cutoff year for determining the century.
+        @property [dayNamesShort] {string[]} Abbreviated names of the days from Sunday.
+        @property [dayNames] {string[]} Names of the days from Sunday.
+        @property [monthNamesShort] {string[]} Abbreviated names of the months.
+        @property [monthNames] {string[]} Names of the months.
+        @return {CDate} The extracted date value or <code>null</code> if value is blank.
+        @throws Errors if the format and/or value are missing,
+                if the value doesn't match the format, or if the date is invalid. */
+    parseDate: function(format, value, settings) {
+        if (value == null) {
+            throw main.local.invalidArguments || main.regionalOptions[''].invalidArguments;
+        }
+        value = (typeof value === 'object' ? value.toString() : value + '');
+        if (value === '') {
+            return null;
+        }
+        format = format || this.local.dateFormat;
+        settings = settings || {};
+        var shortYearCutoff = settings.shortYearCutoff || this.shortYearCutoff;
+        shortYearCutoff = (typeof shortYearCutoff !== 'string' ? shortYearCutoff :
+            this.today().year() % 100 + parseInt(shortYearCutoff, 10));
+        var dayNamesShort = settings.dayNamesShort || this.local.dayNamesShort;
+        var dayNames = settings.dayNames || this.local.dayNames;
+        var parseMonth = settings.parseMonth || this.local.parseMonth;
+        var monthNumbers = settings.monthNumbers || this.local.monthNumbers;
+        var monthNamesShort = settings.monthNamesShort || this.local.monthNamesShort;
+        var monthNames = settings.monthNames || this.local.monthNames;
+        var jd = -1;
+        var year = -1;
+        var month = -1;
+        var day = -1;
+        var doy = -1;
+        var shortYear = false;
+        var literal = false;
+        // Check whether a format character is doubled
+        var doubled = function(match, step) {
+            var matches = 1;
+            while (iFormat + matches < format.length && format.charAt(iFormat + matches) === match) {
+                matches++;
+            }
+            iFormat += matches - 1;
+            return Math.floor(matches / (step || 1)) > 1;
+        };
+        // Extract a number from the string value
+        var getNumber = function(match, step) {
+            var isDoubled = doubled(match, step);
+            var size = [2, 3, isDoubled ? 4 : 2, isDoubled ? 4 : 2, 10, 11, 20]['oyYJ@!'.indexOf(match) + 1];
+            var digits = new RegExp('^-?\\d{1,' + size + '}');
+            var num = value.substring(iValue).match(digits);
+            if (!num) {
+                throw (main.local.missingNumberAt || main.regionalOptions[''].missingNumberAt).
+                    replace(/\{0\}/, iValue);
+            }
+            iValue += num[0].length;
+            return parseInt(num[0], 10);
+        };
+        // Extract a month number from the string value
+        var calendar = this;
+        var getMonthNumber = function() {
+            if (typeof monthNumbers === 'function') {
+                doubled('m');  // update iFormat
+                var month = monthNumbers.call(calendar, value.substring(iValue));
+                iValue += month.length;
+                return month;
+            }
+
+            return getNumber('m');
+        };
+        // Extract a name from the string value and convert to an index
+        var getName = function(match, shortNames, longNames, step) {
+            var names = (doubled(match, step) ? longNames : shortNames);
+            for (var i = 0; i < names.length; i++) {
+                if (value.substr(iValue, names[i].length).toLowerCase() === names[i].toLowerCase()) {
+                    iValue += names[i].length;
+                    return i + calendar.minMonth;
+                }
+            }
+            throw (main.local.unknownNameAt || main.regionalOptions[''].unknownNameAt).
+                replace(/\{0\}/, iValue);
+        };
+        // Extract a month number from the string value
+        var getMonthName = function() {
+            if (typeof monthNames === 'function') {
+                var month = doubled('M') ?
+                    monthNames.call(calendar, value.substring(iValue)) :
+                    monthNamesShort.call(calendar, value.substring(iValue));
+                iValue += month.length;
+                return month;
+            }
+
+            return getName('M', monthNamesShort, monthNames);
+        };
+        // Confirm that a literal character matches the string value
+        var checkLiteral = function() {
+            if (value.charAt(iValue) !== format.charAt(iFormat)) {
+                throw (main.local.unexpectedLiteralAt ||
+                    main.regionalOptions[''].unexpectedLiteralAt).replace(/\{0\}/, iValue);
+            }
+            iValue++;
+        };
+        var iValue = 0;
+        for (var iFormat = 0; iFormat < format.length; iFormat++) {
+            if (literal) {
+                if (format.charAt(iFormat) === "'" && !doubled("'")) {
+                    literal = false;
+                }
+                else {
+                    checkLiteral();
+                }
+            }
+            else {
+                switch (format.charAt(iFormat)) {
+                    case 'd': day = getNumber('d'); break;
+                    case 'D': getName('D', dayNamesShort, dayNames); break;
+                    case 'o': doy = getNumber('o'); break;
+                    case 'w': getNumber('w'); break;
+                    case 'm': month = getMonthNumber(); break;
+                    case 'M': month = getMonthName(); break;
+                    case 'y':
+                        var iSave = iFormat;
+                        shortYear = !doubled('y', 2);
+                        iFormat = iSave;
+                        year = getNumber('y', 2);
+                        break;
+                    case 'Y': year = getNumber('Y', 2); break;
+                    case 'J':
+                        jd = getNumber('J') + 0.5;
+                        if (value.charAt(iValue) === '.') {
+                            iValue++;
+                            getNumber('J');
+                        }
+                        break;
+                    case '@': jd = getNumber('@') / this.SECS_PER_DAY + this.UNIX_EPOCH; break;
+                    case '!': jd = getNumber('!') / this.TICKS_PER_DAY + this.TICKS_EPOCH; break;
+                    case '*': iValue = value.length; break;
+                    case "'":
+                        if (doubled("'")) {
+                            checkLiteral();
+                        }
+                        else {
+                            literal = true;
+                        }
+                        break;
+                    default: checkLiteral();
+                }
+            }
+        }
+        if (iValue < value.length) {
+            throw main.local.unexpectedText || main.regionalOptions[''].unexpectedText;
+        }
+        if (year === -1) {
+            year = this.today().year();
+        }
+        else if (year < 100 && shortYear) {
+            year += (shortYearCutoff === -1 ? 1900 : this.today().year() -
+                this.today().year() % 100 - (year <= shortYearCutoff ? 0 : 100));
+        }
+        if (typeof month === 'string') {
+            month = parseMonth.call(this, year, month);
+        }
+        if (doy > -1) {
+            month = 1;
+            day = doy;
+            for (var dim = this.daysInMonth(year, month); day > dim; dim = this.daysInMonth(year, month)) {
+                month++;
+                day -= dim;
+            }
+        }
+        return (jd > -1 ? this.fromJD(jd) : this.newDate(year, month, day));
+    },
+
+    /** A date may be specified as an exact value or a relative one.
+        Found in the <code>jquery.calendars.plus.js</code> module.
+        @memberof BaseCalendar
+        @param dateSpec {CDate|number|string} The date as an object or string in the given format or
+                an offset - numeric days from today, or string amounts and periods, e.g. '+1m +2w'.
+        @param defaultDate {CDate} The date to use if no other supplied, may be <code>null</code>.
+        @param currentDate {CDate} The current date as a possible basis for relative dates,
+                if <code>null</code> today is used (optional)
+        @param [dateFormat] {string} The expected date format - see <a href="#formatDate"><code>formatDate</code></a>.
+        @param [settings] {object} Additional options whose attributes include:
+        @property [shortYearCutoff] {number} The cutoff year for determining the century.
+        @property [dayNamesShort] {string[]} Abbreviated names of the days from Sunday.
+        @property [dayNames] {string[]} Names of the days from Sunday.
+        @property [monthNamesShort] {string[]} Abbreviated names of the months.
+        @property [monthNames] {string[]} Names of the months.
+        @return {CDate} The decoded date. */
+    determineDate: function(dateSpec, defaultDate, currentDate, dateFormat, settings) {
+        if (currentDate && typeof currentDate !== 'object') {
+            settings = dateFormat;
+            dateFormat = currentDate;
+            currentDate = null;
+        }
+        if (typeof dateFormat !== 'string') {
+            settings = dateFormat;
+            dateFormat = '';
+        }
+        var calendar = this;
+        var offsetString = function(offset) {
+            try {
+                return calendar.parseDate(dateFormat, offset, settings);
+            }
+            catch (e) {
+                // Ignore
+            }
+            offset = offset.toLowerCase();
+            var date = (offset.match(/^c/) && currentDate ?
+                currentDate.newDate() : null) || calendar.today();
+            var pattern = /([+-]?[0-9]+)\s*(d|w|m|y)?/g;
+            var matches = pattern.exec(offset);
+            while (matches) {
+                date.add(parseInt(matches[1], 10), matches[2] || 'd');
+                matches = pattern.exec(offset);
+            }
+            return date;
+        };
+        defaultDate = (defaultDate ? defaultDate.newDate() : null);
+        dateSpec = (dateSpec == null ? defaultDate :
+            (typeof dateSpec === 'string' ? offsetString(dateSpec) : (typeof dateSpec === 'number' ?
+            (isNaN(dateSpec) || dateSpec === Infinity || dateSpec === -Infinity ? defaultDate :
+            calendar.today().add(dateSpec, 'd')) : calendar.newDate(dateSpec))));
+        return dateSpec;
+    }
+});
+
+
+},{"./main":89,"object-assign":62}],91:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -18022,15 +22597,7 @@ module.exports = [
     }
 ];
 
-},{}],67:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],92:[function(_dereq_,module,exports){
 'use strict';
 
 var ARROWPATHS = _dereq_('./arrow_paths');
@@ -18069,192 +22636,143 @@ function arrowCoordinateDescription(axis, lower, upper) {
 module.exports = templatedArray('annotation', {
     visible: {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'calc+arraydraw',
-        
     },
 
     text: {
         valType: 'string',
-        
         editType: 'calc+arraydraw',
-        
     },
     textangle: {
         valType: 'angle',
         dflt: 0,
-        
         editType: 'calc+arraydraw',
-        
     },
     font: fontAttrs({
         editType: 'calc+arraydraw',
         colorEditType: 'arraydraw',
-        
     }),
     width: {
         valType: 'number',
         min: 1,
         dflt: null,
-        
         editType: 'calc+arraydraw',
-        
     },
     height: {
         valType: 'number',
         min: 1,
         dflt: null,
-        
         editType: 'calc+arraydraw',
-        
     },
     opacity: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 1,
-        
         editType: 'arraydraw',
-        
     },
     align: {
         valType: 'enumerated',
         values: ['left', 'center', 'right'],
         dflt: 'center',
-        
         editType: 'arraydraw',
-        
     },
     valign: {
         valType: 'enumerated',
         values: ['top', 'middle', 'bottom'],
         dflt: 'middle',
-        
         editType: 'arraydraw',
-        
     },
     bgcolor: {
         valType: 'color',
         dflt: 'rgba(0,0,0,0)',
-        
         editType: 'arraydraw',
-        
     },
     bordercolor: {
         valType: 'color',
         dflt: 'rgba(0,0,0,0)',
-        
         editType: 'arraydraw',
-        
     },
     borderpad: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'calc+arraydraw',
-        
     },
     borderwidth: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'calc+arraydraw',
-        
     },
     // arrow
     showarrow: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'calc+arraydraw',
-        
     },
     arrowcolor: {
         valType: 'color',
-        
         editType: 'arraydraw',
-        
     },
     arrowhead: {
         valType: 'integer',
         min: 0,
         max: ARROWPATHS.length,
         dflt: 1,
-        
         editType: 'arraydraw',
-        
     },
     startarrowhead: {
         valType: 'integer',
         min: 0,
         max: ARROWPATHS.length,
         dflt: 1,
-        
         editType: 'arraydraw',
-        
     },
     arrowside: {
         valType: 'flaglist',
         flags: ['end', 'start'],
         extras: ['none'],
         dflt: 'end',
-        
         editType: 'arraydraw',
-        
     },
     arrowsize: {
         valType: 'number',
         min: 0.3,
         dflt: 1,
-        
         editType: 'calc+arraydraw',
-        
     },
     startarrowsize: {
         valType: 'number',
         min: 0.3,
         dflt: 1,
-        
         editType: 'calc+arraydraw',
-        
     },
     arrowwidth: {
         valType: 'number',
         min: 0.1,
-        
         editType: 'calc+arraydraw',
-        
     },
     standoff: {
         valType: 'number',
         min: 0,
         dflt: 0,
-        
         editType: 'calc+arraydraw',
-        
     },
     startstandoff: {
         valType: 'number',
         min: 0,
         dflt: 0,
-        
         editType: 'calc+arraydraw',
-        
     },
     ax: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     ay: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     axref: {
         valType: 'enumerated',
@@ -18263,9 +22781,7 @@ module.exports = templatedArray('annotation', {
             'pixel',
             cartesianConstants.idRegex.x.toString()
         ],
-        
         editType: 'calc',
-        
     },
     ayref: {
         valType: 'enumerated',
@@ -18274,9 +22790,7 @@ module.exports = templatedArray('annotation', {
             'pixel',
             cartesianConstants.idRegex.y.toString()
         ],
-        
         editType: 'calc',
-        
     },
     // positioning
     xref: {
@@ -18285,30 +22799,22 @@ module.exports = templatedArray('annotation', {
             'paper',
             cartesianConstants.idRegex.x.toString()
         ],
-        
         editType: 'calc',
-        
     },
     x: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     xanchor: {
         valType: 'enumerated',
         values: ['auto', 'left', 'center', 'right'],
         dflt: 'auto',
-        
         editType: 'calc+arraydraw',
-        
     },
     xshift: {
         valType: 'number',
         dflt: 0,
-        
         editType: 'calc+arraydraw',
-        
     },
     yref: {
         valType: 'enumerated',
@@ -18316,104 +22822,70 @@ module.exports = templatedArray('annotation', {
             'paper',
             cartesianConstants.idRegex.y.toString()
         ],
-        
         editType: 'calc',
-        
     },
     y: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     yanchor: {
         valType: 'enumerated',
         values: ['auto', 'top', 'middle', 'bottom'],
         dflt: 'auto',
-        
         editType: 'calc+arraydraw',
-        
     },
     yshift: {
         valType: 'number',
         dflt: 0,
-        
         editType: 'calc+arraydraw',
-        
     },
     clicktoshow: {
         valType: 'enumerated',
         values: [false, 'onoff', 'onout'],
         dflt: false,
-        
         editType: 'arraydraw',
-        
     },
     xclick: {
         valType: 'any',
-        
         editType: 'arraydraw',
-        
     },
     yclick: {
         valType: 'any',
-        
         editType: 'arraydraw',
-        
     },
     hovertext: {
         valType: 'string',
-        
         editType: 'arraydraw',
-        
     },
     hoverlabel: {
         bgcolor: {
             valType: 'color',
-            
             editType: 'arraydraw',
-            
         },
         bordercolor: {
             valType: 'color',
-            
             editType: 'arraydraw',
-            
         },
         font: fontAttrs({
             editType: 'arraydraw',
-            
         }),
         editType: 'arraydraw'
     },
     captureevents: {
         valType: 'boolean',
-        
         editType: 'arraydraw',
-        
     },
     editType: 'calc',
 
     _deprecated: {
         ref: {
             valType: 'string',
-            
             editType: 'calc',
-            
         }
     }
 });
 
-},{"../../constants/axis_placeable_objects":185,"../../plot_api/plot_template":244,"../../plots/cartesian/constants":261,"../../plots/font_attributes":283,"./arrow_paths":66}],68:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/axis_placeable_objects":212,"../../plot_api/plot_template":273,"../../plots/cartesian/constants":290,"../../plots/font_attributes":312,"./arrow_paths":91}],93:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -18495,15 +22967,7 @@ function calcAxisExpansion(ann, ax) {
     ann._extremes[axId] = extremes;
 }
 
-},{"../../lib":210,"../../plots/cartesian/axes":255,"./draw":73}],69:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/cartesian/axes":284,"./draw":98}],94:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -18628,20 +23092,12 @@ function getToggleSets(gd, hoverData) {
     return {on: onSet, off: offSet, explicitOff: explicitOffSet};
 }
 
-// to handle log axes until v2
+// to handle log axes until v3
 function clickData2r(d, ax) {
     return ax.type === 'log' ? ax.l2r(d) : ax.d2r(d);
 }
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../registry":297}],70:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../registry":320}],95:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -18712,16 +23168,7 @@ module.exports = function handleAnnotationCommonDefaults(annIn, annOut, fullLayo
     coerce('captureevents', !!hoverText);
 };
 
-},{"../../lib":210,"../color":82}],71:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../color":109}],96:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -18731,7 +23178,7 @@ var toLogRange = _dereq_('../../lib/to_log_range');
  * convertCoords: when converting an axis between log and linear
  * you need to alter any annotations on that axis to keep them
  * pointing at the same data point.
- * In v2.0 this will become obsolete
+ * In v3.0 this will become obsolete
  *
  * gd: the plot div
  * ax: the axis being changed
@@ -18775,16 +23222,7 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
     }
 };
 
-},{"../../lib/to_log_range":233,"fast-isnumeric":18}],72:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib/to_log_range":262,"fast-isnumeric":23}],97:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -18883,18 +23321,10 @@ function handleAnnotationDefaults(annIn, annOut, fullLayout) {
     }
 }
 
-},{"../../lib":210,"../../plots/array_container_defaults":250,"../../plots/cartesian/axes":255,"./attributes":67,"./common_defaults":70}],73:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/array_container_defaults":279,"../../plots/cartesian/axes":284,"./attributes":92,"./common_defaults":95}],98:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Plots = _dereq_('../../plots/plots');
@@ -19644,19 +24074,10 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
     } else annText.call(textLayout);
 }
 
-},{"../../lib":210,"../../lib/setcursor":229,"../../lib/svg_text_utils":231,"../../plot_api/plot_template":244,"../../plots/cartesian/axes":255,"../../plots/plots":289,"../../registry":297,"../color":82,"../dragelement":101,"../drawing":104,"../fx":122,"./draw_arrow_head":74,"d3":16}],74:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../lib/setcursor":258,"../../lib/svg_text_utils":260,"../../plot_api/plot_template":273,"../../plots/cartesian/axes":284,"../../plots/plots":318,"../../registry":320,"../color":109,"../dragelement":128,"../drawing":131,"../fx":149,"./draw_arrow_head":99,"@plotly/d3":19}],99:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Color = _dereq_('../color');
 
@@ -19800,16 +24221,7 @@ module.exports = function drawArrowHead(el3, ends, options) {
     if(doEnd) drawhead(headStyle, end, endRot, scale);
 };
 
-},{"../../lib":210,"../color":82,"./arrow_paths":66,"d3":16}],75:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../color":109,"./arrow_paths":91,"@plotly/d3":19}],100:[function(_dereq_,module,exports){
 'use strict';
 
 var drawModule = _dereq_('./draw');
@@ -19834,16 +24246,7 @@ module.exports = {
     convertCoords: _dereq_('./convert_coords')
 };
 
-},{"../../plots/cartesian/include_components":267,"./attributes":67,"./calc_autorange":68,"./click":69,"./convert_coords":71,"./defaults":72,"./draw":73}],76:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../plots/cartesian/include_components":296,"./attributes":92,"./calc_autorange":93,"./click":94,"./convert_coords":96,"./defaults":97,"./draw":98}],101:[function(_dereq_,module,exports){
 'use strict';
 
 var annAttrs = _dereq_('../annotations/attributes');
@@ -19854,28 +24257,18 @@ module.exports = overrideAll(templatedArray('annotation', {
     visible: annAttrs.visible,
     x: {
         valType: 'any',
-        
-        
     },
     y: {
         valType: 'any',
-        
-        
     },
     z: {
         valType: 'any',
-        
-        
     },
     ax: {
         valType: 'number',
-        
-        
     },
     ay: {
         valType: 'number',
-        
-        
     },
 
     xanchor: annAttrs.xanchor,
@@ -19922,15 +24315,7 @@ module.exports = overrideAll(templatedArray('annotation', {
     // zref: 'z'
 }), 'calc', 'from-root');
 
-},{"../../plot_api/edit_types":237,"../../plot_api/plot_template":244,"../annotations/attributes":67}],77:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plot_api/edit_types":266,"../../plot_api/plot_template":273,"../annotations/attributes":92}],102:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -19987,15 +24372,7 @@ function mockAnnAxes(ann, scene) {
     };
 }
 
-},{"../../lib":210,"../../plots/cartesian/axes":255}],78:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/cartesian/axes":284}],103:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -20063,15 +24440,7 @@ function handleAnnotationDefaults(annIn, annOut, sceneLayout, opts) {
     }
 }
 
-},{"../../lib":210,"../../plots/array_container_defaults":250,"../../plots/cartesian/axes":255,"../annotations/common_defaults":70,"./attributes":76}],79:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/array_container_defaults":279,"../../plots/cartesian/axes":284,"../annotations/common_defaults":95,"./attributes":101}],104:[function(_dereq_,module,exports){
 'use strict';
 
 var drawRaw = _dereq_('../annotations/draw').drawRaw;
@@ -20115,15 +24484,7 @@ module.exports = function draw(scene) {
     }
 };
 
-},{"../../plots/gl3d/project":286,"../annotations/draw":73}],80:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/gl3d/project":315,"../annotations/draw":98}],105:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -20163,15 +24524,296 @@ function includeGL3D(layoutIn, layoutOut) {
     }
 }
 
-},{"../../lib":210,"../../registry":297,"./attributes":76,"./convert":77,"./defaults":78,"./draw":79}],81:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../../lib":238,"../../registry":320,"./attributes":101,"./convert":102,"./defaults":103,"./draw":104}],106:[function(_dereq_,module,exports){
+'use strict';
 
+// a trimmed down version of:
+// https://github.com/alexcjohnson/world-calendars/blob/master/dist/index.js
+
+module.exports = _dereq_('world-calendars/dist/main');
+
+_dereq_('world-calendars/dist/plus');
+
+_dereq_('world-calendars/dist/calendars/chinese');
+_dereq_('world-calendars/dist/calendars/coptic');
+_dereq_('world-calendars/dist/calendars/discworld');
+_dereq_('world-calendars/dist/calendars/ethiopian');
+_dereq_('world-calendars/dist/calendars/hebrew');
+_dereq_('world-calendars/dist/calendars/islamic');
+_dereq_('world-calendars/dist/calendars/julian');
+_dereq_('world-calendars/dist/calendars/mayan');
+_dereq_('world-calendars/dist/calendars/nanakshahi');
+_dereq_('world-calendars/dist/calendars/nepali');
+_dereq_('world-calendars/dist/calendars/persian');
+_dereq_('world-calendars/dist/calendars/taiwan');
+_dereq_('world-calendars/dist/calendars/thai');
+_dereq_('world-calendars/dist/calendars/ummalqura');
+
+},{"world-calendars/dist/calendars/chinese":75,"world-calendars/dist/calendars/coptic":76,"world-calendars/dist/calendars/discworld":77,"world-calendars/dist/calendars/ethiopian":78,"world-calendars/dist/calendars/hebrew":79,"world-calendars/dist/calendars/islamic":80,"world-calendars/dist/calendars/julian":81,"world-calendars/dist/calendars/mayan":82,"world-calendars/dist/calendars/nanakshahi":83,"world-calendars/dist/calendars/nepali":84,"world-calendars/dist/calendars/persian":85,"world-calendars/dist/calendars/taiwan":86,"world-calendars/dist/calendars/thai":87,"world-calendars/dist/calendars/ummalqura":88,"world-calendars/dist/main":89,"world-calendars/dist/plus":90}],107:[function(_dereq_,module,exports){
+'use strict';
+
+var calendars = _dereq_('./calendars');
+
+var Lib = _dereq_('../../lib');
+var constants = _dereq_('../../constants/numerical');
+
+var EPOCHJD = constants.EPOCHJD;
+var ONEDAY = constants.ONEDAY;
+
+var attributes = {
+    valType: 'enumerated',
+    values: Object.keys(calendars.calendars),
+    editType: 'calc',
+    dflt: 'gregorian'
+};
+
+var handleDefaults = function(contIn, contOut, attr, dflt) {
+    var attrs = {};
+    attrs[attr] = attributes;
+
+    return Lib.coerce(contIn, contOut, attrs, attr, dflt);
+};
+
+var handleTraceDefaults = function(traceIn, traceOut, coords, layout) {
+    for(var i = 0; i < coords.length; i++) {
+        handleDefaults(traceIn, traceOut, coords[i] + 'calendar', layout.calendar);
+    }
+};
+
+// each calendar needs its own default canonical tick. I would love to use
+// 2000-01-01 (or even 0000-01-01) for them all but they don't necessarily
+// all support either of those dates. Instead I'll use the most significant
+// number they *do* support, biased toward the present day.
+var CANONICAL_TICK = {
+    chinese: '2000-01-01',
+    coptic: '2000-01-01',
+    discworld: '2000-01-01',
+    ethiopian: '2000-01-01',
+    hebrew: '5000-01-01',
+    islamic: '1000-01-01',
+    julian: '2000-01-01',
+    mayan: '5000-01-01',
+    nanakshahi: '1000-01-01',
+    nepali: '2000-01-01',
+    persian: '1000-01-01',
+    jalali: '1000-01-01',
+    taiwan: '1000-01-01',
+    thai: '2000-01-01',
+    ummalqura: '1400-01-01'
+};
+
+// Start on a Sunday - for week ticks
+// Discworld and Mayan calendars don't have 7-day weeks but we're going to give them
+// 7-day week ticks so start on our Sundays.
+// If anyone really cares we can customize the auto tick spacings for these calendars.
+var CANONICAL_SUNDAY = {
+    chinese: '2000-01-02',
+    coptic: '2000-01-03',
+    discworld: '2000-01-03',
+    ethiopian: '2000-01-05',
+    hebrew: '5000-01-01',
+    islamic: '1000-01-02',
+    julian: '2000-01-03',
+    mayan: '5000-01-01',
+    nanakshahi: '1000-01-05',
+    nepali: '2000-01-05',
+    persian: '1000-01-01',
+    jalali: '1000-01-01',
+    taiwan: '1000-01-04',
+    thai: '2000-01-04',
+    ummalqura: '1400-01-06'
+};
+
+var DFLTRANGE = {
+    chinese: ['2000-01-01', '2001-01-01'],
+    coptic: ['1700-01-01', '1701-01-01'],
+    discworld: ['1800-01-01', '1801-01-01'],
+    ethiopian: ['2000-01-01', '2001-01-01'],
+    hebrew: ['5700-01-01', '5701-01-01'],
+    islamic: ['1400-01-01', '1401-01-01'],
+    julian: ['2000-01-01', '2001-01-01'],
+    mayan: ['5200-01-01', '5201-01-01'],
+    nanakshahi: ['0500-01-01', '0501-01-01'],
+    nepali: ['2000-01-01', '2001-01-01'],
+    persian: ['1400-01-01', '1401-01-01'],
+    jalali: ['1400-01-01', '1401-01-01'],
+    taiwan: ['0100-01-01', '0101-01-01'],
+    thai: ['2500-01-01', '2501-01-01'],
+    ummalqura: ['1400-01-01', '1401-01-01']
+};
+
+/*
+ * convert d3 templates to world-calendars templates, so our users only need
+ * to know d3's specifiers. Map space padding to no padding, and unknown fields
+ * to an ugly placeholder
+ */
+var UNKNOWN = '##';
+var d3ToWorldCalendars = {
+    'd': {'0': 'dd', '-': 'd'}, // 2-digit or unpadded day of month
+    'e': {'0': 'd', '-': 'd'}, // alternate, always unpadded day of month
+    'a': {'0': 'D', '-': 'D'}, // short weekday name
+    'A': {'0': 'DD', '-': 'DD'}, // full weekday name
+    'j': {'0': 'oo', '-': 'o'}, // 3-digit or unpadded day of the year
+    'W': {'0': 'ww', '-': 'w'}, // 2-digit or unpadded week of the year (Monday first)
+    'm': {'0': 'mm', '-': 'm'}, // 2-digit or unpadded month number
+    'b': {'0': 'M', '-': 'M'}, // short month name
+    'B': {'0': 'MM', '-': 'MM'}, // full month name
+    'y': {'0': 'yy', '-': 'yy'}, // 2-digit year (map unpadded to zero-padded)
+    'Y': {'0': 'yyyy', '-': 'yyyy'}, // 4-digit year (map unpadded to zero-padded)
+    'U': UNKNOWN, // Sunday-first week of the year
+    'w': UNKNOWN, // day of the week [0(sunday),6]
+    // combined format, we replace the date part with the world-calendar version
+    // and the %X stays there for d3 to handle with time parts
+    'c': {'0': 'D M d %X yyyy', '-': 'D M d %X yyyy'},
+    'x': {'0': 'mm/dd/yyyy', '-': 'mm/dd/yyyy'}
+};
+
+function worldCalFmt(fmt, x, calendar) {
+    var dateJD = Math.floor((x + 0.05) / ONEDAY) + EPOCHJD;
+    var cDate = getCal(calendar).fromJD(dateJD);
+    var i = 0;
+    var modifier, directive, directiveLen, directiveObj, replacementPart;
+
+    while((i = fmt.indexOf('%', i)) !== -1) {
+        modifier = fmt.charAt(i + 1);
+        if(modifier === '0' || modifier === '-' || modifier === '_') {
+            directiveLen = 3;
+            directive = fmt.charAt(i + 2);
+            if(modifier === '_') modifier = '-';
+        } else {
+            directive = modifier;
+            modifier = '0';
+            directiveLen = 2;
+        }
+        directiveObj = d3ToWorldCalendars[directive];
+        if(!directiveObj) {
+            i += directiveLen;
+        } else {
+            // code is recognized as a date part but world-calendars doesn't support it
+            if(directiveObj === UNKNOWN) replacementPart = UNKNOWN;
+
+            // format the cDate according to the translated directive
+            else replacementPart = cDate.formatDate(directiveObj[modifier]);
+
+            fmt = fmt.substr(0, i) + replacementPart + fmt.substr(i + directiveLen);
+            i += replacementPart.length;
+        }
+    }
+    return fmt;
+}
+
+// cache world calendars, so we don't have to reinstantiate
+// during each date-time conversion
+var allCals = {};
+function getCal(calendar) {
+    var calendarObj = allCals[calendar];
+    if(calendarObj) return calendarObj;
+
+    calendarObj = allCals[calendar] = calendars.instance(calendar);
+    return calendarObj;
+}
+
+function makeAttrs(description) {
+    return Lib.extendFlat({}, attributes, { description: description });
+}
+
+function makeTraceAttrsDescription(coord) {
+    return 'Sets the calendar system to use with `' + coord + '` date data.';
+}
+
+var xAttrs = {
+    xcalendar: makeAttrs(makeTraceAttrsDescription('x'))
+};
+
+var xyAttrs = Lib.extendFlat({}, xAttrs, {
+    ycalendar: makeAttrs(makeTraceAttrsDescription('y'))
+});
+
+var xyzAttrs = Lib.extendFlat({}, xyAttrs, {
+    zcalendar: makeAttrs(makeTraceAttrsDescription('z'))
+});
+
+var axisAttrs = makeAttrs([
+    'Sets the calendar system to use for `range` and `tick0`',
+    'if this is a date axis. This does not set the calendar for',
+    'interpreting data on this axis, that\'s specified in the trace',
+    'or via the global `layout.calendar`'
+].join(' '));
+
+module.exports = {
+    moduleType: 'component',
+    name: 'calendars',
+
+    schema: {
+        traces: {
+            scatter: xyAttrs,
+            bar: xyAttrs,
+            box: xyAttrs,
+            heatmap: xyAttrs,
+            contour: xyAttrs,
+            histogram: xyAttrs,
+            histogram2d: xyAttrs,
+            histogram2dcontour: xyAttrs,
+            scatter3d: xyzAttrs,
+            surface: xyzAttrs,
+            mesh3d: xyzAttrs,
+            scattergl: xyAttrs,
+            ohlc: xAttrs,
+            candlestick: xAttrs
+        },
+        layout: {
+            calendar: makeAttrs([
+                'Sets the default calendar system to use for interpreting and',
+                'displaying dates throughout the plot.'
+            ].join(' '))
+        },
+        subplots: {
+            xaxis: {calendar: axisAttrs},
+            yaxis: {calendar: axisAttrs},
+            scene: {
+                xaxis: {calendar: axisAttrs},
+                // TODO: it's actually redundant to include yaxis and zaxis here
+                // because in the scene attributes these are the same object so merging
+                // into one merges into them all. However, I left them in for parity with
+                // cartesian, where yaxis is unused until we Plotschema.get() when we
+                // use its presence or absence to determine whether to delete attributes
+                // from yaxis if they only apply to x (rangeselector/rangeslider)
+                yaxis: {calendar: axisAttrs},
+                zaxis: {calendar: axisAttrs}
+            },
+            polar: {
+                radialaxis: {calendar: axisAttrs}
+            }
+        },
+        transforms: {
+            filter: {
+                valuecalendar: makeAttrs([
+                    'Sets the calendar system to use for `value`, if it is a date.'
+                ].join(' ')),
+                targetcalendar: makeAttrs([
+                    'Sets the calendar system to use for `target`, if it is an',
+                    'array of dates. If `target` is a string (eg *x*) we use the',
+                    'corresponding trace attribute (eg `xcalendar`) if it exists,',
+                    'even if `targetcalendar` is provided.'
+                ].join(' '))
+            }
+        }
+    },
+
+    layoutAttributes: attributes,
+
+    handleDefaults: handleDefaults,
+    handleTraceDefaults: handleTraceDefaults,
+
+    CANONICAL_SUNDAY: CANONICAL_SUNDAY,
+    CANONICAL_TICK: CANONICAL_TICK,
+    DFLTRANGE: DFLTRANGE,
+
+    getCal: getCal,
+    worldCalFmt: worldCalFmt
+};
+
+},{"../../constants/numerical":217,"../../lib":238,"./calendars":106}],108:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -20203,16 +24845,7 @@ exports.borderLine = '#BEC8D9';
 // gives back exactly lightLine if the other colors are defaults.
 exports.lightFraction = 100 * (0xe - 0x4) / (0xf - 0x4);
 
-},{}],82:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],109:[function(_dereq_,module,exports){
 'use strict';
 
 var tinycolor = _dereq_('tinycolor2');
@@ -20377,15 +25010,7 @@ function cleanOne(val) {
     return 'rgb(' + rgbStr + ')';
 }
 
-},{"./attributes":81,"fast-isnumeric":18,"tinycolor2":65}],83:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":108,"fast-isnumeric":23,"tinycolor2":74}],110:[function(_dereq_,module,exports){
 'use strict';
 
 var axesAttrs = _dereq_('../../plots/cartesian/layout_attributes');
@@ -20398,82 +25023,61 @@ module.exports = overrideAll({
 // TODO: only right is supported currently
 //     orient: {
 //         valType: 'enumerated',
-//         
 //         values: ['left', 'right', 'top', 'bottom'],
 //         dflt: 'right',
-//         
+//
 //     },
     thicknessmode: {
         valType: 'enumerated',
         values: ['fraction', 'pixels'],
-        
         dflt: 'pixels',
-        
     },
     thickness: {
         valType: 'number',
-        
         min: 0,
         dflt: 30,
-        
     },
     lenmode: {
         valType: 'enumerated',
         values: ['fraction', 'pixels'],
-        
         dflt: 'fraction',
-        
     },
     len: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
-        
     },
     x: {
         valType: 'number',
         dflt: 1.02,
         min: -2,
         max: 3,
-        
-        
     },
     xanchor: {
         valType: 'enumerated',
         values: ['left', 'center', 'right'],
         dflt: 'left',
-        
-        
     },
     xpad: {
         valType: 'number',
-        
         min: 0,
         dflt: 10,
-        
     },
     y: {
         valType: 'number',
-        
         dflt: 0.5,
         min: -2,
         max: 3,
-        
     },
     yanchor: {
         valType: 'enumerated',
         values: ['top', 'middle', 'bottom'],
-        
         dflt: 'middle',
-        
     },
     ypad: {
         valType: 'number',
-        
         min: 0,
         dflt: 10,
-        
     },
     // a possible line around the bar itself
     outlinecolor: axesAttrs.linecolor,
@@ -20483,16 +25087,12 @@ module.exports = overrideAll({
     bordercolor: axesAttrs.linecolor,
     borderwidth: {
         valType: 'number',
-        
         min: 0,
         dflt: 0,
-        
     },
     bgcolor: {
         valType: 'color',
-        
         dflt: 'rgba(0,0,0,0)',
-        
     },
     // tick and title properties named and function exactly as in axes
     tickmode: axesAttrs.tickmode,
@@ -20502,12 +25102,20 @@ module.exports = overrideAll({
     tickvals: axesAttrs.tickvals,
     ticktext: axesAttrs.ticktext,
     ticks: extendFlat({}, axesAttrs.ticks, {dflt: ''}),
+    ticklabelposition: {
+        valType: 'enumerated',
+        values: [
+            'outside', 'inside',
+            'outside top', 'inside top',
+            'outside bottom', 'inside bottom'
+        ],
+        dflt: 'outside',
+    },
     ticklen: axesAttrs.ticklen,
     tickwidth: axesAttrs.tickwidth,
     tickcolor: axesAttrs.tickcolor,
     showticklabels: axesAttrs.showticklabels,
     tickfont: fontAttrs({
-        
     }),
     tickangle: axesAttrs.tickangle,
     tickformat: axesAttrs.tickformat,
@@ -20523,49 +25131,31 @@ module.exports = overrideAll({
     title: {
         text: {
             valType: 'string',
-            
-            
         },
         font: fontAttrs({
-            
         }),
         side: {
             valType: 'enumerated',
             values: ['right', 'top', 'bottom'],
-            
             dflt: 'top',
-            
         }
     },
 
     _deprecated: {
         title: {
             valType: 'string',
-            
-            
         },
         titlefont: fontAttrs({
-            
         }),
         titleside: {
             valType: 'enumerated',
             values: ['right', 'top', 'bottom'],
-            
             dflt: 'top',
-            
         }
     }
 }, 'colorbars', 'from-root');
 
-},{"../../lib/extend":204,"../../plot_api/edit_types":237,"../../plots/cartesian/layout_attributes":269,"../../plots/font_attributes":283}],84:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/extend":232,"../../plot_api/edit_types":266,"../../plots/cartesian/layout_attributes":298,"../../plots/font_attributes":312}],111:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -20585,16 +25175,7 @@ module.exports = {
     }
 };
 
-},{}],85:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],112:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -20639,10 +25220,14 @@ module.exports = function colorbarDefaults(containerIn, containerOut, layout) {
     coerce('bordercolor');
     coerce('borderwidth');
     coerce('bgcolor');
+    var ticklabelposition = coerce('ticklabelposition');
 
     handleTickValueDefaults(colorbarIn, colorbarOut, coerce, 'linear');
 
     var opts = {outerTicks: false, font: layout.font};
+    if(ticklabelposition.indexOf('inside') !== -1) {
+        opts.bgColor = 'black'; // could we instead use the average of colors in the scale?
+    }
     handleTickLabelDefaults(colorbarIn, colorbarOut, coerce, 'linear', opts);
     handleTickMarkDefaults(colorbarIn, colorbarOut, coerce, 'linear', opts);
 
@@ -20651,18 +25236,10 @@ module.exports = function colorbarDefaults(containerIn, containerOut, layout) {
     coerce('title.side');
 };
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../plots/cartesian/tick_label_defaults":276,"../../plots/cartesian/tick_mark_defaults":277,"../../plots/cartesian/tick_value_defaults":278,"./attributes":83}],86:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../plots/cartesian/tick_label_defaults":305,"../../plots/cartesian/tick_mark_defaults":306,"../../plots/cartesian/tick_value_defaults":307,"./attributes":110}],113:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var tinycolor = _dereq_('tinycolor2');
 
 var Plots = _dereq_('../../plots/plots');
@@ -21116,20 +25693,19 @@ function drawColorBar(g, opts, gd) {
             (opts.outlinewidth || 0) / 2 - (opts.ticks === 'outside' ? 1 : 0);
 
         var vals = Axes.calcTicks(ax);
-        var transFn = Axes.makeTransFn(ax);
         var tickSign = Axes.getTickSigns(ax)[2];
 
         Axes.drawTicks(gd, ax, {
             vals: ax.ticks === 'inside' ? Axes.clipEnds(ax, vals) : vals,
             layer: axLayer,
             path: Axes.makeTickPath(ax, shift, tickSign),
-            transFn: transFn
+            transFn: Axes.makeTransTickFn(ax)
         });
 
         return Axes.drawLabels(gd, ax, {
             vals: vals,
             layer: axLayer,
-            transFn: transFn,
+            transFn: Axes.makeTransTickLabelFn(ax),
             labelFns: Axes.makeLabelFns(ax, shift)
         });
     }
@@ -21139,7 +25715,11 @@ function drawColorBar(g, opts, gd) {
     // TODO: why are we redrawing multiple times now with this?
     // I guess autoMargin doesn't like being post-promise?
     function positionCB() {
-        var innerWidth = thickPx + opts.outlinewidth / 2 + Drawing.bBox(axLayer.node()).width;
+        var innerWidth = thickPx + opts.outlinewidth / 2;
+        if(ax.ticklabelposition.indexOf('inside') === -1) {
+            innerWidth += Drawing.bBox(axLayer.node()).width;
+        }
+
         titleEl = titleCont.select('text');
 
         if(titleEl.node() && !titleEl.classed(cn.jsPlaceholder)) {
@@ -21335,6 +25915,7 @@ function mockColorBarAxis(gd, opts, zrange) {
         tickwidth: opts.tickwidth,
         tickcolor: opts.tickcolor,
         showticklabels: opts.showticklabels,
+        ticklabelposition: opts.ticklabelposition,
         tickfont: opts.tickfont,
         tickangle: opts.tickangle,
         tickformat: opts.tickformat,
@@ -21381,16 +25962,7 @@ module.exports = {
     draw: draw
 };
 
-},{"../../constants/alignment":184,"../../lib":210,"../../lib/extend":204,"../../lib/setcursor":229,"../../lib/svg_text_utils":231,"../../plots/cartesian/axes":255,"../../plots/cartesian/axis_defaults":257,"../../plots/cartesian/layout_attributes":269,"../../plots/cartesian/position_defaults":272,"../../plots/plots":289,"../../registry":297,"../color":82,"../colorscale/helpers":93,"../dragelement":101,"../drawing":104,"../titles":177,"./constants":84,"d3":16,"tinycolor2":65}],87:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/alignment":211,"../../lib":238,"../../lib/extend":232,"../../lib/setcursor":258,"../../lib/svg_text_utils":260,"../../plots/cartesian/axes":284,"../../plots/cartesian/axis_defaults":286,"../../plots/cartesian/layout_attributes":298,"../../plots/cartesian/position_defaults":301,"../../plots/plots":318,"../../registry":320,"../color":109,"../colorscale/helpers":120,"../dragelement":128,"../drawing":131,"../titles":204,"./constants":111,"@plotly/d3":19,"tinycolor2":74}],114:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -21400,15 +25972,7 @@ module.exports = function hasColorbar(container) {
     return Lib.isPlainObject(container.colorbar);
 };
 
-},{"../../lib":210}],88:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],115:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -21422,15 +25986,7 @@ module.exports = {
     hasColorbar: _dereq_('./has_colorbar')
 };
 
-},{"./attributes":83,"./defaults":85,"./draw":86,"./has_colorbar":87}],89:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":110,"./defaults":112,"./draw":113,"./has_colorbar":114}],116:[function(_dereq_,module,exports){
 'use strict';
 
 var colorbarAttrs = _dereq_('../colorbar/attributes');
@@ -21531,9 +26087,7 @@ module.exports = function colorScaleAttrs(context, opts) {
         attrs.color = {
             valType: 'color',
             arrayOk: true,
-            
             editType: editTypeOverride || 'style',
-            
         };
 
         if(opts.anim) {
@@ -21543,74 +26097,58 @@ module.exports = function colorScaleAttrs(context, opts) {
 
     attrs[auto] = {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'calc',
         impliedEdits: autoImpliedEdits,
-        
     };
 
     attrs[min] = {
         valType: 'number',
-        
         dflt: null,
         editType: editTypeOverride || 'plot',
         impliedEdits: minmaxImpliedEdits,
-        
     };
 
     attrs[max] = {
         valType: 'number',
-        
         dflt: null,
         editType: editTypeOverride || 'plot',
         impliedEdits: minmaxImpliedEdits,
-        
     };
 
     attrs[mid] = {
         valType: 'number',
-        
         dflt: null,
         editType: 'calc',
         impliedEdits: autoImpliedEdits,
-        
     };
 
     attrs.colorscale = {
         valType: 'colorscale',
-        
         editType: 'calc',
         dflt: colorscaleDflt,
         impliedEdits: {autocolorscale: false},
-        
     };
 
     attrs.autocolorscale = {
         valType: 'boolean',
-        
         // gets overrode in 'heatmap' & 'surface' for backwards comp.
         dflt: opts.autoColorDflt === false ? false : true,
         editType: 'calc',
         impliedEdits: {colorscale: undefined},
-        
     };
 
     attrs.reversescale = {
         valType: 'boolean',
-        
         dflt: false,
         editType: 'plot',
-        
     };
 
     if(!noScale) {
         attrs.showscale = {
             valType: 'boolean',
-            
             dflt: showScaleDflt,
             editType: 'calc',
-            
         };
 
         attrs.colorbar = colorbarAttrs;
@@ -21619,26 +26157,16 @@ module.exports = function colorScaleAttrs(context, opts) {
     if(!opts.noColorAxis) {
         attrs.coloraxis = {
             valType: 'subplotid',
-            
             regex: counterRegex('coloraxis'),
             dflt: null,
             editType: 'calc',
-            
         };
     }
 
     return attrs;
 };
 
-},{"../../lib/regex":225,"../colorbar/attributes":83,"./scales.js":97}],90:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/regex":254,"../colorbar/attributes":110,"./scales.js":124}],117:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -21709,15 +26237,7 @@ module.exports = function calc(gd, trace, opts) {
     }
 };
 
-},{"../../lib":210,"./helpers":93,"fast-isnumeric":18}],91:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./helpers":120,"fast-isnumeric":23}],118:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -21786,15 +26306,7 @@ module.exports = function crossTraceDefaults(fullData, fullLayout) {
     }
 };
 
-},{"../../lib":210,"./helpers":93}],92:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./helpers":120}],119:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -21911,18 +26423,10 @@ module.exports = function colorScaleDefaults(parentContIn, parentContOut, layout
     }
 };
 
-},{"../../lib":210,"../../registry":297,"../colorbar/defaults":85,"../colorbar/has_colorbar":87,"./scales":97,"fast-isnumeric":18}],93:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320,"../colorbar/defaults":112,"../colorbar/has_colorbar":114,"./scales":124,"fast-isnumeric":23}],120:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var tinycolor = _dereq_('tinycolor2');
 var isNumeric = _dereq_('fast-isnumeric');
 
@@ -21964,7 +26468,7 @@ var letterAttrs = ['min', 'max', 'mid', 'auto'];
 /**
  * Extract 'c' / 'z', trace / color axis colorscale options
  *
- * Note that it would be nice to replace all z* with c* equivalents in v2
+ * Note that it would be nice to replace all z* with c* equivalents in v3
  *
  * @param {object} cont : attribute container
  * @return {object}:
@@ -22151,15 +26655,7 @@ module.exports = {
     makeColorScaleFuncFromTrace: makeColorScaleFuncFromTrace
 };
 
-},{"../../lib":210,"../color":82,"./scales":97,"d3":16,"fast-isnumeric":18,"tinycolor2":65}],94:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../color":109,"./scales":124,"@plotly/d3":19,"fast-isnumeric":23,"tinycolor2":74}],121:[function(_dereq_,module,exports){
 'use strict';
 
 var scales = _dereq_('./scales');
@@ -22179,7 +26675,7 @@ module.exports = {
     calc: _dereq_('./calc'),
 
     // ./scales.js is required in lib/coerce.js ;
-    // it needs to be a seperate module to avoid circular a dependency
+    // it needs to be a separate module to avoid circular a dependency
     scales: scales.scales,
     defaultScale: scales.defaultScale,
     getScale: scales.get,
@@ -22193,15 +26689,7 @@ module.exports = {
     makeColorScaleFuncFromTrace: helpers.makeColorScaleFuncFromTrace
 };
 
-},{"./attributes":89,"./calc":90,"./cross_trace_defaults":91,"./defaults":92,"./helpers":93,"./layout_attributes":95,"./layout_defaults":96,"./scales":97}],95:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":116,"./calc":117,"./cross_trace_defaults":118,"./defaults":119,"./helpers":120,"./layout_attributes":122,"./layout_defaults":123,"./scales":124}],122:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../../lib/extend').extendFlat;
@@ -22220,23 +26708,17 @@ module.exports = {
         sequential: {
             valType: 'colorscale',
             dflt: scales.Reds,
-            
             editType: 'calc',
-            
         },
         sequentialminus: {
             valType: 'colorscale',
             dflt: scales.Blues,
-            
             editType: 'calc',
-            
         },
         diverging: {
             valType: 'colorscale',
             dflt: scales.RdBu,
-            
             editType: 'calc',
-            
         }
     },
 
@@ -22246,7 +26728,6 @@ module.exports = {
         // support yaxis, yaxis2, yaxis3, ... counters
         _isSubplotObj: true,
         editType: 'calc',
-        
     }, colorScaleAttrs('', {
         colorAttr: 'corresponding trace color array(s)',
         noColorAxis: true,
@@ -22254,15 +26735,7 @@ module.exports = {
     }))
 };
 
-},{"../../lib/extend":204,"./attributes":89,"./scales":97}],96:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/extend":232,"./attributes":116,"./scales":124}],123:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -22305,15 +26778,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     }
 };
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"./defaults":92,"./layout_attributes":95}],97:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"./defaults":119,"./layout_attributes":122}],124:[function(_dereq_,module,exports){
 'use strict';
 
 var tinycolor = _dereq_('tinycolor2');
@@ -22509,16 +26974,7 @@ module.exports = {
     isValid: isValidScale
 };
 
-},{"tinycolor2":65}],98:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"tinycolor2":74}],125:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -22542,16 +26998,7 @@ module.exports = function align(v, dv, v0, v1, anchor) {
     return vc;
 };
 
-},{}],99:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],126:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -22580,15 +27027,7 @@ module.exports = function getCursor(x, y, xanchor, yanchor) {
     return cursorset[y][x];
 };
 
-},{"../../lib":210}],100:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],127:[function(_dereq_,module,exports){
 'use strict';
 
 exports.selectMode = function(dragmode) {
@@ -22639,15 +27078,7 @@ exports.selectingOrDrawing = function(dragmode) {
     );
 };
 
-},{}],101:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],128:[function(_dereq_,module,exports){
 'use strict';
 
 var mouseOffset = _dereq_('mouse-event-offset');
@@ -22822,7 +27253,7 @@ dragElement.init = function init(options) {
 
         if(dx || dy) {
             gd._dragged = true;
-            dragElement.unhover(gd);
+            dragElement.unhover(gd, e);
         }
 
         if(gd._dragged && options.moveFn && !rightClick) {
@@ -22931,15 +27362,7 @@ function pointerOffset(e) {
     );
 }
 
-},{"../../lib":210,"../../plots/cartesian/constants":261,"./align":98,"./cursor":99,"./unhover":102,"has-hover":49,"has-passive-events":50,"mouse-event-offset":53}],102:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/cartesian/constants":290,"./align":125,"./cursor":126,"./unhover":129,"has-hover":54,"has-passive-events":55,"mouse-event-offset":59}],129:[function(_dereq_,module,exports){
 'use strict';
 
 var Events = _dereq_('../../lib/events');
@@ -22968,7 +27391,7 @@ unhover.raw = function raw(gd, evt) {
     var oldhoverdata = gd._hoverdata;
 
     if(!evt) evt = {};
-    if(evt.target &&
+    if(evt.target && !gd._dragged &&
        Events.triggerHandler(gd, 'plotly_beforehover', evt) === false) {
         return;
     }
@@ -22986,16 +27409,7 @@ unhover.raw = function raw(gd, evt) {
     }
 };
 
-},{"../../lib/dom":202,"../../lib/events":203,"../../lib/throttle":232,"../fx/constants":116}],103:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib/dom":230,"../../lib/events":231,"../../lib/throttle":261,"../fx/constants":143}],130:[function(_dereq_,module,exports){
 'use strict';
 
 exports.dash = {
@@ -23006,24 +27420,13 @@ exports.dash = {
     // dash lengths in px, and it will be honored
     values: ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot'],
     dflt: 'solid',
-    
     editType: 'style',
-    
 };
 
-},{}],104:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],131:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 var tinycolor = _dereq_('tinycolor2');
 
@@ -24208,19 +28611,10 @@ drawing.setTextPointsScale = function(selection, xScale, yScale) {
     });
 };
 
-},{"../../components/fx/helpers":118,"../../constants/alignment":184,"../../constants/interactions":188,"../../constants/xmlns_namespaces":190,"../../lib":210,"../../lib/svg_text_utils":231,"../../registry":297,"../../traces/scatter/make_bubble_size_func":415,"../../traces/scatter/subtypes":423,"../color":82,"../colorscale":94,"./symbol_defs":105,"d3":16,"fast-isnumeric":18,"tinycolor2":65}],105:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/fx/helpers":145,"../../constants/alignment":211,"../../constants/interactions":216,"../../constants/xmlns_namespaces":218,"../../lib":238,"../../lib/svg_text_utils":260,"../../registry":320,"../../traces/scatter/make_bubble_size_func":438,"../../traces/scatter/subtypes":446,"../color":109,"../colorscale":121,"./symbol_defs":132,"@plotly/d3":19,"fast-isnumeric":23,"tinycolor2":74}],132:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 /** Marker symbol definitions
  * users can specify markers either by number or name
@@ -24772,130 +29166,90 @@ module.exports = {
     }
 };
 
-},{"d3":16}],106:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"@plotly/d3":19}],133:[function(_dereq_,module,exports){
 'use strict';
 
 
 module.exports = {
     visible: {
         valType: 'boolean',
-        
         editType: 'calc',
-        
     },
     type: {
         valType: 'enumerated',
         values: ['percent', 'constant', 'sqrt', 'data'],
-        
         editType: 'calc',
-        
     },
     symmetric: {
         valType: 'boolean',
-        
         editType: 'calc',
-        
     },
     array: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
     arrayminus: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
     value: {
         valType: 'number',
         min: 0,
         dflt: 10,
-        
         editType: 'calc',
-        
     },
     valueminus: {
         valType: 'number',
         min: 0,
         dflt: 10,
-        
         editType: 'calc',
-        
     },
     traceref: {
         valType: 'integer',
         min: 0,
         dflt: 0,
-        
         editType: 'style'
     },
     tracerefminus: {
         valType: 'integer',
         min: 0,
         dflt: 0,
-        
         editType: 'style'
     },
     copy_ystyle: {
         valType: 'boolean',
-        
         editType: 'plot'
     },
     copy_zstyle: {
         valType: 'boolean',
-        
         editType: 'style'
     },
     color: {
         valType: 'color',
-        
         editType: 'style',
-        
     },
     thickness: {
         valType: 'number',
         min: 0,
         dflt: 2,
-        
         editType: 'style',
-        
     },
     width: {
         valType: 'number',
         min: 0,
-        
         editType: 'plot',
-        
     },
     editType: 'calc',
 
     _deprecated: {
         opacity: {
             valType: 'number',
-            
             editType: 'style',
-            
         }
     }
 };
 
-},{}],107:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],134:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -24973,16 +29327,7 @@ function calcOneAxis(calcTrace, trace, axis, coord) {
     baseExtremes.max = baseExtremes.max.concat(extremes.max);
 }
 
-},{"../../lib":210,"../../plots/cartesian/axes":255,"../../registry":297,"./compute_error":108,"fast-isnumeric":18}],108:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plots/cartesian/axes":284,"../../registry":320,"./compute_error":135,"fast-isnumeric":23}],135:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -25074,15 +29419,7 @@ function makeComputeErrorValue(type, value) {
     }
 }
 
-},{}],109:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],136:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -25149,15 +29486,7 @@ module.exports = function(traceIn, traceOut, defaultColor, opts) {
     }
 };
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../registry":297,"./attributes":106,"fast-isnumeric":18}],110:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../registry":320,"./attributes":133,"fast-isnumeric":23}],137:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -25218,19 +29547,10 @@ function hoverInfo(calcPoint, trace, hoverPoint) {
     }
 }
 
-},{"../../lib":210,"../../plot_api/edit_types":237,"./attributes":106,"./calc":107,"./compute_error":108,"./defaults":109,"./plot":111,"./style":112}],111:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plot_api/edit_types":266,"./attributes":133,"./calc":134,"./compute_error":135,"./defaults":136,"./plot":138,"./style":139}],138:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Drawing = _dereq_('../drawing');
@@ -25390,19 +29710,10 @@ function errorCoords(d, xa, ya) {
     return out;
 }
 
-},{"../../traces/scatter/subtypes":423,"../drawing":104,"d3":16,"fast-isnumeric":18}],112:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../traces/scatter/subtypes":446,"../drawing":131,"@plotly/d3":19,"fast-isnumeric":23}],139:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Color = _dereq_('../color');
 
@@ -25427,15 +29738,7 @@ module.exports = function style(traces) {
     });
 };
 
-},{"../color":82,"d3":16}],113:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../color":109,"@plotly/d3":19}],140:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -25446,16 +29749,13 @@ module.exports = {
     hoverlabel: {
         bgcolor: extendFlat({}, hoverLabelAttrs.bgcolor, {
             arrayOk: true,
-            
         }),
         bordercolor: extendFlat({}, hoverLabelAttrs.bordercolor, {
             arrayOk: true,
-            
         }),
         font: fontAttrs({
             arrayOk: true,
             editType: 'none',
-            
         }),
         align: extendFlat({}, hoverLabelAttrs.align, {arrayOk: true}),
         namelength: extendFlat({}, hoverLabelAttrs.namelength, {arrayOk: true}),
@@ -25463,15 +29763,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/extend":204,"../../plots/font_attributes":283,"./layout_attributes":123}],114:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/extend":232,"../../plots/font_attributes":312,"./layout_attributes":150}],141:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -25522,15 +29814,7 @@ function paste(traceAttr, cd, cdAttr, fn) {
     }
 }
 
-},{"../../lib":210,"../../registry":297}],115:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320}],142:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -25559,15 +29843,7 @@ module.exports = function click(gd, evt, subplot) {
     }
 };
 
-},{"../../registry":297,"./hover":119}],116:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../registry":320,"./hover":146}],143:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -25591,15 +29867,7 @@ module.exports = {
     HOVERID: '-hover'
 };
 
-},{}],117:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],144:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -25617,15 +29885,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     handleHoverLabelDefaults(traceIn, traceOut, coerce, opts);
 };
 
-},{"../../lib":210,"./attributes":113,"./hoverlabel_defaults":120}],118:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./attributes":140,"./hoverlabel_defaults":147}],145:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -25879,7 +30139,7 @@ exports.isXYhover = function(hovermode) {
     return !!xyHoverMode[hovermode];
 };
 
-},{"../../lib":210}],119:[function(_dereq_,module,exports){
+},{"../../lib":238}],146:[function(_dereq_,module,exports){
 /**
  * Copyright 2012-2020, Plotly, Inc.
  * All rights reserved.
@@ -25890,7 +30150,7 @@ exports.isXYhover = function(hovermode) {
 
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 var tinycolor = _dereq_('tinycolor2');
 
@@ -26302,8 +30562,9 @@ function _hover(gd, evt, subplot, noHoverEvent) {
 
       // Explicitly bail out for these two. I don't know how to otherwise prevent
       // the rest of this function from running and failing
-      if (['carpet', 'contourcarpet'].indexOf(trace._module.name) !== -1)
+      if (['carpet', 'contourcarpet'].indexOf(trace._module.name) !== -1) {
         continue;
+      }
 
       if (trace.type === 'splom') {
         // splom traces do not generate overlay subplots,
@@ -26424,7 +30685,42 @@ function _hover(gd, evt, subplot, noHoverEvent) {
             }
           }
         } else {
-          Lib.log('Unrecognized trace type in hover:', trace);
+          // fire the beforehover event and quit if it returns false
+          // note that we're only calling this on real mouse events, so
+          // manual calls to fx.hover will always run.
+          if (Events.triggerHandler(gd, 'plotly_beforehover', evt) === false) {
+            return;
+          }
+
+          // Discover event target, traversing open shadow roots.
+          var target = evt.composedPath && evt.composedPath()[0];
+          if (!target) {
+            // Fallback for browsers not supporting composedPath
+            target = evt.target;
+          }
+          var dbb = target.getBoundingClientRect();
+
+          xpx = evt.clientX - dbb.left;
+          ypx = evt.clientY - dbb.top;
+
+          fullLayout._calcInverseTransform(gd);
+          var transformedCoords = Lib.apply3DTransform(
+            fullLayout._invTransform
+          )(xpx, ypx);
+
+          xpx = transformedCoords[0];
+          ypx = transformedCoords[1];
+
+          // in case hover was called from mouseout into hovertext,
+          // it's possible you're not actually over the plot anymore
+          if (
+            xpx < 0 ||
+            xpx > xaArray[0]._length ||
+            ypx < 0 ||
+            ypx > yaArray[0]._length
+          ) {
+            return dragElement.unhoverRaw(gd, evt);
+          }
         }
       }
 
@@ -26675,6 +30971,7 @@ function _hover(gd, evt, subplot, noHoverEvent) {
   };
 
   /*
+  begin change
     if (fullLayout.showhovertext !== false) {
         var hoverLabels = createHoverText(hoverData, labelOpts, gd);
 
@@ -26688,6 +30985,7 @@ function _hover(gd, evt, subplot, noHoverEvent) {
         hoverAvoidOverlaps(hoverLabels, rotateLabels ? 'xa' : 'ya', fullLayout);
         alignHoverText(hoverLabels, rotateLabels, fullLayout._invScaleX, fullLayout._invScaleY);
     }    // TODO: tagName hack is needed to appease geo.js's hack of using evt.target=true
+    end change
     */
   // we should improve the "fx" API so other plots can use it without these hack.
   if (evt.target && evt.target.tagName) {
@@ -26699,8 +30997,9 @@ function _hover(gd, evt, subplot, noHoverEvent) {
   }
 
   // don't emit events if called manually
-  if (!evt.target || noHoverEvent || !hoverChanged(gd, evt, oldhoverdata))
+  if (!evt.target || noHoverEvent || !hoverChanged(gd, evt, oldhoverdata)) {
     return;
+  }
 
   if (oldhoverdata) {
     gd.emit('plotly_unhover', {
@@ -27047,8 +31346,9 @@ function createHoverText(hoverData, opts, gd) {
     container.selectAll('g.hovertext').remove();
 
     // similarly to compare mode, we remove the "close but not quite together" points
-    if (t0 !== undefined && c0.distance <= opts.hoverdistance)
+    if (t0 !== undefined && c0.distance <= opts.hoverdistance) {
       hoverData = filterClosePoints(hoverData);
+    }
 
     // Return early if nothing is hovered on
     if (hoverData.length === 0) return;
@@ -27401,7 +31701,7 @@ function getHoverLabelText(d, showCommonLabel, hovermode, fullLayout, t0, g) {
 
 // Make groups of touching points, and within each group
 // move each point so that no labels overlap, but the average
-// label position is the same as it was before moving. Indicentally,
+// label position is the same as it was before moving. Incidentally,
 // this is equivalent to saying all the labels are on equal linear
 // springs about their initial position. Initially, each point is
 // its own group, but as we find overlaps we will clump the points.
@@ -27984,8 +32284,9 @@ function createSpikelines(gd, closestPoints, opts) {
 
 function hoverChanged(gd, evt, oldhoverdata) {
   // don't emit any events if nothing changed
-  if (!oldhoverdata || oldhoverdata.length !== gd._hoverdata.length)
+  if (!oldhoverdata || oldhoverdata.length !== gd._hoverdata.length) {
     return true;
+  }
 
   for (var i = oldhoverdata.length - 1; i >= 0; i--) {
     var oldPt = oldhoverdata[i];
@@ -28008,8 +32309,9 @@ function spikesChanged(gd, oldspikepoints) {
   if (
     oldspikepoints.vLinePoint !== gd._spikepoints.vLinePoint ||
     oldspikepoints.hLinePoint !== gd._spikepoints.hLinePoint
-  )
+  ) {
     return true;
+  }
   return false;
 }
 
@@ -28020,15 +32322,7 @@ function plainText(s, len) {
   });
 }
 
-},{"../../lib":210,"../../lib/events":203,"../../lib/override_cursor":221,"../../lib/svg_text_utils":231,"../../plots/cartesian/axes":255,"../../registry":297,"../color":82,"../dragelement":101,"../drawing":104,"../legend/defaults":134,"../legend/draw":135,"./constants":116,"./helpers":118,"d3":16,"fast-isnumeric":18,"tinycolor2":65}],120:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../lib/events":231,"../../lib/override_cursor":249,"../../lib/svg_text_utils":260,"../../plots/cartesian/axes":284,"../../registry":320,"../color":109,"../dragelement":128,"../drawing":131,"../legend/defaults":161,"../legend/draw":162,"./constants":143,"./helpers":145,"@plotly/d3":19,"fast-isnumeric":23,"tinycolor2":74}],147:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28066,15 +32360,7 @@ module.exports = function handleHoverLabelDefaults(contIn, contOut, coerce, opts
     coerce('hoverlabel.align', opts.align);
 };
 
-},{"../../lib":210,"../color":82,"./helpers":118}],121:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../color":109,"./helpers":145}],148:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28122,18 +32408,10 @@ function isHoriz(fullData, fullLayout) {
     return true;
 }
 
-},{"../../lib":210,"./layout_attributes":123}],122:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./layout_attributes":150}],149:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Lib = _dereq_('../../lib');
 var dragElement = _dereq_('../dragelement');
 var helpers = _dereq_('./helpers');
@@ -28201,22 +32479,13 @@ function castHoverinfo(trace, fullLayout, ptNumber) {
     return Lib.castOption(trace, ptNumber, 'hoverinfo', _coerce);
 }
 
-},{"../../lib":210,"../dragelement":101,"./attributes":113,"./calc":114,"./click":115,"./constants":116,"./defaults":117,"./helpers":118,"./hover":119,"./layout_attributes":123,"./layout_defaults":124,"./layout_global_defaults":125,"d3":16}],123:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../dragelement":128,"./attributes":140,"./calc":141,"./click":142,"./constants":143,"./defaults":144,"./helpers":145,"./hover":146,"./layout_attributes":150,"./layout_defaults":151,"./layout_global_defaults":152,"@plotly/d3":19}],150:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
 
 var fontAttrs = _dereq_('../../plots/font_attributes')({
     editType: 'none',
-    
 });
 fontAttrs.family.dflt = constants.HOVERFONT;
 fontAttrs.size.dflt = constants.HOVERFONTSIZE;
@@ -28224,16 +32493,13 @@ fontAttrs.size.dflt = constants.HOVERFONTSIZE;
 module.exports = {
     clickmode: {
         valType: 'flaglist',
-        
         flags: ['event', 'select'],
         dflt: 'event',
         editType: 'plot',
         extras: ['none'],
-        
     },
     dragmode: {
         valType: 'enumerated',
-        
         values: [
             'zoom',
             'pan',
@@ -28250,90 +32516,63 @@ module.exports = {
         ],
         dflt: 'zoom',
         editType: 'modebar',
-        
     },
     hovermode: {
         valType: 'enumerated',
-        
         values: ['x', 'y', 'closest', false, 'x unified', 'y unified'],
         editType: 'modebar',
-        
     },
     hoverdistance: {
         valType: 'integer',
         min: -1,
         dflt: 20,
-        
         editType: 'none',
-        
     },
     showhovertext: {
         valType: 'enumerated',
-        
         dflt: true,
         values: [true, false],
         editType: 'none',
-        
     },
     spikedistance: {
         valType: 'integer',
         min: -1,
         dflt: 20,
-        
         editType: 'none',
-        
     },
     hoverlabel: {
         bgcolor: {
             valType: 'color',
-            
             editType: 'none',
-            
         },
         bordercolor: {
             valType: 'color',
-            
             editType: 'none',
-            
         },
         font: fontAttrs,
         align: {
             valType: 'enumerated',
             values: ['left', 'right', 'auto'],
             dflt: 'auto',
-            
             editType: 'none',
-            
         },
         namelength: {
             valType: 'integer',
             min: -1,
             dflt: 15,
-            
             editType: 'none',
-            
         },
         editType: 'none'
     },
     selectdirection: {
         valType: 'enumerated',
-        
         values: ['h', 'v', 'd', 'any'],
         dflt: 'any',
-        
         editType: 'none'
     }
 };
 
-},{"../../plots/font_attributes":283,"./constants":116}],124:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/font_attributes":312,"./constants":143}],151:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28373,15 +32612,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
     handleHoverLabelDefaults(layoutIn, layoutOut, coerce);
 };
 
-},{"../../lib":210,"./helpers":118,"./hoverlabel_defaults":120,"./hovermode_defaults":121,"./layout_attributes":123}],125:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./helpers":145,"./hoverlabel_defaults":147,"./hovermode_defaults":148,"./layout_attributes":150}],152:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28396,15 +32627,7 @@ module.exports = function supplyLayoutGlobalDefaults(layoutIn, layoutOut) {
     handleHoverLabelDefaults(layoutIn, layoutOut, coerce);
 };
 
-},{"../../lib":210,"./hoverlabel_defaults":120,"./layout_attributes":123}],126:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./hoverlabel_defaults":147,"./layout_attributes":150}],153:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28417,92 +32640,69 @@ var gridAttrs = {
     rows: {
         valType: 'integer',
         min: 1,
-        
         editType: 'plot',
-        
     },
     roworder: {
         valType: 'enumerated',
         values: ['top to bottom', 'bottom to top'],
         dflt: 'top to bottom',
-        
         editType: 'plot',
-        
     },
     columns: {
         valType: 'integer',
         min: 1,
-        
         editType: 'plot',
-        
     },
     subplots: {
         valType: 'info_array',
         freeLength: true,
         dimensions: 2,
         items: {valType: 'enumerated', values: [counterRegex('xy').toString(), ''], editType: 'plot'},
-        
         editType: 'plot',
-        
     },
     xaxes: {
         valType: 'info_array',
         freeLength: true,
         items: {valType: 'enumerated', values: [cartesianIdRegex.x.toString(), ''], editType: 'plot'},
-        
         editType: 'plot',
-        
     },
     yaxes: {
         valType: 'info_array',
         freeLength: true,
         items: {valType: 'enumerated', values: [cartesianIdRegex.y.toString(), ''], editType: 'plot'},
-        
         editType: 'plot',
-        
     },
     pattern: {
         valType: 'enumerated',
         values: ['independent', 'coupled'],
         dflt: 'coupled',
-        
         editType: 'plot',
-        
     },
     xgap: {
         valType: 'number',
         min: 0,
         max: 1,
-        
         editType: 'plot',
-        
     },
     ygap: {
         valType: 'number',
         min: 0,
         max: 1,
-        
         editType: 'plot',
-        
     },
     domain: domainAttrs({name: 'grid', editType: 'plot', noGridCell: true}, {
-        
     }),
     xside: {
         valType: 'enumerated',
         values: ['bottom', 'bottom plot', 'top plot', 'top'],
         dflt: 'bottom plot',
-        
         editType: 'plot',
-        
     },
     yside: {
         valType: 'enumerated',
         values: ['left', 'left plot', 'right plot', 'right'],
         dflt: 'left plot',
-        
         editType: 'plot',
-        
     },
     editType: 'plot'
 };
@@ -28770,15 +32970,7 @@ module.exports = {
     contentDefaults: contentDefaults
 };
 
-},{"../../lib":210,"../../lib/regex":225,"../../plot_api/plot_template":244,"../../plots/cartesian/constants":261,"../../plots/domain":282}],127:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../lib/regex":254,"../../plot_api/plot_template":273,"../../plots/cartesian/constants":290,"../../plots/domain":311}],154:[function(_dereq_,module,exports){
 'use strict';
 
 var cartesianConstants = _dereq_('../../plots/cartesian/constants');
@@ -28789,95 +32981,73 @@ var axisPlaceableObjs = _dereq_('../../constants/axis_placeable_objects');
 module.exports = templatedArray('image', {
     visible: {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'arraydraw',
-        
     },
 
     source: {
         valType: 'string',
-        
         editType: 'arraydraw',
-        
     },
 
     layer: {
         valType: 'enumerated',
         values: ['below', 'above'],
         dflt: 'above',
-        
         editType: 'arraydraw',
-        
     },
 
     sizex: {
         valType: 'number',
-        
         dflt: 0,
         editType: 'arraydraw',
-        
     },
 
     sizey: {
         valType: 'number',
-        
         dflt: 0,
         editType: 'arraydraw',
-        
     },
 
     sizing: {
         valType: 'enumerated',
         values: ['fill', 'contain', 'stretch'],
         dflt: 'contain',
-        
         editType: 'arraydraw',
-        
     },
 
     opacity: {
         valType: 'number',
-        
         min: 0,
         max: 1,
         dflt: 1,
         editType: 'arraydraw',
-        
     },
 
     x: {
         valType: 'any',
-        
         dflt: 0,
         editType: 'arraydraw',
-        
     },
 
     y: {
         valType: 'any',
-        
         dflt: 0,
         editType: 'arraydraw',
-        
     },
 
     xanchor: {
         valType: 'enumerated',
         values: ['left', 'center', 'right'],
         dflt: 'left',
-        
         editType: 'arraydraw',
-        
     },
 
     yanchor: {
         valType: 'enumerated',
         values: ['top', 'middle', 'bottom'],
         dflt: 'top',
-        
         editType: 'arraydraw',
-        
     },
 
     xref: {
@@ -28887,9 +33057,7 @@ module.exports = templatedArray('image', {
             cartesianConstants.idRegex.x.toString()
         ],
         dflt: 'paper',
-        
         editType: 'arraydraw',
-        
     },
 
     yref: {
@@ -28899,23 +33067,12 @@ module.exports = templatedArray('image', {
             cartesianConstants.idRegex.y.toString()
         ],
         dflt: 'paper',
-        
         editType: 'arraydraw',
-        
     },
     editType: 'arraydraw'
 });
 
-},{"../../constants/axis_placeable_objects":185,"../../plot_api/plot_template":244,"../../plots/cartesian/constants":261}],128:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/axis_placeable_objects":212,"../../plot_api/plot_template":273,"../../plots/cartesian/constants":290}],155:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -28925,7 +33082,7 @@ var toLogRange = _dereq_('../../lib/to_log_range');
  * convertCoords: when converting an axis between log and linear
  * you need to alter any images on that axis to keep them
  * pointing at the same data point.
- * In v2.0 this will become obsolete (or perhaps size will still need conversion?)
+ * In v3.0 this will become obsolete (or perhaps size will still need conversion?)
  * we convert size by declaring that the maximum extent *in data units* should be
  * the same, assuming the image is anchored by its center (could remove that restriction
  * if we think it's important) even though the actual left and right values will not be
@@ -28987,15 +33144,7 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
     }
 };
 
-},{"../../lib/to_log_range":233,"fast-isnumeric":18}],129:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/to_log_range":262,"fast-isnumeric":23}],156:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -29052,18 +33201,10 @@ function imageDefaults(imageIn, imageOut, fullLayout) {
     return imageOut;
 }
 
-},{"../../lib":210,"../../plots/array_container_defaults":250,"../../plots/cartesian/axes":255,"./attributes":127}],130:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/array_container_defaults":279,"../../plots/cartesian/axes":284,"./attributes":154}],157:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Drawing = _dereq_('../drawing');
 var Axes = _dereq_('../../plots/cartesian/axes');
 var axisIds = _dereq_('../../plots/cartesian/axis_ids');
@@ -29291,7 +33432,7 @@ module.exports = function draw(gd) {
         subplot = allSubplots[i];
         var subplotObj = fullLayout._plots[subplot];
 
-        // filter out overlaid plots (which havd their images on the main plot)
+        // filter out overlaid plots (which have their images on the main plot)
         // and gl2d plots (which don't support below images, at least not yet)
         if(!subplotObj.imagelayer) continue;
 
@@ -29310,15 +33451,7 @@ module.exports = function draw(gd) {
     }
 };
 
-},{"../../constants/xmlns_namespaces":190,"../../plots/cartesian/axes":255,"../../plots/cartesian/axis_ids":258,"../drawing":104,"d3":16}],131:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/xmlns_namespaces":218,"../../plots/cartesian/axes":284,"../../plots/cartesian/axis_ids":287,"../drawing":131,"@plotly/d3":19}],158:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -29334,15 +33467,7 @@ module.exports = {
     convertCoords: _dereq_('./convert_coords')
 };
 
-},{"../../plots/cartesian/include_components":267,"./attributes":127,"./convert_coords":128,"./defaults":129,"./draw":130}],132:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian/include_components":296,"./attributes":154,"./convert_coords":155,"./defaults":156,"./draw":157}],159:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -29352,150 +33477,112 @@ var colorAttrs = _dereq_('../color/attributes');
 module.exports = {
     bgcolor: {
         valType: 'color',
-        
         editType: 'legend',
-        
     },
     bordercolor: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'legend',
-        
     },
     borderwidth: {
         valType: 'number',
         min: 0,
         dflt: 0,
-        
         editType: 'legend',
-        
     },
     font: fontAttrs({
         editType: 'legend',
-        
     }),
     orientation: {
         valType: 'enumerated',
         values: ['v', 'h'],
         dflt: 'v',
-        
         editType: 'legend',
-        
     },
     traceorder: {
         valType: 'flaglist',
         flags: ['reversed', 'grouped'],
         extras: ['normal'],
-        
         editType: 'legend',
-        
     },
     tracegroupgap: {
         valType: 'number',
         min: 0,
         dflt: 10,
-        
         editType: 'legend',
-        
     },
     itemsizing: {
         valType: 'enumerated',
         values: ['trace', 'constant'],
         dflt: 'trace',
-        
         editType: 'legend',
-        
     },
     itemwidth: {
         valType: 'number',
         min: 30,
         dflt: 30,
-        
         editType: 'legend',
-        
     },
 
     itemclick: {
         valType: 'enumerated',
         values: ['toggle', 'toggleothers', false],
         dflt: 'toggle',
-        
         editType: 'legend',
-        
     },
     itemdoubleclick: {
         valType: 'enumerated',
         values: ['toggle', 'toggleothers', false],
         dflt: 'toggleothers',
-        
         editType: 'legend',
-        
     },
 
     x: {
         valType: 'number',
         min: -2,
         max: 3,
-        
         editType: 'legend',
-        
     },
     xanchor: {
         valType: 'enumerated',
         values: ['auto', 'left', 'center', 'right'],
         dflt: 'left',
-        
         editType: 'legend',
-        
     },
     y: {
         valType: 'number',
         min: -2,
         max: 3,
-        
         editType: 'legend',
-        
     },
     yanchor: {
         valType: 'enumerated',
         values: ['auto', 'top', 'middle', 'bottom'],
-        
         editType: 'legend',
-        
     },
     uirevision: {
         valType: 'any',
-        
         editType: 'none',
-        
     },
     valign: {
         valType: 'enumerated',
         values: ['top', 'middle', 'bottom'],
         dflt: 'middle',
-        
         editType: 'legend',
-        
     },
     title: {
         text: {
             valType: 'string',
             dflt: '',
-            
             editType: 'legend',
-            
         },
         font: fontAttrs({
             editType: 'legend',
-            
         }),
         side: {
             valType: 'enumerated',
             values: ['top', 'left', 'top left'],
-            
             editType: 'legend',
-            
         },
         editType: 'legend',
     },
@@ -29503,15 +33590,7 @@ module.exports = {
     editType: 'legend'
 };
 
-},{"../../plots/font_attributes":283,"../color/attributes":81}],133:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/font_attributes":312,"../color/attributes":108}],160:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -29527,15 +33606,7 @@ module.exports = {
     itemGap: 5
 };
 
-},{}],134:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],161:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -29629,7 +33700,7 @@ module.exports = function legendDefaults(layoutIn, layoutOut, fullData) {
         } else {
             // maybe use y=1.1 / yanchor=bottom as above
             //   to avoid https://github.com/plotly/plotly.js/issues/1199
-            //   in v2
+            //   in v3
             defaultY = -0.1;
             defaultYAnchor = 'top';
         }
@@ -29662,18 +33733,10 @@ module.exports = function legendDefaults(layoutIn, layoutOut, fullData) {
     }
 };
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../plots/layout_attributes":287,"../../registry":297,"./attributes":132,"./helpers":138}],135:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../plots/layout_attributes":316,"../../registry":320,"./attributes":159,"./helpers":165}],162:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Lib = _dereq_('../../lib');
 var Plots = _dereq_('../../plots/plots');
@@ -30459,15 +34522,7 @@ function getYanchor(opts) {
         'top';
 }
 
-},{"../../constants/alignment":184,"../../lib":210,"../../lib/events":203,"../../lib/svg_text_utils":231,"../../plots/plots":289,"../../registry":297,"../color":82,"../dragelement":101,"../drawing":104,"./constants":133,"./get_legend_data":136,"./handle_click":137,"./helpers":138,"./style":140,"d3":16}],136:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/alignment":211,"../../lib":238,"../../lib/events":231,"../../lib/svg_text_utils":260,"../../plots/plots":318,"../../registry":320,"../color":109,"../dragelement":128,"../drawing":131,"./constants":160,"./get_legend_data":163,"./handle_click":164,"./helpers":165,"./style":167,"@plotly/d3":19}],163:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -30568,15 +34623,7 @@ module.exports = function getLegendData(calcdata, opts) {
     return legendData;
 };
 
-},{"../../registry":297,"./helpers":138}],137:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../registry":320,"./helpers":165}],164:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -30807,16 +34854,7 @@ module.exports = function handleClick(g, gd, numClicks) {
     }
 };
 
-},{"../../lib":210,"../../registry":297}],138:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../registry":320}],165:[function(_dereq_,module,exports){
 'use strict';
 
 exports.isGrouped = function isGrouped(legendLayout) {
@@ -30831,16 +34869,7 @@ exports.isReversed = function isReversed(legendLayout) {
     return (legendLayout.traceorder || '').indexOf('reversed') !== -1;
 };
 
-},{}],139:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],166:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -30855,18 +34884,10 @@ module.exports = {
     style: _dereq_('./style')
 };
 
-},{"./attributes":132,"./defaults":134,"./draw":135,"./style":140}],140:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":159,"./defaults":161,"./draw":162,"./style":167}],167:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Lib = _dereq_('../../lib');
@@ -31488,15 +35509,7 @@ function getGradientDirection(reversescale, isRadial) {
     return str + (reversescale ? '' : 'reversed');
 }
 
-},{"../../lib":210,"../../registry":297,"../../traces/pie/helpers":390,"../../traces/pie/style_one":396,"../../traces/scatter/subtypes":423,"../color":82,"../colorscale/helpers":93,"../drawing":104,"./constants":133,"d3":16}],141:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320,"../../traces/pie/helpers":413,"../../traces/pie/style_one":419,"../../traces/scatter/subtypes":446,"../color":109,"../colorscale/helpers":120,"../drawing":131,"./constants":160,"@plotly/d3":19}],168:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -32224,30 +36237,12 @@ function resetView(gd, subplotType) {
     Registry.call('_guiRelayout', gd, aObj);
 }
 
-},{"../../fonts/ploticon":193,"../../lib":210,"../../plots/cartesian/axis_ids":258,"../../plots/plots":289,"../../registry":297,"../shapes/draw":163}],142:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../fonts/ploticon":221,"../../lib":238,"../../plots/cartesian/axis_ids":287,"../../plots/plots":318,"../../registry":320,"../shapes/draw":190}],169:[function(_dereq_,module,exports){
 'use strict';
 
 exports.manage = _dereq_('./manage');
 
-},{"./manage":143}],143:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./manage":170}],170:[function(_dereq_,module,exports){
 'use strict';
 
 var axisIds = _dereq_('../../plots/cartesian/axis_ids');
@@ -32534,19 +36529,10 @@ function fillCustomButton(customButtons) {
     return customButtons;
 }
 
-},{"../../plots/cartesian/axis_ids":258,"../../registry":297,"../../traces/scatter/subtypes":423,"../fx/helpers":118,"./buttons":141,"./modebar":144}],144:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../plots/cartesian/axis_ids":287,"../../registry":320,"../../traces/scatter/subtypes":446,"../fx/helpers":145,"./buttons":168,"./modebar":171}],171:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Lib = _dereq_('../../lib');
@@ -32880,15 +36866,7 @@ function createModeBar(gd, buttons) {
 
 module.exports = createModeBar;
 
-},{"../../fonts/ploticon":193,"../../lib":210,"d3":16,"fast-isnumeric":18}],145:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../fonts/ploticon":221,"../../lib":238,"@plotly/d3":19,"fast-isnumeric":23}],172:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -32898,51 +36876,38 @@ var templatedArray = _dereq_('../../plot_api/plot_template').templatedArray;
 var buttonAttrs = templatedArray('button', {
     visible: {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'plot',
-        
     },
     step: {
         valType: 'enumerated',
-        
         values: ['month', 'year', 'day', 'hour', 'minute', 'second', 'all'],
         dflt: 'month',
         editType: 'plot',
-        
     },
     stepmode: {
         valType: 'enumerated',
-        
         values: ['backward', 'todate'],
         dflt: 'backward',
         editType: 'plot',
-        
     },
     count: {
         valType: 'number',
-        
         min: 0,
         dflt: 1,
         editType: 'plot',
-        
     },
     label: {
         valType: 'string',
-        
         editType: 'plot',
-        
     },
     editType: 'plot',
-    
 });
 
 module.exports = {
     visible: {
         valType: 'boolean',
-        
         editType: 'plot',
-        
     },
 
     buttons: buttonAttrs,
@@ -32951,80 +36916,55 @@ module.exports = {
         valType: 'number',
         min: -2,
         max: 3,
-        
         editType: 'plot',
-        
     },
     xanchor: {
         valType: 'enumerated',
         values: ['auto', 'left', 'center', 'right'],
         dflt: 'left',
-        
         editType: 'plot',
-        
     },
     y: {
         valType: 'number',
         min: -2,
         max: 3,
-        
         editType: 'plot',
-        
     },
     yanchor: {
         valType: 'enumerated',
         values: ['auto', 'top', 'middle', 'bottom'],
         dflt: 'bottom',
-        
         editType: 'plot',
-        
     },
 
     font: fontAttrs({
         editType: 'plot',
-        
     }),
 
     bgcolor: {
         valType: 'color',
         dflt: colorAttrs.lightLine,
-        
         editType: 'plot',
-        
     },
     activecolor: {
         valType: 'color',
-        
         editType: 'plot',
-        
     },
     bordercolor: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'plot',
-        
     },
     borderwidth: {
         valType: 'number',
         min: 0,
         dflt: 0,
-        
         editType: 'plot',
-        
     },
     editType: 'plot'
 };
 
-},{"../../plot_api/plot_template":244,"../../plots/font_attributes":283,"../color/attributes":81}],146:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plot_api/plot_template":273,"../../plots/font_attributes":312,"../color/attributes":108}],173:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -33045,15 +36985,7 @@ module.exports = {
     darkAmount: 10
 };
 
-},{}],147:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],174:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -33137,18 +37069,10 @@ function getPosDflt(containerOut, layout, counterAxes) {
     return [containerOut.domain[0], posY + constants.yPad];
 }
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../plots/array_container_defaults":250,"../color":82,"./attributes":145,"./constants":146}],148:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../plots/array_container_defaults":279,"../color":109,"./attributes":172,"./constants":173}],175:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Plots = _dereq_('../../plots/plots');
@@ -33392,19 +37316,10 @@ function reposition(gd, buttons, opts, axName, selector) {
     selector.attr('transform', strTranslate(lx, ly));
 }
 
-},{"../../constants/alignment":184,"../../lib":210,"../../lib/svg_text_utils":231,"../../plots/cartesian/axis_ids":258,"../../plots/plots":289,"../../registry":297,"../color":82,"../drawing":104,"./constants":146,"./get_update_object":149,"d3":16}],149:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/alignment":211,"../../lib":238,"../../lib/svg_text_utils":260,"../../plots/cartesian/axis_ids":287,"../../plots/plots":318,"../../registry":320,"../color":109,"../drawing":131,"./constants":173,"./get_update_object":176,"@plotly/d3":19}],176:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 module.exports = function getUpdateObject(axisLayout, buttonLayout) {
     var axName = axisLayout._name;
@@ -33446,15 +37361,7 @@ function getXRange(axisLayout, buttonLayout) {
     return [range0, range1];
 }
 
-},{"d3":16}],150:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"@plotly/d3":19}],177:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -33473,15 +37380,7 @@ module.exports = {
     draw: _dereq_('./draw')
 };
 
-},{"./attributes":145,"./defaults":147,"./draw":148}],151:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":172,"./defaults":174,"./draw":175}],178:[function(_dereq_,module,exports){
 'use strict';
 
 var colorAttributes = _dereq_('../color/attributes');
@@ -33490,72 +37389,50 @@ module.exports = {
     bgcolor: {
         valType: 'color',
         dflt: colorAttributes.background,
-        
         editType: 'plot',
-        
     },
     bordercolor: {
         valType: 'color',
         dflt: colorAttributes.defaultLine,
-        
         editType: 'plot',
-        
     },
     borderwidth: {
         valType: 'integer',
         dflt: 0,
         min: 0,
-        
         editType: 'plot',
-        
     },
     autorange: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'calc',
         impliedEdits: {'range[0]': undefined, 'range[1]': undefined},
-        
     },
     range: {
         valType: 'info_array',
-        
         items: [
             {valType: 'any', editType: 'calc', impliedEdits: {'^autorange': false}},
             {valType: 'any', editType: 'calc', impliedEdits: {'^autorange': false}}
         ],
         editType: 'calc',
         impliedEdits: {'autorange': false},
-        
     },
     thickness: {
         valType: 'number',
         dflt: 0.15,
         min: 0,
         max: 1,
-        
         editType: 'plot',
-        
     },
     visible: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'calc',
-        
     },
     editType: 'calc'
 };
 
-},{"../color/attributes":81}],152:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../color/attributes":108}],179:[function(_dereq_,module,exports){
 'use strict';
 
 var listAxes = _dereq_('../../plots/cartesian/axis_ids').list;
@@ -33581,15 +37458,7 @@ module.exports = function calcAutorange(gd) {
     }
 };
 
-},{"../../plots/cartesian/autorange":254,"../../plots/cartesian/axis_ids":258,"./constants":153}],153:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian/autorange":283,"../../plots/cartesian/axis_ids":287,"./constants":180}],180:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -33637,15 +37506,7 @@ module.exports = {
     extraPad: 15
 };
 
-},{}],154:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],181:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -33723,18 +37584,10 @@ module.exports = function handleDefaults(layoutIn, layoutOut, axName) {
     containerOut._input = containerIn;
 };
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../plots/cartesian/axis_ids":258,"./attributes":151,"./oppaxis_attributes":158}],155:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../plots/cartesian/axis_ids":287,"./attributes":178,"./oppaxis_attributes":185}],182:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Plots = _dereq_('../../plots/plots');
@@ -34367,15 +38220,7 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
     grabAreaMax.attr('height', opts._height);
 }
 
-},{"../../lib":210,"../../lib/setcursor":229,"../../plots/cartesian":268,"../../plots/cartesian/axis_ids":258,"../../plots/plots":289,"../../registry":297,"../color":82,"../dragelement":101,"../drawing":104,"../titles":177,"./constants":153,"d3":16}],156:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../lib/setcursor":258,"../../plots/cartesian":297,"../../plots/cartesian/axis_ids":287,"../../plots/plots":318,"../../registry":320,"../color":109,"../dragelement":128,"../drawing":131,"../titles":204,"./constants":180,"@plotly/d3":19}],183:[function(_dereq_,module,exports){
 'use strict';
 
 var axisIDs = _dereq_('../../plots/cartesian/axis_ids');
@@ -34442,15 +38287,7 @@ exports.autoMarginOpts = function(gd, ax) {
     };
 };
 
-},{"../../constants/alignment":184,"../../lib/svg_text_utils":231,"../../plots/cartesian/axis_ids":258,"./constants":153}],157:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/alignment":211,"../../lib/svg_text_utils":260,"../../plots/cartesian/axis_ids":287,"./constants":180}],184:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -34481,15 +38318,7 @@ module.exports = {
     autoMarginOpts: helpers.autoMarginOpts
 };
 
-},{"../../lib":210,"./attributes":151,"./calc_autorange":152,"./defaults":154,"./draw":155,"./helpers":156,"./oppaxis_attributes":158}],158:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./attributes":178,"./calc_autorange":179,"./defaults":181,"./draw":182,"./helpers":183,"./oppaxis_attributes":185}],185:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -34502,32 +38331,20 @@ module.exports = {
         valType: 'enumerated',
         values: ['auto', 'fixed', 'match'],
         dflt: 'match',
-        
         editType: 'calc',
-        
     },
     range: {
         valType: 'info_array',
-        
         items: [
             {valType: 'any', editType: 'plot'},
             {valType: 'any', editType: 'plot'}
         ],
         editType: 'plot',
-        
     },
     editType: 'calc'
 };
 
-},{}],159:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],186:[function(_dereq_,module,exports){
 'use strict';
 
 var annAttrs = _dereq_('../annotations/attributes');
@@ -34540,94 +38357,68 @@ var axisPlaceableObjs = _dereq_('../../constants/axis_placeable_objects');
 module.exports = templatedArray('shape', {
     visible: {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'calc+arraydraw',
-        
     },
 
     type: {
         valType: 'enumerated',
         values: ['circle', 'rect', 'path', 'line'],
-        
         editType: 'calc+arraydraw',
-        
     },
 
     layer: {
         valType: 'enumerated',
         values: ['below', 'above'],
         dflt: 'above',
-        
         editType: 'arraydraw',
-        
     },
 
     xref: extendFlat({}, annAttrs.xref, {
-        
     }),
     xsizemode: {
         valType: 'enumerated',
         values: ['scaled', 'pixel'],
         dflt: 'scaled',
-        
         editType: 'calc+arraydraw',
-        
     },
     xanchor: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     x0: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     x1: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
 
     yref: extendFlat({}, annAttrs.yref, {
-        
     }),
     ysizemode: {
         valType: 'enumerated',
         values: ['scaled', 'pixel'],
         dflt: 'scaled',
-        
         editType: 'calc+arraydraw',
-        
     },
     yanchor: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     y0: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
     y1: {
         valType: 'any',
-        
         editType: 'calc+arraydraw',
-        
     },
 
     path: {
         valType: 'string',
-        
         editType: 'calc+arraydraw',
-        
     },
 
     opacity: {
@@ -34635,52 +38426,35 @@ module.exports = templatedArray('shape', {
         min: 0,
         max: 1,
         dflt: 1,
-        
         editType: 'arraydraw',
-        
     },
     line: {
         color: extendFlat({}, scatterLineAttrs.color, {editType: 'arraydraw'}),
         width: extendFlat({}, scatterLineAttrs.width, {editType: 'calc+arraydraw'}),
         dash: extendFlat({}, dash, {editType: 'arraydraw'}),
-        
         editType: 'calc+arraydraw'
     },
     fillcolor: {
         valType: 'color',
         dflt: 'rgba(0,0,0,0)',
-        
         editType: 'arraydraw',
-        
     },
     fillrule: {
         valType: 'enumerated',
         values: ['evenodd', 'nonzero'],
         dflt: 'evenodd',
-        
         editType: 'arraydraw',
-        
     },
     editable: {
         valType: 'boolean',
-        
         dflt: false,
         editType: 'calc+arraydraw',
-        
     },
 
     editType: 'arraydraw'
 });
 
-},{"../../constants/axis_placeable_objects":185,"../../lib/extend":204,"../../plot_api/plot_template":244,"../../traces/scatter/attributes":398,"../annotations/attributes":67,"../drawing/attributes":103}],160:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/axis_placeable_objects":212,"../../lib/extend":232,"../../plot_api/plot_template":273,"../../traces/scatter/attributes":421,"../annotations/attributes":92,"../drawing/attributes":130}],187:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -34792,16 +38566,7 @@ function shapeBounds(ax, v0, v1, path, paramsToUse) {
     if(max >= min) return [min, max];
 }
 
-},{"../../lib":210,"../../plots/cartesian/axes":255,"./constants":161,"./helpers":170}],161:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plots/cartesian/axes":284,"./constants":188,"./helpers":197}],188:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -34856,16 +38621,7 @@ module.exports = {
     }
 };
 
-},{}],162:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],189:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -34940,7 +38696,7 @@ function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
             var dflt0 = 0.25;
             var dflt1 = 0.75;
 
-            // hack until V2.0 when log has regular range behavior - make it look like other
+            // hack until V3.0 when log has regular range behavior - make it look like other
             // ranges to send to coerce, then put it back after
             // this is all to give reasonable default position behavior on log axes, which is
             // a pretty unimportant edge case so we could just ignore this.
@@ -34987,16 +38743,7 @@ function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
     }
 }
 
-},{"../../lib":210,"../../plots/array_container_defaults":250,"../../plots/cartesian/axes":255,"./attributes":159,"./helpers":170}],163:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plots/array_container_defaults":279,"../../plots/cartesian/axes":284,"./attributes":186,"./helpers":197}],190:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -35761,15 +39508,7 @@ function eraseActiveShape(gd) {
     }
 }
 
-},{"../../lib":210,"../../lib/setcursor":229,"../../plot_api/plot_template":244,"../../plots/cartesian/axes":255,"../../plots/cartesian/handle_outline":265,"../../registry":297,"../color":82,"../dragelement":101,"../drawing":104,"./constants":161,"./draw_newshape/display_outlines":167,"./draw_newshape/helpers":168,"./helpers":170}],164:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../lib/setcursor":258,"../../plot_api/plot_template":273,"../../plots/cartesian/axes":284,"../../plots/cartesian/handle_outline":294,"../../registry":320,"../color":109,"../dragelement":128,"../drawing":131,"./constants":188,"./draw_newshape/display_outlines":194,"./draw_newshape/helpers":195,"./helpers":197}],191:[function(_dereq_,module,exports){
 'use strict';
 
 var dash = _dereq_('../../drawing/attributes').dash;
@@ -35781,63 +39520,48 @@ module.exports = {
             color: {
                 valType: 'color',
                 editType: 'none',
-                
-                
             },
             width: {
                 valType: 'number',
                 min: 0,
                 dflt: 4,
-                
                 editType: 'none',
-                
             },
             dash: extendFlat({}, dash, {
                 dflt: 'solid',
                 editType: 'none'
             }),
-            
             editType: 'none'
         },
         fillcolor: {
             valType: 'color',
             dflt: 'rgba(0,0,0,0)',
-            
             editType: 'none',
-            
         },
         fillrule: {
             valType: 'enumerated',
             values: ['evenodd', 'nonzero'],
             dflt: 'evenodd',
-            
             editType: 'none',
-            
         },
         opacity: {
             valType: 'number',
             min: 0,
             max: 1,
             dflt: 1,
-            
             editType: 'none',
-            
         },
         layer: {
             valType: 'enumerated',
             values: ['below', 'above'],
             dflt: 'above',
-            
             editType: 'none',
-            
         },
         drawdirection: {
             valType: 'enumerated',
-            
             values: ['ortho', 'horizontal', 'vertical', 'diagonal'],
             dflt: 'diagonal',
             editType: 'none',
-            
         },
 
         editType: 'none'
@@ -35847,32 +39571,20 @@ module.exports = {
         fillcolor: {
             valType: 'color',
             dflt: 'rgb(255,0,255)',
-            
             editType: 'none',
-            
         },
         opacity: {
             valType: 'number',
             min: 0,
             max: 1,
             dflt: 0.5,
-            
             editType: 'none',
-            
         },
         editType: 'none'
     }
 };
 
-},{"../../../lib/extend":204,"../../drawing/attributes":103}],165:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../../lib/extend":232,"../../drawing/attributes":130}],192:[function(_dereq_,module,exports){
 'use strict';
 
 var CIRCLE_SIDES = 32;  // should be divisible by 4
@@ -35888,16 +39600,7 @@ module.exports = {
     SQRT2: Math.sqrt(2)
 };
 
-},{}],166:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],193:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../color');
@@ -35920,16 +39623,7 @@ module.exports = function supplyDrawNewShapeDefaults(layoutIn, layoutOut, coerce
     coerce('activeshape.opacity');
 };
 
-},{"../../color":82}],167:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../color":109}],194:[function(_dereq_,module,exports){
 'use strict';
 
 var dragElement = _dereq_('../../dragelement');
@@ -36215,16 +39909,7 @@ function recordPositions(polygonsOut, polygonsIn) {
     return polygonsOut;
 }
 
-},{"../../../plots/cartesian/handle_outline":265,"../../../registry":297,"../../dragelement":101,"../../dragelement/helpers":100,"./constants":165,"./helpers":168,"./newshapes":169}],168:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../../plots/cartesian/handle_outline":294,"../../../registry":320,"../../dragelement":128,"../../dragelement/helpers":127,"./constants":192,"./helpers":195,"./newshapes":196}],195:[function(_dereq_,module,exports){
 'use strict';
 
 var parseSvgPath = _dereq_('parse-svg-path');
@@ -36553,16 +40238,7 @@ exports.ellipseOver = function(pos) {
     };
 };
 
-},{"../../../plots/cartesian/helpers":266,"./constants":165,"parse-svg-path":55}],169:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../../plots/cartesian/helpers":295,"./constants":192,"parse-svg-path":63}],196:[function(_dereq_,module,exports){
 'use strict';
 
 var dragHelpers = _dereq_('../../dragelement/helpers');
@@ -36812,16 +40488,7 @@ function fixDatesForPaths(polygons, xaxis, yaxis) {
     return polygons;
 }
 
-},{"../../../plots/cartesian/handle_outline":265,"../../../plots/cartesian/helpers":266,"../../dragelement/helpers":100,"./constants":165,"./helpers":168}],170:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../../plots/cartesian/handle_outline":294,"../../../plots/cartesian/helpers":295,"../../dragelement/helpers":127,"./constants":192,"./helpers":195}],197:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -36833,7 +40500,7 @@ var Lib = _dereq_('../../lib');
 // so these have to be specified in terms of the category serial numbers,
 // but can take fractional values. Other axis types we specify position based on
 // the actual data values.
-// TODO: in V2.0 (when log axis ranges are in data units) range and shape position
+// TODO: in V3.0 (when log axis ranges are in data units) range and shape position
 // will be identical, so rangeToShapePosition and shapePositionToRange can be
 // removed entirely.
 
@@ -36970,16 +40637,7 @@ exports.makeOptionsAndPlotinfo = function(gd, index) {
     };
 };
 
-},{"../../lib":210,"./constants":161}],171:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"./constants":188}],198:[function(_dereq_,module,exports){
 'use strict';
 
 var drawModule = _dereq_('./draw');
@@ -36998,15 +40656,7 @@ module.exports = {
     drawOne: drawModule.drawOne
 };
 
-},{"../../plots/cartesian/include_components":267,"./attributes":159,"./calc_autorange":160,"./defaults":162,"./draw":163,"./draw_newshape/defaults":166}],172:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian/include_components":296,"./attributes":186,"./calc_autorange":187,"./defaults":189,"./draw":190,"./draw_newshape/defaults":193}],199:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -37020,60 +40670,44 @@ var constants = _dereq_('./constants');
 var stepsAttrs = templatedArray('step', {
     visible: {
         valType: 'boolean',
-        
         dflt: true,
-        
     },
     method: {
         valType: 'enumerated',
         values: ['restyle', 'relayout', 'animate', 'update', 'skip'],
         dflt: 'restyle',
-        
-        
     },
     args: {
         valType: 'info_array',
-        
         freeLength: true,
         items: [
             { valType: 'any' },
             { valType: 'any' },
             { valType: 'any' }
         ],
-        
     },
     label: {
         valType: 'string',
-        
-        
     },
     value: {
         valType: 'string',
-        
-        
     },
     execute: {
         valType: 'boolean',
-        
         dflt: true,
-        
     }
 });
 
 module.exports = overrideAll(templatedArray('slider', {
     visible: {
         valType: 'boolean',
-        
         dflt: true,
-        
     },
 
     active: {
         valType: 'number',
-        
         min: 0,
         dflt: 0,
-        
     },
 
     steps: stepsAttrs,
@@ -37081,176 +40715,122 @@ module.exports = overrideAll(templatedArray('slider', {
     lenmode: {
         valType: 'enumerated',
         values: ['fraction', 'pixels'],
-        
         dflt: 'fraction',
-        
     },
     len: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
-        
     },
     x: {
         valType: 'number',
         min: -2,
         max: 3,
         dflt: 0,
-        
-        
     },
     pad: extendDeepAll(padAttrs({editType: 'arraydraw'}), {
-        
     }, {t: {dflt: 20}}),
     xanchor: {
         valType: 'enumerated',
         values: ['auto', 'left', 'center', 'right'],
         dflt: 'left',
-        
-        
     },
     y: {
         valType: 'number',
         min: -2,
         max: 3,
         dflt: 0,
-        
-        
     },
     yanchor: {
         valType: 'enumerated',
         values: ['auto', 'top', 'middle', 'bottom'],
         dflt: 'top',
-        
-        
     },
 
     transition: {
         duration: {
             valType: 'number',
-            
             min: 0,
             dflt: 150,
-            
         },
         easing: {
             valType: 'enumerated',
             values: animationAttrs.transition.easing.values,
-            
             dflt: 'cubic-in-out',
-            
         }
     },
 
     currentvalue: {
         visible: {
             valType: 'boolean',
-            
             dflt: true,
-            
         },
 
         xanchor: {
             valType: 'enumerated',
             values: ['left', 'center', 'right'],
             dflt: 'left',
-            
-            
         },
 
         offset: {
             valType: 'number',
             dflt: 10,
-            
-            
         },
 
         prefix: {
             valType: 'string',
-            
-            
         },
 
         suffix: {
             valType: 'string',
-            
-            
         },
 
         font: fontAttrs({
-            
         })
     },
 
     font: fontAttrs({
-        
     }),
 
     activebgcolor: {
         valType: 'color',
-        
         dflt: constants.gripBgActiveColor,
-        
     },
     bgcolor: {
         valType: 'color',
-        
         dflt: constants.railBgColor,
-        
     },
     bordercolor: {
         valType: 'color',
         dflt: constants.railBorderColor,
-        
-        
     },
     borderwidth: {
         valType: 'number',
         min: 0,
         dflt: constants.railBorderWidth,
-        
-        
     },
     ticklen: {
         valType: 'number',
         min: 0,
         dflt: constants.tickLength,
-        
-        
     },
     tickcolor: {
         valType: 'color',
         dflt: constants.tickColor,
-        
-        
     },
     tickwidth: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
-        
     },
     minorticklen: {
         valType: 'number',
         min: 0,
         dflt: constants.minorTickLength,
-        
-        
     }
 }), 'arraydraw', 'from-root');
 
-},{"../../lib/extend":204,"../../plot_api/edit_types":237,"../../plot_api/plot_template":244,"../../plots/animation_attributes":249,"../../plots/font_attributes":283,"../../plots/pad_attributes":288,"./constants":173}],173:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib/extend":232,"../../plot_api/edit_types":266,"../../plot_api/plot_template":273,"../../plots/animation_attributes":278,"../../plots/font_attributes":312,"../../plots/pad_attributes":317,"./constants":200}],200:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -37335,15 +40915,7 @@ module.exports = {
     currentValueInset: 0,
 };
 
-},{}],174:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],201:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -37450,18 +41022,10 @@ function stepDefaults(valueIn, valueOut) {
     }
 }
 
-},{"../../lib":210,"../../plots/array_container_defaults":250,"./attributes":172,"./constants":173}],175:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/array_container_defaults":279,"./attributes":199,"./constants":200}],202:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Plots = _dereq_('../../plots/plots');
 var Color = _dereq_('../color');
@@ -38024,7 +41588,7 @@ function setGripPosition(sliderGroup, sliderOpts, doTransition) {
             .ease(sliderOpts.transition.easing);
     }
 
-    // Drawing.setTranslate doesn't work here becasue of the transition duck-typing.
+    // Drawing.setTranslate doesn't work here because of the transition duck-typing.
     // It's also not necessary because there are no other transitions to preserve.
     el.attr('transform', strTranslate(x - constants.gripWidth * 0.5, sliderOpts._dims.currentValueTotalHeight));
 }
@@ -38081,15 +41645,7 @@ function drawRail(sliderGroup, sliderOpts) {
     );
 }
 
-},{"../../constants/alignment":184,"../../lib":210,"../../lib/svg_text_utils":231,"../../plot_api/plot_template":244,"../../plots/plots":289,"../color":82,"../drawing":104,"./constants":173,"d3":16}],176:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/alignment":211,"../../lib":238,"../../lib/svg_text_utils":260,"../../plot_api/plot_template":273,"../../plots/plots":318,"../color":109,"../drawing":131,"./constants":200,"@plotly/d3":19}],203:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -38104,19 +41660,10 @@ module.exports = {
     draw: _dereq_('./draw')
 };
 
-},{"./attributes":172,"./constants":173,"./defaults":174,"./draw":175}],177:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./attributes":199,"./constants":200,"./defaults":201,"./draw":202}],204:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Plots = _dereq_('../../plots/plots');
@@ -38372,15 +41919,7 @@ module.exports = {
     draw: draw
 };
 
-},{"../../constants/alignment":184,"../../constants/interactions":188,"../../lib":210,"../../lib/svg_text_utils":231,"../../plots/plots":289,"../../registry":297,"../color":82,"../drawing":104,"d3":16,"fast-isnumeric":18}],178:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/alignment":211,"../../constants/interactions":216,"../../lib":238,"../../lib/svg_text_utils":260,"../../plots/plots":318,"../../registry":320,"../color":109,"../drawing":131,"@plotly/d3":19,"fast-isnumeric":23}],205:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -38393,49 +41932,37 @@ var templatedArray = _dereq_('../../plot_api/plot_template').templatedArray;
 var buttonsAttrs = templatedArray('button', {
     visible: {
         valType: 'boolean',
-        
-        
     },
     method: {
         valType: 'enumerated',
         values: ['restyle', 'relayout', 'animate', 'update', 'skip'],
         dflt: 'restyle',
-        
-        
     },
     args: {
         valType: 'info_array',
-        
         freeLength: true,
         items: [
             {valType: 'any'},
             {valType: 'any'},
             {valType: 'any'}
         ],
-        
     },
     args2: {
         valType: 'info_array',
-        
         freeLength: true,
         items: [
             {valType: 'any'},
             {valType: 'any'},
             {valType: 'any'}
         ],
-        
     },
     label: {
         valType: 'string',
-        
         dflt: '',
-        
     },
     execute: {
         valType: 'boolean',
-        
         dflt: true,
-        
     }
 });
 
@@ -38444,39 +41971,29 @@ module.exports = overrideAll(templatedArray('updatemenu', {
 
     visible: {
         valType: 'boolean',
-        
-        
     },
 
     type: {
         valType: 'enumerated',
         values: ['dropdown', 'buttons'],
         dflt: 'dropdown',
-        
-        
     },
 
     direction: {
         valType: 'enumerated',
         values: ['left', 'right', 'up', 'down'],
         dflt: 'down',
-        
-        
     },
 
     active: {
         valType: 'integer',
-        
         min: -1,
         dflt: 0,
-        
     },
 
     showactive: {
         valType: 'boolean',
-        
         dflt: true,
-        
     },
 
     buttons: buttonsAttrs,
@@ -38486,71 +42003,46 @@ module.exports = overrideAll(templatedArray('updatemenu', {
         min: -2,
         max: 3,
         dflt: -0.05,
-        
-        
     },
     xanchor: {
         valType: 'enumerated',
         values: ['auto', 'left', 'center', 'right'],
         dflt: 'right',
-        
-        
     },
     y: {
         valType: 'number',
         min: -2,
         max: 3,
         dflt: 1,
-        
-        
     },
     yanchor: {
         valType: 'enumerated',
         values: ['auto', 'top', 'middle', 'bottom'],
         dflt: 'top',
-        
-        
     },
 
     pad: extendFlat(padAttrs({editType: 'arraydraw'}), {
-        
     }),
 
     font: fontAttrs({
-        
     }),
 
     bgcolor: {
         valType: 'color',
-        
-        
     },
     bordercolor: {
         valType: 'color',
         dflt: colorAttrs.borderLine,
-        
-        
     },
     borderwidth: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'arraydraw',
-        
     }
 }), 'arraydraw', 'from-root');
 
-},{"../../lib/extend":204,"../../plot_api/edit_types":237,"../../plot_api/plot_template":244,"../../plots/font_attributes":283,"../../plots/pad_attributes":288,"../color/attributes":81}],179:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib/extend":232,"../../plot_api/edit_types":266,"../../plot_api/plot_template":273,"../../plots/font_attributes":312,"../../plots/pad_attributes":317,"../color/attributes":108}],206:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -38622,15 +42114,7 @@ module.exports = {
     }
 };
 
-},{}],180:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],207:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -38705,19 +42189,10 @@ function buttonDefaults(buttonIn, buttonOut) {
     }
 }
 
-},{"../../lib":210,"../../plots/array_container_defaults":250,"./attributes":178,"./constants":179}],181:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plots/array_container_defaults":279,"./attributes":205,"./constants":206}],208:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Plots = _dereq_('../../plots/plots');
 var Color = _dereq_('../color');
@@ -39356,22 +42831,14 @@ function removeAllButtons(gButton, newMenuIndexAttr) {
         .selectAll('g.' + constants.dropdownButtonClassName).remove();
 }
 
-},{"../../constants/alignment":184,"../../lib":210,"../../lib/svg_text_utils":231,"../../plot_api/plot_template":244,"../../plots/plots":289,"../color":82,"../drawing":104,"./constants":179,"./scrollbox":183,"d3":16}],182:[function(_dereq_,module,exports){
-arguments[4][176][0].apply(exports,arguments)
-},{"./attributes":178,"./constants":179,"./defaults":180,"./draw":181,"dup":176}],183:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/alignment":211,"../../lib":238,"../../lib/svg_text_utils":260,"../../plot_api/plot_template":273,"../../plots/plots":318,"../color":109,"../drawing":131,"./constants":206,"./scrollbox":210,"@plotly/d3":19}],209:[function(_dereq_,module,exports){
+arguments[4][203][0].apply(exports,arguments)
+},{"./attributes":205,"./constants":206,"./defaults":207,"./draw":208,"dup":203}],210:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = ScrollBox;
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Color = _dereq_('../color');
 var Drawing = _dereq_('../drawing');
@@ -39823,15 +43290,7 @@ ScrollBox.prototype.setTranslate = function setTranslate(translateX, translateY)
     }
 };
 
-},{"../../lib":210,"../color":82,"../drawing":104,"d3":16}],184:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../color":109,"../drawing":131,"@plotly/d3":19}],211:[function(_dereq_,module,exports){
 'use strict';
 
 // fraction of some size to get to a named position
@@ -39888,16 +43347,7 @@ module.exports = {
     }
 };
 
-},{}],185:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],212:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -39920,15 +43370,7 @@ module.exports = {
     }
 };
 
-},{}],186:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],213:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -39942,15 +43384,7 @@ module.exports = {
     }
 };
 
-},{}],187:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],214:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -39958,15 +43392,37 @@ module.exports = {
     DATE_FORMAT_LINK: 'https://github.com/d3/d3-time-format#locale_format'
 };
 
-},{}],188:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{}],215:[function(_dereq_,module,exports){
+'use strict';
 
+module.exports = {
+    COMPARISON_OPS: ['=', '!=', '<', '>=', '>', '<='],
+    COMPARISON_OPS2: ['=', '<', '>=', '>', '<='],
+    INTERVAL_OPS: ['[]', '()', '[)', '(]', '][', ')(', '](', ')['],
+    SET_OPS: ['{}', '}{'],
+    CONSTRAINT_REDUCTION: {
+        // for contour constraints, open/closed endpoints are equivalent
+        '=': '=',
+
+        '<': '<',
+        '<=': '<',
+
+        '>': '>',
+        '>=': '>',
+
+        '[]': '[]',
+        '()': '[]',
+        '[)': '[]',
+        '(]': '[]',
+
+        '][': '][',
+        ')(': '][',
+        '](': '][',
+        ')[': ']['
+    }
+};
+
+},{}],216:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -39981,15 +43437,7 @@ module.exports = {
     DESELECTDIM: 0.2
 };
 
-},{}],189:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],217:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -40054,16 +43502,7 @@ module.exports = {
     MINUS_SIGN: '\u2212'
 };
 
-},{}],190:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],218:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -40078,21 +43517,13 @@ exports.svgAttrs = {
     'xmlns:xlink': exports.xlink
 };
 
-},{}],191:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],219:[function(_dereq_,module,exports){
 'use strict';
 
 exports.version = _dereq_('./version').version;
 
 // inject promise polyfill
-_dereq_('es6-promise').polyfill();
+_dereq_('native-promise-only');
 
 // inject plot css
 _dereq_('../build/plotcss');
@@ -40155,24 +43586,24 @@ if(window.PlotlyLocales && Array.isArray(window.PlotlyLocales)) {
 exports.Icons = _dereq_('./fonts/ploticon');
 
 // unofficial 'beta' plot methods, use at your own risk
-exports.Plots = _dereq_('./plots/plots');
-exports.Fx = _dereq_('./components/fx');
+var Fx = _dereq_('./components/fx');
+var Plots = _dereq_('./plots/plots');
+
+exports.Plots = {
+    resize: Plots.resize,
+    graphJson: Plots.graphJson,
+    sendDataToCloud: Plots.sendDataToCloud
+};
+exports.Fx = {
+    hover: Fx.hover,
+    unhover: Fx.unhover,
+    loneHover: Fx.loneHover,
+    loneUnhover: Fx.loneUnhover
+};
 exports.Snapshot = _dereq_('./snapshot');
 exports.PlotSchema = _dereq_('./plot_api/plot_schema');
-exports.Queue = _dereq_('./lib/queue');
 
-// export d3 used in the bundle
-exports.d3 = _dereq_('d3');
-
-},{"../build/plotcss":1,"./components/annotations":75,"./components/annotations3d":80,"./components/colorbar":88,"./components/colorscale":94,"./components/errorbars":110,"./components/fx":122,"./components/grid":126,"./components/images":131,"./components/legend":139,"./components/rangeselector":150,"./components/rangeslider":157,"./components/shapes":171,"./components/sliders":176,"./components/updatemenus":182,"./fonts/mathjax_config":192,"./fonts/ploticon":193,"./lib/queue":224,"./locale-en":235,"./locale-en-us":234,"./plot_api":239,"./plot_api/plot_schema":243,"./plots/plots":289,"./registry":297,"./snapshot":302,"./traces/scatter":410,"./version":438,"d3":16,"es6-promise":17}],192:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../build/plotcss":1,"./components/annotations":100,"./components/annotations3d":105,"./components/colorbar":115,"./components/colorscale":121,"./components/errorbars":137,"./components/fx":149,"./components/grid":153,"./components/images":158,"./components/legend":166,"./components/rangeselector":177,"./components/rangeslider":184,"./components/shapes":198,"./components/sliders":203,"./components/updatemenus":209,"./fonts/mathjax_config":220,"./fonts/ploticon":221,"./locale-en":264,"./locale-en-us":263,"./plot_api":268,"./plot_api/plot_schema":272,"./plots/plots":318,"./registry":320,"./snapshot":325,"./traces/scatter":433,"./version":466,"native-promise-only":60}],220:[function(_dereq_,module,exports){
 'use strict';
 
 /* global MathJax:false */
@@ -40195,15 +43626,7 @@ module.exports = function() {
     }
 };
 
-},{}],193:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],221:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -40375,16 +43798,7 @@ module.exports = {
     }
 };
 
-},{}],194:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],222:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -40439,15 +43853,7 @@ exports.isBottomAnchor = function isBottomAnchor(opts) {
     );
 };
 
-},{}],195:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],223:[function(_dereq_,module,exports){
 'use strict';
 
 var modModule = _dereq_('./mod');
@@ -40680,28 +44086,13 @@ module.exports = {
     pathAnnulus: pathAnnulus
 };
 
-},{"./mod":217}],196:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./mod":245}],224:[function(_dereq_,module,exports){
 'use strict';
 
 var isArray = Array.isArray;
 
-// IE9 fallbacks
-
-var ab = (typeof ArrayBuffer === 'undefined' || !ArrayBuffer.isView) ?
-    {isView: function() { return false; }} :
-    ArrayBuffer;
-
-var dv = (typeof DataView === 'undefined') ?
-    function() {} :
-    DataView;
+var ab = ArrayBuffer;
+var dv = DataView;
 
 function isTypedArray(a) {
     return ab.isView(a) && !(a instanceof dv);
@@ -40837,16 +44228,7 @@ function _rowLength(z, fn, len0) {
     return 0;
 }
 
-},{}],197:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],225:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -40870,15 +44252,7 @@ module.exports = function cleanNumber(v) {
     return BADNUM;
 };
 
-},{"../constants/numerical":189,"fast-isnumeric":18}],198:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../constants/numerical":217,"fast-isnumeric":23}],226:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -40898,15 +44272,7 @@ module.exports = function clearGlCanvases(gd) {
     }
 };
 
-},{}],199:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],227:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -40921,15 +44287,7 @@ module.exports = function clearResponsive(gd) {
     }
 };
 
-},{}],200:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],228:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -40947,9 +44305,6 @@ var isArrayOrTypedArray = _dereq_('./array').isArrayOrTypedArray;
 exports.valObjectMeta = {
     data_array: {
         // You can use *dflt=[] to force said array to exist though.
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             // TODO maybe `v: {type: 'float32', vals: [/* ... */]}` also
             if(isArrayOrTypedArray(v)) propOut.set(v);
@@ -40957,9 +44312,6 @@ exports.valObjectMeta = {
         }
     },
     enumerated: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             if(opts.coerceNumber) v = +v;
             if(opts.values.indexOf(v) === -1) propOut.set(dflt);
@@ -40981,18 +44333,12 @@ exports.valObjectMeta = {
         }
     },
     'boolean': {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             if(v === true || v === false) propOut.set(v);
             else propOut.set(dflt);
         }
     },
     number: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             if(!isNumeric(v) ||
                     (opts.min !== undefined && v < opts.min) ||
@@ -41002,9 +44348,6 @@ exports.valObjectMeta = {
         }
     },
     integer: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             if(v % 1 || !isNumeric(v) ||
                     (opts.min !== undefined && v < opts.min) ||
@@ -41014,10 +44357,7 @@ exports.valObjectMeta = {
         }
     },
     string: {
-        
-        
         // TODO 'values shouldn't be in there (edge case: 'dash' in Scatter)
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             if(typeof v !== 'string') {
                 var okToCoerce = (typeof v === 'number');
@@ -41029,18 +44369,12 @@ exports.valObjectMeta = {
         }
     },
     color: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             if(tinycolor(v).isValid()) propOut.set(v);
             else propOut.set(dflt);
         }
     },
     colorlist: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             function isColor(color) {
                 return tinycolor(color).isValid();
@@ -41051,17 +44385,11 @@ exports.valObjectMeta = {
         }
     },
     colorscale: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             propOut.set(colorscales.get(v, dflt));
         }
     },
     angle: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             if(v === 'auto') propOut.set('auto');
             else if(!isNumeric(v)) propOut.set(dflt);
@@ -41069,9 +44397,6 @@ exports.valObjectMeta = {
         }
     },
     subplotid: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             var regex = opts.regex || counterRegex(dflt);
             if(typeof v === 'string' && regex.test(v)) {
@@ -41091,9 +44416,6 @@ exports.valObjectMeta = {
         }
     },
     flaglist: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             if(typeof v !== 'string') {
                 propOut.set(dflt);
@@ -41116,23 +44438,17 @@ exports.valObjectMeta = {
         }
     },
     any: {
-        
-        
-        
         coerceFunction: function(v, propOut, dflt) {
             if(v === undefined) propOut.set(dflt);
             else propOut.set(v);
         }
     },
     info_array: {
-        
-        
         // set `dimensions=2` for a 2D array or '1-2' for either
         // `items` may be a single object instead of an array, in which case
         // `freeLength` must be true.
         // if `dimensions='1-2'` and items is a 1D array, then the value can
         // either be a matching 1D array or an array of such matching 1D arrays
-        
         coerceFunction: function(v, propOut, dflt, opts) {
             // simplified coerce function just for array items
             function coercePart(v, opts, dflt) {
@@ -41385,16 +44701,7 @@ function validate(value, opts) {
 }
 exports.validate = validate;
 
-},{"../components/colorscale/scales":97,"../constants/interactions":188,"../plots/attributes":251,"./array":196,"./mod":217,"./nested_property":218,"./regex":225,"fast-isnumeric":18,"tinycolor2":65}],201:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../components/colorscale/scales":124,"../constants/interactions":216,"../plots/attributes":280,"./array":224,"./mod":245,"./nested_property":246,"./regex":254,"fast-isnumeric":23,"tinycolor2":74}],229:[function(_dereq_,module,exports){
 'use strict';
 
 var timeFormat = _dereq_('d3-time-format').timeFormat;
@@ -41986,18 +45293,10 @@ exports.findExactDates = function(data, calendar) {
     };
 };
 
-},{"../constants/numerical":189,"../registry":297,"./loggers":214,"./mod":217,"d3-time-format":14,"fast-isnumeric":18}],202:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../constants/numerical":217,"../registry":320,"./loggers":242,"./mod":245,"d3-time-format":21,"fast-isnumeric":23}],230:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var loggers = _dereq_('./loggers');
 var matrix = _dereq_('./matrix');
 var mat4X4 = _dereq_('gl-mat4');
@@ -42164,16 +45463,7 @@ module.exports = {
     equalDomRects: equalDomRects
 };
 
-},{"./loggers":214,"./matrix":216,"d3":16,"gl-mat4":34}],203:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./loggers":242,"./matrix":244,"@plotly/d3":19,"gl-mat4":39}],231:[function(_dereq_,module,exports){
 'use strict';
 
 /* global jQuery:false */
@@ -42337,16 +45627,7 @@ var Events = {
 
 module.exports = Events;
 
-},{"events":13}],204:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"events":20}],232:[function(_dereq_,module,exports){
 'use strict';
 
 var isPlainObject = _dereq_('./is_plain_object.js');
@@ -42451,16 +45732,7 @@ function _extend(inputs, isDeep, keepAllKeys, noArrayCopies) {
     return target;
 }
 
-},{"./is_plain_object.js":211}],205:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./is_plain_object.js":239}],233:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -42502,15 +45774,7 @@ module.exports = function filterUnique(array) {
     return out;
 };
 
-},{}],206:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],234:[function(_dereq_,module,exports){
 'use strict';
 
 /** Filter out object items with visible !== true
@@ -42550,15 +45814,7 @@ function isCalcData(cont) {
     );
 }
 
-},{}],207:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],235:[function(_dereq_,module,exports){
 'use strict';
 
 var mod = _dereq_('./mod').mod;
@@ -42794,15 +46050,7 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
     return pt;
 };
 
-},{"./mod":217}],208:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./mod":245}],236:[function(_dereq_,module,exports){
 'use strict';
 
 // Simple helper functions
@@ -42810,16 +46058,7 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
 
 module.exports = function identity(d) { return d; };
 
-},{}],209:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],237:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function incrementNumeric(x, delta) {
@@ -42852,18 +46091,10 @@ module.exports = function incrementNumeric(x, delta) {
     return newX;
 };
 
-},{}],210:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],238:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var utcFormat = _dereq_('d3-time-format').utcFormat;
 var isNumeric = _dereq_('fast-isnumeric');
 
@@ -43009,6 +46240,7 @@ lib.getElementAndAncestors = domModule.getElementAndAncestors;
 lib.equalDomRects = domModule.equalDomRects;
 
 lib.clearResponsive = _dereq_('./clear_responsive');
+lib.preserveDrawingBuffer = _dereq_('./preserve_drawing_buffer');
 
 lib.makeTraceGroups = _dereq_('./make_trace_groups');
 
@@ -43566,11 +46798,6 @@ lib.isIE = function() {
     return typeof window.navigator.msSaveBlob !== 'undefined';
 };
 
-var IS_IE9_OR_BELOW_REGEX = /MSIE [1-9]\./;
-lib.isIE9orBelow = function() {
-    return lib.isIE() && IS_IE9_OR_BELOW_REGEX.test(window.navigator.userAgent);
-};
-
 var IS_SAFARI_REGEX = /Version\/[\d\.]+.*Safari/;
 lib.isSafari = function() {
     return IS_SAFARI_REGEX.test(window.navigator.userAgent);
@@ -43581,12 +46808,8 @@ lib.isIOS = function() {
     return IS_IOS_REGEX.test(window.navigator.userAgent);
 };
 
-/**
- * Duck typing to recognize a d3 selection, mostly for IE9's benefit
- * because it doesn't handle instanceof like modern browsers
- */
 lib.isD3Selection = function(obj) {
-    return obj && (typeof obj.classed === 'function');
+    return obj instanceof d3.selection;
 };
 
 /**
@@ -43719,7 +46942,7 @@ lib.objectFromPath = function(path, value) {
  *   lib.expandObjectPaths({'foo[1].bar': 10, 'foo[0].bar': 20});
  *     => { foo: [{bar: 10}, {bar: 20}] }
  *
- * It does NOT, however, merge mulitple mutliply-nested arrays::
+ * It does NOT, however, merge multiple multiply-nested arrays::
  *
  *   lib.expandObjectPaths({'marker[1].range[1]': 5, 'marker[1].range[0]': 4})
  *     => { marker: [null, {range: 4}] }
@@ -44134,16 +47357,7 @@ lib.join2 = function(arr, mainSeparator, lastSeparator) {
     return arr.join(mainSeparator);
 };
 
-},{"../constants/numerical":189,"./anchor_utils":194,"./angles":195,"./array":196,"./clean_number":197,"./clear_responsive":199,"./coerce":200,"./dates":201,"./dom":202,"./extend":204,"./filter_unique":205,"./filter_visible":206,"./geometry2d":207,"./identity":208,"./increment":209,"./is_plain_object":211,"./keyed_container":212,"./localize":213,"./loggers":214,"./make_trace_groups":215,"./matrix":216,"./mod":217,"./nested_property":218,"./noop":219,"./notifier":220,"./push_unique":223,"./regex":225,"./relative_attr":226,"./relink_private":227,"./search":228,"./stats":230,"./throttle":232,"./to_log_range":233,"d3":16,"d3-time-format":14,"fast-isnumeric":18}],211:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../constants/numerical":217,"./anchor_utils":222,"./angles":223,"./array":224,"./clean_number":225,"./clear_responsive":227,"./coerce":228,"./dates":229,"./dom":230,"./extend":232,"./filter_unique":233,"./filter_visible":234,"./geometry2d":235,"./identity":236,"./increment":237,"./is_plain_object":239,"./keyed_container":240,"./localize":241,"./loggers":242,"./make_trace_groups":243,"./matrix":244,"./mod":245,"./nested_property":246,"./noop":247,"./notifier":248,"./preserve_drawing_buffer":251,"./push_unique":252,"./regex":254,"./relative_attr":255,"./relink_private":256,"./search":257,"./stats":259,"./throttle":261,"./to_log_range":262,"@plotly/d3":19,"d3-time-format":21,"fast-isnumeric":23}],239:[function(_dereq_,module,exports){
 'use strict';
 
 // more info: http://stackoverflow.com/questions/18531624/isplainobject-thing
@@ -44158,19 +47372,11 @@ module.exports = function isPlainObject(obj) {
 
     return (
         Object.prototype.toString.call(obj) === '[object Object]' &&
-        Object.getPrototypeOf(obj) === Object.prototype
+        Object.getPrototypeOf(obj).hasOwnProperty('hasOwnProperty')
     );
 };
 
-},{}],212:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],240:[function(_dereq_,module,exports){
 'use strict';
 
 var nestedProperty = _dereq_('./nested_property');
@@ -44355,16 +47561,7 @@ module.exports = function keyedContainer(baseObj, path, keyName, valueName) {
     return obj;
 };
 
-},{"./nested_property":218}],213:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./nested_property":246}],241:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -44411,15 +47608,7 @@ module.exports = function localize(gd, s) {
     return s;
 };
 
-},{"../registry":297}],214:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../registry":320}],242:[function(_dereq_,module,exports){
 'use strict';
 
 /* eslint-disable no-console */
@@ -44444,7 +47633,7 @@ loggers.log = function() {
         for(i = 0; i < arguments.length; i++) {
             messages.push(arguments[i]);
         }
-        apply(console.trace || console.log, messages);
+        console.trace.apply(console, messages);
     }
 
     if(dfltConfig.notifyOnLogging > 1) {
@@ -44464,7 +47653,7 @@ loggers.warn = function() {
         for(i = 0; i < arguments.length; i++) {
             messages.push(arguments[i]);
         }
-        apply(console.trace || console.log, messages);
+        console.trace.apply(console, messages);
     }
 
     if(dfltConfig.notifyOnLogging > 0) {
@@ -44484,7 +47673,7 @@ loggers.error = function() {
         for(i = 0; i < arguments.length; i++) {
             messages.push(arguments[i]);
         }
-        apply(console.error, messages);
+        console.error.apply(console, messages);
     }
 
     if(dfltConfig.notifyOnLogging > 0) {
@@ -44496,43 +47685,10 @@ loggers.error = function() {
     }
 };
 
-/*
- * Robust apply, for IE9 where console.log doesn't support
- * apply like other functions do
- */
-function apply(f, args) {
-    if(f && f.apply) {
-        try {
-            // `this` should always be console, since here we're always
-            // applying a method of the console object.
-            f.apply(console, args);
-            return;
-        } catch(e) { /* in case apply failed, fall back on the code below */ }
-    }
-
-    // no apply - just try calling the function on each arg independently
-    for(var i = 0; i < args.length; i++) {
-        try {
-            f(args[i]);
-        } catch(e) {
-            // still fails - last resort simple console.log
-            console.log(args[i]);
-        }
-    }
-}
-
-},{"../plot_api/plot_config":242,"./notifier":220}],215:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../plot_api/plot_config":271,"./notifier":248}],243:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 /**
  * General helper to manage trace groups based on calcdata
@@ -44564,16 +47720,7 @@ module.exports = function makeTraceGroups(traceLayer, cdModule, cls) {
     return traces;
 };
 
-},{"d3":16}],216:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"@plotly/d3":19}],244:[function(_dereq_,module,exports){
 'use strict';
 
 var mat4X4 = _dereq_('gl-mat4');
@@ -44716,15 +47863,7 @@ exports.inverseTransformMatrix = function(m) {
     ];
 };
 
-},{"gl-mat4":34}],217:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"gl-mat4":39}],245:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -44751,16 +47890,7 @@ module.exports = {
     modHalf: modHalf
 };
 
-},{}],218:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],246:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -44997,15 +48127,7 @@ function badContainer(container, propStr, propParts) {
     };
 }
 
-},{"./array":196,"fast-isnumeric":18}],219:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./array":224,"fast-isnumeric":23}],247:[function(_dereq_,module,exports){
 'use strict';
 
 // Simple helper functions
@@ -45013,19 +48135,10 @@ function badContainer(container, propStr, propParts) {
 
 module.exports = function noop() {};
 
-},{}],220:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],248:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 
 var NOTEDATA = [];
@@ -45101,16 +48214,7 @@ module.exports = function(text, displayLength) {
         });
 };
 
-},{"d3":16,"fast-isnumeric":18}],221:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"@plotly/d3":19,"fast-isnumeric":23}],249:[function(_dereq_,module,exports){
 'use strict';
 
 var setCursor = _dereq_('./setcursor');
@@ -45149,16 +48253,7 @@ module.exports = function overrideCursor(el3, csr) {
     }
 };
 
-},{"./setcursor":229}],222:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./setcursor":258}],250:[function(_dereq_,module,exports){
 'use strict';
 
 var dot = _dereq_('./matrix').dot;
@@ -45401,15 +48496,69 @@ polygon.filter = function filter(pts, tolerance) {
     };
 };
 
-},{"../constants/numerical":189,"./matrix":216}],223:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../constants/numerical":217,"./matrix":244}],251:[function(_dereq_,module,exports){
+'use strict';
 
+var isNumeric = _dereq_('fast-isnumeric');
+var isMobileOrTablet = _dereq_('is-mobile');
+
+module.exports = function preserveDrawingBuffer(opts) {
+    var ua;
+
+    if(opts && opts.hasOwnProperty('userAgent')) {
+        ua = opts.userAgent;
+    } else {
+        ua = getUserAgent();
+    }
+
+    if(typeof ua !== 'string') return true;
+
+    var enable = isMobileOrTablet({
+        ua: { headers: {'user-agent': ua }},
+        tablet: true,
+        featureDetect: false
+    });
+
+    if(!enable) {
+        var allParts = ua.split(' ');
+        for(var i = 1; i < allParts.length; i++) {
+            var part = allParts[i];
+            if(part.indexOf('Safari') !== -1) {
+                // find Safari version
+                for(var k = i - 1; k > -1; k--) {
+                    var prevPart = allParts[k];
+                    if(prevPart.substr(0, 8) === 'Version/') {
+                        var v = prevPart.substr(8).split('.')[0];
+                        if(isNumeric(v)) v = +v;
+                        if(v >= 13) return true;
+                    }
+                }
+            }
+        }
+    }
+
+    return enable;
+};
+
+function getUserAgent() {
+    // similar to https://github.com/juliangruber/is-mobile/blob/91ca39ccdd4cfc5edfb5391e2515b923a730fbea/index.js#L14-L17
+    var ua;
+    if(typeof navigator !== 'undefined') {
+        ua = navigator.userAgent;
+    }
+
+    if(
+        ua &&
+        ua.headers &&
+        typeof ua.headers['user-agent'] === 'string'
+    ) {
+        ua = ua.headers['user-agent'];
+    }
+
+    return ua;
+}
+
+},{"fast-isnumeric":23,"is-mobile":57}],252:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -45439,15 +48588,7 @@ module.exports = function pushUnique(array, item) {
     return array;
 };
 
-},{}],224:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],253:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -45568,10 +48709,6 @@ queue.stopSequence = function(gd) {
 queue.undo = function undo(gd) {
     var queueObj, i;
 
-    if(gd.framework && gd.framework.isPolar) {
-        gd.framework.undo();
-        return;
-    }
     if(gd.undoQueue === undefined ||
             isNaN(gd.undoQueue.index) ||
             gd.undoQueue.index <= 0) {
@@ -45601,10 +48738,6 @@ queue.undo = function undo(gd) {
 queue.redo = function redo(gd) {
     var queueObj, i;
 
-    if(gd.framework && gd.framework.isPolar) {
-        gd.framework.redo();
-        return;
-    }
     if(gd.undoQueue === undefined ||
             isNaN(gd.undoQueue.index) ||
             gd.undoQueue.index >= gd.undoQueue.queue.length) {
@@ -45647,15 +48780,7 @@ queue.plotDo = function(gd, func, args) {
 
 module.exports = queue;
 
-},{"../lib":210,"../plot_api/plot_config":242}],225:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plot_api/plot_config":271}],254:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -45677,16 +48802,7 @@ exports.counter = function(head, tail, openEnded, matchBeginning) {
     return new RegExp(startWithPrefix + head + '([2-9]|[1-9][0-9]+)?' + fullTail);
 };
 
-},{}],226:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],255:[function(_dereq_,module,exports){
 'use strict';
 
 // ASCEND: chop off the last nesting level - either [<n>] or .<key> - to ascend
@@ -45730,16 +48846,7 @@ module.exports = function(baseAttr, relativeAttr) {
     return baseAttr + relativeAttr;
 };
 
-},{}],227:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],256:[function(_dereq_,module,exports){
 'use strict';
 
 var isArrayOrTypedArray = _dereq_('./array').isArrayOrTypedArray;
@@ -45787,16 +48894,7 @@ module.exports = function relinkPrivateKeys(toContainer, fromContainer) {
     }
 };
 
-},{"./array":196,"./is_plain_object":211}],228:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./array":224,"./is_plain_object":239}],257:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -45992,16 +49090,7 @@ exports.findIndexOfMin = function(arr, fn) {
     return ind;
 };
 
-},{"../constants/numerical":189,"./identity":208,"./loggers":214,"fast-isnumeric":18}],229:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../constants/numerical":217,"./identity":236,"./loggers":242,"fast-isnumeric":23}],258:[function(_dereq_,module,exports){
 'use strict';
 
 // works with our CSS cursor classes (see css/_cursor.scss)
@@ -46015,16 +49104,7 @@ module.exports = function setCursor(el3, csr) {
     if(csr) el3.classed('cursor-' + csr, true);
 };
 
-},{}],230:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],259:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -46125,21 +49205,12 @@ exports.interp = function(arr, n) {
     return frac * arr[Math.ceil(n)] + (1 - frac) * arr[Math.floor(n)];
 };
 
-},{"./array":196,"fast-isnumeric":18}],231:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./array":224,"fast-isnumeric":23}],260:[function(_dereq_,module,exports){
 'use strict';
 
 /* global MathJax:false */
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Lib = _dereq_('../lib');
 var strTranslate = Lib.strTranslate;
@@ -47016,15 +50087,7 @@ exports.makeEditable = function(context, options) {
     return d3.rebind(context, dispatch, 'on');
 };
 
-},{"../constants/alignment":184,"../constants/xmlns_namespaces":190,"../lib":210,"d3":16}],232:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../constants/alignment":211,"../constants/xmlns_namespaces":218,"../lib":238,"@plotly/d3":19}],261:[function(_dereq_,module,exports){
 'use strict';
 
 var timerCache = {};
@@ -47119,15 +50182,7 @@ function _clearTimeout(cache) {
     }
 }
 
-},{}],233:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],262:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -47147,15 +50202,7 @@ module.exports = function toLogRange(val, range) {
     return newVal;
 };
 
-},{"fast-isnumeric":18}],234:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"fast-isnumeric":23}],263:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -47169,15 +50216,7 @@ module.exports = {
     }
 };
 
-},{}],235:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],264:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -47212,16 +50251,7 @@ module.exports = {
     }
 };
 
-},{}],236:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],265:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -47270,15 +50300,7 @@ module.exports = function containerArrayMatch(astr) {
     return {array: arrayStr, index: Number(match[1]), property: match[3] || ''};
 };
 
-},{"../registry":297}],237:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../registry":320}],266:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -47289,7 +50311,6 @@ var traceOpts = {
     valType: 'flaglist',
     extras: ['none'],
     flags: ['calc', 'clearAxisTypes', 'plot', 'style', 'markerSize', 'colorbars'],
-    
 };
 
 var layoutOpts = {
@@ -47299,7 +50320,6 @@ var layoutOpts = {
         'calc', 'plot', 'legend', 'ticks', 'axrange',
         'layoutstyle', 'modebar', 'camera', 'arraydraw', 'colorbars'
     ],
-    
 };
 
 // flags for inside restyle/relayout include a few extras
@@ -47395,15 +50415,7 @@ function overrideOne(attr, editTypeOverride, overrideContainers, key) {
     }
 }
 
-},{"../lib":210}],238:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238}],267:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -48097,20 +51109,12 @@ exports.clearAxisTypes = function(gd, traces, layoutUpdate) {
     }
 };
 
-},{"../components/color":82,"../lib":210,"../plots/cartesian/axis_ids":258,"../plots/plots":289,"../registry":297,"fast-isnumeric":18,"gl-mat4/fromQuat":24}],239:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../components/color":109,"../lib":238,"../plots/cartesian/axis_ids":287,"../plots/plots":318,"../registry":320,"fast-isnumeric":23,"gl-mat4/fromQuat":29}],268:[function(_dereq_,module,exports){
 'use strict';
 
 var main = _dereq_('./plot_api');
 
-exports.plot = main.plot;
+exports._doPlot = main._doPlot;
 exports.newPlot = main.newPlot;
 exports.restyle = main.restyle;
 exports.relayout = main.relayout;
@@ -48140,16 +51144,7 @@ var templateApi = _dereq_('./template_api');
 exports.makeTemplate = templateApi.makeTemplate;
 exports.validateTemplate = templateApi.validateTemplate;
 
-},{"../snapshot/download":299,"./plot_api":241,"./template_api":246,"./to_image":247,"./validate":248}],240:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../snapshot/download":322,"./plot_api":270,"./template_api":275,"./to_image":276,"./validate":277}],269:[function(_dereq_,module,exports){
 'use strict';
 
 var isPlainObject = _dereq_('../lib/is_plain_object');
@@ -48353,18 +51348,10 @@ exports.applyContainerArrayChanges = function applyContainerArrayChanges(gd, np,
     return true;
 };
 
-},{"../lib/is_plain_object":211,"../lib/loggers":214,"../lib/noop":219,"../lib/search":228,"../registry":297,"./container_array_match":236}],241:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib/is_plain_object":239,"../lib/loggers":242,"../lib/noop":247,"../lib/search":257,"../registry":320,"./container_array_match":265}],270:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 var hasHover = _dereq_('has-hover');
 
@@ -48377,14 +51364,12 @@ var Queue = _dereq_('../lib/queue');
 var Registry = _dereq_('../registry');
 var PlotSchema = _dereq_('./plot_schema');
 var Plots = _dereq_('../plots/plots');
-var Polar = _dereq_('../plots/polar/legacy');
 
 var Axes = _dereq_('../plots/cartesian/axes');
 var Drawing = _dereq_('../components/drawing');
 var Color = _dereq_('../components/color');
 var initInteractions = _dereq_('../plots/cartesian/graph_interact').initInteractions;
 var xmlnsNamespaces = _dereq_('../constants/xmlns_namespaces');
-var svgTextUtils = _dereq_('../lib/svg_text_utils');
 var clearSelect = _dereq_('../plots/cartesian/select').clearSelect;
 
 var dfltConfig = _dereq_('./plot_config').dfltConfig;
@@ -48399,7 +51384,7 @@ var numericNameWarningCount = 0;
 var numericNameWarningCountLimit = 5;
 
 /**
- * Main plot-creation function
+ * Internal plot-creation function
  *
  * @param {string id or DOM element} gd
  *      the id or DOM element of the graph container div
@@ -48419,7 +51404,7 @@ var numericNameWarningCountLimit = 5;
  *      object containing `data`, `layout`, `config`, and `frames` members
  *
  */
-function plot(gd, data, layout, config) {
+function _doPlot(gd, data, layout, config) {
     var frames;
 
     gd = Lib.getGraphDiv(gd);
@@ -48441,7 +51426,7 @@ function plot(gd, data, layout, config) {
     // if there's no data or layout, and this isn't yet a plotly plot
     // container, log a warning to help plotly.js users debug
     if(!data && !layout && !Lib.isPlotDiv(gd)) {
-        Lib.warn('Calling Plotly.plot as if redrawing ' +
+        Lib.warn('Calling _doPlot as if redrawing ' +
             'but this container doesn\'t yet have a plot.', gd);
     }
 
@@ -48497,13 +51482,7 @@ function plot(gd, data, layout, config) {
     var fullLayout = gd._fullLayout;
     var hasCartesian = fullLayout._has('cartesian');
 
-    // Legacy polar plots
-    if(!fullLayout._has('polar') && data && data[0] && data[0].r) {
-        Lib.log('Legacy polar charts are deprecated!');
-        return plotLegacyPolar(gd, data, layout);
-    }
-
-    // so we don't try to re-call Plotly.plot from inside
+    // so we don't try to re-call _doPlot from inside
     // legend and colorbar, if margins changed
     fullLayout._replotting = true;
 
@@ -48516,12 +51495,6 @@ function plot(gd, data, layout, config) {
         }
     }
 
-    // polar need a different framework
-    if(gd.framework !== makePlotFramework) {
-        gd.framework = makePlotFramework;
-        makePlotFramework(gd);
-    }
-
     // clear gradient defs on each .plot call, because we know we'll loop through all traces
     Drawing.initGradients(gd);
 
@@ -48531,7 +51504,7 @@ function plot(gd, data, layout, config) {
     // prepare the data and find the autorange
 
     // generate calcdata, if we need to
-    // to force redoing calcdata, just delete it before calling Plotly.plot
+    // to force redoing calcdata, just delete it before calling _doPlot
     var recalc = !gd.calcdata || gd.calcdata.length !== (gd._fullData || []).length;
     if(recalc) Plots.doCalcdata(gd);
 
@@ -48723,7 +51696,18 @@ function plot(gd, data, layout, config) {
     if(hasCartesian) seq.push(positionAndAutorange);
 
     seq.push(subroutines.layoutStyles);
-    if(hasCartesian) seq.push(drawAxes);
+    if(hasCartesian) {
+        seq.push(
+            drawAxes,
+            function insideTickLabelsAutorange(gd) {
+                if(gd._fullLayout._insideTickLabelsAutorange) {
+                    relayout(gd, gd._fullLayout._insideTickLabelsAutorange).then(function() {
+                        gd._fullLayout._insideTickLabelsAutorange = undefined;
+                    });
+                }
+            }
+        );
+    }
 
     seq.push(
         subroutines.drawData,
@@ -48737,8 +51721,15 @@ function plot(gd, data, layout, config) {
         // calculated. Would be much better to separate margin calculations from
         // component drawing - see https://github.com/plotly/plotly.js/issues/2704
         Plots.doAutoMargin,
+        saveRangeInitialForInsideTickLabels,
         Plots.previousPromises
     );
+
+    function saveRangeInitialForInsideTickLabels(gd) {
+        if(gd._fullLayout._insideTickLabelsAutorange) {
+            if(graphWasEmpty) Axes.saveRangeInitial(gd, true);
+        }
+    }
 
     // even if everything we did was synchronous, return a promise
     // so that the caller doesn't care which route we took
@@ -48885,99 +51876,6 @@ function setPlotContext(gd, config) {
     }
 }
 
-function plotLegacyPolar(gd, data, layout) {
-    // build or reuse the container skeleton
-    var plotContainer = d3.select(gd).selectAll('.plot-container')
-        .data([0]);
-    plotContainer.enter()
-        .insert('div', ':first-child')
-        .classed('plot-container plotly', true);
-    var paperDiv = plotContainer.selectAll('.svg-container')
-        .data([0]);
-    paperDiv.enter().append('div')
-        .classed('svg-container', true)
-        .style('position', 'relative');
-
-    // empty it everytime for now
-    paperDiv.html('');
-
-    // fulfill gd requirements
-    if(data) gd.data = data;
-    if(layout) gd.layout = layout;
-    Polar.manager.fillLayout(gd);
-
-    // resize canvas
-    paperDiv.style({
-        width: gd._fullLayout.width + 'px',
-        height: gd._fullLayout.height + 'px'
-    });
-
-    // instantiate framework
-    gd.framework = Polar.manager.framework(gd);
-
-    // plot
-    gd.framework({data: gd.data, layout: gd.layout}, paperDiv.node());
-
-    // set undo point
-    gd.framework.setUndoPoint();
-
-    // get the resulting svg for extending it
-    var polarPlotSVG = gd.framework.svg();
-
-    // editable title
-    var opacity = 1;
-    var txt = gd._fullLayout.title ? gd._fullLayout.title.text : '';
-    if(txt === '' || !txt) opacity = 0;
-
-    var titleLayout = function() {
-        this.call(svgTextUtils.convertToTspans, gd);
-        // TODO: html/mathjax
-        // TODO: center title
-    };
-
-    var title = polarPlotSVG.select('.title-group text')
-        .call(titleLayout);
-
-    if(gd._context.edits.titleText) {
-        var placeholderText = Lib._(gd, 'Click to enter Plot title');
-        if(!txt || txt === placeholderText) {
-            opacity = 0.2;
-            // placeholder is not going through convertToTspans
-            // so needs explicit data-unformatted
-            title.attr({'data-unformatted': placeholderText})
-                .text(placeholderText)
-                .style({opacity: opacity})
-                .on('mouseover.opacity', function() {
-                    d3.select(this).transition().duration(100)
-                        .style('opacity', 1);
-                })
-                .on('mouseout.opacity', function() {
-                    d3.select(this).transition().duration(1000)
-                        .style('opacity', 0);
-                });
-        }
-
-        var setContenteditable = function() {
-            this.call(svgTextUtils.makeEditable, {gd: gd})
-                .on('edit', function(text) {
-                    gd.framework({layout: {title: {text: text}}});
-                    this.text(text)
-                        .call(titleLayout);
-                    this.call(setContenteditable);
-                })
-                .on('cancel', function() {
-                    var txt = this.attr('data-unformatted');
-                    this.text(txt).call(titleLayout);
-                });
-        };
-        title.call(setContenteditable);
-    }
-
-    gd._context.setBackground(gd, gd._fullLayout.paper_bgcolor);
-    Plots.addLinks(gd);
-
-    return Promise.resolve();
-}
 
 // convenience function to force a full redraw, mostly for use by plotly.js
 function redraw(gd) {
@@ -48991,7 +51889,7 @@ function redraw(gd) {
     helpers.cleanLayout(gd.layout);
 
     gd.calcdata = undefined;
-    return exports.plot(gd).then(function() {
+    return exports._doPlot(gd).then(function() {
         gd.emit('plotly_redraw');
         return gd;
     });
@@ -49012,7 +51910,7 @@ function newPlot(gd, data, layout, config) {
     Plots.cleanPlot([], {}, gd._fullData || [], gd._fullLayout || {});
 
     Plots.purge(gd);
-    return exports.plot(gd, data, layout, config);
+    return exports._doPlot(gd, data, layout, config);
 }
 
 /**
@@ -49723,7 +52621,7 @@ function restyle(gd, astr, val, _traces) {
     var seq = [];
 
     if(flags.fullReplot) {
-        seq.push(exports.plot);
+        seq.push(exports._doPlot);
     } else {
         seq.push(Plots.previousPromises);
 
@@ -50209,10 +53107,6 @@ function relayout(gd, astr, val) {
     gd = Lib.getGraphDiv(gd);
     helpers.clearPromiseQueue(gd);
 
-    if(gd.framework && gd.framework.isPolar) {
-        return Promise.resolve(gd);
-    }
-
     var aobj = {};
     if(typeof astr === 'string') {
         aobj[astr] = val;
@@ -50286,7 +53180,9 @@ function axRangeSupplyDefaultsByPass(gd, flags, specs) {
         var axIn = gd.layout[axName];
         var axOut = fullLayout[axName];
         axOut.autorange = axIn.autorange;
-        axOut.range = axIn.range.slice();
+        if(axIn.range) {
+            axOut.range = axIn.range.slice();
+        }
         axOut.cleanRange();
 
         if(axOut._matchGroup) {
@@ -50316,6 +53212,12 @@ function addAxRangeSequence(seq, rangesAltered) {
             for(var id in rangesAltered) {
                 var ax = Axes.getFromId(gd, id);
                 axIds.push(id);
+
+                if((ax.ticklabelposition || '').indexOf('inside') !== -1) {
+                    if(ax._anchorAxis) {
+                        axIds.push(ax._anchorAxis._id);
+                    }
+                }
 
                 if(ax._matchGroup) {
                     for(var id2 in ax._matchGroup) {
@@ -50411,7 +53313,7 @@ function _relayout(gd, aobj) {
     // we're editing the (auto)range of, so we can tell the others constrained
     // to scale with them that it's OK for them to shrink
     var rangesAltered = {};
-    var axId, ax;
+    var ax;
 
     function recordAlteredAxis(pleafPlus) {
         var axId = Axes.name2id(pleafPlus.split('.')[0]);
@@ -50639,7 +53541,7 @@ function _relayout(gd, aobj) {
     }
 
     // figure out if we need to recalculate axis constraints
-    for(axId in rangesAltered) {
+    for(var axId in rangesAltered) {
         ax = Axes.getFromId(gd, axId);
         var group = ax && ax._constraintGroup;
         if(group) {
@@ -50714,10 +53616,6 @@ function update(gd, traceUpdate, layoutUpdate, _traces) {
     gd = Lib.getGraphDiv(gd);
     helpers.clearPromiseQueue(gd);
 
-    if(gd.framework && gd.framework.isPolar) {
-        return Promise.resolve(gd);
-    }
-
     if(!Lib.isPlainObject(traceUpdate)) traceUpdate = {};
     if(!Lib.isPlainObject(layoutUpdate)) layoutUpdate = {};
 
@@ -50744,7 +53642,7 @@ function update(gd, traceUpdate, layoutUpdate, _traces) {
         // relayoutFlags.layoutReplot and restyleFlags.fullReplot are true
         seq.push(subroutines.layoutReplot);
     } else if(restyleFlags.fullReplot) {
-        seq.push(exports.plot);
+        seq.push(exports._doPlot);
     } else {
         seq.push(Plots.previousPromises);
         axRangeSupplyDefaultsByPass(gd, relayoutFlags, relayoutSpecs) || Plots.supplyDefaults(gd);
@@ -51067,16 +53965,6 @@ function react(gd, data, layout, config) {
 
         applyUIRevisions(gd.data, gd.layout, oldFullData, oldFullLayout);
 
-        var allNames = Object.getOwnPropertyNames(oldFullLayout);
-        for(var q = 0; q < allNames.length; q++) {
-            var name = allNames[q];
-            var start = name.substring(0, 5);
-            if(start === 'xaxis' || start === 'yaxis') {
-                var emptyCategories = oldFullLayout[name]._emptyCategories;
-                if(emptyCategories) emptyCategories();
-            }
-        }
-
         // "true" skips updating calcdata and remapping arrays from calcTransforms,
         // which supplyDefaults usually does at the end, but we may need to NOT do
         // if the diff (which we haven't determined yet) says we'll recalc
@@ -51102,10 +53990,22 @@ function react(gd, data, layout, config) {
 
         if(updateAutosize(gd)) relayoutFlags.layoutReplot = true;
 
-        // clear calcdata if required
-        if(restyleFlags.calc || relayoutFlags.calc) gd.calcdata = undefined;
+        // clear calcdata and empty categories if required
+        if(restyleFlags.calc || relayoutFlags.calc) {
+            gd.calcdata = undefined;
+            var allNames = Object.getOwnPropertyNames(newFullLayout);
+            for(var q = 0; q < allNames.length; q++) {
+                var name = allNames[q];
+                var start = name.substring(0, 5);
+                if(start === 'xaxis' || start === 'yaxis') {
+                    var emptyCategories = newFullLayout[name]._emptyCategories;
+                    if(emptyCategories) emptyCategories();
+                }
+            }
         // otherwise do the calcdata updates and calcTransform array remaps that we skipped earlier
-        else Plots.supplyDefaultsUpdateCalc(gd.calcdata, newFullData);
+        } else {
+            Plots.supplyDefaultsUpdateCalc(gd.calcdata, newFullData);
+        }
 
         // Note: what restyle/relayout use impliedEdits and clearAxisTypes for
         // must be handled by the user when using Plotly.react.
@@ -51134,7 +54034,7 @@ function react(gd, data, layout, config) {
             });
         } else if(restyleFlags.fullReplot || relayoutFlags.layoutReplot || configChanged) {
             gd._fullLayout._skipDefaults = true;
-            seq.push(exports.plot);
+            seq.push(exports._doPlot);
         } else {
             for(var componentType in relayoutFlags.arrays) {
                 var indices = relayoutFlags.arrays[componentType];
@@ -51559,7 +54459,7 @@ function animate(gd, frameOrGroupNameOrFrameList, animationOpts) {
     }
 
     // Execute a callback after the wrapper function has been called n times.
-    // This is used to defer the resolution until a transition has resovled *and*
+    // This is used to defer the resolution until a transition has resolved *and*
     // the frame has completed. If it's not done this way, then we get a race
     // condition in which the animation might resolve before a transition is complete
     // or vice versa.
@@ -52033,7 +54933,7 @@ function deleteFrames(gd, frameList) {
 }
 
 /**
- * Purge a graph container div back to its initial pre-Plotly.plot state
+ * Purge a graph container div back to its initial pre-_doPlot state
  *
  * @param {string id or DOM element} gd
  *      the id or DOM element of the graph container div
@@ -52056,7 +54956,7 @@ function purge(gd) {
     // remove plot container
     if(fullLayout._container) fullLayout._container.remove();
 
-    // in contrast to Plotly.Plots.purge which does NOT clear _context!
+    // in contrast to _doPlots.purge which does NOT clear _context!
     delete gd._context;
 
     return gd;
@@ -52237,7 +55137,7 @@ exports.moveTraces = moveTraces;
 exports.prependTraces = prependTraces;
 
 exports.newPlot = newPlot;
-exports.plot = plot;
+exports._doPlot = _doPlot;
 exports.purge = purge;
 
 exports.react = react;
@@ -52255,20 +55155,12 @@ exports._guiUpdate = guiEdit(update);
 
 exports._storeDirectGUIEdit = _storeDirectGUIEdit;
 
-},{"../components/color":82,"../components/drawing":104,"../constants/xmlns_namespaces":190,"../lib":210,"../lib/events":203,"../lib/queue":224,"../lib/svg_text_utils":231,"../plots/cartesian/axes":255,"../plots/cartesian/constants":261,"../plots/cartesian/graph_interact":264,"../plots/cartesian/select":274,"../plots/plots":289,"../plots/polar/legacy":292,"../registry":297,"./edit_types":237,"./helpers":238,"./manage_arrays":240,"./plot_config":242,"./plot_schema":243,"./subroutines":245,"d3":16,"fast-isnumeric":18,"has-hover":49}],242:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../components/color":109,"../components/drawing":131,"../constants/xmlns_namespaces":218,"../lib":238,"../lib/events":231,"../lib/queue":253,"../plots/cartesian/axes":284,"../plots/cartesian/constants":290,"../plots/cartesian/graph_interact":293,"../plots/cartesian/select":303,"../plots/plots":318,"../registry":320,"./edit_types":266,"./helpers":267,"./manage_arrays":269,"./plot_config":271,"./plot_schema":272,"./subroutines":274,"@plotly/d3":19,"fast-isnumeric":23,"has-hover":54}],271:[function(_dereq_,module,exports){
 'use strict';
 
 /**
  * This will be transferred over to gd and overridden by
- * config args to Plotly.plot.
+ * config args to Plotly.newPlot.
  *
  * The defaults are the appropriate settings for plotly.js,
  * so we get the right experience without any config argument.
@@ -52282,94 +55174,77 @@ var configAttributes = {
     staticPlot: {
         valType: 'boolean',
         dflt: false,
-        
     },
 
     plotlyServerURL: {
         valType: 'string',
         dflt: '',
-        
     },
 
     editable: {
         valType: 'boolean',
         dflt: false,
-        
     },
     edits: {
         annotationPosition: {
             valType: 'boolean',
             dflt: false,
-            
         },
         annotationTail: {
             valType: 'boolean',
             dflt: false,
-            
         },
         annotationText: {
             valType: 'boolean',
             dflt: false,
-            
         },
         axisTitleText: {
             valType: 'boolean',
             dflt: false,
-            
         },
         colorbarPosition: {
             valType: 'boolean',
             dflt: false,
-            
         },
         colorbarTitleText: {
             valType: 'boolean',
             dflt: false,
-            
         },
         legendPosition: {
             valType: 'boolean',
             dflt: false,
-            
         },
         legendText: {
             valType: 'boolean',
             dflt: false,
-            
         },
         shapePosition: {
             valType: 'boolean',
             dflt: false,
-            
         },
         titleText: {
             valType: 'boolean',
             dflt: false,
-            
         }
     },
 
     autosizable: {
         valType: 'boolean',
         dflt: false,
-        
     },
     responsive: {
         valType: 'boolean',
         dflt: false,
-        
     },
     fillFrame: {
         valType: 'boolean',
         dflt: false,
-        
     },
     frameMargins: {
         valType: 'number',
         dflt: 0,
         min: 0,
         max: 0.5,
-        
     },
 
     scrollZoom: {
@@ -52377,105 +55252,86 @@ var configAttributes = {
         flags: ['cartesian', 'gl3d', 'geo', 'mapbox'],
         extras: [true, false],
         dflt: 'gl3d+geo+mapbox',
-        
     },
     doubleClick: {
         valType: 'enumerated',
         values: [false, 'reset', 'autosize', 'reset+autosize'],
         dflt: 'reset+autosize',
-        
     },
     doubleClickDelay: {
         valType: 'number',
         dflt: 300,
         min: 0,
-        
     },
 
     showAxisDragHandles: {
         valType: 'boolean',
         dflt: true,
-        
     },
     showAxisRangeEntryBoxes: {
         valType: 'boolean',
         dflt: true,
-        
     },
 
     showTips: {
         valType: 'boolean',
         dflt: true,
-        
     },
 
     showLink: {
         valType: 'boolean',
         dflt: false,
-        
     },
     linkText: {
         valType: 'string',
         dflt: 'Edit chart',
         noBlank: true,
-        
     },
     sendData: {
         valType: 'boolean',
         dflt: true,
-        
     },
     showSources: {
         valType: 'any',
         dflt: false,
-        
     },
 
     displayModeBar: {
         valType: 'enumerated',
         values: ['hover', true, false],
         dflt: 'hover',
-        
     },
     showSendToCloud: {
         valType: 'boolean',
         dflt: false,
-        
     },
     showEditInChartStudio: {
         valType: 'boolean',
         dflt: false,
-        
     },
     modeBarButtonsToRemove: {
         valType: 'any',
         dflt: [],
-        
     },
     modeBarButtonsToAdd: {
         valType: 'any',
         dflt: [],
-        
     },
     modeBarButtons: {
         valType: 'any',
         dflt: false,
-        
     },
     toImageButtonOptions: {
         valType: 'any',
         dflt: {},
-        
     },
     displaylogo: {
         valType: 'boolean',
         dflt: true,
-        
     },
     watermark: {
         valType: 'boolean',
         dflt: false,
-        
     },
 
     plotGlPixelRatio: {
@@ -52483,26 +55339,22 @@ var configAttributes = {
         dflt: 2,
         min: 1,
         max: 4,
-        
     },
 
     setBackground: {
         valType: 'any',
         dflt: 'transparent',
-        
     },
 
     topojsonURL: {
         valType: 'string',
         noBlank: true,
         dflt: 'https://cdn.plot.ly/',
-        
     },
 
     mapboxAccessToken: {
         valType: 'string',
         dflt: null,
-        
     },
 
     logging: {
@@ -52510,7 +55362,6 @@ var configAttributes = {
         min: 0,
         max: 2,
         dflt: 1,
-        
     },
 
     notifyOnLogging: {
@@ -52518,32 +55369,27 @@ var configAttributes = {
         min: 0,
         max: 2,
         dflt: 0,
-        
     },
 
     queueLength: {
         valType: 'integer',
         min: 0,
         dflt: 0,
-        
     },
 
     globalTransforms: {
         valType: 'any',
         dflt: [],
-        
     },
 
     locale: {
         valType: 'string',
         dflt: 'en-US',
-        
     },
 
     locales: {
         valType: 'any',
         dflt: {},
-        
     }
 };
 
@@ -52570,15 +55416,7 @@ module.exports = {
     dfltConfig: dfltConfig
 };
 
-},{}],243:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],272:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -52590,13 +55428,8 @@ var frameAttributes = _dereq_('../plots/frame_attributes');
 var animationAttributes = _dereq_('../plots/animation_attributes');
 var configAttributes = _dereq_('./plot_config').configAttributes;
 
-// polar attributes are not part of the Registry yet
-var polarAreaAttrs = _dereq_('../plots/polar/legacy/area_attributes');
-var polarAxisAttrs = _dereq_('../plots/polar/legacy/axis_attributes');
-
 var editTypes = _dereq_('./edit_types');
 
-var extendFlat = Lib.extendFlat;
 var extendDeepAll = Lib.extendDeepAll;
 var isPlainObject = Lib.isPlainObject;
 var isArrayOrTypedArray = Lib.isArrayOrTypedArray;
@@ -52628,7 +55461,7 @@ exports.UNDERSCORE_ATTRS = UNDERSCORE_ATTRS;
 exports.get = function() {
     var traces = {};
 
-    Registry.allTypes.concat('area').forEach(function(type) {
+    Registry.allTypes.forEach(function(type) {
         traces[type] = getTraceAttributes(type);
     });
 
@@ -52647,7 +55480,6 @@ exports.get = function() {
                 layout: editTypes.layout
             },
             impliedEdits: {
-                
             }
         },
 
@@ -52840,8 +55672,6 @@ exports.getTraceValObject = function(trace, parts) {
         moduleAttrs = (Registry.transformsRegistry[transforms[tNum].type] || {}).attributes;
         valObject = moduleAttrs && moduleAttrs[parts[2]];
         i = 3; // start recursing only inside the transform
-    } else if(trace.type === 'area') {
-        valObject = polarAreaAttrs[head];
     } else {
         // first look in the module for this trace
         // components have already merged their trace attributes in here
@@ -52942,12 +55772,7 @@ function layoutHeadAttr(fullLayout, head) {
 
     if(head in baseLayoutAttributes) return baseLayoutAttributes[head];
 
-    // Polar doesn't populate _modules or _basePlotModules
-    // just fall back on these when the others fail
-    if(head === 'radialaxis' || head === 'angularaxis') {
-        return polarAxisAttrs[head];
-    }
-    return polarAxisAttrs.layout[head] || false;
+    return false;
 }
 
 function recurseIntoValObject(valObject, parts, i) {
@@ -53005,13 +55830,8 @@ function isIndex(val) {
 function getTraceAttributes(type) {
     var _module, basePlotModule;
 
-    if(type === 'area') {
-        _module = { attributes: polarAreaAttrs };
-        basePlotModule = {};
-    } else {
-        _module = Registry.modules[type]._module,
-        basePlotModule = _module.basePlotModule;
-    }
+    _module = Registry.modules[type]._module,
+    basePlotModule = _module.basePlotModule;
 
     var attributes = {};
 
@@ -53109,9 +55929,6 @@ function getLayoutAttributes() {
         }
     }
 
-    // polar layout attributes
-    layoutAttributes = assignPolarLayoutAttrs(layoutAttributes);
-
     // add registered components layout attributes
     for(key in Registry.componentsRegistry) {
         _module = Registry.componentsRegistry[key];
@@ -53189,21 +56006,14 @@ function mergeValTypeAndRole(attrs) {
     function makeSrcAttr(attrName) {
         return {
             valType: 'string',
-            
-            
             editType: 'none'
         };
     }
 
     function callback(attr, attrName, attrs) {
         if(exports.isValObject(attr)) {
-            if(attr.valType === 'data_array') {
-                // all 'data_array' attrs have role 'data'
-                attr.role = 'data';
-                // all 'data_array' attrs have a corresponding 'src' attr
-                attrs[attrName + 'src'] = makeSrcAttr(attrName);
-            } else if(attr.arrayOk === true) {
-                // all 'arrayOk' attrs have a corresponding 'src' attr
+            if(attr.arrayOk === true || attr.valType === 'data_array') {
+                // all 'arrayOk' and 'data_array' attrs have a corresponding 'src' attr
                 attrs[attrName + 'src'] = makeSrcAttr(attrName);
             }
         } else if(isPlainObject(attr)) {
@@ -53256,16 +56066,6 @@ function stringify(attrs) {
     walk(attrs);
 }
 
-function assignPolarLayoutAttrs(layoutAttributes) {
-    extendFlat(layoutAttributes, {
-        radialaxis: polarAxisAttrs.radialaxis,
-        angularaxis: polarAxisAttrs.angularaxis
-    });
-
-    extendFlat(layoutAttributes, polarAxisAttrs.layout);
-
-    return layoutAttributes;
-}
 
 function handleBasePlotModule(layoutAttributes, _module, astr) {
     var np = nestedProperty(layoutAttributes, astr);
@@ -53281,16 +56081,7 @@ function insertAttrs(baseAttrs, newAttrs, astr) {
     np.set(extendDeepAll(np.get() || {}, newAttrs));
 }
 
-},{"../lib":210,"../plots/animation_attributes":249,"../plots/attributes":251,"../plots/frame_attributes":284,"../plots/layout_attributes":287,"../plots/polar/legacy/area_attributes":290,"../plots/polar/legacy/axis_attributes":291,"../registry":297,"./edit_types":237,"./plot_config":242}],244:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../lib":238,"../plots/animation_attributes":278,"../plots/attributes":280,"../plots/frame_attributes":313,"../plots/layout_attributes":316,"../registry":320,"./edit_types":266,"./plot_config":271}],273:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -53301,16 +56092,12 @@ var TEMPLATEITEMNAME = 'templateitemname';
 var templateAttrs = {
     name: {
         valType: 'string',
-        
         editType: 'none',
-        
     }
 };
 templateAttrs[TEMPLATEITEMNAME] = {
     valType: 'string',
-    
     editType: 'calc',
-    
 };
 
 /**
@@ -53593,18 +56380,10 @@ exports.arrayEditor = function(parentIn, containerStr, itemOut) {
     };
 };
 
-},{"../lib":210,"../plots/attributes":251}],245:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plots/attributes":280}],274:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Registry = _dereq_('../registry');
 var Plots = _dereq_('../plots/plots');
 
@@ -54132,7 +56911,7 @@ exports.doColorBars = function(gd) {
 exports.layoutReplot = function(gd) {
     var layout = gd.layout;
     gd.layout = undefined;
-    return Registry.call('plot', gd, '', layout);
+    return Registry.call('_doPlot', gd, '', layout);
 };
 
 exports.doLegend = function(gd) {
@@ -54270,6 +57049,7 @@ exports.doAutoRangeAndConstraints = function(gd) {
 
     for(var i = 0; i < axList.length; i++) {
         ax = axList[i];
+
         if(!autoRangeDone[ax._id]) {
             autoRangeDone[ax._id] = 1;
             cleanAxisConstraints(gd, ax);
@@ -54316,16 +57096,7 @@ exports.drawMarginPushers = function(gd) {
     Registry.getComponentMethod('colorbar', 'draw')(gd);
 };
 
-},{"../components/color":82,"../components/drawing":104,"../components/modebar":142,"../components/titles":177,"../constants/alignment":184,"../lib":210,"../lib/clear_gl_canvases":198,"../plots/cartesian/autorange":254,"../plots/cartesian/axes":255,"../plots/cartesian/constraints":262,"../plots/plots":289,"../registry":297,"d3":16}],246:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../components/color":109,"../components/drawing":131,"../components/modebar":169,"../components/titles":204,"../constants/alignment":211,"../lib":238,"../lib/clear_gl_canvases":226,"../plots/cartesian/autorange":283,"../plots/cartesian/axes":284,"../plots/cartesian/constraints":291,"../plots/plots":318,"../registry":320,"@plotly/d3":19}],275:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -54778,15 +57549,7 @@ function format(opts) {
     return opts;
 }
 
-},{"../lib":210,"../plots/attributes":251,"../plots/plots":289,"./plot_config":242,"./plot_schema":243,"./plot_template":244}],247:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plots/attributes":280,"../plots/plots":318,"./plot_config":271,"./plot_schema":272,"./plot_template":273}],276:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -54805,33 +57568,27 @@ var attrs = {
         valType: 'enumerated',
         values: ['png', 'jpeg', 'webp', 'svg', 'full-json'],
         dflt: 'png',
-        
     },
     width: {
         valType: 'number',
         min: 1,
-        
     },
     height: {
         valType: 'number',
         min: 1,
-        
     },
     scale: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
     },
     setBackground: {
         valType: 'any',
         dflt: false,
-        
     },
     imageDataOnly: {
         valType: 'boolean',
         dflt: false,
-        
     }
 };
 
@@ -54988,7 +57745,7 @@ function toImage(gd, opts) {
     }
 
     return new Promise(function(resolve, reject) {
-        plotApi.plot(clonedGd, data, layoutImage, configImage)
+        plotApi.newPlot(clonedGd, data, layoutImage, configImage)
             .then(redrawFunc)
             .then(wait)
             .then(convert)
@@ -54999,15 +57756,7 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
-},{"../lib":210,"../plots/plots":289,"../snapshot/helpers":301,"../snapshot/svgtoimg":303,"../snapshot/tosvg":305,"../version":438,"./plot_api":241,"fast-isnumeric":18}],248:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plots/plots":318,"../snapshot/helpers":324,"../snapshot/svgtoimg":326,"../snapshot/tosvg":328,"../version":466,"./plot_api":270,"fast-isnumeric":23}],277:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -55430,61 +58179,41 @@ function convertPathToAttributeString(path) {
     return astr;
 }
 
-},{"../lib":210,"../plots/plots":289,"./plot_config":242,"./plot_schema":243}],249:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plots/plots":318,"./plot_config":271,"./plot_schema":272}],278:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
     mode: {
         valType: 'enumerated',
         dflt: 'afterall',
-        
         values: ['immediate', 'next', 'afterall'],
-        
     },
     direction: {
         valType: 'enumerated',
-        
         values: ['forward', 'reverse'],
         dflt: 'forward',
-        
     },
     fromcurrent: {
         valType: 'boolean',
         dflt: false,
-        
-        
     },
     frame: {
         duration: {
             valType: 'number',
-            
             min: 0,
             dflt: 500,
-            
         },
         redraw: {
             valType: 'boolean',
-            
             dflt: true,
-            
         },
     },
     transition: {
         duration: {
             valType: 'number',
-            
             min: 0,
             dflt: 500,
             editType: 'none',
-            
         },
         easing: {
             valType: 'enumerated',
@@ -55527,30 +58256,18 @@ module.exports = {
                 'back-in-out',
                 'bounce-in-out'
             ],
-            
             editType: 'none',
-            
         },
         ordering: {
             valType: 'enumerated',
             values: ['layout first', 'traces first'],
             dflt: 'layout first',
-            
             editType: 'none',
-            
         }
     }
 };
 
-},{}],250:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],279:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -55637,15 +58354,7 @@ module.exports = function handleArrayContainerDefaults(parentObjIn, parentObjOut
     return contOut;
 };
 
-},{"../lib":210,"../plot_api/plot_template":244}],251:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plot_api/plot_template":273}],280:[function(_dereq_,module,exports){
 'use strict';
 
 var fxAttrs = _dereq_('../components/fx/attributes');
@@ -55653,7 +58362,6 @@ var fxAttrs = _dereq_('../components/fx/attributes');
 module.exports = {
     type: {
         valType: 'enumerated',
-        
         values: [],     // listed dynamically
         dflt: 'scatter',
         editType: 'calc+clearAxisTypes',
@@ -55662,64 +58370,48 @@ module.exports = {
     visible: {
         valType: 'enumerated',
         values: [true, false, 'legendonly'],
-        
         dflt: true,
         editType: 'calc',
-        
     },
     showlegend: {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'style',
-        
     },
     legendgroup: {
         valType: 'string',
-        
         dflt: '',
         editType: 'style',
-        
     },
     opacity: {
         valType: 'number',
-        
         min: 0,
         max: 1,
         dflt: 1,
         editType: 'style',
-        
     },
     name: {
         valType: 'string',
-        
         editType: 'style',
-        
     },
     uid: {
         valType: 'string',
-        
         editType: 'plot',
         anim: true,
-        
     },
     ids: {
         valType: 'data_array',
         editType: 'calc',
         anim: true,
-        
     },
     customdata: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
     meta: {
         valType: 'any',
         arrayOk: true,
-        
         editType: 'plot',
-        
     },
 
     // N.B. these cannot be 'data_array' as they do not have the same length as
@@ -55729,20 +58421,16 @@ module.exports = {
     // https://github.com/plotly/plotly.js/issues/1894
     selectedpoints: {
         valType: 'any',
-        
         editType: 'calc',
-        
     },
 
     hoverinfo: {
         valType: 'flaglist',
-        
         flags: ['x', 'y', 'z', 'text', 'name'],
         extras: ['all', 'none', 'skip'],
         arrayOk: true,
         dflt: 'all',
         editType: 'none',
-        
     },
     hoverlabel: fxAttrs.hoverlabel,
     stream: {
@@ -55750,43 +58438,28 @@ module.exports = {
             valType: 'string',
             noBlank: true,
             strict: true,
-            
             editType: 'calc',
-            
         },
         maxpoints: {
             valType: 'number',
             min: 0,
             max: 10000,
             dflt: 500,
-            
             editType: 'calc',
-            
         },
         editType: 'calc'
     },
     transforms: {
         _isLinkedToArray: 'transform',
         editType: 'calc',
-        
     },
     uirevision: {
         valType: 'any',
-        
         editType: 'none',
-        
     }
 };
 
-},{"../components/fx/attributes":113}],252:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../components/fx/attributes":140}],281:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -55870,44 +58543,24 @@ module.exports = function alignPeriod(trace, ax, axLetter, vals) {
     return newVals;
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"fast-isnumeric":18}],253:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238,"fast-isnumeric":23}],282:[function(_dereq_,module,exports){
 'use strict';
 
 
 module.exports = {
     xaxis: {
         valType: 'subplotid',
-        
         dflt: 'x',
         editType: 'calc+clearAxisTypes',
-        
     },
     yaxis: {
         valType: 'subplotid',
-        
         dflt: 'y',
         editType: 'calc+clearAxisTypes',
-        
     }
 };
 
-},{}],254:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],283:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -55916,7 +58569,9 @@ var Lib = _dereq_('../../lib');
 var FP_SAFE = _dereq_('../../constants/numerical').FP_SAFE;
 var Registry = _dereq_('../../registry');
 
-var getFromId = _dereq_('./axis_ids').getFromId;
+var axIds = _dereq_('./axis_ids');
+var getFromId = axIds.getFromId;
+var isLinked = axIds.isLinked;
 
 module.exports = {
     getAutoRange: getAutoRange,
@@ -55958,7 +58613,9 @@ function getAutoRange(gd, ax) {
     var i, j;
     var newRange = [];
 
-    var getPad = makePadFn(ax);
+    var fullLayout = gd._fullLayout;
+    var getPadMin = makePadFn(fullLayout, ax, 0);
+    var getPadMax = makePadFn(fullLayout, ax, 1);
     var extremes = concatExtremes(gd, ax);
     var minArray = extremes.min;
     var maxArray = extremes.max;
@@ -55999,19 +58656,6 @@ function getAutoRange(gd, ax) {
     // don't allow padding to reduce the data to < 10% of the length
     var minSpan = axLen / 10;
 
-    // find axis rangebreaks in [v0,v1] and compute its length in value space
-    var calcBreaksLength = function(v0, v1) {
-        var lBreaks = 0;
-        if(ax.rangebreaks) {
-            var rangebreaksOut = ax.locateBreaks(v0, v1);
-            for(var i = 0; i < rangebreaksOut.length; i++) {
-                var brk = rangebreaksOut[i];
-                lBreaks += brk.max - brk.min;
-            }
-        }
-        return lBreaks;
-    };
-
     var mbest = 0;
     var minpt, maxpt, minbest, maxbest, dp, dv;
 
@@ -56019,9 +58663,9 @@ function getAutoRange(gd, ax) {
         minpt = minArray[i];
         for(j = 0; j < maxArray.length; j++) {
             maxpt = maxArray[j];
-            dv = maxpt.val - minpt.val - calcBreaksLength(minpt.val, maxpt.val);
+            dv = maxpt.val - minpt.val - calcBreaksLength(ax, minpt.val, maxpt.val);
             if(dv > 0) {
-                dp = axLen - getPad(minpt) - getPad(maxpt);
+                dp = axLen - getPadMin(minpt) - getPadMax(maxpt);
                 if(dp > minSpan) {
                     if(dv / dp > mbest) {
                         minbest = minpt;
@@ -56031,16 +58675,16 @@ function getAutoRange(gd, ax) {
                 } else if(dv / axLen > mbest) {
                     // in case of padding longer than the axis
                     // at least include the unpadded data values.
-                    minbest = {val: minpt.val, pad: 0};
-                    maxbest = {val: maxpt.val, pad: 0};
+                    minbest = {val: minpt.val, nopad: 1};
+                    maxbest = {val: maxpt.val, nopad: 1};
                     mbest = dv / axLen;
                 }
             }
         }
     }
 
-    function getMaxPad(prev, pt) {
-        return Math.max(prev, getPad(pt));
+    function maximumPad(prev, pt) {
+        return Math.max(prev, getPadMax(pt));
     }
 
     if(minmin === maxmax) {
@@ -56054,7 +58698,7 @@ function getAutoRange(gd, ax) {
                 // 'tozero' pins 0 to the low end, so follow that.
                 newRange = [0, 1];
             } else {
-                var maxPad = (minmin > 0 ? maxArray : minArray).reduce(getMaxPad, 0);
+                var maxPad = (minmin > 0 ? maxArray : minArray).reduce(maximumPad, 0);
                 // we're pushing a single value away from the edge due to its
                 // padding, with the other end clamped at zero
                 // 0.5 means don't push it farther than the center.
@@ -56069,27 +58713,27 @@ function getAutoRange(gd, ax) {
     } else {
         if(toZero) {
             if(minbest.val >= 0) {
-                minbest = {val: 0, pad: 0};
+                minbest = {val: 0, nopad: 1};
             }
             if(maxbest.val <= 0) {
-                maxbest = {val: 0, pad: 0};
+                maxbest = {val: 0, nopad: 1};
             }
         } else if(nonNegative) {
-            if(minbest.val - mbest * getPad(minbest) < 0) {
-                minbest = {val: 0, pad: 0};
+            if(minbest.val - mbest * getPadMin(minbest) < 0) {
+                minbest = {val: 0, nopad: 1};
             }
             if(maxbest.val <= 0) {
-                maxbest = {val: 1, pad: 0};
+                maxbest = {val: 1, nopad: 1};
             }
         }
 
         // in case it changed again...
-        mbest = (maxbest.val - minbest.val - calcBreaksLength(minpt.val, maxpt.val)) /
-            (axLen - getPad(minbest) - getPad(maxbest));
+        mbest = (maxbest.val - minbest.val - calcBreaksLength(ax, minpt.val, maxpt.val)) /
+            (axLen - getPadMin(minbest) - getPadMax(maxbest));
 
         newRange = [
-            minbest.val - mbest * getPad(minbest),
-            maxbest.val + mbest * getPad(maxbest)
+            minbest.val - mbest * getPadMin(minbest),
+            maxbest.val + mbest * getPadMax(maxbest)
         ];
     }
 
@@ -56099,13 +58743,46 @@ function getAutoRange(gd, ax) {
     return Lib.simpleMap(newRange, ax.l2r || Number);
 }
 
+// find axis rangebreaks in [v0,v1] and compute its length in value space
+function calcBreaksLength(ax, v0, v1) {
+    var lBreaks = 0;
+    if(ax.rangebreaks) {
+        var rangebreaksOut = ax.locateBreaks(v0, v1);
+        for(var i = 0; i < rangebreaksOut.length; i++) {
+            var brk = rangebreaksOut[i];
+            lBreaks += brk.max - brk.min;
+        }
+    }
+    return lBreaks;
+}
+
 /*
  * calculate the pixel padding for ax._min and ax._max entries with
  * optional extrapad as 5% of the total axis length
  */
-function makePadFn(ax) {
+function makePadFn(fullLayout, ax, max) {
     // 5% padding for points that specify extrapad: true
-    var extrappad = ax._length / 20;
+    var extrappad = 0.05 * ax._length;
+
+    var anchorAxis = ax._anchorAxis || {};
+
+    if(
+        (ax.ticklabelposition || '').indexOf('inside') !== -1 ||
+        (anchorAxis.ticklabelposition || '').indexOf('inside') !== -1
+    ) {
+        var axReverse = ax.autorange === 'reversed';
+        if(!axReverse) {
+            var rng = Lib.simpleMap(ax.range, ax.r2l);
+            axReverse = rng[1] < rng[0];
+        }
+        if(axReverse) max = !max;
+    }
+
+    var zero = 0;
+    if(!isLinked(fullLayout, ax._id)) {
+        zero = padInsideLabelsOnAnchorAxis(ax, max);
+    }
+    extrappad = Math.max(zero, extrappad);
 
     // domain-constrained axes: base extrappad on the unconstrained
     // domain so it's consistent as the domain changes
@@ -56114,7 +58791,58 @@ function makePadFn(ax) {
             (ax.domain[1] - ax.domain[0]);
     }
 
-    return function getPad(pt) { return pt.pad + (pt.extrapad ? extrappad : 0); };
+    return function getPad(pt) {
+        if(pt.nopad) return 0;
+        return pt.pad + (pt.extrapad ? extrappad : zero);
+    };
+}
+
+var TEXTPAD = 3;
+
+function padInsideLabelsOnAnchorAxis(ax, max) {
+    var pad = 0;
+    var anchorAxis = ax._anchorAxis || {};
+    if((anchorAxis.ticklabelposition || '').indexOf('inside') !== -1) {
+        // increase padding to make more room for inside tick labels of the counter axis
+        if((
+            !max && (
+                anchorAxis.side === 'left' ||
+                anchorAxis.side === 'bottom'
+            )
+        ) || (
+            max && (
+                anchorAxis.side === 'top' ||
+                anchorAxis.side === 'right'
+            )
+        )) {
+            var isX = ax._id.charAt(0) === 'x';
+
+            if(anchorAxis._vals) {
+                var rad = Lib.deg2rad(anchorAxis._tickAngles[anchorAxis._id + 'tick'] || 0);
+                var cosA = Math.abs(Math.cos(rad));
+                var sinA = Math.abs(Math.sin(rad));
+
+                // use bounding boxes
+                anchorAxis._vals.forEach(function(t) {
+                    if(t.bb) {
+                        var w = 2 * TEXTPAD + t.bb.width;
+                        var h = 2 * TEXTPAD + t.bb.height;
+
+                        pad = Math.max(pad, isX ?
+                            Math.max(w * cosA, h * sinA) :
+                            Math.max(h * cosA, w * sinA)
+                        );
+                    }
+                });
+            }
+
+            if(anchorAxis.ticks === 'inside' && anchorAxis.ticklabelposition === 'inside') {
+                pad += anchorAxis.ticklen || 0;
+            }
+        }
+    }
+
+    return pad;
 }
 
 function concatExtremes(gd, ax, noMatch) {
@@ -56433,23 +59161,15 @@ function goodNumber(v) {
 function lessOrEqual(v0, v1) { return v0 <= v1; }
 function greaterOrEqual(v0, v1) { return v0 >= v1; }
 
-},{"../../constants/numerical":189,"../../lib":210,"../../registry":297,"./axis_ids":258,"fast-isnumeric":18}],255:[function(_dereq_,module,exports){
-/**
- * Copyright 2012-2020, Plotly, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
+},{"../../constants/numerical":217,"../../lib":238,"../../registry":320,"./axis_ids":287,"fast-isnumeric":23}],284:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 // begin changes
 var numeral = _dereq_('numeral');
 // end changes
 var isNumeric = _dereq_('fast-isnumeric');
-var Plots = _dereq_('../../plots/plots');
+var Plots = _dereq_('../plots');
 
 var Registry = _dereq_('../../registry');
 var Lib = _dereq_('../../lib');
@@ -56487,12 +59207,18 @@ var CAP_SHIFT = alignmentConstants.CAP_SHIFT;
 var LINE_SPACING = alignmentConstants.LINE_SPACING;
 var OPPOSITE_SIDE = alignmentConstants.OPPOSITE_SIDE;
 
+var TEXTPAD = 3;
+
 var axes = (module.exports = {});
 
 axes.setConvert = _dereq_('./set_convert');
 var autoType = _dereq_('./axis_autotype');
 
 var axisIds = _dereq_('./axis_ids');
+var idSort = axisIds.idSort;
+var isLinked = axisIds.isLinked;
+
+// tight coupling to chart studio
 axes.id2name = axisIds.id2name;
 axes.name2id = axisIds.name2id;
 axes.cleanId = axisIds.cleanId;
@@ -56535,10 +59261,11 @@ axes.coerceRef = function (
   var refAttr = attr + 'ref';
   var attrDef = {};
 
-  if (!dflt)
+  if (!dflt) {
     dflt =
       axlist[0] ||
       (typeof extraOption === 'string' ? extraOption : extraOption[0]);
+  }
   if (!extraOption) extraOption = dflt;
   axlist = axlist.concat(
     axlist.map(function (x) {
@@ -57151,8 +59878,9 @@ function adjustPeriodDelta(ax) {
         if (
           noDtick &&
           (isMDate ? nMonths(ax.dtick) < 1 : ax.dtick < ONEMINMONTH)
-        )
+        ) {
           ax.dtick = 'M1';
+        }
       } else if (
         /%[q]/.test(tickformat)
         // %q: quarter of the year as a decimal number [1,4]
@@ -57161,8 +59889,9 @@ function adjustPeriodDelta(ax) {
         if (
           noDtick &&
           (isMDate ? nMonths(ax.dtick) < 3 : ax.dtick < ONEMINQUARTER)
-        )
+        ) {
           ax.dtick = 'M3';
+        }
       } else if (
         /%[Yy]/.test(tickformat)
         // %Y: year with century as a decimal number, such as 1999
@@ -57172,8 +59901,9 @@ function adjustPeriodDelta(ax) {
         if (
           noDtick &&
           (isMDate ? nMonths(ax.dtick) < 12 : ax.dtick < ONEMINYEAR)
-        )
+        ) {
           ax.dtick = 'M12';
+        }
       }
     }
   }
@@ -57336,8 +60066,12 @@ axes.calcTicks = function calcTicks(ax, opts) {
     if (ax.rangebreaks) {
       if (!axrev) {
         if (x < startTick) continue;
-        if (ax.maskBreaks(x) === BADNUM && moveOutsideBreak(x, ax) >= maxRange)
+        if (
+          ax.maskBreaks(x) === BADNUM &&
+          moveOutsideBreak(x, ax) >= maxRange
+        ) {
           break;
+        }
       }
     }
 
@@ -57657,13 +60391,13 @@ function autoTickRound(ax) {
       if (tick0len > 10 || tick0str.substr(5) !== '01-01') ax._tickround = 'd';
       // show the month unless ticks are full multiples of a year
       else ax._tickround = +dtick.substr(1) % 12 === 0 ? 'y' : 'm';
-    } else if ((dtick >= ONEDAY && tick0len <= 10) || dtick >= ONEDAY * 15)
+    } else if ((dtick >= ONEDAY && tick0len <= 10) || dtick >= ONEDAY * 15) {
       ax._tickround = 'd';
-    else if ((dtick >= ONEMIN && tick0len <= 16) || dtick >= ONEHOUR)
+    } else if ((dtick >= ONEMIN && tick0len <= 16) || dtick >= ONEHOUR) {
       ax._tickround = 'M';
-    else if ((dtick >= ONESEC && tick0len <= 19) || dtick >= ONEMIN)
+    } else if ((dtick >= ONESEC && tick0len <= 19) || dtick >= ONEMIN) {
       ax._tickround = 'S';
-    else {
+    } else {
       // tickround is a number of digits of fractional seconds
       // of any two adjacent ticks, at least one will have the maximum fractional digits
       // of all possible ticks - so take the max. length of tick0 and the next one
@@ -57857,10 +60591,12 @@ axes.tickText = function (ax, x, hover, noSuffixPrefix) {
 
   // add prefix and suffix
   if (!noSuffixPrefix) {
-    if (ax.tickprefix && !isHidden(ax.showtickprefix))
+    if (ax.tickprefix && !isHidden(ax.showtickprefix)) {
       out.text = ax.tickprefix + out.text;
-    if (ax.ticksuffix && !isHidden(ax.showticksuffix))
+    }
+    if (ax.ticksuffix && !isHidden(ax.showticksuffix)) {
       out.text += ax.ticksuffix;
+    }
   }
 
   // Setup ticks and grid lines boundaries
@@ -57974,9 +60710,17 @@ function formatDate(ax, out, hover, extraPrecision) {
       // except for year headPart: turn this into "Jan 1, 2000" etc.
       if (tr === 'd') dateStr += ', ' + headStr;
       else dateStr = headStr + (dateStr ? ', ' + dateStr : '');
-    } else if (!ax._inCalcTicks || headStr !== ax._prevDateHead) {
-      dateStr += '<br>' + headStr;
-      ax._prevDateHead = headStr;
+    } else {
+      if (!ax._inCalcTicks || ax._prevDateHead !== headStr) {
+        ax._prevDateHead = headStr;
+        dateStr += '<br>' + headStr;
+      } else {
+        var isInside = (ax.ticklabelposition || '').indexOf('inside') !== -1;
+        var side = ax._realSide || ax.side; // polar mocks the side of the radial axis
+        if ((!isInside && side === 'top') || (isInside && side === 'bottom')) {
+          dateStr += '<br> ';
+        }
+      }
     }
   }
 
@@ -58201,7 +60945,7 @@ var MICROSECONDS_PER_SEC = 1e6;
  * control over the precision of formatted times.
  */
 function formatDuration(durationSec) {
-  const format = d3.format('0.2s');
+  var format = d3.format('0.2s');
 
   if (durationSec === 0.0) {
     return '0';
@@ -58239,7 +60983,11 @@ function formatDuration(durationSec) {
 function customFormat(tickformat, v, ax) {
   var numeralMatch = tickformat.match(/^numeral:(.+)$/);
   if (numeralMatch) {
-    return numeral(v).format(numeralMatch[1]);
+    if (numeral) {
+      return numeral(v).format(numeralMatch[1]);
+    } else {
+      console.warn('numeral() could not be found');
+    }
   }
 
   if (tickformat === 'duration') {
@@ -58332,8 +61080,9 @@ function numFormat(v, ax, fmtoverride, hover) {
 
   // add exponent
   if (exponent && exponentFormat !== 'hide') {
-    if (isSIFormat(exponentFormat) && beyondSI(exponent))
+    if (isSIFormat(exponentFormat) && beyondSI(exponent)) {
       exponentFormat = 'power';
+    }
 
     var signedExponent;
     if (exponent < 0) signedExponent = MINUS_SIGN + -exponent;
@@ -58574,22 +61323,25 @@ axes.draw = function (gd, arg, opts) {
     fullLayout._paper.selectAll('g.subplot').each(function (d) {
       var id = d[0];
       var plotinfo = fullLayout._plots[id];
-      var xa = plotinfo.xaxis;
-      var ya = plotinfo.yaxis;
+      if (plotinfo) {
+        var xa = plotinfo.xaxis;
+        var ya = plotinfo.yaxis;
 
-      plotinfo.xaxislayer.selectAll('.' + xa._id + 'tick').remove();
-      plotinfo.yaxislayer.selectAll('.' + ya._id + 'tick').remove();
-      plotinfo.xaxislayer.selectAll('.' + xa._id + 'tick2').remove();
-      plotinfo.yaxislayer.selectAll('.' + ya._id + 'tick2').remove();
-      plotinfo.xaxislayer.selectAll('.' + xa._id + 'divider').remove();
-      plotinfo.yaxislayer.selectAll('.' + ya._id + 'divider').remove();
+        plotinfo.xaxislayer.selectAll('.' + xa._id + 'tick').remove();
+        plotinfo.yaxislayer.selectAll('.' + ya._id + 'tick').remove();
+        plotinfo.xaxislayer.selectAll('.' + xa._id + 'tick2').remove();
+        plotinfo.yaxislayer.selectAll('.' + ya._id + 'tick2').remove();
+        plotinfo.xaxislayer.selectAll('.' + xa._id + 'divider').remove();
+        plotinfo.yaxislayer.selectAll('.' + ya._id + 'divider').remove();
 
-      if (plotinfo.gridlayer) plotinfo.gridlayer.selectAll('path').remove();
-      if (plotinfo.zerolinelayer)
-        plotinfo.zerolinelayer.selectAll('path').remove();
+        if (plotinfo.gridlayer) plotinfo.gridlayer.selectAll('path').remove();
+        if (plotinfo.zerolinelayer) {
+          plotinfo.zerolinelayer.selectAll('path').remove();
+        }
 
-      fullLayout._infolayer.select('.g-' + xa._id + 'title').remove();
-      fullLayout._infolayer.select('.g-' + ya._id + 'title').remove();
+        fullLayout._infolayer.select('.g-' + xa._id + 'title').remove();
+        fullLayout._infolayer.select('.g-' + ya._id + 'title').remove();
+      }
     });
   }
 
@@ -58692,24 +61444,25 @@ axes.drawOne = function (gd, ax, opts) {
 
   if (!ax.visible) return;
 
-  var transFn = axes.makeTransFn(ax);
-  var transTickLabelFn =
-    ax.ticklabelmode === 'period'
-      ? axes.makeTransPeriodFn(ax)
-      : axes.makeTransFn(ax);
+  var transTickFn = axes.makeTransTickFn(ax);
+  var transTickLabelFn = axes.makeTransTickLabelFn(ax);
 
   var tickVals;
   // We remove zero lines, grid lines, and inside ticks if they're within 1px of the end
   // The key case here is removing zero lines when the axis bound is zero
   var valsClipped;
 
+  var insideTicks = ax.ticks === 'inside';
+  var outsideTicks = ax.ticks === 'outside';
+
   if (ax.tickson === 'boundaries') {
     var boundaryVals = getBoundaryVals(ax, vals);
     valsClipped = axes.clipEnds(ax, boundaryVals);
-    tickVals = ax.ticks === 'inside' ? valsClipped : boundaryVals;
+    tickVals = insideTicks ? valsClipped : boundaryVals;
   } else {
     valsClipped = axes.clipEnds(ax, vals);
-    tickVals = ax.ticks === 'inside' ? valsClipped : vals;
+    tickVals =
+      insideTicks && ax.ticklabelmode !== 'period' ? valsClipped : vals;
   }
 
   var gridVals = (ax._gridVals = valsClipped);
@@ -58741,13 +61494,13 @@ axes.drawOne = function (gd, ax, opts) {
         counterAxis: counterAxis,
         layer: plotinfo.gridlayer.select('.' + axId),
         path: gridPath,
-        transFn: transFn
+        transFn: transTickFn
       });
       axes.drawZeroLine(gd, ax, {
         counterAxis: counterAxis,
         layer: plotinfo.zerolinelayer,
         path: gridPath,
-        transFn: transFn
+        transFn: transTickFn
       });
     }
   }
@@ -58768,11 +61521,7 @@ axes.drawOne = function (gd, ax, opts) {
     }
 
     var tickPath;
-    if (
-      ax.showdividers &&
-      ax.ticks === 'outside' &&
-      ax.tickson === 'boundaries'
-    ) {
+    if (ax.showdividers && outsideTicks && ax.tickson === 'boundaries') {
       var dividerLookup = {};
       for (i = 0; i < dividerVals.length; i++) {
         dividerLookup[dividerVals[i].x] = 1;
@@ -58788,7 +61537,7 @@ axes.drawOne = function (gd, ax, opts) {
       vals: tickVals,
       layer: mainAxLayer,
       path: tickPath,
-      transFn: transFn
+      transFn: transTickFn
     });
 
     if (ax.mirror === 'allticks') {
@@ -58809,7 +61558,7 @@ axes.drawOne = function (gd, ax, opts) {
       vals: tickVals,
       layer: plotinfo[axLetter + 'axislayer'],
       path: spTickPath,
-      transFn: transFn
+      transFn: transTickFn
     });
   }
 
@@ -58843,7 +61592,7 @@ axes.drawOne = function (gd, ax, opts) {
         cls: axId + 'tick2',
         repositionOnUpdate: true,
         secondary: true,
-        transFn: transFn,
+        transFn: transTickFn,
         labelFns: axes.makeLabelFns(
           ax,
           mainLinePosition + standoff * tickSigns[4]
@@ -58859,7 +61608,7 @@ axes.drawOne = function (gd, ax, opts) {
         vals: dividerVals,
         layer: mainAxLayer,
         path: axes.makeTickPath(ax, mainLinePosition, tickSigns[4], ax._depth),
-        transFn: transFn
+        transFn: transTickFn
       });
     });
   } else if (ax.title.hasOwnProperty('standoff')) {
@@ -58878,7 +61627,7 @@ axes.drawOne = function (gd, ax, opts) {
     var s = ax.side.charAt(0);
     var sMirror = OPPOSITE_SIDE[ax.side].charAt(0);
     var pos = axes.getPxPosition(gd, ax);
-    var outsideTickLen = ax.ticks === 'outside' ? ax.ticklen : 0;
+    var outsideTickLen = outsideTicks ? ax.ticklen : 0;
     var llbbox;
 
     var push;
@@ -58967,8 +61716,9 @@ axes.drawOne = function (gd, ax, opts) {
         mirrorPush = { x: 0, y: 0, r: 0, l: 0, t: 0, b: 0 };
 
         mirrorPush[sMirror] = ax.linewidth;
-        if (ax.mirror && ax.mirror !== true)
+        if (ax.mirror && ax.mirror !== true) {
           mirrorPush[sMirror] += outsideTickLen;
+        }
 
         if (ax.mirror === true || ax.mirror === 'ticks') {
           mirrorPush[counterLetter] = ax._anchorAxis.domain[domainIndices[1]];
@@ -59156,32 +61906,75 @@ axes.getTickSigns = function (ax) {
  *  - {fn} l2p
  * @return {fn} function of calcTicks items
  */
-axes.makeTransFn = function (ax) {
-  var axLetter = ax._id.charAt(0);
-  var offset = ax._offset;
-  return axLetter === 'x'
+axes.makeTransTickFn = function (ax) {
+  return ax._id.charAt(0) === 'x'
     ? function (d) {
-        return strTranslate(offset + ax.l2p(d.x), 0);
+        return strTranslate(ax._offset + ax.l2p(d.x), 0);
       }
     : function (d) {
-        return strTranslate(0, offset + ax.l2p(d.x));
+        return strTranslate(0, ax._offset + ax.l2p(d.x));
       };
 };
 
-axes.makeTransPeriodFn = function (ax) {
-  var axLetter = ax._id.charAt(0);
-  var offset = ax._offset;
-  return axLetter === 'x'
+axes.makeTransTickLabelFn = function (ax) {
+  var uv = getTickLabelUV(ax);
+  var u = uv[0];
+  var v = uv[1];
+
+  return ax._id.charAt(0) === 'x'
     ? function (d) {
-        return strTranslate(offset + ax.l2p(getPeriodX(d)), 0);
+        return strTranslate(u + ax._offset + ax.l2p(getPosX(d)), v);
       }
     : function (d) {
-        return strTranslate(0, offset + ax.l2p(getPeriodX(d)));
+        return strTranslate(v, u + ax._offset + ax.l2p(getPosX(d)));
       };
 };
 
-function getPeriodX(d) {
+function getPosX(d) {
   return d.periodX !== undefined ? d.periodX : d.x;
+}
+
+// u is a shift along the axis,
+// v is a shift perpendicular to the axis
+function getTickLabelUV(ax) {
+  var ticklabelposition = ax.ticklabelposition || '';
+  var has = function (str) {
+    return ticklabelposition.indexOf(str) !== -1;
+  };
+
+  var isTop = has('top');
+  var isLeft = has('left');
+  var isRight = has('right');
+  var isBottom = has('bottom');
+  var isInside = has('inside');
+
+  var isAligned = isBottom || isLeft || isTop || isRight;
+
+  // early return
+  if (!isAligned && !isInside) return [0, 0];
+
+  var side = ax.side;
+
+  var u = isAligned ? (ax.tickwidth || 0) / 2 : 0;
+  var v = TEXTPAD;
+
+  var fontSize = ax.tickfont ? ax.tickfont.size : 12;
+  if (isBottom || isTop) {
+    u += fontSize * CAP_SHIFT;
+    v += (ax.linewidth || 0) / 2;
+  }
+  if (isLeft || isRight) {
+    u += (ax.linewidth || 0) / 2;
+    v += TEXTPAD;
+  }
+  if (isInside && side === 'top') {
+    v -= fontSize * (1 - CAP_SHIFT);
+  }
+
+  if (isLeft || isTop) u = -u;
+  if (side === 'bottom' || side === 'right') v = -v;
+
+  return [isAligned ? u : 0, isInside ? v : 0];
 }
 
 /**
@@ -59229,25 +62022,47 @@ axes.makeTickPath = function (ax, shift, sgn, len) {
  *  - {number} labelShift (gap perpendicular to ticks)
  */
 axes.makeLabelFns = function (ax, shift, angle) {
-  var axLetter = ax._id.charAt(0);
-  var ticksOnOutsideLabels =
-    ax.tickson !== 'boundaries' && ax.ticks === 'outside';
+  var ticklabelposition = ax.ticklabelposition || '';
+  var has = function (str) {
+    return ticklabelposition.indexOf(str) !== -1;
+  };
+
+  var isTop = has('top');
+  var isLeft = has('left');
+  var isRight = has('right');
+  var isBottom = has('bottom');
+  var isAligned = isBottom || isLeft || isTop || isRight;
+
+  var insideTickLabels = has('inside');
+  var labelsOverTicks =
+    (ticklabelposition === 'inside' && ax.ticks === 'inside') ||
+    (!insideTickLabels &&
+      ax.ticks === 'outside' &&
+      ax.tickson !== 'boundaries');
 
   var labelStandoff = 0;
   var labelShift = 0;
 
-  if (ticksOnOutsideLabels) {
-    labelStandoff += ax.ticklen;
+  var tickLen = labelsOverTicks ? ax.ticklen : 0;
+  if (insideTickLabels) {
+    tickLen *= -1;
+  } else if (isAligned) {
+    tickLen = 0;
   }
-  if (angle && ax.ticks === 'outside') {
-    var rad = Lib.deg2rad(angle);
-    labelStandoff = ax.ticklen * Math.cos(rad) + 1;
-    labelShift = ax.ticklen * Math.sin(rad);
+
+  if (labelsOverTicks) {
+    labelStandoff += tickLen;
+    if (angle) {
+      var rad = Lib.deg2rad(angle);
+      labelStandoff = tickLen * Math.cos(rad) + 1;
+      labelShift = tickLen * Math.sin(rad);
+    }
   }
-  if (ax.showticklabels && (ticksOnOutsideLabels || ax.showline)) {
+
+  if (ax.showticklabels && (labelsOverTicks || ax.showline)) {
     labelStandoff += 0.2 * ax.tickfont.size;
   }
-  labelStandoff += (ax.linewidth || 1) / 2;
+  labelStandoff += ((ax.linewidth || 1) / 2) * (insideTickLabels ? -1 : 1);
 
   var out = {
     labelStandoff: labelStandoff,
@@ -59255,36 +62070,97 @@ axes.makeLabelFns = function (ax, shift, angle) {
   };
 
   var x0, y0, ff, flipIt;
+  var xQ = 0;
 
+  var side = ax.side;
+  var axLetter = ax._id.charAt(0);
+  var tickangle = ax.tickangle;
+  var endSide;
   if (axLetter === 'x') {
-    flipIt = ax.side === 'bottom' ? 1 : -1;
+    endSide =
+      (!insideTickLabels && side === 'bottom') ||
+      (insideTickLabels && side === 'top');
+
+    flipIt = endSide ? 1 : -1;
+    if (insideTickLabels) flipIt *= -1;
+
     x0 = labelShift * flipIt;
     y0 = shift + labelStandoff * flipIt;
-    ff = ax.side === 'bottom' ? 1 : -0.2;
+    ff = endSide ? 1 : -0.2;
+    if (Math.abs(tickangle) === 90) {
+      if (insideTickLabels) {
+        ff += MID_SHIFT;
+      } else {
+        if (tickangle === -90 && side === 'bottom') {
+          ff = CAP_SHIFT;
+        } else if (tickangle === 90 && side === 'top') {
+          ff = MID_SHIFT;
+        } else {
+          ff = 0.5;
+        }
+      }
+
+      xQ = (MID_SHIFT / 2) * (tickangle / 90);
+    }
 
     out.xFn = function (d) {
-      return d.dx + x0;
+      return d.dx + x0 + xQ * d.fontSize;
     };
     out.yFn = function (d) {
       return d.dy + y0 + d.fontSize * ff;
     };
     out.anchorFn = function (d, a) {
+      if (isAligned) {
+        if (isLeft) return 'end';
+        if (isRight) return 'start';
+      }
+
       if (!isNumeric(a) || a === 0 || a === 180) {
         return 'middle';
       }
-      return a * flipIt < 0 ? 'end' : 'start';
+
+      return a * flipIt < 0 !== insideTickLabels ? 'end' : 'start';
     };
     out.heightFn = function (d, a, h) {
-      return a < -60 || a > 60 ? -0.5 * h : ax.side === 'top' ? -h : 0;
+      return a < -60 || a > 60
+        ? -0.5 * h
+        : (ax.side === 'top') !== insideTickLabels
+        ? -h
+        : 0;
     };
   } else if (axLetter === 'y') {
-    flipIt = ax.side === 'right' ? 1 : -1;
+    endSide =
+      (!insideTickLabels && side === 'left') ||
+      (insideTickLabels && side === 'right');
+
+    flipIt = endSide ? 1 : -1;
+    if (insideTickLabels) flipIt *= -1;
+
     x0 = labelStandoff;
-    y0 = -labelShift * flipIt;
-    ff = Math.abs(ax.tickangle) === 90 ? 0.5 : 0;
+    y0 = labelShift * flipIt;
+    ff = 0;
+    if (!insideTickLabels && Math.abs(tickangle) === 90) {
+      if (
+        (tickangle === -90 && side === 'left') ||
+        (tickangle === 90 && side === 'right')
+      ) {
+        ff = CAP_SHIFT;
+      } else {
+        ff = 0.5;
+      }
+    }
+
+    if (insideTickLabels) {
+      var ang = isNumeric(tickangle) ? +tickangle : 0;
+      if (ang !== 0) {
+        var rA = Lib.deg2rad(ang);
+        xQ = Math.abs(Math.sin(rA)) * CAP_SHIFT * flipIt;
+        ff = 0;
+      }
+    }
 
     out.xFn = function (d) {
-      return d.dx + shift + (x0 + d.fontSize * ff) * flipIt;
+      return d.dx + shift - (x0 + d.fontSize * ff) * flipIt + xQ * d.fontSize;
     };
     out.yFn = function (d) {
       return d.dy + y0 + d.fontSize * MID_SHIFT;
@@ -59293,10 +62169,12 @@ axes.makeLabelFns = function (ax, shift, angle) {
       if (isNumeric(a) && Math.abs(a) === 90) {
         return 'middle';
       }
-      return ax.side === 'right' ? 'start' : 'end';
+
+      return endSide ? 'end' : 'start';
     };
     out.heightFn = function (d, a, h) {
-      a *= ax.side === 'left' ? 1 : -1;
+      if (ax.side === 'right') a *= -1;
+
       return a < -30 ? -h : a < 30 ? -0.5 * h : 0;
     };
   }
@@ -59459,7 +62337,7 @@ axes.drawZeroLine = function (gd, ax, opts) {
       // If several zerolines enter at the same time we will sort once per,
       // but generally this should be a minimal overhead.
       opts.layer.selectAll('path').sort(function (da, db) {
-        return axisIds.idSort(da.id, db.id);
+        return idSort(da.id, db.id);
       });
     });
 
@@ -59560,6 +62438,8 @@ axes.drawLabels = function (gd, ax, opts) {
   }
 
   function positionLabels(s, angle) {
+    var isInside = (ax.ticklabelposition || '').indexOf('inside') !== -1;
+
     s.each(function (d) {
       var thisLabel = d3.select(this);
       var mathjaxGroup = thisLabel.select('.text-math-group');
@@ -59591,16 +62471,62 @@ axes.drawLabels = function (gd, ax, opts) {
       }
 
       if (mathjaxGroup.empty()) {
-        thisLabel.select('text').attr({
+        var thisText = thisLabel.select('text');
+        thisText.attr({
           transform: transform,
           'text-anchor': anchor
         });
+
+        if (isInside) {
+          // ensure visible
+          thisText.style({ opacity: 100 });
+
+          if (ax._hideOutOfRangeInsideTickLabels) {
+            ax._hideOutOfRangeInsideTickLabels();
+          }
+        }
       } else {
         var mjWidth = Drawing.bBox(mathjaxGroup.node()).width;
         var mjShift = mjWidth * { end: -0.5, start: 0.5 }[anchor];
         mathjaxGroup.attr('transform', transform + strTranslate(mjShift, 0));
       }
     });
+  }
+
+  ax._hideOutOfRangeInsideTickLabels = undefined;
+  if ((ax.ticklabelposition || '').indexOf('inside') !== -1) {
+    ax._hideOutOfRangeInsideTickLabels = function () {
+      var rl = Lib.simpleMap(ax.range, ax.r2l);
+
+      // hide inside tick labels that go outside axis end points
+      var p0 = ax.l2p(rl[0]);
+      var p1 = ax.l2p(rl[1]);
+
+      var min = Math.min(p0, p1) + ax._offset;
+      var max = Math.max(p0, p1) + ax._offset;
+
+      var isX = ax._id.charAt(0) === 'x';
+
+      tickLabels.each(function (d) {
+        var thisLabel = d3.select(this);
+        var mathjaxGroup = thisLabel.select('.text-math-group');
+
+        if (mathjaxGroup.empty()) {
+          var bb = Drawing.bBox(thisLabel.node());
+          var hide = false;
+          if (isX) {
+            if (bb.right > max) hide = true;
+            else if (bb.left < min) hide = true;
+          } else {
+            if (bb.bottom > max) hide = true;
+            else if (bb.top + (ax.tickangle ? 0 : d.fontSize / 4) < min) {
+              hide = true;
+            }
+          }
+          if (hide) thisLabel.select('text').style({ opacity: 0 });
+        } // TODO: hide mathjax?
+      });
+    };
   }
 
   // make sure all labels are correctly positioned at their base angle
@@ -59674,12 +62600,24 @@ axes.drawLabels = function (gd, ax, opts) {
         var vLen = vals.length;
         var tickSpacing =
           Math.abs((vals[vLen - 1].x - vals[0].x) * ax._m) / (vLen - 1);
+
+        var ticklabelposition = ax.ticklabelposition || '';
+        var has = function (str) {
+          return ticklabelposition.indexOf(str) !== -1;
+        };
+        var isTop = has('top');
+        var isLeft = has('left');
+        var isRight = has('right');
+        var isBottom = has('bottom');
+        var isAligned = isBottom || isLeft || isTop || isRight;
+        var pad = !isAligned ? 0 : (ax.tickwidth || 0) + 2 * TEXTPAD;
+
         var rotate90 =
           tickSpacing < maxFontSize * 2.5 || ax.type === 'multicategory';
 
         // any overlap at all - set 30 degrees or 90 degrees
         for (i = 0; i < lbbArray.length - 1; i++) {
-          if (Lib.bBoxIntersect(lbbArray[i], lbbArray[i + 1])) {
+          if (Lib.bBoxIntersect(lbbArray[i], lbbArray[i + 1], pad)) {
             autoangle = rotate90 ? 90 : 30;
             break;
           }
@@ -59719,6 +62657,27 @@ axes.drawLabels = function (gd, ax, opts) {
     seq.push(function () {
       ax._tickAngles[cls] =
         autoangle === null ? (isNumeric(tickAngle) ? tickAngle : 0) : autoangle;
+    });
+  }
+
+  var anchorAx = ax._anchorAxis;
+  if (
+    anchorAx &&
+    anchorAx.autorange &&
+    (ax.ticklabelposition || '').indexOf('inside') !== -1 &&
+    !isLinked(fullLayout, ax._id)
+  ) {
+    if (!fullLayout._insideTickLabelsAutorange) {
+      fullLayout._insideTickLabelsAutorange = {};
+    }
+    fullLayout._insideTickLabelsAutorange[anchorAx._name + '.autorange'] =
+      anchorAx.autorange;
+
+    seq.push(function computeFinalTickLabelBoundingBoxes() {
+      tickLabels.each(function (d, i) {
+        var thisLabel = selectTickLabel(this);
+        ax._vals[i].bb = Drawing.bBox(thisLabel.node());
+      });
     });
   }
 
@@ -59845,30 +62804,38 @@ function drawTitle(gd, ax) {
   var axId = ax._id;
   var axLetter = axId.charAt(0);
   var fontSize = ax.title.font.size;
-
   var titleStandoff;
 
   if (ax.title.hasOwnProperty('standoff')) {
     titleStandoff = ax._depth + ax.title.standoff + approxTitleDepth(ax);
   } else {
+    var isInside = (ax.ticklabelposition || '').indexOf('inside') !== -1;
+
     if (ax.type === 'multicategory') {
       titleStandoff = ax._depth;
     } else {
-      var offsetBase = 1.5;
-      titleStandoff =
-        10 + fontSize * offsetBase + (ax.linewidth ? ax.linewidth - 1 : 0);
+      var offsetBase = 1.5 * fontSize;
+      if (isInside) {
+        offsetBase = 0.5 * fontSize;
+        if (ax.ticks === 'outside') {
+          offsetBase += ax.ticklen;
+        }
+      }
+      titleStandoff = 10 + offsetBase + (ax.linewidth ? ax.linewidth - 1 : 0);
     }
 
-    if (axLetter === 'x') {
-      titleStandoff +=
-        ax.side === 'top'
-          ? fontSize * (ax.showticklabels ? 1 : 0)
-          : fontSize * (ax.showticklabels ? 1.5 : 0.5);
-    } else {
-      titleStandoff +=
-        ax.side === 'right'
-          ? fontSize * (ax.showticklabels ? 1 : 0.5)
-          : fontSize * (ax.showticklabels ? 0.5 : 0);
+    if (!isInside) {
+      if (axLetter === 'x') {
+        titleStandoff +=
+          ax.side === 'top'
+            ? fontSize * (ax.showticklabels ? 1 : 0)
+            : fontSize * (ax.showticklabels ? 1.5 : 0.5);
+      } else {
+        titleStandoff +=
+          ax.side === 'right'
+            ? fontSize * (ax.showticklabels ? 1 : 0.5)
+            : fontSize * (ax.showticklabels ? 0.5 : 0);
+      }
     }
   }
 
@@ -60009,11 +62976,13 @@ function hasBarsOrFill(gd, ax) {
       if (
         Registry.traceIs(trace, 'bar-like') &&
         trace.orientation === { x: 'h', y: 'v' }[axLetter]
-      )
+      ) {
         return true;
+      }
 
-      if (trace.fill && trace.fill.charAt(trace.fill.length - 1) === axLetter)
+      if (trace.fill && trace.fill.charAt(trace.fill.length - 1) === axLetter) {
         return true;
+      }
     }
   }
   return false;
@@ -60239,16 +63208,7 @@ function moveOutsideBreak(v, ax) {
   return v;
 }
 
-},{"../../components/color":82,"../../components/drawing":104,"../../components/titles":177,"../../constants/alignment":184,"../../constants/numerical":189,"../../lib":210,"../../lib/svg_text_utils":231,"../../plots/plots":289,"../../registry":297,"./autorange":254,"./axis_autotype":256,"./axis_ids":258,"./clean_ticks":260,"./layout_attributes":269,"./set_convert":275,"d3":16,"fast-isnumeric":18,"numeral":54}],256:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color":109,"../../components/drawing":131,"../../components/titles":204,"../../constants/alignment":211,"../../constants/numerical":217,"../../lib":238,"../../lib/svg_text_utils":260,"../../registry":320,"../plots":318,"./autorange":283,"./axis_autotype":285,"./axis_ids":287,"./clean_ticks":289,"./layout_attributes":298,"./set_convert":304,"@plotly/d3":19,"fast-isnumeric":23,"numeral":61}],285:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -60370,15 +63330,7 @@ function multiCategory(a) {
     return isArrayOrTypedArray(a[0]) && isArrayOrTypedArray(a[1]);
 }
 
-},{"../../constants/numerical":189,"../../lib":210,"fast-isnumeric":18}],257:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238,"fast-isnumeric":23}],286:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -60427,9 +63379,33 @@ module.exports = function handleAxisDefaults(containerIn, containerOut, coerce, 
     var axTemplate = containerOut._template || {};
     var axType = containerOut.type || axTemplate.type || '-';
 
+    var ticklabelmode;
     if(axType === 'date') {
         var handleCalendarDefaults = Registry.getComponentMethod('calendars', 'handleDefaults');
         handleCalendarDefaults(containerIn, containerOut, 'calendar', options.calendar);
+
+        if(!options.noTicklabelmode) {
+            ticklabelmode = coerce('ticklabelmode');
+        }
+    }
+
+    if(!options.noTicklabelposition || axType === 'multicategory') {
+        Lib.coerce(containerIn, containerOut, {
+            ticklabelposition: {
+                valType: 'enumerated',
+                dflt: 'outside',
+                values: ticklabelmode === 'period' ? ['outside', 'inside'] :
+                letter === 'x' ? [
+                    'outside', 'inside',
+                    'outside left', 'inside left',
+                    'outside right', 'inside right'
+                ] : [
+                    'outside', 'inside',
+                    'outside top', 'inside top',
+                    'outside bottom', 'inside bottom'
+                ]
+            }
+        }, 'ticklabelposition');
     }
 
     setConvert(containerOut, layoutOut);
@@ -60487,7 +63463,10 @@ module.exports = function handleAxisDefaults(containerIn, containerOut, coerce, 
     ) {
         var ticksonDflt;
         if(isMultiCategory) ticksonDflt = 'boundaries';
-        coerce('tickson', ticksonDflt);
+        var tickson = coerce('tickson', ticksonDflt);
+        if(tickson === 'boundaries') {
+            delete containerOut.ticklabelposition;
+        }
     }
 
     if(isMultiCategory) {
@@ -60499,8 +63478,6 @@ module.exports = function handleAxisDefaults(containerIn, containerOut, coerce, 
     }
 
     if(axType === 'date') {
-        if(!options.noTicklabelmode) coerce('ticklabelmode');
-
         handleArrayContainerDefaults(containerIn, containerOut, {
             name: 'rangebreaks',
             inclusionAttr: 'enabled',
@@ -60653,15 +63630,7 @@ function indexOfDay(v) {
     ];
 }
 
-},{"../../lib":210,"../../registry":297,"../array_container_defaults":250,"./category_order_defaults":259,"./constants":261,"./layout_attributes":269,"./line_grid_defaults":271,"./set_convert":275,"./tick_label_defaults":276,"./tick_mark_defaults":277,"./tick_value_defaults":278,"fast-isnumeric":18}],258:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320,"../array_container_defaults":279,"./category_order_defaults":288,"./constants":290,"./layout_attributes":298,"./line_grid_defaults":300,"./set_convert":304,"./tick_label_defaults":305,"./tick_mark_defaults":306,"./tick_value_defaults":307,"fast-isnumeric":23}],287:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -60793,15 +63762,23 @@ exports.ref2id = function(ar) {
     return (/^[xyz]/.test(ar)) ? ar.split(' ')[0] : false;
 };
 
-},{"../../registry":297,"./constants":261}],259:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+function isFound(axId, list) {
+    if(list && list.length) {
+        for(var i = 0; i < list.length; i++) {
+            if(list[i][axId]) return true;
+        }
+    }
+    return false;
+}
 
+exports.isLinked = function(fullLayout, axId) {
+    return (
+        isFound(axId, fullLayout._axisMatchGroups) ||
+        isFound(axId, fullLayout._axisConstraintGroups)
+    );
+};
+
+},{"../../registry":320,"./constants":290}],288:[function(_dereq_,module,exports){
 'use strict';
 
 function findCategories(ax, opts) {
@@ -60887,15 +63864,7 @@ module.exports = function handleCategoryOrderDefaults(containerIn, containerOut,
     }
 };
 
-},{}],260:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],289:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -60979,15 +63948,7 @@ exports.tick0 = function(tick0, axType, calendar, dtick) {
     return isNumeric(tick0) ? Number(tick0) : 0;
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"fast-isnumeric":18}],261:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238,"fast-isnumeric":23}],290:[function(_dereq_,module,exports){
 'use strict';
 
 var counterRegex = _dereq_('../../lib/regex').counter;
@@ -61071,15 +64032,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/regex":225}],262:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/regex":254}],291:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -61639,7 +64592,8 @@ exports.enforce = function enforce(gd) {
                         // *are* expanding to the full domain
                         var outerMin = rangeCenter - halfRange * factor * 1.0001;
                         var outerMax = rangeCenter + halfRange * factor * 1.0001;
-                        var getPad = autorange.makePadFn(ax);
+                        var getPadMin = autorange.makePadFn(fullLayout, ax, 0);
+                        var getPadMax = autorange.makePadFn(fullLayout, ax, 1);
 
                         updateDomain(ax, factor);
                         var m = Math.abs(ax._m);
@@ -61650,14 +64604,14 @@ exports.enforce = function enforce(gd) {
                         var k;
 
                         for(k = 0; k < minArray.length; k++) {
-                            newVal = minArray[k].val - getPad(minArray[k]) / m;
+                            newVal = minArray[k].val - getPadMin(minArray[k]) / m;
                             if(newVal > outerMin && newVal < rangeMin) {
                                 rangeMin = newVal;
                             }
                         }
 
                         for(k = 0; k < maxArray.length; k++) {
-                            newVal = maxArray[k].val + getPad(maxArray[k]) / m;
+                            newVal = maxArray[k].val + getPadMax(maxArray[k]) / m;
                             if(newVal < outerMax && newVal > rangeMax) {
                                 rangeMax = newVal;
                             }
@@ -61721,18 +64675,10 @@ function updateDomain(ax, factor) {
     ax.setScale();
 }
 
-},{"../../constants/alignment":184,"../../constants/numerical":189,"../../lib":210,"./autorange":254,"./axis_ids":258,"./layout_attributes":269,"./scale_zoom":273,"./set_convert":275}],263:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/alignment":211,"../../constants/numerical":217,"../../lib":238,"./autorange":283,"./axis_ids":287,"./layout_attributes":298,"./scale_zoom":302,"./set_convert":304}],292:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var tinycolor = _dereq_('tinycolor2');
 var supportsPassive = _dereq_('has-passive-events');
 
@@ -63059,19 +66005,10 @@ module.exports = {
     attachWheelEventHandler: attachWheelEventHandler
 };
 
-},{"../../components/color":82,"../../components/dragelement":101,"../../components/dragelement/helpers":100,"../../components/drawing":104,"../../components/fx":122,"../../constants/alignment":184,"../../lib":210,"../../lib/clear_gl_canvases":198,"../../lib/setcursor":229,"../../lib/svg_text_utils":231,"../../plot_api/subroutines":245,"../../registry":297,"../plots":289,"./axes":255,"./axis_ids":258,"./constants":261,"./scale_zoom":273,"./select":274,"d3":16,"has-passive-events":50,"tinycolor2":65}],264:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color":109,"../../components/dragelement":128,"../../components/dragelement/helpers":127,"../../components/drawing":131,"../../components/fx":149,"../../constants/alignment":211,"../../lib":238,"../../lib/clear_gl_canvases":226,"../../lib/setcursor":258,"../../lib/svg_text_utils":260,"../../plot_api/subroutines":274,"../../registry":320,"../plots":318,"./axes":284,"./axis_ids":287,"./constants":290,"./scale_zoom":302,"./select":303,"@plotly/d3":19,"has-passive-events":55,"tinycolor2":74}],293:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Fx = _dereq_('../../components/fx');
 var dragElement = _dereq_('../../components/dragelement');
@@ -63227,16 +66164,7 @@ exports.updateFx = function(gd) {
     setCursor(fullLayout._draggers, cursor);
 };
 
-},{"../../components/dragelement":101,"../../components/fx":122,"../../lib/setcursor":229,"./constants":261,"./dragbox":263,"d3":16}],265:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/dragelement":128,"../../components/fx":149,"../../lib/setcursor":258,"./constants":290,"./dragbox":292,"@plotly/d3":19}],294:[function(_dereq_,module,exports){
 'use strict';
 
 function clearOutlineControllers(gd) {
@@ -63263,21 +66191,12 @@ module.exports = {
     clearSelect: clearSelect
 };
 
-},{}],266:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],295:[function(_dereq_,module,exports){
 'use strict';
 
 var strTranslate = _dereq_('../../lib').strTranslate;
 
-// in v2 (once log ranges are fixed),
+// in v3 (once log ranges are fixed),
 // we'll be able to p2r here for all axis types
 function p2r(ax, v) {
     switch(ax.type) {
@@ -63320,16 +66239,7 @@ module.exports = {
     getTransform: getTransform
 };
 
-},{"../../lib":210}],267:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238}],296:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -63398,19 +66308,10 @@ module.exports = function makeIncludeComponents(containerArrayName) {
     };
 };
 
-},{"../../lib":210,"../../registry":297,"./axis_ids":258}],268:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../registry":320,"./axis_ids":287}],297:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Lib = _dereq_('../../lib');
@@ -64016,15 +66917,7 @@ exports.toSVG = function(gd) {
 
 exports.updateFx = _dereq_('./graph_interact').updateFx;
 
-},{"../../components/drawing":104,"../../constants/xmlns_namespaces":190,"../../lib":210,"../../registry":297,"../get_data":285,"../plots":289,"./attributes":253,"./axis_ids":258,"./constants":261,"./graph_interact":264,"./layout_attributes":269,"./layout_defaults":270,"./transition_axes":279,"d3":16}],269:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing":131,"../../constants/xmlns_namespaces":218,"../../lib":238,"../../registry":320,"../get_data":314,"../plots":318,"./attributes":282,"./axis_ids":287,"./constants":290,"./graph_interact":293,"./layout_attributes":298,"./layout_defaults":299,"./transition_axes":308,"@plotly/d3":19}],298:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../font_attributes');
@@ -64043,34 +66936,25 @@ var DAY_OF_WEEK = constants.WEEKDAY_PATTERN;
 module.exports = {
     visible: {
         valType: 'boolean',
-        
         editType: 'plot',
-        
     },
     color: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'ticks',
-        
     },
     title: {
         text: {
             valType: 'string',
-            
             editType: 'ticks',
-            
         },
         font: fontAttrs({
             editType: 'ticks',
-            
         }),
         standoff: {
             valType: 'number',
-            
             min: 0,
             editType: 'ticks',
-            
         },
         editType: 'ticks'
     },
@@ -64081,43 +66965,34 @@ module.exports = {
         // to gd.data like the others are.
         values: ['-', 'linear', 'log', 'date', 'category', 'multicategory'],
         dflt: '-',
-        
         editType: 'calc',
         // we forget when an axis has been autotyped, just writing the auto
         // value back to the input - so it doesn't make sense to template this.
         // Note: we do NOT prohibit this in `coerce`, so if someone enters a
         // type in the template explicitly it will be honored as the default.
         _noTemplating: true,
-        
     },
     autotypenumbers: {
         valType: 'enumerated',
         values: ['convert types', 'strict'],
         dflt: 'convert types',
-        
         editType: 'calc',
-        
     },
     autorange: {
         valType: 'enumerated',
         values: [true, false, 'reversed'],
         dflt: true,
-        
         editType: 'axrange',
         impliedEdits: {'range[0]': undefined, 'range[1]': undefined},
-        
     },
     rangemode: {
         valType: 'enumerated',
         values: ['normal', 'tozero', 'nonnegative'],
         dflt: 'normal',
-        
         editType: 'plot',
-        
     },
     range: {
         valType: 'info_array',
-        
         items: [
             {valType: 'any', editType: 'axrange', impliedEdits: {'^autorange': false}, anim: true},
             {valType: 'any', editType: 'axrange', impliedEdits: {'^autorange': false}, anim: true}
@@ -64125,14 +67000,11 @@ module.exports = {
         editType: 'axrange',
         impliedEdits: {'autorange': false},
         anim: true,
-        
     },
     fixedrange: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'calc',
-        
     },
     // scaleanchor: not used directly, just put here for reference
     // values are any opposite-letter axis id
@@ -64142,32 +67014,24 @@ module.exports = {
             constants.idRegex.x.toString(),
             constants.idRegex.y.toString()
         ],
-        
         editType: 'plot',
-        
     },
     scaleratio: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'plot',
-        
     },
     constrain: {
         valType: 'enumerated',
         values: ['range', 'domain'],
-        
         editType: 'plot',
-        
     },
     // constraintoward: not used directly, just put here for reference
     constraintoward: {
         valType: 'enumerated',
         values: ['left', 'center', 'right', 'top', 'middle', 'bottom'],
-        
         editType: 'plot',
-        
     },
     matches: {
         valType: 'enumerated',
@@ -64175,58 +67039,46 @@ module.exports = {
             constants.idRegex.x.toString(),
             constants.idRegex.y.toString()
         ],
-        
         editType: 'calc',
-        
     },
 
     rangebreaks: templatedArray('rangebreak', {
         enabled: {
             valType: 'boolean',
-            
             dflt: true,
             editType: 'calc',
-            
         },
 
         bounds: {
             valType: 'info_array',
-            
             items: [
                 {valType: 'any', editType: 'calc'},
                 {valType: 'any', editType: 'calc'}
             ],
             editType: 'calc',
-            
         },
 
         pattern: {
             valType: 'enumerated',
             values: [DAY_OF_WEEK, HOUR, ''],
-            
             editType: 'calc',
-            
         },
 
         values: {
             valType: 'info_array',
             freeLength: true,
-            
             editType: 'calc',
             items: {
                 valType: 'any',
                 editType: 'calc'
             },
-            
         },
         dvalue: {
             // TODO could become 'any' to add support for 'months', 'years'
             valType: 'number',
-            
             editType: 'calc',
             min: 0,
             dflt: ONEDAY,
-            
         },
 
         /*
@@ -64235,16 +67087,12 @@ module.exports = {
             min: 0,
             dflt: 0, // for *date* axes, maybe something else for *linear*
             editType: 'calc',
-            
-            
         },
         gapmode: {
             valType: 'enumerated',
             values: ['pixels', 'fraction'],
             dflt: 'pixels',
             editType: 'calc',
-            
-            
         },
         */
 
@@ -64261,347 +67109,270 @@ module.exports = {
     tickmode: {
         valType: 'enumerated',
         values: ['auto', 'linear', 'array'],
-        
         editType: 'ticks',
         impliedEdits: {tick0: undefined, dtick: undefined},
-        
     },
     nticks: {
         valType: 'integer',
         min: 0,
         dflt: 0,
-        
         editType: 'ticks',
-        
     },
     tick0: {
         valType: 'any',
-        
         editType: 'ticks',
         impliedEdits: {tickmode: 'linear'},
-        
     },
     dtick: {
         valType: 'any',
-        
         editType: 'ticks',
         impliedEdits: {tickmode: 'linear'},
-        
     },
     tickvals: {
         valType: 'data_array',
         editType: 'ticks',
-        
     },
     ticktext: {
         valType: 'data_array',
         editType: 'ticks',
-        
     },
     ticks: {
         valType: 'enumerated',
         values: ['outside', 'inside', ''],
-        
         editType: 'ticks',
-        
     },
     tickson: {
         valType: 'enumerated',
         values: ['labels', 'boundaries'],
-        
         dflt: 'labels',
         editType: 'ticks',
-        
     },
     ticklabelmode: {
         valType: 'enumerated',
         values: ['instant', 'period'],
         dflt: 'instant',
-        
         editType: 'ticks',
-        
+    },
+    // ticklabelposition: not used directly, as values depend on direction (similar to side)
+    // left/right options are for x axes, and top/bottom options are for y axes
+    ticklabelposition: {
+        valType: 'enumerated',
+        values: [
+            'outside', 'inside',
+            'outside top', 'inside top',
+            'outside left', 'inside left',
+            'outside right', 'inside right',
+            'outside bottom', 'inside bottom'
+        ],
+        dflt: 'outside',
+        editType: 'calc',
     },
     mirror: {
         valType: 'enumerated',
         values: [true, 'ticks', false, 'all', 'allticks'],
         dflt: false,
-        
         editType: 'ticks+layoutstyle',
-        
     },
     ticklen: {
         valType: 'number',
         min: 0,
         dflt: 5,
-        
         editType: 'ticks',
-        
     },
     tickwidth: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'ticks',
-        
     },
     tickcolor: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'ticks',
-        
     },
     showticklabels: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'ticks',
-        
     },
     automargin: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'ticks',
-        
     },
     showspikes: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'modebar',
-        
     },
     spikecolor: {
         valType: 'color',
         dflt: null,
-        
         editType: 'none',
-        
     },
     spikethickness: {
         valType: 'number',
         dflt: 3,
-        
         editType: 'none',
-        
     },
     spikedash: extendFlat({}, dash, {dflt: 'dash', editType: 'none'}),
     spikemode: {
         valType: 'flaglist',
         flags: ['toaxis', 'across', 'marker'],
-        
         dflt: 'toaxis',
         editType: 'none',
-        
     },
     spikesnap: {
         valType: 'enumerated',
         values: ['data', 'cursor', 'hovered data'],
         dflt: 'data',
-        
         editType: 'none',
-        
     },
     tickfont: fontAttrs({
         editType: 'ticks',
-        
     }),
     tickangle: {
         valType: 'angle',
         dflt: 'auto',
-        
         editType: 'ticks',
-        
     },
     tickprefix: {
         valType: 'string',
         dflt: '',
-        
         editType: 'ticks',
-        
     },
     showtickprefix: {
         valType: 'enumerated',
         values: ['all', 'first', 'last', 'none'],
         dflt: 'all',
-        
         editType: 'ticks',
-        
     },
     ticksuffix: {
         valType: 'string',
         dflt: '',
-        
         editType: 'ticks',
-        
     },
     showticksuffix: {
         valType: 'enumerated',
         values: ['all', 'first', 'last', 'none'],
         dflt: 'all',
-        
         editType: 'ticks',
-        
     },
     showexponent: {
         valType: 'enumerated',
         values: ['all', 'first', 'last', 'none'],
         dflt: 'all',
-        
         editType: 'ticks',
-        
     },
     exponentformat: {
         valType: 'enumerated',
         values: ['none', 'e', 'E', 'power', 'SI', 'B'],
         dflt: 'B',
-        
         editType: 'ticks',
-        
     },
     minexponent: {
         valType: 'number',
         dflt: 3,
         min: 0,
-        
         editType: 'ticks',
-        
     },
     separatethousands: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'ticks',
-        
     },
     tickformat: {
         valType: 'string',
         dflt: '',
-        
         editType: 'ticks',
-        
     },
     tickformatstops: templatedArray('tickformatstop', {
         enabled: {
             valType: 'boolean',
-            
             dflt: true,
             editType: 'ticks',
-            
         },
         dtickrange: {
             valType: 'info_array',
-            
             items: [
                 {valType: 'any', editType: 'ticks'},
                 {valType: 'any', editType: 'ticks'}
             ],
             editType: 'ticks',
-            
         },
         value: {
             valType: 'string',
             dflt: '',
-            
             editType: 'ticks',
-            
         },
         editType: 'ticks'
     }),
     hoverformat: {
         valType: 'string',
         dflt: '',
-        
         editType: 'none',
-        
     },
     // lines and grids
     showline: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'ticks+layoutstyle',
-        
     },
     linecolor: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'layoutstyle',
-        
     },
     linewidth: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'ticks+layoutstyle',
-        
     },
     showgrid: {
         valType: 'boolean',
-        
         editType: 'ticks',
-        
     },
     gridcolor: {
         valType: 'color',
         dflt: colorAttrs.lightLine,
-        
         editType: 'ticks',
-        
     },
     gridwidth: {
         valType: 'number',
         min: 0,
         dflt: 1,
-        
         editType: 'ticks',
-        
     },
     zeroline: {
         valType: 'boolean',
-        
         editType: 'ticks',
-        
     },
     zerolinecolor: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'ticks',
-        
     },
     zerolinewidth: {
         valType: 'number',
         dflt: 1,
-        
         editType: 'ticks',
-        
     },
 
     showdividers: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'ticks',
-        
     },
     dividercolor: {
         valType: 'color',
         dflt: colorAttrs.defaultLine,
-        
         editType: 'ticks',
-        
     },
     dividerwidth: {
         valType: 'number',
         dflt: 1,
-        
         editType: 'ticks',
-        
     },
     // TODO dividerlen: that would override "to label base" length?
 
@@ -64615,18 +67386,14 @@ module.exports = {
             constants.idRegex.x.toString(),
             constants.idRegex.y.toString()
         ],
-        
         editType: 'plot',
-        
     },
     // side: not used directly, as values depend on direction
     // values are top, bottom for x axes, and left, right for y
     side: {
         valType: 'enumerated',
         values: ['top', 'bottom', 'left', 'right'],
-        
         editType: 'plot',
-        
     },
     // overlaying: not used directly, just put here for reference
     // values are false and any other same-letter axis id that's not
@@ -64638,37 +67405,29 @@ module.exports = {
             constants.idRegex.x.toString(),
             constants.idRegex.y.toString()
         ],
-        
         editType: 'plot',
-        
     },
     layer: {
         valType: 'enumerated',
         values: ['above traces', 'below traces'],
         dflt: 'above traces',
-        
         editType: 'plot',
-        
     },
     domain: {
         valType: 'info_array',
-        
         items: [
             {valType: 'number', min: 0, max: 1, editType: 'plot'},
             {valType: 'number', min: 0, max: 1, editType: 'plot'}
         ],
         dflt: [0, 1],
         editType: 'plot',
-        
     },
     position: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 0,
-        
         editType: 'plot',
-        
     },
     categoryorder: {
         valType: 'enumerated',
@@ -64682,54 +67441,34 @@ module.exports = {
             'median ascending', 'median descending'
         ],
         dflt: 'trace',
-        
         editType: 'calc',
-        
     },
     categoryarray: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
     uirevision: {
         valType: 'any',
-        
         editType: 'none',
-        
     },
     editType: 'calc',
 
     _deprecated: {
         autotick: {
             valType: 'boolean',
-            
             editType: 'ticks',
-            
         },
         title: {
             valType: 'string',
-            
             editType: 'ticks',
-            
         },
         titlefont: fontAttrs({
             editType: 'ticks',
-            
         })
     }
 };
 
-},{"../../components/color/attributes":81,"../../components/drawing/attributes":103,"../../constants/docs":187,"../../constants/numerical":189,"../../lib/extend":204,"../../plot_api/plot_template":244,"../font_attributes":283,"./constants":261}],270:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color/attributes":108,"../../components/drawing/attributes":130,"../../constants/docs":214,"../../constants/numerical":217,"../../lib/extend":232,"../../plot_api/plot_template":273,"../font_attributes":312,"./constants":290}],299:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -65107,15 +67846,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
     });
 };
 
-},{"../../components/color":82,"../../components/fx/helpers":118,"../../components/fx/hovermode_defaults":121,"../../lib":210,"../../plot_api/plot_template":244,"../../registry":297,"../layout_attributes":287,"./axis_defaults":257,"./axis_ids":258,"./constants":261,"./constraints":262,"./layout_attributes":269,"./position_defaults":272,"./type_defaults":280}],271:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/fx/helpers":145,"../../components/fx/hovermode_defaults":148,"../../lib":238,"../../plot_api/plot_template":273,"../../registry":320,"../layout_attributes":316,"./axis_defaults":286,"./axis_ids":287,"./constants":290,"./constraints":291,"./layout_attributes":298,"./position_defaults":301,"./type_defaults":309}],300:[function(_dereq_,module,exports){
 'use strict';
 
 var colorMix = _dereq_('tinycolor2').mix;
@@ -65172,16 +67903,7 @@ module.exports = function handleLineGridDefaults(containerIn, containerOut, coer
     }
 };
 
-},{"../../components/color/attributes":81,"../../lib":210,"tinycolor2":65}],272:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color/attributes":108,"../../lib":238,"tinycolor2":74}],301:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -65260,16 +67982,7 @@ module.exports = function handlePositionDefaults(containerIn, containerOut, coer
     return containerOut;
 };
 
-},{"../../lib":210,"fast-isnumeric":18}],273:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"fast-isnumeric":23}],302:[function(_dereq_,module,exports){
 'use strict';
 
 var FROM_BL = _dereq_('../../constants/alignment').FROM_BL;
@@ -65289,16 +68002,7 @@ module.exports = function scaleZoom(ax, factor, centerFraction) {
     ax.setScale();
 };
 
-},{"../../constants/alignment":184}],274:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/alignment":211}],303:[function(_dereq_,module,exports){
 'use strict';
 
 var polybool = _dereq_('polybooljs');
@@ -65647,9 +68351,9 @@ function prepSelect(e, startX, startY, dragOptions, mode) {
                 }
 
                 if(clickmode === 'event') {
-                    // TODO: remove in v2 - this was probably never intended to work as it does,
+                    // TODO: remove in v3 - this was probably never intended to work as it does,
                     // but in case anyone depends on it we don't want to break it now.
-                    // Note that click-to-select introduced pre v2 also emitts proper
+                    // Note that click-to-select introduced pre v3 also emitts proper
                     // event data when clickmode is having 'select' in its flag list.
                     gd.emit('plotly_selected', undefined);
                 }
@@ -66232,18 +68936,10 @@ module.exports = {
     selectOnClick: selectOnClick
 };
 
-},{"../../components/color":82,"../../components/dragelement/helpers":100,"../../components/drawing":104,"../../components/fx":122,"../../components/fx/helpers":118,"../../components/shapes/draw_newshape/display_outlines":167,"../../components/shapes/draw_newshape/helpers":168,"../../components/shapes/draw_newshape/newshapes":169,"../../lib":210,"../../lib/clear_gl_canvases":198,"../../lib/polygon":222,"../../lib/throttle":232,"../../plot_api/subroutines":245,"../../registry":297,"./axis_ids":258,"./constants":261,"./handle_outline":265,"./helpers":266,"polybooljs":56}],275:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/dragelement/helpers":127,"../../components/drawing":131,"../../components/fx":149,"../../components/fx/helpers":145,"../../components/shapes/draw_newshape/display_outlines":194,"../../components/shapes/draw_newshape/helpers":195,"../../components/shapes/draw_newshape/newshapes":196,"../../lib":238,"../../lib/clear_gl_canvases":226,"../../lib/polygon":250,"../../lib/throttle":261,"../../plot_api/subroutines":274,"../../registry":320,"./axis_ids":287,"./constants":290,"./handle_outline":294,"./helpers":295,"polybooljs":64}],304:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var utcFormat = _dereq_('d3-time-format').utcFormat;
 var isNumeric = _dereq_('fast-isnumeric');
 
@@ -66293,7 +68989,7 @@ function isValidCategory(v) {
  *     - category: calcdata format (c), and will stay that way because
  *       the data format has no continuous mapping
  *     - log: linearized (l) format
- *       TODO: in v2.0 we plan to change it to data format. At that point
+ *       TODO: in v3.0 we plan to change it to data format. At that point
  *       shapes will work the same way as ranges, tick0, and annotations
  *       so they can use this conversion too.
  *
@@ -66330,7 +69026,7 @@ module.exports = function setConvert(ax, fullLayout) {
         if((opts || {}).msUTC && isNumeric(v)) {
             // For now it is only used
             // to fix bar length in milliseconds & gl3d ticks
-            // It could be applied in other places in v2
+            // It could be applied in other places in v3
             return +v;
         }
 
@@ -67190,19 +69886,11 @@ module.exports = function setConvert(ax, fullLayout) {
     delete ax._forceTick0;
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"./axis_ids":258,"./constants":261,"d3":16,"d3-time-format":14,"fast-isnumeric":18}],276:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/numerical":217,"../../lib":238,"./axis_ids":287,"./constants":290,"@plotly/d3":19,"d3-time-format":21,"fast-isnumeric":23}],305:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
+var contrast = _dereq_('../../components/color').contrast;
 var layoutAttributes = _dereq_('./layout_attributes');
 var handleArrayContainerDefaults = _dereq_('../array_container_defaults');
 
@@ -67239,10 +69927,14 @@ function handleOtherDefaults(containerIn, containerOut, coerce, axType, options)
     if(showTickLabels) {
         var font = options.font || {};
         var contColor = containerOut.color;
-        // as with titlefont.color, inherit axis.color only if one was
-        // explicitly provided
-        var dfltFontColor = (contColor && contColor !== layoutAttributes.color.dflt) ?
+        var position = containerOut.ticklabelposition || '';
+        var dfltFontColor = position.indexOf('inside') !== -1 ?
+            contrast(options.bgColor) :
+            // as with titlefont.color, inherit axis.color only if one was
+            // explicitly provided
+            (contColor && contColor !== layoutAttributes.color.dflt) ?
             contColor : font.color;
+
         Lib.coerceFont(coerce, 'tickfont', {
             family: font.family,
             size: font.size,
@@ -67312,16 +70004,7 @@ function tickformatstopDefaults(valueIn, valueOut) {
     }
 }
 
-},{"../../lib":210,"../array_container_defaults":250,"./layout_attributes":269}],277:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color":109,"../../lib":238,"../array_container_defaults":279,"./layout_attributes":298}],306:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -67345,15 +70028,7 @@ module.exports = function handleTickDefaults(containerIn, containerOut, coerce, 
     }
 };
 
-},{"../../lib":210,"./layout_attributes":269}],278:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./layout_attributes":298}],307:[function(_dereq_,module,exports){
 'use strict';
 
 var cleanTicks = _dereq_('./clean_ticks');
@@ -67392,18 +70067,10 @@ module.exports = function handleTickValueDefaults(containerIn, containerOut, coe
     }
 };
 
-},{"../../lib":210,"./clean_ticks":260}],279:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./clean_ticks":289}],308:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Lib = _dereq_('../../lib');
@@ -67605,15 +70272,7 @@ module.exports = function transitionAxes(gd, edits, transitionOpts, makeOnComple
     return Promise.resolve();
 };
 
-},{"../../components/drawing":104,"../../lib":210,"../../registry":297,"./axes":255,"d3":16}],280:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing":131,"../../lib":238,"../../registry":320,"./axes":284,"@plotly/d3":19}],309:[function(_dereq_,module,exports){
 'use strict';
 
 var traceIs = _dereq_('../../registry').traceIs;
@@ -67745,15 +70404,7 @@ function isBoxWithoutPositionCoords(trace, axLetter) {
     );
 }
 
-},{"../../registry":297,"./axis_autotype":256}],281:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../registry":320,"./axis_autotype":285}],310:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -68172,15 +70823,7 @@ function crawl(attrs, callback, path, depth) {
     });
 }
 
-},{"../lib":210,"../registry":297}],282:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../registry":320}],311:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../lib/extend').extendFlat;
@@ -68212,7 +70855,6 @@ exports.attributes = function(opts, extra) {
 
     var base = {
         valType: 'info_array',
-        
         editType: opts.editType,
         items: [
             {valType: 'number', min: 0, max: 1, editType: opts.editType},
@@ -68227,10 +70869,8 @@ exports.attributes = function(opts, extra) {
 
     var out = {
         x: extendFlat({}, base, {
-            
         }),
         y: extendFlat({}, base, {
-            
         }),
         editType: opts.editType
     };
@@ -68240,17 +70880,13 @@ exports.attributes = function(opts, extra) {
             valType: 'integer',
             min: 0,
             dflt: 0,
-            
             editType: opts.editType,
-            
         };
         out.column = {
             valType: 'integer',
             min: 0,
             dflt: 0,
-            
             editType: opts.editType,
-            
         };
     }
 
@@ -68284,15 +70920,7 @@ exports.defaults = function(containerOut, layout, coerce, dfltDomains) {
     if(!(y[0] < y[1])) containerOut.domain.y = dfltY.slice();
 };
 
-},{"../lib/extend":204}],283:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib/extend":232}],312:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -68317,27 +70945,22 @@ module.exports = function(opts) {
     var attrs = {
         family: {
             valType: 'string',
-            
             noBlank: true,
             strict: true,
             editType: editType,
-            
         },
         size: {
             valType: 'number',
-            
             min: 1,
             editType: editType
         },
         color: {
             valType: 'color',
-            
             editType: colorEditType
         },
         editType: editType,
         // blank strings so compress_attributes can remove
         // TODO - that's uber hacky... better solution?
-        
     };
 
     if(opts.arrayOk) {
@@ -68349,15 +70972,7 @@ module.exports = function(opts) {
     return attrs;
 };
 
-},{}],284:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],313:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -68365,45 +70980,25 @@ module.exports = {
 
     group: {
         valType: 'string',
-        
-        
     },
     name: {
         valType: 'string',
-        
-        
     },
     traces: {
         valType: 'any',
-        
-        
     },
     baseframe: {
         valType: 'string',
-        
-        
     },
     data: {
         valType: 'any',
-        
-        
     },
     layout: {
         valType: 'any',
-        
-        
     }
 };
 
-},{}],285:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],314:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -68524,16 +71119,7 @@ exports.getSubplotData = function getSubplotData(data, type, subplotId) {
     return subplotData;
 };
 
-},{"../registry":297,"./cartesian/constants":261}],286:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../registry":320,"./cartesian/constants":290}],315:[function(_dereq_,module,exports){
 'use strict';
 
 function xformMatrix(m, v) {
@@ -68558,15 +71144,7 @@ function project(camera, v) {
 
 module.exports = project;
 
-},{}],287:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],316:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('./font_attributes');
@@ -68578,7 +71156,6 @@ var extendFlat = _dereq_('../lib/extend').extendFlat;
 
 var globalFont = fontAttrs({
     editType: 'calc',
-    
 });
 globalFont.family.dflt = '"Open Sans", verdana, arial, sans-serif';
 globalFont.size.dflt = 12;
@@ -68589,66 +71166,50 @@ module.exports = {
     title: {
         text: {
             valType: 'string',
-            
             editType: 'layoutstyle',
-            
         },
         font: fontAttrs({
             editType: 'layoutstyle',
-            
         }),
         xref: {
             valType: 'enumerated',
             dflt: 'container',
             values: ['container', 'paper'],
-            
             editType: 'layoutstyle',
-            
         },
         yref: {
             valType: 'enumerated',
             dflt: 'container',
             values: ['container', 'paper'],
-            
             editType: 'layoutstyle',
-            
         },
         x: {
             valType: 'number',
             min: 0,
             max: 1,
             dflt: 0.5,
-            
             editType: 'layoutstyle',
-            
         },
         y: {
             valType: 'number',
             min: 0,
             max: 1,
             dflt: 'auto',
-            
             editType: 'layoutstyle',
-            
         },
         xanchor: {
             valType: 'enumerated',
             dflt: 'auto',
             values: ['auto', 'left', 'center', 'right'],
-            
             editType: 'layoutstyle',
-            
         },
         yanchor: {
             valType: 'enumerated',
             dflt: 'auto',
             values: ['auto', 'top', 'middle', 'bottom'],
-            
             editType: 'layoutstyle',
-            
         },
         pad: extendFlat(padAttrs({editType: 'layoutstyle'}), {
-            
         }),
         editType: 'layoutstyle'
     },
@@ -68657,215 +71218,157 @@ module.exports = {
             valType: 'enumerated',
             values: [false, 'hide', 'show'],
             dflt: false,
-            
             editType: 'plot',
-            
         },
         minsize: {
             valType: 'number',
             min: 0,
             dflt: 0,
-            
             editType: 'plot',
-            
         },
         editType: 'plot'
     },
     autosize: {
         valType: 'boolean',
-        
         dflt: false,
         // autosize, width, and height get special editType treatment in _relayout
         // so we can handle noop resizes more efficiently
         editType: 'none',
-        
     },
     width: {
         valType: 'number',
-        
         min: 10,
         dflt: 700,
         editType: 'plot',
-        
     },
     height: {
         valType: 'number',
-        
         min: 10,
         dflt: 450,
         editType: 'plot',
-        
     },
     margin: {
         l: {
             valType: 'number',
-            
             min: 0,
             dflt: 80,
             editType: 'plot',
-            
         },
         r: {
             valType: 'number',
-            
             min: 0,
             dflt: 80,
             editType: 'plot',
-            
         },
         t: {
             valType: 'number',
-            
             min: 0,
             dflt: 100,
             editType: 'plot',
-            
         },
         b: {
             valType: 'number',
-            
             min: 0,
             dflt: 80,
             editType: 'plot',
-            
         },
         pad: {
             valType: 'number',
-            
             min: 0,
             dflt: 0,
             editType: 'plot',
-            
         },
         autoexpand: {
             valType: 'boolean',
-            
             dflt: true,
             editType: 'plot',
-            
         },
         editType: 'plot'
     },
     computed: {
         valType: 'any',
-        
         editType: 'none',
-        
     },
     paper_bgcolor: {
         valType: 'color',
-        
         dflt: colorAttrs.background,
         editType: 'plot',
-        
     },
     plot_bgcolor: {
         // defined here, but set in cartesian.supplyLayoutDefaults
         // because it needs to know if there are (2D) axes or not
         valType: 'color',
-        
         dflt: colorAttrs.background,
         editType: 'layoutstyle',
-        
     },
     autotypenumbers: {
         valType: 'enumerated',
         values: ['convert types', 'strict'],
         dflt: 'convert types',
-        
         editType: 'calc',
-        
     },
     separators: {
         valType: 'string',
-        
         editType: 'plot',
-        
     },
     hidesources: {
         valType: 'boolean',
-        
         dflt: false,
         editType: 'plot',
-        
     },
     showlegend: {
         // handled in legend.supplyLayoutDefaults
         // but included here because it's not in the legend object
         valType: 'boolean',
-        
         editType: 'legend',
-        
     },
     colorway: {
         valType: 'colorlist',
         dflt: colorAttrs.defaults,
-        
         editType: 'calc',
-        
     },
     datarevision: {
         valType: 'any',
-        
         editType: 'calc',
-        
     },
     uirevision: {
         valType: 'any',
-        
         editType: 'none',
-        
     },
     editrevision: {
         valType: 'any',
-        
         editType: 'none',
-        
     },
     selectionrevision: {
         valType: 'any',
-        
         editType: 'none',
-        
     },
     template: {
         valType: 'any',
-        
         editType: 'calc',
-        
     },
     modebar: {
         orientation: {
             valType: 'enumerated',
             values: ['v', 'h'],
             dflt: 'h',
-            
             editType: 'modebar',
-            
         },
         bgcolor: {
             valType: 'color',
-            
             editType: 'modebar',
-            
         },
         color: {
             valType: 'color',
-            
             editType: 'modebar',
-            
         },
         activecolor: {
             valType: 'color',
-            
             editType: 'modebar',
-            
         },
         uirevision: {
             valType: 'any',
-            
             editType: 'none',
-            
         },
         editType: 'modebar'
     },
@@ -68876,38 +71379,24 @@ module.exports = {
     meta: {
         valType: 'any',
         arrayOk: true,
-        
         editType: 'plot',
-        
     },
 
     transition: extendFlat({}, animationAttrs.transition, {
-        
         editType: 'none'
     }),
     _deprecated: {
         title: {
             valType: 'string',
-            
             editType: 'layoutstyle',
-            
         },
         titlefont: fontAttrs({
             editType: 'layoutstyle',
-            
         })
     }
 };
 
-},{"../components/color/attributes":81,"../components/shapes/draw_newshape/attributes":164,"../lib/extend":204,"./animation_attributes":249,"./font_attributes":283,"./pad_attributes":288}],288:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../components/color/attributes":108,"../components/shapes/draw_newshape/attributes":191,"../lib/extend":232,"./animation_attributes":278,"./font_attributes":312,"./pad_attributes":317}],317:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -68925,47 +71414,31 @@ module.exports = function(opts) {
         t: {
             valType: 'number',
             dflt: 0,
-            
             editType: editType,
-            
         },
         r: {
             valType: 'number',
             dflt: 0,
-            
             editType: editType,
-            
         },
         b: {
             valType: 'number',
             dflt: 0,
-            
             editType: editType,
-            
         },
         l: {
             valType: 'number',
             dflt: 0,
-            
             editType: editType,
-            
         },
         editType: editType
     };
 };
 
-},{}],289:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],318:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var timeFormatLocale = _dereq_('d3-time-format').timeFormatLocale;
 var isNumeric = _dereq_('fast-isnumeric');
 
@@ -69013,13 +71486,6 @@ plots.hasSimpleAPICommandBindings = commandModule.hasSimpleAPICommandBindings;
 // then wait a little, then draw it again
 plots.redrawText = function(gd) {
     gd = Lib.getGraphDiv(gd);
-
-    var fullLayout = gd._fullLayout || {};
-    var hasPolar = fullLayout._has && fullLayout._has('polar');
-    var hasLegacyPolar = !hasPolar && gd.data && gd.data[0] && gd.data[0].r;
-
-    // do not work if polar is present
-    if(hasLegacyPolar) return;
 
     return new Promise(function(resolve) {
         setTimeout(function() {
@@ -69088,7 +71554,7 @@ plots.previousPromises = function(gd) {
 
 /**
  * Adds the 'Edit chart' link.
- * Note that now Plotly.plot() calls this so it can regenerate whenever it replots
+ * Note that now _doPlot calls this so it can regenerate whenever it replots
  *
  * Add source links to your graph inside the 'showSources' config argument.
  */
@@ -69425,15 +71891,6 @@ plots.supplyDefaults = function(gd, opts) {
         newFullLayout.images.length === 0
     );
 
-    // TODO remove in v2.0.0
-    // add has-plot-type refs to fullLayout for backward compatibility
-    newFullLayout._hasCartesian = newFullLayout._has('cartesian');
-    newFullLayout._hasGeo = newFullLayout._has('geo');
-    newFullLayout._hasGL3D = newFullLayout._has('gl3d');
-    newFullLayout._hasGL2D = newFullLayout._has('gl2d');
-    newFullLayout._hasTernary = newFullLayout._has('ternary');
-    newFullLayout._hasPie = newFullLayout._has('pie');
-
     // relink / initialize subplot axis objects
     plots.linkSubplots(newFullData, newFullLayout, oldFullData, oldFullLayout);
 
@@ -69668,7 +72125,7 @@ function getFormatObj(gd, formatKeys) {
 /**
  * getFormatter: combine the final separators with the locale formatting object
  * we pulled earlier to generate number and time formatters
- * TODO: remove separators in v2, only use locale, so we don't need this step?
+ * TODO: remove separators in v3, only use locale, so we don't need this step?
  *
  * @param {object} formatObj: d3.locale format object
  * @param {string} separators: length-2 string to override decimal and thousands
@@ -70469,7 +72926,7 @@ plots.supplyLayoutGlobalDefaults = function(layoutIn, layoutOut, formatObj) {
     // layouts with no set width and height were set temporary set to 'initial'
     // to pass through the autosize routine
     //
-    // This behavior is subject to change in v2.
+    // This behavior is subject to change in v3.
     coerce('autosize', !(layoutIn.width && layoutIn.height));
 
     coerce('width');
@@ -70713,7 +73170,6 @@ plots.purge = function(gd) {
     delete gd._fullData;
     delete gd._fullLayout;
     delete gd.calcdata;
-    delete gd.framework;
     delete gd.empty;
 
     delete gd.fid;
@@ -70723,7 +73179,7 @@ plots.purge = function(gd) {
     delete gd.autoplay; // are we doing an action that doesn't go in undo queue?
     delete gd.changed;
 
-    // these get recreated on Plotly.plot anyway, but just to be safe
+    // these get recreated on _doPlot anyway, but just to be safe
     // (and to have a record of them...)
     delete gd._promises;
     delete gd._redrawTimer;
@@ -70823,8 +73279,13 @@ function initMargins(fullLayout) {
     if(!fullLayout._pushmarginIds) fullLayout._pushmarginIds = {};
 }
 
-var minFinalWidth = 64; // could possibly be exposed as layout.margin.minfinalwidth
-var minFinalHeight = 64; // could possibly be exposed as layout.margin.minfinalheight
+// non-negotiable - this is the smallest height we will allow users to specify via explicit margins
+var MIN_SPECIFIED_WIDTH = 2;
+var MIN_SPECIFIED_HEIGHT = 2;
+
+// could be exposed as an option - the smallest we will allow automargin to shrink a larger plot
+var MIN_REDUCED_WIDTH = 64;
+var MIN_REDUCED_HEIGHT = 64;
 
 /**
  * autoMargin: called by components that may need to expand the margins to
@@ -70845,20 +73306,33 @@ plots.autoMargin = function(gd, id, o) {
     var fullLayout = gd._fullLayout;
     var width = fullLayout.width;
     var height = fullLayout.height;
+    var margin = fullLayout.margin;
+
+    var minFinalWidth = Lib.constrain(
+        width - margin.l - margin.r,
+        MIN_SPECIFIED_WIDTH,
+        MIN_REDUCED_WIDTH
+    );
+
+    var minFinalHeight = Lib.constrain(
+        height - margin.t - margin.b,
+        MIN_SPECIFIED_HEIGHT,
+        MIN_REDUCED_HEIGHT
+    );
+
     var maxSpaceW = Math.max(0, width - minFinalWidth);
     var maxSpaceH = Math.max(0, height - minFinalHeight);
 
     var pushMargin = fullLayout._pushmargin;
     var pushMarginIds = fullLayout._pushmarginIds;
 
-    if(fullLayout.margin.autoexpand !== false) {
+    if(margin.autoexpand !== false) {
         if(!o) {
             delete pushMargin[id];
             delete pushMarginIds[id];
         } else {
             var pad = o.pad;
             if(pad === undefined) {
-                var margin = fullLayout.margin;
                 // if no explicit pad is given, use 12px unless there's a
                 // specified margin that's smaller than that
                 pad = Math.min(12, margin.l, margin.r, margin.t, margin.b);
@@ -70866,15 +73340,19 @@ plots.autoMargin = function(gd, id, o) {
 
             // if the item is too big, just give it enough automargin to
             // make sure you can still grab it and bring it back
-            var rW = (o.l + o.r) / maxSpaceW;
-            if(rW > 1) {
-                o.l /= rW;
-                o.r /= rW;
+            if(maxSpaceW) {
+                var rW = (o.l + o.r) / maxSpaceW;
+                if(rW > 1) {
+                    o.l /= rW;
+                    o.r /= rW;
+                }
             }
-            var rH = (o.t + o.b) / maxSpaceH;
-            if(rH > 1) {
-                o.t /= rH;
-                o.b /= rH;
+            if(maxSpaceH) {
+                var rH = (o.t + o.b) / maxSpaceH;
+                if(rH > 1) {
+                    o.t /= rH;
+                    o.b /= rH;
+                }
             }
 
             var xl = o.xl !== undefined ? o.xl : o.x;
@@ -70901,8 +73379,6 @@ plots.doAutoMargin = function(gd) {
     var fullLayout = gd._fullLayout;
     var width = fullLayout.width;
     var height = fullLayout.height;
-    var maxSpaceW = Math.max(0, width - minFinalWidth);
-    var maxSpaceH = Math.max(0, height - minFinalHeight);
 
     if(!fullLayout._size) fullLayout._size = {};
     initMargins(fullLayout);
@@ -70975,16 +73451,35 @@ plots.doAutoMargin = function(gd) {
         }
     }
 
-    var rW = (ml + mr) / maxSpaceW;
-    if(rW > 1) {
-        ml /= rW;
-        mr /= rW;
+    var minFinalWidth = Lib.constrain(
+        width - margin.l - margin.r,
+        MIN_SPECIFIED_WIDTH,
+        MIN_REDUCED_WIDTH
+    );
+
+    var minFinalHeight = Lib.constrain(
+        height - margin.t - margin.b,
+        MIN_SPECIFIED_HEIGHT,
+        MIN_REDUCED_HEIGHT
+    );
+
+    var maxSpaceW = Math.max(0, width - minFinalWidth);
+    var maxSpaceH = Math.max(0, height - minFinalHeight);
+
+    if(maxSpaceW) {
+        var rW = (ml + mr) / maxSpaceW;
+        if(rW > 1) {
+            ml /= rW;
+            mr /= rW;
+        }
     }
 
-    var rH = (mb + mt) / maxSpaceH;
-    if(rH > 1) {
-        mb /= rH;
-        mt /= rH;
+    if(maxSpaceH) {
+        var rH = (mb + mt) / maxSpaceH;
+        if(rH > 1) {
+            mb /= rH;
+            mt /= rH;
+        }
     }
 
     gs.l = Math.round(ml);
@@ -71011,13 +73506,25 @@ plots.doAutoMargin = function(gd) {
         var maxNumberOfRedraws = 3 * (1 + Object.keys(pushMarginIds).length);
 
         if(fullLayout._redrawFromAutoMarginCount < maxNumberOfRedraws) {
-            return Registry.call('plot', gd);
+            return Registry.call('_doPlot', gd);
         } else {
             fullLayout._size = oldMargins;
             Lib.warn('Too many auto-margin redraws.');
         }
     }
+
+    hideOutOfRangeInsideTickLabels(gd);
 };
+
+function hideOutOfRangeInsideTickLabels(gd) {
+    var axList = axisIDs.list(gd, '', true);
+    for(var i = 0; i < axList.length; i++) {
+        var ax = axList[i];
+
+        var hideFn = ax._hideOutOfRangeInsideTickLabels;
+        if(hideFn) hideFn();
+    }
+}
 
 var marginKeys = ['l', 'r', 't', 'b', 'p', 'w', 'h'];
 
@@ -71156,8 +73663,6 @@ plots.graphJson = function(gd, dataonly, mode, output, useDefaults, includeConfi
             };
         }
     }
-
-    if(gd.framework && gd.framework.isPolar) obj = gd.framework.getConfig();
 
     if(frames) obj.frames = stripObj(frames);
 
@@ -72330,1768 +74835,7 @@ plots.cleanBasePlot = function(desiredType, newFullData, newFullLayout, oldFullD
     }
 };
 
-},{"../components/color":82,"../constants/numerical":189,"../lib":210,"../plot_api/plot_schema":243,"../plot_api/plot_template":244,"../plots/get_data":285,"../registry":297,"./animation_attributes":249,"./attributes":251,"./cartesian/axis_ids":258,"./cartesian/handle_outline":265,"./command":281,"./font_attributes":283,"./frame_attributes":284,"./layout_attributes":287,"d3":16,"d3-time-format":14,"fast-isnumeric":18}],290:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-'use strict';
-
-var scatterAttrs = _dereq_('../../../traces/scatter/attributes');
-var scatterMarkerAttrs = scatterAttrs.marker;
-var extendFlat = _dereq_('../../../lib/extend').extendFlat;
-
-var deprecationWarning = [
-    'Area traces are deprecated!',
-    'Please switch to the *barpolar* trace type.'
-].join(' ');
-
-module.exports = {
-    r: extendFlat({}, scatterAttrs.r, {
-        
-    }),
-    t: extendFlat({}, scatterAttrs.t, {
-        
-    }),
-    marker: {
-        color: extendFlat({}, scatterMarkerAttrs.color, {
-            
-        }),
-        size: extendFlat({}, scatterMarkerAttrs.size, {
-            
-        }),
-        symbol: extendFlat({}, scatterMarkerAttrs.symbol, {
-            
-        }),
-        opacity: extendFlat({}, scatterMarkerAttrs.opacity, {
-            
-        }),
-        editType: 'calc'
-    }
-};
-
-},{"../../../lib/extend":204,"../../../traces/scatter/attributes":398}],291:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
-'use strict';
-
-var axesAttrs = _dereq_('../../cartesian/layout_attributes');
-var extendFlat = _dereq_('../../../lib/extend').extendFlat;
-var overrideAll = _dereq_('../../../plot_api/edit_types').overrideAll;
-
-var deprecationWarning = [
-    'Legacy polar charts are deprecated!',
-    'Please switch to *polar* subplots.'
-].join(' ');
-
-var domainAttr = extendFlat({}, axesAttrs.domain, {
-    
-});
-
-function mergeAttrs(axisName, nonCommonAttrs) {
-    var commonAttrs = {
-        showline: {
-            valType: 'boolean',
-            
-            
-        },
-        showticklabels: {
-            valType: 'boolean',
-            
-            
-        },
-        tickorientation: {
-            valType: 'enumerated',
-            values: ['horizontal', 'vertical'],
-            
-            
-        },
-        ticklen: {
-            valType: 'number',
-            min: 0,
-            
-            
-        },
-        tickcolor: {
-            valType: 'color',
-            
-            
-        },
-        ticksuffix: {
-            valType: 'string',
-            
-            
-        },
-        endpadding: {
-            valType: 'number',
-            
-            description: deprecationWarning,
-        },
-        visible: {
-            valType: 'boolean',
-            
-            
-        }
-    };
-
-    return extendFlat({}, nonCommonAttrs, commonAttrs);
-}
-
-module.exports = overrideAll({
-    radialaxis: mergeAttrs('radial', {
-        range: {
-            valType: 'info_array',
-            
-            items: [
-                { valType: 'number' },
-                { valType: 'number' }
-            ],
-            
-        },
-        domain: domainAttr,
-        orientation: {
-            valType: 'number',
-            
-            
-        }
-    }),
-
-    angularaxis: mergeAttrs('angular', {
-        range: {
-            valType: 'info_array',
-            
-            items: [
-                { valType: 'number', dflt: 0 },
-                { valType: 'number', dflt: 360 }
-            ],
-            
-        },
-        domain: domainAttr
-    }),
-
-    // attributes that appear at layout root
-    layout: {
-        direction: {
-            valType: 'enumerated',
-            values: ['clockwise', 'counterclockwise'],
-            
-            
-        },
-        orientation: {
-            valType: 'angle',
-            
-            
-        }
-    }
-}, 'plot', 'nested');
-
-},{"../../../lib/extend":204,"../../../plot_api/edit_types":237,"../../cartesian/layout_attributes":269}],292:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-'use strict';
-
-var Polar = module.exports = _dereq_('./micropolar');
-
-Polar.manager = _dereq_('./micropolar_manager');
-
-},{"./micropolar":293,"./micropolar_manager":294}],293:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-var d3 = _dereq_('d3');
-var Lib = _dereq_('../../../lib');
-var extendDeepAll = Lib.extendDeepAll;
-var MID_SHIFT = _dereq_('../../../constants/alignment').MID_SHIFT;
-
-var µ = module.exports = { version: '0.2.2' };
-
-µ.Axis = function module() {
-    var config = {
-        data: [],
-        layout: {}
-    }, inputConfig = {}, liveConfig = {};
-    var svg, container, dispatch = d3.dispatch('hover'), radialScale, angularScale;
-    var exports = {};
-    function render(_container) {
-        container = _container || container;
-        var data = config.data;
-        var axisConfig = config.layout;
-        if (typeof container == 'string' || container.nodeName) container = d3.select(container);
-        container.datum(data).each(function(_data, _index) {
-            var dataOriginal = _data.slice();
-            liveConfig = {
-                data: µ.util.cloneJson(dataOriginal),
-                layout: µ.util.cloneJson(axisConfig)
-            };
-            var colorIndex = 0;
-            dataOriginal.forEach(function(d, i) {
-                if (!d.color) {
-                    d.color = axisConfig.defaultColorRange[colorIndex];
-                    colorIndex = (colorIndex + 1) % axisConfig.defaultColorRange.length;
-                }
-                if (!d.strokeColor) {
-                    d.strokeColor = d.geometry === 'LinePlot' ? d.color : d3.rgb(d.color).darker().toString();
-                }
-                liveConfig.data[i].color = d.color;
-                liveConfig.data[i].strokeColor = d.strokeColor;
-                liveConfig.data[i].strokeDash = d.strokeDash;
-                liveConfig.data[i].strokeSize = d.strokeSize;
-            });
-            var data = dataOriginal.filter(function(d, i) {
-                var visible = d.visible;
-                return typeof visible === 'undefined' || visible === true;
-            });
-            var isStacked = false;
-            var dataWithGroupId = data.map(function(d, i) {
-                isStacked = isStacked || typeof d.groupId !== 'undefined';
-                return d;
-            });
-            if (isStacked) {
-                var grouped = d3.nest().key(function(d, i) {
-                    return typeof d.groupId != 'undefined' ? d.groupId : 'unstacked';
-                }).entries(dataWithGroupId);
-                var dataYStack = [];
-                var stacked = grouped.map(function(d, i) {
-                    if (d.key === 'unstacked') return d.values; else {
-                        var prevArray = d.values[0].r.map(function(d, i) {
-                            return 0;
-                        });
-                        d.values.forEach(function(d, i, a) {
-                            d.yStack = [ prevArray ];
-                            dataYStack.push(prevArray);
-                            prevArray = µ.util.sumArrays(d.r, prevArray);
-                        });
-                        return d.values;
-                    }
-                });
-                data = d3.merge(stacked);
-            }
-            data.forEach(function(d, i) {
-                d.t = Array.isArray(d.t[0]) ? d.t : [ d.t ];
-                d.r = Array.isArray(d.r[0]) ? d.r : [ d.r ];
-            });
-            var radius = Math.min(axisConfig.width - axisConfig.margin.left - axisConfig.margin.right, axisConfig.height - axisConfig.margin.top - axisConfig.margin.bottom) / 2;
-            radius = Math.max(10, radius);
-            var chartCenter = [ axisConfig.margin.left + radius, axisConfig.margin.top + radius ];
-            var extent;
-            if (isStacked) {
-                var highestStackedValue = d3.max(µ.util.sumArrays(µ.util.arrayLast(data).r[0], µ.util.arrayLast(dataYStack)));
-                extent = [ 0, highestStackedValue ];
-            } else extent = d3.extent(µ.util.flattenArray(data.map(function(d, i) {
-                return d.r;
-            })));
-            if (axisConfig.radialAxis.domain != µ.DATAEXTENT) extent[0] = 0;
-            radialScale = d3.scale.linear().domain(axisConfig.radialAxis.domain != µ.DATAEXTENT && axisConfig.radialAxis.domain ? axisConfig.radialAxis.domain : extent).range([ 0, radius ]);
-            liveConfig.layout.radialAxis.domain = radialScale.domain();
-            var angularDataMerged = µ.util.flattenArray(data.map(function(d, i) {
-                return d.t;
-            }));
-            var isOrdinal = typeof angularDataMerged[0] === 'string';
-            var ticks;
-            if (isOrdinal) {
-                angularDataMerged = µ.util.deduplicate(angularDataMerged);
-                ticks = angularDataMerged.slice();
-                angularDataMerged = d3.range(angularDataMerged.length);
-                data = data.map(function(d, i) {
-                    var result = d;
-                    d.t = [ angularDataMerged ];
-                    if (isStacked) result.yStack = d.yStack;
-                    return result;
-                });
-            }
-            var hasOnlyLineOrDotPlot = data.filter(function(d, i) {
-                return d.geometry === 'LinePlot' || d.geometry === 'DotPlot';
-            }).length === data.length;
-            var needsEndSpacing = axisConfig.needsEndSpacing === null ? isOrdinal || !hasOnlyLineOrDotPlot : axisConfig.needsEndSpacing;
-            var useProvidedDomain = axisConfig.angularAxis.domain && axisConfig.angularAxis.domain != µ.DATAEXTENT && !isOrdinal && axisConfig.angularAxis.domain[0] >= 0;
-            var angularDomain = useProvidedDomain ? axisConfig.angularAxis.domain : d3.extent(angularDataMerged);
-            var angularDomainStep = Math.abs(angularDataMerged[1] - angularDataMerged[0]);
-            if (hasOnlyLineOrDotPlot && !isOrdinal) angularDomainStep = 0;
-            var angularDomainWithPadding = angularDomain.slice();
-            if (needsEndSpacing && isOrdinal) angularDomainWithPadding[1] += angularDomainStep;
-            var tickCount = axisConfig.angularAxis.ticksCount || 4;
-            if (tickCount > 8) tickCount = tickCount / (tickCount / 8) + tickCount % 8;
-            if (axisConfig.angularAxis.ticksStep) {
-                tickCount = (angularDomainWithPadding[1] - angularDomainWithPadding[0]) / tickCount;
-            }
-            var angularTicksStep = axisConfig.angularAxis.ticksStep || (angularDomainWithPadding[1] - angularDomainWithPadding[0]) / (tickCount * (axisConfig.minorTicks + 1));
-            if (ticks) angularTicksStep = Math.max(Math.round(angularTicksStep), 1);
-            if (!angularDomainWithPadding[2]) angularDomainWithPadding[2] = angularTicksStep;
-            var angularAxisRange = d3.range.apply(this, angularDomainWithPadding);
-            angularAxisRange = angularAxisRange.map(function(d, i) {
-                return parseFloat(d.toPrecision(12));
-            });
-            angularScale = d3.scale.linear().domain(angularDomainWithPadding.slice(0, 2)).range(axisConfig.direction === 'clockwise' ? [ 0, 360 ] : [ 360, 0 ]);
-            liveConfig.layout.angularAxis.domain = angularScale.domain();
-            liveConfig.layout.angularAxis.endPadding = needsEndSpacing ? angularDomainStep : 0;
-            svg = d3.select(this).select('svg.chart-root');
-            if (typeof svg === 'undefined' || svg.empty()) {
-                var skeleton = "<svg xmlns='http://www.w3.org/2000/svg' class='chart-root'>' + '<g class='outer-group'>' + '<g class='chart-group'>' + '<circle class='background-circle'></circle>' + '<g class='geometry-group'></g>' + '<g class='radial axis-group'>' + '<circle class='outside-circle'></circle>' + '</g>' + '<g class='angular axis-group'></g>' + '<g class='guides-group'><line></line><circle r='0'></circle></g>' + '</g>' + '<g class='legend-group'></g>' + '<g class='tooltips-group'></g>' + '<g class='title-group'><text></text></g>' + '</g>' + '</svg>";
-                var doc = new DOMParser().parseFromString(skeleton, 'application/xml');
-                var newSvg = this.appendChild(this.ownerDocument.importNode(doc.documentElement, true));
-                svg = d3.select(newSvg);
-            }
-            svg.select('.guides-group').style({
-                'pointer-events': 'none'
-            });
-            svg.select('.angular.axis-group').style({
-                'pointer-events': 'none'
-            });
-            svg.select('.radial.axis-group').style({
-                'pointer-events': 'none'
-            });
-            var chartGroup = svg.select('.chart-group');
-            var lineStyle = {
-                fill: 'none',
-                stroke: axisConfig.tickColor
-            };
-            var fontStyle = {
-                'font-size': axisConfig.font.size,
-                'font-family': axisConfig.font.family,
-                fill: axisConfig.font.color,
-                'text-shadow': [ '-1px 0px', '1px -1px', '-1px 1px', '1px 1px' ].map(function(d, i) {
-                    return ' ' + d + ' 0 ' + axisConfig.font.outlineColor;
-                }).join(',')
-            };
-            var legendContainer;
-            if (axisConfig.showLegend) {
-                legendContainer = svg.select('.legend-group').attr({
-                    transform: 'translate(' + [ radius, axisConfig.margin.top ] + ')'
-                }).style({
-                    display: 'block'
-                });
-                var elements = data.map(function(d, i) {
-                    var datumClone = µ.util.cloneJson(d);
-                    datumClone.symbol = d.geometry === 'DotPlot' ? d.dotType || 'circle' : d.geometry != 'LinePlot' ? 'square' : 'line';
-                    datumClone.visibleInLegend = typeof d.visibleInLegend === 'undefined' || d.visibleInLegend;
-                    datumClone.color = d.geometry === 'LinePlot' ? d.strokeColor : d.color;
-                    return datumClone;
-                });
-
-                µ.Legend().config({
-                    data: data.map(function(d, i) {
-                        return d.name || 'Element' + i;
-                    }),
-                    legendConfig: extendDeepAll({},
-                        µ.Legend.defaultConfig().legendConfig,
-                        {
-                            container: legendContainer,
-                            elements: elements,
-                            reverseOrder: axisConfig.legend.reverseOrder
-                        }
-                    )
-                })();
-
-                var legendBBox = legendContainer.node().getBBox();
-                radius = Math.min(axisConfig.width - legendBBox.width - axisConfig.margin.left - axisConfig.margin.right, axisConfig.height - axisConfig.margin.top - axisConfig.margin.bottom) / 2;
-                radius = Math.max(10, radius);
-                chartCenter = [ axisConfig.margin.left + radius, axisConfig.margin.top + radius ];
-                radialScale.range([ 0, radius ]);
-                liveConfig.layout.radialAxis.domain = radialScale.domain();
-                legendContainer.attr('transform', 'translate(' + [ chartCenter[0] + radius, chartCenter[1] - radius ] + ')');
-            } else {
-                legendContainer = svg.select('.legend-group').style({
-                    display: 'none'
-                });
-            }
-            svg.attr({
-                width: axisConfig.width,
-                height: axisConfig.height
-            }).style({
-                opacity: axisConfig.opacity
-            });
-            chartGroup.attr('transform', 'translate(' + chartCenter + ')').style({
-                cursor: 'crosshair'
-            });
-            var centeringOffset = [ (axisConfig.width - (axisConfig.margin.left + axisConfig.margin.right + radius * 2 + (legendBBox ? legendBBox.width : 0))) / 2, (axisConfig.height - (axisConfig.margin.top + axisConfig.margin.bottom + radius * 2)) / 2 ];
-            centeringOffset[0] = Math.max(0, centeringOffset[0]);
-            centeringOffset[1] = Math.max(0, centeringOffset[1]);
-            svg.select('.outer-group').attr('transform', 'translate(' + centeringOffset + ')');
-            if (axisConfig.title && axisConfig.title.text) {
-                var title = svg.select('g.title-group text').style(fontStyle).text(axisConfig.title.text);
-                var titleBBox = title.node().getBBox();
-                title.attr({
-                    x: chartCenter[0] - titleBBox.width / 2,
-                    y: chartCenter[1] - radius - 20
-                });
-            }
-            var radialAxis = svg.select('.radial.axis-group');
-            if (axisConfig.radialAxis.gridLinesVisible) {
-                var gridCircles = radialAxis.selectAll('circle.grid-circle').data(radialScale.ticks(5));
-                gridCircles.enter().append('circle').attr({
-                    'class': 'grid-circle'
-                }).style(lineStyle);
-                gridCircles.attr('r', radialScale);
-                gridCircles.exit().remove();
-            }
-            radialAxis.select('circle.outside-circle').attr({
-                r: radius
-            }).style(lineStyle);
-            var backgroundCircle = svg.select('circle.background-circle').attr({
-                r: radius
-            }).style({
-                fill: axisConfig.backgroundColor,
-                stroke: axisConfig.stroke
-            });
-            function currentAngle(d, i) {
-                return angularScale(d) % 360 + axisConfig.orientation;
-            }
-            if (axisConfig.radialAxis.visible) {
-                var axis = d3.svg.axis().scale(radialScale).ticks(5).tickSize(5);
-                radialAxis.call(axis).attr({
-                    transform: 'rotate(' + axisConfig.radialAxis.orientation + ')'
-                });
-                radialAxis.selectAll('.domain').style(lineStyle);
-                radialAxis.selectAll('g>text').text(function(d, i) {
-                    return this.textContent + axisConfig.radialAxis.ticksSuffix;
-                }).style(fontStyle).style({
-                    'text-anchor': 'start'
-                }).attr({
-                    x: 0,
-                    y: 0,
-                    dx: 0,
-                    dy: 0,
-                    transform: function(d, i) {
-                        if (axisConfig.radialAxis.tickOrientation === 'horizontal') {
-                            return 'rotate(' + -axisConfig.radialAxis.orientation + ') translate(' + [ 0, fontStyle['font-size'] ] + ')';
-                        } else return 'translate(' + [ 0, fontStyle['font-size'] ] + ')';
-                    }
-                });
-                radialAxis.selectAll('g>line').style({
-                    stroke: 'black'
-                });
-            }
-            var angularAxis = svg.select('.angular.axis-group').selectAll('g.angular-tick').data(angularAxisRange);
-            var angularAxisEnter = angularAxis.enter().append('g').classed('angular-tick', true);
-            angularAxis.attr({
-                transform: function(d, i) {
-                    return 'rotate(' + currentAngle(d, i) + ')';
-                }
-            }).style({
-                display: axisConfig.angularAxis.visible ? 'block' : 'none'
-            });
-            angularAxis.exit().remove();
-            angularAxisEnter.append('line').classed('grid-line', true).classed('major', function(d, i) {
-                return i % (axisConfig.minorTicks + 1) == 0;
-            }).classed('minor', function(d, i) {
-                return !(i % (axisConfig.minorTicks + 1) == 0);
-            }).style(lineStyle);
-            angularAxisEnter.selectAll('.minor').style({
-                stroke: axisConfig.minorTickColor
-            });
-            angularAxis.select('line.grid-line').attr({
-                x1: axisConfig.tickLength ? radius - axisConfig.tickLength : 0,
-                x2: radius
-            }).style({
-                display: axisConfig.angularAxis.gridLinesVisible ? 'block' : 'none'
-            });
-            angularAxisEnter.append('text').classed('axis-text', true).style(fontStyle);
-            var ticksText = angularAxis.select('text.axis-text').attr({
-                x: radius + axisConfig.labelOffset,
-                dy: MID_SHIFT + 'em',
-                transform: function(d, i) {
-                    var angle = currentAngle(d, i);
-                    var rad = radius + axisConfig.labelOffset;
-                    var orient = axisConfig.angularAxis.tickOrientation;
-                    if (orient == 'horizontal') return 'rotate(' + -angle + ' ' + rad + ' 0)'; else if (orient == 'radial') return angle < 270 && angle > 90 ? 'rotate(180 ' + rad + ' 0)' : null; else return 'rotate(' + (angle <= 180 && angle > 0 ? -90 : 90) + ' ' + rad + ' 0)';
-                }
-            }).style({
-                'text-anchor': 'middle',
-                display: axisConfig.angularAxis.labelsVisible ? 'block' : 'none'
-            }).text(function(d, i) {
-                if (i % (axisConfig.minorTicks + 1) != 0) return '';
-                if (ticks) {
-                    return ticks[d] + axisConfig.angularAxis.ticksSuffix;
-                } else return d + axisConfig.angularAxis.ticksSuffix;
-            }).style(fontStyle);
-            if (axisConfig.angularAxis.rewriteTicks) ticksText.text(function(d, i) {
-                if (i % (axisConfig.minorTicks + 1) != 0) return '';
-                return axisConfig.angularAxis.rewriteTicks(this.textContent, i);
-            });
-            var rightmostTickEndX = d3.max(chartGroup.selectAll('.angular-tick text')[0].map(function(d, i) {
-                return d.getCTM().e + d.getBBox().width;
-            }));
-            legendContainer.attr({
-                transform: 'translate(' + [ radius + rightmostTickEndX, axisConfig.margin.top ] + ')'
-            });
-            var hasGeometry = svg.select('g.geometry-group').selectAll('g').size() > 0;
-            var geometryContainer = svg.select('g.geometry-group').selectAll('g.geometry').data(data);
-            geometryContainer.enter().append('g').attr({
-                'class': function(d, i) {
-                    return 'geometry geometry' + i;
-                }
-            });
-            geometryContainer.exit().remove();
-            if (data[0] || hasGeometry) {
-                var geometryConfigs = [];
-                data.forEach(function(d, i) {
-                    var geometryConfig = {};
-                    geometryConfig.radialScale = radialScale;
-                    geometryConfig.angularScale = angularScale;
-                    geometryConfig.container = geometryContainer.filter(function(dB, iB) {
-                        return iB == i;
-                    });
-                    geometryConfig.geometry = d.geometry;
-                    geometryConfig.orientation = axisConfig.orientation;
-                    geometryConfig.direction = axisConfig.direction;
-                    geometryConfig.index = i;
-                    geometryConfigs.push({
-                        data: d,
-                        geometryConfig: geometryConfig
-                    });
-                });
-                var geometryConfigsGrouped = d3.nest().key(function(d, i) {
-                    return typeof d.data.groupId != 'undefined' || 'unstacked';
-                }).entries(geometryConfigs);
-                var geometryConfigsGrouped2 = [];
-                geometryConfigsGrouped.forEach(function(d, i) {
-                    if (d.key === 'unstacked') geometryConfigsGrouped2 = geometryConfigsGrouped2.concat(d.values.map(function(d, i) {
-                        return [ d ];
-                    })); else geometryConfigsGrouped2.push(d.values);
-                });
-                geometryConfigsGrouped2.forEach(function(d, i) {
-                    var geometry;
-                    if (Array.isArray(d)) geometry = d[0].geometryConfig.geometry; else geometry = d.geometryConfig.geometry;
-                    var finalGeometryConfig = d.map(function(dB, iB) {
-                        return extendDeepAll(µ[geometry].defaultConfig(), dB);
-                    });
-                    µ[geometry]().config(finalGeometryConfig)();
-                });
-            }
-            var guides = svg.select('.guides-group');
-            var tooltipContainer = svg.select('.tooltips-group');
-            var angularTooltip = µ.tooltipPanel().config({
-                container: tooltipContainer,
-                fontSize: 8
-            })();
-            var radialTooltip = µ.tooltipPanel().config({
-                container: tooltipContainer,
-                fontSize: 8
-            })();
-            var geometryTooltip = µ.tooltipPanel().config({
-                container: tooltipContainer,
-                hasTick: true
-            })();
-            var angularValue, radialValue;
-            if (!isOrdinal) {
-                var angularGuideLine = guides.select('line').attr({
-                    x1: 0,
-                    y1: 0,
-                    y2: 0
-                }).style({
-                    stroke: 'grey',
-                    'pointer-events': 'none'
-                });
-                chartGroup.on('mousemove.angular-guide', function(d, i) {
-                    var mouseAngle = µ.util.getMousePos(backgroundCircle).angle;
-                    angularGuideLine.attr({
-                        x2: -radius,
-                        transform: 'rotate(' + mouseAngle + ')'
-                    }).style({
-                        opacity: .5
-                    });
-                    var angleWithOriginOffset = (mouseAngle + 180 + 360 - axisConfig.orientation) % 360;
-                    angularValue = angularScale.invert(angleWithOriginOffset);
-                    var pos = µ.util.convertToCartesian(radius + 12, mouseAngle + 180);
-                    angularTooltip.text(µ.util.round(angularValue)).move([ pos[0] + chartCenter[0], pos[1] + chartCenter[1] ]);
-                }).on('mouseout.angular-guide', function(d, i) {
-                    guides.select('line').style({
-                        opacity: 0
-                    });
-                });
-            }
-            var angularGuideCircle = guides.select('circle').style({
-                stroke: 'grey',
-                fill: 'none'
-            });
-            chartGroup.on('mousemove.radial-guide', function(d, i) {
-                var r = µ.util.getMousePos(backgroundCircle).radius;
-                angularGuideCircle.attr({
-                    r: r
-                }).style({
-                    opacity: .5
-                });
-                radialValue = radialScale.invert(µ.util.getMousePos(backgroundCircle).radius);
-                var pos = µ.util.convertToCartesian(r, axisConfig.radialAxis.orientation);
-                radialTooltip.text(µ.util.round(radialValue)).move([ pos[0] + chartCenter[0], pos[1] + chartCenter[1] ]);
-            }).on('mouseout.radial-guide', function(d, i) {
-                angularGuideCircle.style({
-                    opacity: 0
-                });
-                geometryTooltip.hide();
-                angularTooltip.hide();
-                radialTooltip.hide();
-            });
-            svg.selectAll('.geometry-group .mark').on('mouseover.tooltip', function(d, i) {
-                var el = d3.select(this);
-                var color = this.style.fill;
-                var newColor = 'black';
-                var opacity = this.style.opacity || 1;
-                el.attr({
-                    'data-opacity': opacity
-                });
-                if (color && color !== 'none') {
-                    el.attr({
-                        'data-fill': color
-                    });
-                    newColor = d3.hsl(color).darker().toString();
-                    el.style({
-                        fill: newColor,
-                        opacity: 1
-                    });
-                    var textData = {
-                        t: µ.util.round(d[0]),
-                        r: µ.util.round(d[1])
-                    };
-                    if (isOrdinal) textData.t = ticks[d[0]];
-                    var text = 't: ' + textData.t + ', r: ' + textData.r;
-                    var bbox = this.getBoundingClientRect();
-                    var svgBBox = svg.node().getBoundingClientRect();
-                    var pos = [ bbox.left + bbox.width / 2 - centeringOffset[0] - svgBBox.left, bbox.top + bbox.height / 2 - centeringOffset[1] - svgBBox.top ];
-                    geometryTooltip.config({
-                        color: newColor
-                    }).text(text);
-                    geometryTooltip.move(pos);
-                } else {
-                    color = this.style.stroke || 'black';
-                    el.attr({
-                        'data-stroke': color
-                    });
-                    newColor = d3.hsl(color).darker().toString();
-                    el.style({
-                        stroke: newColor,
-                        opacity: 1
-                    });
-                }
-            }).on('mousemove.tooltip', function(d, i) {
-                if (d3.event.which != 0) return false;
-                if (d3.select(this).attr('data-fill')) geometryTooltip.show();
-            }).on('mouseout.tooltip', function(d, i) {
-                geometryTooltip.hide();
-                var el = d3.select(this);
-                var fillColor = el.attr('data-fill');
-                if (fillColor) el.style({
-                    fill: fillColor,
-                    opacity: el.attr('data-opacity')
-                }); else el.style({
-                    stroke: el.attr('data-stroke'),
-                    opacity: el.attr('data-opacity')
-                });
-            });
-        });
-        return exports;
-    }
-    exports.render = function(_container) {
-        render(_container);
-        return this;
-    };
-    exports.config = function(_x) {
-        if (!arguments.length) return config;
-        var xClone = µ.util.cloneJson(_x);
-        xClone.data.forEach(function(d, i) {
-            if (!config.data[i]) config.data[i] = {};
-            extendDeepAll(config.data[i], µ.Axis.defaultConfig().data[0]);
-            extendDeepAll(config.data[i], d);
-        });
-        extendDeepAll(config.layout, µ.Axis.defaultConfig().layout);
-        extendDeepAll(config.layout, xClone.layout);
-        return this;
-    };
-    exports.getLiveConfig = function() {
-        return liveConfig;
-    };
-    exports.getinputConfig = function() {
-        return inputConfig;
-    };
-    exports.radialScale = function(_x) {
-        return radialScale;
-    };
-    exports.angularScale = function(_x) {
-        return angularScale;
-    };
-    exports.svg = function() {
-        return svg;
-    };
-    d3.rebind(exports, dispatch, 'on');
-    return exports;
-};
-
-µ.Axis.defaultConfig = function(d, i) {
-    var config = {
-        data: [ {
-            t: [ 1, 2, 3, 4 ],
-            r: [ 10, 11, 12, 13 ],
-            name: 'Line1',
-            geometry: 'LinePlot',
-            color: null,
-            strokeDash: 'solid',
-            strokeColor: null,
-            strokeSize: '1',
-            visibleInLegend: true,
-            opacity: 1
-        } ],
-        layout: {
-            defaultColorRange: d3.scale.category10().range(),
-            title: null,
-            height: 450,
-            width: 500,
-            margin: {
-                top: 40,
-                right: 40,
-                bottom: 40,
-                left: 40
-            },
-            font: {
-                size: 12,
-                color: 'gray',
-                outlineColor: 'white',
-                family: 'Tahoma, sans-serif'
-            },
-            direction: 'clockwise',
-            orientation: 0,
-            labelOffset: 10,
-            radialAxis: {
-                domain: null,
-                orientation: -45,
-                ticksSuffix: '',
-                visible: true,
-                gridLinesVisible: true,
-                tickOrientation: 'horizontal',
-                rewriteTicks: null
-            },
-            angularAxis: {
-                domain: [ 0, 360 ],
-                ticksSuffix: '',
-                visible: true,
-                gridLinesVisible: true,
-                labelsVisible: true,
-                tickOrientation: 'horizontal',
-                rewriteTicks: null,
-                ticksCount: null,
-                ticksStep: null
-            },
-            minorTicks: 0,
-            tickLength: null,
-            tickColor: 'silver',
-            minorTickColor: '#eee',
-            backgroundColor: 'none',
-            needsEndSpacing: null,
-            showLegend: true,
-            legend: {
-                reverseOrder: false
-            },
-            opacity: 1
-        }
-    };
-    return config;
-};
-
-µ.util = {};
-
-µ.DATAEXTENT = 'dataExtent';
-
-µ.AREA = 'AreaChart';
-
-µ.LINE = 'LinePlot';
-
-µ.DOT = 'DotPlot';
-
-µ.BAR = 'BarChart';
-
-µ.util._override = function(_objA, _objB) {
-    for (var x in _objA) if (x in _objB) _objB[x] = _objA[x];
-};
-
-µ.util._extend = function(_objA, _objB) {
-    for (var x in _objA) _objB[x] = _objA[x];
-};
-
-µ.util._rndSnd = function() {
-    return Math.random() * 2 - 1 + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
-};
-
-µ.util.dataFromEquation2 = function(_equation, _step) {
-    var step = _step || 6;
-    var data = d3.range(0, 360 + step, step).map(function(deg, index) {
-        var theta = deg * Math.PI / 180;
-        var radius = _equation(theta);
-        return [ deg, radius ];
-    });
-    return data;
-};
-
-µ.util.dataFromEquation = function(_equation, _step, _name) {
-    var step = _step || 6;
-    var t = [], r = [];
-    d3.range(0, 360 + step, step).forEach(function(deg, index) {
-        var theta = deg * Math.PI / 180;
-        var radius = _equation(theta);
-        t.push(deg);
-        r.push(radius);
-    });
-    var result = {
-        t: t,
-        r: r
-    };
-    if (_name) result.name = _name;
-    return result;
-};
-
-µ.util.ensureArray = function(_val, _count) {
-    if (typeof _val === 'undefined') return null;
-    var arr = [].concat(_val);
-    return d3.range(_count).map(function(d, i) {
-        return arr[i] || arr[0];
-    });
-};
-
-µ.util.fillArrays = function(_obj, _valueNames, _count) {
-    _valueNames.forEach(function(d, i) {
-        _obj[d] = µ.util.ensureArray(_obj[d], _count);
-    });
-    return _obj;
-};
-
-µ.util.cloneJson = function(json) {
-    return JSON.parse(JSON.stringify(json));
-};
-
-µ.util.validateKeys = function(obj, keys) {
-    if (typeof keys === 'string') keys = keys.split('.');
-    var next = keys.shift();
-    return obj[next] && (!keys.length || objHasKeys(obj[next], keys));
-};
-
-µ.util.sumArrays = function(a, b) {
-    return d3.zip(a, b).map(function(d, i) {
-        return d3.sum(d);
-    });
-};
-
-µ.util.arrayLast = function(a) {
-    return a[a.length - 1];
-};
-
-µ.util.arrayEqual = function(a, b) {
-    var i = Math.max(a.length, b.length, 1);
-    while (i-- >= 0 && a[i] === b[i]) ;
-    return i === -2;
-};
-
-µ.util.flattenArray = function(arr) {
-    var r = [];
-    while (!µ.util.arrayEqual(r, arr)) {
-        r = arr;
-        arr = [].concat.apply([], arr);
-    }
-    return arr;
-};
-
-µ.util.deduplicate = function(arr) {
-    return arr.filter(function(v, i, a) {
-        return a.indexOf(v) == i;
-    });
-};
-
-µ.util.convertToCartesian = function(radius, theta) {
-    var thetaRadians = theta * Math.PI / 180;
-    var x = radius * Math.cos(thetaRadians);
-    var y = radius * Math.sin(thetaRadians);
-    return [ x, y ];
-};
-
-µ.util.round = function(_value, _digits) {
-    var digits = _digits || 2;
-    var mult = Math.pow(10, digits);
-    return Math.round(_value * mult) / mult;
-};
-
-µ.util.getMousePos = function(_referenceElement) {
-    var mousePos = d3.mouse(_referenceElement.node());
-    var mouseX = mousePos[0];
-    var mouseY = mousePos[1];
-    var mouse = {};
-    mouse.x = mouseX;
-    mouse.y = mouseY;
-    mouse.pos = mousePos;
-    mouse.angle = (Math.atan2(mouseY, mouseX) + Math.PI) * 180 / Math.PI;
-    mouse.radius = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
-    return mouse;
-};
-
-µ.util.duplicatesCount = function(arr) {
-    var uniques = {}, val;
-    var dups = {};
-    for (var i = 0, len = arr.length; i < len; i++) {
-        val = arr[i];
-        if (val in uniques) {
-            uniques[val]++;
-            dups[val] = uniques[val];
-        } else {
-            uniques[val] = 1;
-        }
-    }
-    return dups;
-};
-
-µ.util.duplicates = function(arr) {
-    return Object.keys(µ.util.duplicatesCount(arr));
-};
-
-µ.util.translator = function(obj, sourceBranch, targetBranch, reverse) {
-    if (reverse) {
-        var targetBranchCopy = targetBranch.slice();
-        targetBranch = sourceBranch;
-        sourceBranch = targetBranchCopy;
-    }
-    var value = sourceBranch.reduce(function(previousValue, currentValue) {
-        if (typeof previousValue != 'undefined') return previousValue[currentValue];
-    }, obj);
-    if (typeof value === 'undefined') return;
-    sourceBranch.reduce(function(previousValue, currentValue, index) {
-        if (typeof previousValue == 'undefined') return;
-        if (index === sourceBranch.length - 1) delete previousValue[currentValue];
-        return previousValue[currentValue];
-    }, obj);
-    targetBranch.reduce(function(previousValue, currentValue, index) {
-        if (typeof previousValue[currentValue] === 'undefined') previousValue[currentValue] = {};
-        if (index === targetBranch.length - 1) previousValue[currentValue] = value;
-        return previousValue[currentValue];
-    }, obj);
-};
-
-µ.PolyChart = function module() {
-    var config = [ µ.PolyChart.defaultConfig() ];
-    var dispatch = d3.dispatch('hover');
-    var dashArray = {
-        solid: 'none',
-        dash: [ 5, 2 ],
-        dot: [ 2, 5 ]
-    };
-    var colorScale;
-    function exports() {
-        var geometryConfig = config[0].geometryConfig;
-        var container = geometryConfig.container;
-        if (typeof container == 'string') container = d3.select(container);
-        container.datum(config).each(function(_config, _index) {
-            var isStack = !!_config[0].data.yStack;
-            var data = _config.map(function(d, i) {
-                if (isStack) return d3.zip(d.data.t[0], d.data.r[0], d.data.yStack[0]); else return d3.zip(d.data.t[0], d.data.r[0]);
-            });
-            var angularScale = geometryConfig.angularScale;
-            var domainMin = geometryConfig.radialScale.domain()[0];
-            var generator = {};
-            generator.bar = function(d, i, pI) {
-                var dataConfig = _config[pI].data;
-                var h = geometryConfig.radialScale(d[1]) - geometryConfig.radialScale(0);
-                var stackTop = geometryConfig.radialScale(d[2] || 0);
-                var w = dataConfig.barWidth;
-                d3.select(this).attr({
-                    'class': 'mark bar',
-                    d: 'M' + [ [ h + stackTop, -w / 2 ], [ h + stackTop, w / 2 ], [ stackTop, w / 2 ], [ stackTop, -w / 2 ] ].join('L') + 'Z',
-                    transform: function(d, i) {
-                        return 'rotate(' + (geometryConfig.orientation + angularScale(d[0])) + ')';
-                    }
-                });
-            };
-            generator.dot = function(d, i, pI) {
-                var stackedData = d[2] ? [ d[0], d[1] + d[2] ] : d;
-                var symbol = d3.svg.symbol().size(_config[pI].data.dotSize).type(_config[pI].data.dotType)(d, i);
-                d3.select(this).attr({
-                    'class': 'mark dot',
-                    d: symbol,
-                    transform: function(d, i) {
-                        var coord = convertToCartesian(getPolarCoordinates(stackedData));
-                        return 'translate(' + [ coord.x, coord.y ] + ')';
-                    }
-                });
-            };
-            var line = d3.svg.line.radial().interpolate(_config[0].data.lineInterpolation).radius(function(d) {
-                return geometryConfig.radialScale(d[1]);
-            }).angle(function(d) {
-                return geometryConfig.angularScale(d[0]) * Math.PI / 180;
-            });
-            generator.line = function(d, i, pI) {
-                var lineData = d[2] ? data[pI].map(function(d, i) {
-                    return [ d[0], d[1] + d[2] ];
-                }) : data[pI];
-                d3.select(this).each(generator['dot']).style({
-                    opacity: function(dB, iB) {
-                        return +_config[pI].data.dotVisible;
-                    },
-                    fill: markStyle.stroke(d, i, pI)
-                }).attr({
-                    'class': 'mark dot'
-                });
-                if (i > 0) return;
-                var lineSelection = d3.select(this.parentNode).selectAll('path.line').data([ 0 ]);
-                lineSelection.enter().insert('path');
-                lineSelection.attr({
-                    'class': 'line',
-                    d: line(lineData),
-                    transform: function(dB, iB) {
-                        return 'rotate(' + (geometryConfig.orientation + 90) + ')';
-                    },
-                    'pointer-events': 'none'
-                }).style({
-                    fill: function(dB, iB) {
-                        return markStyle.fill(d, i, pI);
-                    },
-                    'fill-opacity': 0,
-                    stroke: function(dB, iB) {
-                        return markStyle.stroke(d, i, pI);
-                    },
-                    'stroke-width': function(dB, iB) {
-                        return markStyle['stroke-width'](d, i, pI);
-                    },
-                    'stroke-dasharray': function(dB, iB) {
-                        return markStyle['stroke-dasharray'](d, i, pI);
-                    },
-                    opacity: function(dB, iB) {
-                        return markStyle.opacity(d, i, pI);
-                    },
-                    display: function(dB, iB) {
-                        return markStyle.display(d, i, pI);
-                    }
-                });
-            };
-            var angularRange = geometryConfig.angularScale.range();
-            var triangleAngle = Math.abs(angularRange[1] - angularRange[0]) / data[0].length * Math.PI / 180;
-            var arc = d3.svg.arc().startAngle(function(d) {
-                return -triangleAngle / 2;
-            }).endAngle(function(d) {
-                return triangleAngle / 2;
-            }).innerRadius(function(d) {
-                return geometryConfig.radialScale(domainMin + (d[2] || 0));
-            }).outerRadius(function(d) {
-                return geometryConfig.radialScale(domainMin + (d[2] || 0)) + geometryConfig.radialScale(d[1]);
-            });
-            generator.arc = function(d, i, pI) {
-                d3.select(this).attr({
-                    'class': 'mark arc',
-                    d: arc,
-                    transform: function(d, i) {
-                        return 'rotate(' + (geometryConfig.orientation + angularScale(d[0]) + 90) + ')';
-                    }
-                });
-            };
-            var markStyle = {
-                fill: function(d, i, pI) {
-                    return _config[pI].data.color;
-                },
-                stroke: function(d, i, pI) {
-                    return _config[pI].data.strokeColor;
-                },
-                'stroke-width': function(d, i, pI) {
-                    return _config[pI].data.strokeSize + 'px';
-                },
-                'stroke-dasharray': function(d, i, pI) {
-                    return dashArray[_config[pI].data.strokeDash];
-                },
-                opacity: function(d, i, pI) {
-                    return _config[pI].data.opacity;
-                },
-                display: function(d, i, pI) {
-                    return typeof _config[pI].data.visible === 'undefined' || _config[pI].data.visible ? 'block' : 'none';
-                }
-            };
-            var geometryLayer = d3.select(this).selectAll('g.layer').data(data);
-            geometryLayer.enter().append('g').attr({
-                'class': 'layer'
-            });
-            var geometry = geometryLayer.selectAll('path.mark').data(function(d, i) {
-                return d;
-            });
-            geometry.enter().append('path').attr({
-                'class': 'mark'
-            });
-            geometry.style(markStyle).each(generator[geometryConfig.geometryType]);
-            geometry.exit().remove();
-            geometryLayer.exit().remove();
-            function getPolarCoordinates(d, i) {
-                var r = geometryConfig.radialScale(d[1]);
-                var t = (geometryConfig.angularScale(d[0]) + geometryConfig.orientation) * Math.PI / 180;
-                return {
-                    r: r,
-                    t: t
-                };
-            }
-            function convertToCartesian(polarCoordinates) {
-                var x = polarCoordinates.r * Math.cos(polarCoordinates.t);
-                var y = polarCoordinates.r * Math.sin(polarCoordinates.t);
-                return {
-                    x: x,
-                    y: y
-                };
-            }
-        });
-    }
-    exports.config = function(_x) {
-        if (!arguments.length) return config;
-        _x.forEach(function(d, i) {
-            if (!config[i]) config[i] = {};
-            extendDeepAll(config[i], µ.PolyChart.defaultConfig());
-            extendDeepAll(config[i], d);
-        });
-        return this;
-    };
-    exports.getColorScale = function() {
-        return colorScale;
-    };
-    d3.rebind(exports, dispatch, 'on');
-    return exports;
-};
-
-µ.PolyChart.defaultConfig = function() {
-    var config = {
-        data: {
-            name: 'geom1',
-            t: [ [ 1, 2, 3, 4 ] ],
-            r: [ [ 1, 2, 3, 4 ] ],
-            dotType: 'circle',
-            dotSize: 64,
-            dotVisible: false,
-            barWidth: 20,
-            color: '#ffa500',
-            strokeSize: 1,
-            strokeColor: 'silver',
-            strokeDash: 'solid',
-            opacity: 1,
-            index: 0,
-            visible: true,
-            visibleInLegend: true
-        },
-        geometryConfig: {
-            geometry: 'LinePlot',
-            geometryType: 'arc',
-            direction: 'clockwise',
-            orientation: 0,
-            container: 'body',
-            radialScale: null,
-            angularScale: null,
-            colorScale: d3.scale.category20()
-        }
-    };
-    return config;
-};
-
-µ.BarChart = function module() {
-    return µ.PolyChart();
-};
-
-µ.BarChart.defaultConfig = function() {
-    var config = {
-        geometryConfig: {
-            geometryType: 'bar'
-        }
-    };
-    return config;
-};
-
-µ.AreaChart = function module() {
-    return µ.PolyChart();
-};
-
-µ.AreaChart.defaultConfig = function() {
-    var config = {
-        geometryConfig: {
-            geometryType: 'arc'
-        }
-    };
-    return config;
-};
-
-µ.DotPlot = function module() {
-    return µ.PolyChart();
-};
-
-µ.DotPlot.defaultConfig = function() {
-    var config = {
-        geometryConfig: {
-            geometryType: 'dot',
-            dotType: 'circle'
-        }
-    };
-    return config;
-};
-
-µ.LinePlot = function module() {
-    return µ.PolyChart();
-};
-
-µ.LinePlot.defaultConfig = function() {
-    var config = {
-        geometryConfig: {
-            geometryType: 'line'
-        }
-    };
-    return config;
-};
-
-µ.Legend = function module() {
-    var config = µ.Legend.defaultConfig();
-    var dispatch = d3.dispatch('hover');
-    function exports() {
-        var legendConfig = config.legendConfig;
-        var flattenData = config.data.map(function(d, i) {
-            return [].concat(d).map(function(dB, iB) {
-                var element = extendDeepAll({}, legendConfig.elements[i]);
-                element.name = dB;
-                element.color = [].concat(legendConfig.elements[i].color)[iB];
-                return element;
-            });
-        });
-        var data = d3.merge(flattenData);
-        data = data.filter(function(d, i) {
-            return legendConfig.elements[i] && (legendConfig.elements[i].visibleInLegend || typeof legendConfig.elements[i].visibleInLegend === 'undefined');
-        });
-        if (legendConfig.reverseOrder) data = data.reverse();
-        var container = legendConfig.container;
-        if (typeof container == 'string' || container.nodeName) container = d3.select(container);
-        var colors = data.map(function(d, i) {
-            return d.color;
-        });
-        var lineHeight = legendConfig.fontSize;
-        var isContinuous = legendConfig.isContinuous == null ? typeof data[0] === 'number' : legendConfig.isContinuous;
-        var height = isContinuous ? legendConfig.height : lineHeight * data.length;
-        var legendContainerGroup = container.classed('legend-group', true);
-        var svg = legendContainerGroup.selectAll('svg').data([ 0 ]);
-        var svgEnter = svg.enter().append('svg').attr({
-            width: 300,
-            height: height + lineHeight,
-            xmlns: 'http://www.w3.org/2000/svg',
-            'xmlns:xlink': 'http://www.w3.org/1999/xlink',
-            version: '1.1'
-        });
-        svgEnter.append('g').classed('legend-axis', true);
-        svgEnter.append('g').classed('legend-marks', true);
-        var dataNumbered = d3.range(data.length);
-        var colorScale = d3.scale[isContinuous ? 'linear' : 'ordinal']().domain(dataNumbered).range(colors);
-        var dataScale = d3.scale[isContinuous ? 'linear' : 'ordinal']().domain(dataNumbered)[isContinuous ? 'range' : 'rangePoints']([ 0, height ]);
-        var shapeGenerator = function(_type, _size) {
-            var squareSize = _size * 3;
-            if (_type === 'line') {
-                return 'M' + [ [ -_size / 2, -_size / 12 ], [ _size / 2, -_size / 12 ], [ _size / 2, _size / 12 ], [ -_size / 2, _size / 12 ] ] + 'Z';
-            } else if (d3.svg.symbolTypes.indexOf(_type) != -1) return d3.svg.symbol().type(_type).size(squareSize)(); else return d3.svg.symbol().type('square').size(squareSize)();
-        };
-        if (isContinuous) {
-            var gradient = svg.select('.legend-marks').append('defs').append('linearGradient').attr({
-                id: 'grad1',
-                x1: '0%',
-                y1: '0%',
-                x2: '0%',
-                y2: '100%'
-            }).selectAll('stop').data(colors);
-            gradient.enter().append('stop');
-            gradient.attr({
-                offset: function(d, i) {
-                    return i / (colors.length - 1) * 100 + '%';
-                }
-            }).style({
-                'stop-color': function(d, i) {
-                    return d;
-                }
-            });
-            svg.append('rect').classed('legend-mark', true).attr({
-                height: legendConfig.height,
-                width: legendConfig.colorBandWidth,
-                fill: 'url(#grad1)'
-            });
-        } else {
-            var legendElement = svg.select('.legend-marks').selectAll('path.legend-mark').data(data);
-            legendElement.enter().append('path').classed('legend-mark', true);
-            legendElement.attr({
-                transform: function(d, i) {
-                    return 'translate(' + [ lineHeight / 2, dataScale(i) + lineHeight / 2 ] + ')';
-                },
-                d: function(d, i) {
-                    var symbolType = d.symbol;
-                    return shapeGenerator(symbolType, lineHeight);
-                },
-                fill: function(d, i) {
-                    return colorScale(i);
-                }
-            });
-            legendElement.exit().remove();
-        }
-        var legendAxis = d3.svg.axis().scale(dataScale).orient('right');
-        var axis = svg.select('g.legend-axis').attr({
-            transform: 'translate(' + [ isContinuous ? legendConfig.colorBandWidth : lineHeight, lineHeight / 2 ] + ')'
-        }).call(legendAxis);
-        axis.selectAll('.domain').style({
-            fill: 'none',
-            stroke: 'none'
-        });
-        axis.selectAll('line').style({
-            fill: 'none',
-            stroke: isContinuous ? legendConfig.textColor : 'none'
-        });
-        axis.selectAll('text').style({
-            fill: legendConfig.textColor,
-            'font-size': legendConfig.fontSize
-        }).text(function(d, i) {
-            return data[i].name;
-        });
-        return exports;
-    }
-    exports.config = function(_x) {
-        if (!arguments.length) return config;
-        extendDeepAll(config, _x);
-        return this;
-    };
-    d3.rebind(exports, dispatch, 'on');
-    return exports;
-};
-
-µ.Legend.defaultConfig = function(d, i) {
-    var config = {
-        data: [ 'a', 'b', 'c' ],
-        legendConfig: {
-            elements: [ {
-                symbol: 'line',
-                color: 'red'
-            }, {
-                symbol: 'square',
-                color: 'yellow'
-            }, {
-                symbol: 'diamond',
-                color: 'limegreen'
-            } ],
-            height: 150,
-            colorBandWidth: 30,
-            fontSize: 12,
-            container: 'body',
-            isContinuous: null,
-            textColor: 'grey',
-            reverseOrder: false
-        }
-    };
-    return config;
-};
-
-µ.tooltipPanel = function() {
-    var tooltipEl, tooltipTextEl, backgroundEl;
-    var config = {
-        container: null,
-        hasTick: false,
-        fontSize: 12,
-        color: 'white',
-        padding: 5
-    };
-    var id = 'tooltip-' + µ.tooltipPanel.uid++;
-    var tickSize = 10;
-    var exports = function() {
-        tooltipEl = config.container.selectAll('g.' + id).data([ 0 ]);
-        var tooltipEnter = tooltipEl.enter().append('g').classed(id, true).style({
-            'pointer-events': 'none',
-            display: 'none'
-        });
-        backgroundEl = tooltipEnter.append('path').style({
-            fill: 'white',
-            'fill-opacity': .9
-        }).attr({
-            d: 'M0 0'
-        });
-        tooltipTextEl = tooltipEnter.append('text').attr({
-            dx: config.padding + tickSize,
-            dy: +config.fontSize * .3
-        });
-        return exports;
-    };
-    exports.text = function(_text) {
-        var l = d3.hsl(config.color).l;
-        var strokeColor = l >= .5 ? '#aaa' : 'white';
-        var fillColor = l >= .5 ? 'black' : 'white';
-        var text = _text || '';
-        tooltipTextEl.style({
-            fill: fillColor,
-            'font-size': config.fontSize + 'px'
-        }).text(text);
-        var padding = config.padding;
-        var bbox = tooltipTextEl.node().getBBox();
-        var boxStyle = {
-            fill: config.color,
-            stroke: strokeColor,
-            'stroke-width': '2px'
-        };
-        var backGroundW = bbox.width + padding * 2 + tickSize;
-        var backGroundH = bbox.height + padding * 2;
-        backgroundEl.attr({
-            d: 'M' + [ [ tickSize, -backGroundH / 2 ], [ tickSize, -backGroundH / 4 ], [ config.hasTick ? 0 : tickSize, 0 ], [ tickSize, backGroundH / 4 ], [ tickSize, backGroundH / 2 ], [ backGroundW, backGroundH / 2 ], [ backGroundW, -backGroundH / 2 ] ].join('L') + 'Z'
-        }).style(boxStyle);
-        tooltipEl.attr({
-            transform: 'translate(' + [ tickSize, -backGroundH / 2 + padding * 2 ] + ')'
-        });
-        tooltipEl.style({
-            display: 'block'
-        });
-        return exports;
-    };
-    exports.move = function(_pos) {
-        if (!tooltipEl) return;
-        tooltipEl.attr({
-            transform: 'translate(' + [ _pos[0], _pos[1] ] + ')'
-        }).style({
-            display: 'block'
-        });
-        return exports;
-    };
-    exports.hide = function() {
-        if (!tooltipEl) return;
-        tooltipEl.style({
-            display: 'none'
-        });
-        return exports;
-    };
-    exports.show = function() {
-        if (!tooltipEl) return;
-        tooltipEl.style({
-            display: 'block'
-        });
-        return exports;
-    };
-    exports.config = function(_x) {
-        extendDeepAll(config, _x);
-        return exports;
-    };
-    return exports;
-};
-
-µ.tooltipPanel.uid = 1;
-
-µ.adapter = {};
-
-µ.adapter.plotly = function module() {
-    var exports = {};
-    exports.convert = function(_inputConfig, reverse) {
-        var outputConfig = {};
-        if (_inputConfig.data) {
-            outputConfig.data = _inputConfig.data.map(function(d, i) {
-                var r = extendDeepAll({}, d);
-                var toTranslate = [
-                    [ r, [ 'marker', 'color' ], [ 'color' ] ],
-                    [ r, [ 'marker', 'opacity' ], [ 'opacity' ] ],
-                    [ r, [ 'marker', 'line', 'color' ], [ 'strokeColor' ] ],
-                    [ r, [ 'marker', 'line', 'dash' ], [ 'strokeDash' ] ],
-                    [ r, [ 'marker', 'line', 'width' ], [ 'strokeSize' ] ],
-                    [ r, [ 'marker', 'symbol' ], [ 'dotType' ] ],
-                    [ r, [ 'marker', 'size' ], [ 'dotSize' ] ],
-                    [ r, [ 'marker', 'barWidth' ], [ 'barWidth' ] ],
-                    [ r, [ 'line', 'interpolation' ], [ 'lineInterpolation' ] ],
-                    [ r, [ 'showlegend' ], [ 'visibleInLegend' ] ]
-                ];
-                toTranslate.forEach(function(d, i) {
-                    µ.util.translator.apply(null, d.concat(reverse));
-                });
-
-                if (!reverse) delete r.marker;
-                if (reverse) delete r.groupId;
-                if (!reverse) {
-                    if (r.type === 'scatter') {
-                        if (r.mode === 'lines') r.geometry = 'LinePlot'; else if (r.mode === 'markers') r.geometry = 'DotPlot'; else if (r.mode === 'lines+markers') {
-                            r.geometry = 'LinePlot';
-                            r.dotVisible = true;
-                        }
-                    } else if (r.type === 'area') r.geometry = 'AreaChart'; else if (r.type === 'bar') r.geometry = 'BarChart';
-                    delete r.mode;
-                    delete r.type;
-                } else {
-                    if (r.geometry === 'LinePlot') {
-                        r.type = 'scatter';
-                        if (r.dotVisible === true) {
-                            delete r.dotVisible;
-                            r.mode = 'lines+markers';
-                        } else r.mode = 'lines';
-                    } else if (r.geometry === 'DotPlot') {
-                        r.type = 'scatter';
-                        r.mode = 'markers';
-                    } else if (r.geometry === 'AreaChart') r.type = 'area'; else if (r.geometry === 'BarChart') r.type = 'bar';
-                    delete r.geometry;
-                }
-                return r;
-            });
-            if (!reverse && _inputConfig.layout && _inputConfig.layout.barmode === 'stack') {
-                var duplicates = µ.util.duplicates(outputConfig.data.map(function(d, i) {
-                    return d.geometry;
-                }));
-                outputConfig.data.forEach(function(d, i) {
-                    var idx = duplicates.indexOf(d.geometry);
-                    if (idx != -1) outputConfig.data[i].groupId = idx;
-                });
-            }
-        }
-        if (_inputConfig.layout) {
-            var r = extendDeepAll({}, _inputConfig.layout);
-            var toTranslate = [
-                [ r, [ 'plot_bgcolor' ], [ 'backgroundColor' ] ],
-                [ r, [ 'showlegend' ], [ 'showLegend' ] ],
-                [ r, [ 'radialaxis' ], [ 'radialAxis' ] ],
-                [ r, [ 'angularaxis' ], [ 'angularAxis' ] ],
-                [ r.angularaxis, [ 'showline' ], [ 'gridLinesVisible' ] ],
-                [ r.angularaxis, [ 'showticklabels' ], [ 'labelsVisible' ] ],
-                [ r.angularaxis, [ 'nticks' ], [ 'ticksCount' ] ],
-                [ r.angularaxis, [ 'tickorientation' ], [ 'tickOrientation' ] ],
-                [ r.angularaxis, [ 'ticksuffix' ], [ 'ticksSuffix' ] ],
-                [ r.angularaxis, [ 'range' ], [ 'domain' ] ],
-                [ r.angularaxis, [ 'endpadding' ], [ 'endPadding' ] ],
-                [ r.radialaxis, [ 'showline' ], [ 'gridLinesVisible' ] ],
-                [ r.radialaxis, [ 'tickorientation' ], [ 'tickOrientation' ] ],
-                [ r.radialaxis, [ 'ticksuffix' ], [ 'ticksSuffix' ] ],
-                [ r.radialaxis, [ 'range' ], [ 'domain' ] ],
-                [ r.angularAxis, [ 'showline' ], [ 'gridLinesVisible' ] ],
-                [ r.angularAxis, [ 'showticklabels' ], [ 'labelsVisible' ] ],
-                [ r.angularAxis, [ 'nticks' ], [ 'ticksCount' ] ],
-                [ r.angularAxis, [ 'tickorientation' ], [ 'tickOrientation' ] ],
-                [ r.angularAxis, [ 'ticksuffix' ], [ 'ticksSuffix' ] ],
-                [ r.angularAxis, [ 'range' ], [ 'domain' ] ],
-                [ r.angularAxis, [ 'endpadding' ], [ 'endPadding' ] ],
-                [ r.radialAxis, [ 'showline' ], [ 'gridLinesVisible' ] ],
-                [ r.radialAxis, [ 'tickorientation' ], [ 'tickOrientation' ] ],
-                [ r.radialAxis, [ 'ticksuffix' ], [ 'ticksSuffix' ] ],
-                [ r.radialAxis, [ 'range' ], [ 'domain' ] ],
-                [ r.font, [ 'outlinecolor' ], [ 'outlineColor' ] ],
-                [ r.legend, [ 'traceorder' ], [ 'reverseOrder' ] ],
-                [ r, [ 'labeloffset' ], [ 'labelOffset' ] ],
-                [ r, [ 'defaultcolorrange' ], [ 'defaultColorRange' ] ]
-            ];
-            toTranslate.forEach(function(d, i) {
-                µ.util.translator.apply(null, d.concat(reverse));
-            });
-
-            if (!reverse) {
-                if (r.angularAxis && typeof r.angularAxis.ticklen !== 'undefined') r.tickLength = r.angularAxis.ticklen;
-                if (r.angularAxis && typeof r.angularAxis.tickcolor !== 'undefined') r.tickColor = r.angularAxis.tickcolor;
-            } else {
-                if (typeof r.tickLength !== 'undefined') {
-                    r.angularaxis.ticklen = r.tickLength;
-                    delete r.tickLength;
-                }
-                if (r.tickColor) {
-                    r.angularaxis.tickcolor = r.tickColor;
-                    delete r.tickColor;
-                }
-            }
-            if (r.legend && typeof r.legend.reverseOrder != 'boolean') {
-                r.legend.reverseOrder = r.legend.reverseOrder != 'normal';
-            }
-            if (r.legend && typeof r.legend.traceorder == 'boolean') {
-                r.legend.traceorder = r.legend.traceorder ? 'reversed' : 'normal';
-                delete r.legend.reverseOrder;
-            }
-            if (r.margin && typeof r.margin.t != 'undefined') {
-                var source = [ 't', 'r', 'b', 'l', 'pad' ];
-                var target = [ 'top', 'right', 'bottom', 'left', 'pad' ];
-                var margin = {};
-                d3.entries(r.margin).forEach(function(dB, iB) {
-                    margin[target[source.indexOf(dB.key)]] = dB.value;
-                });
-                r.margin = margin;
-            }
-            if (reverse) {
-                delete r.needsEndSpacing;
-                delete r.minorTickColor;
-                delete r.minorTicks;
-                delete r.angularaxis.ticksCount;
-                delete r.angularaxis.ticksCount;
-                delete r.angularaxis.ticksStep;
-                delete r.angularaxis.rewriteTicks;
-                delete r.angularaxis.nticks;
-                delete r.radialaxis.ticksCount;
-                delete r.radialaxis.ticksCount;
-                delete r.radialaxis.ticksStep;
-                delete r.radialaxis.rewriteTicks;
-                delete r.radialaxis.nticks;
-            }
-            outputConfig.layout = r;
-        }
-        return outputConfig;
-    };
-    return exports;
-};
-
-},{"../../../constants/alignment":184,"../../../lib":210,"d3":16}],294:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-/* eslint-disable new-cap */
-
-'use strict';
-
-var d3 = _dereq_('d3');
-var Lib = _dereq_('../../../lib');
-var Color = _dereq_('../../../components/color');
-
-var micropolar = _dereq_('./micropolar');
-var UndoManager = _dereq_('./undo_manager');
-var extendDeepAll = Lib.extendDeepAll;
-
-var manager = module.exports = {};
-
-manager.framework = function(_gd) {
-    var config, previousConfigClone, plot, convertedInput, container;
-    var undoManager = new UndoManager();
-
-    function exports(_inputConfig, _container) {
-        if(_container) container = _container;
-        d3.select(d3.select(container).node().parentNode).selectAll('.svg-container>*:not(.chart-root)').remove();
-
-        config = (!config) ?
-            _inputConfig :
-            extendDeepAll(config, _inputConfig);
-
-        if(!plot) plot = micropolar.Axis();
-        convertedInput = micropolar.adapter.plotly().convert(config);
-        plot.config(convertedInput).render(container);
-        _gd.data = config.data;
-        _gd.layout = config.layout;
-        manager.fillLayout(_gd);
-        return config;
-    }
-    exports.isPolar = true;
-    exports.svg = function() { return plot.svg(); };
-    exports.getConfig = function() { return config; };
-    exports.getLiveConfig = function() {
-        return micropolar.adapter.plotly().convert(plot.getLiveConfig(), true);
-    };
-    exports.getLiveScales = function() { return {t: plot.angularScale(), r: plot.radialScale()}; };
-    exports.setUndoPoint = function() {
-        var that = this;
-        var configClone = micropolar.util.cloneJson(config);
-        (function(_configClone, _previousConfigClone) {
-            undoManager.add({
-                undo: function() {
-                    if(_previousConfigClone) that(_previousConfigClone);
-                },
-                redo: function() {
-                    that(_configClone);
-                }
-            });
-        })(configClone, previousConfigClone);
-        previousConfigClone = micropolar.util.cloneJson(configClone);
-    };
-    exports.undo = function() { undoManager.undo(); };
-    exports.redo = function() { undoManager.redo(); };
-    return exports;
-};
-
-manager.fillLayout = function(_gd) {
-    var container = d3.select(_gd).selectAll('.plot-container');
-    var paperDiv = container.selectAll('.svg-container');
-    var paper = _gd.framework && _gd.framework.svg && _gd.framework.svg();
-    var dflts = {
-        width: 800,
-        height: 600,
-        paper_bgcolor: Color.background,
-        _container: container,
-        _paperdiv: paperDiv,
-        _paper: paper
-    };
-
-    _gd._fullLayout = extendDeepAll(dflts, _gd.layout);
-};
-
-},{"../../../components/color":82,"../../../lib":210,"./micropolar":293,"./undo_manager":295,"d3":16}],295:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-'use strict';
-
-// Modified from https://github.com/ArthurClemens/Javascript-Undo-Manager
-// Copyright (c) 2010-2013 Arthur Clemens, arthur@visiblearea.com
-module.exports = function UndoManager() {
-    var undoCommands = [];
-    var index = -1;
-    var isExecuting = false;
-    var callback;
-
-    function execute(command, action) {
-        if(!command) return this;
-
-        isExecuting = true;
-        command[action]();
-        isExecuting = false;
-
-        return this;
-    }
-
-    return {
-        add: function(command) {
-            if(isExecuting) return this;
-            undoCommands.splice(index + 1, undoCommands.length - index);
-            undoCommands.push(command);
-            index = undoCommands.length - 1;
-            return this;
-        },
-        setCallback: function(callbackFunc) { callback = callbackFunc; },
-        undo: function() {
-            var command = undoCommands[index];
-            if(!command) return this;
-            execute(command, 'undo');
-            index -= 1;
-            if(callback) callback(command.undo);
-            return this;
-        },
-        redo: function() {
-            var command = undoCommands[index + 1];
-            if(!command) return this;
-            execute(command, 'redo');
-            index += 1;
-            if(callback) callback(command.redo);
-            return this;
-        },
-        clear: function() {
-            undoCommands = [];
-            index = -1;
-        },
-        hasUndo: function() { return index !== -1; },
-        hasRedo: function() { return index < (undoCommands.length - 1); },
-        getCommands: function() { return undoCommands; },
-        getPreviousCommand: function() { return undoCommands[index - 1]; },
-        getIndex: function() { return index; }
-    };
-};
-
-},{}],296:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../components/color":109,"../constants/numerical":217,"../lib":238,"../plot_api/plot_schema":272,"../plot_api/plot_template":273,"../plots/get_data":314,"../registry":320,"./animation_attributes":278,"./attributes":280,"./cartesian/axis_ids":287,"./cartesian/handle_outline":294,"./command":310,"./font_attributes":312,"./frame_attributes":313,"./layout_attributes":316,"@plotly/d3":19,"d3-time-format":21,"fast-isnumeric":23}],319:[function(_dereq_,module,exports){
 'use strict';
 
 var FORMAT_LINK = _dereq_('../constants/docs').FORMAT_LINK;
@@ -74133,10 +74877,8 @@ exports.hovertemplateAttrs = function(opts, extra) {
 
     var hovertemplate = {
         valType: 'string',
-        
         dflt: '',
         editType: opts.editType || 'none',
-        
     };
 
     if(opts.arrayOk !== false) {
@@ -74154,10 +74896,8 @@ exports.texttemplateAttrs = function(opts, extra) {
 
     var texttemplate = {
         valType: 'string',
-        
         dflt: '',
         editType: opts.editType || 'calc',
-        
     };
 
     if(opts.arrayOk !== false) {
@@ -74166,15 +74906,7 @@ exports.texttemplateAttrs = function(opts, extra) {
     return texttemplate;
 };
 
-},{"../constants/docs":187}],297:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../constants/docs":214}],320:[function(_dereq_,module,exports){
 'use strict';
 
 var Loggers = _dereq_('./lib/loggers');
@@ -74313,7 +75045,7 @@ exports.traceIs = function(traceType, category) {
     var _module = exports.modules[traceType];
 
     if(!_module) {
-        if(traceType && traceType !== 'area') {
+        if(traceType) {
             Loggers.log('Unrecognized trace type ' + traceType + '.');
         }
 
@@ -74632,15 +75364,7 @@ function getTraceType(traceType) {
     return traceType;
 }
 
-},{"./lib/dom":202,"./lib/extend":204,"./lib/is_plain_object":211,"./lib/loggers":214,"./lib/noop":219,"./lib/push_unique":223,"./plots/attributes":251,"./plots/layout_attributes":287}],298:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./lib/dom":230,"./lib/extend":232,"./lib/is_plain_object":239,"./lib/loggers":242,"./lib/noop":247,"./lib/push_unique":252,"./plots/attributes":280,"./plots/layout_attributes":316}],321:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -74693,11 +75417,6 @@ function keyIsAxis(keyName) {
 
 
 module.exports = function clonePlot(graphObj, options) {
-    // Polar plot compatibility
-    if(graphObj.framework && graphObj.framework.isPolar) {
-        graphObj = graphObj.framework.getConfig();
-    }
-
     var i;
     var oldData = graphObj.data;
     var oldLayout = graphObj.layout;
@@ -74805,15 +75524,7 @@ module.exports = function clonePlot(graphObj, options) {
     return plotTile;
 };
 
-},{"../lib":210,"../registry":297}],299:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../registry":320}],322:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -74877,15 +75588,7 @@ function downloadImage(gd, opts) {
 
 module.exports = downloadImage;
 
-},{"../lib":210,"../plot_api/to_image":247,"./filesaver":300,"./helpers":301}],300:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"../plot_api/to_image":276,"./filesaver":323,"./helpers":324}],323:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -74910,10 +75613,6 @@ function fileSaver(url, name, format) {
     var promise = new Promise(function(resolve, reject) {
         var blob;
         var objectUrl;
-
-        if(Lib.isIE9orBelow()) {
-            reject(new Error('IE < 10 unsupported'));
-        }
 
         // Safari doesn't allow downloading of blob urls
         if(Lib.isSafari()) {
@@ -74957,15 +75656,7 @@ function fileSaver(url, name, format) {
 
 module.exports = fileSaver;
 
-},{"../lib":210,"./helpers":301}],301:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"./helpers":324}],324:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -74982,13 +75673,7 @@ exports.getDelay = function(fullLayout) {
 
 exports.getRedrawFunc = function(gd) {
     return function() {
-        var fullLayout = gd._fullLayout || {};
-        var hasPolar = fullLayout._has && fullLayout._has('polar');
-        var hasLegacyPolar = !hasPolar && gd.data && gd.data[0] && gd.data[0].r;
-
-        if(!hasLegacyPolar) {
-            Registry.getComponentMethod('colorbar', 'draw')(gd);
-        }
+        Registry.getComponentMethod('colorbar', 'draw')(gd);
     };
 };
 
@@ -75040,16 +75725,7 @@ exports.IMAGE_URL_PREFIX = /^data:image\/\w+;base64,/;
 
 exports.MSG_IE_BAD_FORMAT = 'Sorry IE does not support downloading from canvas. Try {format:\'svg\'} instead.';
 
-},{"../registry":297}],302:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../registry":320}],325:[function(_dereq_,module,exports){
 'use strict';
 
 var helpers = _dereq_('./helpers');
@@ -75066,15 +75742,7 @@ var Snapshot = {
 
 module.exports = Snapshot;
 
-},{"./cloneplot":298,"./download":299,"./helpers":301,"./svgtoimg":303,"./toimage":304,"./tosvg":305}],303:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./cloneplot":321,"./download":322,"./helpers":324,"./svgtoimg":326,"./toimage":327,"./tosvg":328}],326:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -75114,7 +75782,7 @@ function svgToImg(opts) {
         var img = new Image();
         var svgBlob, url;
 
-        if(format === 'svg' || Lib.isIE9orBelow() || Lib.isSafari()) {
+        if(format === 'svg' || Lib.isSafari()) {
             url = helpers.encodeSVG(svg);
         } else {
             svgBlob = helpers.createBlob(svg, 'svg');
@@ -75193,15 +75861,7 @@ function svgToImg(opts) {
 
 module.exports = svgToImg;
 
-},{"../lib":210,"./helpers":301,"events":13}],304:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../lib":238,"./helpers":324,"events":20}],327:[function(_dereq_,module,exports){
 'use strict';
 
 var EventEmitter = _dereq_('events').EventEmitter;
@@ -75257,7 +75917,7 @@ function toImage(gd, opts) {
 
     var redrawFunc = helpers.getRedrawFunc(clonedGd);
 
-    Registry.call('plot', clonedGd, clone.data, clone.layout, clone.config)
+    Registry.call('_doPlot', clonedGd, clone.data, clone.layout, clone.config)
         .then(redrawFunc)
         .then(wait)
         .catch(function(err) {
@@ -75270,19 +75930,10 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
-},{"../lib":210,"../registry":297,"./cloneplot":298,"./helpers":301,"./svgtoimg":303,"./tosvg":305,"events":13}],305:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../lib":238,"../registry":320,"./cloneplot":321,"./helpers":324,"./svgtoimg":326,"./tosvg":328,"events":20}],328:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Lib = _dereq_('../lib');
 var Drawing = _dereq_('../components/drawing');
@@ -75437,6 +76088,8 @@ module.exports = function toSVG(gd, format, scale) {
     // Fix quotations around font strings and gradient URLs
     s = s.replace(DUMMY_REGEX, '\'');
 
+    // Do we need this process now that IE9 and IE10 are not supported?
+
     // IE is very strict, so we will need to clean
     //  svg with the following regex
     //  yes this is messy, but do not know a better way
@@ -75459,15 +76112,7 @@ module.exports = function toSVG(gd, format, scale) {
     return s;
 };
 
-},{"../components/color":82,"../components/drawing":104,"../constants/xmlns_namespaces":190,"../lib":210,"d3":16}],306:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../components/color":109,"../components/drawing":131,"../constants/xmlns_namespaces":218,"../lib":238,"@plotly/d3":19}],329:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -75492,15 +76137,7 @@ module.exports = function arraysToCalcdata(cd, trace) {
     }
 };
 
-},{"../../lib":210}],307:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],330:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterAttrs = _dereq_('../scatter/attributes');
@@ -75516,7 +76153,6 @@ var textFontAttrs = fontAttrs({
     editType: 'calc',
     arrayOk: true,
     colorEditType: 'style',
-    
 });
 
 var scatterMarkerAttrs = scatterAttrs.marker;
@@ -75540,9 +76176,7 @@ var marker = extendFlat({
         dflt: 1,
         min: 0,
         max: 1,
-        
         editType: 'style',
-        
     }
 });
 
@@ -75572,80 +76206,62 @@ module.exports = {
 
     textposition: {
         valType: 'enumerated',
-        
         values: ['inside', 'outside', 'auto', 'none'],
         dflt: 'none',
         arrayOk: true,
         editType: 'calc',
-        
     },
 
     insidetextanchor: {
         valType: 'enumerated',
         values: ['end', 'middle', 'start'],
         dflt: 'end',
-        
         editType: 'plot',
-        
     },
 
     textangle: {
         valType: 'angle',
         dflt: 'auto',
-        
         editType: 'plot',
-        
     },
 
     textfont: extendFlat({}, textFontAttrs, {
-        
     }),
 
     insidetextfont: extendFlat({}, textFontAttrs, {
-        
     }),
 
     outsidetextfont: extendFlat({}, textFontAttrs, {
-        
     }),
 
     constraintext: {
         valType: 'enumerated',
         values: ['inside', 'outside', 'both', 'none'],
-        
         dflt: 'both',
         editType: 'calc',
-        
     },
 
     cliponaxis: extendFlat({}, scatterAttrs.cliponaxis, {
-        
     }),
 
     orientation: {
         valType: 'enumerated',
-        
         values: ['v', 'h'],
         editType: 'calc+clearAxisTypes',
-        
     },
 
     base: {
         valType: 'any',
         dflt: null,
         arrayOk: true,
-        
         editType: 'calc',
-        
     },
 
     offset: {
         valType: 'number',
         dflt: null,
         arrayOk: true,
-        
         editType: 'calc',
-        
     },
 
     width: {
@@ -75653,26 +76269,20 @@ module.exports = {
         dflt: null,
         min: 0,
         arrayOk: true,
-        
         editType: 'calc',
-        
     },
 
     marker: marker,
 
     offsetgroup: {
         valType: 'string',
-        
         dflt: '',
         editType: 'calc',
-        
     },
     alignmentgroup: {
         valType: 'string',
-        
         dflt: '',
         editType: 'calc',
-        
     },
 
     selected: {
@@ -75694,29 +76304,16 @@ module.exports = {
         editType: 'style'
     },
 
-    r: scatterAttrs.r,
-    t: scatterAttrs.t,
-
     _deprecated: {
         bardir: {
             valType: 'enumerated',
-            
             editType: 'calc',
             values: ['v', 'h'],
-            
         }
     }
 };
 
-},{"../../components/colorscale/attributes":89,"../../lib/extend":204,"../../plots/font_attributes":283,"../../plots/template_attributes":296,"../scatter/attributes":398,"./constants":309}],308:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/colorscale/attributes":116,"../../lib/extend":232,"../../plots/font_attributes":312,"../../plots/template_attributes":319,"../scatter/attributes":421,"./constants":332}],331:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -75787,16 +76384,7 @@ module.exports = function calc(gd, trace) {
     return cd;
 };
 
-},{"../../components/colorscale/calc":90,"../../components/colorscale/helpers":93,"../../plots/cartesian/align_period":252,"../../plots/cartesian/axes":255,"../scatter/calc_selection":400,"./arrays_to_calcdata":306}],309:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/colorscale/calc":117,"../../components/colorscale/helpers":120,"../../plots/cartesian/align_period":281,"../../plots/cartesian/axes":284,"../scatter/calc_selection":423,"./arrays_to_calcdata":329}],332:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -75809,15 +76397,7 @@ module.exports = {
     eventDataKeys: ['value', 'label']
 };
 
-},{}],310:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],333:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -76589,15 +77169,7 @@ module.exports = {
     setGroupPositions: setGroupPositions
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"../../plots/cartesian/axes":255,"../../plots/cartesian/constraints":262,"../../registry":297,"./sieve.js":320,"fast-isnumeric":18}],311:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238,"../../plots/cartesian/axes":284,"../../plots/cartesian/constraints":291,"../../registry":320,"./sieve.js":343,"fast-isnumeric":23}],334:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -76774,15 +77346,7 @@ module.exports = {
     handleText: handleText
 };
 
-},{"../../components/color":82,"../../lib":210,"../../plots/cartesian/constraints":262,"../../registry":297,"../scatter/period_defaults":418,"../scatter/xy_defaults":425,"./attributes":307,"./style_defaults":322}],312:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib":238,"../../plots/cartesian/constraints":291,"../../registry":320,"../scatter/period_defaults":441,"../scatter/xy_defaults":448,"./attributes":330,"./style_defaults":345}],335:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt, trace) {
@@ -76803,15 +77367,7 @@ module.exports = function eventData(out, pt, trace) {
     return out;
 };
 
-},{}],313:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],336:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -76881,16 +77437,7 @@ exports.getLineWidth = function(trace, di) {
     return w;
 };
 
-},{"../../lib":210,"fast-isnumeric":18,"tinycolor2":65}],314:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"fast-isnumeric":23,"tinycolor2":74}],337:[function(_dereq_,module,exports){
 'use strict';
 
 var Fx = _dereq_('../../components/fx');
@@ -77077,15 +77624,7 @@ module.exports = {
     getTraceColor: getTraceColor
 };
 
-},{"../../components/color":82,"../../components/fx":122,"../../constants/numerical":189,"../../lib":210,"../../plots/cartesian/axes":255,"../../registry":297,"./helpers":313}],315:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/fx":149,"../../constants/numerical":217,"../../lib":238,"../../plots/cartesian/axes":284,"../../registry":320,"./helpers":336}],338:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -77111,19 +77650,10 @@ module.exports = {
     categories: ['bar-like', 'cartesian', 'svg', 'bar', 'oriented', 'errorBarsOK', 'showLegend', 'zoomScale'],
     animatable: true,
     meta: {
-        
     }
 };
 
-},{"../../plots/cartesian":268,"../scatter/marker_colorbar":416,"./arrays_to_calcdata":306,"./attributes":307,"./calc":308,"./cross_trace_calc":310,"./defaults":311,"./event_data":312,"./hover":314,"./layout_attributes":316,"./layout_defaults":317,"./plot":318,"./select":319,"./style":321}],316:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian":297,"../scatter/marker_colorbar":439,"./arrays_to_calcdata":329,"./attributes":330,"./calc":331,"./cross_trace_calc":333,"./defaults":334,"./event_data":335,"./hover":337,"./layout_attributes":339,"./layout_defaults":340,"./plot":341,"./select":342,"./style":344}],339:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -77132,46 +77662,30 @@ module.exports = {
         valType: 'enumerated',
         values: ['stack', 'group', 'overlay', 'relative'],
         dflt: 'group',
-        
         editType: 'calc',
-        
     },
     barnorm: {
         valType: 'enumerated',
         values: ['', 'fraction', 'percent'],
         dflt: '',
-        
         editType: 'calc',
-        
     },
     bargap: {
         valType: 'number',
         min: 0,
         max: 1,
-        
         editType: 'calc',
-        
     },
     bargroupgap: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 0,
-        
         editType: 'calc',
-        
     }
 };
 
-},{}],317:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],340:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -77223,18 +77737,10 @@ module.exports = function(layoutIn, layoutOut, fullData) {
     coerce('bargroupgap');
 };
 
-},{"../../lib":210,"../../plots/cartesian/axes":255,"../../registry":297,"./layout_attributes":316}],318:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/cartesian/axes":284,"../../registry":320,"./layout_attributes":339}],341:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var isNumeric = _dereq_('fast-isnumeric');
 
 var Lib = _dereq_('../../lib');
@@ -78008,15 +78514,7 @@ module.exports = {
     toMoveInsideBar: toMoveInsideBar
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"../../components/fx/helpers":118,"../../lib":210,"../../lib/svg_text_utils":231,"../../plots/cartesian/axes":255,"../../registry":297,"./attributes":307,"./constants":309,"./helpers":313,"./style":321,"./uniform_text":323,"d3":16,"fast-isnumeric":18}],319:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/drawing":131,"../../components/fx/helpers":145,"../../lib":238,"../../lib/svg_text_utils":260,"../../plots/cartesian/axes":284,"../../registry":320,"./attributes":330,"./constants":332,"./helpers":336,"./style":344,"./uniform_text":346,"@plotly/d3":19,"fast-isnumeric":23}],342:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function selectPoints(searchInfo, selectionTester) {
@@ -78072,15 +78570,7 @@ function getCentroid(d, xa, ya, isHorizontal, isFunnel) {
     }
 }
 
-},{}],320:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],343:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Sieve;
@@ -78186,18 +78676,10 @@ Sieve.prototype.getLabel = function getLabel(position, value) {
     return prefix + label;
 };
 
-},{"../../constants/numerical":189,"../../lib":210}],321:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238}],344:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Color = _dereq_('../../components/color');
 var Drawing = _dereq_('../../components/drawing');
 var Lib = _dereq_('../../lib');
@@ -78368,15 +78850,7 @@ module.exports = {
     resizeText: resizeText
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"../../lib":210,"../../registry":297,"./attributes":307,"./helpers":313,"./uniform_text":323,"d3":16}],322:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/drawing":131,"../../lib":238,"../../registry":320,"./attributes":330,"./helpers":336,"./uniform_text":346,"@plotly/d3":19}],345:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -78406,18 +78880,10 @@ module.exports = function handleStyleDefaults(traceIn, traceOut, coerce, default
     coerce('unselected.marker.color');
 };
 
-},{"../../components/color":82,"../../components/colorscale/defaults":92,"../../components/colorscale/helpers":93}],323:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/colorscale/defaults":119,"../../components/colorscale/helpers":120}],346:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Lib = _dereq_('../../lib');
 
 function resizeText(gd, gTrace, traceType) {
@@ -78492,15 +78958,7 @@ module.exports = {
     resizeText: resizeText
 };
 
-},{"../../lib":210,"d3":16}],324:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"@plotly/d3":19}],347:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterAttrs = _dereq_('../scatter/attributes');
@@ -78516,37 +78974,27 @@ module.exports = {
     y: {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
-        
     },
     x: {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
-        
     },
     x0: {
         valType: 'any',
-        
         editType: 'calc+clearAxisTypes',
-        
     },
     y0: {
         valType: 'any',
-        
         editType: 'calc+clearAxisTypes',
-        
     },
 
     dx: {
         valType: 'number',
-        
         editType: 'calc',
-        
     },
     dy: {
         valType: 'number',
-        
         editType: 'calc',
-        
     },
 
     xperiod: scatterAttrs.xperiod,
@@ -78558,62 +79006,44 @@ module.exports = {
 
     name: {
         valType: 'string',
-        
         editType: 'calc+clearAxisTypes',
-        
     },
 
     q1: {
         valType: 'data_array',
-        
         editType: 'calc+clearAxisTypes',
-        
     },
     median: {
         valType: 'data_array',
-        
         editType: 'calc+clearAxisTypes',
-        
     },
     q3: {
         valType: 'data_array',
-        
         editType: 'calc+clearAxisTypes',
-        
     },
     lowerfence: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
     upperfence: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
 
     notched: {
         valType: 'boolean',
-        
         editType: 'calc',
-        
     },
     notchwidth: {
         valType: 'number',
         min: 0,
         max: 0.5,
         dflt: 0.25,
-        
         editType: 'calc',
-        
     },
     notchspan: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
 
     // TODO
@@ -78624,80 +79054,60 @@ module.exports = {
     boxpoints: {
         valType: 'enumerated',
         values: ['all', 'outliers', 'suspectedoutliers', false],
-        
         editType: 'calc',
-        
     },
     jitter: {
         valType: 'number',
         min: 0,
         max: 1,
-        
         editType: 'calc',
-        
     },
     pointpos: {
         valType: 'number',
         min: -2,
         max: 2,
-        
         editType: 'calc',
-        
     },
 
     boxmean: {
         valType: 'enumerated',
         values: [true, 'sd', false],
-        
         editType: 'calc',
-        
     },
     mean: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
     sd: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
 
     orientation: {
         valType: 'enumerated',
         values: ['v', 'h'],
-        
         editType: 'calc+clearAxisTypes',
-        
     },
 
     quartilemethod: {
         valType: 'enumerated',
         values: ['linear', 'exclusive', 'inclusive'],
         dflt: 'linear',
-        
         editType: 'calc',
-        
     },
 
     width: {
         valType: 'number',
         min: 0,
-        
         dflt: 0,
         editType: 'calc',
-        
     },
 
     marker: {
         outliercolor: {
             valType: 'color',
             dflt: 'rgba(0, 0, 0, 0)',
-            
             editType: 'style',
-            
         },
         symbol: extendFlat({}, scatterMarkerAttrs.symbol,
             {arrayOk: false, editType: 'plot'}),
@@ -78716,17 +79126,13 @@ module.exports = {
             ),
             outliercolor: {
                 valType: 'color',
-                
                 editType: 'style',
-                
             },
             outlierwidth: {
                 valType: 'number',
                 min: 0,
                 dflt: 1,
-                
                 editType: 'style',
-                
             },
             editType: 'style'
         },
@@ -78736,17 +79142,13 @@ module.exports = {
     line: {
         color: {
             valType: 'color',
-            
             editType: 'style',
-            
         },
         width: {
             valType: 'number',
-            
             min: 0,
             dflt: 2,
             editType: 'style',
-            
         },
         editType: 'plot'
     },
@@ -78758,9 +79160,7 @@ module.exports = {
         min: 0,
         max: 1,
         dflt: 0.5,
-        
         editType: 'calc',
-        
     },
 
     offsetgroup: barAttrs.offsetgroup,
@@ -78776,34 +79176,21 @@ module.exports = {
     },
 
     text: extendFlat({}, scatterAttrs.text, {
-        
     }),
     hovertext: extendFlat({}, scatterAttrs.hovertext, {
-        
     }),
     hovertemplate: hovertemplateAttrs({
-        
     }),
 
     hoveron: {
         valType: 'flaglist',
         flags: ['boxes', 'points'],
         dflt: 'boxes+points',
-        
         editType: 'style',
-        
     }
 };
 
-},{"../../components/color/attributes":81,"../../lib/extend":204,"../../plots/template_attributes":296,"../bar/attributes":307,"../scatter/attributes":398}],325:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color/attributes":108,"../../lib/extend":232,"../../plots/template_attributes":319,"../bar/attributes":330,"../scatter/attributes":421}],348:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -79027,15 +79414,7 @@ module.exports = {
     setPositionOffset: setPositionOffset
 };
 
-},{"../../lib":210,"../../plots/cartesian/axes":255,"../../plots/cartesian/constraints":262}],326:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/cartesian/axes":284,"../../plots/cartesian/constraints":291}],349:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -79044,39 +79423,25 @@ module.exports = {
         valType: 'enumerated',
         values: ['group', 'overlay'],
         dflt: 'overlay',
-        
         editType: 'calc',
-        
     },
     boxgap: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 0.3,
-        
         editType: 'calc',
-        
     },
     boxgroupgap: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 0.3,
-        
         editType: 'calc',
-        
     }
 };
 
-},{}],327:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],350:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -79114,18 +79479,10 @@ module.exports = {
     _supply: _supply
 };
 
-},{"../../lib":210,"../../registry":297,"./layout_attributes":326}],328:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320,"./layout_attributes":349}],351:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Lib = _dereq_('../../lib');
 var Drawing = _dereq_('../../components/drawing');
@@ -79464,18 +79821,10 @@ module.exports = {
     plotBoxMean: plotBoxMean
 };
 
-},{"../../components/drawing":104,"../../lib":210,"d3":16}],329:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing":131,"../../lib":238,"@plotly/d3":19}],352:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Color = _dereq_('../../components/color');
 var Drawing = _dereq_('../../components/drawing');
 
@@ -79538,16 +79887,7 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"d3":16}],330:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color":109,"../../components/drawing":131,"@plotly/d3":19}],353:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../../lib').extendFlat;
@@ -79580,7 +79920,6 @@ module.exports = {
 
     line: {
         width: extendFlat({}, boxAttrs.line.width, {
-            
         }),
         editType: 'style'
     },
@@ -79596,15 +79935,7 @@ module.exports = {
     hoverlabel: OHLCattrs.hoverlabel,
 };
 
-},{"../../lib":210,"../box/attributes":324,"../ohlc/attributes":376}],331:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../box/attributes":347,"../ohlc/attributes":399}],354:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -79648,16 +79979,7 @@ function ptFunc(o, h, l, c) {
     };
 }
 
-},{"../../lib":210,"../../plots/cartesian/align_period":252,"../../plots/cartesian/axes":255,"../ohlc/calc":377}],332:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plots/cartesian/align_period":281,"../../plots/cartesian/axes":284,"../ohlc/calc":400}],355:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -79697,15 +80019,7 @@ function handleDirection(traceIn, traceOut, coerce, direction) {
     coerce(direction + '.fillcolor', Color.addOpacity(lineColor, 0.5));
 }
 
-},{"../../components/color":82,"../../lib":210,"../ohlc/ohlc_defaults":381,"../scatter/period_defaults":418,"./attributes":330}],333:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib":238,"../ohlc/ohlc_defaults":404,"../scatter/period_defaults":441,"./attributes":353}],356:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -79714,7 +80028,6 @@ module.exports = {
     basePlotModule: _dereq_('../../plots/cartesian'),
     categories: ['cartesian', 'svg', 'showLegend', 'candlestick', 'boxLayout'],
     meta: {
-        
     },
 
     attributes: _dereq_('./attributes'),
@@ -79730,15 +80043,7 @@ module.exports = {
     selectPoints: _dereq_('../ohlc/select')
 };
 
-},{"../../plots/cartesian":268,"../box/cross_trace_calc":325,"../box/layout_attributes":326,"../box/layout_defaults":327,"../box/plot":328,"../box/style":329,"../ohlc/hover":379,"../ohlc/select":383,"./attributes":330,"./calc":331,"./defaults":332}],334:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian":297,"../box/cross_trace_calc":348,"../box/layout_attributes":349,"../box/layout_defaults":350,"../box/plot":351,"../box/style":352,"../ohlc/hover":402,"../ohlc/select":406,"./attributes":353,"./calc":354,"./defaults":355}],357:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -79763,15 +80068,7 @@ module.exports = function arraysToCalcdata(cd, trace) {
     }
 };
 
-},{"../../lib":210}],335:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],358:[function(_dereq_,module,exports){
 'use strict';
 
 var barAttrs = _dereq_('../bar/attributes');
@@ -79811,10 +80108,8 @@ module.exports = {
         valType: 'flaglist',
         flags: ['label', 'text', 'percent initial', 'percent previous', 'percent total', 'value'],
         extras: ['none'],
-        
         editType: 'plot',
         arrayOk: false,
-        
     },
     // TODO: incorporate `label` and `value` in the eventData
     texttemplate: texttemplateAttrs({editType: 'plot'}, {
@@ -79832,7 +80127,6 @@ module.exports = {
     cliponaxis: barAttrs.cliponaxis,
 
     orientation: extendFlat({}, barAttrs.orientation, {
-        
     }),
 
     offset: extendFlat({}, barAttrs.offset, {arrayOk: false}),
@@ -79843,9 +80137,7 @@ module.exports = {
     connector: {
         fillcolor: {
             valType: 'color',
-            
             editType: 'style',
-            
         },
         line: {
             color: extendFlat({}, lineAttrs.color, {dflt: Color.defaultLine}),
@@ -79859,9 +80151,7 @@ module.exports = {
         visible: {
             valType: 'boolean',
             dflt: true,
-            
             editType: 'plot',
-            
         },
         editType: 'plot'
     },
@@ -79870,15 +80160,7 @@ module.exports = {
     alignmentgroup: barAttrs.alignmentgroup
 };
 
-},{"../../components/color":82,"../../lib/extend":204,"../../plots/attributes":251,"../../plots/template_attributes":296,"../bar/attributes":307,"../scatter/attributes":398,"./constants":337}],336:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib/extend":232,"../../plots/attributes":280,"../../plots/template_attributes":319,"../bar/attributes":330,"../scatter/attributes":421,"./constants":360}],359:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -79974,15 +80256,7 @@ function fixNum(a) {
     return (a === BADNUM) ? 0 : a;
 }
 
-},{"../../constants/numerical":189,"../../plots/cartesian/align_period":252,"../../plots/cartesian/axes":255,"../scatter/calc_selection":400,"./arrays_to_calcdata":334}],337:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../plots/cartesian/align_period":281,"../../plots/cartesian/axes":284,"../scatter/calc_selection":423,"./arrays_to_calcdata":357}],360:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -79993,15 +80267,7 @@ module.exports = {
     ]
 };
 
-},{}],338:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],361:[function(_dereq_,module,exports){
 'use strict';
 
 var setGroupPositions = _dereq_('../bar/cross_trace_calc').setGroupPositions;
@@ -80064,15 +80330,7 @@ module.exports = function crossTraceCalc(gd, plotinfo) {
     }
 };
 
-},{"../bar/cross_trace_calc":310}],339:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../bar/cross_trace_calc":333}],362:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -80164,15 +80422,7 @@ module.exports = {
     crossTraceDefaults: crossTraceDefaults
 };
 
-},{"../../components/color":82,"../../lib":210,"../bar/defaults":311,"../scatter/period_defaults":418,"../scatter/xy_defaults":425,"./attributes":335}],340:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib":238,"../bar/defaults":334,"../scatter/period_defaults":441,"../scatter/xy_defaults":448,"./attributes":358}],363:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt /* , trace, cd, pointNumber */) {
@@ -80191,15 +80441,7 @@ module.exports = function eventData(out, pt /* , trace, cd, pointNumber */) {
     return out;
 };
 
-},{}],341:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],364:[function(_dereq_,module,exports){
 'use strict';
 
 var opacity = _dereq_('../../components/color').opacity;
@@ -80264,15 +80506,7 @@ function getTraceColor(trace, di) {
     else if(opacity(mlc) && mlw) return mlc;
 }
 
-},{"../../components/color":82,"../../lib":210,"../bar/hover":314}],342:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib":238,"../bar/hover":337}],365:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -80295,19 +80529,10 @@ module.exports = {
     basePlotModule: _dereq_('../../plots/cartesian'),
     categories: ['bar-like', 'cartesian', 'svg', 'oriented', 'showLegend', 'zoomScale'],
     meta: {
-        
     }
 };
 
-},{"../../plots/cartesian":268,"../bar/select":319,"./attributes":335,"./calc":336,"./cross_trace_calc":338,"./defaults":339,"./event_data":340,"./hover":341,"./layout_attributes":343,"./layout_defaults":344,"./plot":345,"./style":346}],343:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian":297,"../bar/select":342,"./attributes":358,"./calc":359,"./cross_trace_calc":361,"./defaults":362,"./event_data":363,"./hover":364,"./layout_attributes":366,"./layout_defaults":367,"./plot":368,"./style":369}],366:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -80315,38 +80540,24 @@ module.exports = {
         valType: 'enumerated',
         values: ['stack', 'group', 'overlay'],
         dflt: 'stack',
-        
         editType: 'calc',
-        
     },
     funnelgap: {
         valType: 'number',
         min: 0,
         max: 1,
-        
         editType: 'calc',
-        
     },
     funnelgroupgap: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 0,
-        
         editType: 'calc',
-        
     }
 };
 
-},{}],344:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],367:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -80375,18 +80586,10 @@ module.exports = function(layoutIn, layoutOut, fullData) {
     }
 };
 
-},{"../../lib":210,"./layout_attributes":343}],345:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./layout_attributes":366}],368:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Lib = _dereq_('../../lib');
 var Drawing = _dereq_('../../components/drawing');
 var BADNUM = _dereq_('../../constants/numerical').BADNUM;
@@ -80544,18 +80747,10 @@ function getXY(di, xa, ya, isHorizontal) {
     return isHorizontal ? [s, p] : [p, s];
 }
 
-},{"../../components/drawing":104,"../../constants/numerical":189,"../../lib":210,"../bar/plot":318,"../bar/uniform_text":323,"d3":16}],346:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing":131,"../../constants/numerical":217,"../../lib":238,"../bar/plot":341,"../bar/uniform_text":346,"@plotly/d3":19}],369:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Drawing = _dereq_('../../components/drawing');
 var Color = _dereq_('../../components/color');
@@ -80609,15 +80804,7 @@ module.exports = {
     style: style
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"../../constants/interactions":188,"../bar/style":321,"../bar/uniform_text":323,"d3":16}],347:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/drawing":131,"../../constants/interactions":216,"../bar/style":344,"../bar/uniform_text":346,"@plotly/d3":19}],370:[function(_dereq_,module,exports){
 'use strict';
 
 var pieAttrs = _dereq_('../pie/attributes');
@@ -80640,7 +80827,6 @@ module.exports = {
         line: {
             color: extendFlat({}, pieAttrs.marker.line.color, {
                 dflt: null,
-                
             }),
             width: extendFlat({}, pieAttrs.marker.line.width, {dflt: 1}),
             editType: 'calc'
@@ -80652,7 +80838,6 @@ module.exports = {
     hovertext: pieAttrs.hovertext,
 
     scalegroup: extendFlat({}, pieAttrs.scalegroup, {
-        
     }),
 
     textinfo: extendFlat({}, pieAttrs.textinfo, {
@@ -80693,33 +80878,21 @@ module.exports = {
 
     aspectratio: {
         valType: 'number',
-        
         min: 0,
         dflt: 1,
         editType: 'plot',
-        
     },
 
     baseratio: {
         valType: 'number',
-        
         min: 0,
         max: 1,
         dflt: 0.333,
         editType: 'plot',
-        
     }
 };
 
-},{"../../lib/extend":204,"../../plots/attributes":251,"../../plots/domain":282,"../../plots/template_attributes":296,"../pie/attributes":385}],348:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib/extend":232,"../../plots/attributes":280,"../../plots/domain":311,"../../plots/template_attributes":319,"../pie/attributes":408}],371:[function(_dereq_,module,exports){
 'use strict';
 
 var plots = _dereq_('../../plots/plots');
@@ -80734,15 +80907,7 @@ exports.clean = function(newFullData, newFullLayout, oldFullData, oldFullLayout)
     plots.cleanBasePlot(exports.name, newFullData, newFullLayout, oldFullData, oldFullLayout);
 };
 
-},{"../../plots/plots":289}],349:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/plots":318}],372:[function(_dereq_,module,exports){
 'use strict';
 
 var pieCalc = _dereq_('../pie/calc');
@@ -80760,15 +80925,7 @@ module.exports = {
     crossTraceCalc: crossTraceCalc
 };
 
-},{"../pie/calc":387}],350:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../pie/calc":410}],373:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -80842,15 +80999,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     coerce('baseratio');
 };
 
-},{"../../lib":210,"../../plots/domain":282,"../bar/defaults":311,"../pie/defaults":388,"./attributes":347}],351:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/domain":311,"../bar/defaults":334,"../pie/defaults":411,"./attributes":370}],374:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -80872,19 +81021,10 @@ module.exports = {
     styleOne: _dereq_('../pie/style_one'),
 
     meta: {
-        
     }
 };
 
-},{"../pie/style_one":396,"./attributes":347,"./base_plot":348,"./calc":349,"./defaults":350,"./layout_attributes":352,"./layout_defaults":353,"./plot":354,"./style":355}],352:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../pie/style_one":419,"./attributes":370,"./base_plot":371,"./calc":372,"./defaults":373,"./layout_attributes":375,"./layout_defaults":376,"./plot":377,"./style":378}],375:[function(_dereq_,module,exports){
 'use strict';
 
 var hiddenlabels = _dereq_('../pie/layout_attributes').hiddenlabels;
@@ -80894,28 +81034,16 @@ module.exports = {
 
     funnelareacolorway: {
         valType: 'colorlist',
-        
         editType: 'calc',
-        
     },
     extendfunnelareacolors: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'calc',
-        
     }
 };
 
-},{"../pie/layout_attributes":392}],353:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../pie/layout_attributes":415}],376:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -80932,18 +81060,10 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     coerce('extendfunnelareacolors');
 };
 
-},{"../../lib":210,"./layout_attributes":352}],354:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./layout_attributes":375}],377:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Drawing = _dereq_('../../components/drawing');
 var Lib = _dereq_('../../lib');
@@ -81230,18 +81350,10 @@ function setCoords(cd) {
     }
 }
 
-},{"../../components/drawing":104,"../../lib":210,"../../lib/svg_text_utils":231,"../bar/plot":318,"../bar/uniform_text":323,"../pie/helpers":390,"../pie/plot":394,"d3":16}],355:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing":131,"../../lib":238,"../../lib/svg_text_utils":260,"../bar/plot":341,"../bar/uniform_text":346,"../pie/helpers":413,"../pie/plot":417,"@plotly/d3":19}],378:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var styleOne = _dereq_('../pie/style_one');
 var resizeText = _dereq_('../bar/uniform_text').resizeText;
@@ -81263,15 +81375,7 @@ module.exports = function style(gd) {
     });
 };
 
-},{"../bar/uniform_text":323,"../pie/style_one":396,"d3":16}],356:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../bar/uniform_text":346,"../pie/style_one":419,"@plotly/d3":19}],379:[function(_dereq_,module,exports){
 'use strict';
 
 var barAttrs = _dereq_('../bar/attributes');
@@ -81284,64 +81388,50 @@ module.exports = {
     x: {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
-        
     },
     y: {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
-        
     },
 
     text: extendFlat({}, barAttrs.text, {
-        
     }),
     hovertext: extendFlat({}, barAttrs.hovertext, {
-        
     }),
     orientation: barAttrs.orientation,
 
     histfunc: {
         valType: 'enumerated',
         values: ['count', 'sum', 'avg', 'min', 'max'],
-        
         dflt: 'count',
         editType: 'calc',
-        
     },
     histnorm: {
         valType: 'enumerated',
         values: ['', 'percent', 'probability', 'density', 'probability density'],
         dflt: '',
-        
         editType: 'calc',
-        
     },
 
     cumulative: {
         enabled: {
             valType: 'boolean',
             dflt: false,
-            
             editType: 'calc',
-            
         },
 
         direction: {
             valType: 'enumerated',
             values: ['increasing', 'decreasing'],
             dflt: 'increasing',
-            
             editType: 'calc',
-            
         },
 
         currentbin: {
             valType: 'enumerated',
             values: ['include', 'exclude', 'half'],
             dflt: 'include',
-            
             editType: 'calc',
-            
         },
         editType: 'calc'
     },
@@ -81349,9 +81439,7 @@ module.exports = {
         valType: 'integer',
         min: 0,
         dflt: 0,
-        
         editType: 'calc',
-        
     },
     xbins: makeBinAttrs('x', true),
 
@@ -81359,32 +81447,24 @@ module.exports = {
         valType: 'integer',
         min: 0,
         dflt: 0,
-        
         editType: 'calc',
-        
     },
     ybins: makeBinAttrs('y', true),
     autobinx: {
         valType: 'boolean',
         dflt: null,
-        
         editType: 'calc',
-        
     },
     autobiny: {
         valType: 'boolean',
         dflt: null,
-        
         editType: 'calc',
-        
     },
 
     bingroup: {
         valType: 'string',
-        
         dflt: '',
         editType: 'calc',
-        
     },
 
     hovertemplate: hovertemplateAttrs({}, {
@@ -81404,16 +81484,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/extend":204,"../../plots/template_attributes":296,"../bar/attributes":307,"./bin_attributes":358,"./constants":362}],357:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib/extend":232,"../../plots/template_attributes":319,"../bar/attributes":330,"./bin_attributes":381,"./constants":385}],380:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -81429,51 +81500,28 @@ module.exports = function doAvg(size, counts) {
     return total;
 };
 
-},{}],358:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],381:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function makeBinAttrs(axLetter, match) {
     return {
         start: {
             valType: 'any', // for date axes
-            
             editType: 'calc',
-            
         },
         end: {
             valType: 'any', // for date axes
-            
             editType: 'calc',
-            
         },
         size: {
             valType: 'any', // for date axes
-            
             editType: 'calc',
-            
         },
         editType: 'calc'
     };
 };
 
-},{}],359:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],382:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -81538,16 +81586,7 @@ module.exports = {
     }
 };
 
-},{"fast-isnumeric":18}],360:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"fast-isnumeric":23}],383:[function(_dereq_,module,exports){
 'use strict';
 
 var numConstants = _dereq_('../../constants/numerical');
@@ -81714,15 +81753,7 @@ function dateParts(v, pa, calendar) {
     return parts;
 }
 
-},{"../../constants/numerical":189,"../../plots/cartesian/axes":255}],361:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../plots/cartesian/axes":284}],384:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -82293,31 +82324,14 @@ module.exports = {
     calcAllAutoBins: calcAllAutoBins
 };
 
-},{"../../lib":210,"../../plots/cartesian/axes":255,"../../registry":297,"../bar/arrays_to_calcdata":306,"./average":357,"./bin_functions":359,"./bin_label_vals":360,"./norm_functions":368,"fast-isnumeric":18}],362:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../plots/cartesian/axes":284,"../../registry":320,"../bar/arrays_to_calcdata":329,"./average":380,"./bin_functions":382,"./bin_label_vals":383,"./norm_functions":391,"fast-isnumeric":23}],385:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
     eventDataKeys: ['binNumber']
 };
 
-},{}],363:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],386:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -82586,15 +82600,7 @@ module.exports = function crossTraceDefaults(fullData, fullLayout) {
     }
 };
 
-},{"../../lib":210,"../../plots/cartesian/axis_ids":258,"../../plots/cartesian/constraints":262,"../../registry":297,"../bar/defaults":311}],364:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/cartesian/axis_ids":287,"../../plots/cartesian/constraints":291,"../../registry":320,"../bar/defaults":334}],387:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -82660,15 +82666,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     errorBarsSupplyDefaults(traceIn, traceOut, lineColor || Color.defaultLine, {axis: 'x', inherit: 'y'});
 };
 
-},{"../../components/color":82,"../../lib":210,"../../registry":297,"../bar/style_defaults":322,"./attributes":356}],365:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib":238,"../../registry":320,"../bar/style_defaults":345,"./attributes":379}],388:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt, trace, cd, pointNumber) {
@@ -82709,16 +82707,7 @@ module.exports = function eventData(out, pt, trace, cd, pointNumber) {
     return out;
 };
 
-},{}],366:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],389:[function(_dereq_,module,exports){
 'use strict';
 
 var barHover = _dereq_('../bar/hover').hoverPoints;
@@ -82742,15 +82731,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
     return pts;
 };
 
-},{"../../plots/cartesian/axes":255,"../bar/hover":314}],367:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian/axes":284,"../bar/hover":337}],390:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -82788,20 +82769,10 @@ module.exports = {
     basePlotModule: _dereq_('../../plots/cartesian'),
     categories: ['bar-like', 'cartesian', 'svg', 'bar', 'histogram', 'oriented', 'errorBarsOK', 'showLegend'],
     meta: {
-        
     }
 };
 
-},{"../../plots/cartesian":268,"../bar/cross_trace_calc":310,"../bar/layout_attributes":316,"../bar/layout_defaults":317,"../bar/plot":318,"../bar/select":319,"../bar/style":321,"../scatter/marker_colorbar":416,"./attributes":356,"./calc":361,"./cross_trace_defaults":363,"./defaults":364,"./event_data":365,"./hover":366}],368:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../plots/cartesian":297,"../bar/cross_trace_calc":333,"../bar/layout_attributes":339,"../bar/layout_defaults":340,"../bar/plot":341,"../bar/select":342,"../bar/style":344,"../scatter/marker_colorbar":439,"./attributes":379,"./calc":384,"./cross_trace_defaults":386,"./defaults":387,"./event_data":388,"./hover":389}],391:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -82827,15 +82798,7 @@ module.exports = {
     }
 };
 
-},{}],369:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],392:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../../lib/extend').extendFlat;
@@ -82858,48 +82821,38 @@ var gaugeBarAttrs = {
     color: {
         valType: 'color',
         editType: 'plot',
-        
-        
     },
     line: {
         color: {
             valType: 'color',
-            
             dflt: colorAttrs.defaultLine,
             editType: 'plot',
-            
         },
         width: {
             valType: 'number',
-            
             min: 0,
             dflt: 0,
             editType: 'plot',
-            
         },
         editType: 'calc'
     },
     thickness: {
         valType: 'number',
-        
         min: 0,
         max: 1,
         dflt: 1,
         editType: 'plot',
-        
     },
     editType: 'calc'
 };
 
 var rangeAttr = {
     valType: 'info_array',
-    
     items: [
             {valType: 'number', editType: 'plot'},
             {valType: 'number', editType: 'plot'}
     ],
     editType: 'plot',
-    
 };
 
 var stepsAttrs = templatedArray('step', extendDeep({}, gaugeBarAttrs, {
@@ -82910,24 +82863,18 @@ module.exports = {
     mode: {
         valType: 'flaglist',
         editType: 'calc',
-        
         flags: ['number', 'delta', 'gauge'],
         dflt: 'number',
-        
     },
     value: {
         valType: 'number',
         editType: 'calc',
-        
         anim: true,
-        
     },
     align: {
         valType: 'enumerated',
         values: ['left', 'center', 'right'],
-        
         editType: 'plot',
-        
     },
     // position
     domain: domainAttrs({name: 'indicator', trace: true, editType: 'calc'}),
@@ -82935,19 +82882,14 @@ module.exports = {
     title: {
         text: {
             valType: 'string',
-            
             editType: 'plot',
-            
         },
         align: {
             valType: 'enumerated',
             values: ['left', 'center', 'right'],
-            
             editType: 'plot',
-            
         },
         font: extendFlat({}, textFontAttrs, {
-            
         }),
         editType: 'plot'
     },
@@ -82955,71 +82897,52 @@ module.exports = {
         valueformat: {
             valType: 'string',
             dflt: '',
-            
             editType: 'plot',
-            
         },
         font: extendFlat({}, textFontAttrs, {
-            
         }),
         prefix: {
             valType: 'string',
             dflt: '',
-            
             editType: 'plot',
-            
         },
         suffix: {
             valType: 'string',
             dflt: '',
-            
             editType: 'plot',
-            
         },
         editType: 'plot'
     },
     delta: {
         reference: {
             valType: 'number',
-            
             editType: 'calc',
-            
         },
         position: {
             valType: 'enumerated',
             values: ['top', 'bottom', 'left', 'right'],
-            
             dflt: 'bottom',
             editType: 'plot',
-            
         },
         relative: {
             valType: 'boolean',
             editType: 'plot',
-            
             dflt: false,
-            
         },
         valueformat: {
             valType: 'string',
-            
             editType: 'plot',
-            
         },
         increasing: {
             symbol: {
                 valType: 'string',
-                
                 dflt: delta.INCREASING.SYMBOL,
                 editType: 'plot',
-                
             },
             color: {
                 valType: 'color',
-                
                 dflt: delta.INCREASING.COLOR,
                 editType: 'plot',
-                
             },
             // TODO: add attribute to show sign
             editType: 'plot'
@@ -83027,23 +82950,18 @@ module.exports = {
         decreasing: {
             symbol: {
                 valType: 'string',
-                
                 dflt: delta.DECREASING.SYMBOL,
                 editType: 'plot',
-                
             },
             color: {
                 valType: 'color',
-                
                 dflt: delta.DECREASING.COLOR,
                 editType: 'plot',
-                
             },
             // TODO: add attribute to hide sign
             editType: 'plot'
         },
         font: extendFlat({}, textFontAttrs, {
-            
         }),
         editType: 'calc'
     },
@@ -83051,36 +82969,27 @@ module.exports = {
         shape: {
             valType: 'enumerated',
             editType: 'plot',
-            
             dflt: 'angular',
             values: ['angular', 'bullet'],
-            
         },
         bar: extendDeep({}, gaugeBarAttrs, {
             color: {dflt: 'green'},
-            
         }),
         // Background of the gauge
         bgcolor: {
             valType: 'color',
-            
             editType: 'plot',
-            
         },
         bordercolor: {
             valType: 'color',
             dflt: colorAttrs.defaultLine,
-            
             editType: 'plot',
-            
         },
         borderwidth: {
             valType: 'number',
             min: 0,
             dflt: 1,
-            
             editType: 'plot',
-            
         },
         axis: overrideAll({
             range: rangeAttr,
@@ -83100,7 +83009,6 @@ module.exports = {
             tickcolor: axesAttrs.tickcolor,
             showticklabels: axesAttrs.showticklabels,
             tickfont: fontAttrs({
-                
             }),
             tickangle: axesAttrs.tickangle,
             tickformat: axesAttrs.tickformat,
@@ -83120,42 +83028,28 @@ module.exports = {
         threshold: {
             line: {
                 color: extendFlat({}, gaugeBarAttrs.line.color, {
-                    
                 }),
                 width: extendFlat({}, gaugeBarAttrs.line.width, {
                     dflt: 1,
-                    
                 }),
                 editType: 'plot'
             },
             thickness: extendFlat({}, gaugeBarAttrs.thickness, {
                 dflt: 0.85,
-                
             }),
             value: {
                 valType: 'number',
                 editType: 'calc',
                 dflt: false,
-                
-                
             },
             editType: 'plot'
         },
-        
         editType: 'plot'
         // TODO: in future version, add marker: (bar|needle)
     }
 };
 
-},{"../../components/color/attributes":81,"../../constants/delta.js":186,"../../constants/docs":187,"../../lib/extend":204,"../../plot_api/edit_types":237,"../../plot_api/plot_template":244,"../../plots/cartesian/layout_attributes":269,"../../plots/domain":282,"../../plots/font_attributes":283}],370:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color/attributes":108,"../../constants/delta.js":213,"../../constants/docs":214,"../../lib/extend":232,"../../plot_api/edit_types":266,"../../plot_api/plot_template":273,"../../plots/cartesian/layout_attributes":298,"../../plots/domain":311,"../../plots/font_attributes":312}],393:[function(_dereq_,module,exports){
 'use strict';
 
 var plots = _dereq_('../../plots/plots');
@@ -83170,15 +83064,7 @@ exports.clean = function(newFullData, newFullLayout, oldFullData, oldFullLayout)
     plots.cleanBasePlot(exports.name, newFullData, newFullLayout, oldFullData, oldFullLayout);
 };
 
-},{"../../plots/plots":289}],371:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/plots":318}],394:[function(_dereq_,module,exports){
 'use strict';
 
 // var Lib = require('../../lib');
@@ -83207,15 +83093,7 @@ module.exports = {
     calc: calc
 };
 
-},{}],372:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],395:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -83229,15 +83107,7 @@ module.exports = {
     horizontalPadding: 10
 };
 
-},{}],373:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],396:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -83396,15 +83266,7 @@ module.exports = {
     supplyDefaults: supplyDefaults
 };
 
-},{"../../lib":210,"../../plot_api/plot_template":244,"../../plots/array_container_defaults":250,"../../plots/cartesian/tick_label_defaults":276,"../../plots/cartesian/tick_mark_defaults":277,"../../plots/cartesian/tick_value_defaults":278,"../../plots/domain":282,"./attributes":369,"./constants.js":372}],374:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plot_api/plot_template":273,"../../plots/array_container_defaults":279,"../../plots/cartesian/tick_label_defaults":305,"../../plots/cartesian/tick_mark_defaults":306,"../../plots/cartesian/tick_value_defaults":307,"../../plots/domain":311,"./attributes":392,"./constants.js":395}],397:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -83422,22 +83284,13 @@ module.exports = {
     plot: _dereq_('./plot'),
 
     meta: {
-        
     }
 };
 
-},{"./attributes":369,"./base_plot":370,"./calc":371,"./defaults":373,"./plot":375}],375:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":392,"./base_plot":393,"./calc":394,"./defaults":396,"./plot":398}],398:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Lib = _dereq_('../../lib');
 var strScale = Lib.strScale;
@@ -83693,7 +83546,7 @@ function drawBulletGauge(gd, plotGroup, cd, opts) {
     ax.setScale();
 
     vals = Axes.calcTicks(ax);
-    transFn = Axes.makeTransFn(ax);
+    transFn = Axes.makeTransTickFn(ax);
     tickSign = Axes.getTickSigns(ax)[2];
 
     shift = size.t + size.h;
@@ -83753,7 +83606,7 @@ function drawBulletGauge(gd, plotGroup, cd, opts) {
     }
     fgBullet.exit().remove();
 
-    var data = cd.filter(function() {return trace.gauge.threshold.value;});
+    var data = cd.filter(function() {return trace.gauge.threshold.value || trace.gauge.threshold.value === 0;});
     var threshold = bullet.selectAll('g.threshold-bullet').data(data);
     threshold.enter().append('g').classed('threshold-bullet', true).append('line');
     threshold.select('line')
@@ -83926,7 +83779,7 @@ function drawAngularGauge(gd, plotGroup, cd, opts) {
     // Draw threshold
     arcs = [];
     var v = trace.gauge.threshold.value;
-    if(v) {
+    if(v || v === 0) {
         arcs.push({
             range: [v, v],
             color: trace.gauge.threshold.color,
@@ -84305,16 +84158,7 @@ function cache(trace, name, initialValue, value, key, fn) {
     return v;
 }
 
-},{"../../components/color":82,"../../components/drawing":104,"../../constants/alignment":184,"../../lib":210,"../../lib/svg_text_utils":231,"../../plots/cartesian/axes":255,"../../plots/cartesian/axis_defaults":257,"../../plots/cartesian/layout_attributes":269,"../../plots/cartesian/position_defaults":272,"./constants":372,"d3":16}],376:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color":109,"../../components/drawing":131,"../../constants/alignment":211,"../../lib":238,"../../lib/svg_text_utils":260,"../../plots/cartesian/axes":284,"../../plots/cartesian/axis_defaults":286,"../../plots/cartesian/layout_attributes":298,"../../plots/cartesian/position_defaults":301,"./constants":395,"@plotly/d3":19}],399:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../../lib').extendFlat;
@@ -84349,39 +84193,32 @@ module.exports = {
     x: {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
-        
     },
 
     open: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
 
     high: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
 
     low: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
 
     close: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
 
     line: {
         width: extendFlat({}, lineAttrs.width, {
-            
         }),
         dash: extendFlat({}, dash, {
-            
         }),
         editType: 'style'
     },
@@ -84392,19 +84229,15 @@ module.exports = {
 
     text: {
         valType: 'string',
-        
         dflt: '',
         arrayOk: true,
         editType: 'calc',
-        
     },
     hovertext: {
         valType: 'string',
-        
         dflt: '',
         arrayOk: true,
         editType: 'calc',
-        
     },
 
     tickwidth: {
@@ -84412,31 +84245,19 @@ module.exports = {
         min: 0,
         max: 0.5,
         dflt: 0.3,
-        
         editType: 'calc',
-        
     },
 
     hoverlabel: extendFlat({}, fxAttrs.hoverlabel, {
         split: {
             valType: 'boolean',
-            
             dflt: false,
             editType: 'style',
-            
         }
     }),
 };
 
-},{"../../components/drawing/attributes":103,"../../components/fx/attributes":113,"../../constants/delta.js":186,"../../lib":210,"../scatter/attributes":398}],377:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing/attributes":130,"../../components/fx/attributes":140,"../../constants/delta.js":213,"../../lib":238,"../scatter/attributes":421}],400:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -84609,16 +84430,7 @@ module.exports = {
     calcCommon: calcCommon
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"../../plots/cartesian/align_period":252,"../../plots/cartesian/axes":255}],378:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/numerical":217,"../../lib":238,"../../plots/cartesian/align_period":281,"../../plots/cartesian/axes":284}],401:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -84658,15 +84470,7 @@ function handleDirection(traceIn, traceOut, coerce, direction) {
     coerce(direction + '.line.dash', traceOut.line.dash);
 }
 
-},{"../../lib":210,"../scatter/period_defaults":418,"./attributes":376,"./ohlc_defaults":381}],379:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../scatter/period_defaults":441,"./attributes":399,"./ohlc_defaults":404}],402:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -84865,15 +84669,7 @@ module.exports = {
     hoverOnPoints: hoverOnPoints
 };
 
-},{"../../components/color":82,"../../components/fx":122,"../../constants/delta.js":186,"../../lib":210,"../../plots/cartesian/axes":255}],380:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/fx":149,"../../constants/delta.js":213,"../../lib":238,"../../plots/cartesian/axes":284}],403:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -84882,7 +84678,6 @@ module.exports = {
     basePlotModule: _dereq_('../../plots/cartesian'),
     categories: ['cartesian', 'svg', 'showLegend'],
     meta: {
-        
     },
 
     attributes: _dereq_('./attributes'),
@@ -84894,15 +84689,7 @@ module.exports = {
     selectPoints: _dereq_('./select')
 };
 
-},{"../../plots/cartesian":268,"./attributes":376,"./calc":377,"./defaults":378,"./hover":379,"./plot":382,"./select":383,"./style":384}],381:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian":297,"./attributes":399,"./calc":400,"./defaults":401,"./hover":402,"./plot":405,"./select":406,"./style":407}],404:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -84929,18 +84716,10 @@ module.exports = function handleOHLC(traceIn, traceOut, coerce, layout) {
     return len;
 };
 
-},{"../../lib":210,"../../registry":297}],382:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320}],405:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Lib = _dereq_('../../lib');
 
@@ -84987,15 +84766,7 @@ module.exports = function plot(gd, plotinfo, cdOHLC, ohlcLayer) {
     });
 };
 
-},{"../../lib":210,"d3":16}],383:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"@plotly/d3":19}],406:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function selectPoints(searchInfo, selectionTester) {
@@ -85032,18 +84803,10 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
-},{}],384:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],407:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Drawing = _dereq_('../../components/drawing');
 var Color = _dereq_('../../components/color');
 
@@ -85071,15 +84834,7 @@ module.exports = function style(gd, cd, sel) {
     });
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"d3":16}],385:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/drawing":131,"@plotly/d3":19}],408:[function(_dereq_,module,exports){
 'use strict';
 
 var baseAttrs = _dereq_('../../plots/attributes');
@@ -85095,61 +84850,49 @@ var textFontAttrs = fontAttrs({
     editType: 'plot',
     arrayOk: true,
     colorEditType: 'plot',
-    
 });
 
 module.exports = {
     labels: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
     // equivalent of x0 and dx, if label is missing
     label0: {
         valType: 'number',
-        
         dflt: 0,
         editType: 'calc',
-        
     },
     dlabel: {
         valType: 'number',
-        
         dflt: 1,
         editType: 'calc',
-        
     },
 
     values: {
         valType: 'data_array',
         editType: 'calc',
-        
     },
 
     marker: {
         colors: {
             valType: 'data_array',  // TODO 'color_array' ?
             editType: 'calc',
-            
         },
 
         line: {
             color: {
                 valType: 'color',
-                
                 dflt: colorAttrs.defaultLine,
                 arrayOk: true,
                 editType: 'style',
-                
             },
             width: {
                 valType: 'number',
-                
                 min: 0,
                 dflt: 0,
                 arrayOk: true,
                 editType: 'style',
-                
             },
             editType: 'calc'
         },
@@ -85159,15 +84902,12 @@ module.exports = {
     text: {
         valType: 'data_array',
         editType: 'plot',
-        
     },
     hovertext: {
         valType: 'string',
-        
         dflt: '',
         arrayOk: true,
         editType: 'style',
-        
     },
 
 // 'see eg:'
@@ -85176,20 +84916,16 @@ module.exports = {
 // 'of its own. but the point is the size of the whole pie is important.)'
     scalegroup: {
         valType: 'string',
-        
         dflt: '',
         editType: 'calc',
-        
     },
 
     // labels (legend is handled by plots.attributes.showlegend and layout.hiddenlabels)
     textinfo: {
         valType: 'flaglist',
-        
         flags: ['label', 'text', 'value', 'percent'],
         extras: ['none'],
         editType: 'calc',
-        
     },
     hoverinfo: extendFlat({}, baseAttrs.hoverinfo, {
         flags: ['label', 'text', 'value', 'percent', 'name']
@@ -85202,48 +84938,36 @@ module.exports = {
     }),
     textposition: {
         valType: 'enumerated',
-        
         values: ['inside', 'outside', 'auto', 'none'],
         dflt: 'auto',
         arrayOk: true,
         editType: 'plot',
-        
     },
     textfont: extendFlat({}, textFontAttrs, {
-        
     }),
     insidetextorientation: {
         valType: 'enumerated',
-        
         values: ['horizontal', 'radial', 'tangential', 'auto'],
         dflt: 'auto',
         editType: 'plot',
-        
     },
     insidetextfont: extendFlat({}, textFontAttrs, {
-        
     }),
     outsidetextfont: extendFlat({}, textFontAttrs, {
-        
     }),
     automargin: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'plot',
-        
     },
 
     title: {
         text: {
             valType: 'string',
             dflt: '',
-            
             editType: 'plot',
-            
         },
         font: extendFlat({}, textFontAttrs, {
-            
         }),
         position: {
             valType: 'enumerated',
@@ -85252,9 +84976,7 @@ module.exports = {
                 'middle center',
                 'bottom left', 'bottom center', 'bottom right'
             ],
-            
             editType: 'plot',
-            
         },
 
         editType: 'plot'
@@ -85265,21 +84987,17 @@ module.exports = {
 
     hole: {
         valType: 'number',
-        
         min: 0,
         max: 1,
         dflt: 0,
         editType: 'calc',
-        
     },
 
     // ordering and direction
     sort: {
         valType: 'boolean',
-        
         dflt: true,
         editType: 'calc',
-        
     },
     direction: {
         /**
@@ -85291,42 +85009,33 @@ module.exports = {
          */
         valType: 'enumerated',
         values: ['clockwise', 'counterclockwise'],
-        
         dflt: 'counterclockwise',
         editType: 'calc',
-        
     },
     rotation: {
         valType: 'number',
-        
         min: -360,
         max: 360,
         dflt: 0,
         editType: 'calc',
-        
     },
 
     pull: {
         valType: 'number',
-        
         min: 0,
         max: 1,
         dflt: 0,
         arrayOk: true,
         editType: 'calc',
-        
     },
 
     _deprecated: {
         title: {
             valType: 'string',
             dflt: '',
-            
             editType: 'calc',
-            
         },
         titlefont: extendFlat({}, textFontAttrs, {
-            
         }),
         titleposition: {
             valType: 'enumerated',
@@ -85335,22 +85044,12 @@ module.exports = {
                 'middle center',
                 'bottom left', 'bottom center', 'bottom right'
             ],
-            
             editType: 'calc',
-            
         }
     }
 };
 
-},{"../../components/color/attributes":81,"../../lib/extend":204,"../../plots/attributes":251,"../../plots/domain":282,"../../plots/font_attributes":283,"../../plots/template_attributes":296}],386:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color/attributes":108,"../../lib/extend":232,"../../plots/attributes":280,"../../plots/domain":311,"../../plots/font_attributes":312,"../../plots/template_attributes":319}],409:[function(_dereq_,module,exports){
 'use strict';
 
 var plots = _dereq_('../../plots/plots');
@@ -85365,15 +85064,7 @@ exports.clean = function(newFullData, newFullLayout, oldFullData, oldFullLayout)
     plots.cleanBasePlot(exports.name, newFullData, newFullLayout, oldFullData, oldFullLayout);
 };
 
-},{"../../plots/plots":289}],387:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/plots":318}],410:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -85548,15 +85239,7 @@ module.exports = {
     generateExtendedColors: generateExtendedColors
 };
 
-},{"../../components/color":82,"fast-isnumeric":18,"tinycolor2":65}],388:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"fast-isnumeric":23,"tinycolor2":74}],411:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -85679,15 +85362,7 @@ module.exports = {
     supplyDefaults: supplyDefaults
 };
 
-},{"../../lib":210,"../../plots/domain":282,"../bar/defaults":311,"./attributes":385,"fast-isnumeric":18}],389:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../plots/domain":311,"../bar/defaults":334,"./attributes":408,"fast-isnumeric":23}],412:[function(_dereq_,module,exports){
 'use strict';
 
 var appendArrayMultiPointValues = _dereq_('../../components/fx/helpers').appendArrayMultiPointValues;
@@ -85728,15 +85403,7 @@ module.exports = function eventData(pt, trace) {
     return out;
 };
 
-},{"../../components/fx/helpers":118}],390:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/fx/helpers":145}],413:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -85776,15 +85443,7 @@ exports.getRotationAngle = function(rotation) {
     return (rotation === 'auto' ? 0 : rotation) * Math.PI / 180;
 };
 
-},{"../../lib":210}],391:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],414:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -85805,52 +85464,29 @@ module.exports = {
     basePlotModule: _dereq_('./base_plot'),
     categories: ['pie-like', 'pie', 'showLegend'],
     meta: {
-        
     }
 };
 
-},{"./attributes":385,"./base_plot":386,"./calc":387,"./defaults":388,"./layout_attributes":392,"./layout_defaults":393,"./plot":394,"./style":395,"./style_one":396}],392:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./attributes":408,"./base_plot":409,"./calc":410,"./defaults":411,"./layout_attributes":415,"./layout_defaults":416,"./plot":417,"./style":418,"./style_one":419}],415:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
     hiddenlabels: {
         valType: 'data_array',
-        
         editType: 'calc',
-        
     },
     piecolorway: {
         valType: 'colorlist',
-        
         editType: 'calc',
-        
     },
     extendpiecolors: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'calc',
-        
     }
 };
 
-},{}],393:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],416:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -85867,18 +85503,10 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     coerce('extendpiecolors');
 };
 
-},{"../../lib":210,"./layout_attributes":392}],394:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./layout_attributes":415}],417:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Plots = _dereq_('../../plots/plots');
 var Fx = _dereq_('../../components/fx');
@@ -87047,18 +86675,10 @@ module.exports = {
     computeTransform: computeTransform
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"../../components/fx":122,"../../lib":210,"../../lib/svg_text_utils":231,"../../plots/plots":289,"../bar/constants":309,"../bar/uniform_text":323,"./event_data":389,"./helpers":390,"d3":16}],395:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/drawing":131,"../../components/fx":149,"../../lib":238,"../../lib/svg_text_utils":260,"../../plots/plots":318,"../bar/constants":332,"../bar/uniform_text":346,"./event_data":412,"./helpers":413,"@plotly/d3":19}],418:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var styleOne = _dereq_('./style_one');
 var resizeText = _dereq_('../bar/uniform_text').resizeText;
@@ -87080,15 +86700,7 @@ module.exports = function style(gd) {
     });
 };
 
-},{"../bar/uniform_text":323,"./style_one":396,"d3":16}],396:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../bar/uniform_text":346,"./style_one":419,"@plotly/d3":19}],419:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -87104,16 +86716,7 @@ module.exports = function styleOne(s, pt, trace) {
         .call(Color.stroke, lineColor);
 };
 
-},{"../../components/color":82,"./helpers":390}],397:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/color":109,"./helpers":413}],420:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -87156,15 +86759,7 @@ module.exports = function arraysToCalcdata(cd, trace) {
     }
 };
 
-},{"../../lib":210}],398:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],421:[function(_dereq_,module,exports){
 'use strict';
 
 var texttemplateAttrs = _dereq_('../../plots/template_attributes').texttemplateAttrs;
@@ -87182,18 +86777,14 @@ function axisPeriod(axis) {
     return {
         valType: 'any',
         dflt: 0,
-        
         editType: 'calc',
-        
     };
 }
 
 function axisPeriod0(axis) {
     return {
         valType: 'any',
-        
         editType: 'calc',
-        
     };
 }
 
@@ -87204,9 +86795,7 @@ function axisPeriodAlignment(axis) {
             'start', 'middle', 'end'
         ],
         dflt: 'middle',
-        
         editType: 'calc',
-        
     };
 }
 
@@ -87215,45 +86804,35 @@ module.exports = {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
         anim: true,
-        
     },
     x0: {
         valType: 'any',
         dflt: 0,
-        
         editType: 'calc+clearAxisTypes',
         anim: true,
-        
     },
     dx: {
         valType: 'number',
         dflt: 1,
-        
         editType: 'calc',
         anim: true,
-        
     },
     y: {
         valType: 'data_array',
         editType: 'calc+clearAxisTypes',
         anim: true,
-        
     },
     y0: {
         valType: 'any',
         dflt: 0,
-        
         editType: 'calc+clearAxisTypes',
         anim: true,
-        
     },
     dy: {
         valType: 'number',
         dflt: 1,
-        
         editType: 'calc',
         anim: true,
-        
     },
 
     xperiod: axisPeriod('x'),
@@ -87265,42 +86844,32 @@ module.exports = {
 
     stackgroup: {
         valType: 'string',
-        
         dflt: '',
         editType: 'calc',
-        
     },
     orientation: {
         valType: 'enumerated',
-        
         values: ['v', 'h'],
         editType: 'calc',
-        
     },
     groupnorm: {
         valType: 'enumerated',
         values: ['', 'fraction', 'percent'],
         dflt: '',
-        
         editType: 'calc',
-        
     },
     stackgaps: {
         valType: 'enumerated',
         values: ['infer zero', 'interpolate'],
         dflt: 'infer zero',
-        
         editType: 'calc',
-        
     },
 
     text: {
         valType: 'string',
-        
         dflt: '',
         arrayOk: true,
         editType: 'calc',
-        
     },
 
     texttemplate: texttemplateAttrs({}, {
@@ -87308,26 +86877,20 @@ module.exports = {
     }),
     hovertext: {
         valType: 'string',
-        
         dflt: '',
         arrayOk: true,
         editType: 'style',
-        
     },
     mode: {
         valType: 'flaglist',
         flags: ['lines', 'markers', 'text'],
         extras: ['none'],
-        
         editType: 'calc',
-        
     },
     hoveron: {
         valType: 'flaglist',
         flags: ['points', 'fills'],
-        
         editType: 'style',
-        
     },
     hovertemplate: hovertemplateAttrs({}, {
         keys: constants.eventDataKeys
@@ -87335,44 +86898,34 @@ module.exports = {
     line: {
         color: {
             valType: 'color',
-            
             editType: 'style',
             anim: true,
-            
         },
         width: {
             valType: 'number',
             min: 0,
             dflt: 2,
-            
             editType: 'style',
             anim: true,
-            
         },
         shape: {
             valType: 'enumerated',
             values: ['linear', 'spline', 'hv', 'vh', 'hvh', 'vhv'],
             dflt: 'linear',
-            
             editType: 'plot',
-            
         },
         smoothing: {
             valType: 'number',
             min: 0,
             max: 1.3,
             dflt: 1,
-            
             editType: 'plot',
-            
         },
         dash: extendFlat({}, dash, {editType: 'style'}),
         simplify: {
             valType: 'boolean',
             dflt: true,
-            
             editType: 'plot',
-            
         },
         editType: 'plot'
     },
@@ -87380,31 +86933,23 @@ module.exports = {
     connectgaps: {
         valType: 'boolean',
         dflt: false,
-        
         editType: 'calc',
-        
     },
     cliponaxis: {
         valType: 'boolean',
         dflt: true,
-        
         editType: 'plot',
-        
     },
 
     fill: {
         valType: 'enumerated',
         values: ['none', 'tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'],
-        
         editType: 'calc',
-        
     },
     fillcolor: {
         valType: 'color',
-        
         editType: 'style',
         anim: true,
-        
     },
     marker: extendFlat({
         symbol: {
@@ -87412,60 +86957,46 @@ module.exports = {
             values: Drawing.symbolList,
             dflt: 'circle',
             arrayOk: true,
-            
             editType: 'style',
-            
         },
         opacity: {
             valType: 'number',
             min: 0,
             max: 1,
             arrayOk: true,
-            
             editType: 'style',
             anim: true,
-            
         },
         size: {
             valType: 'number',
             min: 0,
             dflt: 6,
             arrayOk: true,
-            
             editType: 'calc',
             anim: true,
-            
         },
         maxdisplayed: {
             valType: 'number',
             min: 0,
             dflt: 0,
-            
             editType: 'plot',
-            
         },
         sizeref: {
             valType: 'number',
             dflt: 1,
-            
             editType: 'calc',
-            
         },
         sizemin: {
             valType: 'number',
             min: 0,
             dflt: 0,
-            
             editType: 'calc',
-            
         },
         sizemode: {
             valType: 'enumerated',
             values: ['diameter', 'area'],
             dflt: 'diameter',
-            
             editType: 'calc',
-            
         },
 
         line: extendFlat({
@@ -87473,10 +87004,8 @@ module.exports = {
                 valType: 'number',
                 min: 0,
                 arrayOk: true,
-                
                 editType: 'style',
                 anim: true,
-                
             },
             editType: 'calc'
         },
@@ -87488,16 +87017,12 @@ module.exports = {
                 values: ['radial', 'horizontal', 'vertical', 'none'],
                 arrayOk: true,
                 dflt: 'none',
-                
                 editType: 'calc',
-                
             },
             color: {
                 valType: 'color',
                 arrayOk: true,
-                
                 editType: 'calc',
-                
             },
             editType: 'calc'
         },
@@ -87511,31 +87036,23 @@ module.exports = {
                 valType: 'number',
                 min: 0,
                 max: 1,
-                
                 editType: 'style',
-                
             },
             color: {
                 valType: 'color',
-                
                 editType: 'style',
-                
             },
             size: {
                 valType: 'number',
                 min: 0,
-                
                 editType: 'style',
-                
             },
             editType: 'style'
         },
         textfont: {
             color: {
                 valType: 'color',
-                
                 editType: 'style',
-                
             },
             editType: 'style'
         },
@@ -87547,31 +87064,23 @@ module.exports = {
                 valType: 'number',
                 min: 0,
                 max: 1,
-                
                 editType: 'style',
-                
             },
             color: {
                 valType: 'color',
-                
                 editType: 'style',
-                
             },
             size: {
                 valType: 'number',
                 min: 0,
-                
                 editType: 'style',
-                
             },
             editType: 'style'
         },
         textfont: {
             color: {
                 valType: 'color',
-                
                 editType: 'style',
-                
             },
             editType: 'style'
         },
@@ -87587,38 +87096,16 @@ module.exports = {
         ],
         dflt: 'middle center',
         arrayOk: true,
-        
         editType: 'calc',
-        
     },
     textfont: fontAttrs({
         editType: 'calc',
         colorEditType: 'style',
         arrayOk: true,
-        
     }),
-
-    r: {
-        valType: 'data_array',
-        editType: 'calc',
-        
-    },
-    t: {
-        valType: 'data_array',
-        editType: 'calc',
-        
-    }
 };
 
-},{"../../components/colorscale/attributes":89,"../../components/drawing":104,"../../components/drawing/attributes":103,"../../lib/extend":204,"../../plots/font_attributes":283,"../../plots/template_attributes":296,"./constants":402}],399:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/colorscale/attributes":116,"../../components/drawing":131,"../../components/drawing/attributes":130,"../../lib/extend":232,"../../plots/font_attributes":312,"../../plots/template_attributes":319,"./constants":425}],422:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -87909,15 +87396,7 @@ module.exports = {
     getStackOpts: getStackOpts
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"../../plots/cartesian/align_period":252,"../../plots/cartesian/axes":255,"./arrays_to_calcdata":397,"./calc_selection":400,"./colorscale_calc":401,"./subtypes":423,"fast-isnumeric":18}],400:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238,"../../plots/cartesian/align_period":281,"../../plots/cartesian/axes":284,"./arrays_to_calcdata":420,"./calc_selection":423,"./colorscale_calc":424,"./subtypes":446,"fast-isnumeric":23}],423:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -87928,15 +87407,7 @@ module.exports = function calcSelection(cd, trace) {
     }
 };
 
-},{"../../lib":210}],401:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],424:[function(_dereq_,module,exports){
 'use strict';
 
 var hasColorscale = _dereq_('../../components/colorscale/helpers').hasColorscale;
@@ -87971,16 +87442,7 @@ module.exports = function calcMarkerColorscale(gd, trace) {
     }
 };
 
-},{"../../components/colorscale/calc":90,"../../components/colorscale/helpers":93,"./subtypes":423}],402:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/colorscale/calc":117,"../../components/colorscale/helpers":120,"./subtypes":446}],425:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -88000,16 +87462,7 @@ module.exports = {
     eventDataKeys: []
 };
 
-},{}],403:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],426:[function(_dereq_,module,exports){
 'use strict';
 
 var calc = _dereq_('./calc');
@@ -88181,16 +87634,7 @@ function getInterp(calcTrace, index, position, posAttr) {
     return pt0.s + (pt1.s - pt0.s) * (position - pt0[posAttr]) / (pt1[posAttr] - pt0[posAttr]);
 }
 
-},{"./calc":399}],404:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"./calc":422}],427:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -88220,15 +87664,7 @@ module.exports = function crossTraceDefaults(fullData) {
     }
 };
 
-},{}],405:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],428:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -88313,16 +87749,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     Lib.coerceSelectionMarkerOpacity(traceOut, coerce);
 };
 
-},{"../../lib":210,"../../registry":297,"./attributes":398,"./constants":402,"./fillcolor_defaults":406,"./line_defaults":411,"./line_shape_defaults":413,"./marker_defaults":417,"./period_defaults":418,"./stack_defaults":421,"./subtypes":423,"./text_defaults":424,"./xy_defaults":425}],406:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238,"../../registry":320,"./attributes":421,"./constants":425,"./fillcolor_defaults":429,"./line_defaults":434,"./line_shape_defaults":436,"./marker_defaults":440,"./period_defaults":441,"./stack_defaults":444,"./subtypes":446,"./text_defaults":447,"./xy_defaults":448}],429:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -88350,15 +87777,7 @@ module.exports = function fillColorDefaults(traceIn, traceOut, defaultColor, coe
     ));
 };
 
-},{"../../components/color":82,"../../lib":210}],407:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib":238}],430:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -88376,16 +87795,7 @@ module.exports = function formatLabels(cdi, trace, fullLayout) {
     return labels;
 };
 
-},{"../../plots/cartesian/axes":255}],408:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../plots/cartesian/axes":284}],431:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -88425,15 +87835,7 @@ module.exports = function getTraceColor(trace, di) {
     }
 };
 
-},{"../../components/color":82,"./subtypes":423}],409:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"./subtypes":446}],432:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -88620,15 +88022,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
     }
 };
 
-},{"../../components/color":82,"../../components/fx":122,"../../lib":210,"../../registry":297,"./get_trace_color":408}],410:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/fx":149,"../../lib":238,"../../registry":320,"./get_trace_color":431}],433:[function(_dereq_,module,exports){
 'use strict';
 
 var subtypes = _dereq_('./subtypes');
@@ -88662,19 +88056,10 @@ module.exports = {
         'zoomScale'
     ],
     meta: {
-        
     }
 };
 
-},{"../../plots/cartesian":268,"./arrays_to_calcdata":397,"./attributes":398,"./calc":399,"./cross_trace_calc":403,"./cross_trace_defaults":404,"./defaults":405,"./format_labels":407,"./hover":409,"./marker_colorbar":416,"./plot":419,"./select":420,"./style":422,"./subtypes":423}],411:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian":297,"./arrays_to_calcdata":420,"./attributes":421,"./calc":422,"./cross_trace_calc":426,"./cross_trace_defaults":427,"./defaults":428,"./format_labels":430,"./hover":432,"./marker_colorbar":439,"./plot":442,"./select":443,"./style":445,"./subtypes":446}],434:[function(_dereq_,module,exports){
 'use strict';
 
 var isArrayOrTypedArray = _dereq_('../../lib').isArrayOrTypedArray;
@@ -88697,16 +88082,7 @@ module.exports = function lineDefaults(traceIn, traceOut, defaultColor, layout, 
     if(!(opts || {}).noDash) coerce('line.dash');
 };
 
-},{"../../components/colorscale/defaults":92,"../../components/colorscale/helpers":93,"../../lib":210}],412:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/colorscale/defaults":119,"../../components/colorscale/helpers":120,"../../lib":238}],435:[function(_dereq_,module,exports){
 'use strict';
 
 var numConstants = _dereq_('../../constants/numerical');
@@ -89158,16 +88534,7 @@ module.exports = function linePoints(d, opts) {
     return segments;
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"./constants":402}],413:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/numerical":217,"../../lib":238,"./constants":425}],436:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -89177,15 +88544,7 @@ module.exports = function handleLineShapeDefaults(traceIn, traceOut, coerce) {
     if(shape === 'spline') coerce('line.smoothing');
 };
 
-},{}],414:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],437:[function(_dereq_,module,exports){
 'use strict';
 
 var LINKEDFILLS = {tonextx: 1, tonexty: 1, tonext: 1};
@@ -89267,16 +88626,7 @@ module.exports = function linkTraces(gd, plotinfo, cdscatter) {
     return cdscatterSorted;
 };
 
-},{}],415:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],438:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -89309,16 +88659,7 @@ module.exports = function makeBubbleSizeFn(trace) {
     };
 };
 
-},{"fast-isnumeric":18}],416:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"fast-isnumeric":23}],439:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -89327,15 +88668,7 @@ module.exports = {
     max: 'cmax'
 };
 
-},{}],417:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],440:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -89408,15 +88741,7 @@ module.exports = function markerDefaults(traceIn, traceOut, defaultColor, layout
     }
 };
 
-},{"../../components/color":82,"../../components/colorscale/defaults":92,"../../components/colorscale/helpers":93,"./subtypes":423}],418:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../components/colorscale/defaults":119,"../../components/colorscale/helpers":120,"./subtypes":446}],441:[function(_dereq_,module,exports){
 'use strict';
 
 var dateTick0 = _dereq_('../../lib').dateTick0;
@@ -89455,19 +88780,10 @@ module.exports = function handlePeriodDefaults(traceIn, traceOut, layout, coerce
     }
 };
 
-},{"../../constants/numerical":189,"../../lib":210}],419:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../constants/numerical":217,"../../lib":238}],442:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Registry = _dereq_('../../registry');
 var Lib = _dereq_('../../lib');
@@ -89949,7 +89265,7 @@ function plotOne(gd, idx, plotinfo, cdscatter, cdscatterAll, element, transition
         join.selectAll('text')
             .call(Drawing.textPointStyle, trace, gd)
             .each(function(d) {
-                // This just *has* to be totally custom becuase of SVG text positioning :(
+                // This just *has* to be totally custom because of SVG text positioning :(
                 // It's obviously copied from translatePoint; we just can't use that
                 var x = xa.c2p(d.x);
                 var y = ya.c2p(d.y);
@@ -90016,16 +89332,7 @@ function selectMarkers(gd, idx, plotinfo, cdscatter, cdscatterAll) {
     });
 }
 
-},{"../../components/drawing":104,"../../lib":210,"../../lib/polygon":222,"../../registry":297,"./line_points":412,"./link_traces":414,"./subtypes":423,"d3":16}],420:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/drawing":131,"../../lib":238,"../../lib/polygon":250,"../../registry":320,"./line_points":435,"./link_traces":437,"./subtypes":446,"@plotly/d3":19}],443:[function(_dereq_,module,exports){
 'use strict';
 
 var subtypes = _dereq_('./subtypes');
@@ -90070,15 +89377,7 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
-},{"./subtypes":423}],421:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"./subtypes":446}],444:[function(_dereq_,module,exports){
 'use strict';
 
 var perStackAttrs = ['orientation', 'groupnorm', 'stackgaps'];
@@ -90175,19 +89474,10 @@ module.exports = function handleStackDefaults(traceIn, traceOut, layout, coerce)
     }
 };
 
-},{}],422:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{}],445:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Drawing = _dereq_('../../components/drawing');
 var Registry = _dereq_('../../registry');
 
@@ -90246,16 +89536,7 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
-},{"../../components/drawing":104,"../../registry":297,"d3":16}],423:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../components/drawing":131,"../../registry":320,"@plotly/d3":19}],446:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -90285,16 +89566,7 @@ module.exports = {
     }
 };
 
-},{"../../lib":210}],424:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
+},{"../../lib":238}],447:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -90315,15 +89587,7 @@ module.exports = function(traceIn, traceOut, layout, coerce, opts) {
     }
 };
 
-},{"../../lib":210}],425:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238}],448:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -90359,15 +89623,7 @@ module.exports = function handleXYDefaults(traceIn, traceOut, layout, coerce) {
     return len;
 };
 
-},{"../../lib":210,"../../registry":297}],426:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"../../registry":320}],449:[function(_dereq_,module,exports){
 'use strict';
 
 var barAttrs = _dereq_('../bar/attributes');
@@ -90385,18 +89641,15 @@ function directionAttrs(dirTxt) {
             color: extendFlat({}, barAttrs.marker.color, {
                 arrayOk: false,
                 editType: 'style',
-                
             }),
             line: {
                 color: extendFlat({}, barAttrs.marker.line.color, {
                     arrayOk: false,
                     editType: 'style',
-                    
                 }),
                 width: extendFlat({}, barAttrs.marker.line.width, {
                     arrayOk: false,
                     editType: 'style',
-                    
                 }),
                 editType: 'style',
             },
@@ -90410,18 +89663,14 @@ module.exports = {
     measure: {
         valType: 'data_array',
         dflt: [],
-        
         editType: 'calc',
-        
     },
 
     base: {
         valType: 'number',
         dflt: null,
         arrayOk: false,
-        
         editType: 'calc',
-        
     },
 
     x: barAttrs.x,
@@ -90451,10 +89700,8 @@ module.exports = {
         valType: 'flaglist',
         flags: ['label', 'text', 'initial', 'delta', 'final'],
         extras: ['none'],
-        
         editType: 'plot',
         arrayOk: false,
-        
     },
     // TODO: incorporate `label` and `value` in the eventData
     texttemplate: texttemplateAttrs({editType: 'plot'}, {
@@ -90492,16 +89739,12 @@ module.exports = {
             valType: 'enumerated',
             values: ['spanning', 'between'],
             dflt: 'between',
-            
             editType: 'plot',
-            
         },
         visible: {
             valType: 'boolean',
             dflt: true,
-            
             editType: 'plot',
-            
         },
         editType: 'plot'
     },
@@ -90510,15 +89753,7 @@ module.exports = {
     alignmentgroup: barAttrs.alignmentgroup
 };
 
-},{"../../components/color":82,"../../lib/extend":204,"../../plots/attributes":251,"../../plots/template_attributes":296,"../bar/attributes":307,"../scatter/attributes":398,"./constants":428}],427:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../lib/extend":232,"../../plots/attributes":280,"../../plots/template_attributes":319,"../bar/attributes":330,"../scatter/attributes":421,"./constants":451}],450:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -90624,15 +89859,7 @@ module.exports = function calc(gd, trace) {
     return cd;
 };
 
-},{"../../constants/numerical":189,"../../lib":210,"../../plots/cartesian/align_period":252,"../../plots/cartesian/axes":255,"../scatter/calc_selection":400}],428:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../constants/numerical":217,"../../lib":238,"../../plots/cartesian/align_period":281,"../../plots/cartesian/axes":284,"../scatter/calc_selection":423}],451:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -90643,15 +89870,7 @@ module.exports = {
     ]
 };
 
-},{}],429:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],452:[function(_dereq_,module,exports){
 'use strict';
 
 var setGroupPositions = _dereq_('../bar/cross_trace_calc').setGroupPositions;
@@ -90716,15 +89935,7 @@ module.exports = function crossTraceCalc(gd, plotinfo) {
     }
 };
 
-},{"../bar/cross_trace_calc":310}],430:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../bar/cross_trace_calc":333}],453:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -90825,15 +90036,7 @@ module.exports = {
     crossTraceDefaults: crossTraceDefaults
 };
 
-},{"../../components/color":82,"../../constants/delta.js":186,"../../lib":210,"../bar/defaults":311,"../scatter/period_defaults":418,"../scatter/xy_defaults":425,"./attributes":426}],431:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../constants/delta.js":213,"../../lib":238,"../bar/defaults":334,"../scatter/period_defaults":441,"../scatter/xy_defaults":448,"./attributes":449}],454:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt /* , trace, cd, pointNumber */) {
@@ -90852,15 +90055,7 @@ module.exports = function eventData(out, pt /* , trace, cd, pointNumber */) {
     return out;
 };
 
-},{}],432:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],455:[function(_dereq_,module,exports){
 'use strict';
 
 var hoverLabelText = _dereq_('../../plots/cartesian/axes').hoverLabelText;
@@ -90947,15 +90142,7 @@ function getTraceColor(trace, di) {
     else if(opacity(mlc) && mlw) return mlc;
 }
 
-},{"../../components/color":82,"../../constants/delta.js":186,"../../plots/cartesian/axes":255,"../bar/hover":314}],433:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/color":109,"../../constants/delta.js":213,"../../plots/cartesian/axes":284,"../bar/hover":337}],456:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -90978,19 +90165,10 @@ module.exports = {
     basePlotModule: _dereq_('../../plots/cartesian'),
     categories: ['bar-like', 'cartesian', 'svg', 'oriented', 'showLegend', 'zoomScale'],
     meta: {
-        
     }
 };
 
-},{"../../plots/cartesian":268,"../bar/select":319,"./attributes":426,"./calc":427,"./cross_trace_calc":429,"./defaults":430,"./event_data":431,"./hover":432,"./layout_attributes":434,"./layout_defaults":435,"./plot":436,"./style":437}],434:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../plots/cartesian":297,"../bar/select":342,"./attributes":449,"./calc":450,"./cross_trace_calc":452,"./defaults":453,"./event_data":454,"./hover":455,"./layout_attributes":457,"./layout_defaults":458,"./plot":459,"./style":460}],457:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -90998,38 +90176,24 @@ module.exports = {
         valType: 'enumerated',
         values: ['group', 'overlay'],
         dflt: 'group',
-        
         editType: 'calc',
-        
     },
     waterfallgap: {
         valType: 'number',
         min: 0,
         max: 1,
-        
         editType: 'calc',
-        
     },
     waterfallgroupgap: {
         valType: 'number',
         min: 0,
         max: 1,
         dflt: 0,
-        
         editType: 'calc',
-        
     }
 };
 
-},{}],435:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{}],458:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -91058,18 +90222,10 @@ module.exports = function(layoutIn, layoutOut, fullData) {
     }
 };
 
-},{"../../lib":210,"./layout_attributes":434}],436:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../lib":238,"./layout_attributes":457}],459:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 var Lib = _dereq_('../../lib');
 var Drawing = _dereq_('../../components/drawing');
 var BADNUM = _dereq_('../../constants/numerical').BADNUM;
@@ -91189,18 +90345,10 @@ function getXY(di, xa, ya, isHorizontal) {
     return isHorizontal ? [s, p] : [p, s];
 }
 
-},{"../../components/drawing":104,"../../constants/numerical":189,"../../lib":210,"../bar/plot":318,"../bar/uniform_text":323,"d3":16}],437:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
+},{"../../components/drawing":131,"../../constants/numerical":217,"../../lib":238,"../bar/plot":341,"../bar/uniform_text":346,"@plotly/d3":19}],460:[function(_dereq_,module,exports){
 'use strict';
 
-var d3 = _dereq_('d3');
+var d3 = _dereq_('@plotly/d3');
 
 var Drawing = _dereq_('../../components/drawing');
 var Color = _dereq_('../../components/color');
@@ -91250,19 +90398,1075 @@ module.exports = {
     style: style
 };
 
-},{"../../components/color":82,"../../components/drawing":104,"../../constants/interactions":188,"../bar/style":321,"../bar/uniform_text":323,"d3":16}],438:[function(_dereq_,module,exports){
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
+},{"../../components/color":109,"../../components/drawing":131,"../../constants/interactions":216,"../bar/style":344,"../bar/uniform_text":346,"@plotly/d3":19}],461:[function(_dereq_,module,exports){
+'use strict';
 
+var Axes = _dereq_('../plots/cartesian/axes');
+var Lib = _dereq_('../lib');
+var PlotSchema = _dereq_('../plot_api/plot_schema');
+var pointsAccessorFunction = _dereq_('./helpers').pointsAccessorFunction;
+var BADNUM = _dereq_('../constants/numerical').BADNUM;
+
+exports.moduleType = 'transform';
+
+exports.name = 'aggregate';
+
+var attrs = exports.attributes = {
+    enabled: {
+        valType: 'boolean',
+        dflt: true,
+        editType: 'calc',
+    },
+    groups: {
+        // TODO: groupby should support string or array grouping this way too
+        // currently groupby only allows a grouping array
+        valType: 'string',
+        strict: true,
+        noBlank: true,
+        arrayOk: true,
+        dflt: 'x',
+        editType: 'calc',
+    },
+    aggregations: {
+        _isLinkedToArray: 'aggregation',
+        target: {
+            valType: 'string',
+            editType: 'calc',
+        },
+        func: {
+            valType: 'enumerated',
+            values: ['count', 'sum', 'avg', 'median', 'mode', 'rms', 'stddev', 'min', 'max', 'first', 'last', 'change', 'range'],
+            dflt: 'first',
+            editType: 'calc',
+        },
+        funcmode: {
+            valType: 'enumerated',
+            values: ['sample', 'population'],
+            dflt: 'sample',
+            editType: 'calc',
+        },
+        enabled: {
+            valType: 'boolean',
+            dflt: true,
+            editType: 'calc',
+        },
+        editType: 'calc'
+    },
+    editType: 'calc'
+};
+
+var aggAttrs = attrs.aggregations;
+
+/**
+ * Supply transform attributes defaults
+ *
+ * @param {object} transformIn
+ *  object linked to trace.transforms[i] with 'func' set to exports.name
+ * @param {object} traceOut
+ *  the _fullData trace this transform applies to
+ * @param {object} layout
+ *  the plot's (not-so-full) layout
+ * @param {object} traceIn
+ *  the input data trace this transform applies to
+ *
+ * @return {object} transformOut
+ *  copy of transformIn that contains attribute defaults
+ */
+exports.supplyDefaults = function(transformIn, traceOut) {
+    var transformOut = {};
+    var i;
+
+    function coerce(attr, dflt) {
+        return Lib.coerce(transformIn, transformOut, attrs, attr, dflt);
+    }
+
+    var enabled = coerce('enabled');
+
+    if(!enabled) return transformOut;
+
+    /*
+     * Normally _arrayAttrs is calculated during doCalc, but that comes later.
+     * Anyway this can change due to *count* aggregations (see below) so it's not
+     * necessarily the same set.
+     *
+     * For performance we turn it into an object of truthy values
+     * we'll use 1 for arrays we haven't aggregated yet, 0 for finished arrays,
+     * as distinct from undefined which means this array isn't present in the input
+     * missing arrays can still be aggregate outputs for *count* aggregations.
+     */
+    var arrayAttrArray = PlotSchema.findArrayAttributes(traceOut);
+    var arrayAttrs = {};
+    for(i = 0; i < arrayAttrArray.length; i++) arrayAttrs[arrayAttrArray[i]] = 1;
+
+    var groups = coerce('groups');
+
+    if(!Array.isArray(groups)) {
+        if(!arrayAttrs[groups]) {
+            transformOut.enabled = false;
+            return transformOut;
+        }
+        arrayAttrs[groups] = 0;
+    }
+
+    var aggregationsIn = transformIn.aggregations || [];
+    var aggregationsOut = transformOut.aggregations = new Array(aggregationsIn.length);
+    var aggregationOut;
+
+    function coercei(attr, dflt) {
+        return Lib.coerce(aggregationsIn[i], aggregationOut, aggAttrs, attr, dflt);
+    }
+
+    for(i = 0; i < aggregationsIn.length; i++) {
+        aggregationOut = {_index: i};
+        var target = coercei('target');
+        var func = coercei('func');
+        var enabledi = coercei('enabled');
+
+        // add this aggregation to the output only if it's the first instance
+        // of a valid target attribute - or an unused target attribute with "count"
+        if(enabledi && target && (arrayAttrs[target] || (func === 'count' && arrayAttrs[target] === undefined))) {
+            if(func === 'stddev') coercei('funcmode');
+
+            arrayAttrs[target] = 0;
+            aggregationsOut[i] = aggregationOut;
+        } else aggregationsOut[i] = {enabled: false, _index: i};
+    }
+
+    // any array attributes we haven't yet covered, fill them with the default aggregation
+    for(i = 0; i < arrayAttrArray.length; i++) {
+        if(arrayAttrs[arrayAttrArray[i]]) {
+            aggregationsOut.push({
+                target: arrayAttrArray[i],
+                func: aggAttrs.func.dflt,
+                enabled: true,
+                _index: -1
+            });
+        }
+    }
+
+    return transformOut;
+};
+
+
+exports.calcTransform = function(gd, trace, opts) {
+    if(!opts.enabled) return;
+
+    var groups = opts.groups;
+
+    var groupArray = Lib.getTargetArray(trace, {target: groups});
+    if(!groupArray) return;
+
+    var i, vi, groupIndex, newGrouping;
+
+    var groupIndices = {};
+    var indexToPoints = {};
+    var groupings = [];
+
+    var originalPointsAccessor = pointsAccessorFunction(trace.transforms, opts);
+
+    var len = groupArray.length;
+    if(trace._length) len = Math.min(len, trace._length);
+
+    for(i = 0; i < len; i++) {
+        vi = groupArray[i];
+        groupIndex = groupIndices[vi];
+        if(groupIndex === undefined) {
+            groupIndices[vi] = groupings.length;
+            newGrouping = [i];
+            groupings.push(newGrouping);
+            indexToPoints[groupIndices[vi]] = originalPointsAccessor(i);
+        } else {
+            groupings[groupIndex].push(i);
+            indexToPoints[groupIndices[vi]] = (indexToPoints[groupIndices[vi]] || []).concat(originalPointsAccessor(i));
+        }
+    }
+
+    opts._indexToPoints = indexToPoints;
+
+    var aggregations = opts.aggregations;
+
+    for(i = 0; i < aggregations.length; i++) {
+        aggregateOneArray(gd, trace, groupings, aggregations[i]);
+    }
+
+    if(typeof groups === 'string') {
+        aggregateOneArray(gd, trace, groupings, {
+            target: groups,
+            func: 'first',
+            enabled: true
+        });
+    }
+
+    trace._length = groupings.length;
+};
+
+function aggregateOneArray(gd, trace, groupings, aggregation) {
+    if(!aggregation.enabled) return;
+
+    var attr = aggregation.target;
+    var targetNP = Lib.nestedProperty(trace, attr);
+    var arrayIn = targetNP.get();
+    var conversions = Axes.getDataConversions(gd, trace, attr, arrayIn);
+    var func = getAggregateFunction(aggregation, conversions);
+
+    var arrayOut = new Array(groupings.length);
+    for(var i = 0; i < groupings.length; i++) {
+        arrayOut[i] = func(arrayIn, groupings[i]);
+    }
+    targetNP.set(arrayOut);
+
+    if(aggregation.func === 'count') {
+        // count does not depend on an input array, so it's likely not part of _arrayAttrs yet
+        // but after this transform it most definitely *is* an array attribute.
+        Lib.pushUnique(trace._arrayAttrs, attr);
+    }
+}
+
+function getAggregateFunction(opts, conversions) {
+    var func = opts.func;
+    var d2c = conversions.d2c;
+    var c2d = conversions.c2d;
+
+    switch(func) {
+        // count, first, and last don't depend on anything about the data
+        // point back to pure functions for performance
+        case 'count':
+            return count;
+        case 'first':
+            return first;
+        case 'last':
+            return last;
+
+        case 'sum':
+            // This will produce output in all cases even though it's nonsensical
+            // for date or category data.
+            return function(array, indices) {
+                var total = 0;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) total += vi;
+                }
+                return c2d(total);
+            };
+
+        case 'avg':
+            // Generally meaningless for category data but it still does something.
+            return function(array, indices) {
+                var total = 0;
+                var cnt = 0;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) {
+                        total += vi;
+                        cnt++;
+                    }
+                }
+                return cnt ? c2d(total / cnt) : BADNUM;
+            };
+
+        case 'min':
+            return function(array, indices) {
+                var out = Infinity;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) out = Math.min(out, vi);
+                }
+                return (out === Infinity) ? BADNUM : c2d(out);
+            };
+
+        case 'max':
+            return function(array, indices) {
+                var out = -Infinity;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) out = Math.max(out, vi);
+                }
+                return (out === -Infinity) ? BADNUM : c2d(out);
+            };
+
+        case 'range':
+            return function(array, indices) {
+                var min = Infinity;
+                var max = -Infinity;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) {
+                        min = Math.min(min, vi);
+                        max = Math.max(max, vi);
+                    }
+                }
+                return (max === -Infinity || min === Infinity) ? BADNUM : c2d(max - min);
+            };
+
+        case 'change':
+            return function(array, indices) {
+                var first = d2c(array[indices[0]]);
+                var last = d2c(array[indices[indices.length - 1]]);
+                return (first === BADNUM || last === BADNUM) ? BADNUM : c2d(last - first);
+            };
+
+        case 'median':
+            return function(array, indices) {
+                var sortCalc = [];
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) sortCalc.push(vi);
+                }
+                if(!sortCalc.length) return BADNUM;
+                sortCalc.sort(Lib.sorterAsc);
+                var mid = (sortCalc.length - 1) / 2;
+                return c2d((sortCalc[Math.floor(mid)] + sortCalc[Math.ceil(mid)]) / 2);
+            };
+
+        case 'mode':
+            return function(array, indices) {
+                var counts = {};
+                var maxCnt = 0;
+                var out = BADNUM;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) {
+                        var counti = counts[vi] = (counts[vi] || 0) + 1;
+                        if(counti > maxCnt) {
+                            maxCnt = counti;
+                            out = vi;
+                        }
+                    }
+                }
+                return maxCnt ? c2d(out) : BADNUM;
+            };
+
+        case 'rms':
+            return function(array, indices) {
+                var total = 0;
+                var cnt = 0;
+                for(var i = 0; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) {
+                        total += vi * vi;
+                        cnt++;
+                    }
+                }
+                return cnt ? c2d(Math.sqrt(total / cnt)) : BADNUM;
+            };
+
+        case 'stddev':
+            return function(array, indices) {
+                // balance numerical stability with performance:
+                // so that we call d2c once per element but don't need to
+                // store them, reference all to the first element
+                var total = 0;
+                var total2 = 0;
+                var cnt = 1;
+                var v0 = BADNUM;
+                var i;
+                for(i = 0; i < indices.length && v0 === BADNUM; i++) {
+                    v0 = d2c(array[indices[i]]);
+                }
+                if(v0 === BADNUM) return BADNUM;
+
+                for(; i < indices.length; i++) {
+                    var vi = d2c(array[indices[i]]);
+                    if(vi !== BADNUM) {
+                        var dv = vi - v0;
+                        total += dv;
+                        total2 += dv * dv;
+                        cnt++;
+                    }
+                }
+
+                // This is population std dev, if we want sample std dev
+                // we would need (...) / (cnt - 1)
+                // Also note there's no c2d here - that means for dates the result
+                // is a number of milliseconds, and for categories it's a number
+                // of category differences, which is not generically meaningful but
+                // as in other cases we don't forbid it.
+                var norm = (opts.funcmode === 'sample') ? (cnt - 1) : cnt;
+                // this is debatable: should a count of 1 return sample stddev of
+                // 0 or undefined?
+                if(!norm) return 0;
+                return Math.sqrt((total2 - (total * total / cnt)) / norm);
+            };
+    }
+}
+
+function count(array, indices) {
+    return indices.length;
+}
+
+function first(array, indices) {
+    return array[indices[0]];
+}
+
+function last(array, indices) {
+    return array[indices[indices.length - 1]];
+}
+
+},{"../constants/numerical":217,"../lib":238,"../plot_api/plot_schema":272,"../plots/cartesian/axes":284,"./helpers":464}],462:[function(_dereq_,module,exports){
+'use strict';
+
+var Lib = _dereq_('../lib');
+var Registry = _dereq_('../registry');
+var Axes = _dereq_('../plots/cartesian/axes');
+var pointsAccessorFunction = _dereq_('./helpers').pointsAccessorFunction;
+
+var filterOps = _dereq_('../constants/filter_ops');
+var COMPARISON_OPS = filterOps.COMPARISON_OPS;
+var INTERVAL_OPS = filterOps.INTERVAL_OPS;
+var SET_OPS = filterOps.SET_OPS;
+
+exports.moduleType = 'transform';
+
+exports.name = 'filter';
+
+exports.attributes = {
+    enabled: {
+        valType: 'boolean',
+        dflt: true,
+        editType: 'calc',
+    },
+    target: {
+        valType: 'string',
+        strict: true,
+        noBlank: true,
+        arrayOk: true,
+        dflt: 'x',
+        editType: 'calc',
+    },
+    operation: {
+        valType: 'enumerated',
+        values: []
+            .concat(COMPARISON_OPS)
+            .concat(INTERVAL_OPS)
+            .concat(SET_OPS),
+        dflt: '=',
+        editType: 'calc',
+    },
+    value: {
+        valType: 'any',
+        dflt: 0,
+        editType: 'calc',
+    },
+    preservegaps: {
+        valType: 'boolean',
+        dflt: false,
+        editType: 'calc',
+    },
+    editType: 'calc'
+};
+
+exports.supplyDefaults = function(transformIn) {
+    var transformOut = {};
+
+    function coerce(attr, dflt) {
+        return Lib.coerce(transformIn, transformOut, exports.attributes, attr, dflt);
+    }
+
+    var enabled = coerce('enabled');
+
+    if(enabled) {
+        var target = coerce('target');
+
+        if(Lib.isArrayOrTypedArray(target) && target.length === 0) {
+            transformOut.enabled = false;
+            return transformOut;
+        }
+
+        coerce('preservegaps');
+        coerce('operation');
+        coerce('value');
+
+        var handleCalendarDefaults = Registry.getComponentMethod('calendars', 'handleDefaults');
+        handleCalendarDefaults(transformIn, transformOut, 'valuecalendar', null);
+        handleCalendarDefaults(transformIn, transformOut, 'targetcalendar', null);
+    }
+
+    return transformOut;
+};
+
+exports.calcTransform = function(gd, trace, opts) {
+    if(!opts.enabled) return;
+
+    var targetArray = Lib.getTargetArray(trace, opts);
+    if(!targetArray) return;
+
+    var target = opts.target;
+
+    var len = targetArray.length;
+    if(trace._length) len = Math.min(len, trace._length);
+
+    var targetCalendar = opts.targetcalendar;
+    var arrayAttrs = trace._arrayAttrs;
+    var preservegaps = opts.preservegaps;
+
+    // even if you provide targetcalendar, if target is a string and there
+    // is a calendar attribute matching target it will get used instead.
+    if(typeof target === 'string') {
+        var attrTargetCalendar = Lib.nestedProperty(trace, target + 'calendar').get();
+        if(attrTargetCalendar) targetCalendar = attrTargetCalendar;
+    }
+
+    var d2c = Axes.getDataToCoordFunc(gd, trace, target, targetArray);
+    var filterFunc = getFilterFunc(opts, d2c, targetCalendar);
+    var originalArrays = {};
+    var indexToPoints = {};
+    var index = 0;
+
+    function forAllAttrs(fn, index) {
+        for(var j = 0; j < arrayAttrs.length; j++) {
+            var np = Lib.nestedProperty(trace, arrayAttrs[j]);
+            fn(np, index);
+        }
+    }
+
+    var initFn;
+    var fillFn;
+    if(preservegaps) {
+        initFn = function(np) {
+            originalArrays[np.astr] = Lib.extendDeep([], np.get());
+            np.set(new Array(len));
+        };
+        fillFn = function(np, index) {
+            var val = originalArrays[np.astr][index];
+            np.get()[index] = val;
+        };
+    } else {
+        initFn = function(np) {
+            originalArrays[np.astr] = Lib.extendDeep([], np.get());
+            np.set([]);
+        };
+        fillFn = function(np, index) {
+            var val = originalArrays[np.astr][index];
+            np.get().push(val);
+        };
+    }
+
+    // copy all original array attribute values, and clear arrays in trace
+    forAllAttrs(initFn);
+
+    var originalPointsAccessor = pointsAccessorFunction(trace.transforms, opts);
+
+    // loop through filter array, fill trace arrays if passed
+    for(var i = 0; i < len; i++) {
+        var passed = filterFunc(targetArray[i]);
+        if(passed) {
+            forAllAttrs(fillFn, i);
+            indexToPoints[index++] = originalPointsAccessor(i);
+        } else if(preservegaps) index++;
+    }
+
+    opts._indexToPoints = indexToPoints;
+    trace._length = index;
+};
+
+function getFilterFunc(opts, d2c, targetCalendar) {
+    var operation = opts.operation;
+    var value = opts.value;
+    var hasArrayValue = Array.isArray(value);
+
+    function isOperationIn(array) {
+        return array.indexOf(operation) !== -1;
+    }
+
+    var d2cValue = function(v) { return d2c(v, 0, opts.valuecalendar); };
+    var d2cTarget = function(v) { return d2c(v, 0, targetCalendar); };
+
+    var coercedValue;
+
+    if(isOperationIn(COMPARISON_OPS)) {
+        coercedValue = hasArrayValue ? d2cValue(value[0]) : d2cValue(value);
+    } else if(isOperationIn(INTERVAL_OPS)) {
+        coercedValue = hasArrayValue ?
+            [d2cValue(value[0]), d2cValue(value[1])] :
+            [d2cValue(value), d2cValue(value)];
+    } else if(isOperationIn(SET_OPS)) {
+        coercedValue = hasArrayValue ? value.map(d2cValue) : [d2cValue(value)];
+    }
+
+    switch(operation) {
+        case '=':
+            return function(v) { return d2cTarget(v) === coercedValue; };
+
+        case '!=':
+            return function(v) { return d2cTarget(v) !== coercedValue; };
+
+        case '<':
+            return function(v) { return d2cTarget(v) < coercedValue; };
+
+        case '<=':
+            return function(v) { return d2cTarget(v) <= coercedValue; };
+
+        case '>':
+            return function(v) { return d2cTarget(v) > coercedValue; };
+
+        case '>=':
+            return function(v) { return d2cTarget(v) >= coercedValue; };
+
+        case '[]':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv >= coercedValue[0] && cv <= coercedValue[1];
+            };
+
+        case '()':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv > coercedValue[0] && cv < coercedValue[1];
+            };
+
+        case '[)':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv >= coercedValue[0] && cv < coercedValue[1];
+            };
+
+        case '(]':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv > coercedValue[0] && cv <= coercedValue[1];
+            };
+
+        case '][':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv <= coercedValue[0] || cv >= coercedValue[1];
+            };
+
+        case ')(':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv < coercedValue[0] || cv > coercedValue[1];
+            };
+
+        case '](':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv <= coercedValue[0] || cv > coercedValue[1];
+            };
+
+        case ')[':
+            return function(v) {
+                var cv = d2cTarget(v);
+                return cv < coercedValue[0] || cv >= coercedValue[1];
+            };
+
+        case '{}':
+            return function(v) {
+                return coercedValue.indexOf(d2cTarget(v)) !== -1;
+            };
+
+        case '}{':
+            return function(v) {
+                return coercedValue.indexOf(d2cTarget(v)) === -1;
+            };
+    }
+}
+
+},{"../constants/filter_ops":215,"../lib":238,"../plots/cartesian/axes":284,"../registry":320,"./helpers":464}],463:[function(_dereq_,module,exports){
+'use strict';
+
+var Lib = _dereq_('../lib');
+var PlotSchema = _dereq_('../plot_api/plot_schema');
+var Plots = _dereq_('../plots/plots');
+var pointsAccessorFunction = _dereq_('./helpers').pointsAccessorFunction;
+
+exports.moduleType = 'transform';
+
+exports.name = 'groupby';
+
+exports.attributes = {
+    enabled: {
+        valType: 'boolean',
+        dflt: true,
+        editType: 'calc',
+    },
+    groups: {
+        valType: 'data_array',
+        dflt: [],
+        editType: 'calc',
+    },
+    nameformat: {
+        valType: 'string',
+        editType: 'calc',
+    },
+    styles: {
+        _isLinkedToArray: 'style',
+        target: {
+            valType: 'string',
+            editType: 'calc',
+        },
+        value: {
+            valType: 'any',
+            dflt: {},
+            editType: 'calc',
+            _compareAsJSON: true
+        },
+        editType: 'calc'
+    },
+    editType: 'calc'
+};
+
+/**
+ * Supply transform attributes defaults
+ *
+ * @param {object} transformIn
+ *  object linked to trace.transforms[i] with 'type' set to exports.name
+ * @param {object} traceOut
+ *  the _fullData trace this transform applies to
+ * @param {object} layout
+ *  the plot's (not-so-full) layout
+ * @param {object} traceIn
+ *  the input data trace this transform applies to
+ *
+ * @return {object} transformOut
+ *  copy of transformIn that contains attribute defaults
+ */
+exports.supplyDefaults = function(transformIn, traceOut, layout) {
+    var i;
+    var transformOut = {};
+
+    function coerce(attr, dflt) {
+        return Lib.coerce(transformIn, transformOut, exports.attributes, attr, dflt);
+    }
+
+    var enabled = coerce('enabled');
+
+    if(!enabled) return transformOut;
+
+    coerce('groups');
+    coerce('nameformat', layout._dataLength > 1 ? '%{group} (%{trace})' : '%{group}');
+
+    var styleIn = transformIn.styles;
+    var styleOut = transformOut.styles = [];
+
+    if(styleIn) {
+        for(i = 0; i < styleIn.length; i++) {
+            var thisStyle = styleOut[i] = {};
+            Lib.coerce(styleIn[i], styleOut[i], exports.attributes.styles, 'target');
+            var value = Lib.coerce(styleIn[i], styleOut[i], exports.attributes.styles, 'value');
+
+            // so that you can edit value in place and have Plotly.react notice it, or
+            // rebuild it every time and have Plotly.react NOT think it changed:
+            // use _compareAsJSON to say we should diff the _JSON_value
+            if(Lib.isPlainObject(value)) thisStyle.value = Lib.extendDeep({}, value);
+            else if(value) delete thisStyle.value;
+        }
+    }
+
+    return transformOut;
+};
+
+
+/**
+ * Apply transform !!!
+ *
+ * @param {array} data
+ *  array of transformed traces (is [fullTrace] upon first transform)
+ *
+ * @param {object} state
+ *  state object which includes:
+ *      - transform {object} full transform attributes
+ *      - fullTrace {object} full trace object which is being transformed
+ *      - fullData {array} full pre-transform(s) data array
+ *      - layout {object} the plot's (not-so-full) layout
+ *
+ * @return {object} newData
+ *  array of transformed traces
+ */
+exports.transform = function(data, state) {
+    var newTraces, i, j;
+    var newData = [];
+
+    for(i = 0; i < data.length; i++) {
+        newTraces = transformOne(data[i], state);
+
+        for(j = 0; j < newTraces.length; j++) {
+            newData.push(newTraces[j]);
+        }
+    }
+
+    return newData;
+};
+
+function transformOne(trace, state) {
+    var i, j, k, attr, srcArray, groupName, newTrace, transforms, arrayLookup;
+    var groupNameObj;
+
+    var opts = state.transform;
+    var transformIndex = state.transformIndex;
+    var groups = trace.transforms[transformIndex].groups;
+    var originalPointsAccessor = pointsAccessorFunction(trace.transforms, opts);
+
+    if(!(Lib.isArrayOrTypedArray(groups)) || groups.length === 0) {
+        return [trace];
+    }
+
+    var groupNames = Lib.filterUnique(groups);
+    var newData = new Array(groupNames.length);
+    var len = groups.length;
+
+    var arrayAttrs = PlotSchema.findArrayAttributes(trace);
+
+    var styles = opts.styles || [];
+    var styleLookup = {};
+    for(i = 0; i < styles.length; i++) {
+        styleLookup[styles[i].target] = styles[i].value;
+    }
+
+    if(opts.styles) {
+        groupNameObj = Lib.keyedContainer(opts, 'styles', 'target', 'value.name');
+    }
+
+    // An index to map group name --> expanded trace index
+    var indexLookup = {};
+    var indexCnts = {};
+
+    for(i = 0; i < groupNames.length; i++) {
+        groupName = groupNames[i];
+        indexLookup[groupName] = i;
+        indexCnts[groupName] = 0;
+
+        // Start with a deep extend that just copies array references.
+        newTrace = newData[i] = Lib.extendDeepNoArrays({}, trace);
+        newTrace._group = groupName;
+        newTrace.transforms[transformIndex]._indexToPoints = {};
+
+        var suppliedName = null;
+        if(groupNameObj) {
+            suppliedName = groupNameObj.get(groupName);
+        }
+
+        if(suppliedName || suppliedName === '') {
+            newTrace.name = suppliedName;
+        } else {
+            newTrace.name = Lib.templateString(opts.nameformat, {
+                trace: trace.name,
+                group: groupName
+            });
+        }
+
+        // In order for groups to apply correctly to other transform data (e.g.
+        // a filter transform), we have to break the connection and clone the
+        // transforms so that each group writes grouped values into a different
+        // destination. This function does not break the array reference
+        // connection between the split transforms it creates. That's handled in
+        // initialize, which creates a new empty array for each arrayAttr.
+        transforms = newTrace.transforms;
+        newTrace.transforms = [];
+        for(j = 0; j < transforms.length; j++) {
+            newTrace.transforms[j] = Lib.extendDeepNoArrays({}, transforms[j]);
+        }
+
+        // Initialize empty arrays for the arrayAttrs, to be split in the next step
+        for(j = 0; j < arrayAttrs.length; j++) {
+            Lib.nestedProperty(newTrace, arrayAttrs[j]).set([]);
+        }
+    }
+
+    // For each array attribute including those nested inside this and other
+    // transforms (small note that we technically only need to do this for
+    // transforms that have not yet been applied):
+    for(k = 0; k < arrayAttrs.length; k++) {
+        attr = arrayAttrs[k];
+
+        // Cache all the arrays to which we'll push:
+        for(j = 0, arrayLookup = []; j < groupNames.length; j++) {
+            arrayLookup[j] = Lib.nestedProperty(newData[j], attr).get();
+        }
+
+        // Get the input data:
+        srcArray = Lib.nestedProperty(trace, attr).get();
+
+        // Send each data point to the appropriate expanded trace:
+        for(j = 0; j < len; j++) {
+            // Map group data --> trace index --> array and push data onto it
+            arrayLookup[indexLookup[groups[j]]].push(srcArray[j]);
+        }
+    }
+
+    for(j = 0; j < len; j++) {
+        newTrace = newData[indexLookup[groups[j]]];
+
+        var indexToPoints = newTrace.transforms[transformIndex]._indexToPoints;
+        indexToPoints[indexCnts[groups[j]]] = originalPointsAccessor(j);
+        indexCnts[groups[j]]++;
+    }
+
+    for(i = 0; i < groupNames.length; i++) {
+        groupName = groupNames[i];
+        newTrace = newData[i];
+
+        Plots.clearExpandedTraceDefaultColors(newTrace);
+
+        // there's no need to coerce styleLookup[groupName] here
+        // as another round of supplyDefaults is done on the transformed traces
+        newTrace = Lib.extendDeepNoArrays(newTrace, styleLookup[groupName] || {});
+    }
+
+    return newData;
+}
+
+},{"../lib":238,"../plot_api/plot_schema":272,"../plots/plots":318,"./helpers":464}],464:[function(_dereq_,module,exports){
+'use strict';
+
+exports.pointsAccessorFunction = function(transforms, opts) {
+    var tr;
+    var prevIndexToPoints;
+    for(var i = 0; i < transforms.length; i++) {
+        tr = transforms[i];
+        if(tr === opts) break;
+        if(!tr._indexToPoints || tr.enabled === false) continue;
+        prevIndexToPoints = tr._indexToPoints;
+    }
+    var originalPointsAccessor = prevIndexToPoints ?
+        function(i) {return prevIndexToPoints[i];} :
+        function(i) {return [i];};
+    return originalPointsAccessor;
+};
+
+},{}],465:[function(_dereq_,module,exports){
+'use strict';
+
+var Lib = _dereq_('../lib');
+var Axes = _dereq_('../plots/cartesian/axes');
+var pointsAccessorFunction = _dereq_('./helpers').pointsAccessorFunction;
+
+var BADNUM = _dereq_('../constants/numerical').BADNUM;
+
+exports.moduleType = 'transform';
+
+exports.name = 'sort';
+
+exports.attributes = {
+    enabled: {
+        valType: 'boolean',
+        dflt: true,
+        editType: 'calc',
+    },
+    target: {
+        valType: 'string',
+        strict: true,
+        noBlank: true,
+        arrayOk: true,
+        dflt: 'x',
+        editType: 'calc',
+    },
+    order: {
+        valType: 'enumerated',
+        values: ['ascending', 'descending'],
+        dflt: 'ascending',
+        editType: 'calc',
+    },
+    editType: 'calc'
+};
+
+exports.supplyDefaults = function(transformIn) {
+    var transformOut = {};
+
+    function coerce(attr, dflt) {
+        return Lib.coerce(transformIn, transformOut, exports.attributes, attr, dflt);
+    }
+
+    var enabled = coerce('enabled');
+
+    if(enabled) {
+        coerce('target');
+        coerce('order');
+    }
+
+    return transformOut;
+};
+
+exports.calcTransform = function(gd, trace, opts) {
+    if(!opts.enabled) return;
+
+    var targetArray = Lib.getTargetArray(trace, opts);
+    if(!targetArray) return;
+
+    var target = opts.target;
+
+    var len = targetArray.length;
+    if(trace._length) len = Math.min(len, trace._length);
+
+    var arrayAttrs = trace._arrayAttrs;
+    var d2c = Axes.getDataToCoordFunc(gd, trace, target, targetArray);
+    var indices = getIndices(opts, targetArray, d2c, len);
+    var originalPointsAccessor = pointsAccessorFunction(trace.transforms, opts);
+    var indexToPoints = {};
+    var i, j;
+
+    for(i = 0; i < arrayAttrs.length; i++) {
+        var np = Lib.nestedProperty(trace, arrayAttrs[i]);
+        var arrayOld = np.get();
+        var arrayNew = new Array(len);
+
+        for(j = 0; j < len; j++) {
+            arrayNew[j] = arrayOld[indices[j]];
+        }
+
+        np.set(arrayNew);
+    }
+
+    for(j = 0; j < len; j++) {
+        indexToPoints[j] = originalPointsAccessor(indices[j]);
+    }
+
+    opts._indexToPoints = indexToPoints;
+    trace._length = len;
+};
+
+function getIndices(opts, targetArray, d2c, len) {
+    var sortedArray = new Array(len);
+    var indices = new Array(len);
+    var i;
+
+    for(i = 0; i < len; i++) {
+        sortedArray[i] = {v: targetArray[i], i: i};
+    }
+
+    sortedArray.sort(getSortFunc(opts, d2c));
+
+    for(i = 0; i < len; i++) {
+        indices[i] = sortedArray[i].i;
+    }
+
+    return indices;
+}
+
+function getSortFunc(opts, d2c) {
+    switch(opts.order) {
+        case 'ascending':
+            return function(a, b) {
+                var ac = d2c(a.v);
+                var bc = d2c(b.v);
+                if(ac === BADNUM) {
+                    return 1;
+                }
+                if(bc === BADNUM) {
+                    return -1;
+                }
+                return ac - bc;
+            };
+        case 'descending':
+            return function(a, b) {
+                var ac = d2c(a.v);
+                var bc = d2c(b.v);
+                if(ac === BADNUM) {
+                    return 1;
+                }
+                if(bc === BADNUM) {
+                    return -1;
+                }
+                return bc - ac;
+            };
+    }
+}
+
+},{"../constants/numerical":217,"../lib":238,"../plots/cartesian/axes":284,"./helpers":464}],466:[function(_dereq_,module,exports){
 'use strict';
 
 // package version injected by `npm run preprocess`
-exports.version = '1.57.1';
+exports.version = '1.58.4';
 
-},{}]},{},[8])(8)
+},{}]},{},[12])(12)
 });

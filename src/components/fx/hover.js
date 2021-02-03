@@ -8,7 +8,7 @@
 
 'use strict';
 
-var d3 = require('d3');
+var d3 = require('@plotly/d3');
 var isNumeric = require('fast-isnumeric');
 var tinycolor = require('tinycolor2');
 
@@ -420,8 +420,9 @@ function _hover(gd, evt, subplot, noHoverEvent) {
 
       // Explicitly bail out for these two. I don't know how to otherwise prevent
       // the rest of this function from running and failing
-      if (['carpet', 'contourcarpet'].indexOf(trace._module.name) !== -1)
+      if (['carpet', 'contourcarpet'].indexOf(trace._module.name) !== -1) {
         continue;
+      }
 
       if (trace.type === 'splom') {
         // splom traces do not generate overlay subplots,
@@ -542,7 +543,42 @@ function _hover(gd, evt, subplot, noHoverEvent) {
             }
           }
         } else {
-          Lib.log('Unrecognized trace type in hover:', trace);
+          // fire the beforehover event and quit if it returns false
+          // note that we're only calling this on real mouse events, so
+          // manual calls to fx.hover will always run.
+          if (Events.triggerHandler(gd, 'plotly_beforehover', evt) === false) {
+            return;
+          }
+
+          // Discover event target, traversing open shadow roots.
+          var target = evt.composedPath && evt.composedPath()[0];
+          if (!target) {
+            // Fallback for browsers not supporting composedPath
+            target = evt.target;
+          }
+          var dbb = target.getBoundingClientRect();
+
+          xpx = evt.clientX - dbb.left;
+          ypx = evt.clientY - dbb.top;
+
+          fullLayout._calcInverseTransform(gd);
+          var transformedCoords = Lib.apply3DTransform(
+            fullLayout._invTransform
+          )(xpx, ypx);
+
+          xpx = transformedCoords[0];
+          ypx = transformedCoords[1];
+
+          // in case hover was called from mouseout into hovertext,
+          // it's possible you're not actually over the plot anymore
+          if (
+            xpx < 0 ||
+            xpx > xaArray[0]._length ||
+            ypx < 0 ||
+            ypx > yaArray[0]._length
+          ) {
+            return dragElement.unhoverRaw(gd, evt);
+          }
         }
       }
 
@@ -793,6 +829,7 @@ function _hover(gd, evt, subplot, noHoverEvent) {
   };
 
   /*
+  begin change
     if (fullLayout.showhovertext !== false) {
         var hoverLabels = createHoverText(hoverData, labelOpts, gd);
 
@@ -806,6 +843,7 @@ function _hover(gd, evt, subplot, noHoverEvent) {
         hoverAvoidOverlaps(hoverLabels, rotateLabels ? 'xa' : 'ya', fullLayout);
         alignHoverText(hoverLabels, rotateLabels, fullLayout._invScaleX, fullLayout._invScaleY);
     }    // TODO: tagName hack is needed to appease geo.js's hack of using evt.target=true
+    end change
     */
   // we should improve the "fx" API so other plots can use it without these hack.
   if (evt.target && evt.target.tagName) {
@@ -817,8 +855,9 @@ function _hover(gd, evt, subplot, noHoverEvent) {
   }
 
   // don't emit events if called manually
-  if (!evt.target || noHoverEvent || !hoverChanged(gd, evt, oldhoverdata))
+  if (!evt.target || noHoverEvent || !hoverChanged(gd, evt, oldhoverdata)) {
     return;
+  }
 
   if (oldhoverdata) {
     gd.emit('plotly_unhover', {
@@ -1165,8 +1204,9 @@ function createHoverText(hoverData, opts, gd) {
     container.selectAll('g.hovertext').remove();
 
     // similarly to compare mode, we remove the "close but not quite together" points
-    if (t0 !== undefined && c0.distance <= opts.hoverdistance)
+    if (t0 !== undefined && c0.distance <= opts.hoverdistance) {
       hoverData = filterClosePoints(hoverData);
+    }
 
     // Return early if nothing is hovered on
     if (hoverData.length === 0) return;
@@ -1519,7 +1559,7 @@ function getHoverLabelText(d, showCommonLabel, hovermode, fullLayout, t0, g) {
 
 // Make groups of touching points, and within each group
 // move each point so that no labels overlap, but the average
-// label position is the same as it was before moving. Indicentally,
+// label position is the same as it was before moving. Incidentally,
 // this is equivalent to saying all the labels are on equal linear
 // springs about their initial position. Initially, each point is
 // its own group, but as we find overlaps we will clump the points.
@@ -2102,8 +2142,9 @@ function createSpikelines(gd, closestPoints, opts) {
 
 function hoverChanged(gd, evt, oldhoverdata) {
   // don't emit any events if nothing changed
-  if (!oldhoverdata || oldhoverdata.length !== gd._hoverdata.length)
+  if (!oldhoverdata || oldhoverdata.length !== gd._hoverdata.length) {
     return true;
+  }
 
   for (var i = oldhoverdata.length - 1; i >= 0; i--) {
     var oldPt = oldhoverdata[i];
@@ -2126,8 +2167,9 @@ function spikesChanged(gd, oldspikepoints) {
   if (
     oldspikepoints.vLinePoint !== gd._spikepoints.vLinePoint ||
     oldspikepoints.hLinePoint !== gd._spikepoints.hLinePoint
-  )
+  ) {
     return true;
+  }
   return false;
 }
 

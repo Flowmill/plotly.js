@@ -4,10 +4,10 @@ var Plots = require('@src/plots/plots');
 
 var Box = require('@src/traces/box');
 
-var d3 = require('d3');
+var d3Select = require('../../strict-d3').select;
 var createGraphDiv = require('../assets/create_graph_div');
 var destroyGraphDiv = require('../assets/destroy_graph_div');
-var failTest = require('../assets/fail_test');
+
 var mouseEvent = require('../assets/mouse_event');
 var supplyAllDefaults = require('../assets/supply_defaults');
 
@@ -731,7 +731,7 @@ describe('Test box hover:', function() {
 
         var pos = specs.pos || [200, 200];
 
-        return Plotly.plot(gd, fig).then(function() {
+        return Plotly.newPlot(gd, fig).then(function() {
             mouseEvent('mousemove', pos[0], pos[1]);
             assertHoverLabelContent(specs, specs.desc);
         });
@@ -1032,7 +1032,7 @@ describe('Test box hover:', function() {
         axis: 'A'
     }].forEach(function(specs) {
         it('should generate correct hover labels ' + specs.desc, function(done) {
-            run(specs).catch(failTest).then(done);
+            run(specs).then(done, done.fail);
         });
     });
 });
@@ -1063,8 +1063,7 @@ describe('Box edge cases', function() {
             expect(outliers.length).toBe(1);
             expect(outliers[0].x).toBe(0);
         })
-        .catch(failTest)
-        .then(done);
+        .then(done, done.fail);
     });
 });
 
@@ -1088,13 +1087,13 @@ describe('Test box restyle:', function() {
         }
 
         function _assert(msg, exp) {
-            var trace3 = d3.select(gd).select('.boxlayer > .trace');
+            var trace3 = d3Select(gd).select('.boxlayer > .trace');
             _assertOne(msg, exp, trace3, 'boxCnt', 'path.box');
             _assertOne(msg, exp, trace3, 'meanlineCnt', 'path.mean');
             _assertOne(msg, exp, trace3, 'ptsCnt', 'path.point');
         }
 
-        Plotly.plot(gd, fig)
+        Plotly.newPlot(gd, fig)
         .then(function() {
             _assert('base', {boxCnt: 1});
         })
@@ -1114,8 +1113,7 @@ describe('Test box restyle:', function() {
         .then(function() {
             _assert('with pts', {boxCnt: 1, ptsCnt: 9});
         })
-        .catch(failTest)
-        .then(done);
+        .then(done, done.fail);
     });
 
     it('should update axis range accordingly on calc edits', function(done) {
@@ -1125,7 +1123,7 @@ describe('Test box restyle:', function() {
             expect(fullLayout.yaxis.range).toBeCloseToArray(yrng, 2, msg + ' yrng');
         }
 
-        Plotly.plot(gd, [{
+        Plotly.newPlot(gd, [{
             type: 'box',
             y: [0, 1, 1, 1, 1, 2, 2, 3, 5, 6, 10]
         }], {
@@ -1150,8 +1148,7 @@ describe('Test box restyle:', function() {
         .then(function() {
             _assert('auto rng / no boxpoints', [-0.5, 0.5], [-0.555, 10.555]);
         })
-        .catch(failTest)
-        .then(done);
+        .then(done, done.fail);
     });
 
     it('should be able to change axis range when the number of distinct positions changes', function(done) {
@@ -1161,7 +1158,7 @@ describe('Test box restyle:', function() {
             expect(fullLayout.yaxis.range).toBeCloseToArray(yrng, 2, msg + ' yrng');
         }
 
-        Plotly.plot(gd, [{
+        Plotly.newPlot(gd, [{
             type: 'box',
             width: 0.4,
             y: [0, 5, 7, 8],
@@ -1182,8 +1179,7 @@ describe('Test box restyle:', function() {
         .then(function() {
             _assert('only trace1 visible', [-0.5, 0.5], [-0.444, 8.444]);
         })
-        .catch(failTest)
-        .then(done);
+        .then(done, done.fail);
     });
 });
 
